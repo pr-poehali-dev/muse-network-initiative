@@ -158,7 +158,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture">
       <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-primary/20">
-        <div className="w-full max-w-7xl mx-auto px-8 py-4">
+        <div className="w-full px-8 py-4">
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16" />
             <div className="hidden md:flex gap-6">
@@ -180,14 +180,14 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-32 pb-32 px-8 animate-fade-in overflow-hidden bg-black min-h-[90vh] flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 grid grid-cols-7 gap-0">
             <div className="relative h-full">
               <img 
                 src="https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg"
                 alt="Людмила Мерзлая"
-                className="w-full h-full object-cover object-center opacity-35"
+                className="w-full h-full object-cover object-center opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -198,7 +198,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg"
                 alt="Юлия Христенко"
-                className="w-full h-full object-cover object-center opacity-38"
+                className="w-full h-full object-cover object-center opacity-50"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -209,7 +209,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg"
                 alt="Юлия Самсонова"
-                className="w-full h-full object-cover object-center opacity-42"
+                className="w-full h-full object-cover object-center opacity-55"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -220,19 +220,20 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg"
                 alt="Карина Ляшева"
-                className="w-full h-full object-cover object-center opacity-65"
+                className="w-full h-full object-cover object-center opacity-80"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/20 via-transparent to-transparent opacity-70"></div>
+              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/30 via-[#d4af37]/10 to-transparent"></div>
+              <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(212,175,55,0.3)]"></div>
             </div>
             <div className="relative h-full">
               <img 
                 src="https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg"
                 alt="Тамара Мазмишаили"
-                className="w-full h-full object-cover object-center opacity-42"
+                className="w-full h-full object-cover object-center opacity-55"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -243,7 +244,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg"
                 alt="Мария Лазарева"
-                className="w-full h-full object-cover object-center opacity-38"
+                className="w-full h-full object-cover object-center opacity-50"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -254,7 +255,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg"
                 alt="Полина Берг"
-                className="w-full h-full object-cover object-center opacity-35"
+                className="w-full h-full object-cover object-center opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -264,35 +265,39 @@ const Index = () => {
           </div>
           
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent blur-3xl"></div>
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[80%] bg-gradient-to-b from-[#d4af37]/15 via-[#d4af37]/25 to-transparent blur-3xl"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[60%] bg-[#d4af37]/10 rounded-full blur-3xl animate-pulse" style={{animationDuration: '4s'}}></div>
             
-            {[...Array(12)].map((_, i) => {
-              const angle = (i * 30) - 15;
-              return (
-                <div
-                  key={i}
-                  className="absolute top-1/2 left-1/2 origin-left opacity-20"
-                  style={{
-                    transform: `rotate(${angle}deg)`,
-                    width: '150%',
-                    height: '2px',
-                  }}
-                >
-                  <div 
-                    className="h-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent animate-pulse"
+            <div className="absolute inset-0">
+              {[...Array(20)].map((_, i) => {
+                const angle = (i * 18);
+                return (
+                  <div
+                    key={i}
+                    className="absolute top-1/2 left-1/2 origin-left"
                     style={{
-                      animationDelay: `${i * 0.3}s`,
-                      animationDuration: '3s'
+                      transform: `rotate(${angle}deg)`,
+                      width: '150%',
+                      height: '3px',
+                      opacity: 0.15 + (Math.abs(i - 10) / 50)
                     }}
-                  />
-                </div>
-              );
-            })}
+                  >
+                    <div 
+                      className="h-full bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent animate-pulse"
+                      style={{
+                        animationDelay: `${i * 0.2}s`,
+                        animationDuration: '4s'
+                      }}
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
           
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
           
           <div className="absolute inset-0 opacity-30">
             {[...Array(30)].map((_, i) => (
@@ -309,10 +314,15 @@ const Index = () => {
             ))}
           </div>
         </div>
-        <div className="w-full text-center max-w-7xl mx-auto relative z-10">
-          <h2 className="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4 mt-8">
-            КЛУБ MUSE
-          </h2>
+        <div className="w-full text-center px-8 relative z-10">
+          <div className="relative inline-block mb-6">
+            <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4 tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)]">
+              КЛУБ MUSE
+            </h2>
+            <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/10 blur-xl animate-pulse px-4" style={{animationDuration: '3s'}}>
+              КЛУБ MUSE
+            </div>
+          </div>
           <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
@@ -363,7 +373,7 @@ const Index = () => {
       </section>
 
       <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">О клубе <span className="text-[#d4af37]">Muse</span></h3>
           </div>
@@ -447,7 +457,7 @@ const Index = () => {
       </section>
 
       <section id="mission" className={`py-20 px-8 bg-black noise-texture transition-all duration-1000 ${visibleSections.has('mission') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">ценности</span></h3>
           </div>
@@ -469,7 +479,7 @@ const Index = () => {
       </section>
 
       <section id="events" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('events') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Мероприятия и <span className="text-[#d4af37]">встречи</span></h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
@@ -586,7 +596,7 @@ const Index = () => {
       </Dialog>
 
       <section id="gallery" className={`py-20 px-8 bg-black noise-texture overflow-hidden transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-7xl mx-auto mb-16">
+        <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Галерея наших <span className="text-[#d4af37]">мероприятий</span></h3>
             <p className="text-xl text-white/80">Моменты, которые вдохновляют</p>
@@ -597,7 +607,7 @@ const Index = () => {
       </section>
 
       <section id="team" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture transition-all duration-1000 ${visibleSections.has('team') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-7xl mx-auto">
+        <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">эксперты</span></h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
@@ -634,7 +644,7 @@ const Index = () => {
       </section>
 
       <section id="contact" className={`py-20 px-8 bg-black luxury-texture transition-all duration-1000 ${visibleSections.has('contact') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="w-full max-w-4xl mx-auto">
+        <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Присоединяйтесь <span className="text-[#d4af37]">к нам</span></h3>
             <p className="text-xl text-white/80">
