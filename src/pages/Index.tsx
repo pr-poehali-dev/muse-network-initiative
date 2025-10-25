@@ -225,15 +225,16 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
-              <div className="absolute top-0 left-0 w-full h-2/3">
+            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md flex flex-col">
+              <div className="relative w-full h-64 overflow-hidden">
                 <img 
                   src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
                   alt="Карина Ляшева" 
-                  className="w-full h-full object-cover object-top opacity-20"
+                  className="w-full h-full object-cover object-top"
                 />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-[#1a1a1a]"></div>
               </div>
-              <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
+              <div className="p-8 flex-1 flex flex-col justify-between">
                 <div>
                   <div className="text-[#b8953d]/40 text-6xl mb-4">“</div>
                   <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
