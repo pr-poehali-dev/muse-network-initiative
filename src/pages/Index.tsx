@@ -218,7 +218,7 @@ const Index = () => {
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg"
+                src="https://cdn.poehali.dev/files/9f4c509f-d14c-4720-8349-39c8581bb241.jpg"
                 alt="Карина Ляшева"
                 className="w-full h-full object-cover object-center opacity-80"
                 style={{
@@ -274,18 +274,20 @@ const Index = () => {
                 return (
                   <div
                     key={i}
-                    className="absolute top-1/2 left-1/2 origin-left"
+                    className="absolute top-1/2 left-1/2 origin-left animate-fade-in"
                     style={{
                       transform: `rotate(${angle}deg)`,
                       width: '150%',
                       height: '3px',
-                      opacity: 0.15 + (Math.abs(i - 10) / 50)
+                      opacity: 0.15 + (Math.abs(i - 10) / 50),
+                      animationDelay: `${i * 0.1}s`,
+                      animationDuration: '1s'
                     }}
                   >
                     <div 
                       className="h-full bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent animate-pulse"
                       style={{
-                        animationDelay: `${i * 0.2}s`,
+                        animationDelay: `${1 + i * 0.2}s`,
                         animationDuration: '4s'
                       }}
                     />
