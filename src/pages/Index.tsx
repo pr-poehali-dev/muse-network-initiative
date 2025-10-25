@@ -131,7 +131,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f8f5f2] via-[#faf8f6] to-[#f5f1ed] luxury-texture noise-texture">
       <nav className="fixed top-0 w-full bg-[#1a0a0f]/95 backdrop-blur-md z-50 border-b border-primary/30">
-        <div className="w-full px-8 py-4">
+        <div className="w-full max-w-7xl mx-auto px-8 py-4">
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12" />
             <div className="hidden md:flex gap-6">
@@ -153,7 +153,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-32 pb-20 px-4 animate-fade-in overflow-hidden bg-gradient-to-br from-[#1a0a0f] via-[#2d1520] to-[#1a0a0f] transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="hero" className={`relative pt-32 pb-20 px-8 animate-fade-in overflow-hidden bg-gradient-to-br from-[#1a0a0f] via-[#2d1520] to-[#1a0a0f] transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
           <img 
             src="https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/f27de6d6-78bb-4160-bc53-13e994012884.jpg"
@@ -162,7 +162,7 @@ const Index = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a0a0f]/50 to-[#1a0a0f]"></div>
         </div>
-        <div className="w-full px-8 text-center max-w-7xl mx-auto relative z-10">
+        <div className="w-full text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4 floating" />
           </div>
