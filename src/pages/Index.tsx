@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import MosaicGallery from '@/components/MosaicGallery';
+import EventsCalendar from '@/components/EventsCalendar';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Index = () => {
@@ -331,6 +332,14 @@ const Index = () => {
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
+          </div>
+
+          <div className="mb-16">
+            <EventsCalendar />
+          </div>
+
+          <div className="text-center mb-10">
+            <h4 className="text-3xl font-bold text-white/90 mb-4">Форматы мероприятий</h4>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
