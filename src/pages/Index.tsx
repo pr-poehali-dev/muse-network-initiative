@@ -177,7 +177,6 @@ const Index = () => {
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
             <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-slide-in-left relative overflow-hidden group">
-              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">✨</div>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
                   <Icon name="Users" className="text-white" size={28} />
@@ -188,7 +187,6 @@ const Index = () => {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-scale-in relative overflow-hidden group" style={{animationDelay: '0.2s'}}>
-              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">🎯</div>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
                   <Icon name="Calendar" className="text-white" size={28} />
@@ -199,7 +197,6 @@ const Index = () => {
               </div>
             </div>
             <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '0.4s'}}>
-              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">📡</div>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
                   <Icon name="Radio" className="text-white" size={28} />
@@ -301,7 +298,6 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
               <Card key={index} className="hover-scale glow-effect border-2 border-primary/20 rounded-2xl animate-scale-in relative overflow-hidden group bg-gradient-to-br from-white to-[#faf8f6]" style={{animationDelay: `${index * 0.1}s`}}>
-                <div className="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition-opacity p-4">{value.emoji}</div>
                 <CardContent className="p-8 relative z-10">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
                     <Icon name={value.icon} className="text-white" size={24} />
@@ -327,7 +323,6 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-6">
             {events.map((event, index) => (
               <Card key={index} className={`hover-scale glow-effect border-2 border-primary/20 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-gradient-to-br from-white to-[#faf8f6]`} style={{animationDelay: `${index * 0.15}s`}}>
-                <div className="absolute top-4 right-4 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">{event.emoji}</div>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] shadow-lg flex-shrink-0">
