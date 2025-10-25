@@ -385,10 +385,10 @@ const Index = () => {
         </div>
         <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
           <div className="relative inline-block mb-10">
-            <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4 tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)]">
+            <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 animate-scale-in px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               КЛУБ MUSE
             </h2>
-            <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/10 blur-xl animate-pulse px-4" style={{animationDuration: '3s'}}>
+            <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/5 blur-xl px-4">
               КЛУБ MUSE
             </div>
           </div>
