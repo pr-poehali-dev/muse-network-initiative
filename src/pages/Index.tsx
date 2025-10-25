@@ -157,24 +157,31 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture">
-      <nav className="fixed top-0 w-full bg-black/95 backdrop-blur-md z-50 border-b border-primary/20">
-        <div className="w-full px-8 py-4">
+      <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
+        <div className="w-full px-8 py-5">
           <div className="flex items-center justify-between">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16" />
-            <div className="hidden md:flex gap-6">
-              {['hero', 'about', 'mission', 'events', 'team', 'contact'].map((section) => (
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
+            <div className="hidden md:flex items-center gap-8">
+              {['hero', 'about', 'mission', 'events', 'team'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className="text-sm font-medium text-[#b8953d]/90 hover:text-[#d4af37] transition-colors capitalize"
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
                 >
                   {section === 'hero' ? 'Главная' : 
                    section === 'about' ? 'О клубе' :
                    section === 'mission' ? 'Миссия' :
-                   section === 'events' ? 'Мероприятия' :
-                   section === 'team' ? 'Команда' : 'Контакты'}
+                   section === 'events' ? 'Мероприятия' : 'Команда'}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
+              <Button
+                size="lg"
+                className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] uppercase tracking-wider"
+                onClick={() => scrollToSection('contact')}
+              >
+                Вступить в клуб
+              </Button>
             </div>
           </div>
         </div>
@@ -381,14 +388,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <Button
-            size="lg"
-            className="text-lg px-8 py-6 hover-scale glow-effect pulse-glow animate-fade-in"
-            style={{animationDelay: '0.6s'}}
-            onClick={() => scrollToSection('contact')}
-          >
-            Присоединиться к клубу
-          </Button>
+
         </div>
       </section>
 
