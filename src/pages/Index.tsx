@@ -175,7 +175,7 @@ const Index = () => {
           <p className="text-lg text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-slide-in-left relative overflow-hidden group">
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
