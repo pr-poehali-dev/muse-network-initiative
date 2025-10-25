@@ -63,6 +63,7 @@ const Index = () => {
       name: 'Лазарева Мария Михайловна',
       role: 'Психолог, психотерапевт',
       description: 'Метод символдрама',
+      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
     },
   ];
 
