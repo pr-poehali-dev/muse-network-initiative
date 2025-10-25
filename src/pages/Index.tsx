@@ -18,6 +18,7 @@ const Index = () => {
     name: '',
     email: '',
     phone: '',
+    telegram: '',
     event: '',
     message: ''
   });
@@ -25,6 +26,7 @@ const Index = () => {
     name: '',
     email: '',
     phone: '',
+    telegram: '',
     message: ''
   });
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
@@ -50,7 +52,7 @@ const Index = () => {
     setTimeout(() => {
       setIsEventFormSubmitted(false);
       setIsEventDialogOpen(false);
-      setEventFormData({ name: '', email: '', phone: '', event: '', message: '' });
+      setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
     }, 2000);
   };
 
@@ -61,7 +63,7 @@ const Index = () => {
     setTimeout(() => {
       setIsJoinFormSubmitted(false);
       setIsJoinDialogOpen(false);
-      setJoinFormData({ name: '', email: '', phone: '', message: '' });
+      setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
     }, 2000);
   };
 
@@ -607,6 +609,16 @@ const Index = () => {
                 />
               </div>
               <div>
+                <label className="block text-sm font-medium mb-2 text-white">Telegram</label>
+                <Input 
+                  type="text" 
+                  placeholder="@username" 
+                  value={eventFormData.telegram}
+                  onChange={(e) => setEventFormData({...eventFormData, telegram: e.target.value})}
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
                 <label className="block text-sm font-medium mb-2 text-white">Комментарий</label>
                 <Textarea
                   placeholder="Дополнительная информация или пожелания"
@@ -672,6 +684,16 @@ const Index = () => {
                   value={joinFormData.phone}
                   onChange={(e) => setJoinFormData({...joinFormData, phone: e.target.value})}
                   required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Telegram</label>
+                <Input 
+                  type="text" 
+                  placeholder="@username" 
+                  value={joinFormData.telegram}
+                  onChange={(e) => setJoinFormData({...joinFormData, telegram: e.target.value})}
                   className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
                 />
               </div>
