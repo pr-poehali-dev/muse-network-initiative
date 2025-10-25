@@ -104,7 +104,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-secondary/10 to-white">
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-border">
-        <div className="container mx-auto px-4 py-4">
+        <div className="w-full px-8 py-4">
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12" />
             <div className="hidden md:flex gap-6">
@@ -134,7 +134,7 @@ const Index = () => {
             className="w-full h-full object-cover opacity-10"
           />
         </div>
-        <div className="container mx-auto text-center max-w-4xl relative z-10">
+        <div className="w-full px-8 text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4" />
           </div>
@@ -171,8 +171,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-5xl">
+      <section id="about" className="py-20 px-8 bg-muted/30">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">О клубе Muse</h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -180,7 +180,7 @@ const Index = () => {
               делиться опытом и находить поддержку среди единомышленников.
             </p>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white border-2 border-primary p-8">
+              <div className="bg-white border-2 border-primary p-8 rounded-2xl">
                 <h4 className="text-2xl font-bold mb-4 text-primary">Миссия клуба</h4>
                 <p className="text-base text-foreground/80 leading-relaxed mb-4">
                   Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
@@ -195,7 +195,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="hover-scale">
+            <Card className="hover-scale rounded-2xl">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-foreground/80">
@@ -219,7 +219,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale">
+            <Card className="hover-scale rounded-2xl">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-foreground/80">
@@ -242,15 +242,15 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="mission" className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section id="mission" className="py-20 px-8">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Наши ценности</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="hover-scale border-t-4 border-t-primary rounded-none">
+              <Card key={index} className="hover-scale border-t-4 border-t-primary rounded-xl">
                 <CardContent className="p-6">
                   <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
                   <p className="text-sm text-foreground/70 leading-relaxed">{value.description}</p>
@@ -261,8 +261,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="events" className="py-20 px-4 bg-muted/30">
-        <div className="container mx-auto max-w-6xl">
+      <section id="events" className="py-20 px-8 bg-muted/30">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Мероприятия и встречи</h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
@@ -272,7 +272,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             {events.map((event, index) => (
-              <Card key={index} className="hover-scale border-l-4 border-l-primary rounded-none">
+              <Card key={index} className="hover-scale border-l-4 border-l-primary rounded-2xl">
                 <CardContent className="p-8">
                   <h4 className="text-xl font-semibold mb-3 text-primary">{event.title}</h4>
                   <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
@@ -284,8 +284,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="team" className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
+      <section id="team" className="py-20 px-8">
+        <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Наши эксперты</h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
@@ -295,7 +295,7 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale overflow-hidden rounded-none border-2 border-border">
+              <Card key={index} className="hover-scale overflow-hidden rounded-2xl border-2 border-border">
                 <CardContent className="p-0">
                   <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
@@ -315,8 +315,8 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-4 bg-gradient-to-b from-muted/30 to-primary/5">
-        <div className="container mx-auto max-w-2xl">
+      <section id="contact" className="py-20 px-8 bg-gradient-to-b from-muted/30 to-primary/5">
+        <div className="w-full max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-6 text-primary">Присоединяйтесь к нам</h3>
             <p className="text-xl text-foreground/80">
