@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -12,6 +12,52 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const visibleSections = useScrollAnimation();
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const [count3, setCount3] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!visibleSections.has('hero') || hasAnimated) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+            
+            const animateCount = (setter: (value: number) => void, target: number, duration: number = 2000) => {
+              const start = 0;
+              const increment = target / (duration / 16);
+              let current = start;
+              
+              const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                  setter(target);
+                  clearInterval(timer);
+                } else {
+                  setter(Math.floor(current));
+                }
+              }, 16);
+            };
+
+            setTimeout(() => animateCount(setCount1, 250, 2000), 200);
+            setTimeout(() => animateCount(setCount2, 50, 1800), 400);
+            setTimeout(() => animateCount(setCount3, 24, 1600), 600);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    if (statsRef.current) {
+      observer.observe(statsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [visibleSections, hasAnimated]);
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
@@ -352,13 +398,13 @@ const Index = () => {
           <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div ref={statsRef} className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group">
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">250+</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count1}+</div>
                 <p className="text-base text-white/90 font-medium">Участниц клуба</p>
                 <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -368,7 +414,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">50+</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count2}+</div>
                 <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -378,7 +424,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">24</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count3}</div>
                 <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
               </div>
