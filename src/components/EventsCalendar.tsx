@@ -2,6 +2,12 @@ import { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 
+interface Speaker {
+  name: string;
+  role: string;
+  image: string;
+}
+
 interface Event {
   id: number;
   title: string;
@@ -11,6 +17,7 @@ interface Event {
   type: 'offline' | 'online' | 'workshop' | 'guest';
   location: string;
   seats?: number;
+  speakers: Speaker[];
 }
 
 const events: Event[] = [
@@ -22,7 +29,19 @@ const events: Event[] = [
     description: 'Панельная дискуссия с участием успешных предпринимательниц о стратегиях эффективных переговоров в бизнесе',
     type: 'offline',
     location: 'Конференц-зал "Империал"',
-    seats: 45
+    seats: 45,
+    speakers: [
+      {
+        name: 'Карина Ляшева',
+        role: 'Эксперт гастрономического искусства',
+        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+      },
+      {
+        name: 'Екатерина Кузнецова',
+        role: 'Директор ТИЦ Архангельской области',
+        image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg'
+      }
+    ]
   },
   {
     id: 2,
@@ -32,6 +51,13 @@ const events: Event[] = [
     description: 'Живой эфир с обсуждением современных вызовов и возможностей для женщин-лидеров',
     type: 'online',
     location: 'Zoom',
+    speakers: [
+      {
+        name: 'Мария Лазарева',
+        role: 'Психолог, психотерапевт',
+        image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg'
+      }
+    ]
   },
   {
     id: 3,
@@ -41,26 +67,52 @@ const events: Event[] = [
     description: 'Мастер-класс по живописи в камерной атмосфере с профессиональным художником',
     type: 'workshop',
     location: 'Арт-студия "Муза"',
-    seats: 20
+    seats: 20,
+    speakers: [
+      {
+        name: 'Людмила Мерзлая',
+        role: 'Художница',
+        image: 'https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg'
+      }
+    ]
   },
   {
     id: 4,
-    title: 'Встреча с гостем: Юлия Самсонова',
+    title: 'Встреча с гостем: Стиль и имидж',
     date: '2025-11-22',
     time: '18:30',
     description: 'Эксперт по стилю расскажет о создании личного бренда через имидж',
     type: 'guest',
     location: 'Бизнес-лаундж Muse',
-    seats: 30
+    seats: 30,
+    speakers: [
+      {
+        name: 'Юлия Самсонова',
+        role: 'Стилист',
+        image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg'
+      },
+      {
+        name: 'Юлия Христенко',
+        role: 'Дизайнер бренда JK',
+        image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg'
+      }
+    ]
   },
   {
     id: 5,
     title: 'Онлайн встреча: Баланс жизни',
     date: '2025-11-26',
     time: '20:00',
-    description: 'Обсуждение практик work-life balance с психологом',
+    description: 'Обсуждение практик work-life balance с экспертом здорового образа жизни',
     type: 'online',
     location: 'Zoom',
+    speakers: [
+      {
+        name: 'Тамара Мазмишаили',
+        role: 'Фитнес тренер',
+        image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg'
+      }
+    ]
   },
   {
     id: 6,
@@ -70,7 +122,19 @@ const events: Event[] = [
     description: 'Праздничная встреча клуба с подведением итогов года и планированием на будущее',
     type: 'offline',
     location: 'Ресторан "Золотой век"',
-    seats: 60
+    seats: 60,
+    speakers: [
+      {
+        name: 'Карина Ляшева',
+        role: 'Основательница клуба Muse',
+        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+      },
+      {
+        name: 'Полина Берг',
+        role: 'Мастер исторического костюма',
+        image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg'
+      }
+    ]
   }
 ];
 
@@ -82,13 +146,13 @@ const EventsCalendar = () => {
   const getEventTypeConfig = (type: Event['type']) => {
     switch(type) {
       case 'offline':
-        return { icon: 'Users', color: 'from-[#d4af37] to-[#b8860b]', label: 'Очная встреча' };
+        return { icon: 'Users', color: 'from-[#d4af37] to-[#b8860b]', badge: 'bg-[#d4af37]', label: 'Очно' };
       case 'online':
-        return { icon: 'MonitorPlay', color: 'from-[#9d7e54] to-[#7a6240]', label: 'Онлайн' };
+        return { icon: 'MonitorPlay', color: 'from-[#9d7e54] to-[#7a6240]', badge: 'bg-[#9d7e54]', label: 'Онлайн' };
       case 'workshop':
-        return { icon: 'Palette', color: 'from-[#c9a961] to-[#a8894f]', label: 'Мастер-класс' };
+        return { icon: 'Palette', color: 'from-[#c9a961] to-[#a8894f]', badge: 'bg-[#c9a961]', label: 'Мастер-класс' };
       case 'guest':
-        return { icon: 'Mic', color: 'from-[#b8953d] to-[#9a7b32]', label: 'Гостевой спикер' };
+        return { icon: 'Mic', color: 'from-[#b8953d] to-[#9a7b32]', badge: 'bg-[#b8953d]', label: 'Спикер' };
     }
   };
 
@@ -116,156 +180,219 @@ const EventsCalendar = () => {
     setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + delta));
   };
 
+  const currentMonthEvents = events.filter(event => {
+    const eventDate = new Date(event.date);
+    return eventDate.getMonth() === currentMonth.getMonth() && 
+           eventDate.getFullYear() === currentMonth.getFullYear();
+  });
+
   return (
-    <Card className="bg-[#1a1a1a]/60 backdrop-blur-md border-[#b8953d]/20 overflow-hidden">
+    <Card className="bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/80 backdrop-blur-md border-[#d4af37]/30 overflow-hidden shadow-xl shadow-[#d4af37]/10">
       <CardContent className="p-6">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full flex items-center justify-between mb-6 group"
         >
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-gradient-to-br from-[#b8953d]/20 to-[#d4af37]/20 group-hover:from-[#b8953d]/30 group-hover:to-[#d4af37]/30 transition-all">
-              <Icon name="Calendar" className="text-[#d4af37]" size={24} />
+          <div className="flex items-center gap-4">
+            <div className="p-3 rounded-xl bg-gradient-to-br from-[#b8953d]/30 to-[#d4af37]/30 group-hover:from-[#b8953d]/40 group-hover:to-[#d4af37]/40 transition-all shadow-lg">
+              <Icon name="CalendarDays" className="text-[#d4af37]" size={28} />
             </div>
-            <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
-              Календарь мероприятий
-            </h3>
+            <div className="text-left">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
+                Календарь мероприятий
+              </h3>
+              <p className="text-sm text-white/60 mt-0.5">
+                {currentMonthEvents.length} {currentMonthEvents.length === 1 ? 'событие' : 'события'} в этом месяце
+              </p>
+            </div>
           </div>
-          <Icon 
-            name={isExpanded ? "ChevronUp" : "ChevronDown"} 
-            className="text-[#d4af37] group-hover:scale-110 transition-transform" 
-            size={24} 
-          />
+          <div className="flex items-center gap-2">
+            <Icon 
+              name={isExpanded ? "ChevronUp" : "ChevronDown"} 
+              className="text-[#d4af37] group-hover:scale-110 transition-transform" 
+              size={28} 
+            />
+          </div>
         </button>
+
+        {!isExpanded && currentMonthEvents.length > 0 && (
+          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+            {currentMonthEvents.map((event) => {
+              const config = getEventTypeConfig(event.type);
+              const eventDate = new Date(event.date);
+              
+              return (
+                <div
+                  key={event.id}
+                  className="flex-shrink-0 w-56 bg-[#0a0a0a]/60 border border-[#b8953d]/20 rounded-lg p-3 hover:border-[#d4af37]/60 transition-all cursor-pointer"
+                  onClick={() => {
+                    setSelectedEvent(event);
+                    setIsExpanded(true);
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`w-2 h-2 rounded-full ${config.badge} animate-pulse`} />
+                    <span className="text-xs text-[#b8953d]/80">{config.label}</span>
+                  </div>
+                  <p className="text-sm font-semibold text-white/90 mb-1 line-clamp-2">{event.title}</p>
+                  <p className="text-xs text-white/60">
+                    {eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })} • {event.time}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {isExpanded && (
           <div className="animate-fade-in">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-6 bg-[#0a0a0a]/40 rounded-xl p-4 border border-[#b8953d]/10">
               <button
                 onClick={() => changeMonth(-1)}
-                className="p-2 rounded-full bg-[#1a1a1a]/60 border border-[#b8953d]/20 hover:border-[#d4af37] hover:bg-[#1a1a1a] transition-all group"
+                className="p-2.5 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
               >
                 <Icon name="ChevronLeft" className="text-[#b8953d] group-hover:text-[#d4af37]" size={20} />
               </button>
               
-              <h4 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
+              <h4 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
                 {monthName}
               </h4>
               
               <button
                 onClick={() => changeMonth(1)}
-                className="p-2 rounded-full bg-[#1a1a1a]/60 border border-[#b8953d]/20 hover:border-[#d4af37] hover:bg-[#1a1a1a] transition-all group"
+                className="p-2.5 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
               >
                 <Icon name="ChevronRight" className="text-[#b8953d] group-hover:text-[#d4af37]" size={20} />
               </button>
             </div>
 
-            <div className="grid grid-cols-7 gap-1.5 mb-3">
-              {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
-                <div key={day} className="text-center text-xs font-semibold text-[#b8953d]/80 py-1">
-                  {day}
-                </div>
-              ))}
+            <div className="bg-[#0a0a0a]/40 rounded-xl p-4 border border-[#b8953d]/10 mb-6">
+              <div className="grid grid-cols-7 gap-2 mb-2">
+                {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
+                  <div key={day} className="text-center text-xs font-bold text-[#d4af37]/80 py-2">
+                    {day}
+                  </div>
+                ))}
+              </div>
+
+              <div className="grid grid-cols-7 gap-2">
+                {Array.from({ length: startingDayOfWeek }).map((_, index) => (
+                  <div key={`empty-${index}`} className="aspect-square" />
+                ))}
+                
+                {Array.from({ length: daysInMonth }).map((_, index) => {
+                  const day = index + 1;
+                  const dayEvents = getEventsForDay(day);
+                  const hasEvents = dayEvents.length > 0;
+                  
+                  return (
+                    <div
+                      key={day}
+                      className={`aspect-square border-2 rounded-lg transition-all duration-300 relative group ${
+                        hasEvents 
+                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-110' 
+                          : 'border-[#b8953d]/10 bg-[#0a0a0a]/20 hover:border-[#b8953d]/30'
+                      }`}
+                    >
+                      <div className="p-1.5 h-full flex flex-col items-center justify-center">
+                        <div className={`text-sm font-bold ${hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
+                          {day}
+                        </div>
+                        {hasEvents && dayEvents.length > 0 && (
+                          <div className="flex gap-0.5 mt-1">
+                            {dayEvents.slice(0, 3).map((evt, idx) => {
+                              const config = getEventTypeConfig(evt.type);
+                              return (
+                                <div key={idx} className={`w-1.5 h-1.5 rounded-full ${config.badge}`} />
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <div className="grid grid-cols-7 gap-1.5 mb-6">
-              {Array.from({ length: startingDayOfWeek }).map((_, index) => (
-                <div key={`empty-${index}`} className="aspect-square" />
-              ))}
-              
-              {Array.from({ length: daysInMonth }).map((_, index) => {
-                const day = index + 1;
-                const dayEvents = getEventsForDay(day);
-                const hasEvents = dayEvents.length > 0;
+            <div className="space-y-4">
+              {currentMonthEvents.map((event) => {
+                const config = getEventTypeConfig(event.type);
+                const eventDate = new Date(event.date);
+                const isSelected = selectedEvent?.id === event.id;
                 
                 return (
                   <div
-                    key={day}
-                    className={`aspect-square border rounded transition-all duration-300 relative group ${
-                      hasEvents 
-                        ? 'border-[#d4af37]/40 bg-gradient-to-br from-[#1a1a1a]/80 to-[#2a2a2a]/80 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 cursor-pointer hover:scale-110' 
-                        : 'border-[#b8953d]/10 bg-[#0a0a0a]/40'
+                    key={event.id}
+                    className={`bg-gradient-to-br from-[#0a0a0a]/60 to-[#1a1a1a]/60 backdrop-blur-md border-2 rounded-xl p-5 transition-all duration-300 cursor-pointer ${
+                      isSelected 
+                        ? 'border-[#d4af37] shadow-xl shadow-[#d4af37]/30' 
+                        : 'border-[#b8953d]/20 hover:border-[#d4af37]/60 hover:shadow-lg hover:shadow-[#d4af37]/10'
                     }`}
+                    onClick={() => setSelectedEvent(isSelected ? null : event)}
                   >
-                    <div className="p-1 h-full flex items-center justify-center">
-                      <div className={`text-xs font-medium ${hasEvents ? 'text-[#d4af37]' : 'text-white/50'}`}>
-                        {day}
+                    <div className="flex items-start gap-4 mb-4">
+                      <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${config.color} flex items-center justify-center shadow-lg`}>
+                        <Icon name={config.icon as any} className="text-white" size={24} />
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className={`px-2 py-0.5 rounded text-xs font-semibold text-white ${config.badge}`}>
+                            {config.label}
+                          </span>
+                          <div className="flex items-center gap-1 text-xs text-white/60">
+                            <Icon name="Calendar" size={12} className="text-[#b8953d]" />
+                            {eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}
+                          </div>
+                          <div className="flex items-center gap-1 text-xs text-white/60">
+                            <Icon name="Clock" size={12} className="text-[#b8953d]" />
+                            {event.time}
+                          </div>
+                        </div>
+                        <h5 className="text-lg font-bold text-white/95 mb-2">{event.title}</h5>
                       </div>
                     </div>
 
-                    {hasEvents && (
-                      <div className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#d4af37] animate-pulse" />
+                    <div className="flex items-center gap-2 mb-3 flex-wrap">
+                      {event.speakers.map((speaker, idx) => (
+                        <div key={idx} className="flex items-center gap-2 bg-[#0a0a0a]/60 rounded-lg px-3 py-2 border border-[#b8953d]/10">
+                          <img 
+                            src={speaker.image} 
+                            alt={speaker.name}
+                            className="w-8 h-8 rounded-full object-cover border-2 border-[#d4af37]/30"
+                          />
+                          <div>
+                            <p className="text-xs font-semibold text-white/90">{speaker.name}</p>
+                            <p className="text-xs text-white/50">{speaker.role}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    
+                    {isSelected && (
+                      <div className="mt-4 pt-4 border-t border-[#b8953d]/20 animate-fade-in space-y-3">
+                        <p className="text-white/70 text-sm leading-relaxed">{event.description}</p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1 text-sm text-white/60">
+                            <Icon name="MapPin" size={14} className="text-[#b8953d]" />
+                            {event.location}
+                          </div>
+                          {event.seats && (
+                            <div className="flex items-center gap-1 text-sm text-[#d4af37]">
+                              <Icon name="Users" size={14} />
+                              {event.seats} мест
+                            </div>
+                          )}
+                        </div>
+                        <button className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white py-3 rounded-lg hover:shadow-xl hover:shadow-[#d4af37]/40 transition-all font-semibold flex items-center justify-center gap-2 group">
+                          <span>Записаться на событие</span>
+                          <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                      </div>
                     )}
                   </div>
                 );
               })}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-3">
-              {events
-                .filter(event => {
-                  const eventDate = new Date(event.date);
-                  return eventDate.getMonth() === currentMonth.getMonth() && 
-                         eventDate.getFullYear() === currentMonth.getFullYear();
-                })
-                .map((event) => {
-                  const config = getEventTypeConfig(event.type);
-                  const eventDate = new Date(event.date);
-                  
-                  return (
-                    <div
-                      key={event.id}
-                      className={`bg-[#0a0a0a]/40 backdrop-blur-md border rounded-lg p-4 transition-all duration-300 cursor-pointer ${
-                        selectedEvent?.id === event.id 
-                          ? 'border-[#d4af37] shadow-lg shadow-[#d4af37]/20' 
-                          : 'border-[#b8953d]/20 hover:border-[#d4af37]/60'
-                      }`}
-                      onClick={() => setSelectedEvent(selectedEvent?.id === event.id ? null : event)}
-                    >
-                      <div className="flex items-start gap-3 mb-2">
-                        <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br ${config.color} flex items-center justify-center`}>
-                          <Icon name={config.icon as any} className="text-white" size={16} />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-xs text-[#b8953d]/70 mb-1">{config.label}</div>
-                          <h5 className="text-sm font-semibold text-white/90 mb-1 leading-tight">{event.title}</h5>
-                          <div className="flex items-center gap-3 text-xs text-white/60">
-                            <div className="flex items-center gap-1">
-                              <Icon name="Calendar" size={12} className="text-[#b8953d]" />
-                              {eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <Icon name="Clock" size={12} className="text-[#b8953d]" />
-                              {event.time}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      {selectedEvent?.id === event.id && (
-                        <div className="mt-3 pt-3 border-t border-[#b8953d]/10 animate-fade-in">
-                          <p className="text-white/70 text-xs mb-2 leading-relaxed">{event.description}</p>
-                          <div className="flex items-center justify-between mb-3">
-                            <div className="flex items-center gap-1 text-xs text-white/60">
-                              <Icon name="MapPin" size={12} className="text-[#b8953d]" />
-                              {event.location}
-                            </div>
-                            {event.seats && (
-                              <div className="flex items-center gap-1 text-xs text-[#d4af37]">
-                                <Icon name="Users" size={12} />
-                                {event.seats} мест
-                              </div>
-                            )}
-                          </div>
-                          <button className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white py-2 rounded text-xs hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all font-medium flex items-center justify-center gap-2 group">
-                            <span>Записаться</span>
-                            <Icon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform" />
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
             </div>
           </div>
         )}
