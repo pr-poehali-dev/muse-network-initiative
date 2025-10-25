@@ -230,7 +230,7 @@ const Index = () => {
                 <img 
                   src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
                   alt="Карина Ляшева" 
-                  className="w-full h-full object-cover opacity-20"
+                  className="w-full h-full object-cover object-top opacity-20"
                 />
               </div>
               <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
