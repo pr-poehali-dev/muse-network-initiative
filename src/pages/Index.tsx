@@ -87,21 +87,25 @@ const Index = () => {
       icon: 'Users',
       title: 'Ежемесячные встречи ОЧНО',
       description: 'Тема каждой встречи варьируется от панельных дискуссий до творческих воркшопов',
+      details: 'Живое общение, нетворкинг, обмен опытом. Каждая встреча — это возможность найти партнеров, получить ценные советы и завести новые знакомства в кругу единомышленников.',
     },
     {
       icon: 'Video',
       title: 'Онлайн-трансляции',
       description: 'Два раза в месяц: обмен знаниями, обратная связь и заряд положительной энергии',
+      details: 'Удобный формат для тех, кто в разъездах или не может присутствовать очно. Записи всех трансляций доступны участницам клуба.',
     },
     {
       icon: 'Mic',
       title: 'Гостевые спикеры',
       description: 'Приглашенные эксперты делятся опытом и знаниями, посещаем экскурсии',
+      details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые мероприятия. Расширяем горизонты вместе!',
     },
     {
       icon: 'Palette',
       title: 'Творческие мероприятия',
       description: 'Развивайте себя в новых форматах: творчество, музыка, искусство',
+      details: 'Раскрываем таланты: арт-терапия, музыкальные вечера, мастер-классы по живописи, танцам, кулинарии. Баланс между работой и вдохновением.',
     },
   ];
 
@@ -145,12 +149,26 @@ const Index = () => {
           <h2 className="text-6xl md:text-7xl font-bold mb-6 text-primary">
             Клуб Muse
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 leading-relaxed">
+          <p className="text-xl md:text-2xl text-muted-foreground mb-6 leading-relaxed">
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-foreground/80 mb-12 max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/80 mb-8 max-w-3xl mx-auto leading-relaxed">
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-3xl font-bold text-primary mb-2">250+</div>
+              <p className="text-sm text-foreground/70">Участниц клуба</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-3xl font-bold text-primary mb-2">50+</div>
+              <p className="text-sm text-foreground/70">Проведённых встреч</p>
+            </div>
+            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+              <div className="text-3xl font-bold text-primary mb-2">24</div>
+              <p className="text-sm text-foreground/70">Онлайн-трансляций в год</p>
+            </div>
+          </div>
           <Button
             size="lg"
             className="text-lg px-8 py-6 hover-scale"
@@ -164,11 +182,24 @@ const Index = () => {
       <section id="about" className="py-20 px-4 bg-muted/30">
         <div className="container mx-auto max-w-5xl">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-primary">О клубе</h3>
-            <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+            <h3 className="text-5xl font-bold mb-6 text-primary">О клубе Muse</h3>
+            <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed mb-8">
               Мы стремимся создать пространство, где каждая участница сможет черпать вдохновение, 
               делиться опытом и находить поддержку среди единомышленников.
             </p>
+            <div className="max-w-4xl mx-auto">
+              <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-2xl">
+                <h4 className="text-2xl font-bold mb-4 text-primary">Миссия клуба</h4>
+                <p className="text-base text-foreground/80 leading-relaxed mb-4">
+                  Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
+                  Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
+                </p>
+                <p className="text-base text-foreground/80 leading-relaxed">
+                  Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
+                  но и искусство, спорт, путешествия.
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -176,22 +207,34 @@ const Index = () => {
               <CardContent className="p-8">
                 <div className="text-accent text-4xl mb-4">🎯</div>
                 <h4 className="text-2xl font-semibold mb-4">Наши цели</h4>
-                <ul className="space-y-3 text-foreground/80">
-                  <li className="flex items-start gap-2">
+                <ul className="space-y-4 text-foreground/80">
+                  <li className="flex items-start gap-3">
                     <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <span>Создать сообщество лидеров из различных сфер</span>
+                    <div>
+                      <p className="font-semibold mb-1">Создать сообщество</p>
+                      <p className="text-sm">Объединить женщин из науки, культуры, искусства, музыки, спорта, бизнеса и политики</p>
+                    </div>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <span>Поощрять личное и профессиональное развитие</span>
+                    <div>
+                      <p className="font-semibold mb-1">Поощрять развитие</p>
+                      <p className="text-sm">Мастер-классы, семинары и лекции от лидеров в своих областях</p>
+                    </div>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <span>Вдохновлять и поддерживать участниц в достижениях</span>
+                    <div>
+                      <p className="font-semibold mb-1">Вдохновлять</p>
+                      <p className="text-sm">Платформа для обмена идеями и совместной работы над проектами</p>
+                    </div>
                   </li>
-                  <li className="flex items-start gap-2">
+                  <li className="flex items-start gap-3">
                     <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <span>Продвигать женское лидерство</span>
+                    <div>
+                      <p className="font-semibold mb-1">Продвигать женское лидерство</p>
+                      <p className="text-sm">Помогаем занимать руководящие должности и менять мир вокруг</p>
+                    </div>
                   </li>
                 </ul>
               </CardContent>
@@ -266,7 +309,8 @@ const Index = () => {
                     </div>
                     <div>
                       <h4 className="text-xl font-semibold mb-2">{event.title}</h4>
-                      <p className="text-foreground/70 leading-relaxed">{event.description}</p>
+                      <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
+                      <p className="text-sm text-foreground/60 leading-relaxed">{event.details}</p>
                     </div>
                   </div>
                 </CardContent>
