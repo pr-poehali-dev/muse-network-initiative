@@ -271,36 +271,42 @@ const Index = () => {
           </div>
           
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[80%] bg-gradient-to-b from-[#d4af37]/15 via-[#d4af37]/25 to-transparent blur-3xl"></div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[40%] h-[60%] bg-[#d4af37]/10 rounded-full blur-3xl animate-pulse" style={{animationDuration: '4s'}}></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,175,55,0.25)_0%,transparent_50%)] animate-pulse" style={{animationDuration: '6s'}}></div>
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_70%_30%,rgba(212,175,55,0.2)_0%,transparent_50%)] animate-pulse" style={{animationDuration: '8s', animationDelay: '1s'}}></div>
             
             <div className="absolute inset-0">
-              {[...Array(20)].map((_, i) => {
-                const angle = (i * 18);
+              {[...Array(50)].map((_, i) => {
+                const size = Math.random() * 4 + 1;
+                const left = Math.random() * 100;
+                const top = Math.random() * 100;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
+                
                 return (
                   <div
                     key={i}
-                    className="absolute top-1/2 left-1/2 origin-left animate-fade-in"
+                    className="absolute rounded-full bg-[#d4af37] animate-pulse"
                     style={{
-                      transform: `rotate(${angle}deg)`,
-                      width: '150%',
-                      height: '3px',
-                      opacity: 0.15 + (Math.abs(i - 10) / 50),
-                      animationDelay: `${i * 0.1}s`,
-                      animationDuration: '1s'
+                      width: `${size}px`,
+                      height: `${size}px`,
+                      left: `${left}%`,
+                      top: `${top}%`,
+                      opacity: Math.random() * 0.6 + 0.2,
+                      animationDelay: `${delay}s`,
+                      animationDuration: `${duration}s`,
+                      boxShadow: `0 0 ${size * 3}px rgba(212, 175, 55, 0.8)`
                     }}
-                  >
-                    <div 
-                      className="h-full bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent animate-pulse"
-                      style={{
-                        animationDelay: `${1 + i * 0.2}s`,
-                        animationDuration: '4s'
-                      }}
-                    />
-                  </div>
+                  />
                 );
               })}
             </div>
+
+            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60 animate-pulse" style={{animationDuration: '3s'}}></div>
+            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60 animate-pulse" style={{animationDuration: '3s', animationDelay: '1.5s'}}></div>
+            
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37] rounded-full animate-ping opacity-75" style={{animationDuration: '2s'}}></div>
+            <div className="absolute top-1/3 right-1/4 w-2 h-2 bg-[#d4af37] rounded-full animate-ping opacity-60" style={{animationDuration: '3s', animationDelay: '0.5s'}}></div>
+            <div className="absolute bottom-1/3 left-1/4 w-2 h-2 bg-[#d4af37] rounded-full animate-ping opacity-60" style={{animationDuration: '2.5s', animationDelay: '1s'}}></div>
           </div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90"></div>
