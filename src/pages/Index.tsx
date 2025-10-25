@@ -137,34 +137,35 @@ const Index = () => {
         </div>
         <div className="w-full px-8 text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4" />
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4 floating" />
           </div>
-          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-white">
+          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-white animate-scale-in">
             Клуб Muse
           </h2>
-          <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-slide-in-left">
               <div className="text-3xl font-bold text-primary mb-2">250+</div>
               <p className="text-sm text-white/70">Участниц клуба</p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-scale-in" style={{animationDelay: '0.2s'}}>
               <div className="text-3xl font-bold text-primary mb-2">50+</div>
               <p className="text-sm text-white/70">Проведённых встреч</p>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-slide-in-right" style={{animationDelay: '0.4s'}}>
               <div className="text-3xl font-bold text-primary mb-2">24</div>
               <p className="text-sm text-white/70">Онлайн-трансляций в год</p>
             </div>
           </div>
           <Button
             size="lg"
-            className="text-lg px-8 py-6 hover-scale"
+            className="text-lg px-8 py-6 hover-scale glow-effect pulse-glow animate-fade-in"
+            style={{animationDelay: '0.6s'}}
             onClick={() => scrollToSection('contact')}
           >
             Присоединиться к клубу
@@ -181,7 +182,7 @@ const Index = () => {
               делиться опытом и находить поддержку среди единомышленников.
             </p>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-white border-2 border-primary p-8 rounded-2xl">
+              <div className="bg-white border-2 border-primary p-8 rounded-2xl hover-scale glow-effect animate-scale-in">
                 <h4 className="text-2xl font-bold mb-4 text-primary">Миссия клуба</h4>
                 <p className="text-base text-foreground/80 leading-relaxed mb-4">
                   Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
@@ -196,7 +197,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="hover-scale rounded-2xl">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-left">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-foreground/80">
@@ -220,7 +221,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale rounded-2xl">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-foreground/80">
@@ -251,7 +252,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="hover-scale border-t-4 border-t-primary rounded-xl">
+              <Card key={index} className="hover-scale glow-effect border-t-4 border-t-primary rounded-xl animate-scale-in" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardContent className="p-6">
                   <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
                   <p className="text-sm text-foreground/70 leading-relaxed">{value.description}</p>
@@ -273,7 +274,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             {events.map((event, index) => (
-              <Card key={index} className="hover-scale border-l-4 border-l-primary rounded-2xl">
+              <Card key={index} className={`hover-scale glow-effect border-l-4 border-l-primary rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'}`} style={{animationDelay: `${index * 0.15}s`}}>
                 <CardContent className="p-8">
                   <h4 className="text-xl font-semibold mb-3 text-primary">{event.title}</h4>
                   <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
@@ -296,11 +297,11 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale overflow-hidden rounded-2xl border-2 border-border">
+              <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border-2 border-border animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
                 <CardContent className="p-0">
-                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden shimmer">
                     <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
-                    <div className="text-6xl text-primary/20 absolute">M</div>
+                    <div className="text-6xl text-primary/20 absolute floating">M</div>
                   </div>
                   <div className="p-4 bg-white">
                     <h4 className="text-sm font-semibold text-center mb-1 leading-tight">{expert.name}</h4>
@@ -325,7 +326,7 @@ const Index = () => {
             </p>
           </div>
 
-          <Card className="hover-scale">
+          <Card className="hover-scale glow-effect rounded-2xl animate-scale-in">
             <CardContent className="p-8">
               <form className="space-y-6">
                 <div>
@@ -347,7 +348,7 @@ const Index = () => {
                     rows={4}
                   />
                 </div>
-                <Button className="w-full text-lg py-6" type="submit">
+                <Button className="w-full text-lg py-6 hover-scale glow-effect" type="submit">
                   Отправить заявку
                 </Button>
               </form>
@@ -358,7 +359,7 @@ const Index = () => {
 
       <footer className="py-12 px-4 bg-foreground text-background border-t-4 border-t-primary">
         <div className="container mx-auto text-center">
-          <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 brightness-0 invert" />
+          <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 brightness-0 invert floating" />
           <p className="text-lg mb-8">
             Вместе мы можем достичь большего
           </p>
