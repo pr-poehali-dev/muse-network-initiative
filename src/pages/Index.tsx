@@ -210,7 +210,7 @@ const Index = () => {
 
       <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 grid grid-cols-5 gap-0">
+          <div className="absolute inset-0 grid grid-cols-[1fr_1fr_1.6fr_1fr_1fr] gap-0">
             <div className="relative h-full">
               <img 
                 src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
