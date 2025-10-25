@@ -103,7 +103,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white via-secondary/10 to-white">
-      <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-border">
+      <nav className="fixed top-0 w-full bg-[#1a0a0f]/95 backdrop-blur-md z-50 border-b border-primary/30">
         <div className="w-full px-8 py-4">
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12" />
@@ -112,7 +112,7 @@ const Index = () => {
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
-                  className="text-sm font-medium hover:text-primary transition-colors capitalize"
+                  className="text-sm font-medium text-white/90 hover:text-primary transition-colors capitalize"
                 >
                   {section === 'hero' ? 'Главная' : 
                    section === 'about' ? 'О клубе' :
@@ -126,39 +126,40 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className="relative pt-32 pb-20 px-4 animate-fade-in overflow-hidden">
+      <section id="hero" className="relative pt-32 pb-20 px-4 animate-fade-in overflow-hidden bg-gradient-to-br from-[#1a0a0f] via-[#2d1520] to-[#1a0a0f]">
         <div className="absolute inset-0 z-0">
           <img 
             src="https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/f27de6d6-78bb-4160-bc53-13e994012884.jpg"
             alt="Background"
-            className="w-full h-full object-cover opacity-10"
+            className="w-full h-full object-cover opacity-5"
           />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1a0a0f]/50 to-[#1a0a0f]"></div>
         </div>
         <div className="w-full px-8 text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4" />
           </div>
-          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-primary">
+          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-white">
             Клуб Muse
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-6 leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed">
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-foreground/80 mb-8 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed">
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="bg-white border border-border p-6 rounded-none">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
               <div className="text-3xl font-bold text-primary mb-2">250+</div>
-              <p className="text-sm text-foreground/70">Участниц клуба</p>
+              <p className="text-sm text-white/70">Участниц клуба</p>
             </div>
-            <div className="bg-white border border-border p-6 rounded-none">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
               <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <p className="text-sm text-foreground/70">Проведённых встреч</p>
+              <p className="text-sm text-white/70">Проведённых встреч</p>
             </div>
-            <div className="bg-white border border-border p-6 rounded-none">
+            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl">
               <div className="text-3xl font-bold text-primary mb-2">24</div>
-              <p className="text-sm text-foreground/70">Онлайн-трансляций в год</p>
+              <p className="text-sm text-white/70">Онлайн-трансляций в год</p>
             </div>
           </div>
           <Button
