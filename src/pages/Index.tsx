@@ -218,7 +218,8 @@ const Index = () => {
                 className="w-full h-full object-cover object-[50%_25%] opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                  transform: 'scale(0.7)'
                 }}
               />
             </div>
@@ -229,7 +230,8 @@ const Index = () => {
                 className="w-full h-full object-cover object-[50%_15%] opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
+                  transform: 'scale(0.7)'
                 }}
               />
             </div>
@@ -240,7 +242,8 @@ const Index = () => {
                 className="w-full h-full object-cover object-[50%_15%] opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
+                  transform: 'scale(0.7)'
                 }}
               />
             </div>
@@ -251,7 +254,8 @@ const Index = () => {
                 className="w-full h-full object-cover object-[50%_20%] opacity-70"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                  transform: 'scale(0.7)'
                 }}
               />
               <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/35 via-[#d4af37]/15 to-transparent"></div>
@@ -264,7 +268,8 @@ const Index = () => {
                 className="w-full h-full object-cover object-[50%_5%] opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
+                  transform: 'scale(0.7)'
                 }}
               />
             </div>
