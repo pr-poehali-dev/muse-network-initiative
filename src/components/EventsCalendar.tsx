@@ -266,16 +266,16 @@ const EventsCalendar = () => {
               </button>
             </div>
 
-            <div className="bg-[#0a0a0a]/40 rounded-xl p-4 border border-[#b8953d]/10 mb-6">
-              <div className="grid grid-cols-7 gap-2 mb-2">
+            <div className="bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10 mb-6 max-w-md mx-auto">
+              <div className="grid grid-cols-7 gap-1 mb-1">
                 {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
-                  <div key={day} className="text-center text-xs font-bold text-[#d4af37]/80 py-2">
+                  <div key={day} className="text-center text-[10px] font-bold text-[#d4af37]/70 py-1">
                     {day}
                   </div>
                 ))}
               </div>
 
-              <div className="grid grid-cols-7 gap-2">
+              <div className="grid grid-cols-7 gap-1">
                 {Array.from({ length: startingDayOfWeek }).map((_, index) => (
                   <div key={`empty-${index}`} className="aspect-square" />
                 ))}
@@ -288,22 +288,22 @@ const EventsCalendar = () => {
                   return (
                     <div
                       key={day}
-                      className={`aspect-square border-2 rounded-lg transition-all duration-300 relative group ${
+                      className={`aspect-square border-2 rounded transition-all duration-300 relative group ${
                         hasEvents 
-                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-110' 
+                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-md hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-110' 
                           : 'border-[#b8953d]/10 bg-[#0a0a0a]/20 hover:border-[#b8953d]/30'
                       }`}
                     >
-                      <div className="p-1.5 h-full flex flex-col items-center justify-center">
-                        <div className={`text-sm font-bold ${hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
+                      <div className="p-0.5 h-full flex flex-col items-center justify-center">
+                        <div className={`text-[10px] font-bold ${hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
                           {day}
                         </div>
                         {hasEvents && dayEvents.length > 0 && (
-                          <div className="flex gap-0.5 mt-1">
+                          <div className="flex gap-0.5 mt-0.5">
                             {dayEvents.slice(0, 3).map((evt, idx) => {
                               const config = getEventTypeConfig(evt.type);
                               return (
-                                <div key={idx} className={`w-1.5 h-1.5 rounded-full ${config.badge}`} />
+                                <div key={idx} className={`w-1 h-1 rounded-full ${config.badge}`} />
                               );
                             })}
                           </div>
