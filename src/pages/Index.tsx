@@ -210,23 +210,12 @@ const Index = () => {
 
       <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 grid grid-cols-7 gap-0">
+          <div className="absolute inset-0 grid grid-cols-5 gap-0">
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg"
-                alt="Людмила Мерзлая"
-                className="w-full h-full object-cover object-center opacity-45"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
-                }}
-              />
-            </div>
-            <div className="relative h-full">
-              <img 
-                src="https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg"
-                alt="Юлия Христенко"
-                className="w-full h-full object-cover object-center opacity-50"
+                src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
+                alt="Команда"
+                className="w-full h-full object-cover object-center opacity-48"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -235,9 +224,9 @@ const Index = () => {
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg"
-                alt="Юлия Самсонова"
-                className="w-full h-full object-cover object-center opacity-55"
+                src="https://cdn.poehali.dev/files/32a38a61-a056-4ba0-8c4f-cb1acd689d48.jpg"
+                alt="Команда"
+                className="w-full h-full object-cover object-center opacity-58"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -246,22 +235,22 @@ const Index = () => {
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/9f4c509f-d14c-4720-8349-39c8581bb241.jpg"
+                src="https://cdn.poehali.dev/files/1f8f518a-edfb-4f3e-a9b1-91a6f0deb8b6.jpg"
                 alt="Карина Ляшева"
-                className="w-full h-full object-cover object-center opacity-80"
+                className="w-full h-full object-cover object-center opacity-85"
                 style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)'
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/30 via-[#d4af37]/10 to-transparent"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(212,175,55,0.3)]"></div>
+              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/35 via-[#d4af37]/15 to-transparent"></div>
+              <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(212,175,55,0.35)]"></div>
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg"
-                alt="Тамара Мазмишаили"
-                className="w-full h-full object-cover object-center opacity-55"
+                src="https://cdn.poehali.dev/files/f040cd98-6864-4fcf-91d9-0e46b006e0fc.jpg"
+                alt="Команда"
+                className="w-full h-full object-cover object-center opacity-58"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -270,23 +259,12 @@ const Index = () => {
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg"
-                alt="Мария Лазарева"
-                className="w-full h-full object-cover object-center opacity-50"
+                src="https://cdn.poehali.dev/files/10474ec8-2667-42ad-8214-5c52d99a748b.jpg"
+                alt="Команда"
+                className="w-full h-full object-cover object-center opacity-48"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
-                }}
-              />
-            </div>
-            <div className="relative h-full">
-              <img 
-                src="https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg"
-                alt="Полина Берг"
-                className="w-full h-full object-cover object-center opacity-45"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
                 }}
               />
             </div>
