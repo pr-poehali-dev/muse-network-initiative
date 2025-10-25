@@ -224,37 +224,32 @@ const Index = () => {
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">О клубе <span className="text-[#d4af37]">Muse</span></h3>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md h-full">
-              <div className="absolute top-0 left-0 w-full h-1/2">
+          <div className="grid md:grid-cols-3 gap-8">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-left bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+              <CardContent className="p-8">
+              <div className="flex flex-col items-center mb-6">
                 <img 
                   src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
                   alt="Карина Ляшева" 
-                  className="w-full h-full object-cover object-top opacity-20"
+                  className="w-20 h-20 rounded-full border-2 border-[#b8953d] object-cover object-top mb-4"
                 />
               </div>
-              <div className="relative z-10 p-8 flex flex-col justify-between h-full pt-64">
+
                 <div>
                   <div className="text-[#b8953d]/30 text-6xl mb-4">“</div>
-                  <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
-                    Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
-                    Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
-                  </p>
-                  <p className="text-lg text-white/80 leading-relaxed italic">
-                    Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
-                    но и искусство, спорт, путешествия.
-                  </p>
+              <p className="text-base text-white/90 leading-relaxed mb-2 italic">
+                Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
+                Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
+              </p>
+              <p className="text-sm text-white/80 leading-relaxed italic mb-2">
+                Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
+                но и искусство, спорт, путешествия.
+              </p>
                   <div className="text-[#b8953d]/30 text-6xl text-right">”</div>
                 </div>
-                <div className="mt-8 pt-8 border-t border-[#b8953d]/30">
-                  <p className="text-[#b8953d] font-semibold">Карина Ляшева</p>
-                  <p className="text-white/60 text-sm">Основательница клуба Muse</p>
-                </div>
-              </div>
-            </div>
 
-            <div className="flex flex-col gap-8">
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+
+            <Card className="hover-scale glow-effect rounded-2xl animate-scale-in bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#b8953d]/50 pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-white/80">
@@ -278,26 +273,29 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#b8953d]/50 pb-2">Что мы предлагаем</h4>
-                <ul className="space-y-3 text-white/80">
+                <ul className="space-y-4 text-white/80">
                   <li className="border-l-2 border-[#b8953d] pl-4">
-                    <span>Статусное окружение единомышленников</span>
+                    <p className="font-semibold mb-1">Статусное окружение</p>
+                    <p className="text-sm">Единомышленники из разных сфер бизнеса и искусства</p>
                   </li>
                   <li className="border-l-2 border-[#b8953d] pl-4">
-                    <span>Коллаборации и партнерства</span>
+                    <p className="font-semibold mb-1">Коллаборации и партнерства</p>
+                    <p className="text-sm">Возможности для совместных проектов и взаимовыгодного сотрудничества</p>
                   </li>
                   <li className="border-l-2 border-[#b8953d] pl-4">
-                    <span>Яркие события и впечатления</span>
+                    <p className="font-semibold mb-1">Яркие события</p>
+                    <p className="text-sm">Незабываемые впечатления и эмоции от наших мероприятий</p>
                   </li>
                   <li className="border-l-2 border-[#b8953d] pl-4">
-                    <span>Сохранение культурного кода и ценностей</span>
+                    <p className="font-semibold mb-1">Культурный код</p>
+                    <p className="text-sm">Сохранение и развитие ценностей и традиций</p>
                   </li>
                 </ul>
               </CardContent>
             </Card>
-          </div>
           </div>
         </div>
       </section>
