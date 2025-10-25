@@ -18,28 +18,10 @@ const Index = () => {
 
   const experts = [
     {
-      name: 'Ляшева Карина Викторовна',
-      role: 'Эксперт гастрономического искусства',
-      description: 'Владелица семейного бизнеса компании «ВЕЕК»',
-      image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg',
-    },
-    {
       name: 'Мерзлая Людмила Ивановна',
       role: 'Художница',
       description: 'Владелица творческого пространства Приходи творить',
       image: 'https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg',
-    },
-    {
-      name: 'Мазмишаили Тамара Васильевна',
-      role: 'Фитнес тренер',
-      description: 'Эксперт здорового образа жизни',
-      image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg',
-    },
-    {
-      name: 'Самсонова Юлия Аркадьевна',
-      role: 'Стилист',
-      description: 'Эксперт по стилю и имиджу',
-      image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg',
     },
     {
       name: 'Христенко Юлия Анатольевна',
@@ -48,10 +30,28 @@ const Index = () => {
       image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg',
     },
     {
-      name: 'Кузнецова Екатерина Юрьевна',
-      role: 'Директор',
-      description: 'Туристско-информационный центр Архангельской области',
-      image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg',
+      name: 'Ляшева Карина Викторовна',
+      role: 'Эксперт гастрономического искусства',
+      description: 'Владелица семейного бизнеса компании «ВЕЕК»',
+      image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg',
+    },
+    {
+      name: 'Лазарева Мария Михайловна',
+      role: 'Психолог, психотерапевт',
+      description: 'Метод символдрама',
+      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
+    },
+    {
+      name: 'Самсонова Юлия Аркадьевна',
+      role: 'Стилист',
+      description: 'Эксперт по стилю и имиджу',
+      image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg',
+    },
+    {
+      name: 'Мазмишаили Тамара Васильевна',
+      role: 'Фитнес тренер',
+      description: 'Эксперт здорового образа жизни',
+      image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg',
     },
     {
       name: 'Полина Берг',
@@ -60,10 +60,10 @@ const Index = () => {
       image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg',
     },
     {
-      name: 'Лазарева Мария Михайловна',
-      role: 'Психолог, психотерапевт',
-      description: 'Метод символдрама',
-      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
+      name: 'Кузнецова Екатерина Юрьевна',
+      role: 'Директор',
+      description: 'Туристско-информационный центр Архангельской области',
+      image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg',
     },
   ];
 
@@ -307,9 +307,9 @@ const Index = () => {
             {experts.map((expert, index) => (
               <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border-2 border-border animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
                 <CardContent className="p-0">
-                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+                  <div className="aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
-                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover" />
+                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top" />
                     ) : (
                       <>
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
