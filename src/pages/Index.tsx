@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -11,6 +11,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const visibleSections = useScrollAnimation();
+  const [eventFormData, setEventFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    event: '',
+    message: ''
+  });
+  const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -18,6 +26,16 @@ const Index = () => {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
     }
+  };
+
+  const handleEventFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log('Event registration:', eventFormData);
+    setIsEventFormSubmitted(true);
+    setTimeout(() => {
+      setIsEventFormSubmitted(false);
+      setEventFormData({ name: '', email: '', phone: '', event: '', message: '' });
+    }, 3000);
   };
 
   const experts = [
@@ -359,6 +377,88 @@ const Index = () => {
 
           <div>
             <EventsCalendar />
+          </div>
+
+          <div className="mt-16">
+            <div className="text-center mb-10">
+              <h4 className="text-3xl font-bold text-white/90 mb-2">Запись на мероприятие</h4>
+              <p className="text-white/70">Заполните форму, и мы свяжемся с вами для подтверждения</p>
+            </div>
+            
+            <Card className="hover-scale glow-effect rounded-2xl animate-scale-in bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md max-w-2xl mx-auto">
+              <CardContent className="p-8">
+                {isEventFormSubmitted ? (
+                  <div className="text-center py-8">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8953d]/20 mb-4">
+                      <Icon name="Check" className="text-[#d4af37]" size={32} />
+                    </div>
+                    <h5 className="text-2xl font-bold text-[#b8953d] mb-2">Заявка отправлена!</h5>
+                    <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
+                  </div>
+                ) : (
+                  <form onSubmit={handleEventFormSubmit} className="space-y-6">
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-white">Имя *</label>
+                      <Input 
+                        placeholder="Ваше имя" 
+                        value={eventFormData.name}
+                        onChange={(e) => setEventFormData({...eventFormData, name: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-white">Email *</label>
+                      <Input 
+                        type="email" 
+                        placeholder="your@email.com" 
+                        value={eventFormData.email}
+                        onChange={(e) => setEventFormData({...eventFormData, email: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-white">Телефон *</label>
+                      <Input 
+                        type="tel" 
+                        placeholder="+7 (___) ___-__-__" 
+                        value={eventFormData.phone}
+                        onChange={(e) => setEventFormData({...eventFormData, phone: e.target.value})}
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-white">Выберите мероприятие *</label>
+                      <select 
+                        className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a]/50 border border-[#d4af37]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50"
+                        value={eventFormData.event}
+                        onChange={(e) => setEventFormData({...eventFormData, event: e.target.value})}
+                        required
+                      >
+                        <option value="">Выберите из списка</option>
+                        <option value="Интенсив по этикету">Интенсив по этикету (15 октября)</option>
+                        <option value="Мастер-класс по арт-терапии">Мастер-класс по арт-терапии (22 октября)</option>
+                        <option value="Кулинарная встреча">Кулинарная встреча (29 октября)</option>
+                        <option value="Сетевой завтрак">Сетевой завтрак (5 ноября)</option>
+                        <option value="Модный показ">Модный показ (12 ноября)</option>
+                        <option value="Йога и медитация">Йога и медитация (19 ноября)</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2 text-white">Комментарий</label>
+                      <Textarea
+                        placeholder="Дополнительная информация или пожелания"
+                        rows={3}
+                        value={eventFormData.message}
+                        onChange={(e) => setEventFormData({...eventFormData, message: e.target.value})}
+                      />
+                    </div>
+                    <Button className="w-full text-lg py-6 hover-scale glow-effect" type="submit">
+                      Записаться на мероприятие
+                    </Button>
+                  </form>
+                )}
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
