@@ -295,4 +295,48 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none;
   }
+
+  .gold-accent {
+    background: linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #b8860b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+  }
+
+  .gold-accent::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+  }
+
+  .premium-title {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+
+  .premium-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -80px;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37);
+  }
+
+  .premium-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -80px;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+  }
 }

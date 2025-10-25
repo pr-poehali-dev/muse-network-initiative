@@ -184,7 +184,7 @@ const Index = () => {
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#faf8f6] to-[#f0ebe6] luxury-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-primary">О клубе Muse</h3>
+            <h3 className="text-5xl font-bold mb-6 text-primary premium-title">О клубе <span className="gold-accent">Muse</span></h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed mb-8">
               Мы стремимся создать пространство, где каждая участница сможет черпать вдохновение, 
               делиться опытом и находить поддержку среди единомышленников.
@@ -255,7 +255,7 @@ const Index = () => {
       <section id="mission" className="py-20 px-8 noise-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-primary">Наши ценности</h3>
+            <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Наши <span className="gold-accent">ценности</span></h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -274,7 +274,7 @@ const Index = () => {
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#f8f5f2] to-[#ede8e3] luxury-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-primary">Мероприятия и встречи</h3>
+            <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Мероприятия и <span className="gold-accent">встречи</span></h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
@@ -297,7 +297,7 @@ const Index = () => {
       <section id="team" className="py-20 px-8 noise-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-primary">Наши эксперты</h3>
+            <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Наши <span className="gold-accent">эксперты</span></h3>
             <p className="text-xl text-foreground/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
             </p>
@@ -334,7 +334,7 @@ const Index = () => {
       <section id="contact" className="py-20 px-8 bg-gradient-to-b from-[#f5f1ed] to-[#f0e6e0] luxury-texture">
         <div className="w-full max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-5xl font-bold mb-6 text-primary">Присоединяйтесь к нам</h3>
+            <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Присоединяйтесь <span className="gold-accent">к нам</span></h3>
             <p className="text-xl text-foreground/80">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
             </p>
