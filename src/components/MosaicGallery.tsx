@@ -64,13 +64,14 @@ const MosaicGallery = () => {
             <img
               src={image.url}
               alt={image.alt}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-              <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                <Icon name="ZoomIn" size={24} className="text-[#b8953d]" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+              <div className="text-white opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-8 group-hover:translate-y-0 scale-75 group-hover:scale-100">
+                <Icon name="ZoomIn" size={32} className="text-[#b8953d] drop-shadow-lg" />
               </div>
             </div>
+            <div className="absolute inset-0 border-2 border-[#b8953d] opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-lg"></div>
           </div>
         ))}
       </div>
