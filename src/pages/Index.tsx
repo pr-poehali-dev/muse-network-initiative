@@ -284,61 +284,40 @@ const Index = () => {
 
       <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 grid grid-cols-[1fr_1fr_1.6fr_1fr_1fr] gap-0">
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
-                alt="Команда"
-                className="w-full h-full object-cover object-[50%_25%] opacity-25"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
-                }}
-              />
-            </div>
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/32a38a61-a056-4ba0-8c4f-cb1acd689d48.jpg"
-                alt="Команда"
-                className="w-full h-full object-cover object-[50%_15%] opacity-30"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
-                }}
-              />
-            </div>
+          <div className="absolute inset-0 grid grid-cols-5 gap-0">
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/f040cd98-6864-4fcf-91d9-0e46b006e0fc.jpg"
-                alt="Команда"
-                className="w-full h-full object-cover object-[50%_15%] opacity-30"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
-                }}
+                src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
+                alt="Участница клуба"
+                className="w-full h-full object-contain opacity-35"
+              />
+            </div>
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
+              <img 
+                src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
+                alt="Участница клуба"
+                className="w-full h-full object-contain opacity-45"
               />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/1f8f518a-edfb-4f3e-a9b1-91a6f0deb8b6.jpg"
-                alt="Карина Ляшева"
-                className="w-full h-full object-cover object-[50%_20%] opacity-50"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
-                }}
+                src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
+                alt="Участница клуба"
+                className="w-full h-full object-contain opacity-60"
               />
-
+            </div>
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
+              <img 
+                src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
+                alt="Участница клуба"
+                className="w-full h-full object-contain opacity-45"
+              />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/10474ec8-2667-42ad-8214-5c52d99a748b.jpg"
-                alt="Команда"
-                className="w-full h-full object-cover object-[50%_5%] opacity-25"
-                style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
-                }}
+                src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
+                alt="Участница клуба"
+                className="w-full h-full object-contain opacity-35"
               />
             </div>
           </div>
