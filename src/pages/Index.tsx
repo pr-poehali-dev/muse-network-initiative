@@ -5,9 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import InfiniteCarousel from '@/components/InfiniteCarousel';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
+  const visibleSections = useScrollAnimation();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -135,7 +137,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className="relative pt-32 pb-20 px-4 animate-fade-in overflow-hidden bg-gradient-to-br from-[#1a0a0f] via-[#2d1520] to-[#1a0a0f]">
+      <section id="hero" className={`relative pt-32 pb-20 px-4 animate-fade-in overflow-hidden bg-gradient-to-br from-[#1a0a0f] via-[#2d1520] to-[#1a0a0f] transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
           <img 
             src="https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/f27de6d6-78bb-4160-bc53-13e994012884.jpg"
@@ -182,7 +184,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#faf8f6] to-[#f0ebe6] luxury-texture">
+      <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#faf8f6] to-[#f0ebe6] luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">О клубе <span className="gold-accent">Muse</span></h3>
@@ -253,7 +255,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="mission" className="py-20 px-8 noise-texture">
+      <section id="mission" className={`py-20 px-8 noise-texture transition-all duration-1000 ${visibleSections.has('mission') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Наши <span className="gold-accent">ценности</span></h3>
@@ -272,7 +274,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#f8f5f2] to-[#ede8e3] luxury-texture">
+      <section id="events" className={`py-20 px-8 bg-gradient-to-br from-[#f8f5f2] to-[#ede8e3] luxury-texture transition-all duration-1000 ${visibleSections.has('events') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Мероприятия и <span className="gold-accent">встречи</span></h3>
@@ -295,7 +297,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="gallery" className="py-20 px-8 noise-texture overflow-hidden">
+      <section id="gallery" className={`py-20 px-8 noise-texture overflow-hidden transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto mb-16">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Галерея наших <span className="gold-accent">мероприятий</span></h3>
@@ -306,7 +308,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="team" className="py-20 px-8 noise-texture">
+      <section id="team" className={`py-20 px-8 noise-texture transition-all duration-1000 ${visibleSections.has('team') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Наши <span className="gold-accent">эксперты</span></h3>
@@ -343,7 +345,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-8 bg-gradient-to-b from-[#f5f1ed] to-[#f0e6e0] luxury-texture">
+      <section id="contact" className={`py-20 px-8 bg-gradient-to-b from-[#f5f1ed] to-[#f0e6e0] luxury-texture transition-all duration-1000 ${visibleSections.has('contact') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-6 text-primary premium-title">Присоединяйтесь <span className="gold-accent">к нам</span></h3>
