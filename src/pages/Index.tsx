@@ -45,6 +45,7 @@ const Index = () => {
       name: 'Христенко Юлия Анатольевна',
       role: 'Дизайнер',
       description: 'Бренд одежды JK',
+      image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg',
     },
     {
       name: 'Кузнецова Екатерина Юрьевна',
