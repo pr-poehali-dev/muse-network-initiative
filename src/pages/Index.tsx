@@ -229,7 +229,7 @@ const Index = () => {
             <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
-                  src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
+                  src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
                   alt="Карина Ляшева" 
                   className="w-full h-full object-cover opacity-20"
                 />
@@ -334,15 +334,11 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="mb-16">
-            <EventsCalendar />
-          </div>
-
           <div className="text-center mb-10">
             <h4 className="text-3xl font-bold text-white/90 mb-4">Форматы мероприятий</h4>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-6 mb-16">
             {events.map((event, index) => (
               <Card key={index} className={`hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md`} style={{animationDelay: `${index * 0.15}s`}}>
                 <CardContent className="p-8 relative z-10">
@@ -359,6 +355,10 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div>
+            <EventsCalendar />
           </div>
         </div>
       </section>
