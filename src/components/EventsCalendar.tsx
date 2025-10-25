@@ -138,7 +138,11 @@ const events: Event[] = [
   }
 ];
 
-const EventsCalendar = () => {
+interface EventsCalendarProps {
+  onEventRegister?: (eventTitle: string) => void;
+}
+
+const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 10));
   const [isExpanded, setIsExpanded] = useState(false);
@@ -428,7 +432,13 @@ const EventsCalendar = () => {
                             </div>
                           )}
                         </div>
-                        <button className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white py-3 rounded-lg hover:shadow-xl hover:shadow-[#d4af37]/40 transition-all font-semibold flex items-center justify-center gap-2 group">
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onEventRegister?.(event.title);
+                          }}
+                          className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white py-3 rounded-lg hover:shadow-xl hover:shadow-[#d4af37]/40 transition-all font-semibold flex items-center justify-center gap-2 group"
+                        >
                           <span>Записаться на событие</span>
                           <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform" />
                         </button>

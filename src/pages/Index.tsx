@@ -30,6 +30,11 @@ const Index = () => {
     }
   };
 
+  const handleEventRegister = (eventTitle: string) => {
+    setEventFormData({...eventFormData, event: eventTitle});
+    setIsEventDialogOpen(true);
+  };
+
   const handleEventFormSubmit = (e: FormEvent) => {
     e.preventDefault();
     console.log('Event registration:', eventFormData);
@@ -379,17 +384,7 @@ const Index = () => {
           </div>
 
           <div>
-            <EventsCalendar />
-          </div>
-
-          <div className="text-center mt-12">
-            <Button
-              size="lg"
-              className="text-lg px-8 py-6 hover-scale glow-effect"
-              onClick={() => setIsEventDialogOpen(true)}
-            >
-              Записаться на мероприятие
-            </Button>
+            <EventsCalendar onEventRegister={handleEventRegister} />
           </div>
         </div>
       </section>
@@ -447,20 +442,13 @@ const Index = () => {
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 text-white">Выберите мероприятие *</label>
-                <select 
-                  className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a]/50 border border-[#d4af37]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50"
+                <Input 
                   value={eventFormData.event}
                   onChange={(e) => setEventFormData({...eventFormData, event: e.target.value})}
                   required
-                >
-                  <option value="">Выберите из списка</option>
-                  <option value="Интенсив по этикету">Интенсив по этикету (15 октября)</option>
-                  <option value="Мастер-класс по арт-терапии">Мастер-класс по арт-терапии (22 октября)</option>
-                  <option value="Кулинарная встреча">Кулинарная встреча (29 октября)</option>
-                  <option value="Сетевой завтрак">Сетевой завтрак (5 ноября)</option>
-                  <option value="Модный показ">Модный показ (12 ноября)</option>
-                  <option value="Йога и медитация">Йога и медитация (19 ноября)</option>
-                </select>
+                  disabled
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30 text-white"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 text-white">Комментарий</label>
