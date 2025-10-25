@@ -39,6 +39,7 @@ const Index = () => {
       name: 'Самсонова Юлия Аркадьевна',
       role: 'Стилист',
       description: 'Эксперт по стилю и имиджу',
+      image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg',
     },
     {
       name: 'Христенко Юлия Анатольевна',
