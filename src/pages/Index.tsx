@@ -225,16 +225,14 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md flex flex-col">
-              <div className="relative w-full h-64 overflow-hidden">
-                <img 
-                  src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
-                  alt="Карина Ляшева" 
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/30 to-[#1a1a1a]"></div>
-              </div>
-              <div className="p-8 flex-1 flex flex-col justify-between">
+            <div className="relative border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left">
+              <img 
+                src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
+                alt="Карина Ляшева" 
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-black/50"></div>
+              <div className="relative z-10 p-8 flex flex-col justify-between min-h-full">
                 <div>
                   <div className="text-[#b8953d]/40 text-6xl mb-4">“</div>
                   <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
@@ -254,8 +252,8 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-8">
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <div className="flex flex-col gap-8 h-full">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md flex-1">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#d4af37] pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-white/80">
@@ -279,7 +277,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md flex-1">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#d4af37] pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-white/80">
