@@ -607,16 +607,6 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-white">Выберите мероприятие *</label>
-                <Input 
-                  value={eventFormData.event}
-                  onChange={(e) => setEventFormData({...eventFormData, event: e.target.value})}
-                  required
-                  disabled
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
                 <label className="block text-sm font-medium mb-2 text-white">Комментарий</label>
                 <Textarea
                   placeholder="Дополнительная информация или пожелания"
