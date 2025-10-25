@@ -5,42 +5,38 @@ const images = [
   {
     url: 'https://cdn.poehali.dev/files/0e1b4ab4-a9b6-4a39-8009-df86628d17db.jpg',
     alt: 'Элегантный стол с шампанским и цветами',
-    size: 'large'
   },
   {
     url: 'https://cdn.poehali.dev/files/00d81cb8-e3b9-4d81-a7f3-41ab95c6c69c.jpg',
     alt: 'Творческий мастер-класс по живописи',
-    size: 'medium'
   },
   {
     url: 'https://cdn.poehali.dev/files/3412fdfb-7394-43ca-8e98-0619f6108e4b.jpg',
     alt: 'Процесс создания искусства',
-    size: 'small'
   },
   {
     url: 'https://cdn.poehali.dev/files/14cfa22e-083c-452d-a145-44f774f9999b.jpg',
     alt: 'Участницы клуба с работами',
-    size: 'medium'
   },
   {
     url: 'https://cdn.poehali.dev/files/94ff39c7-6325-425f-9be9-cb5da13b951e.jpg',
     alt: 'Уютное чаепитие на природе',
-    size: 'large'
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg',
+    alt: 'Карина Ляшева',
   },
   {
     url: 'https://cdn.poehali.dev/files/0e1b4ab4-a9b6-4a39-8009-df86628d17db.jpg',
     alt: 'Элегантный стол с шампанским и цветами',
-    size: 'small'
   },
   {
     url: 'https://cdn.poehali.dev/files/00d81cb8-e3b9-4d81-a7f3-41ab95c6c69c.jpg',
     alt: 'Творческий мастер-класс по живописи',
-    size: 'medium'
   },
   {
     url: 'https://cdn.poehali.dev/files/3412fdfb-7394-43ca-8e98-0619f6108e4b.jpg',
     alt: 'Процесс создания искусства',
-    size: 'large'
   }
 ];
 
@@ -49,19 +45,12 @@ const MosaicGallery = () => {
 
   return (
     <>
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[180px]">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
         {images.map((image, index) => (
           <div
             key={index}
             onClick={() => setSelectedImage(image.url)}
-            className={`
-              relative overflow-hidden rounded-xl border border-[#d4af37]/20
-              transition-all duration-500 cursor-pointer group
-              hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#d4af37]/20
-              ${image.size === 'large' ? 'col-span-2 row-span-2' : ''}
-              ${image.size === 'medium' ? 'row-span-2' : ''}
-              ${image.size === 'small' ? 'col-span-1 row-span-1' : ''}
-            `}
+            className="relative overflow-hidden rounded-lg border border-[#b8953d]/20 aspect-square transition-all duration-500 cursor-pointer group hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#b8953d]/20"
           >
             <img
               src={image.url}
@@ -70,7 +59,7 @@ const MosaicGallery = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
               <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
-                <Icon name="ZoomIn" size={32} className="text-[#d4af37]" />
+                <Icon name="ZoomIn" size={24} className="text-[#b8953d]" />
               </div>
             </div>
           </div>
@@ -84,7 +73,7 @@ const MosaicGallery = () => {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-8 right-8 text-white/80 hover:text-[#d4af37] transition-colors z-10"
+            className="absolute top-8 right-8 text-white/80 hover:text-[#b8953d] transition-colors z-10"
           >
             <Icon name="X" size={40} />
           </button>
