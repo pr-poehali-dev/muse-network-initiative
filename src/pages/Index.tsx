@@ -110,7 +110,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f8f5f2] via-[#faf8f6] to-[#f5f1ed]">
+    <div className="min-h-screen bg-gradient-to-b from-[#f8f5f2] via-[#faf8f6] to-[#f5f1ed] luxury-texture noise-texture">
       <nav className="fixed top-0 w-full bg-[#1a0a0f]/95 backdrop-blur-md z-50 border-b border-primary/30">
         <div className="w-full px-8 py-4">
           <div className="flex items-center justify-between">
@@ -181,7 +181,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#faf8f6] to-[#f0ebe6]">
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#faf8f6] to-[#f0ebe6] luxury-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">О клубе Muse</h3>
@@ -252,7 +252,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="mission" className="py-20 px-8">
+      <section id="mission" className="py-20 px-8 noise-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Наши ценности</h3>
@@ -271,7 +271,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#f8f5f2] to-[#ede8e3]">
+      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#f8f5f2] to-[#ede8e3] luxury-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Мероприятия и встречи</h3>
@@ -294,7 +294,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="team" className="py-20 px-8">
+      <section id="team" className="py-20 px-8 noise-texture">
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-primary">Наши эксперты</h3>
@@ -331,7 +331,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section id="contact" className="py-20 px-8 bg-gradient-to-b from-[#f5f1ed] to-[#f0e6e0]">
+      <section id="contact" className="py-20 px-8 bg-gradient-to-b from-[#f5f1ed] to-[#f0e6e0] luxury-texture">
         <div className="w-full max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-6 text-primary">Присоединяйтесь к нам</h3>
