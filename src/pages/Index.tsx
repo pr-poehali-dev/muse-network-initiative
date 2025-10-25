@@ -219,7 +219,7 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  transform: 'scale(0.7)'
+                  transform: 'scale(1.5)'
                 }}
               />
             </div>
@@ -231,7 +231,7 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  transform: 'scale(0.7)'
+                  transform: 'scale(1.5)'
                 }}
               />
             </div>
@@ -243,7 +243,7 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  transform: 'scale(0.7)'
+                  transform: 'scale(1.5)'
                 }}
               />
             </div>
@@ -255,7 +255,7 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-                  transform: 'scale(0.7)'
+                  transform: 'scale(1.5)'
                 }}
               />
               <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/35 via-[#d4af37]/15 to-transparent"></div>
@@ -269,7 +269,7 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
-                  transform: 'scale(0.7)'
+                  transform: 'scale(1.5)'
                 }}
               />
             </div>
