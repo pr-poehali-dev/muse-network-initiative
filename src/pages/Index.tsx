@@ -215,7 +215,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-top opacity-48"
+                className="w-full h-full object-cover object-[50%_15%] opacity-48"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -261,7 +261,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/10474ec8-2667-42ad-8214-5c52d99a748b.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-top opacity-48"
+                className="w-full h-full object-cover object-[50%_-10%] opacity-48"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
