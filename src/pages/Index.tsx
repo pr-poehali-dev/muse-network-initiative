@@ -288,11 +288,8 @@ const Index = () => {
           </div>
         </div>
         <div className="w-full text-center max-w-7xl mx-auto relative z-10">
-          <div className="mb-8">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4 floating" />
-          </div>
-          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4">
-            Клуб Muse
+          <h2 className="text-6xl md:text-8xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4 mt-8">
+            КЛУБ MUSE
           </h2>
           <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
