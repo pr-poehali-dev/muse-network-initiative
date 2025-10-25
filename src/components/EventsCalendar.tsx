@@ -142,6 +142,7 @@ const EventsCalendar = () => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 10));
   const [isExpanded, setIsExpanded] = useState(false);
+  const [selectedDay, setSelectedDay] = useState<number | null>(null);
 
   const getEventTypeConfig = (type: Event['type']) => {
     switch(type) {
@@ -266,7 +267,7 @@ const EventsCalendar = () => {
               </button>
             </div>
 
-            <div className="bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10 mb-6 max-w-md mx-auto">
+            <div className="bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10 mb-6">
               <div className="grid grid-cols-7 gap-1 mb-1">
                 {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
                   <div key={day} className="text-center text-[10px] font-bold text-[#d4af37]/70 py-1">
@@ -284,18 +285,27 @@ const EventsCalendar = () => {
                   const day = index + 1;
                   const dayEvents = getEventsForDay(day);
                   const hasEvents = dayEvents.length > 0;
+                  const isSelectedDay = selectedDay === day;
                   
                   return (
                     <div
                       key={day}
+                      onClick={() => {
+                        if (hasEvents) {
+                          setSelectedDay(isSelectedDay ? null : day);
+                          setSelectedEvent(null);
+                        }
+                      }}
                       className={`aspect-square border-2 rounded transition-all duration-300 relative group ${
-                        hasEvents 
+                        isSelectedDay
+                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/40 to-[#b8860b]/40 shadow-lg shadow-[#d4af37]/50 scale-110'
+                          : hasEvents 
                           ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-md hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-110' 
                           : 'border-[#b8953d]/10 bg-[#0a0a0a]/20 hover:border-[#b8953d]/30'
                       }`}
                     >
                       <div className="p-0.5 h-full flex flex-col items-center justify-center">
-                        <div className={`text-[10px] font-bold ${hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
+                        <div className={`text-[10px] font-bold ${isSelectedDay ? 'text-white' : hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
                           {day}
                         </div>
                         {hasEvents && dayEvents.length > 0 && (
@@ -303,7 +313,7 @@ const EventsCalendar = () => {
                             {dayEvents.slice(0, 3).map((evt, idx) => {
                               const config = getEventTypeConfig(evt.type);
                               return (
-                                <div key={idx} className={`w-1 h-1 rounded-full ${config.badge}`} />
+                                <div key={idx} className={`w-1 h-1 rounded-full ${config.badge} ${isSelectedDay ? 'opacity-100' : 'opacity-80'}`} />
                               );
                             })}
                           </div>
@@ -315,8 +325,29 @@ const EventsCalendar = () => {
               </div>
             </div>
 
+            {selectedDay !== null && (
+              <div className="mb-6 animate-fade-in">
+                <div className="bg-gradient-to-r from-[#b8953d]/20 to-[#d4af37]/20 rounded-lg p-3 border border-[#d4af37]/30 mb-3">
+                  <div className="flex items-center justify-between">
+                    <h5 className="text-sm font-bold text-[#d4af37]">
+                      События {selectedDay} {monthName.split(' ')[0]}
+                    </h5>
+                    <button 
+                      onClick={() => setSelectedDay(null)}
+                      className="text-white/60 hover:text-[#d4af37] transition-colors"
+                    >
+                      <Icon name="X" size={16} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="space-y-4">
-              {currentMonthEvents.map((event) => {
+              {(selectedDay !== null 
+                ? getEventsForDay(selectedDay)
+                : currentMonthEvents
+              ).map((event) => {
                 const config = getEventTypeConfig(event.type);
                 const eventDate = new Date(event.date);
                 const isSelected = selectedEvent?.id === event.id;
