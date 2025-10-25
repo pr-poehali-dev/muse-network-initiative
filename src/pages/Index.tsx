@@ -254,8 +254,7 @@ const Index = () => {
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/35 via-[#d4af37]/15 to-transparent"></div>
-              <div className="absolute inset-0 shadow-[inset_0_0_120px_rgba(212,175,55,0.35)]"></div>
+
             </div>
             <div className="relative h-full">
               <img 
@@ -271,8 +270,8 @@ const Index = () => {
           </div>
           
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,175,55,0.15)_0%,transparent_50%)]"></div>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_70%_30%,rgba(212,175,55,0.12)_0%,transparent_50%)]"></div>
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,175,55,0.06)_0%,transparent_50%)]"></div>
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_70%_30%,rgba(212,175,55,0.05)_0%,transparent_50%)]"></div>
             
             <div className="absolute inset-0">
               {[...Array(50)].map((_, i) => {
