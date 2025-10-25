@@ -215,7 +215,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-[50%_15%] opacity-35"
+                className="w-full h-full object-cover object-[50%_25%] opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
@@ -226,7 +226,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/32a38a61-a056-4ba0-8c4f-cb1acd689d48.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-top opacity-45"
+                className="w-full h-full object-cover object-[50%_15%] opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -237,7 +237,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/f040cd98-6864-4fcf-91d9-0e46b006e0fc.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-top opacity-45"
+                className="w-full h-full object-cover object-[50%_15%] opacity-45"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
@@ -248,7 +248,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/1f8f518a-edfb-4f3e-a9b1-91a6f0deb8b6.jpg"
                 alt="Карина Ляшева"
-                className="w-full h-full object-cover object-top opacity-70"
+                className="w-full h-full object-cover object-[50%_20%] opacity-70"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)'
@@ -261,7 +261,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/10474ec8-2667-42ad-8214-5c52d99a748b.jpg"
                 alt="Команда"
-                className="w-full h-full object-cover object-[50%_-10%] opacity-35"
+                className="w-full h-full object-cover object-[50%_5%] opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 25%, black 75%, transparent 100%)'
