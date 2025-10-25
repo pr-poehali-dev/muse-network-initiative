@@ -13,6 +13,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const visibleSections = useScrollAnimation();
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+  const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
     email: '',
@@ -20,7 +21,14 @@ const Index = () => {
     event: '',
     message: ''
   });
+  const [joinFormData, setJoinFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
+  const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -43,6 +51,17 @@ const Index = () => {
       setIsEventFormSubmitted(false);
       setIsEventDialogOpen(false);
       setEventFormData({ name: '', email: '', phone: '', event: '', message: '' });
+    }, 2000);
+  };
+
+  const handleJoinFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log('Join club:', joinFormData);
+    setIsJoinFormSubmitted(true);
+    setTimeout(() => {
+      setIsJoinFormSubmitted(false);
+      setIsJoinDialogOpen(false);
+      setJoinFormData({ name: '', email: '', phone: '', message: '' });
     }, 2000);
   };
 
@@ -178,7 +197,7 @@ const Index = () => {
               <Button
                 size="lg"
                 className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] uppercase tracking-wider"
-                onClick={() => scrollToSection('contact')}
+                onClick={() => setIsJoinDialogOpen(true)}
               >
                 Вступить в клуб
               </Button>
@@ -608,6 +627,75 @@ const Index = () => {
                 />
               </div>
               <Button className="w-full text-lg py-6 hover-scale glow-effect" type="submit">
+                Отправить заявку
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isJoinDialogOpen} onOpenChange={setIsJoinDialogOpen}>
+        <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-[#b8953d]">Вступить в клуб MUSE</DialogTitle>
+            <DialogDescription className="text-white/70">
+              Заполните заявку, и мы свяжемся с вами для обсуждения членства
+            </DialogDescription>
+          </DialogHeader>
+
+          {isJoinFormSubmitted ? (
+            <div className="text-center py-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8953d]/20 mb-4">
+                <Icon name="Check" className="text-[#d4af37]" size={32} />
+              </div>
+              <h5 className="text-xl font-bold text-[#b8953d] mb-2">Заявка отправлена!</h5>
+              <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
+            </div>
+          ) : (
+            <form onSubmit={handleJoinFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Имя *</label>
+                <Input 
+                  placeholder="Ваше имя" 
+                  value={joinFormData.name}
+                  onChange={(e) => setJoinFormData({...joinFormData, name: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Email *</label>
+                <Input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  value={joinFormData.email}
+                  onChange={(e) => setJoinFormData({...joinFormData, email: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Телефон *</label>
+                <Input 
+                  type="tel" 
+                  placeholder="+7 (___) ___-__-__" 
+                  value={joinFormData.phone}
+                  onChange={(e) => setJoinFormData({...joinFormData, phone: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Расскажите о себе</label>
+                <Textarea
+                  placeholder="Чем вы занимаетесь? Что вас вдохновляет?"
+                  rows={4}
+                  value={joinFormData.message}
+                  onChange={(e) => setJoinFormData({...joinFormData, message: e.target.value})}
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <Button className="w-full text-lg py-6 hover-scale glow-effect bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d]" type="submit">
                 Отправить заявку
               </Button>
             </form>
