@@ -74,18 +74,26 @@ const Index = () => {
     {
       title: 'Солидарность',
       description: 'Поддерживаем друг друга, отмечая достижения каждой участницы',
+      icon: 'Heart',
+      emoji: '🤝'
     },
     {
       title: 'Инновации',
       description: 'Поощряем креативность и привнесение свежих идей',
+      icon: 'Lightbulb',
+      emoji: '💡'
     },
     {
       title: 'Равноправие',
       description: 'Стремимся к равным возможностям и уважению для всех женщин',
+      icon: 'Scale',
+      emoji: '⚖️'
     },
     {
       title: 'Открытость',
       description: 'Приветствуем разнообразие мнений и культурный обмен',
+      icon: 'Globe',
+      emoji: '🌍'
     },
   ];
 
@@ -94,21 +102,29 @@ const Index = () => {
       title: 'Ежемесячные встречи ОЧНО',
       description: 'Тема каждой встречи варьируется от панельных дискуссий до творческих воркшопов',
       details: 'Живое общение, нетворкинг, обмен опытом. Каждая встреча — это возможность найти партнеров, получить ценные советы и завести новые знакомства в кругу единомышленников.',
+      icon: 'Users',
+      emoji: '👥'
     },
     {
       title: 'Онлайн-трансляции',
       description: 'Два раза в месяц: обмен знаниями, обратная связь и заряд положительной энергии',
       details: 'Удобный формат для тех, кто в разъездах или не может присутствовать очно. Записи всех трансляций доступны участницам клуба.',
+      icon: 'MonitorPlay',
+      emoji: '📡'
     },
     {
       title: 'Гостевые спикеры',
       description: 'Приглашенные эксперты делятся опытом и знаниями, посещаем экскурсии',
       details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые мероприятия. Расширяем горизонты вместе!',
+      icon: 'Mic',
+      emoji: '🎤'
     },
     {
       title: 'Творческие мероприятия',
       description: 'Развивайте себя в новых форматах: творчество, музыка, искусство',
       details: 'Раскрываем таланты: арт-терапия, музыкальные вечера, мастер-классы по живописи, танцам, кулинарии. Баланс между работой и вдохновением.',
+      icon: 'Palette',
+      emoji: '🎨'
     },
   ];
 
@@ -159,18 +175,39 @@ const Index = () => {
           <p className="text-lg text-white/70 mb-8 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-slide-in-left">
-              <div className="text-3xl font-bold text-primary mb-2">250+</div>
-              <p className="text-sm text-white/70">Участниц клуба</p>
+          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-12">
+            <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-slide-in-left relative overflow-hidden group">
+              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">✨</div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
+                  <Icon name="Users" className="text-white" size={28} />
+                </div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">250+</div>
+                <p className="text-base text-white/90 font-medium">Участниц клуба</p>
+                <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
+              </div>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-scale-in" style={{animationDelay: '0.2s'}}>
-              <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <p className="text-sm text-white/70">Проведённых встреч</p>
+            <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-scale-in relative overflow-hidden group" style={{animationDelay: '0.2s'}}>
+              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">🎯</div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
+                  <Icon name="Calendar" className="text-white" size={28} />
+                </div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">50+</div>
+                <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
+                <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
+              </div>
             </div>
-            <div className="bg-white/5 backdrop-blur-sm border border-primary/30 p-6 rounded-xl hover-scale glow-effect pulse-glow animate-slide-in-right" style={{animationDelay: '0.4s'}}>
-              <div className="text-3xl font-bold text-primary mb-2">24</div>
-              <p className="text-sm text-white/70">Онлайн-трансляций в год</p>
+            <div className="bg-white/10 backdrop-blur-md border-2 border-primary/40 p-8 rounded-2xl hover-scale glow-effect pulse-glow animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '0.4s'}}>
+              <div className="absolute top-4 right-4 text-5xl opacity-20 group-hover:opacity-30 transition-opacity">📡</div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
+                  <Icon name="Radio" className="text-white" size={28} />
+                </div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">24</div>
+                <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
+                <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
+              </div>
             </div>
           </div>
           <Button
@@ -263,9 +300,13 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="hover-scale glow-effect border-t-4 border-t-primary rounded-xl animate-scale-in" style={{animationDelay: `${index * 0.1}s`}}>
-                <CardContent className="p-6">
-                  <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
+              <Card key={index} className="hover-scale glow-effect border-2 border-primary/20 rounded-2xl animate-scale-in relative overflow-hidden group bg-gradient-to-br from-white to-[#faf8f6]" style={{animationDelay: `${index * 0.1}s`}}>
+                <div className="absolute top-0 right-0 text-6xl opacity-10 group-hover:opacity-20 transition-opacity p-4">{value.emoji}</div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-4 shadow-lg">
+                    <Icon name={value.icon} className="text-white" size={24} />
+                  </div>
+                  <h4 className="text-xl font-bold mb-3 text-primary">{value.title}</h4>
                   <p className="text-sm text-foreground/70 leading-relaxed">{value.description}</p>
                 </CardContent>
               </Card>
@@ -285,11 +326,19 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             {events.map((event, index) => (
-              <Card key={index} className={`hover-scale glow-effect border-l-4 border-l-primary rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'}`} style={{animationDelay: `${index * 0.15}s`}}>
-                <CardContent className="p-8">
-                  <h4 className="text-xl font-semibold mb-3 text-primary">{event.title}</h4>
-                  <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
-                  <p className="text-sm text-foreground/60 leading-relaxed">{event.details}</p>
+              <Card key={index} className={`hover-scale glow-effect border-2 border-primary/20 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-gradient-to-br from-white to-[#faf8f6]`} style={{animationDelay: `${index * 0.15}s`}}>
+                <div className="absolute top-4 right-4 text-7xl opacity-5 group-hover:opacity-10 transition-opacity">{event.emoji}</div>
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] shadow-lg flex-shrink-0">
+                      <Icon name={event.icon} className="text-white" size={24} />
+                    </div>
+                    <h4 className="text-xl font-bold text-primary pt-2">{event.title}</h4>
+                  </div>
+                  <p className="text-foreground/80 leading-relaxed mb-4 font-medium">{event.description}</p>
+                  <div className="pt-4 border-t border-primary/10">
+                    <p className="text-sm text-foreground/60 leading-relaxed">{event.details}</p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
