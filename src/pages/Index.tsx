@@ -61,22 +61,18 @@ const Index = () => {
 
   const values = [
     {
-      icon: 'Sparkles',
       title: 'Солидарность',
       description: 'Поддерживаем друг друга, отмечая достижения каждой участницы',
     },
     {
-      icon: 'Lightbulb',
       title: 'Инновации',
       description: 'Поощряем креативность и привнесение свежих идей',
     },
     {
-      icon: 'Scale',
       title: 'Равноправие',
       description: 'Стремимся к равным возможностям и уважению для всех женщин',
     },
     {
-      icon: 'Heart',
       title: 'Открытость',
       description: 'Приветствуем разнообразие мнений и культурный обмен',
     },
@@ -84,25 +80,21 @@ const Index = () => {
 
   const events = [
     {
-      icon: 'Users',
       title: 'Ежемесячные встречи ОЧНО',
       description: 'Тема каждой встречи варьируется от панельных дискуссий до творческих воркшопов',
       details: 'Живое общение, нетворкинг, обмен опытом. Каждая встреча — это возможность найти партнеров, получить ценные советы и завести новые знакомства в кругу единомышленников.',
     },
     {
-      icon: 'Video',
       title: 'Онлайн-трансляции',
       description: 'Два раза в месяц: обмен знаниями, обратная связь и заряд положительной энергии',
       details: 'Удобный формат для тех, кто в разъездах или не может присутствовать очно. Записи всех трансляций доступны участницам клуба.',
     },
     {
-      icon: 'Mic',
       title: 'Гостевые спикеры',
       description: 'Приглашенные эксперты делятся опытом и знаниями, посещаем экскурсии',
       details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые мероприятия. Расширяем горизонты вместе!',
     },
     {
-      icon: 'Palette',
       title: 'Творческие мероприятия',
       description: 'Развивайте себя в новых форматах: творчество, музыка, искусство',
       details: 'Раскрываем таланты: арт-терапия, музыкальные вечера, мастер-классы по живописи, танцам, кулинарии. Баланс между работой и вдохновением.',
@@ -114,7 +106,7 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-border">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-3xl font-bold text-primary">Muse</h1>
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12" />
             <div className="hidden md:flex gap-6">
               {['hero', 'about', 'mission', 'events', 'team', 'contact'].map((section) => (
                 <button
@@ -144,7 +136,7 @@ const Index = () => {
         </div>
         <div className="container mx-auto text-center max-w-4xl relative z-10">
           <div className="mb-8">
-            <span className="inline-block text-accent text-6xl mb-4">✨</span>
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4" />
           </div>
           <h2 className="text-6xl md:text-7xl font-bold mb-6 text-primary">
             Клуб Muse
@@ -156,15 +148,15 @@ const Index = () => {
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+            <div className="bg-white border border-border p-6 rounded-none">
               <div className="text-3xl font-bold text-primary mb-2">250+</div>
               <p className="text-sm text-foreground/70">Участниц клуба</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+            <div className="bg-white border border-border p-6 rounded-none">
               <div className="text-3xl font-bold text-primary mb-2">50+</div>
               <p className="text-sm text-foreground/70">Проведённых встреч</p>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-lg">
+            <div className="bg-white border border-border p-6 rounded-none">
               <div className="text-3xl font-bold text-primary mb-2">24</div>
               <p className="text-sm text-foreground/70">Онлайн-трансляций в год</p>
             </div>
@@ -188,7 +180,7 @@ const Index = () => {
               делиться опытом и находить поддержку среди единомышленников.
             </p>
             <div className="max-w-4xl mx-auto">
-              <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-8 rounded-2xl">
+              <div className="bg-white border-2 border-primary p-8">
                 <h4 className="text-2xl font-bold mb-4 text-primary">Миссия клуба</h4>
                 <p className="text-base text-foreground/80 leading-relaxed mb-4">
                   Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
@@ -205,36 +197,23 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <Card className="hover-scale">
               <CardContent className="p-8">
-                <div className="text-accent text-4xl mb-4">🎯</div>
-                <h4 className="text-2xl font-semibold mb-4">Наши цели</h4>
+                <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-foreground/80">
-                  <li className="flex items-start gap-3">
-                    <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-semibold mb-1">Создать сообщество</p>
-                      <p className="text-sm">Объединить женщин из науки, культуры, искусства, музыки, спорта, бизнеса и политики</p>
-                    </div>
+                  <li className="border-l-2 border-primary pl-4">
+                    <p className="font-semibold mb-1">Создать сообщество</p>
+                    <p className="text-sm">Объединить женщин из науки, культуры, искусства, музыки, спорта, бизнеса и политики</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-semibold mb-1">Поощрять развитие</p>
-                      <p className="text-sm">Мастер-классы, семинары и лекции от лидеров в своих областях</p>
-                    </div>
+                  <li className="border-l-2 border-primary pl-4">
+                    <p className="font-semibold mb-1">Поощрять развитие</p>
+                    <p className="text-sm">Мастер-классы, семинары и лекции от лидеров в своих областях</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-semibold mb-1">Вдохновлять</p>
-                      <p className="text-sm">Платформа для обмена идеями и совместной работы над проектами</p>
-                    </div>
+                  <li className="border-l-2 border-primary pl-4">
+                    <p className="font-semibold mb-1">Вдохновлять</p>
+                    <p className="text-sm">Платформа для обмена идеями и совместной работы над проектами</p>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <Icon name="Check" className="text-primary mt-1 flex-shrink-0" size={20} />
-                    <div>
-                      <p className="font-semibold mb-1">Продвигать женское лидерство</p>
-                      <p className="text-sm">Помогаем занимать руководящие должности и менять мир вокруг</p>
-                    </div>
+                  <li className="border-l-2 border-primary pl-4">
+                    <p className="font-semibold mb-1">Продвигать женское лидерство</p>
+                    <p className="text-sm">Помогаем занимать руководящие должности и менять мир вокруг</p>
                   </li>
                 </ul>
               </CardContent>
@@ -242,23 +221,18 @@ const Index = () => {
 
             <Card className="hover-scale">
               <CardContent className="p-8">
-                <div className="text-accent text-4xl mb-4">💫</div>
-                <h4 className="text-2xl font-semibold mb-4">Что мы предлагаем</h4>
+                <h4 className="text-2xl font-semibold mb-6 text-primary border-b border-primary pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-foreground/80">
-                  <li className="flex items-start gap-2">
-                    <Icon name="Star" className="text-accent mt-1 flex-shrink-0" size={20} />
+                  <li className="border-l-2 border-primary pl-4">
                     <span>Статусное окружение единомышленников</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Icon name="Star" className="text-accent mt-1 flex-shrink-0" size={20} />
+                  <li className="border-l-2 border-primary pl-4">
                     <span>Коллаборации и партнерства</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Icon name="Star" className="text-accent mt-1 flex-shrink-0" size={20} />
+                  <li className="border-l-2 border-primary pl-4">
                     <span>Яркие события и впечатления</span>
                   </li>
-                  <li className="flex items-start gap-2">
-                    <Icon name="Star" className="text-accent mt-1 flex-shrink-0" size={20} />
+                  <li className="border-l-2 border-primary pl-4">
                     <span>Сохранение культурного кода и ценностей</span>
                   </li>
                 </ul>
@@ -276,11 +250,8 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="hover-scale text-center">
+              <Card key={index} className="hover-scale border-t-4 border-t-primary rounded-none">
                 <CardContent className="p-6">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4">
-                    <Icon name={value.icon} className="text-primary" size={32} />
-                  </div>
                   <h4 className="text-xl font-semibold mb-3">{value.title}</h4>
                   <p className="text-sm text-foreground/70 leading-relaxed">{value.description}</p>
                 </CardContent>
@@ -301,18 +272,11 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6">
             {events.map((event, index) => (
-              <Card key={index} className="hover-scale">
+              <Card key={index} className="hover-scale border-l-4 border-l-primary rounded-none">
                 <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
-                      <Icon name={event.icon} className="text-accent" size={24} />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-semibold mb-2">{event.title}</h4>
-                      <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
-                      <p className="text-sm text-foreground/60 leading-relaxed">{event.details}</p>
-                    </div>
-                  </div>
+                  <h4 className="text-xl font-semibold mb-3 text-primary">{event.title}</h4>
+                  <p className="text-foreground/70 leading-relaxed mb-3">{event.description}</p>
+                  <p className="text-sm text-foreground/60 leading-relaxed">{event.details}</p>
                 </CardContent>
               </Card>
             ))}
@@ -331,15 +295,15 @@ const Index = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale overflow-hidden">
+              <Card key={index} className="hover-scale overflow-hidden rounded-none border-2 border-border">
                 <CardContent className="p-0">
-                  <div className="aspect-[9/16] bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/20 flex items-center justify-center relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
-                    <Icon name="User" className="text-primary/30 absolute" size={80} />
+                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
+                    <div className="text-6xl text-primary/20 absolute">M</div>
                   </div>
-                  <div className="p-4">
+                  <div className="p-4 bg-white">
                     <h4 className="text-sm font-semibold text-center mb-1 leading-tight">{expert.name}</h4>
-                    <p className="text-xs text-accent text-center font-medium mb-1">{expert.role}</p>
+                    <p className="text-xs text-primary text-center font-medium mb-1">{expert.role}</p>
                     <p className="text-xs text-foreground/60 text-center leading-relaxed">
                       {expert.description}
                     </p>
@@ -391,17 +355,12 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="py-12 px-4 bg-primary text-primary-foreground">
+      <footer className="py-12 px-4 bg-foreground text-background border-t-4 border-t-primary">
         <div className="container mx-auto text-center">
-          <h4 className="text-3xl font-bold mb-4">Muse</h4>
-          <p className="text-lg opacity-90 mb-6">
-            Вместе мы можем достичь большего! ✨
+          <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 brightness-0 invert" />
+          <p className="text-lg mb-8">
+            Вместе мы можем достичь большего
           </p>
-          <div className="flex justify-center gap-6 mb-6">
-            <Icon name="Instagram" className="hover-scale cursor-pointer" size={24} />
-            <Icon name="Facebook" className="hover-scale cursor-pointer" size={24} />
-            <Icon name="Mail" className="hover-scale cursor-pointer" size={24} />
-          </div>
           <p className="text-sm opacity-75">
             © 2024 Клуб Muse. Все права защищены.
           </p>
