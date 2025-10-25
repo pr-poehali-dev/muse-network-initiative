@@ -133,7 +133,10 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-[#1a0a0f]/95 backdrop-blur-md z-50 border-b border-primary/30">
         <div className="w-full max-w-7xl mx-auto px-8 py-4">
           <div className="flex items-center justify-between">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12" />
+            <div className="flex items-center gap-3">
+              <span className="text-4xl">🪆</span>
+              <span className="text-3xl font-bold text-white tracking-wider">MUSE</span>
+            </div>
             <div className="hidden md:flex gap-6">
               {['hero', 'about', 'mission', 'events', 'team', 'contact'].map((section) => (
                 <button
