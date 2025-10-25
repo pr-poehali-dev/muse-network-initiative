@@ -241,9 +241,32 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent blur-3xl"></div>
             <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl animate-pulse"></div>
+            
+            {[...Array(12)].map((_, i) => {
+              const angle = (i * 30) - 15;
+              return (
+                <div
+                  key={i}
+                  className="absolute top-1/2 left-1/2 origin-left opacity-20"
+                  style={{
+                    transform: `rotate(${angle}deg)`,
+                    width: '150%',
+                    height: '2px',
+                  }}
+                >
+                  <div 
+                    className="h-full bg-gradient-to-r from-transparent via-[#d4af37] to-transparent animate-pulse"
+                    style={{
+                      animationDelay: `${i * 0.3}s`,
+                      animationDuration: '3s'
+                    }}
+                  />
+                </div>
+              );
+            })}
           </div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
