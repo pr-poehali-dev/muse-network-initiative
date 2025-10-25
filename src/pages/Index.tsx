@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -7,10 +7,20 @@ import Icon from '@/components/ui/icon';
 import MosaicGallery from '@/components/MosaicGallery';
 import EventsCalendar from '@/components/EventsCalendar';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const visibleSections = useScrollAnimation();
+  const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+  const [eventFormData, setEventFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    event: '',
+    message: ''
+  });
+  const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -18,6 +28,17 @@ const Index = () => {
       element.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(id);
     }
+  };
+
+  const handleEventFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log('Event registration:', eventFormData);
+    setIsEventFormSubmitted(true);
+    setTimeout(() => {
+      setIsEventFormSubmitted(false);
+      setIsEventDialogOpen(false);
+      setEventFormData({ name: '', email: '', phone: '', event: '', message: '' });
+    }, 2000);
   };
 
   const experts = [
@@ -360,8 +381,104 @@ const Index = () => {
           <div>
             <EventsCalendar />
           </div>
+
+          <div className="text-center mt-12">
+            <Button
+              size="lg"
+              className="text-lg px-8 py-6 hover-scale glow-effect"
+              onClick={() => setIsEventDialogOpen(true)}
+            >
+              Записаться на мероприятие
+            </Button>
+          </div>
         </div>
       </section>
+
+      <Dialog open={isEventDialogOpen} onOpenChange={setIsEventDialogOpen}>
+        <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-[#b8953d]">Запись на мероприятие</DialogTitle>
+            <DialogDescription className="text-white/70">
+              Заполните форму, и мы свяжемся с вами для подтверждения
+            </DialogDescription>
+          </DialogHeader>
+
+          {isEventFormSubmitted ? (
+            <div className="text-center py-8">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8953d]/20 mb-4">
+                <Icon name="Check" className="text-[#d4af37]" size={32} />
+              </div>
+              <h5 className="text-xl font-bold text-[#b8953d] mb-2">Заявка отправлена!</h5>
+              <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
+            </div>
+          ) : (
+            <form onSubmit={handleEventFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Имя *</label>
+                <Input 
+                  placeholder="Ваше имя" 
+                  value={eventFormData.name}
+                  onChange={(e) => setEventFormData({...eventFormData, name: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Email *</label>
+                <Input 
+                  type="email" 
+                  placeholder="your@email.com" 
+                  value={eventFormData.email}
+                  onChange={(e) => setEventFormData({...eventFormData, email: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Телефон *</label>
+                <Input 
+                  type="tel" 
+                  placeholder="+7 (___) ___-__-__" 
+                  value={eventFormData.phone}
+                  onChange={(e) => setEventFormData({...eventFormData, phone: e.target.value})}
+                  required
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Выберите мероприятие *</label>
+                <select 
+                  className="w-full px-4 py-3 rounded-lg bg-[#0a0a0a]/50 border border-[#d4af37]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#d4af37]/50"
+                  value={eventFormData.event}
+                  onChange={(e) => setEventFormData({...eventFormData, event: e.target.value})}
+                  required
+                >
+                  <option value="">Выберите из списка</option>
+                  <option value="Интенсив по этикету">Интенсив по этикету (15 октября)</option>
+                  <option value="Мастер-класс по арт-терапии">Мастер-класс по арт-терапии (22 октября)</option>
+                  <option value="Кулинарная встреча">Кулинарная встреча (29 октября)</option>
+                  <option value="Сетевой завтрак">Сетевой завтрак (5 ноября)</option>
+                  <option value="Модный показ">Модный показ (12 ноября)</option>
+                  <option value="Йога и медитация">Йога и медитация (19 ноября)</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2 text-white">Комментарий</label>
+                <Textarea
+                  placeholder="Дополнительная информация или пожелания"
+                  rows={3}
+                  value={eventFormData.message}
+                  onChange={(e) => setEventFormData({...eventFormData, message: e.target.value})}
+                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
+                />
+              </div>
+              <Button className="w-full text-lg py-6 hover-scale glow-effect" type="submit">
+                Отправить заявку
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
 
       <section id="gallery" className={`py-20 px-8 bg-black noise-texture overflow-hidden transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto mb-16">
