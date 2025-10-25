@@ -60,6 +60,7 @@ const Index = () => {
   }, [visibleSections, hasAnimated]);
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
+  const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
     email: '',
@@ -75,8 +76,17 @@ const Index = () => {
     telegram: '',
     message: ''
   });
+  const [expertFormData, setExpertFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    telegram: '',
+    expertise: '',
+    message: ''
+  });
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
   const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
+  const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -110,6 +120,17 @@ const Index = () => {
       setIsJoinFormSubmitted(false);
       setIsJoinDialogOpen(false);
       setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
+    }, 2000);
+  };
+
+  const handleExpertFormSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    console.log('Become expert:', expertFormData);
+    setIsExpertFormSubmitted(true);
+    setTimeout(() => {
+      setIsExpertFormSubmitted(false);
+      setIsExpertDialogOpen(false);
+      setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
     }, 2000);
   };
 
@@ -242,6 +263,13 @@ const Index = () => {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
+              <Button
+                size="lg"
+                className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#6b5d42] to-[#8b7355] hover:from-[#8b7355] hover:to-[#6b5d42] transition-all duration-300 shadow-[0_0_15px_rgba(139,115,85,0.3)] hover:shadow-[0_0_25px_rgba(139,115,85,0.5)] uppercase tracking-wider"
+                onClick={() => setIsExpertDialogOpen(true)}
+              >
+                Стать экспертом
+              </Button>
               <Button
                 size="lg"
                 className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] uppercase tracking-wider"
@@ -835,6 +863,95 @@ const Index = () => {
           </p>
         </div>
       </footer>
+
+      <Dialog open={isExpertDialogOpen} onOpenChange={setIsExpertDialogOpen}>
+        <DialogContent className="bg-gradient-to-br from-[#1a1a1a] to-black border-[#d4af37]/30 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle className="text-3xl font-bold text-[#d4af37] mb-2">Стать экспертом клуба</DialogTitle>
+            <DialogDescription className="text-white/70">
+              Поделитесь своей экспертизой с участницами клуба Muse
+            </DialogDescription>
+          </DialogHeader>
+          {isExpertFormSubmitted ? (
+            <div className="text-center py-8">
+              <div className="text-6xl mb-4">✨</div>
+              <h3 className="text-2xl font-bold text-[#d4af37] mb-2">Спасибо!</h3>
+              <p className="text-white/80">Ваша заявка принята. Мы свяжемся с вами в ближайшее время.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleExpertFormSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2">Имя</label>
+                <Input
+                  value={expertFormData.name}
+                  onChange={(e) => setExpertFormData({...expertFormData, name: e.target.value})}
+                  placeholder="Ваше имя"
+                  required
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Email</label>
+                <Input
+                  type="email"
+                  value={expertFormData.email}
+                  onChange={(e) => setExpertFormData({...expertFormData, email: e.target.value})}
+                  placeholder="your@email.com"
+                  required
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Телефон</label>
+                <Input
+                  type="tel"
+                  value={expertFormData.phone}
+                  onChange={(e) => setExpertFormData({...expertFormData, phone: e.target.value})}
+                  placeholder="+7 (___) ___-__-__"
+                  required
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Telegram (опционально)</label>
+                <Input
+                  value={expertFormData.telegram}
+                  onChange={(e) => setExpertFormData({...expertFormData, telegram: e.target.value})}
+                  placeholder="@username"
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">Область экспертизы</label>
+                <Input
+                  value={expertFormData.expertise}
+                  onChange={(e) => setExpertFormData({...expertFormData, expertise: e.target.value})}
+                  placeholder="Бизнес, искусство, наука, спорт..."
+                  required
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">О вашем опыте</label>
+                <Textarea
+                  value={expertFormData.message}
+                  onChange={(e) => setExpertFormData({...expertFormData, message: e.target.value})}
+                  placeholder="Расскажите о своих достижениях и что можете предложить клубу..."
+                  rows={4}
+                  required
+                  className="bg-black/50 border-[#d4af37]/30 text-white"
+                />
+              </div>
+              <Button 
+                type="submit"
+                className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] text-white font-semibold"
+              >
+                Отправить заявку
+              </Button>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
