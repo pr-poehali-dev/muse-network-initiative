@@ -29,11 +29,12 @@ const InfiniteCarousel = () => {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { 
       loop: true,
-      align: 'center',
+      align: 'start',
       skipSnaps: false,
-      dragFree: true
+      dragFree: false,
+      duration: 30
     },
-    [Autoplay({ delay: 3000, stopOnInteraction: false })]
+    [Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true })]
   );
 
   useEffect(() => {
