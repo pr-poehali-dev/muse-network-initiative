@@ -35,12 +35,12 @@ const images = [
   {
     url: 'https://cdn.poehali.dev/files/00d81cb8-e3b9-4d81-a7f3-41ab95c6c69c.jpg',
     alt: 'Творческий мастер-класс по живописи',
-    size: 'large'
+    size: 'small'
   },
   {
     url: 'https://cdn.poehali.dev/files/3412fdfb-7394-43ca-8e98-0619f6108e4b.jpg',
     alt: 'Процесс создания искусства',
-    size: 'small'
+    size: 'large'
   }
 ];
 

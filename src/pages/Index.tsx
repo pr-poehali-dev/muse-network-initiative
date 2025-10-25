@@ -166,7 +166,7 @@ const Index = () => {
           <div className="mb-8">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-32 mx-auto mb-4 floating" />
           </div>
-          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4c430] to-[#d4af37] animate-scale-in">
+          <h2 className="text-6xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in">
             Клуб Muse
           </h2>
           <p className="text-xl md:text-2xl text-white/80 mb-6 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
@@ -225,7 +225,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
+            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md h-full">
               <div className="absolute top-0 left-0 w-full h-1/2">
                 <img 
                   src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
@@ -233,7 +233,7 @@ const Index = () => {
                   className="w-full h-full object-cover object-top opacity-20"
                 />
               </div>
-              <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px] pt-64">
+              <div className="relative z-10 p-8 flex flex-col justify-between h-full pt-64">
                 <div>
                   <div className="text-[#b8953d]/30 text-6xl mb-4">“</div>
                   <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
