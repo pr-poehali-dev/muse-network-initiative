@@ -168,12 +168,26 @@ const EventsCalendar = () => {
     return { daysInMonth, startingDayOfWeek, year, month };
   };
 
-  const getEventsForDay = (day: number) => {
-    const { year, month } = getDaysInMonth(currentMonth);
+  const getEventsForDay = (day: number, monthOffset: number = 0) => {
+    const targetMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + monthOffset);
+    const { year, month } = getDaysInMonth(targetMonth);
     const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
     return events.filter(event => event.date === dateString);
   };
 
+  const getThreeMonths = () => {
+    return [0, 1, 2].map(offset => {
+      const monthDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset);
+      return {
+        offset,
+        date: monthDate,
+        ...getDaysInMonth(monthDate),
+        name: monthDate.toLocaleDateString('ru-RU', { month: 'short' })
+      };
+    });
+  };
+
+  const threeMonths = getThreeMonths();
   const { daysInMonth, startingDayOfWeek } = getDaysInMonth(currentMonth);
   const monthName = currentMonth.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' });
 
@@ -247,96 +261,95 @@ const EventsCalendar = () => {
 
         {isExpanded && (
           <div className="animate-fade-in">
-            <div className="flex items-center justify-between mb-6 bg-[#0a0a0a]/40 rounded-xl p-4 border border-[#b8953d]/10">
+            <div className="flex items-center justify-between mb-4 bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10">
               <button
-                onClick={() => changeMonth(-1)}
-                className="p-2.5 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
+                onClick={() => changeMonth(-3)}
+                className="p-2 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
               >
-                <Icon name="ChevronLeft" className="text-[#b8953d] group-hover:text-[#d4af37]" size={20} />
+                <Icon name="ChevronLeft" className="text-[#b8953d] group-hover:text-[#d4af37]" size={18} />
               </button>
               
-              <h4 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
+              <h4 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
                 {monthName}
               </h4>
               
               <button
-                onClick={() => changeMonth(1)}
-                className="p-2.5 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
+                onClick={() => changeMonth(3)}
+                className="p-2 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
               >
-                <Icon name="ChevronRight" className="text-[#b8953d] group-hover:text-[#d4af37]" size={20} />
+                <Icon name="ChevronRight" className="text-[#b8953d] group-hover:text-[#d4af37]" size={18} />
               </button>
             </div>
 
-            <div className="bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10 mb-6">
-              <div className="grid grid-cols-7 gap-1 mb-1">
-                {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
-                  <div key={day} className="text-center text-[10px] font-bold text-[#d4af37]/70 py-1">
-                    {day}
-                  </div>
-                ))}
-              </div>
-
-              <div className="grid grid-cols-7 gap-1">
-                {Array.from({ length: startingDayOfWeek }).map((_, index) => (
-                  <div key={`empty-${index}`} className="aspect-square" />
-                ))}
-                
-                {Array.from({ length: daysInMonth }).map((_, index) => {
-                  const day = index + 1;
-                  const dayEvents = getEventsForDay(day);
-                  const hasEvents = dayEvents.length > 0;
-                  const isSelectedDay = selectedDay === day;
+            <div className="grid md:grid-cols-3 gap-3 mb-6">
+              {threeMonths.map(({ offset, daysInMonth, startingDayOfWeek, name, year, month }) => (
+                <div key={offset} className="bg-[#0a0a0a]/40 rounded-xl p-2 border border-[#b8953d]/10">
+                  <h5 className="text-center text-xs font-bold text-[#d4af37] mb-2 capitalize">{name}</h5>
                   
-                  return (
-                    <div
-                      key={day}
-                      onClick={() => {
-                        if (hasEvents) {
-                          setSelectedDay(isSelectedDay ? null : day);
-                          setSelectedEvent(null);
-                        }
-                      }}
-                      className={`aspect-square border-2 rounded transition-all duration-300 relative group ${
-                        isSelectedDay
-                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/40 to-[#b8860b]/40 shadow-lg shadow-[#d4af37]/50 scale-110'
-                          : hasEvents 
-                          ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-md hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-110' 
-                          : 'border-[#b8953d]/10 bg-[#0a0a0a]/20 hover:border-[#b8953d]/30'
-                      }`}
-                    >
-                      <div className="p-0.5 h-full flex flex-col items-center justify-center">
-                        <div className={`text-[10px] font-bold ${isSelectedDay ? 'text-white' : hasEvents ? 'text-[#d4af37]' : 'text-white/40'}`}>
-                          {day}
-                        </div>
-                        {hasEvents && dayEvents.length > 0 && (
-                          <div className="flex gap-0.5 mt-0.5">
-                            {dayEvents.slice(0, 3).map((evt, idx) => {
-                              const config = getEventTypeConfig(evt.type);
-                              return (
-                                <div key={idx} className={`w-1 h-1 rounded-full ${config.badge} ${isSelectedDay ? 'opacity-100' : 'opacity-80'}`} />
-                              );
-                            })}
-                          </div>
-                        )}
+                  <div className="grid grid-cols-7 gap-0.5 mb-1">
+                    {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
+                      <div key={day} className="text-center text-[8px] font-bold text-[#d4af37]/60 py-0.5">
+                        {day}
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    ))}
+                  </div>
+
+                  <div className="grid grid-cols-7 gap-0.5">
+                    {Array.from({ length: startingDayOfWeek }).map((_, index) => (
+                      <div key={`empty-${index}`} className="aspect-square" />
+                    ))}
+                    
+                    {Array.from({ length: daysInMonth }).map((_, index) => {
+                      const day = index + 1;
+                      const dayEvents = getEventsForDay(day, offset);
+                      const hasEvents = dayEvents.length > 0;
+                      const isSelectedDay = selectedDay === day && offset === 0;
+                      
+                      return (
+                        <div
+                          key={day}
+                          onClick={() => {
+                            if (hasEvents && offset === 0) {
+                              setSelectedDay(isSelectedDay ? null : day);
+                              setSelectedEvent(null);
+                            }
+                          }}
+                          className={`aspect-square border rounded-sm transition-all duration-300 ${
+                            isSelectedDay
+                              ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/40 to-[#b8860b]/40 shadow-md shadow-[#d4af37]/50 scale-110'
+                              : hasEvents 
+                              ? 'border-[#d4af37]/60 bg-gradient-to-br from-[#d4af37]/15 to-[#b8860b]/15 hover:shadow-sm hover:shadow-[#d4af37]/30 cursor-pointer hover:scale-110' 
+                              : 'border-[#b8953d]/10 bg-[#0a0a0a]/20'
+                          }`}
+                        >
+                          <div className="h-full flex flex-col items-center justify-center">
+                            <div className={`text-[8px] font-bold ${isSelectedDay ? 'text-white' : hasEvents ? 'text-[#d4af37]' : 'text-white/30'}`}>
+                              {day}
+                            </div>
+                            {hasEvents && dayEvents.length > 0 && (
+                              <div className="w-0.5 h-0.5 rounded-full bg-[#d4af37] mt-0.5" />
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))}
             </div>
 
             {selectedDay !== null && (
-              <div className="mb-6 animate-fade-in">
-                <div className="bg-gradient-to-r from-[#b8953d]/20 to-[#d4af37]/20 rounded-lg p-3 border border-[#d4af37]/30 mb-3">
+              <div className="mb-4 animate-fade-in">
+                <div className="bg-gradient-to-r from-[#b8953d]/20 to-[#d4af37]/20 rounded-lg p-2.5 border border-[#d4af37]/30 mb-3">
                   <div className="flex items-center justify-between">
-                    <h5 className="text-sm font-bold text-[#d4af37]">
+                    <h5 className="text-xs font-bold text-[#d4af37]">
                       События {selectedDay} {monthName.split(' ')[0]}
                     </h5>
                     <button 
                       onClick={() => setSelectedDay(null)}
                       className="text-white/60 hover:text-[#d4af37] transition-colors"
                     >
-                      <Icon name="X" size={16} />
+                      <Icon name="X" size={14} />
                     </button>
                   </div>
                 </div>
