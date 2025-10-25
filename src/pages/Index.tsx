@@ -329,18 +329,21 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale">
-                <CardContent className="p-6">
-                  <div className="w-20 h-20 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full mx-auto mb-4 flex items-center justify-center">
-                    <Icon name="User" className="text-primary" size={40} />
+              <Card key={index} className="hover-scale overflow-hidden">
+                <CardContent className="p-0">
+                  <div className="aspect-[9/16] bg-gradient-to-br from-primary/20 via-accent/10 to-secondary/20 flex items-center justify-center relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                    <Icon name="User" className="text-primary/30 absolute" size={80} />
                   </div>
-                  <h4 className="text-lg font-semibold text-center mb-2">{expert.name}</h4>
-                  <p className="text-sm text-accent text-center font-medium mb-2">{expert.role}</p>
-                  <p className="text-sm text-foreground/70 text-center leading-relaxed">
-                    {expert.description}
-                  </p>
+                  <div className="p-4">
+                    <h4 className="text-sm font-semibold text-center mb-1 leading-tight">{expert.name}</h4>
+                    <p className="text-xs text-accent text-center font-medium mb-1">{expert.role}</p>
+                    <p className="text-xs text-foreground/60 text-center leading-relaxed">
+                      {expert.description}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             ))}
