@@ -221,21 +221,21 @@ const Index = () => {
       <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">О клубе <span className="text-[#f4c430]">Muse</span></h3>
+            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">О клубе <span className="text-[#d4af37]">Muse</span></h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
-              <div className="absolute top-0 left-0 w-full h-2/3">
+              <div className="absolute top-0 left-0 w-full h-1/2">
                 <img 
                   src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
                   alt="Карина Ляшева" 
-                  className="w-full h-full object-cover opacity-20"
+                  className="w-full h-full object-cover object-top opacity-20"
                 />
               </div>
-              <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
+              <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px] pt-64">
                 <div>
-                  <div className="text-[#d4af37]/40 text-6xl mb-4">“</div>
+                  <div className="text-[#b8953d]/30 text-6xl mb-4">“</div>
                   <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
                     Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
                     Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
@@ -244,10 +244,10 @@ const Index = () => {
                     Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
                     но и искусство, спорт, путешествия.
                   </p>
-                  <div className="text-[#d4af37]/40 text-6xl text-right">”</div>
+                  <div className="text-[#b8953d]/30 text-6xl text-right">”</div>
                 </div>
-                <div className="mt-8 pt-8 border-t border-[#d4af37]/30">
-                  <p className="text-[#d4af37] font-semibold">Карина Ляшева</p>
+                <div className="mt-8 pt-8 border-t border-[#b8953d]/30">
+                  <p className="text-[#b8953d] font-semibold">Карина Ляшева</p>
                   <p className="text-white/60 text-sm">Основательница клуба Muse</p>
                 </div>
               </div>
@@ -256,21 +256,21 @@ const Index = () => {
             <div className="flex flex-col gap-8">
             <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-semibold mb-6 text-[#d4af37] border-b border-[#d4af37] pb-2">Наши цели</h4>
+                <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#b8953d]/50 pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-white/80">
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <p className="font-semibold mb-1">Создать сообщество</p>
                     <p className="text-sm">Объединить женщин из науки, культуры, искусства, музыки, спорта, бизнеса и политики</p>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <p className="font-semibold mb-1">Поощрять развитие</p>
                     <p className="text-sm">Мастер-классы, семинары и лекции от лидеров в своих областях</p>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <p className="font-semibold mb-1">Вдохновлять</p>
                     <p className="text-sm">Платформа для обмена идеями и совместной работы над проектами</p>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <p className="font-semibold mb-1">Продвигать женское лидерство</p>
                     <p className="text-sm">Помогаем занимать руководящие должности и менять мир вокруг</p>
                   </li>
@@ -280,18 +280,18 @@ const Index = () => {
 
             <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-semibold mb-6 text-[#d4af37] border-b border-[#d4af37] pb-2">Что мы предлагаем</h4>
+                <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#b8953d]/50 pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-white/80">
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <span>Статусное окружение единомышленников</span>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <span>Коллаборации и партнерства</span>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <span>Яркие события и впечатления</span>
                   </li>
-                  <li className="border-l-2 border-[#d4af37] pl-4">
+                  <li className="border-l-2 border-[#b8953d] pl-4">
                     <span>Сохранение культурного кода и ценностей</span>
                   </li>
                 </ul>
@@ -305,7 +305,7 @@ const Index = () => {
       <section id="mission" className={`py-20 px-8 bg-black noise-texture transition-all duration-1000 ${visibleSections.has('mission') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">Наши <span className="text-[#f4c430]">ценности</span></h3>
+            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">ценности</span></h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -315,7 +315,7 @@ const Index = () => {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                     <Icon name={value.icon} className="text-[#d4af37]/60" size={24} />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-[#d4af37]">{value.title}</h4>
+                  <h4 className="text-xl font-bold mb-3 text-[#b8953d]">{value.title}</h4>
                   <p className="text-sm text-white/70 leading-relaxed">{value.description}</p>
                 </CardContent>
               </Card>
@@ -327,7 +327,7 @@ const Index = () => {
       <section id="events" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('events') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">Мероприятия и <span className="text-[#f4c430]">встречи</span></h3>
+            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Мероприятия и <span className="text-[#d4af37]">встречи</span></h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
@@ -341,7 +341,7 @@ const Index = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 flex-shrink-0">
                       <Icon name={event.icon} className="text-[#d4af37]/60" size={24} />
                     </div>
-                    <h4 className="text-xl font-bold text-[#d4af37] pt-2">{event.title}</h4>
+                    <h4 className="text-xl font-bold text-[#b8953d] pt-2">{event.title}</h4>
                   </div>
                   <p className="text-white/80 leading-relaxed mb-4 font-medium">{event.description}</p>
                   <div className="pt-4 border-t border-[#d4af37]/10">
@@ -357,7 +357,7 @@ const Index = () => {
       <section id="gallery" className={`py-20 px-8 bg-black noise-texture overflow-hidden transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto mb-16">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">Галерея наших <span className="text-[#f4c430]">мероприятий</span></h3>
+            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Галерея наших <span className="text-[#d4af37]">мероприятий</span></h3>
             <p className="text-xl text-white/80">Моменты, которые вдохновляют</p>
           </div>
 
@@ -368,7 +368,7 @@ const Index = () => {
       <section id="team" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture transition-all duration-1000 ${visibleSections.has('team') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">Наши <span className="text-[#f4c430]">эксперты</span></h3>
+            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">эксперты</span></h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
             </p>
@@ -390,7 +390,7 @@ const Index = () => {
                   </div>
                   <div className="p-4 bg-[#1a1a1a]">
                     <h4 className="text-sm font-semibold text-center mb-1 leading-tight text-white">{expert.name}</h4>
-                    <p className="text-xs text-[#d4af37] text-center font-medium mb-1">{expert.role}</p>
+                    <p className="text-xs text-[#b8953d] text-center font-medium mb-1">{expert.role}</p>
                     <p className="text-xs text-white/60 text-center leading-relaxed">
                       {expert.description}
                     </p>
