@@ -339,4 +339,18 @@
     height: 1px;
     background: linear-gradient(90deg, #d4af37, transparent);
   }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .embla__slide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 auto;
+  }
 }
