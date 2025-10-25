@@ -26,6 +26,7 @@ const Index = () => {
       name: 'Мерзлая Людмила Ивановна',
       role: 'Художница',
       description: 'Владелица творческого пространства Приходи творить',
+      image: 'https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg',
     },
     {
       name: 'Мазмишаили Тамара Васильевна',
@@ -299,9 +300,15 @@ const Index = () => {
             {experts.map((expert, index) => (
               <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border-2 border-border animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
                 <CardContent className="p-0">
-                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden shimmer">
-                    <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
-                    <div className="text-6xl text-primary/20 absolute floating">M</div>
+                  <div className="aspect-[9/16] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+                    {expert.image ? (
+                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover" />
+                    ) : (
+                      <>
+                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
+                        <div className="text-6xl text-primary/20 absolute floating">M</div>
+                      </>
+                    )}
                   </div>
                   <div className="p-4 bg-white">
                     <h4 className="text-sm font-semibold text-center mb-1 leading-tight">{expert.name}</h4>
