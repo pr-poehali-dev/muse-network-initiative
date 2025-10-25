@@ -343,73 +343,9 @@ const Index = () => {
             </div>
           </div>
           
-          <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_30%_20%,rgba(212,175,55,0.06)_0%,transparent_50%)]"></div>
-            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_70%_30%,rgba(212,175,55,0.05)_0%,transparent_50%)]"></div>
-            
-            <div className="absolute inset-0">
-              {[...Array(50)].map((_, i) => {
-                const size = Math.random() * 4 + 1;
-                const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                
-                return (
-                  <div
-                    key={i}
-                    className="absolute rounded-full bg-[#d4af37]"
-                    style={{
-                      width: `${size}px`,
-                      height: `${size}px`,
-                      left: `${left}%`,
-                      top: `${top}%`,
-                      opacity: Math.random() * 0.4 + 0.1,
-                      boxShadow: `0 0 ${size * 2}px rgba(212, 175, 55, 0.5)`
-                    }}
-                  />
-                );
-              })}
-            </div>
-
-            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30"></div>
-            <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30"></div>
-          </div>
-          
           <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
-          
-          <div className="absolute inset-0">
-            {[...Array(50)].map((_, i) => {
-              const size = 2 + Math.random() * 4;
-              const x = Math.random() * 100;
-              const y = Math.random() * 100;
-              const duration = 2 + Math.random() * 4;
-              const delay = Math.random() * 3;
-              const isNearCenter = Math.abs(x - 50) < 20 && Math.abs(y - 50) < 30;
-              
-              return (
-                <div
-                  key={i}
-                  className="absolute rounded-full animate-pulse"
-                  style={{
-                    width: `${size}px`,
-                    height: `${size}px`,
-                    top: `${y}%`,
-                    left: `${x}%`,
-                    background: isNearCenter 
-                      ? `radial-gradient(circle, rgba(212,175,55,${0.6 + Math.random() * 0.4}) 0%, transparent 70%)`
-                      : `radial-gradient(circle, rgba(212,175,55,${0.3 + Math.random() * 0.3}) 0%, transparent 70%)`,
-                    boxShadow: isNearCenter 
-                      ? `0 0 ${size * 3}px rgba(212,175,55,0.8), 0 0 ${size * 6}px rgba(212,175,55,0.4)`
-                      : `0 0 ${size * 2}px rgba(212,175,55,0.5)`,
-                    animationDelay: `${delay}s`,
-                    animationDuration: `${duration}s`,
-                    opacity: isNearCenter ? 0.7 : 0.4
-                  }}
-                />
-              );
-            })}
-          </div>
         </div>
         <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
           <div className="relative inline-block mb-10">
