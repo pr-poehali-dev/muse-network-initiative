@@ -1,3 +1,6 @@
+import { useState } from 'react';
+import Icon from '@/components/ui/icon';
+
 const images = [
   {
     url: 'https://cdn.poehali.dev/files/0e1b4ab4-a9b6-4a39-8009-df86628d17db.jpg',
@@ -42,29 +45,58 @@ const images = [
 ];
 
 const MosaicGallery = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`
-            relative overflow-hidden rounded-xl border border-[#d4af37]/20
-            transition-all duration-500 cursor-pointer group
-            hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#d4af37]/20
-            ${image.size === 'large' ? 'col-span-2 row-span-2' : ''}
-            ${image.size === 'medium' ? 'row-span-2' : ''}
-            ${image.size === 'small' ? 'col-span-1 row-span-1' : ''}
-          `}
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 auto-rows-[180px]">
+        {images.map((image, index) => (
+          <div
+            key={index}
+            onClick={() => setSelectedImage(image.url)}
+            className={`
+              relative overflow-hidden rounded-xl border border-[#d4af37]/20
+              transition-all duration-500 cursor-pointer group
+              hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#d4af37]/20
+              ${image.size === 'large' ? 'col-span-2 row-span-2' : ''}
+              ${image.size === 'medium' ? 'row-span-2' : ''}
+              ${image.size === 'small' ? 'col-span-1 row-span-1' : ''}
+            `}
+          >
+            <img
+              src={image.url}
+              alt={image.alt}
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-4 group-hover:translate-y-0">
+                <Icon name="ZoomIn" size={32} className="text-[#d4af37]" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in"
+          onClick={() => setSelectedImage(null)}
         >
+          <button
+            onClick={() => setSelectedImage(null)}
+            className="absolute top-8 right-8 text-white/80 hover:text-[#d4af37] transition-colors z-10"
+          >
+            <Icon name="X" size={40} />
+          </button>
           <img
-            src={image.url}
-            alt={image.alt}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            src={selectedImage}
+            alt="Увеличенное фото"
+            className="max-w-full max-h-full object-contain rounded-lg animate-scale-in"
+            onClick={(e) => e.stopPropagation()}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
-      ))}
-    </div>
+      )}
+    </>
   );
 };
 

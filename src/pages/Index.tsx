@@ -222,27 +222,39 @@ const Index = () => {
         <div className="w-full max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#d4af37] premium-title">О клубе <span className="text-[#f4c430]">Muse</span></h3>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed mb-8">
-              Мы стремимся создать пространство, где каждая участница сможет черпать вдохновение, 
-              делиться опытом и находить поддержку среди единомышленников.
-            </p>
-            <div className="max-w-4xl mx-auto">
-              <div className="bg-[#1a1a1a]/80 border border-[#d4af37]/30 p-8 rounded-2xl hover-scale glow-effect animate-scale-in backdrop-blur-md">
-                <h4 className="text-2xl font-bold mb-4 text-[#d4af37]">Миссия клуба</h4>
-                <p className="text-base text-white/80 leading-relaxed mb-4">
-                  Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
-                  Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
-                </p>
-                <p className="text-base text-white/80 leading-relaxed">
-                  Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
-                  но и искусство, спорт, путешествия.
-                </p>
-              </div>
-            </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-left bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
+              <div className="absolute top-0 left-0 w-full h-2/3">
+                <img 
+                  src="https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg" 
+                  alt="Карина Ляшева" 
+                  className="w-full h-full object-cover opacity-20"
+                />
+              </div>
+              <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
+                <div>
+                  <div className="text-[#d4af37]/40 text-6xl mb-4">“</div>
+                  <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
+                    Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
+                    Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
+                  </p>
+                  <p className="text-lg text-white/80 leading-relaxed italic">
+                    Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
+                    но и искусство, спорт, путешествия.
+                  </p>
+                  <div className="text-[#d4af37]/40 text-6xl text-right">”</div>
+                </div>
+                <div className="mt-8 pt-8 border-t border-[#d4af37]/30">
+                  <p className="text-[#d4af37] font-semibold">Карина Ляшева</p>
+                  <p className="text-white/60 text-sm">Основательница клуба Muse</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-8">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#d4af37] border-b border-[#d4af37] pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-white/80">
@@ -266,7 +278,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
                 <h4 className="text-2xl font-semibold mb-6 text-[#d4af37] border-b border-[#d4af37] pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-white/80">
