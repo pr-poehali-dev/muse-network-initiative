@@ -285,7 +285,7 @@ const Index = () => {
       <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 grid grid-cols-[1fr_1fr_1.6fr_1fr_1fr] gap-0">
-            <div className="relative h-full">
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/ef418187-ad4c-4ec8-9e45-f8384245908b.jpg"
                 alt="Команда"
@@ -296,7 +296,7 @@ const Index = () => {
                 }}
               />
             </div>
-            <div className="relative h-full">
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/32a38a61-a056-4ba0-8c4f-cb1acd689d48.jpg"
                 alt="Команда"
@@ -307,7 +307,7 @@ const Index = () => {
                 }}
               />
             </div>
-            <div className="relative h-full">
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/f040cd98-6864-4fcf-91d9-0e46b006e0fc.jpg"
                 alt="Команда"
@@ -318,7 +318,7 @@ const Index = () => {
                 }}
               />
             </div>
-            <div className="relative h-full">
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/1f8f518a-edfb-4f3e-a9b1-91a6f0deb8b6.jpg"
                 alt="Карина Ляшева"
@@ -330,7 +330,7 @@ const Index = () => {
               />
 
             </div>
-            <div className="relative h-full">
+            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/10474ec8-2667-42ad-8214-5c52d99a748b.jpg"
                 alt="Команда"
