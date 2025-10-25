@@ -475,6 +475,7 @@ const Index = () => {
                   src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
                   alt="Карина Ляшева" 
                   className="w-full h-full object-cover opacity-20"
+                  style={{ transform: 'scale(0.75)' }}
                 />
               </div>
               <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
