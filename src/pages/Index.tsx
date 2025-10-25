@@ -187,7 +187,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/9d3ce506-05ad-4e84-9aa6-b97f3dcd010b.jpg"
                 alt="Team member"
-                className="w-full h-full object-cover object-center opacity-40"
+                className="w-full h-full object-cover object-center opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -198,7 +198,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/e3aa09ce-dd1f-4714-949f-c673a2fe4d7c.jpg"
                 alt="Team member"
-                className="w-full h-full object-cover object-center opacity-40"
+                className="w-full h-full object-cover object-center opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -207,20 +207,21 @@ const Index = () => {
             </div>
             <div className="relative h-full">
               <img 
-                src="https://cdn.poehali.dev/files/53dda894-f9c1-4b05-b677-48e9b40d26e8.jpg"
-                alt="Team member"
-                className="w-full h-full object-cover object-center opacity-50"
+                src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg"
+                alt="Карина Ляшева"
+                className="w-full h-full object-cover object-center opacity-60"
                 style={{
-                  maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%)'
                 }}
               />
+              <div className="absolute inset-0 bg-gradient-radial from-[#d4af37]/20 via-transparent to-transparent opacity-60"></div>
             </div>
             <div className="relative h-full">
               <img 
                 src="https://cdn.poehali.dev/files/8f4993a7-0099-4514-9a5b-956f3fb1ca48.jpg"
                 alt="Team member"
-                className="w-full h-full object-cover object-center opacity-40"
+                className="w-full h-full object-cover object-center opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -231,7 +232,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/2ef613d8-23e1-4f0c-8374-cd89152ddb03.jpg"
                 alt="Team member"
-                className="w-full h-full object-cover object-center opacity-40"
+                className="w-full h-full object-cover object-center opacity-35"
                 style={{
                   maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
@@ -239,8 +240,29 @@ const Index = () => {
               />
             </div>
           </div>
+          
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent blur-3xl"></div>
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl animate-pulse"></div>
+          </div>
+          
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/90"></div>
+          
+          <div className="absolute inset-0 opacity-30">
+            {[...Array(30)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute w-1 h-1 bg-[#d4af37] rounded-full animate-pulse"
+                style={{
+                  top: `${Math.random() * 100}%`,
+                  left: `${Math.random() * 100}%`,
+                  animationDelay: `${Math.random() * 3}s`,
+                  animationDuration: `${2 + Math.random() * 3}s`
+                }}
+              />
+            ))}
+          </div>
         </div>
         <div className="w-full text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
