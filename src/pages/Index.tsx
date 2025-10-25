@@ -180,14 +180,67 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-32 pb-20 px-8 animate-fade-in overflow-hidden bg-gradient-to-br from-black via-[#1a1a1a] to-black transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="hero" className={`relative pt-32 pb-20 px-8 animate-fade-in overflow-hidden bg-black transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/f27de6d6-78bb-4160-bc53-13e994012884.jpg"
-            alt="Background"
-            className="w-full h-full object-cover opacity-5"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black"></div>
+          <div className="absolute inset-0 grid grid-cols-5 gap-0">
+            <div className="relative h-full">
+              <img 
+                src="https://cdn.poehali.dev/files/9d3ce506-05ad-4e84-9aa6-b97f3dcd010b.jpg"
+                alt="Team member"
+                className="w-full h-full object-cover object-center opacity-40"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
+                }}
+              />
+            </div>
+            <div className="relative h-full">
+              <img 
+                src="https://cdn.poehali.dev/files/e3aa09ce-dd1f-4714-949f-c673a2fe4d7c.jpg"
+                alt="Team member"
+                className="w-full h-full object-cover object-center opacity-40"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
+                }}
+              />
+            </div>
+            <div className="relative h-full">
+              <img 
+                src="https://cdn.poehali.dev/files/53dda894-f9c1-4b05-b677-48e9b40d26e8.jpg"
+                alt="Team member"
+                className="w-full h-full object-cover object-center opacity-50"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 20%, black 80%, transparent 100%)'
+                }}
+              />
+            </div>
+            <div className="relative h-full">
+              <img 
+                src="https://cdn.poehali.dev/files/8f4993a7-0099-4514-9a5b-956f3fb1ca48.jpg"
+                alt="Team member"
+                className="w-full h-full object-cover object-center opacity-40"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
+                }}
+              />
+            </div>
+            <div className="relative h-full">
+              <img 
+                src="https://cdn.poehali.dev/files/2ef613d8-23e1-4f0c-8374-cd89152ddb03.jpg"
+                alt="Team member"
+                className="w-full h-full object-cover object-center opacity-40"
+                style={{
+                  maskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 30%, black 70%, transparent 100%)'
+                }}
+              />
+            </div>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/80 to-black"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-transparent to-black/90"></div>
         </div>
         <div className="w-full text-center max-w-7xl mx-auto relative z-10">
           <div className="mb-8">
