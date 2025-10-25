@@ -334,8 +334,8 @@ const Index = () => {
             })}
           </div>
         </div>
-        <div className="w-full text-center px-8 relative z-10 mt-32">
-          <div className="relative inline-block mb-8">
+        <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
+          <div className="relative inline-block mb-10">
             <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] animate-scale-in px-4 tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)]">
               КЛУБ MUSE
             </h2>
@@ -343,10 +343,10 @@ const Index = () => {
               КЛУБ MUSE
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-8 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
+          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '0.2s'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-white/70 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
+          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.4s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
