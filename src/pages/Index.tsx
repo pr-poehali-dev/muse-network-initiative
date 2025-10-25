@@ -18,6 +18,12 @@ const Index = () => {
 
   const experts = [
     {
+      name: 'Ляшева Карина Викторовна',
+      role: 'Эксперт гастрономического искусства',
+      description: 'Владелица семейного бизнеса компании «ВЕЕК»',
+      image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg',
+    },
+    {
       name: 'Мерзлая Людмила Ивановна',
       role: 'Художница',
       description: 'Владелица творческого пространства Приходи творить',
@@ -30,18 +36,6 @@ const Index = () => {
       image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg',
     },
     {
-      name: 'Ляшева Карина Викторовна',
-      role: 'Эксперт гастрономического искусства',
-      description: 'Владелица семейного бизнеса компании «ВЕЕК»',
-      image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg',
-    },
-    {
-      name: 'Лазарева Мария Михайловна',
-      role: 'Психолог, психотерапевт',
-      description: 'Метод символдрама',
-      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
-    },
-    {
       name: 'Самсонова Юлия Аркадьевна',
       role: 'Стилист',
       description: 'Эксперт по стилю и имиджу',
@@ -52,6 +46,12 @@ const Index = () => {
       role: 'Фитнес тренер',
       description: 'Эксперт здорового образа жизни',
       image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg',
+    },
+    {
+      name: 'Лазарева Мария Михайловна',
+      role: 'Психолог, психотерапевт',
+      description: 'Метод символдрама',
+      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
     },
     {
       name: 'Полина Берг',
