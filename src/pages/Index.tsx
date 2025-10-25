@@ -404,7 +404,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count1}+</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count1}+</div>
                 <p className="text-base text-white/90 font-medium">Участниц клуба</p>
                 <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -414,7 +414,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count2}+</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count2}+</div>
                 <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -424,7 +424,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-2">{count3}</div>
+                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count3}</div>
                 <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
               </div>
