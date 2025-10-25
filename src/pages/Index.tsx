@@ -55,6 +55,7 @@ const Index = () => {
       name: 'Полина Берг',
       role: 'Мастер исторического костюма',
       description: 'Северный бренд одежды Пинега',
+      image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg',
     },
     {
       name: 'Лазарева Мария Михайловна',
