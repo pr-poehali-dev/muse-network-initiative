@@ -3,19 +3,28 @@ import Icon from '@/components/ui/icon';
 
 const videos = [
   {
-    id: 'your_video_id_1',
-    title: 'Мастер-класс по живописи',
-    thumbnail: 'https://cdn.poehali.dev/files/4310bb9e-6daa-464c-9029-7210b89987ac.jpg',
+    id: '6DNFMoaf85akazKot4D3v7',
+    title: 'Событие клуба Muse',
   },
   {
-    id: 'your_video_id_2',
-    title: 'Встреча участниц клуба',
-    thumbnail: 'https://cdn.poehali.dev/files/3fa6616b-5b39-48f6-8bee-51ffd30cc60b.jpg',
+    id: 'kVW5XjxAQRqsgRUjebtttm',
+    title: 'Событие клуба Muse',
   },
   {
-    id: 'your_video_id_3',
-    title: 'Кулинарный мастер-класс',
-    thumbnail: 'https://cdn.poehali.dev/files/7cbcea16-b2a2-483b-a697-f784e867c552.jpg',
+    id: '134BF5vbsSb5pdMUgRumai',
+    title: 'Событие клуба Muse',
+  },
+  {
+    id: 'mstH2xzCyPCbhxySejbT2G',
+    title: 'Событие клуба Muse',
+  },
+  {
+    id: '4bAKvqDzot9eEM2U579bkF',
+    title: 'Событие клуба Muse',
+  },
+  {
+    id: 'cRMvVQzRQAeTjSS9WQnQdX',
+    title: 'Событие клуба Muse',
   },
 ];
 
@@ -24,27 +33,24 @@ const VideoGallery = () => {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {videos.map((video) => (
           <div
             key={video.id}
             onClick={() => setSelectedVideo(video.id)}
-            className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-video bg-black/50"
+            className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
-            <img
-              src={video.thumbnail}
-              alt={video.title}
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-75"
+            <iframe
+              src={`https://kinescope.io/embed/${video.id}`}
+              className="w-full h-full object-cover pointer-events-none"
+              frameBorder="0"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-center">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-center justify-center">
               <div className="text-white transition-all duration-500 group-hover:scale-110">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#d4af37]/90 flex items-center justify-center group-hover:bg-[#d4af37] transition-colors">
-                  <Icon name="Play" size={32} className="ml-1" />
+                <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#d4af37]/90 flex items-center justify-center group-hover:bg-[#d4af37] transition-colors">
+                  <Icon name="Play" size={24} className="ml-1" />
                 </div>
               </div>
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/90 to-transparent">
-              <h3 className="text-white font-semibold text-sm md:text-base">{video.title}</h3>
             </div>
             <div className="absolute inset-0 border-2 border-[#d4af37] opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-xl"></div>
           </div>
@@ -63,7 +69,7 @@ const VideoGallery = () => {
             <Icon name="X" size={32} />
           </button>
           <div 
-            className="w-full max-w-5xl aspect-video"
+            className="w-full max-w-md md:max-w-xl aspect-[9/16]"
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
