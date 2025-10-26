@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
 import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
 import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
+import CounterAnimation from '@/components/CounterAnimation';
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -413,7 +414,12 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
+                <CounterAnimation 
+                  end={250} 
+                  suffix="+" 
+                  duration={2500}
+                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                />
                 <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -423,7 +429,12 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
+                <CounterAnimation 
+                  end={150} 
+                  suffix="+" 
+                  duration={2500}
+                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                />
                 <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -433,7 +444,11 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
+                <CounterAnimation 
+                  end={24} 
+                  duration={2500}
+                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                />
                 <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Доступ из любой точки мира</p>
               </div>
