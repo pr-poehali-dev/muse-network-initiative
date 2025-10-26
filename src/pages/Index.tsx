@@ -287,35 +287,35 @@ const Index = () => {
           <div className="absolute inset-0 grid grid-cols-5 gap-0">
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
+                src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
                 alt="Участница клуба"
                 className="w-full h-full object-contain opacity-35"
               />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
+                src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
                 alt="Участница клуба"
                 className="w-full h-full object-contain opacity-45"
               />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
+                src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
                 alt="Карина Ляшева"
                 className="w-full h-full object-contain opacity-60"
               />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
+                src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
                 alt="Участница клуба"
                 className="w-full h-full object-contain opacity-45"
               />
             </div>
             <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
               <img 
-                src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
+                src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
                 alt="Участница клуба"
                 className="w-full h-full object-contain opacity-35"
               />
