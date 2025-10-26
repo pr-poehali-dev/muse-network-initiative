@@ -210,7 +210,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
       <CardContent className="p-6">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex items-center justify-between mb-6 group"
+          className="w-full flex items-center justify-between group md:mb-6"
         >
           <div className="flex items-center gap-3 md:gap-4">
             <div className="p-2 md:p-3 rounded-lg md:rounded-xl bg-gradient-to-br from-[#b8953d]/30 to-[#d4af37]/30 group-hover:from-[#b8953d]/40 group-hover:to-[#d4af37]/40 transition-all shadow-lg">
@@ -234,8 +234,8 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
           </div>
         </button>
 
-        {!isExpanded && currentMonthEvents.length > 0 && (
-          <div className="space-y-3 md:space-y-0 md:flex md:gap-3 md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2">
+        {isExpanded && currentMonthEvents.length > 0 && (
+          <div className="space-y-3 mt-6 md:space-y-0 md:flex md:gap-3 md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2 md:mt-0">
             {currentMonthEvents.map((event) => {
               const config = getEventTypeConfig(event.type);
               const eventDate = new Date(event.date);
@@ -244,10 +244,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                 <div
                   key={event.id}
                   className="md:flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 border-[#b8953d]/40 rounded-2xl p-4 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/30 transition-all cursor-pointer group"
-                  onClick={() => {
-                    setSelectedEvent(event);
-                    setIsExpanded(true);
-                  }}
+                  onClick={() => setSelectedEvent(event)}
                 >
                   <div className="flex items-start gap-3">
                     <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform`}>
@@ -292,7 +289,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
         )}
 
         {isExpanded && (
-          <div className="animate-fade-in">
+          <div className="animate-fade-in hidden md:block">
             <div className="flex items-center justify-between mb-6 bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/60 rounded-xl p-4 border border-[#d4af37]/30 shadow-lg backdrop-blur-sm">
               <button
                 onClick={() => changeMonth(-3)}
