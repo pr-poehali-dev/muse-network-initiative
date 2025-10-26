@@ -290,7 +290,7 @@ const Index = () => {
                    section === 'about' ? 'О клубе' :
                    section === 'mission' ? 'Миссия' :
                    section === 'calendar' ? 'Календарь' :
-                   section === 'events' ? 'Мероприятия' : 'Команда'}
+                   section === 'events' ? 'События' : 'Команда'}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
@@ -324,7 +324,7 @@ const Index = () => {
                  section === 'about' ? 'О клубе' :
                  section === 'mission' ? 'Миссия' :
                  section === 'calendar' ? 'Календарь' :
-                 section === 'events' ? 'Мероприятия' : 'Команда'}
+                 section === 'events' ? 'События' : 'Команда'}
               </button>
             ))}
             <Button
