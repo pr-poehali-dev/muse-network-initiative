@@ -14,7 +14,7 @@ export const events: Event[] = [
       {
         name: 'Карина Ляшева',
         role: 'Эксперт гастрономического искусства',
-        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+        image: 'https://cdn.poehali.dev/files/aa430451-7e67-4a2d-b073-2c8fc22f6d71.jpg'
       },
       {
         name: 'Екатерина Кузнецова',
@@ -107,7 +107,7 @@ export const events: Event[] = [
       {
         name: 'Карина Ляшева',
         role: 'Основательница клуба Muse',
-        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+        image: 'https://cdn.poehali.dev/files/aa430451-7e67-4a2d-b073-2c8fc22f6d71.jpg'
       },
       {
         name: 'Полина Берг',
