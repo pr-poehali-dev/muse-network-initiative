@@ -259,7 +259,7 @@ const Index = () => {
             <img 
               src="https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg" 
               alt="" 
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover object-top"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
