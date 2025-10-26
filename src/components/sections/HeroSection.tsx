@@ -104,17 +104,60 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
         
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
         <div className="absolute inset-0" style={{background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(212,175,55,0.03) 2px, rgba(212,175,55,0.03) 4px)'}}></div>
+        
+        <svg className="absolute top-8 left-8 w-32 h-32 opacity-20 animate-pulse" style={{animationDuration: '4s'}} viewBox="0 0 100 100">
+          <polygon points="50,10 61,39 90,39 67,57 78,86 50,68 22,86 33,57 10,39 39,39" fill="none" stroke="#d4af37" strokeWidth="1.5"/>
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#d4af37" strokeWidth="1"/>
+        </svg>
+        
+        <svg className="absolute top-8 right-8 w-32 h-32 opacity-20 animate-pulse" style={{animationDuration: '4s', animationDelay: '1s'}} viewBox="0 0 100 100">
+          <polygon points="50,10 61,39 90,39 67,57 78,86 50,68 22,86 33,57 10,39 39,39" fill="none" stroke="#d4af37" strokeWidth="1.5"/>
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#d4af37" strokeWidth="1"/>
+        </svg>
+        
+        <svg className="absolute bottom-32 left-1/4 w-24 h-24 opacity-15" viewBox="0 0 100 100">
+          <path d="M 50 20 L 55 45 L 80 50 L 55 55 L 50 80 L 45 55 L 20 50 L 45 45 Z" fill="none" stroke="#d4af37" strokeWidth="1.5"/>
+          <circle cx="50" cy="50" r="8" fill="#d4af37" opacity="0.3"/>
+        </svg>
+        
+        <svg className="absolute bottom-32 right-1/4 w-24 h-24 opacity-15" viewBox="0 0 100 100">
+          <path d="M 50 20 L 55 45 L 80 50 L 55 55 L 50 80 L 45 55 L 20 50 L 45 45 Z" fill="none" stroke="#d4af37" strokeWidth="1.5"/>
+          <circle cx="50" cy="50" r="8" fill="#d4af37" opacity="0.3"/>
+        </svg>
       </div>
       <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
         <div className="relative inline-block mb-12 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
           <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-48 h-48 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
+          
+          <svg className="absolute -top-16 left-1/2 -translate-x-1/2 w-64 h-16 opacity-40" viewBox="0 0 200 40">
+            <path d="M 10 20 L 30 10 L 50 20 L 70 10 L 90 20 L 110 10 L 130 20 L 150 10 L 170 20 L 190 10" fill="none" stroke="#d4af37" strokeWidth="1"/>
+            <circle cx="100" cy="20" r="3" fill="#d4af37"/>
+          </svg>
+          
           <div className="relative">
             <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+            
+            <svg className="absolute -left-24 top-1/2 -translate-y-1/2 w-16 h-16 opacity-30" viewBox="0 0 100 100">
+              <rect x="20" y="20" width="60" height="60" fill="none" stroke="#d4af37" strokeWidth="2" transform="rotate(45 50 50)"/>
+              <rect x="30" y="30" width="40" height="40" fill="none" stroke="#d4af37" strokeWidth="1" transform="rotate(45 50 50)"/>
+            </svg>
+            
+            <svg className="absolute -right-24 top-1/2 -translate-y-1/2 w-16 h-16 opacity-30" viewBox="0 0 100 100">
+              <rect x="20" y="20" width="60" height="60" fill="none" stroke="#d4af37" strokeWidth="2" transform="rotate(45 50 50)"/>
+              <rect x="30" y="30" width="40" height="40" fill="none" stroke="#d4af37" strokeWidth="1" transform="rotate(45 50 50)"/>
+            </svg>
+            
             <h2 className="text-7xl md:text-9xl font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#b8953d] px-4 tracking-wide drop-shadow-[0_0_30px_rgba(255,215,0,0.4)] relative">
               КЛУБ MUSE
             </h2>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
           </div>
+          
+          <svg className="absolute -bottom-16 left-1/2 -translate-x-1/2 w-64 h-16 opacity-40" viewBox="0 0 200 40">
+            <path d="M 10 20 L 30 30 L 50 20 L 70 30 L 90 20 L 110 30 L 130 20 L 150 30 L 170 20 L 190 30" fill="none" stroke="#d4af37" strokeWidth="1"/>
+            <circle cx="100" cy="20" r="3" fill="#d4af37"/>
+          </svg>
+          
           <div className="absolute inset-0 text-7xl md:text-9xl font-serif italic text-[#ffd700]/5 blur-2xl px-4">
             КЛУБ MUSE
           </div>
@@ -123,7 +166,15 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           <p className="text-2xl md:text-3xl font-serif italic text-[#d4af37] mb-8 leading-relaxed animate-fade-in" style={{animationDelay: '1.5s', animationFillMode: 'backwards'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mx-auto mb-8"></div>
+          <div className="relative w-48 mx-auto mb-8">
+            <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+            <svg className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="20" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <circle cx="50" cy="50" r="8" fill="#d4af37"/>
+              <line x1="30" y1="50" x2="15" y2="50" stroke="#d4af37" strokeWidth="1.5"/>
+              <line x1="70" y1="50" x2="85" y2="50" stroke="#d4af37" strokeWidth="1.5"/>
+            </svg>
+          </div>
           <p className="text-lg text-white/80 max-w-2xl mx-auto leading-relaxed font-light tracking-wide animate-fade-in" style={{animationDelay: '1.8s', animationFillMode: 'backwards'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
@@ -134,6 +185,16 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
             <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
             <div className="absolute top-0 left-0 w-16 h-0.5 bg-[#d4af37]"></div>
             <div className="absolute bottom-0 right-0 w-16 h-0.5 bg-[#d4af37]"></div>
+            <div className="absolute top-0 right-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <div className="absolute bottom-0 left-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <svg className="absolute top-2 left-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="10" y1="50" x2="90" y2="50" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
+            <svg className="absolute bottom-2 right-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="50" y1="10" x2="50" y2="90" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
             <div className="text-7xl font-serif italic mb-4 text-[#ffd700] relative z-10 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]">{count1}+</div>
             <div className="text-white/80 text-sm uppercase tracking-[0.3em] relative z-10 font-light">участниц клуба</div>
           </div>
@@ -141,6 +202,16 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
             <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
             <div className="absolute top-0 left-0 w-16 h-0.5 bg-[#d4af37]"></div>
             <div className="absolute bottom-0 right-0 w-16 h-0.5 bg-[#d4af37]"></div>
+            <div className="absolute top-0 right-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <div className="absolute bottom-0 left-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <svg className="absolute top-2 left-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="10" y1="50" x2="90" y2="50" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
+            <svg className="absolute bottom-2 right-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="50" y1="10" x2="50" y2="90" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
             <div className="text-7xl font-serif italic mb-4 text-[#ffd700] relative z-10 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]">{count2}+</div>
             <div className="text-white/80 text-sm uppercase tracking-[0.3em] relative z-10 font-light">мероприятий</div>
           </div>
@@ -148,6 +219,16 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
             <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
             <div className="absolute top-0 left-0 w-16 h-0.5 bg-[#d4af37]"></div>
             <div className="absolute bottom-0 right-0 w-16 h-0.5 bg-[#d4af37]"></div>
+            <div className="absolute top-0 right-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <div className="absolute bottom-0 left-0 w-0.5 h-16 bg-[#d4af37]/50"></div>
+            <svg className="absolute top-2 left-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="10" y1="50" x2="90" y2="50" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
+            <svg className="absolute bottom-2 right-2 w-6 h-6 opacity-40" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="40" fill="none" stroke="#d4af37" strokeWidth="2"/>
+              <line x1="50" y1="10" x2="50" y2="90" stroke="#d4af37" strokeWidth="1"/>
+            </svg>
             <div className="text-7xl font-serif italic mb-4 text-[#ffd700] relative z-10 drop-shadow-[0_0_20px_rgba(255,215,0,0.5)]">{count3}/7</div>
             <div className="text-white/80 text-sm uppercase tracking-[0.3em] relative z-10 font-light">городов России</div>
           </div>
