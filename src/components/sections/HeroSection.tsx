@@ -104,6 +104,12 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent"></div>
         <div className="absolute inset-0 shadow-[inset_0_0_200px_rgba(0,0,0,0.8)]"></div>
         
+        <div className="absolute inset-0 shadow-[inset_0_0_150px_50px_rgba(0,0,0,0.9)]"></div>
+        <div className="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-black via-black/60 to-transparent"></div>
+        <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-black via-black/60 to-transparent"></div>
+        <div className="absolute top-0 left-0 right-0 h-1/4 bg-gradient-to-b from-black via-black/40 to-transparent"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black via-black/70 to-transparent"></div>
+        
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
         
