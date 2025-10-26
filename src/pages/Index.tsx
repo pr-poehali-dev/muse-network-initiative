@@ -250,14 +250,13 @@ const Index = () => {
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
             <div className="hidden md:flex items-center gap-8">
-              {['hero', 'about', 'mission', 'events', 'team'].map((section) => (
+              {['about', 'mission', 'events', 'team'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
                   className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
                 >
-                  {section === 'hero' ? 'Главная' : 
-                   section === 'about' ? 'О клубе' :
+                  {section === 'about' ? 'О клубе' :
                    section === 'mission' ? 'Миссия' :
                    section === 'events' ? 'Мероприятия' : 'Команда'}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
@@ -282,105 +281,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 flex">
-            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
-                alt="Участница клуба"
-                className="w-full h-full object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black"></div>
-            </div>
-            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
-                alt="Участница клуба"
-                className="w-full h-full object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
-            </div>
-            <div className="flex-[1.4] relative animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
-                alt="Карина Ляшева"
-                className="w-full h-full object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
-            </div>
-            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
-                alt="Участница клуба"
-                className="w-full h-full object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
-            </div>
-            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
-              <img 
-                src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
-                alt="Участница клуба"
-                className="w-full h-full object-cover object-[50%_18%]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
-            </div>
-          </div>
-          
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-          <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(212,175,55,0.1)]"></div>
-        </div>
-        <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
-          <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
-            <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              MUSE
-            </h2>
-            <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/5 blur-xl px-4">
-              MUSE
-            </div>
-          </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '1.5s', animationFillMode: 'backwards'}}>
-            Сообщество женщин из сферы бизнеса, культуры, науки и искусства
-          </p>
-          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '1.8s', animationFillMode: 'backwards'}}>
-            Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
-          </p>
-          <div ref={statsRef} className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '2.1s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Users" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count1}+</div>
-                <p className="text-base text-white/90 font-medium">Участниц</p>
-                <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
-              </div>
-            </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '2.3s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count2}+</div>
-                <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
-                <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
-              </div>
-            </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '2.5s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count3}</div>
-                <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
-                <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
-              </div>
-            </div>
-          </div>
 
-        </div>
-      </section>
 
       <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full">
