@@ -69,15 +69,15 @@ const VideoGallery = () => {
             <Icon name="X" size={32} />
           </button>
           <div 
-            className="w-full max-w-md md:max-w-xl aspect-[9/16]"
+            className="w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
-              src={`https://kinescope.io/embed/${selectedVideo}`}
+              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
               allowFullScreen
-              className="w-full h-full rounded-lg"
+              className="w-full h-full"
             />
           </div>
         </div>
