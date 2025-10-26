@@ -74,9 +74,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           </div>
           <div className="flex-[1.4] relative animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
             <img 
-              src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
+              src="https://cdn.poehali.dev/files/3ddcf5e3-c791-4034-849f-ba1857df75db.jpg"
               alt="Карина Ляшева"
-              className="w-full h-full object-cover object-[50%_35%]"
+              className="w-full h-full object-contain object-center bg-gradient-to-b from-gray-700 to-gray-800"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
           </div>
