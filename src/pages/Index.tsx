@@ -752,10 +752,8 @@ const Index = () => {
       <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center">
               Наши эксперты
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
@@ -799,10 +797,8 @@ const Index = () => {
       <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center">
               Вступить в клуб
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 mb-10">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
