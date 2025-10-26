@@ -145,7 +145,7 @@ const MosaicGallery = () => {
           <img
             src={selectedImage}
             alt="Увеличенное фото"
-            className="max-w-full max-h-full md:w-screen md:h-screen object-contain rounded-lg md:rounded-none animate-scale-in"
+            className="max-w-full max-h-full md:w-screen md:h-screen object-contain md:object-cover rounded-lg md:rounded-none animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
