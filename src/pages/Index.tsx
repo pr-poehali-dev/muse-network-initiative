@@ -49,11 +49,13 @@ const Index = () => {
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
   const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
     }
   };
 
