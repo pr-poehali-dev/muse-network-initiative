@@ -1,12 +1,13 @@
 import { useState, FormEvent, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import MosaicGallery from '@/components/MosaicGallery';
 import EventsCalendar from '@/components/EventsCalendar';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
+import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
+import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -604,163 +605,23 @@ const Index = () => {
         </div>
       </section>
 
-      <Dialog open={isEventDialogOpen} onOpenChange={setIsEventDialogOpen}>
-        <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Запись на мероприятие</DialogTitle>
-            <DialogDescription className="text-white/70">
-              Заполните форму, и мы свяжемся с вами для подтверждения
-            </DialogDescription>
-          </DialogHeader>
+      <EventRegistrationDialog
+        isOpen={isEventDialogOpen}
+        onClose={() => setIsEventDialogOpen(false)}
+        formData={eventFormData}
+        onFormDataChange={setEventFormData}
+        onSubmit={handleEventFormSubmit}
+        isSubmitted={isEventFormSubmitted}
+      />
 
-          {isEventFormSubmitted ? (
-            <div className="text-center py-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8953d]/20 mb-4">
-                <Icon name="Check" className="text-[#d4af37]" size={32} />
-              </div>
-              <h5 className="text-xl font-bold text-[#b8953d] mb-2">Заявка отправлена!</h5>
-              <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
-            </div>
-          ) : (
-            <form onSubmit={handleEventFormSubmit} className="space-y-2">
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Имя *</label>
-                <Input 
-                  placeholder="Ваше имя" 
-                  value={eventFormData.name}
-                  onChange={(e) => setEventFormData({...eventFormData, name: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Email *</label>
-                <Input 
-                  type="email" 
-                  placeholder="your@email.com" 
-                  value={eventFormData.email}
-                  onChange={(e) => setEventFormData({...eventFormData, email: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Телефон *</label>
-                <Input 
-                  type="tel" 
-                  placeholder="+7 (___) ___-__-__" 
-                  value={eventFormData.phone}
-                  onChange={(e) => setEventFormData({...eventFormData, phone: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Telegram</label>
-                <Input 
-                  type="text" 
-                  placeholder="@username" 
-                  value={eventFormData.telegram}
-                  onChange={(e) => setEventFormData({...eventFormData, telegram: e.target.value})}
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Комментарий</label>
-                <Textarea
-                  placeholder="Дополнительная информация или пожелания"
-                  rows={2}
-                  value={eventFormData.message}
-                  onChange={(e) => setEventFormData({...eventFormData, message: e.target.value})}
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <Button className="w-full text-sm py-2 hover-scale glow-effect mt-3" type="submit">
-                Отправить заявку
-              </Button>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={isJoinDialogOpen} onOpenChange={setIsJoinDialogOpen}>
-        <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Вступить в клуб MUSE</DialogTitle>
-            <DialogDescription className="text-white/70">
-              Заполните заявку, и мы свяжемся с вами для обсуждения членства
-            </DialogDescription>
-          </DialogHeader>
-
-          {isJoinFormSubmitted ? (
-            <div className="text-center py-8">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#b8953d]/20 mb-4">
-                <Icon name="Check" className="text-[#d4af37]" size={32} />
-              </div>
-              <h5 className="text-xl font-bold text-[#b8953d] mb-2">Заявка отправлена!</h5>
-              <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
-            </div>
-          ) : (
-            <form onSubmit={handleJoinFormSubmit} className="space-y-3">
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Имя *</label>
-                <Input 
-                  placeholder="Ваше имя" 
-                  value={joinFormData.name}
-                  onChange={(e) => setJoinFormData({...joinFormData, name: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Email *</label>
-                <Input 
-                  type="email" 
-                  placeholder="your@email.com" 
-                  value={joinFormData.email}
-                  onChange={(e) => setJoinFormData({...joinFormData, email: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Телефон *</label>
-                <Input 
-                  type="tel" 
-                  placeholder="+7 (___) ___-__-__" 
-                  value={joinFormData.phone}
-                  onChange={(e) => setJoinFormData({...joinFormData, phone: e.target.value})}
-                  required
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Telegram</label>
-                <Input 
-                  type="text" 
-                  placeholder="@username" 
-                  value={joinFormData.telegram}
-                  onChange={(e) => setJoinFormData({...joinFormData, telegram: e.target.value})}
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1 text-white">Расскажите о себе</label>
-                <Textarea
-                  placeholder="Чем вы занимаетесь? Что вас вдохновляет?"
-                  rows={2}
-                  value={joinFormData.message}
-                  onChange={(e) => setJoinFormData({...joinFormData, message: e.target.value})}
-                  className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
-                />
-              </div>
-              <Button className="w-full text-lg py-6 hover-scale glow-effect bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d]" type="submit">
-                Отправить заявку
-              </Button>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
+      <JoinClubDialog
+        isOpen={isJoinDialogOpen}
+        onClose={() => setIsJoinDialogOpen(false)}
+        formData={joinFormData}
+        onFormDataChange={setJoinFormData}
+        onSubmit={handleJoinFormSubmit}
+        isSubmitted={isJoinFormSubmitted}
+      />
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
@@ -909,94 +770,14 @@ const Index = () => {
         </div>
       </footer>
 
-      <Dialog open={isExpertDialogOpen} onOpenChange={setIsExpertDialogOpen}>
-        <DialogContent className="bg-gradient-to-br from-[#1a1a1a] to-black border-[#d4af37]/30 text-white max-w-md">
-          <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Стать экспертом клуба</DialogTitle>
-            <DialogDescription className="text-white/70">
-              Поделитесь своей экспертизой с участницами клуба Muse
-            </DialogDescription>
-          </DialogHeader>
-          {isExpertFormSubmitted ? (
-            <div className="text-center py-8">
-              <div className="text-6xl mb-4">✨</div>
-              <h3 className="text-2xl font-bold text-[#d4af37] mb-2">Спасибо!</h3>
-              <p className="text-white/80">Ваша заявка принята. Мы свяжемся с вами в ближайшее время.</p>
-            </div>
-          ) : (
-            <form onSubmit={handleExpertFormSubmit} className="space-y-3">
-              <div>
-                <label className="block text-xs font-medium mb-1">Имя</label>
-                <Input
-                  value={expertFormData.name}
-                  onChange={(e) => setExpertFormData({...expertFormData, name: e.target.value})}
-                  placeholder="Ваше имя"
-                  required
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Email</label>
-                <Input
-                  type="email"
-                  value={expertFormData.email}
-                  onChange={(e) => setExpertFormData({...expertFormData, email: e.target.value})}
-                  placeholder="your@email.com"
-                  required
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Телефон</label>
-                <Input
-                  type="tel"
-                  value={expertFormData.phone}
-                  onChange={(e) => setExpertFormData({...expertFormData, phone: e.target.value})}
-                  placeholder="+7 (___) ___-__-__"
-                  required
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Telegram (опционально)</label>
-                <Input
-                  value={expertFormData.telegram}
-                  onChange={(e) => setExpertFormData({...expertFormData, telegram: e.target.value})}
-                  placeholder="@username"
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">Область экспертизы</label>
-                <Input
-                  value={expertFormData.expertise}
-                  onChange={(e) => setExpertFormData({...expertFormData, expertise: e.target.value})}
-                  placeholder="Бизнес, искусство, наука, спорт..."
-                  required
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium mb-1">О вашем опыте</label>
-                <Textarea
-                  value={expertFormData.message}
-                  onChange={(e) => setExpertFormData({...expertFormData, message: e.target.value})}
-                  placeholder="Расскажите о своих достижениях и что можете предложить клубу..."
-                  rows={2}
-                  required
-                  className="bg-black/50 border-[#d4af37]/30 text-white"
-                />
-              </div>
-              <Button 
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] text-white font-semibold"
-              >
-                Отправить заявку
-              </Button>
-            </form>
-          )}
-        </DialogContent>
-      </Dialog>
+      <BecomeExpertDialog
+        isOpen={isExpertDialogOpen}
+        onClose={() => setIsExpertDialogOpen(false)}
+        formData={expertFormData}
+        onFormDataChange={setExpertFormData}
+        onSubmit={handleExpertFormSubmit}
+        isSubmitted={isExpertFormSubmitted}
+      />
     </div>
   );
 };
