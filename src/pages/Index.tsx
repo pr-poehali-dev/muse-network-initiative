@@ -824,7 +824,7 @@ const Index = () => {
               Вместе мы можем достичь большего
             </p>
             <p className="text-sm opacity-75">
-              © 2024 Клуб Muse. Все права защищены.
+              © 2025 Клуб Muse. Все права защищены.
             </p>
           </div>
           
@@ -839,7 +839,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
                 alt="Albe" 
-                className="h-12 opacity-50 group-hover:opacity-80 transition-opacity"
+                className="h-16 opacity-50 group-hover:opacity-80 transition-opacity"
               />
             </a>
           </div>
