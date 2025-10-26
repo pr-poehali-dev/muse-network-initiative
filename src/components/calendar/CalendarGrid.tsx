@@ -96,7 +96,12 @@ export const CalendarGrid = ({
                 return (
                   <button
                     key={day}
-                    onClick={() => onDaySelect(day)}
+                    onClick={() => {
+                      if (offset !== 0) {
+                        onMonthChange(offset);
+                      }
+                      onDaySelect(day);
+                    }}
                     className={`
                       aspect-square text-xs rounded-md transition-all relative group
                       ${hasEvents 
