@@ -277,6 +277,15 @@ html {
     }
   }
 
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
   .animate-expand-center {
     animation: expand-from-center 1.2s ease-out;
   }
