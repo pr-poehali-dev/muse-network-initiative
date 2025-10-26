@@ -71,6 +71,31 @@ const images = [
     url: 'https://cdn.poehali.dev/files/d31dfc25-4e5b-40c3-a5e4-68c81822260a.jpg',
     alt: 'Чаепитие в русском стиле на веранде',
     span: 'col-span-2 row-span-2',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/4310bb9e-6daa-464c-9029-7210b89987ac.jpg',
+    alt: 'Групповое фото участниц с картинами',
+    span: 'col-span-2 row-span-2',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/3fa6616b-5b39-48f6-8bee-51ffd30cc60b.jpg',
+    alt: 'Мастер-класс по живописи с шампанским',
+    span: 'col-span-1 row-span-2',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/7cbcea16-b2a2-483b-a697-f784e867c552.jpg',
+    alt: 'Кулинарный мастер-класс в кафе',
+    span: 'col-span-2 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/682a601e-680e-44c1-9723-b6908c1a87ee.jpg',
+    alt: 'Творческий мастер-класс с холстами',
+    span: 'col-span-1 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/4a26f646-724f-4d08-8781-f8d133d85452.jpg',
+    alt: 'Экскурсия участниц клуба на природе',
+    span: 'col-span-2 row-span-1',
   }
 ];
 
