@@ -251,38 +251,7 @@ const Index = () => {
           <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '1.8s', animationFillMode: 'backwards'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div ref={statsRef} className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '2.1s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Users" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count1}+</div>
-                <p className="text-base text-white/90 font-medium">Участниц</p>
-                <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
-              </div>
-            </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '2.3s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count2}+</div>
-                <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
-                <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
-              </div>
-            </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '2.5s', animationFillMode: 'backwards'}}>
-              <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
-                </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count3}</div>
-                <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
-                <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
-              </div>
-            </div>
-          </div>
+
 
         </div>
       </section>
