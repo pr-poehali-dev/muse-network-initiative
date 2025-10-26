@@ -385,9 +385,9 @@ const Index = () => {
       </section>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
@@ -475,9 +475,9 @@ const Index = () => {
       </section>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
@@ -503,9 +503,9 @@ const Index = () => {
       </section>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
@@ -705,9 +705,9 @@ const Index = () => {
       </Dialog>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
@@ -722,9 +722,9 @@ const Index = () => {
       </section>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
@@ -765,9 +765,9 @@ const Index = () => {
       </section>
 
       <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/25 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/4 to-transparent pointer-events-none"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
       <section id="contact" className="py-20 px-8 bg-black luxury-texture">
