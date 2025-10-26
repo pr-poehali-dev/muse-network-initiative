@@ -1,0 +1,21 @@
+{
+  "tests": [
+    {
+      "name": "Test event registration",
+      "method": "POST",
+      "body": {
+        "event": "Мастер-класс по нетворкингу",
+        "name": "Тест Участница",
+        "email": "participant@example.com",
+        "phone": "+7 (999) 123-45-67",
+        "telegram": "@participant",
+        "message": "Хочу участвовать"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
