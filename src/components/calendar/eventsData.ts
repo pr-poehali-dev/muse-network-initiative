@@ -35,7 +35,7 @@ export const events: Event[] = [
       {
         name: 'Мария Лазарева',
         role: 'Психолог, психотерапевт',
-        image: 'https://cdn.poehali.dev/files/6e931257-642d-46e7-9fbf-226dec1c2c5a.jpg'
+        image: 'https://cdn.poehali.dev/files/72395041-bb4b-429d-9521-807b2d0e1281.jpg'
       }
     ]
   },
