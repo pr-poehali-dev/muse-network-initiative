@@ -43,7 +43,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
       name: 'Мазмишаили Тамара Васильевна',
       role: 'Фитнес тренер',
       description: 'Эксперт здорового образа жизни',
-      image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg',
+      image: 'https://cdn.poehali.dev/files/7fa24823-78a5-4550-8937-8659f6f2fb59.jpg',
     },
     {
       name: 'Лазарева Мария Михайловна',
