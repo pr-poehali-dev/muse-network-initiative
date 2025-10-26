@@ -50,6 +50,7 @@ const Index = () => {
   const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [galleryOpen, setGalleryOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -766,12 +767,27 @@ const Index = () => {
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Галерея</h3>
-            <p className="text-xl text-white/80">Моменты, которые вдохновляют</p>
+            <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
+            <Button 
+              onClick={() => setGalleryOpen(true)}
+              className="text-lg px-8 py-6 hover-scale glow-effect bg-gradient-to-r from-[#8b7355] via-[#b8953d] to-[#6b5d42] hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355]"
+            >
+              Смотреть
+            </Button>
           </div>
-
-          <MosaicGallery />
         </div>
       </section>
+
+      <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-[#b8953d]">Галерея мероприятий</DialogTitle>
+          </DialogHeader>
+          <div className="overflow-y-auto max-h-[80vh] pr-4">
+            <MosaicGallery />
+          </div>
+        </DialogContent>
+      </Dialog>
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
