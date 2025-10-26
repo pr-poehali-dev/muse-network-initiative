@@ -224,9 +224,9 @@ const Index = () => {
               className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
               aria-label="Toggle menu"
             >
-              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
-              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
             </button>
 
             <div className="hidden md:flex items-center gap-8">
@@ -855,14 +855,14 @@ const Index = () => {
           <div className="text-center">
             <Button 
               onClick={() => setIsJoinDialogOpen(true)}
-              className="group relative bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] hover:from-[#f4d03f] hover:via-[#d4af37] hover:to-[#f4d03f] text-black font-bold text-lg md:text-xl py-6 md:py-8 px-12 md:px-16 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl shadow-[#d4af37]/40 hover:shadow-[#d4af37]/60 animate-pulse-glow"
+              className="group relative bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold text-lg md:text-xl py-6 md:py-8 px-12 md:px-16 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl shadow-[#d4af37]/40 hover:shadow-[#d4af37]/60 animate-pulse-glow"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <Icon name="Sparkles" className="group-hover:rotate-180 transition-transform duration-500" size={24} />
                 Подать заявку
                 <Icon name="ArrowRight" className="group-hover:translate-x-2 transition-transform duration-300" size={20} />
               </span>
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#f4d03f] via-[#d4af37] to-[#f4d03f] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#b8953d] to-[#6b5d42] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
             </Button>
           </div>
         </div>
