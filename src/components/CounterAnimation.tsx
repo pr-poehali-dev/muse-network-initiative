@@ -5,9 +5,10 @@ interface CounterAnimationProps {
   duration?: number;
   suffix?: string;
   className?: string;
+  delay?: number;
 }
 
-const CounterAnimation = ({ end, duration = 2000, suffix = '', className = '' }: CounterAnimationProps) => {
+const CounterAnimation = ({ end, duration = 2000, suffix = '', className = '', delay = 0 }: CounterAnimationProps) => {
   const [count, setCount] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const counterRef = useRef<HTMLDivElement>(null);
@@ -17,7 +18,9 @@ const CounterAnimation = ({ end, duration = 2000, suffix = '', className = '' }:
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !hasStarted) {
-            setHasStarted(true);
+            setTimeout(() => {
+              setHasStarted(true);
+            }, delay);
           }
         });
       },
@@ -33,7 +36,7 @@ const CounterAnimation = ({ end, duration = 2000, suffix = '', className = '' }:
         observer.unobserve(counterRef.current);
       }
     };
-  }, [hasStarted]);
+  }, [hasStarted, delay]);
 
   useEffect(() => {
     if (!hasStarted) return;

@@ -418,6 +418,7 @@ const Index = () => {
                   end={250} 
                   suffix="+" 
                   duration={2500}
+                  delay={3700}
                   className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
                 />
                 <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
@@ -433,6 +434,7 @@ const Index = () => {
                   end={150} 
                   suffix="+" 
                   duration={2500}
+                  delay={3900}
                   className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
                 />
                 <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
@@ -447,6 +449,7 @@ const Index = () => {
                 <CounterAnimation 
                   end={24} 
                   duration={2500}
+                  delay={4100}
                   className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
                 />
                 <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
