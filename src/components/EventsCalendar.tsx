@@ -9,14 +9,21 @@ import { EventCardDesktop } from './calendar/EventCardDesktop';
 
 interface EventsCalendarProps {
   onEventRegister?: (eventTitle: string) => void;
+  autoExpand?: boolean;
 }
 
-const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
+const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarProps) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 10));
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    if (autoExpand) {
+      setIsExpanded(true);
+    }
+  }, [autoExpand]);
 
   const getEventTypeConfig = (type: Event['type']): EventTypeConfig => {
     switch(type) {

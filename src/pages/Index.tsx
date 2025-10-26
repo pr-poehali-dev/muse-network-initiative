@@ -53,12 +53,18 @@ const Index = () => {
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
       setIsMobileMenuOpen(false);
+      
+      if (id === 'calendar') {
+        setCalendarAutoExpand(true);
+        setTimeout(() => setCalendarAutoExpand(false), 100);
+      }
     }
   };
 
@@ -668,7 +674,7 @@ const Index = () => {
           </div>
 
           <div id="calendar">
-            <EventsCalendar onEventRegister={handleEventRegister} />
+            <EventsCalendar onEventRegister={handleEventRegister} autoExpand={calendarAutoExpand} />
           </div>
         </div>
       </section>
