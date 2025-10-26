@@ -43,10 +43,10 @@ const AboutSection = ({ visibleSections }: AboutSectionProps) => {
             <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8"></div>
           </div>
           <h2 className="text-5xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355]">
-            О клубе MUSE
+            О MUSE
           </h2>
           <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Клуб MUSE — это пространство для успешных женщин, которые стремятся к развитию, вдохновению и созданию значимых связей
+            MUSE — это пространство для успешных женщин, которые стремятся к развитию, вдохновению и созданию значимых связей
           </p>
         </div>
 
