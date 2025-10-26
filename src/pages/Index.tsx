@@ -67,15 +67,31 @@ const Index = () => {
     setIsEventDialogOpen(true);
   };
 
-  const handleEventFormSubmit = (e: FormEvent) => {
+  const handleEventFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log('Event registration:', eventFormData);
-    setIsEventFormSubmitted(true);
-    setTimeout(() => {
-      setIsEventFormSubmitted(false);
-      setIsEventDialogOpen(false);
-      setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
-    }, 2000);
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(eventFormData)
+      });
+      
+      if (response.ok) {
+        setIsEventFormSubmitted(true);
+        setTimeout(() => {
+          setIsEventFormSubmitted(false);
+          setIsEventDialogOpen(false);
+          setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
+        }, 2000);
+      } else {
+        console.error('Failed to submit event registration');
+      }
+    } catch (error) {
+      console.error('Error submitting event registration:', error);
+    }
   };
 
   const handleJoinFormSubmit = async (e: FormEvent) => {
