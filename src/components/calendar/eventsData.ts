@@ -74,7 +74,7 @@ export const events: Event[] = [
       {
         name: 'Юлия Христенко',
         role: 'Дизайнер бренда JK',
-        image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg'
+        image: 'https://cdn.poehali.dev/files/11ada638-a634-464f-bc5e-2fabbfbc56ed.jpg'
       }
     ]
   },
