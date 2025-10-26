@@ -60,7 +60,7 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
             <img 
               src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
               alt="Участница клуба"
-              className="w-full h-full object-cover object-[50%_28%]"
+              className="w-full h-full object-cover object-[50%_32%]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black"></div>
           </div>
