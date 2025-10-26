@@ -847,37 +847,29 @@ const Index = () => {
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Вступить в клуб</h3>
-            <p className="text-xl text-white/80">
+            <p className="text-xl text-white/80 mb-8">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
             </p>
           </div>
 
-          <Card className="hover-scale glow-effect rounded-2xl animate-scale-in bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
-            <CardContent className="p-8">
-              <form className="space-y-6">
-                <div>
-                  <label className="block text-xs font-medium mb-1 text-white">Имя</label>
-                  <Input placeholder="Ваше имя" />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium mb-1 text-white">Email</label>
-                  <Input type="email" placeholder="your@email.com" />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium mb-1 text-white">Телефон</label>
-                  <Input type="tel" placeholder="+7 (___) ___-__-__" />
-                </div>
-                <div>
-                  <label className="block text-xs font-medium mb-1 text-white">Расскажите о себе</label>
-                  <Textarea
-                    placeholder="Чем вы занимаетесь? Что вас вдохновляет?"
-                    rows={4}
-                  />
-                </div>
-                <Button className="w-full text-lg py-6 hover-scale glow-effect" type="submit">
-                  Отправить заявку
-                </Button>
-              </form>
+          <Card className="hover-scale glow-effect rounded-2xl animate-scale-in bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-[#d4af37]/30 backdrop-blur-md overflow-hidden">
+            <CardContent className="p-10 md:p-16 text-center">
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-6 shadow-lg shadow-[#d4af37]/50">
+                <Icon name="Sparkles" className="text-black" size={36} />
+              </div>
+              <h4 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37]">
+                Готовы присоединиться?
+              </h4>
+              <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+                Станьте частью сообщества успешных и вдохновляющих женщин. Нетворкинг, развитие и новые возможности ждут вас!
+              </p>
+              <Button 
+                onClick={() => setIsJoinDialogOpen(true)}
+                className="bg-gradient-to-r from-[#d4af37] to-[#b8860b] hover:from-[#f4d03f] hover:to-[#d4af37] text-black font-bold text-lg py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50"
+              >
+                <Icon name="UserPlus" className="mr-2" size={20} />
+                Подать заявку
+              </Button>
             </CardContent>
           </Card>
         </div>
