@@ -96,6 +96,16 @@ const images = [
     url: 'https://cdn.poehali.dev/files/dfed12c9-c80a-47d7-8761-6a792b7668af.jpg',
     alt: 'Участницы клуба с готовыми работами',
     span: 'col-span-1 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/ae061893-14ae-4ddb-b6bc-8720f55af9f0.jpg',
+    alt: 'Элегантная сервировка стола',
+    span: 'col-span-2 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/82dd3661-c671-4353-9100-b7cf38965d72.jpg',
+    alt: 'Встреча на природе',
+    span: 'col-span-1 row-span-1',
   }
 ];
 
