@@ -445,7 +445,7 @@ const Index = () => {
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">О клубе <span className="text-[#d4af37]">Muse</span></h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">О клубе Muse</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -480,7 +480,7 @@ const Index = () => {
             <div className="flex flex-col gap-8">
             <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#d4af37] pb-2">Наши цели</h4>
+                <h4 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Наши цели</h4>
                 <ul className="space-y-4 text-white/80">
                   <li className="border-l-2 border-[#d4af37] pl-4">
                     <p className="font-semibold mb-1">Создать сообщество</p>
@@ -504,7 +504,7 @@ const Index = () => {
 
             <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
               <CardContent className="p-8">
-                <h4 className="text-2xl font-semibold mb-6 text-[#b8953d] border-b border-[#d4af37] pb-2">Что мы предлагаем</h4>
+                <h4 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Что мы предлагаем</h4>
                 <ul className="space-y-3 text-white/80">
                   <li className="border-l-2 border-[#d4af37] pl-4">
                     <span>Статусное окружение единомышленников</span>
@@ -535,7 +535,7 @@ const Index = () => {
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">ценности</span></h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Наши ценности</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -545,7 +545,7 @@ const Index = () => {
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                     <Icon name={value.icon} className="text-[#b8953d]/60" size={24} />
                   </div>
-                  <h4 className="text-xl font-bold mb-3 text-[#b8953d]">{value.title}</h4>
+                  <h4 className="text-lg md:text-xl font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">{value.title}</h4>
                   <p className="text-sm text-white/70 leading-relaxed">{value.description}</p>
                 </CardContent>
               </Card>
@@ -563,14 +563,14 @@ const Index = () => {
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Мероприятия и <span className="text-[#d4af37]">встречи</span></h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Мероприятия и встречи</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
           </div>
 
           <div className="text-center mb-10">
-            <h4 className="text-3xl font-bold text-white/90 mb-4">Форматы мероприятий</h4>
+            <h4 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы мероприятий</h4>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
@@ -581,7 +581,7 @@ const Index = () => {
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 flex-shrink-0">
                       <Icon name={event.icon} className="text-[#b8953d]/60" size={24} />
                     </div>
-                    <h4 className="text-xl font-bold text-[#b8953d] pt-2">{event.title}</h4>
+                    <h4 className="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 pt-2">{event.title}</h4>
                   </div>
                   <p className="text-white/80 leading-relaxed mb-4 font-medium">{event.description}</p>
                   <div className="pt-4 border-t border-[#d4af37]/10">
@@ -782,7 +782,7 @@ const Index = () => {
       <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">эксперты</span></h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Наши эксперты</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
             </p>
@@ -825,7 +825,7 @@ const Index = () => {
       <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Присоединяйтесь <span className="text-[#d4af37]">к нам</span></h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Присоединяйтесь к нам</h3>
             <p className="text-xl text-white/80">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
             </p>
