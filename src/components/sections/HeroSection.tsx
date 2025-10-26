@@ -17,7 +17,7 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
     <section id="hero" className="relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center">
       <div className="w-full text-center px-4 sm:px-6 md:px-8 relative z-10">
         <div className="relative inline-block mb-6 sm:mb-8 md:mb-12">
-          <h2 className="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355] px-2 sm:px-4 tracking-[0.15em] sm:tracking-[0.2em] drop-shadow-[0_0_40px_rgba(212,175,55,0.3)] font-light">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl xl:text-[10rem] font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355] px-2 sm:px-4 tracking-[0.1em] sm:tracking-[0.15em] md:tracking-[0.2em] drop-shadow-[0_0_40px_rgba(212,175,55,0.3)] font-light">
             MUSE
           </h2>
         </div>

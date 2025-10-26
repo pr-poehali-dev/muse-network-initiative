@@ -243,8 +243,8 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-screen sm:min-h-[120vh] md:min-h-[140vh] flex items-end pb-8 sm:pb-12`}>
-        <div className="absolute inset-0 overflow-hidden hidden sm:block">
+      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-screen flex items-center justify-center`}>
+        <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
@@ -262,7 +262,7 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -282,7 +282,7 @@ const Index = () => {
             <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full sm:w-[80%] md:w-[42%] h-full opacity-50 sm:opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
@@ -297,7 +297,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.12}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.12}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -333,50 +333,50 @@ const Index = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
-        <div className="w-full text-center px-8 relative z-30">
-          <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>
-            <h2 className="text-9xl md:text-[12rem] lg:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+        <div className="w-full text-center px-4 sm:px-6 md:px-8 relative z-30">
+          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-scale-in" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>
+            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 sm:px-4 tracking-wide sm:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            <div className="absolute inset-0 text-9xl md:text-[12rem] lg:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-4">
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 sm:px-4">
               MUSE
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 sm:mb-8 md:mb-10 leading-relaxed animate-fade-in px-4" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>
+          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 max-w-5xl mx-auto">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Users" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
+                  <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
-                <p className="text-base text-white/90 font-medium">Участниц</p>
-                <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
+                <p className="text-sm sm:text-base text-white/90 font-medium">Участниц</p>
+                <p className="text-xs sm:text-sm text-white/60 mt-1 sm:mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '3.8s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '3.8s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
+                  <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
-                <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
-                <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
+                <p className="text-sm sm:text-base text-white/90 font-medium">Проведённых встреч</p>
+                <p className="text-xs sm:text-sm text-white/60 mt-1 sm:mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.0s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.0s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
+                  <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
-                <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
-                <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
+                <p className="text-sm sm:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
+                <p className="text-xs sm:text-sm text-white/60 mt-1 sm:mt-2">Доступ из любой точки мира</p>
               </div>
             </div>
           </div>
