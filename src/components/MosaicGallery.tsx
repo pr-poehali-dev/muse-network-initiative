@@ -46,6 +46,31 @@ const images = [
     url: 'https://cdn.poehali.dev/files/33740897-2c82-444b-8620-04f1c61a314c.jpg',
     alt: 'Встреча участниц клуба на природе',
     span: 'col-span-2 row-span-2',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/d7b48a6a-cf2c-4555-9a26-ea701bda5b43.jpg',
+    alt: 'Уютная встреча участниц с вином и закусками',
+    span: 'col-span-2 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/6e5ab29b-a711-4cb7-ade2-c409ad9e75a2.jpg',
+    alt: 'Детали сервировки стола',
+    span: 'col-span-1 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/091f3e82-a1c2-4df8-a28e-82d30938bddc.jpg',
+    alt: 'Элегантная сервировка с чаем',
+    span: 'col-span-1 row-span-2',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/68021d29-5b57-4bba-906c-3954a3cfb64b.jpg',
+    alt: 'Культурная программа для участниц',
+    span: 'col-span-2 row-span-1',
+  },
+  {
+    url: 'https://cdn.poehali.dev/files/d31dfc25-4e5b-40c3-a5e4-68c81822260a.jpg',
+    alt: 'Чаепитие в русском стиле на веранде',
+    span: 'col-span-2 row-span-2',
   }
 ];
 
