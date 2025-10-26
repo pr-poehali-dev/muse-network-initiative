@@ -17,7 +17,7 @@ const GallerySection = ({ visibleSections }: GallerySectionProps) => {
             Галерея
           </h2>
           <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-            Моменты наших встреч и событий
+            Моменты наших встреч и мероприятий
           </p>
         </div>
         <MosaicGallery />

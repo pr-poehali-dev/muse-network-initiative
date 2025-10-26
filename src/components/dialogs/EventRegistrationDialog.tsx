@@ -34,7 +34,7 @@ const EventRegistrationDialog = ({
       <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">
-            Регистрация на событие
+            Регистрация на мероприятие
           </DialogTitle>
           <DialogDescription className="text-white/70">
             {formData.event}

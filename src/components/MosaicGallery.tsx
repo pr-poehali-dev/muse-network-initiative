@@ -69,7 +69,7 @@ const images = [
   },
   {
     url: 'https://cdn.poehali.dev/files/682fc5ec-435a-4017-bc49-ae4b8b7bdd3b.jpg',
-    alt: 'Творческое событие в книжном пространстве',
+    alt: 'Творческое мероприятие в книжном пространстве',
     span: 'col-span-1 row-span-1',
   },
   {
