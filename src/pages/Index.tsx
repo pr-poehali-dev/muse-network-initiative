@@ -459,100 +459,11 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div className="relative inline-block mb-8 md:mb-10 animate-title-appear" style={{animationDelay: '1.5s', opacity: 0}}>
-            {/* Верхний ар-деко орнамент */}
-            <div className="absolute -top-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-              <div className="flex items-center gap-3">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></div>
-                <div className="w-3 h-3 border-2 border-[#d4af37] rotate-45"></div>
-                <div className="w-24 h-px bg-[#d4af37]"></div>
-                <div className="w-3 h-3 border-2 border-[#d4af37] rotate-45"></div>
-                <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></div>
-              </div>
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-1 h-4 bg-[#d4af37]" style={{height: i === 2 ? '24px' : '16px'}}></div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Боковые геометрические элементы */}
-            <div className="absolute top-1/2 -left-20 -translate-y-1/2 hidden lg:flex flex-col gap-2">
-              <div className="w-12 h-px bg-[#d4af37]"></div>
-              <div className="w-8 h-px bg-[#d4af37] ml-auto"></div>
-              <div className="w-4 h-px bg-[#d4af37] ml-auto"></div>
-            </div>
-            <div className="absolute top-1/2 -right-20 -translate-y-1/2 hidden lg:flex flex-col gap-2">
-              <div className="w-12 h-px bg-[#d4af37]"></div>
-              <div className="w-8 h-px bg-[#d4af37]"></div>
-              <div className="w-4 h-px bg-[#d4af37]"></div>
-            </div>
-            
-            {/* Основной текст с эффектом тиснения */}
-            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-[#ffd700] via-[#d4af37] to-[#b8953d] px-2 md:px-4 tracking-[0.2em] md:tracking-[0.25em] relative z-10" style={{
-              textShadow: '3px 3px 0px rgba(139,115,85,0.3), -1px -1px 0px rgba(255,215,0,0.2)',
-              fontFamily: 'serif',
-              letterSpacing: '0.15em'
-            }}>
+            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            
-            {/* Тень для объёма */}
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#1a1a1a] px-2 md:px-4 tracking-[0.2em] md:tracking-[0.25em]" style={{
-              transform: 'translate(4px, 4px)',
-              fontFamily: 'serif',
-              letterSpacing: '0.15em'
-            }}>
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               MUSE
-            </div>
-            
-            {/* Угловые элементы в стиле ар-деко */}
-            <div className="absolute -top-6 -left-6">
-              <div className="relative w-16 h-16">
-                <div className="absolute top-0 left-0 w-16 h-px bg-[#d4af37]"></div>
-                <div className="absolute top-0 left-0 w-px h-16 bg-[#d4af37]"></div>
-                <div className="absolute top-2 left-2 w-8 h-px bg-[#d4af37]"></div>
-                <div className="absolute top-2 left-2 w-px h-8 bg-[#d4af37]"></div>
-              </div>
-            </div>
-            <div className="absolute -top-6 -right-6">
-              <div className="relative w-16 h-16">
-                <div className="absolute top-0 right-0 w-16 h-px bg-[#d4af37]"></div>
-                <div className="absolute top-0 right-0 w-px h-16 bg-[#d4af37]"></div>
-                <div className="absolute top-2 right-2 w-8 h-px bg-[#d4af37]"></div>
-                <div className="absolute top-2 right-2 w-px h-8 bg-[#d4af37]"></div>
-              </div>
-            </div>
-            <div className="absolute -bottom-6 -left-6">
-              <div className="relative w-16 h-16">
-                <div className="absolute bottom-0 left-0 w-16 h-px bg-[#d4af37]"></div>
-                <div className="absolute bottom-0 left-0 w-px h-16 bg-[#d4af37]"></div>
-                <div className="absolute bottom-2 left-2 w-8 h-px bg-[#d4af37]"></div>
-                <div className="absolute bottom-2 left-2 w-px h-8 bg-[#d4af37]"></div>
-              </div>
-            </div>
-            <div className="absolute -bottom-6 -right-6">
-              <div className="relative w-16 h-16">
-                <div className="absolute bottom-0 right-0 w-16 h-px bg-[#d4af37]"></div>
-                <div className="absolute bottom-0 right-0 w-px h-16 bg-[#d4af37]"></div>
-                <div className="absolute bottom-2 right-2 w-8 h-px bg-[#d4af37]"></div>
-                <div className="absolute bottom-2 right-2 w-px h-8 bg-[#d4af37]"></div>
-              </div>
-            </div>
-            
-            {/* Нижний ар-деко орнамент */}
-            <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <div key={i} className="w-1 h-4 bg-[#d4af37]" style={{height: i === 2 ? '24px' : '16px'}}></div>
-                ))}
-              </div>
-              <div className="flex items-center gap-3">
-                <div className="w-16 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></div>
-                <div className="w-3 h-3 border-2 border-[#d4af37] rotate-45"></div>
-                <div className="w-24 h-px bg-[#d4af37]"></div>
-                <div className="w-3 h-3 border-2 border-[#d4af37] rotate-45"></div>
-                <div className="w-16 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></div>
-              </div>
             </div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '2.2s', opacity: 0}}>
