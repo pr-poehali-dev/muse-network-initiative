@@ -63,17 +63,17 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
       <CardContent className="p-6">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="w-full flex items-center justify-between group md:mb-6"
+          className="w-full flex items-center justify-between group md:mb-6 bg-gradient-to-br from-[#2a2a2a]/60 to-[#1a1a1a]/40 rounded-xl p-4 border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-all hover:shadow-lg hover:shadow-[#d4af37]/10"
         >
           <div className="flex items-center gap-3 md:gap-4">
-            <div className="p-2 md:p-3 rounded-lg md:rounded-xl bg-gradient-to-br from-[#b8953d]/30 to-[#d4af37]/30 group-hover:from-[#b8953d]/40 group-hover:to-[#d4af37]/40 transition-all shadow-lg">
-              <Icon name="CalendarDays" className="text-[#d4af37]" size={24} />
+            <div className="p-3 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] group-hover:scale-105 transition-all shadow-lg shadow-[#d4af37]/30">
+              <Icon name="CalendarDays" className="text-black" size={24} />
             </div>
             <div className="text-left">
-              <h3 className="text-lg md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
+              <h3 className="text-base md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
                 Календарь событий
               </h3>
-              <p className="text-xs md:text-sm text-white/60 mt-0.5">
+              <p className="text-xs text-white/50 mt-1">
                 {currentMonthEvents.length} {currentMonthEvents.length === 1 ? 'событие' : 'события'}
               </p>
             </div>
@@ -81,8 +81,8 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
           <div className="flex items-center gap-2">
             <Icon 
               name={isExpanded ? "ChevronUp" : "ChevronDown"} 
-              className="text-[#d4af37] group-hover:scale-110 transition-transform" 
-              size={24} 
+              className="text-[#d4af37] group-hover:scale-110 group-hover:rotate-180 transition-all duration-300" 
+              size={20} 
             />
           </div>
         </button>
