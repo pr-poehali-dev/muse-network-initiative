@@ -780,10 +780,16 @@ const Index = () => {
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
+          <button
+            onClick={() => setGalleryOpen(false)}
+            className="absolute top-4 right-4 z-50 text-white/60 hover:text-[#d4af37] transition-colors duration-300 hover:scale-110 transform"
+          >
+            <Icon name="X" size={48} />
+          </button>
           <DialogHeader>
             <DialogTitle className="text-2xl text-[#b8953d]">Галерея мероприятий</DialogTitle>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[80vh] pr-4">
+          <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
             <MosaicGallery />
           </div>
         </DialogContent>
