@@ -133,45 +133,57 @@ html {
   }
 
   .animate-slide-in-from-left {
-    animation: slide-in-from-left 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slide-in-from-left 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes slide-in-from-left {
-    from {
+    0% {
       opacity: 0;
       transform: translateX(-100px) scale(0.95);
     }
-    to {
+    70% {
+      opacity: 0.3;
+      transform: translateX(-20px) scale(0.98);
+    }
+    100% {
       opacity: 1;
       transform: translateX(0) scale(1);
     }
   }
 
   .animate-slide-in-from-right {
-    animation: slide-in-from-right 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: slide-in-from-right 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes slide-in-from-right {
-    from {
+    0% {
       opacity: 0;
       transform: translateX(100px) scale(0.95);
     }
-    to {
+    70% {
+      opacity: 0.3;
+      transform: translateX(20px) scale(0.98);
+    }
+    100% {
       opacity: 1;
       transform: translateX(0) scale(1);
     }
   }
 
   .animate-zoom-in {
-    animation: zoom-in 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: zoom-in 1.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes zoom-in {
-    from {
+    0% {
       opacity: 0;
       transform: translateX(-50%) scale(0.8);
     }
-    to {
+    60% {
+      opacity: 0.4;
+      transform: translateX(-50%) scale(0.9);
+    }
+    100% {
       opacity: 1;
       transform: translateX(-50%) scale(1);
     }
