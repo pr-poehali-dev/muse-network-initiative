@@ -752,7 +752,7 @@ const Index = () => {
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
-                <Icon name="Eye" className="group-hover:scale-110 transition-all duration-300" size={20} />
+                <Icon name="Eye" className="group-hover:scale-110 group-hover:text-white transition-all duration-300" size={20} />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-[#b8953d]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
@@ -843,9 +843,7 @@ const Index = () => {
               className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden rounded-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-3">
-                <Icon name="Sparkles" className="group-hover:rotate-180 transition-transform duration-500" size={24} />
                 Вступить в клуб
-                <Icon name="ArrowRight" className="group-hover:translate-x-2 transition-transform duration-300" size={20} />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-[#b8953d]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
