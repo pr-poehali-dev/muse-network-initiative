@@ -254,7 +254,7 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="absolute left-[15%] top-0 w-[22%] h-full opacity-60">
+          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/7996f5d6-a435-4479-b838-adf0b16ecc1f.jpg" 
@@ -283,7 +283,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <div className="absolute right-[15%] top-0 w-[22%] h-full opacity-60">
+          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
