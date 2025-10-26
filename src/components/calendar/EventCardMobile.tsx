@@ -85,7 +85,7 @@ export const EventCardMobile = ({
               e.stopPropagation();
               onRegister?.(event.title);
             }}
-            className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-black text-xs font-bold py-2.5 px-4 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all flex items-center justify-center gap-2 group"
+            className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs font-bold py-2.5 px-4 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all flex items-center justify-center gap-2 group"
           >
             <span>Записаться на событие</span>
             <Icon name="ArrowRight" size={14} className="group-hover:translate-x-0.5 transition-transform" />

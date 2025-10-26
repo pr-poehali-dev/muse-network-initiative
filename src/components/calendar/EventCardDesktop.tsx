@@ -87,7 +87,7 @@ export const EventCardDesktop = ({
               e.stopPropagation();
               onRegister?.(event.title);
             }}
-            className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white text-sm py-2 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all font-semibold flex items-center justify-center gap-2 group border border-[#d4af37]/20"
+            className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-sm py-2 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all font-bold flex items-center justify-center gap-2 group"
           >
             <span>Записаться на событие</span>
             <Icon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform" />
