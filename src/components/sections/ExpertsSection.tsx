@@ -49,7 +49,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
       name: 'Лазарева Мария Михайловна',
       role: 'Психолог, психотерапевт',
       description: 'Метод символдрама',
-      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
+      image: 'https://cdn.poehali.dev/files/6e931257-642d-46e7-9fbf-226dec1c2c5a.jpg',
     },
     {
       name: 'Полина Берг',
