@@ -207,7 +207,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden overflow-y-hidden md:overflow-y-auto">
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
@@ -293,7 +293,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 bg-black h-screen md:min-h-[140vh] flex items-center justify-center md:items-end overflow-hidden`}>
+      <section id="hero" className={`relative pt-0 pb-0 bg-black h-screen md:min-h-[140vh] flex items-center justify-center md:items-end overflow-y-hidden md:overflow-visible`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -398,33 +398,33 @@ const Index = () => {
           <p className="text-xs sm:text-sm md:text-lg text-white/70 mb-5 md:mb-16 max-w-3xl mx-auto leading-relaxed px-2">
             Укрепляем баланс жизни через уникальные события.<br className="md:hidden" /> Объединяем и укрепляем позиции сильных<br className="md:hidden" /> и талантливых женщин для общего роста.
           </p>
-          <div className="grid grid-cols-3 md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-12 max-w-5xl mx-auto w-full">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-2 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
+          <div className="flex md:grid md:grid-cols-3 gap-2 md:gap-8 mb-6 md:mb-12 max-w-5xl mx-auto w-full overflow-x-auto md:overflow-x-visible scrollbar-hide px-2">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-3 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group flex-shrink-0 w-[140px] md:w-auto">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-8 h-8 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-1 md:mb-4">
-                  <Icon name="Users" className="text-[#b8953d]/60" size={16} />
+                <div className="inline-flex items-center justify-center w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-2 md:mb-4">
+                  <Icon name="Users" className="text-[#b8953d]/60" size={20} />
                 </div>
-                <div className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1">250+</div>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1 md:mb-2">250+</div>
                 <p className="text-xs md:text-base text-white/90 font-medium">Участниц</p>
                 <p className="hidden md:block text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-2 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-3 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group flex-shrink-0 w-[140px] md:w-auto">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-8 h-8 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-1 md:mb-4">
-                  <Icon name="Calendar" className="text-[#b8953d]/60" size={16} />
+                <div className="inline-flex items-center justify-center w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-2 md:mb-4">
+                  <Icon name="Calendar" className="text-[#b8953d]/60" size={20} />
                 </div>
-                <div className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1">150+</div>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1 md:mb-2">150+</div>
                 <p className="text-xs md:text-base text-white/90 font-medium">Встреч</p>
                 <p className="hidden md:block text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-2 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-3 md:p-8 rounded-lg md:rounded-2xl hover-scale glow-effect relative overflow-hidden group flex-shrink-0 w-[140px] md:w-auto">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-8 h-8 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-1 md:mb-4">
-                  <Icon name="Radio" className="text-[#b8953d]/60" size={16} />
+                <div className="inline-flex items-center justify-center w-10 h-10 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-2 md:mb-4">
+                  <Icon name="Radio" className="text-[#b8953d]/60" size={20} />
                 </div>
-                <div className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1">24</div>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-1 md:mb-2">24</div>
                 <p className="text-xs md:text-base text-white/90 font-medium">Трансляций</p>
                 <p className="hidden md:block text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
               </div>
