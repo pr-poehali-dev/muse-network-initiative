@@ -667,7 +667,7 @@ const Index = () => {
             ))}
           </div>
 
-          <div>
+          <div id="calendar">
             <EventsCalendar onEventRegister={handleEventRegister} />
           </div>
         </div>
