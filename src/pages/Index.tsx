@@ -833,13 +833,13 @@ const Index = () => {
               href="https://albeweb.ru/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs text-white/50 hover:text-white/80 transition-colors group"
+              className="flex items-center gap-3 text-xl text-white/50 hover:text-white/80 transition-colors group"
             >
               <span>Разработано в</span>
               <img 
                 src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
                 alt="Albe" 
-                className="h-6 opacity-50 group-hover:opacity-80 transition-opacity"
+                className="h-12 opacity-50 group-hover:opacity-80 transition-opacity"
               />
             </a>
           </div>
