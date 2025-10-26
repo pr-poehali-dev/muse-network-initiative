@@ -61,6 +61,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     service = build('sheets', 'v4', credentials=credentials)
     
+    result = service.spreadsheets().values().get(
+        spreadsheetId=SPREADSHEET_ID,
+        range=f'{SHEET_NAME}!A1:F1'
+    ).execute()
+    
+    values = result.get('values', [])
+    if not values or len(values) == 0:
+        headers = [['Дата и время', 'Имя', 'Email', 'Телефон', 'Telegram', 'Сообщение']]
+        service.spreadsheets().values().update(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f'{SHEET_NAME}!A1:F1',
+            valueInputOption='RAW',
+            body={'values': headers}
+        ).execute()
+    
     timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     row_data = [
         timestamp,
