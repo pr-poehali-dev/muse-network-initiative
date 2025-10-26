@@ -786,7 +786,7 @@ const Index = () => {
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
           <DialogHeader>
-            <DialogTitle className="text-left">Галерея мероприятий</DialogTitle>
+            <DialogTitle className="text-left">Галерея событий</DialogTitle>
           </DialogHeader>
           <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
             <MosaicGallery />
