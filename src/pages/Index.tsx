@@ -458,26 +458,13 @@ const Index = () => {
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
-          <div className="relative inline-block mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '1.5s', opacity: 0}}>
-            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355] px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.6)] relative z-10">
+          <div className="relative inline-block mb-8 md:mb-10 animate-title-appear" style={{animationDelay: '1.5s', opacity: 0}}>
+            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/20 blur-3xl px-2 md:px-4 animate-pulse">
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               MUSE
             </div>
-            
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black bg-clip-text text-transparent bg-gradient-to-br from-[#d4af37]/30 via-[#b8953d]/20 to-transparent blur-sm px-2 md:px-4">
-              MUSE
-            </div>
-            
-            <div className="absolute -inset-4 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/10 to-[#d4af37]/0 blur-2xl opacity-50 animate-pulse" style={{animationDuration: '3s'}}></div>
-            
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent blur-sm"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent blur-sm"></div>
-            
-            <div className="absolute top-1/2 -left-8 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '0.5s'}}></div>
-            <div className="absolute top-1/2 -right-8 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1s'}}></div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '2.2s', opacity: 0}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
