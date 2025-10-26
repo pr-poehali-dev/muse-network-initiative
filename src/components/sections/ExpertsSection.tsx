@@ -104,9 +104,10 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
                   <img 
                     src={expert.image} 
                     alt={expert.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 brightness-75 group-hover:brightness-90"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+                    style={{ filter: 'brightness(0.7) contrast(1.1)' }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent group-hover:from-black/30 group-hover:via-black/10 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-500"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{expert.name}</h3>
