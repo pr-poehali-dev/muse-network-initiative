@@ -254,21 +254,7 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="absolute left-0 top-0 w-[15%] h-full opacity-60">
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent"></div>
-            <img 
-              src="https://cdn.poehali.dev/files/9679dc3f-e15d-486a-8c38-770167cf95f8.jpg" 
-              alt="" 
-              className="w-full h-full object-cover object-center"
-              style={{
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 60%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 60%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)'
-              }}
-            />
-          </div>
-
-          <div className="absolute left-[12%] top-0 w-[16%] h-full opacity-55">
+          <div className="absolute left-[15%] top-0 w-[22%] h-full opacity-60">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/7996f5d6-a435-4479-b838-adf0b16ecc1f.jpg" 
@@ -282,22 +268,22 @@ const Index = () => {
             />
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[38%] h-full opacity-75 z-5">
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
               alt="" 
               className="w-full h-full object-cover object-center"
               style={{
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
                 filter: 'grayscale(20%) contrast(1.15)'
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <div className="absolute right-[12%] top-0 w-[16%] h-full opacity-55">
+          <div className="absolute right-[15%] top-0 w-[22%] h-full opacity-60">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
@@ -306,20 +292,6 @@ const Index = () => {
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)'
-              }}
-            />
-          </div>
-
-          <div className="absolute right-0 top-0 w-[15%] h-full opacity-60">
-            <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent"></div>
-            <img 
-              src="https://cdn.poehali.dev/files/c54b0363-6adc-4a1f-bb8e-750a6fb9c647.jpg" 
-              alt="" 
-              className="w-full h-full object-cover object-center"
-              style={{
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.9) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 40%, rgba(0,0,0,0.9) 100%)',
                 filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
