@@ -334,10 +334,10 @@ const Index = () => {
         <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
           <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
             <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              КЛУБ MUSE
+              MUSE
             </h2>
             <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/5 blur-xl px-4">
-              КЛУБ MUSE
+              MUSE
             </div>
           </div>
           <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '1.5s', animationFillMode: 'backwards'}}>
@@ -353,7 +353,7 @@ const Index = () => {
                   <Icon name="Users" className="text-[#b8953d]/60" size={28} />
                 </div>
                 <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">{count1}+</div>
-                <p className="text-base text-white/90 font-medium">Участниц клуба</p>
+                <p className="text-base text-white/90 font-medium">Участниц</p>
                 <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
