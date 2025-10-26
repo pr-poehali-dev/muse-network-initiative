@@ -30,11 +30,27 @@ const BecomeExpertDialog = ({
   isSubmitted
 }: BecomeExpertDialogProps) => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let value = e.target.value;
-    if (!value.startsWith('+7')) {
-      value = '+7' + value.replace(/^\+?7?/, '');
+    let value = e.target.value.replace(/\D/g, '');
+    
+    if (!value.startsWith('7')) {
+      value = '7' + value;
     }
-    onFormDataChange({...formData, phone: value});
+    
+    let formatted = '+7';
+    if (value.length > 1) {
+      formatted += ' (' + value.substring(1, 4);
+    }
+    if (value.length >= 5) {
+      formatted += ') ' + value.substring(4, 7);
+    }
+    if (value.length >= 8) {
+      formatted += '-' + value.substring(7, 9);
+    }
+    if (value.length >= 10) {
+      formatted += '-' + value.substring(9, 11);
+    }
+    
+    onFormDataChange({...formData, phone: formatted});
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
