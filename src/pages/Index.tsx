@@ -6,11 +6,9 @@ import { Textarea } from '@/components/ui/textarea';
 import Icon from '@/components/ui/icon';
 import MosaicGallery from '@/components/MosaicGallery';
 import EventsCalendar from '@/components/EventsCalendar';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const Index = () => {
-  const visibleSections = useScrollAnimation();
   const [scrollY, setScrollY] = useState(0);
   
   useEffect(() => {
@@ -391,7 +389,7 @@ const Index = () => {
         <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">О клубе <span className="text-[#d4af37]">Muse</span></h3>
@@ -480,7 +478,7 @@ const Index = () => {
         <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="mission" className={`py-20 px-8 bg-black noise-texture transition-all duration-1000 ${visibleSections.has('mission') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">ценности</span></h3>
@@ -507,7 +505,7 @@ const Index = () => {
         <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="events" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('events') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Мероприятия и <span className="text-[#d4af37]">встречи</span></h3>
@@ -703,7 +701,7 @@ const Index = () => {
         </DialogContent>
       </Dialog>
 
-      <section id="gallery" className={`py-20 px-8 bg-black noise-texture overflow-hidden transition-all duration-1000 ${visibleSections.has('gallery') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Галерея наших <span className="text-[#d4af37]">мероприятий</span></h3>
@@ -719,7 +717,7 @@ const Index = () => {
         <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="team" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture transition-all duration-1000 ${visibleSections.has('team') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Наши <span className="text-[#d4af37]">эксперты</span></h3>
@@ -761,7 +759,7 @@ const Index = () => {
         <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="contact" className={`py-20 px-8 bg-black luxury-texture transition-all duration-1000 ${visibleSections.has('contact') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-5xl font-bold mb-6 text-[#b8953d] premium-title">Присоединяйтесь <span className="text-[#d4af37]">к нам</span></h3>
