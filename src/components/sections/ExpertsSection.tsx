@@ -55,7 +55,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
       name: 'Полина Берг',
       role: 'Мастер исторического костюма',
       description: 'Северный бренд одежды Пинега',
-      image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg',
+      image: 'https://cdn.poehali.dev/files/ac72f595-012b-4bb4-9f27-b198576f5ed4.jpg',
     },
     {
       name: 'Кузнецова Екатерина Юрьевна',
