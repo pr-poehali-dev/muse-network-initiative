@@ -1,0 +1,124 @@
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+
+interface Expert {
+  name: string;
+  role: string;
+  description: string;
+  image: string;
+}
+
+interface ExpertsSectionProps {
+  visibleSections: Set<string>;
+  onBecomeExpert: () => void;
+}
+
+const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps) => {
+  const experts: Expert[] = [
+    {
+      name: 'Ляшева Карина Викторовна',
+      role: 'Эксперт гастрономического искусства',
+      description: 'Владелица семейного бизнеса компании «ВЕЕК»',
+      image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg',
+    },
+    {
+      name: 'Мерзлая Людмила Ивановна',
+      role: 'Художница',
+      description: 'Владелица творческого пространства Приходи творить',
+      image: 'https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg',
+    },
+    {
+      name: 'Христенко Юлия Анатольевна',
+      role: 'Дизайнер',
+      description: 'Бренд одежды JK',
+      image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg',
+    },
+    {
+      name: 'Самсонова Юлия Аркадьевна',
+      role: 'Стилист',
+      description: 'Эксперт по стилю и имиджу',
+      image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg',
+    },
+    {
+      name: 'Мазмишаили Тамара Васильевна',
+      role: 'Фитнес тренер',
+      description: 'Эксперт здорового образа жизни',
+      image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg',
+    },
+    {
+      name: 'Лазарева Мария Михайловна',
+      role: 'Психолог, психотерапевт',
+      description: 'Метод символдрама',
+      image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg',
+    },
+    {
+      name: 'Полина Берг',
+      role: 'Мастер исторического костюма',
+      description: 'Северный бренд одежды Пинега',
+      image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg',
+    },
+    {
+      name: 'Кузнецова Екатерина Юрьевна',
+      role: 'Директор',
+      description: 'Туристско-информационный центр Архангельской области',
+      image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg',
+    },
+  ];
+
+  return (
+    <section id="experts" className={`relative py-32 px-8 transition-all duration-1000 ${visibleSections.has('experts') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8"></div>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355]">
+            Наши эксперты
+          </h2>
+          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-8">
+            Успешные женщины-лидеры делятся опытом и знаниями
+          </p>
+          <Button 
+            onClick={onBecomeExpert}
+            className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105"
+          >
+            Стать экспертом клуба
+          </Button>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {experts.map((expert, index) => (
+            <Card 
+              key={index} 
+              className="bg-[#1a1a1a]/60 backdrop-blur-md border-[#d4af37]/20 hover-scale glow-effect group relative overflow-hidden"
+              style={{
+                animation: 'fade-in 0.8s ease-out forwards',
+                animationDelay: `${index * 0.1}s`,
+                opacity: 0
+              }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl group-hover:bg-[#d4af37]/20 transition-all duration-500"></div>
+              <CardContent className="p-0 relative z-10">
+                <div className="aspect-square overflow-hidden">
+                  <img 
+                    src={expert.image} 
+                    alt={expert.name}
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{expert.name}</h3>
+                  <p className="text-[#d4af37]/80 text-sm mb-2 font-semibold">{expert.role}</p>
+                  <p className="text-white/60 text-sm leading-relaxed">{expert.description}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ExpertsSection;
