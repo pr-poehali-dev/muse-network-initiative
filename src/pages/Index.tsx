@@ -286,7 +286,7 @@ const Index = () => {
             </button>
 
             <div className="hidden md:flex items-center gap-8">
-              {['hero', 'about', 'values', 'experts', 'events', 'calendar'].map((section) => (
+              {['hero', 'about', 'experts', 'events', 'gallery', 'contact'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -294,9 +294,9 @@ const Index = () => {
                 >
                   {section === 'hero' ? 'Главная' : 
                    section === 'about' ? 'О клубе' :
-                   section === 'values' ? 'Ценности' :
                    section === 'experts' ? 'Эксперты' :
-                   section === 'events' ? 'События' : 'Календарь'}
+                   section === 'events' ? 'События' :
+                   section === 'gallery' ? 'Галерея' : 'Контакты'}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
@@ -320,7 +320,7 @@ const Index = () => {
 
         <div className={`md:hidden fixed left-0 right-0 bg-black backdrop-blur-xl transition-all duration-300 z-40 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`} style={{ top: '76px', bottom: 0, height: 'calc(100vh - 76px)' }}>
           <div className="flex flex-col items-center justify-start pt-8 h-full gap-6 px-8 overflow-y-auto">
-            {['hero', 'about', 'values', 'experts', 'events', 'calendar'].map((section) => (
+            {['hero', 'about', 'experts', 'events', 'gallery', 'contact'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -328,9 +328,9 @@ const Index = () => {
               >
                 {section === 'hero' ? 'Главная' : 
                  section === 'about' ? 'О клубе' :
-                 section === 'values' ? 'Ценности' :
                  section === 'experts' ? 'Эксперты' :
-                 section === 'events' ? 'События' : 'Календарь'}
+                 section === 'events' ? 'События' :
+                 section === 'gallery' ? 'Галерея' : 'Контакты'}
               </button>
             ))}
             <Button
