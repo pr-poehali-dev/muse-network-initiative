@@ -334,7 +334,7 @@ const Index = () => {
         </div>
 
         <div className="w-full text-center px-4 sm:px-6 md:px-8 relative z-30">
-          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-scale-in" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>
+          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 md:animate-scale-in" style={{animationDelay: '0s'}}>
             <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 sm:px-4 tracking-wide sm:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
@@ -342,14 +342,14 @@ const Index = () => {
               MUSE
             </div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 sm:mb-8 md:mb-10 leading-relaxed animate-fade-in px-4" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 sm:mb-8 md:mb-10 leading-relaxed md:animate-fade-in px-4" style={{animationDelay: '0s'}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>
+          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 sm:mb-12 md:mb-16 max-w-3xl mx-auto leading-relaxed md:animate-fade-in px-4" style={{animationDelay: '0.3s'}}>
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-8 sm:mb-12 max-w-5xl mx-auto">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect md:animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '0.6s'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
@@ -359,7 +359,7 @@ const Index = () => {
                 <p className="text-xs sm:text-sm text-white/60 mt-1 sm:mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '3.8s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect md:animate-scale-in relative overflow-hidden group" style={{animationDelay: '0.8s'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
@@ -369,7 +369,7 @@ const Index = () => {
                 <p className="text-xs sm:text-sm text-white/60 mt-1 sm:mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.0s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl hover-scale glow-effect md:animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '1.0s'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 sm:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
