@@ -205,9 +205,9 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture">
+    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden">
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
-        <div className="w-full px-8 py-5">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
             <div className="hidden md:flex items-center gap-8">
