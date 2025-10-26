@@ -212,7 +212,7 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
+            <img src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" alt="Muse" className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -893,7 +893,7 @@ const Index = () => {
       <footer className="py-12 px-4 bg-black text-white relative">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
+            <img src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
             <p className="text-lg mb-8">
               Вместе мы можем достичь большего
             </p>
