@@ -286,7 +286,7 @@ const Index = () => {
             </button>
 
             <div className="hidden md:flex items-center gap-8">
-              {['hero', 'about', 'experts', 'events', 'gallery', 'contact'].map((section) => (
+              {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
                 <button
                   key={section}
                   onClick={() => scrollToSection(section)}
@@ -296,7 +296,7 @@ const Index = () => {
                    section === 'about' ? 'О клубе' :
                    section === 'experts' ? 'Эксперты' :
                    section === 'events' ? 'События' :
-                   section === 'gallery' ? 'Галерея' : 'Контакты'}
+                   section === 'gallery' ? 'Галерея' : 'Календарь'}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
@@ -320,7 +320,7 @@ const Index = () => {
 
         <div className={`md:hidden fixed left-0 right-0 bg-black backdrop-blur-xl transition-all duration-300 z-40 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`} style={{ top: '76px', bottom: 0, height: 'calc(100vh - 76px)' }}>
           <div className="flex flex-col items-center justify-start pt-8 h-full gap-6 px-8 overflow-y-auto">
-            {['hero', 'about', 'experts', 'events', 'gallery', 'contact'].map((section) => (
+            {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -330,7 +330,7 @@ const Index = () => {
                  section === 'about' ? 'О клубе' :
                  section === 'experts' ? 'Эксперты' :
                  section === 'events' ? 'События' :
-                 section === 'gallery' ? 'Галерея' : 'Контакты'}
+                 section === 'gallery' ? 'Галерея' : 'Календарь'}
               </button>
             ))}
             <Button
@@ -751,7 +751,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
