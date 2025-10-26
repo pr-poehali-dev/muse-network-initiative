@@ -58,9 +58,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
         <div className="absolute inset-0 flex">
           <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
             <img 
-              src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
+              src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
               alt="Участница клуба"
-              className="w-full h-full object-cover object-[50%_50%]"
+              className="w-full h-full object-cover object-[50%_28%]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black"></div>
           </div>
@@ -82,9 +82,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           </div>
           <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
             <img 
-              src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
+              src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
               alt="Участница клуба"
-              className="w-full h-full object-cover object-[50%_28%]"
+              className="w-full h-full object-cover object-[50%_50%]"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
           </div>
