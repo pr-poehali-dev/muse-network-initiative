@@ -19,7 +19,7 @@ export const events: Event[] = [
       {
         name: 'Екатерина Кузнецова',
         role: 'Директор ТИЦ Архангельской области',
-        image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg'
+        image: 'https://cdn.poehali.dev/files/f4f78af3-467b-4528-ac10-d085a6eeb04b.jpg'
       }
     ]
   },
