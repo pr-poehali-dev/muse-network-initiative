@@ -100,17 +100,18 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl group-hover:bg-[#d4af37]/20 transition-all duration-500"></div>
               <CardContent className="p-0 relative z-10">
-                <div className="aspect-square overflow-hidden">
+                <div className="aspect-square overflow-hidden relative">
                   <img 
                     src={expert.image} 
                     alt={expert.name}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                   />
+                  <div className="absolute inset-0 bg-black/30"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{expert.name}</h3>
-                  <p className="text-[#d4af37]/80 text-sm mb-2 font-semibold">{expert.role}</p>
-                  <p className="text-white/60 text-sm leading-relaxed">{expert.description}</p>
+                  <p className="text-[#d4af37]/80 text-base mb-2 font-semibold">{expert.role}</p>
+                  <p className="text-white/60 text-base leading-relaxed">{expert.description}</p>
                 </div>
               </CardContent>
             </Card>
