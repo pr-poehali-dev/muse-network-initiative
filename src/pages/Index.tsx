@@ -49,11 +49,13 @@ const Index = () => {
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
   const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false);
     }
   };
 
@@ -209,7 +211,18 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
-            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]" />
+            
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50"
+              aria-label="Toggle menu"
+            >
+              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+              <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+            </button>
+
             <div className="hidden md:flex items-center gap-8">
               {['hero', 'about', 'mission', 'events', 'team'].map((section) => (
                 <button
@@ -241,9 +254,46 @@ const Index = () => {
             </div>
           </div>
         </div>
+
+        <div className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} style={{ top: '76px' }}>
+          <div className="flex flex-col items-center justify-center h-full gap-6 px-8">
+            {['hero', 'about', 'mission', 'events', 'team'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="text-xl font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3 border-b border-[#d4af37]/20"
+              >
+                {section === 'hero' ? 'Главная' : 
+                 section === 'about' ? 'О клубе' :
+                 section === 'mission' ? 'Миссия' :
+                 section === 'events' ? 'Мероприятия' : 'Команда'}
+              </button>
+            ))}
+            <Button
+              size="lg"
+              className="w-full text-base font-bold px-6 py-4 bg-gradient-to-r from-[#6b5d42] to-[#8b7355] hover:from-[#8b7355] hover:to-[#6b5d42] transition-all duration-300 shadow-[0_0_15px_rgba(139,115,85,0.3)] uppercase tracking-wider mt-4"
+              onClick={() => {
+                setIsExpertDialogOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Стать экспертом
+            </Button>
+            <Button
+              size="lg"
+              className="w-full text-base font-bold px-6 py-4 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] uppercase tracking-wider"
+              onClick={() => {
+                setIsJoinDialogOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              Вступить в клуб
+            </Button>
+          </div>
+        </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-[140vh] flex items-end pb-12`}>
+      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -333,50 +383,50 @@ const Index = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
-        <div className="w-full text-center px-8 relative z-30">
-          <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>
-            <h2 className="text-9xl md:text-[12rem] lg:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+        <div className="w-full text-center px-4 md:px-8 relative z-30">
+          <div className="relative inline-block mb-6 md:mb-10">
+            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            <div className="absolute inset-0 text-9xl md:text-[12rem] lg:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-4">
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               MUSE
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed">
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>
+          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed">
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 max-w-5xl mx-auto">
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Users" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
+                  <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
-                <p className="text-base text-white/90 font-medium">Участниц</p>
-                <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
+                <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
+                <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '3.8s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
+                  <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
-                <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
-                <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
+                <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
+                <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.0s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-                  <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
+                  <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
-                <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
-                <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
+                <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
+                <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Доступ из любой точки мира</p>
               </div>
             </div>
           </div>
