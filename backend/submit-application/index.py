@@ -6,7 +6,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 SPREADSHEET_ID = '1kJpQ3gNX5Ls47gLsd75lFH9MtxSiaigilkzYR_xBVuk'
-SHEET_NAME = 'Form1'
+SHEET_NAME = 'Invite'
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
