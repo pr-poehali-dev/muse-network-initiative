@@ -711,11 +711,11 @@ const Index = () => {
       </section>
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
+        <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 md:p-8">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</DialogTitle>
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</DialogTitle>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
+          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide">
             <MosaicGallery />
           </div>
         </DialogContent>
