@@ -310,17 +310,19 @@ const Index = () => {
               ))}
               <Button
                 size="lg"
-                className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#6b5d42] to-[#8b7355] hover:from-[#8b7355] hover:to-[#6b5d42] transition-all duration-300 shadow-[0_0_15px_rgba(139,115,85,0.3)] hover:shadow-[0_0_25px_rgba(139,115,85,0.5)] uppercase tracking-wider"
+                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden"
                 onClick={() => setIsExpertDialogOpen(true)}
               >
-                Стать экспертом
+                <span className="relative z-10">Стать экспертом</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
               </Button>
               <Button
                 size="lg"
-                className="text-sm font-bold px-6 py-3 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] uppercase tracking-wider"
+                className="group relative text-sm font-semibold px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8953d] text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-500 overflow-hidden"
                 onClick={() => setIsJoinDialogOpen(true)}
               >
-                Вступить в клуб
+                <span className="relative z-10">Вступить в клуб</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </Button>
             </div>
           </div>
@@ -343,23 +345,25 @@ const Index = () => {
             ))}
             <Button
               size="lg"
-              className="w-full text-base font-bold px-6 py-4 bg-gradient-to-r from-[#6b5d42] to-[#8b7355] hover:from-[#8b7355] hover:to-[#6b5d42] transition-all duration-300 shadow-[0_0_15px_rgba(139,115,85,0.3)] uppercase tracking-wider mt-4"
+              className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden mt-4"
               onClick={() => {
                 setIsExpertDialogOpen(true);
                 setIsMobileMenuOpen(false);
               }}
             >
-              Стать экспертом
+              <span className="relative z-10">Стать экспертом</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Button>
             <Button
               size="lg"
-              className="w-full text-base font-bold px-6 py-4 bg-gradient-to-r from-[#b8953d] to-[#d4af37] hover:from-[#d4af37] hover:to-[#b8953d] transition-all duration-300 shadow-[0_0_20px_rgba(212,175,55,0.4)] uppercase tracking-wider"
+              className="group relative w-full text-base font-semibold px-6 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8953d] text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-500 overflow-hidden"
               onClick={() => {
                 setIsJoinDialogOpen(true);
                 setIsMobileMenuOpen(false);
               }}
             >
-              Вступить в клуб
+              <span className="relative z-10">Вступить в клуб</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
           </div>
         </div>
