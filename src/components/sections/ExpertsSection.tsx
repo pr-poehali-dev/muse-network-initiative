@@ -91,7 +91,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
           {experts.map((expert, index) => (
             <Card 
               key={index} 
-              className="bg-[#1a1a1a]/60 backdrop-blur-md border-[#d4af37]/20 hover-scale glow-effect group relative overflow-hidden"
+              className="bg-[#1a1a1a]/60 backdrop-blur-md border-[#d4af37]/20 group relative overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30 hover:border-[#d4af37]/40"
               style={{
                 animation: 'fade-in 0.8s ease-out forwards',
                 animationDelay: `${index * 0.1}s`,
@@ -101,12 +101,12 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl group-hover:bg-[#d4af37]/20 transition-all duration-500"></div>
               <CardContent className="p-0 relative z-10">
                 <div className="aspect-square overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent z-10 group-hover:from-black/40 group-hover:via-black/20 transition-all duration-500"></div>
                   <img 
                     src={expert.image} 
                     alt={expert.name}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-black/30"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{expert.name}</h3>
