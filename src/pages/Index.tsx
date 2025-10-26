@@ -892,7 +892,7 @@ const Index = () => {
 
       <footer className="py-12 px-4 bg-black text-white relative">
         <div className="container mx-auto">
-          <div className="text-center">
+          <div className="text-center mb-16">
             <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
             <p className="text-lg mb-8">
               Вместе мы можем достичь большего
@@ -902,18 +902,18 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8">
+          <div className="flex justify-center md:justify-end">
             <a 
               href="https://albeweb.ru/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-xl text-white/50 hover:text-white/80 transition-colors group"
+              className="flex items-center gap-2 text-base text-white/50 hover:text-white/80 transition-colors group"
             >
               <span>Разработано в</span>
               <img 
                 src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
                 alt="Albe" 
-                className="h-16 opacity-50 group-hover:opacity-80 transition-opacity"
+                className="h-12 opacity-50 group-hover:opacity-80 transition-opacity"
               />
             </a>
           </div>
