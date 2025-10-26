@@ -622,9 +622,9 @@ const Index = () => {
               <p className="text-white/70">Мы свяжемся с вами в ближайшее время</p>
             </div>
           ) : (
-            <form onSubmit={handleEventFormSubmit} className="space-y-3">
+            <form onSubmit={handleEventFormSubmit} className="space-y-2">
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Имя *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Имя *</label>
                 <Input 
                   placeholder="Ваше имя" 
                   value={eventFormData.name}
@@ -634,7 +634,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Email *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Email *</label>
                 <Input 
                   type="email" 
                   placeholder="your@email.com" 
@@ -645,7 +645,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Телефон *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Телефон *</label>
                 <Input 
                   type="tel" 
                   placeholder="+7 (___) ___-__-__" 
@@ -656,7 +656,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Telegram</label>
+                <label className="block text-xs font-medium mb-1 text-white">Telegram</label>
                 <Input 
                   type="text" 
                   placeholder="@username" 
@@ -666,16 +666,16 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Комментарий</label>
+                <label className="block text-xs font-medium mb-1 text-white">Комментарий</label>
                 <Textarea
                   placeholder="Дополнительная информация или пожелания"
-                  rows={3}
+                  rows={2}
                   value={eventFormData.message}
                   onChange={(e) => setEventFormData({...eventFormData, message: e.target.value})}
                   className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
                 />
               </div>
-              <Button className="w-full text-sm py-2.5 hover-scale glow-effect" type="submit">
+              <Button className="w-full text-sm py-2 hover-scale glow-effect mt-3" type="submit">
                 Отправить заявку
               </Button>
             </form>
@@ -703,7 +703,7 @@ const Index = () => {
           ) : (
             <form onSubmit={handleJoinFormSubmit} className="space-y-3">
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Имя *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Имя *</label>
                 <Input 
                   placeholder="Ваше имя" 
                   value={joinFormData.name}
@@ -713,7 +713,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Email *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Email *</label>
                 <Input 
                   type="email" 
                   placeholder="your@email.com" 
@@ -724,7 +724,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Телефон *</label>
+                <label className="block text-xs font-medium mb-1 text-white">Телефон *</label>
                 <Input 
                   type="tel" 
                   placeholder="+7 (___) ___-__-__" 
@@ -735,7 +735,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Telegram</label>
+                <label className="block text-xs font-medium mb-1 text-white">Telegram</label>
                 <Input 
                   type="text" 
                   placeholder="@username" 
@@ -745,10 +745,10 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5 text-white">Расскажите о себе</label>
+                <label className="block text-xs font-medium mb-1 text-white">Расскажите о себе</label>
                 <Textarea
                   placeholder="Чем вы занимаетесь? Что вас вдохновляет?"
-                  rows={3}
+                  rows={2}
                   value={joinFormData.message}
                   onChange={(e) => setJoinFormData({...joinFormData, message: e.target.value})}
                   className="bg-[#0a0a0a]/50 border-[#d4af37]/30"
@@ -862,19 +862,19 @@ const Index = () => {
             <CardContent className="p-8">
               <form className="space-y-6">
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-white">Имя</label>
+                  <label className="block text-xs font-medium mb-1 text-white">Имя</label>
                   <Input placeholder="Ваше имя" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-white">Email</label>
+                  <label className="block text-xs font-medium mb-1 text-white">Email</label>
                   <Input type="email" placeholder="your@email.com" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-white">Телефон</label>
+                  <label className="block text-xs font-medium mb-1 text-white">Телефон</label>
                   <Input type="tel" placeholder="+7 (___) ___-__-__" />
                 </div>
                 <div>
-                  <label className="block text-xs font-medium mb-1.5 text-white">Расскажите о себе</label>
+                  <label className="block text-xs font-medium mb-1 text-white">Расскажите о себе</label>
                   <Textarea
                     placeholder="Чем вы занимаетесь? Что вас вдохновляет?"
                     rows={4}
@@ -947,7 +947,7 @@ const Index = () => {
           ) : (
             <form onSubmit={handleExpertFormSubmit} className="space-y-3">
               <div>
-                <label className="block text-xs font-medium mb-1.5">Имя</label>
+                <label className="block text-xs font-medium mb-1">Имя</label>
                 <Input
                   value={expertFormData.name}
                   onChange={(e) => setExpertFormData({...expertFormData, name: e.target.value})}
@@ -957,7 +957,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5">Email</label>
+                <label className="block text-xs font-medium mb-1">Email</label>
                 <Input
                   type="email"
                   value={expertFormData.email}
@@ -968,7 +968,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5">Телефон</label>
+                <label className="block text-xs font-medium mb-1">Телефон</label>
                 <Input
                   type="tel"
                   value={expertFormData.phone}
@@ -979,7 +979,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5">Telegram (опционально)</label>
+                <label className="block text-xs font-medium mb-1">Telegram (опционально)</label>
                 <Input
                   value={expertFormData.telegram}
                   onChange={(e) => setExpertFormData({...expertFormData, telegram: e.target.value})}
@@ -988,7 +988,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5">Область экспертизы</label>
+                <label className="block text-xs font-medium mb-1">Область экспертизы</label>
                 <Input
                   value={expertFormData.expertise}
                   onChange={(e) => setExpertFormData({...expertFormData, expertise: e.target.value})}
@@ -998,12 +998,12 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium mb-1.5">О вашем опыте</label>
+                <label className="block text-xs font-medium mb-1">О вашем опыте</label>
                 <Textarea
                   value={expertFormData.message}
                   onChange={(e) => setExpertFormData({...expertFormData, message: e.target.value})}
                   placeholder="Расскажите о своих достижениях и что можете предложить клубу..."
-                  rows={3}
+                  rows={2}
                   required
                   className="bg-black/50 border-[#d4af37]/30 text-white"
                 />
