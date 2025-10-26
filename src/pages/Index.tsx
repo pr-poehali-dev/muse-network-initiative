@@ -293,7 +293,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-20 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
+      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -383,22 +383,22 @@ const Index = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30">
-          <div className="relative inline-block mb-6 md:mb-10">
-            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+        <div className="w-full text-center px-4 md:px-8 relative z-30 max-h-screen overflow-y-auto md:overflow-visible pb-20 md:pb-0">
+          <div className="relative inline-block mb-4 md:mb-10 mt-4 md:mt-0">
+            <h2 className="text-5xl sm:text-6xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
+            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               MUSE
             </div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-10 leading-relaxed">
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-lg text-white/70 mb-6 md:mb-16 max-w-3xl mx-auto leading-relaxed">
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-8 mb-6 md:mb-12 max-w-5xl mx-auto">
             <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group">
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
