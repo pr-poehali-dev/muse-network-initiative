@@ -88,7 +88,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
         </button>
 
         {isExpanded && currentMonthEvents.length > 0 && (
-          <div className="space-y-3 mt-6 md:space-y-0 md:flex md:gap-3 md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2 md:mt-0">
+          <div className="space-y-3 mt-6 md:hidden">
             {currentMonthEvents.map((event) => {
               const config = getEventTypeConfig(event.type);
               const isSelected = selectedEvent?.id === event.id;

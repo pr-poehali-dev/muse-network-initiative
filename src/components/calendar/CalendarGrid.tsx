@@ -46,7 +46,7 @@ export const CalendarGrid = ({
     <div className="animate-fade-in hidden md:block">
       <div className="flex items-center justify-between mb-6 bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/60 rounded-xl p-4 border border-[#d4af37]/30 shadow-lg backdrop-blur-sm">
         <button
-          onClick={() => onMonthChange(-3)}
+          onClick={() => onMonthChange(-1)}
           className="p-2.5 rounded-lg bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/40 hover:border-[#d4af37] hover:bg-gradient-to-br hover:from-[#d4af37]/30 hover:to-[#b8953d]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 transition-all group"
         >
           <Icon name="ChevronLeft" className="text-[#d4af37] group-hover:scale-110 transition-transform" size={18} />
@@ -57,7 +57,7 @@ export const CalendarGrid = ({
         </h4>
         
         <button
-          onClick={() => onMonthChange(3)}
+          onClick={() => onMonthChange(1)}
           className="p-2.5 rounded-lg bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/40 hover:border-[#d4af37] hover:bg-gradient-to-br hover:from-[#d4af37]/30 hover:to-[#b8953d]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 transition-all group"
         >
           <Icon name="ChevronRight" className="text-[#d4af37] group-hover:scale-110 transition-transform" size={18} />
