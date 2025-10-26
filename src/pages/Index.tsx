@@ -105,15 +105,31 @@ const Index = () => {
     }
   };
 
-  const handleExpertFormSubmit = (e: FormEvent) => {
+  const handleExpertFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log('Become expert:', expertFormData);
-    setIsExpertFormSubmitted(true);
-    setTimeout(() => {
-      setIsExpertFormSubmitted(false);
-      setIsExpertDialogOpen(false);
-      setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
-    }, 2000);
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/8ab02561-3cbe-42f7-9c3d-42f2c964f007', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(expertFormData)
+      });
+      
+      if (response.ok) {
+        setIsExpertFormSubmitted(true);
+        setTimeout(() => {
+          setIsExpertFormSubmitted(false);
+          setIsExpertDialogOpen(false);
+          setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
+        }, 2000);
+      } else {
+        console.error('Failed to submit expert application');
+      }
+    } catch (error) {
+      console.error('Error submitting expert application:', error);
+    }
   };
 
   const experts = [
