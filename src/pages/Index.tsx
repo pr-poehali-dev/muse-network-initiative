@@ -344,11 +344,11 @@ const Index = () => {
               MUSE
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
-            Сообщество женщин из сферы бизнеса, культуры, науки и искусства
+          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
+            <span className="typewriter" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>Сообщество женщин из сферы бизнеса, культуры, науки и искусства</span>
           </p>
-          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>
-            Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
+          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed" style={{animationDelay: '5.5s', animationFillMode: 'backwards'}}>
+            <span className="typewriter" style={{animationDelay: '5.5s', animationFillMode: 'backwards', animationDuration: '3s'}}>Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.</span>
           </p>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>

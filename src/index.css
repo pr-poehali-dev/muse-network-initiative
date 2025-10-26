@@ -233,6 +233,23 @@ html {
     }
   }
 
+  .typewriter {
+    overflow: hidden;
+    display: inline-block;
+    animation: typing 2.5s steps(80, end) forwards;
+    max-width: 0;
+    vertical-align: top;
+  }
+
+  @keyframes typing {
+    from {
+      max-width: 0;
+    }
+    to {
+      max-width: 100%;
+    }
+  }
+
   .glow-effect {
     position: relative;
     overflow: hidden;
