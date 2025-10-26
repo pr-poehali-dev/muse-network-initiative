@@ -752,9 +752,13 @@ const Index = () => {
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
-              className="text-lg px-8 py-6 hover-scale glow-effect bg-gradient-to-r from-[#8b7355] via-[#b8953d] to-[#6b5d42] hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355]"
+              className="group relative text-lg font-semibold px-10 py-4 bg-transparent border-2 border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden rounded-xl"
             >
-              Смотреть
+              <span className="relative z-10 flex items-center gap-2">
+                Смотреть
+                <Icon name="Eye" className="group-hover:scale-110 transition-transform duration-300" size={20} />
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Button>
           </div>
         </div>
@@ -840,14 +844,18 @@ const Index = () => {
           <div className="text-center">
             <Button 
               onClick={() => setIsJoinDialogOpen(true)}
-              className="group relative bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold text-lg md:text-xl py-6 md:py-8 px-12 md:px-16 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl shadow-[#d4af37]/40 hover:shadow-[#d4af37]/60 animate-pulse-glow"
+              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] text-black hover:scale-105 transition-all duration-500 overflow-hidden shadow-2xl hover:shadow-[0_8px_40px_rgba(212,175,55,0.7)] rounded-2xl"
             >
               <span className="relative z-10 flex items-center gap-3">
                 <Icon name="Sparkles" className="group-hover:rotate-180 transition-transform duration-500" size={24} />
-                Подать заявку
+                Вступить в клуб
                 <Icon name="ArrowRight" className="group-hover:translate-x-2 transition-transform duration-300" size={20} />
               </span>
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#b8953d] to-[#6b5d42] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#ffd700] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 opacity-50">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-white/40"></div>
+              </div>
             </Button>
           </div>
         </div>
