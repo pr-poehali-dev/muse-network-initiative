@@ -569,14 +569,14 @@ const Index = () => {
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Мероприятия и встречи</h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">События и встречи</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
           </div>
 
           <div className="text-center mb-10">
-            <h4 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы мероприятий</h4>
+            <h4 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы событий</h4>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
