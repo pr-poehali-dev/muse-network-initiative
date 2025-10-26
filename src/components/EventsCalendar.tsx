@@ -285,6 +285,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                       )}
                     </div>
                   </div>
+                  </div>
                   
                   {isSelected && (
                     <div className="md:hidden mt-3 p-4 bg-gradient-to-br from-[#0a0a0a]/95 to-[#1a1a1a]/90 rounded-xl border border-[#d4af37]/30 animate-fade-in space-y-4">
