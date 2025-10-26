@@ -787,12 +787,12 @@ const Index = () => {
         <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
           <button
             onClick={() => setGalleryOpen(false)}
-            className="absolute top-2 right-2 z-50 text-white/60 hover:text-[#d4af37] transition-colors duration-300 hover:scale-110 transform"
+            className="absolute top-4 right-4 z-50 text-white/60 hover:text-[#d4af37] transition-colors duration-300 hover:scale-110 transform"
           >
-            <Icon name="X" size={28} />
+            <Icon name="X" size={24} />
           </button>
-          <DialogHeader>
-            <DialogTitle>Галерея мероприятий</DialogTitle>
+          <DialogHeader className="pr-12">
+            <DialogTitle className="text-left">Галерея мероприятий</DialogTitle>
           </DialogHeader>
           <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
             <MosaicGallery />
