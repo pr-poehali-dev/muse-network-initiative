@@ -809,13 +809,13 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
             {experts.map((expert, index) => (
               <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
                 <CardContent className="p-0">
-                  <div className="aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+                  <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
-                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top" />
+                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top md:object-top" />
                     ) : (
                       <>
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
@@ -823,10 +823,10 @@ const Index = () => {
                       </>
                     )}
                   </div>
-                  <div className="p-4 bg-[#1a1a1a]">
-                    <h4 className="text-sm font-semibold text-center mb-1 leading-tight text-white">{expert.name}</h4>
-                    <p className="text-xs text-[#b8953d] text-center font-medium mb-1">{expert.role}</p>
-                    <p className="text-xs text-white/60 text-center leading-relaxed">
+                  <div className="p-4 md:p-4 bg-[#1a1a1a]">
+                    <h4 className="text-base md:text-sm font-semibold text-left md:text-center mb-1 leading-tight text-white">{expert.name}</h4>
+                    <p className="text-sm md:text-xs text-[#b8953d] text-left md:text-center font-medium mb-1">{expert.role}</p>
+                    <p className="text-sm md:text-xs text-white/60 text-left md:text-center leading-relaxed">
                       {expert.description}
                     </p>
                   </div>
