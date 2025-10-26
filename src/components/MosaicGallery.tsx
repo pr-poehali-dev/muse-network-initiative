@@ -133,7 +133,7 @@ const MosaicGallery = () => {
 
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 md:p-8 animate-fade-in"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 md:p-0 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button
@@ -145,7 +145,7 @@ const MosaicGallery = () => {
           <img
             src={selectedImage}
             alt="Увеличенное фото"
-            className="w-full h-full md:w-auto md:h-auto md:max-w-[90vw] md:max-h-[90vh] object-contain rounded-lg animate-scale-in"
+            className="w-full h-full md:w-full md:h-auto md:max-h-screen object-contain rounded-lg md:rounded-none animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
