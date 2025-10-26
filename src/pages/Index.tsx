@@ -310,7 +310,7 @@ const Index = () => {
               ))}
               <Button
                 size="lg"
-                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden"
+                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
                 onClick={() => setIsExpertDialogOpen(true)}
               >
                 <span className="relative z-10">Стать экспертом</span>
@@ -752,7 +752,7 @@ const Index = () => {
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
-              className="group relative text-lg font-semibold px-10 py-4 bg-transparent border-2 border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden rounded-xl"
+              className="group relative text-lg font-semibold px-10 py-4 bg-transparent border-2 border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden rounded-xl"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
