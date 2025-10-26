@@ -212,16 +212,16 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
           onClick={() => setIsExpanded(!isExpanded)}
           className="w-full flex items-center justify-between mb-6 group"
         >
-          <div className="flex items-center gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-[#b8953d]/30 to-[#d4af37]/30 group-hover:from-[#b8953d]/40 group-hover:to-[#d4af37]/40 transition-all shadow-lg">
-              <Icon name="CalendarDays" className="text-[#d4af37]" size={28} />
+          <div className="flex items-center gap-3 md:gap-4">
+            <div className="p-2 md:p-3 rounded-lg md:rounded-xl bg-gradient-to-br from-[#b8953d]/30 to-[#d4af37]/30 group-hover:from-[#b8953d]/40 group-hover:to-[#d4af37]/40 transition-all shadow-lg">
+              <Icon name="CalendarDays" className="text-[#d4af37]" size={24} />
             </div>
             <div className="text-left">
-              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
-                Календарь мероприятий
+              <h3 className="text-lg md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
+                Календарь событий
               </h3>
-              <p className="text-sm text-white/60 mt-0.5">
-                {currentMonthEvents.length} {currentMonthEvents.length === 1 ? 'событие' : 'события'} в этом месяце
+              <p className="text-xs md:text-sm text-white/60 mt-0.5">
+                {currentMonthEvents.length} {currentMonthEvents.length === 1 ? 'событие' : 'события'}
               </p>
             </div>
           </div>
@@ -229,13 +229,13 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
             <Icon 
               name={isExpanded ? "ChevronUp" : "ChevronDown"} 
               className="text-[#d4af37] group-hover:scale-110 transition-transform" 
-              size={28} 
+              size={24} 
             />
           </div>
         </button>
 
         {!isExpanded && currentMonthEvents.length > 0 && (
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+          <div className="flex flex-col gap-3 md:flex-row md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2">
             {currentMonthEvents.map((event) => {
               const config = getEventTypeConfig(event.type);
               const eventDate = new Date(event.date);
@@ -243,20 +243,50 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
               return (
                 <div
                   key={event.id}
-                  className="flex-shrink-0 w-56 bg-[#0a0a0a]/60 border border-[#b8953d]/20 rounded-lg p-3 hover:border-[#d4af37]/60 transition-all cursor-pointer"
+                  className="flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 border-[#b8953d]/40 rounded-2xl p-4 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/30 transition-all cursor-pointer group"
                   onClick={() => {
                     setSelectedEvent(event);
                     setIsExpanded(true);
                   }}
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className={`w-2 h-2 rounded-full ${config.badge} animate-pulse`} />
-                    <span className="text-xs text-[#b8953d]/80">{config.label}</span>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <Icon name={config.icon as any} size={24} className="text-black" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="inline-block px-2 py-0.5 rounded-md bg-[#d4af37]/20 border border-[#d4af37]/40 mb-2">
+                        <span className="text-xs font-bold text-[#d4af37]">{config.label}</span>
+                      </div>
+                      <h4 className="text-base font-bold text-white mb-2 line-clamp-2 leading-tight">
+                        {event.title}
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-sm font-semibold text-white/90 mb-1 line-clamp-2">{event.title}</p>
-                  <p className="text-xs text-white/60">
-                    {eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })} • {event.time}
-                  </p>
+                  
+                  <div className="flex items-center gap-2 text-xs text-white/60 mb-3">
+                    <Icon name="Calendar" size={14} className="text-[#d4af37]" />
+                    <span>{eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}</span>
+                    <Icon name="Clock" size={14} className="text-[#d4af37] ml-1" />
+                    <span>{event.time}</span>
+                  </div>
+
+                  {event.speakers.length > 0 && (
+                    <div className="space-y-2 pt-3 border-t border-[#d4af37]/20">
+                      {event.speakers.map((speaker, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <img 
+                            src={speaker.image} 
+                            alt={speaker.name}
+                            className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-white/90 truncate">{speaker.name}</p>
+                            <p className="text-[10px] text-white/50 truncate">{speaker.role}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}
@@ -265,7 +295,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
 
         {isExpanded && (
           <div className="animate-fade-in">
-            <div className="flex items-center justify-between mb-4 bg-[#0a0a0a]/40 rounded-xl p-3 border border-[#b8953d]/10">
+            <div className="flex items-center justify-between mb-4 bg-gradient-to-r from-[#0a0a0a]/60 to-[#1a1a1a]/40 rounded-xl p-2.5 md:p-3 border border-[#b8953d]/20 shadow-inner">
               <button
                 onClick={() => changeMonth(-3)}
                 className="p-2 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
@@ -273,7 +303,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                 <Icon name="ChevronLeft" className="text-[#b8953d] group-hover:text-[#d4af37]" size={18} />
               </button>
               
-              <h4 className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
+              <h4 className="text-sm md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
                 {monthName}
               </h4>
               

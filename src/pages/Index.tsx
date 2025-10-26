@@ -194,12 +194,12 @@ const Index = () => {
     {
       title: 'Гостевые спикеры',
       description: 'Приглашенные эксперты делятся опытом и знаниями, посещаем экскурсии',
-      details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые мероприятия. Расширяем горизонты вместе!',
+      details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые события. Расширяем горизонты вместе!',
       icon: 'Mic',
       emoji: '🎤'
     },
     {
-      title: 'Творческие мероприятия',
+      title: 'Творческие события',
       description: 'Развивайте себя в новых форматах: творчество, музыка, искусство',
       details: 'Раскрываем таланты: арт-терапия, музыкальные вечера, мастер-классы по живописи, танцам, кулинарии. Баланс между работой и вдохновением.',
       icon: 'Palette',
@@ -569,14 +569,14 @@ const Index = () => {
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Мероприятия и встречи</h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">События и встречи</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
           </div>
 
           <div className="text-center mb-10">
-            <h4 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы мероприятий</h4>
+            <h4 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы событий</h4>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
@@ -785,14 +785,8 @@ const Index = () => {
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
-          <button
-            onClick={() => setGalleryOpen(false)}
-            className="absolute top-2 right-2 z-50 text-white/60 hover:text-[#d4af37] transition-colors duration-300 hover:scale-110 transform"
-          >
-            <Icon name="X" size={28} />
-          </button>
           <DialogHeader>
-            <DialogTitle>Галерея мероприятий</DialogTitle>
+            <DialogTitle className="text-left">Галерея событий</DialogTitle>
           </DialogHeader>
           <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
             <MosaicGallery />
