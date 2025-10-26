@@ -7,6 +7,7 @@ interface CalendarGridProps {
   onDaySelect: (day: number) => void;
   selectedDay: number | null;
   getEventsForDay: (day: number, monthOffset: number) => Event[];
+  isAnimating?: boolean;
 }
 
 export const CalendarGrid = ({ 
@@ -14,7 +15,8 @@ export const CalendarGrid = ({
   onMonthChange, 
   onDaySelect,
   selectedDay,
-  getEventsForDay 
+  getEventsForDay,
+  isAnimating = false
 }: CalendarGridProps) => {
   const getDaysInMonth = (date: Date) => {
     const year = date.getFullYear();
@@ -64,7 +66,7 @@ export const CalendarGrid = ({
         </button>
       </div>
 
-      <div className="grid grid-cols-3 gap-3 md:gap-4">
+      <div className={`grid grid-cols-3 gap-3 md:gap-4 transition-all duration-300 ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
         {threeMonths.map(({ offset, name, daysInMonth, startingDayOfWeek }) => (
           <div key={offset} className="bg-gradient-to-br from-[#0a0a0a]/70 to-[#1a1a1a]/50 rounded-lg p-3 md:p-4 border border-[#b8953d]/20 hover:border-[#d4af37]/30 transition-all backdrop-blur-sm">
             <div className="text-center mb-3">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './calendar/types';
@@ -16,6 +16,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 10));
   const [isExpanded, setIsExpanded] = useState(false);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const getEventTypeConfig = (type: Event['type']): EventTypeConfig => {
     switch(type) {
@@ -49,7 +50,11 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
   };
 
   const changeMonth = (delta: number) => {
-    setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + delta));
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + delta));
+      setTimeout(() => setIsAnimating(false), 50);
+    }, 150);
   };
 
   const currentMonthEvents = events.filter(event => {
@@ -114,6 +119,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
             onDaySelect={setSelectedDay}
             selectedDay={selectedDay}
             getEventsForDay={getEventsForDay}
+            isAnimating={isAnimating}
           />
         )}
 
