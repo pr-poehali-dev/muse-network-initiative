@@ -1,0 +1,119 @@
+import { Event } from './types';
+
+export const events: Event[] = [
+  {
+    id: 1,
+    title: 'Встреча клуба: Искусство переговоров',
+    date: '2025-11-05',
+    time: '18:00',
+    description: 'Панельная дискуссия с участием успешных предпринимательниц о стратегиях эффективных переговоров в бизнесе',
+    type: 'offline',
+    location: 'Конференц-зал "Империал"',
+    seats: 45,
+    speakers: [
+      {
+        name: 'Карина Ляшева',
+        role: 'Эксперт гастрономического искусства',
+        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+      },
+      {
+        name: 'Екатерина Кузнецова',
+        role: 'Директор ТИЦ Архангельской области',
+        image: 'https://cdn.poehali.dev/files/4701b3a0-0023-4503-a000-c27575d828c5.jpg'
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: 'Онлайн-трансляция: Женское лидерство',
+    date: '2025-11-12',
+    time: '19:00',
+    description: 'Живой эфир с обсуждением современных вызовов и возможностей для женщин-лидеров',
+    type: 'online',
+    location: 'Zoom',
+    speakers: [
+      {
+        name: 'Мария Лазарева',
+        role: 'Психолог, психотерапевт',
+        image: 'https://cdn.poehali.dev/files/8918025e-bd03-439f-9c9d-a464c41db967.jpg'
+      }
+    ]
+  },
+  {
+    id: 3,
+    title: 'Творческий вечер: Живопись и вино',
+    date: '2025-11-18',
+    time: '17:00',
+    description: 'Мастер-класс по живописи в камерной атмосфере с профессиональным художником',
+    type: 'workshop',
+    location: 'Арт-студия "Муза"',
+    seats: 20,
+    speakers: [
+      {
+        name: 'Людмила Мерзлая',
+        role: 'Художница',
+        image: 'https://cdn.poehali.dev/files/d43f8002-32ee-4d33-b31a-1522584b8d7a.jpg'
+      }
+    ]
+  },
+  {
+    id: 4,
+    title: 'Встреча с гостем: Стиль и имидж',
+    date: '2025-11-22',
+    time: '18:30',
+    description: 'Эксперт по стилю расскажет о создании личного бренда через имидж',
+    type: 'guest',
+    location: 'Бизнес-лаундж Muse',
+    seats: 30,
+    speakers: [
+      {
+        name: 'Юлия Самсонова',
+        role: 'Стилист',
+        image: 'https://cdn.poehali.dev/files/de629d22-a303-442b-a053-635d1d5f13a8.jpg'
+      },
+      {
+        name: 'Юлия Христенко',
+        role: 'Дизайнер бренда JK',
+        image: 'https://cdn.poehali.dev/files/8a05ff5a-5256-4944-b541-048d02d99b46.jpg'
+      }
+    ]
+  },
+  {
+    id: 5,
+    title: 'Онлайн встреча: Баланс жизни',
+    date: '2025-11-26',
+    time: '20:00',
+    description: 'Обсуждение практик work-life balance с экспертом здорового образа жизни',
+    type: 'online',
+    location: 'Zoom',
+    speakers: [
+      {
+        name: 'Тамара Мазмишаили',
+        role: 'Фитнес тренер',
+        image: 'https://cdn.poehali.dev/files/8c010389-4dea-4096-a576-04877bd5734a.jpg'
+      }
+    ]
+  },
+  {
+    id: 6,
+    title: 'Декабрьская встреча: Итоги года',
+    date: '2025-12-03',
+    time: '18:00',
+    description: 'Праздничная встреча клуба с подведением итогов года и планированием на будущее',
+    type: 'offline',
+    location: 'Ресторан "Золотой век"',
+    seats: 60,
+    speakers: [
+      {
+        name: 'Карина Ляшева',
+        role: 'Основательница клуба Muse',
+        image: 'https://cdn.poehali.dev/files/93ccee65-f8bb-4b50-b5e2-2fe00bee7333.jpg'
+      },
+      {
+        name: 'Полина Берг',
+        role: 'Мастер исторического костюма',
+        image: 'https://cdn.poehali.dev/files/827bd97b-99e1-4276-8dc4-02865e9ebee2.jpg'
+      }
+    ]
+  }
+];
