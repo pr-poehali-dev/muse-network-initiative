@@ -233,6 +233,27 @@ html {
     }
   }
 
+  .slot-letter {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  .slot-letter-inner {
+    animation: slot-roll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+
+  @keyframes slot-roll {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
   .glow-effect {
     position: relative;
     overflow: hidden;
