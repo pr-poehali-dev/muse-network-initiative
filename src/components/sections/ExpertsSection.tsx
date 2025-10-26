@@ -37,7 +37,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
       name: 'Самсонова Юлия Аркадьевна',
       role: 'Стилист',
       description: 'Эксперт по стилю и имиджу',
-      image: 'https://cdn.poehali.dev/files/d626fbbe-3ea2-4bc0-97d7-b69fee687dc2.jpg',
+      image: 'https://cdn.poehali.dev/files/37231f0d-7f2c-44ec-a259-688241e59545.jpg',
     },
     {
       name: 'Мазмишаили Тамара Васильевна',
