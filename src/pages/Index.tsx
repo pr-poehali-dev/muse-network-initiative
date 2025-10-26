@@ -240,7 +240,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_black_100%)] z-10"></div>
           
-          <div className="absolute left-[5%] top-[15%] w-[25%] h-[70%] opacity-40">
+          <div className="absolute left-[2%] top-[10%] w-[22%] h-[65%] opacity-50">
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/9679dc3f-e15d-486a-8c38-770167cf95f8.jpg" 
@@ -253,7 +253,7 @@ const Index = () => {
             />
           </div>
 
-          <div className="absolute right-[5%] top-[20%] w-[22%] h-[65%] opacity-35">
+          <div className="absolute right-[2%] top-[15%] w-[20%] h-[60%] opacity-45">
             <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/a7c58b65-8563-40cd-bcbd-b1deeb82fd81.jpg" 
@@ -266,32 +266,33 @@ const Index = () => {
             />
           </div>
 
-          <div className="absolute left-[20%] bottom-[5%] w-[20%] h-[50%] opacity-30">
-            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#d4af37]/10 to-transparent"></div>
+          <div className="absolute left-[15%] top-[8%] w-[25%] h-[70%] opacity-40">
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/7996f5d6-a435-4479-b838-adf0b16ecc1f.jpg" 
               alt="" 
               className="w-full h-full object-cover object-top mix-blend-luminosity"
               style={{
-                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)'
               }}
             />
           </div>
 
-          <div className="absolute right-[22%] bottom-[8%] w-[18%] h-[45%] opacity-25">
+          <div className="absolute right-[15%] top-[12%] w-[23%] h-[68%] opacity-42">
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/fbdbe04e-5947-4166-8d2d-2deee0f946d9.jpg" 
               alt="" 
               className="w-full h-full object-cover object-top mix-blend-luminosity"
               style={{
-                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)'
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)'
               }}
             />
           </div>
 
-          <div className="absolute left-1/2 top-[10%] -translate-x-1/2 w-[35%] h-[75%] opacity-50">
+          <div className="absolute left-1/2 top-[5%] -translate-x-1/2 w-[32%] h-[75%] opacity-55">
             <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/20 via-transparent to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
