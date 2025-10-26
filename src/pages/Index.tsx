@@ -756,7 +756,7 @@ const Index = () => {
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
-                <Icon name="Eye" className="group-hover:scale-110 transition-transform duration-300" size={20} />
+                <Icon name="Eye" className="group-hover:scale-110 group-hover:text-black transition-all duration-300" size={20} />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
             </Button>
