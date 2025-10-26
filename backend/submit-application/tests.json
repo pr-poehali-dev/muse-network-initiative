@@ -1,0 +1,20 @@
+{
+  "tests": [
+    {
+      "name": "Test application submission",
+      "method": "POST",
+      "body": {
+        "name": "Тестовая Заявка",
+        "email": "test@example.com",
+        "phone": "+79991234567",
+        "telegram": "@testuser",
+        "message": "Тестовое сообщение"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
