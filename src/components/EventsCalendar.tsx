@@ -206,7 +206,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
   });
 
   return (
-    <Card className="hidden md:block bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/80 backdrop-blur-md border-[#d4af37]/30 overflow-hidden shadow-xl shadow-[#d4af37]/10">
+    <Card className="bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/80 backdrop-blur-md border-[#d4af37]/30 overflow-hidden shadow-xl shadow-[#d4af37]/10">
       <CardContent className="p-6">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
@@ -235,7 +235,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
         </button>
 
         {!isExpanded && currentMonthEvents.length > 0 && (
-          <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide -mx-2 px-2">
+          <div className="flex flex-col gap-3 md:flex-row md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2">
             {currentMonthEvents.map((event) => {
               const config = getEventTypeConfig(event.type);
               const eventDate = new Date(event.date);
@@ -243,24 +243,50 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
               return (
                 <div
                   key={event.id}
-                  className="flex-shrink-0 w-48 md:w-56 bg-gradient-to-br from-[#0a0a0a]/80 to-[#1a1a1a]/60 border border-[#b8953d]/30 rounded-xl p-3 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all cursor-pointer"
+                  className="flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 border-[#b8953d]/40 rounded-2xl p-4 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/30 transition-all cursor-pointer group"
                   onClick={() => {
                     setSelectedEvent(event);
                     setIsExpanded(true);
                   }}
                 >
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className={`w-1.5 h-1.5 rounded-full ${config.badge} animate-pulse shadow-sm`} />
-                    <span className="text-[10px] font-medium text-[#b8953d]">{config.label}</span>
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <Icon name={config.icon as any} size={24} className="text-black" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="inline-block px-2 py-0.5 rounded-md bg-[#d4af37]/20 border border-[#d4af37]/40 mb-2">
+                        <span className="text-xs font-bold text-[#d4af37]">{config.label}</span>
+                      </div>
+                      <h4 className="text-base font-bold text-white mb-2 line-clamp-2 leading-tight">
+                        {event.title}
+                      </h4>
+                    </div>
                   </div>
-                  <p className="text-xs md:text-sm font-bold text-white mb-1.5 line-clamp-2 leading-tight">{event.title}</p>
-                  <div className="flex items-center gap-1.5 text-[10px] md:text-xs text-white/50">
-                    <Icon name="Calendar" size={10} className="text-[#d4af37]/60" />
-                    <span>{eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })}</span>
-                    <span>•</span>
-                    <Icon name="Clock" size={10} className="text-[#d4af37]/60" />
+                  
+                  <div className="flex items-center gap-2 text-xs text-white/60 mb-3">
+                    <Icon name="Calendar" size={14} className="text-[#d4af37]" />
+                    <span>{eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}</span>
+                    <Icon name="Clock" size={14} className="text-[#d4af37] ml-1" />
                     <span>{event.time}</span>
                   </div>
+
+                  {event.speakers.length > 0 && (
+                    <div className="space-y-2 pt-3 border-t border-[#d4af37]/20">
+                      {event.speakers.map((speaker, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <img 
+                            src={speaker.image} 
+                            alt={speaker.name}
+                            className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-white/90 truncate">{speaker.name}</p>
+                            <p className="text-[10px] text-white/50 truncate">{speaker.role}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}
