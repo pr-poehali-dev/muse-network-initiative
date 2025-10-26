@@ -36,31 +36,32 @@ export const EventCardMobile = ({
           <h4 className="text-sm font-bold text-white mb-2 line-clamp-2 leading-tight">
             {event.title}
           </h4>
-          <div className="flex items-center gap-2 text-xs text-white/60 mb-3">
+          <div className="flex items-center gap-2 text-xs text-white/60">
             <Icon name="Calendar" size={13} className="text-[#d4af37]" />
             <span>{eventDate.getDate()} {eventDate.toLocaleDateString('ru-RU', { month: 'long' })}</span>
             <Icon name="Clock" size={13} className="text-[#d4af37]" />
             <span>{event.time}</span>
           </div>
-          {event.speakers.length > 0 && (
-            <div className="space-y-2">
-              {event.speakers.map((speaker, idx) => (
-                <div key={idx} className="flex items-center gap-2">
-                  <img 
-                    src={speaker.image} 
-                    alt={speaker.name}
-                    className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs font-semibold text-white/90">{speaker.name}</p>
-                    <p className="text-[10px] text-white/50 line-clamp-1">{speaker.role}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
         </div>
       </div>
+      
+      {event.speakers.length > 0 && (
+        <div className="mt-3 space-y-2">
+          {event.speakers.map((speaker, idx) => (
+            <div key={idx} className="flex items-center gap-2">
+              <img 
+                src={speaker.image} 
+                alt={speaker.name}
+                className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30 flex-shrink-0"
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-white/90">{speaker.name}</p>
+                <p className="text-[10px] text-white/50">{speaker.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
       
       {isSelected && (
         <div className="md:hidden mt-4 pt-4 border-t border-[#d4af37]/20 animate-fade-in space-y-3">
