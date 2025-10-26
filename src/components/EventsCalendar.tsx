@@ -439,10 +439,10 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                             e.stopPropagation();
                             onEventRegister?.(event.title);
                           }}
-                          className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white py-3 rounded-lg hover:shadow-xl hover:shadow-[#d4af37]/40 transition-all font-semibold flex items-center justify-center gap-2 group"
+                          className="w-full bg-gradient-to-r from-[#b8953d] to-[#d4af37] text-white text-sm py-2 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all font-semibold flex items-center justify-center gap-2 group border border-[#d4af37]/20"
                         >
                           <span>Записаться на событие</span>
-                          <Icon name="ArrowRight" size={18} className="group-hover:translate-x-1 transition-transform" />
+                          <Icon name="ArrowRight" size={16} className="group-hover:translate-x-1 transition-transform" />
                         </button>
                       </div>
                     )}
