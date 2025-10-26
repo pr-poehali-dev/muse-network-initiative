@@ -254,12 +254,13 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60">
+          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group">
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
               src="https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg" 
               alt="" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
@@ -267,6 +268,9 @@ const Index = () => {
                 filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none" style={{
+              background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
+            }}></div>
           </div>
 
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5">
