@@ -218,7 +218,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
             </div>
             <div className="text-left">
               <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d]">
-                Календарь мероприятий
+                Календарь событий
               </h3>
               <p className="text-sm text-white/60 mt-0.5">
                 {currentMonthEvents.length} {currentMonthEvents.length === 1 ? 'событие' : 'события'} в этом месяце
