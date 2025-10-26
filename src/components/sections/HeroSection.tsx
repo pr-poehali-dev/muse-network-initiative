@@ -98,8 +98,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           </div>
         </div>
         
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/70 to-black"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/90 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/80 to-black"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-black via-black/95 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(212,175,55,0.15)]"></div>
         
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
@@ -148,7 +149,7 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
             </svg>
             
             <h2 className="text-7xl md:text-9xl font-serif italic text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#b8953d] px-4 tracking-wide drop-shadow-[0_0_30px_rgba(255,215,0,0.4)] relative">
-              КЛУБ MUSE
+              MUSE
             </h2>
             <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
           </div>
@@ -159,7 +160,7 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           </svg>
           
           <div className="absolute inset-0 text-7xl md:text-9xl font-serif italic text-[#ffd700]/5 blur-2xl px-4">
-            КЛУБ MUSE
+            MUSE
           </div>
         </div>
         <div className="max-w-4xl mx-auto mb-16">
