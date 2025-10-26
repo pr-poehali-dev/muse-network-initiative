@@ -336,22 +336,33 @@ const Index = () => {
         </div>
 
         <div className="w-full text-center px-8 relative z-30">
-          <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>
+          <div className="relative inline-block mb-10">
             <h2 className="text-9xl md:text-[12rem] lg:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              MUSE
+              <span className="slot-letter">
+                <span className="slot-letter-inner" style={{animationDelay: '2.7s', animationFillMode: 'backwards'}}>M</span>
+              </span>
+              <span className="slot-letter">
+                <span className="slot-letter-inner" style={{animationDelay: '2.9s', animationFillMode: 'backwards'}}>U</span>
+              </span>
+              <span className="slot-letter">
+                <span className="slot-letter-inner" style={{animationDelay: '3.1s', animationFillMode: 'backwards'}}>S</span>
+              </span>
+              <span className="slot-letter">
+                <span className="slot-letter-inner" style={{animationDelay: '3.3s', animationFillMode: 'backwards'}}>E</span>
+              </span>
             </h2>
-            <div className="absolute inset-0 text-9xl md:text-[12rem] lg:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-4">
+            <div className="absolute inset-0 text-9xl md:text-[12rem] lg:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-4 pointer-events-none">
               MUSE
             </div>
           </div>
-          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>
-            <span className="typewriter" style={{animationDelay: '3.0s', animationFillMode: 'backwards'}}>Сообщество женщин из сферы бизнеса, культуры, науки и искусства</span>
+          <p className="text-xl md:text-2xl text-white/80 mb-10 leading-relaxed animate-fade-in" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
+            Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
-          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed" style={{animationDelay: '5.5s', animationFillMode: 'backwards'}}>
-            <span className="typewriter" style={{animationDelay: '5.5s', animationFillMode: 'backwards', animationDuration: '3s'}}>Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.</span>
+          <p className="text-lg text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '3.9s', animationFillMode: 'backwards'}}>
+            Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '3.6s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-left relative overflow-hidden group" style={{animationDelay: '4.2s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={28} />
@@ -361,7 +372,7 @@ const Index = () => {
                 <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '3.8s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-scale-in relative overflow-hidden group" style={{animationDelay: '4.4s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
@@ -371,7 +382,7 @@ const Index = () => {
                 <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.0s', animationFillMode: 'backwards'}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl hover-scale glow-effect animate-slide-in-right relative overflow-hidden group" style={{animationDelay: '4.6s', animationFillMode: 'backwards'}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={28} />

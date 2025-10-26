@@ -233,20 +233,39 @@ html {
     }
   }
 
-  .typewriter {
-    overflow: hidden;
+  .slot-letter {
     display: inline-block;
-    animation: typing 2.5s steps(80, end) forwards;
-    max-width: 0;
+    overflow: hidden;
     vertical-align: top;
+    height: 1em;
+    line-height: 1;
   }
 
-  @keyframes typing {
-    from {
-      max-width: 0;
+  .slot-letter-inner {
+    display: inline-block;
+    animation: slot-roll 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  @keyframes slot-roll {
+    0% {
+      transform: translateY(-500%);
+      opacity: 0;
+      filter: blur(10px);
     }
-    to {
-      max-width: 100%;
+    20% {
+      opacity: 0.3;
+    }
+    60% {
+      transform: translateY(20%);
+      filter: blur(2px);
+    }
+    80% {
+      transform: translateY(-5%);
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
     }
   }
 
