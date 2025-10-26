@@ -206,7 +206,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
   });
 
   return (
-    <Card className="bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/80 backdrop-blur-md border-[#d4af37]/30 overflow-hidden shadow-xl shadow-[#d4af37]/10">
+    <Card className="hidden md:block bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/80 backdrop-blur-md border-[#d4af37]/30 overflow-hidden shadow-xl shadow-[#d4af37]/10">
       <CardContent className="p-6">
         <button
           onClick={() => setIsExpanded(!isExpanded)}
