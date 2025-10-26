@@ -816,15 +816,33 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/15 to-transparent pointer-events-none"></div>
       </div>
 
-      <footer className="py-12 px-4 bg-black text-white">
-        <div className="container mx-auto text-center">
-          <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
-          <p className="text-lg mb-8">
-            Вместе мы можем достичь большего
-          </p>
-          <p className="text-sm opacity-75">
-            © 2024 Клуб Muse. Все права защищены.
-          </p>
+      <footer className="py-12 px-4 bg-black text-white relative">
+        <div className="container mx-auto">
+          <div className="text-center">
+            <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
+            <p className="text-lg mb-8">
+              Вместе мы можем достичь большего
+            </p>
+            <p className="text-sm opacity-75">
+              © 2024 Клуб Muse. Все права защищены.
+            </p>
+          </div>
+          
+          <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8">
+            <a 
+              href="https://albeweb.ru/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-xs text-white/50 hover:text-white/80 transition-colors group"
+            >
+              <span>Разработано в</span>
+              <img 
+                src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
+                alt="Albe" 
+                className="h-6 opacity-50 group-hover:opacity-80 transition-opacity"
+              />
+            </a>
+          </div>
         </div>
       </footer>
 
