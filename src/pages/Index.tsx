@@ -748,13 +748,13 @@ const Index = () => {
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
-              className="group relative text-lg font-semibold px-10 py-4 bg-transparent border-2 border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden rounded-xl"
+              className="group relative text-lg font-semibold px-10 py-4 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden rounded-xl"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
-                <Icon name="Eye" className="group-hover:scale-110 group-hover:text-black transition-all duration-300" size={20} />
+                <Icon name="Eye" className="group-hover:scale-110 transition-all duration-300" size={20} />
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-[#b8953d]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
           </div>
         </div>
