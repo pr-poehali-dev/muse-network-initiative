@@ -284,47 +284,52 @@ const Index = () => {
 
       <section id="hero" className={`relative pt-0 pb-0 animate-fade-in overflow-hidden bg-black h-screen flex items-center transition-all duration-1000 ${visibleSections.has('hero') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 grid grid-cols-5 gap-0">
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
+          <div className="absolute inset-0 flex">
+            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-contain opacity-35"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black"></div>
             </div>
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
+            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-contain opacity-45"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
             </div>
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
+            <div className="flex-[1.4] relative animate-expand-center" style={{animationDelay: '0.4s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
                 alt="Карина Ляшева"
-                className="w-full h-full object-contain opacity-60"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
             </div>
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
+            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.6s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-contain opacity-45"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
             </div>
-            <div className="relative h-full animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
+            <div className="flex-1 relative animate-expand-center" style={{animationDelay: '0.8s', animationFillMode: 'backwards'}}>
               <img 
                 src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-contain opacity-35"
+                className="w-full h-full object-cover"
               />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
             </div>
           </div>
           
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+          <div className="absolute inset-0 shadow-[inset_0_0_100px_rgba(212,175,55,0.1)]"></div>
         </div>
         <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
           <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
