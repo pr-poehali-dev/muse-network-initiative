@@ -215,7 +215,7 @@ const Index = () => {
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50"
+              className="md:hidden flex flex-col gap-1.5 w-8 h-8 justify-center items-center z-50 relative"
               aria-label="Toggle menu"
             >
               <span className={`w-6 h-0.5 bg-[#d4af37] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
@@ -255,7 +255,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl transition-all duration-300 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`} style={{ top: '76px' }}>
+        <div className={`md:hidden fixed inset-0 bg-black/95 backdrop-blur-xl transition-all duration-300 z-40 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`} style={{ top: '76px' }}>
           <div className="flex flex-col items-center justify-center h-full gap-6 px-8">
             {['hero', 'about', 'mission', 'events', 'team'].map((section) => (
               <button
@@ -293,7 +293,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
+      <section id="hero" className={`relative pt-20 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -312,7 +312,7 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -332,7 +332,7 @@ const Index = () => {
             <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
@@ -347,7 +347,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.12}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.12}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
