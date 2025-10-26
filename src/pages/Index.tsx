@@ -847,31 +847,24 @@ const Index = () => {
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Вступить в клуб</h3>
-            <p className="text-xl text-white/80 mb-8">
+            <p className="text-xl text-white/80 mb-10">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
             </p>
           </div>
 
-          <Card className="hover-scale glow-effect rounded-2xl animate-scale-in bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-[#d4af37]/30 backdrop-blur-md overflow-hidden">
-            <CardContent className="p-10 md:p-16 text-center">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#d4af37] to-[#b8860b] mb-6 shadow-lg shadow-[#d4af37]/50">
-                <Icon name="Sparkles" className="text-black" size={36} />
-              </div>
-              <h4 className="text-2xl md:text-3xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37]">
-                Готовы присоединиться?
-              </h4>
-              <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-                Станьте частью сообщества успешных и вдохновляющих женщин. Нетворкинг, развитие и новые возможности ждут вас!
-              </p>
-              <Button 
-                onClick={() => setIsJoinDialogOpen(true)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#b8860b] hover:from-[#f4d03f] hover:to-[#d4af37] text-black font-bold text-lg py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg shadow-[#d4af37]/30 hover:shadow-[#d4af37]/50"
-              >
-                <Icon name="UserPlus" className="mr-2" size={20} />
+          <div className="text-center">
+            <Button 
+              onClick={() => setIsJoinDialogOpen(true)}
+              className="group relative bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] hover:from-[#f4d03f] hover:via-[#d4af37] hover:to-[#f4d03f] text-black font-bold text-lg md:text-xl py-6 md:py-8 px-12 md:px-16 rounded-2xl transition-all duration-500 transform hover:scale-105 shadow-2xl shadow-[#d4af37]/40 hover:shadow-[#d4af37]/60 animate-pulse-glow"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                <Icon name="Sparkles" className="group-hover:rotate-180 transition-transform duration-500" size={24} />
                 Подать заявку
-              </Button>
-            </CardContent>
-          </Card>
+                <Icon name="ArrowRight" className="group-hover:translate-x-2 transition-transform duration-300" size={20} />
+              </span>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#f4d03f] via-[#d4af37] to-[#f4d03f] opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"></div>
+            </Button>
+          </div>
         </div>
       </section>
 
