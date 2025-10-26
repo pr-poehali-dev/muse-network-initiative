@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 
 const videos = [
@@ -30,6 +30,26 @@ const videos = [
 
 const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (selectedVideo) {
+      const index = videos.findIndex(v => v.id === selectedVideo);
+      if (index !== -1) setCurrentIndex(index);
+    }
+  }, [selectedVideo]);
+
+  const goToNext = () => {
+    const nextIndex = (currentIndex + 1) % videos.length;
+    setCurrentIndex(nextIndex);
+    setSelectedVideo(videos[nextIndex].id);
+  };
+
+  const goToPrev = () => {
+    const prevIndex = (currentIndex - 1 + videos.length) % videos.length;
+    setCurrentIndex(prevIndex);
+    setSelectedVideo(videos[prevIndex].id);
+  };
 
   return (
     <>
@@ -45,12 +65,12 @@ const VideoGallery = () => {
               className="w-full h-full object-cover pointer-events-none"
               frameBorder="0"
             />
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-all duration-500 flex items-center justify-center">
+            <div className="absolute inset-0 backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
               <div className="relative w-14 h-14 md:w-16 md:h-16 transition-all duration-500 group-hover:scale-110">
-                <div className="absolute inset-0 rounded-full border-2 border-[#d4af37] group-hover:border-white transition-colors duration-300"></div>
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-transparent group-hover:from-[#d4af37]/30 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] group-hover:from-[#b8953d] group-hover:via-[#d4af37] group-hover:to-[#8b7355] transition-all duration-300"></div>
+                <div className="absolute inset-[2px] rounded-full bg-black/60 backdrop-blur-sm"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Icon name="Play" size={20} className="ml-0.5 text-[#d4af37] group-hover:text-white transition-colors duration-300" />
+                  <Icon name="Play" size={20} className="ml-0.5 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] group-hover:from-[#b8953d] group-hover:via-[#d4af37] group-hover:to-[#8b7355] transition-all duration-300" />
                 </div>
               </div>
             </div>
@@ -66,15 +86,35 @@ const VideoGallery = () => {
         >
           <button
             onClick={() => setSelectedVideo(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/80 hover:text-[#d4af37] transition-colors z-10 bg-black/50 rounded-full p-2 md:p-3"
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
           >
             <Icon name="X" size={32} />
           </button>
+          
+          {currentIndex > 0 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); goToPrev(); }}
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+            >
+              <Icon name="ChevronLeft" size={32} />
+            </button>
+          )}
+          
+          {currentIndex < videos.length - 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); goToNext(); }}
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+            >
+              <Icon name="ChevronRight" size={32} />
+            </button>
+          )}
+          
           <div 
             className="w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
+              key={selectedVideo}
               src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
