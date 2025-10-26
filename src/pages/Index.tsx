@@ -293,7 +293,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-20 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
+      <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -383,8 +383,8 @@ const Index = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30">
-          <div className="relative inline-block mb-6 md:mb-10">
+        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+          <div className="relative inline-block mb-8 md:mb-10">
             <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
