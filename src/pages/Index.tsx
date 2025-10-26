@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import MosaicGallery from '@/components/MosaicGallery';
+import VideoGallery from '@/components/VideoGallery';
 import EventsCalendar from '@/components/EventsCalendar';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
@@ -53,6 +54,7 @@ const Index = () => {
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
+  const [galleryTab, setGalleryTab] = useState<'photos' | 'videos'>('photos');
   const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -763,10 +765,36 @@ const Index = () => {
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 md:p-8">
           <DialogHeader>
-            <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</DialogTitle>
+            <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-6">Галерея событий</DialogTitle>
+            <div className="flex gap-4 mb-4">
+              <button
+                onClick={() => setGalleryTab('photos')}
+                className={`px-6 py-2 font-semibold transition-all duration-300 border-b-2 ${
+                  galleryTab === 'photos'
+                    ? 'border-[#d4af37] text-[#d4af37]'
+                    : 'border-transparent text-white/60 hover:text-white/80'
+                }`}
+              >
+                Фото
+              </button>
+              <button
+                onClick={() => setGalleryTab('videos')}
+                className={`px-6 py-2 font-semibold transition-all duration-300 border-b-2 ${
+                  galleryTab === 'videos'
+                    ? 'border-[#d4af37] text-[#d4af37]'
+                    : 'border-transparent text-white/60 hover:text-white/80'
+                }`}
+              >
+                Видео
+              </button>
+            </div>
           </DialogHeader>
           <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide">
-            <MosaicGallery />
+            {galleryTab === 'photos' ? (
+              <MosaicGallery />
+            ) : (
+              <VideoGallery />
+            )}
           </div>
         </DialogContent>
       </Dialog>
