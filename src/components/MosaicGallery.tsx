@@ -104,12 +104,12 @@ const MosaicGallery = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-2 auto-rows-[150px]">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-0 auto-rows-[100px]">
         {images.map((image, index) => (
           <div
             key={index}
             onClick={() => setSelectedImage(image.url)}
-            className={`relative overflow-hidden rounded-lg border border-[#b8953d]/20 transition-all duration-500 cursor-pointer group hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#b8953d]/20 ${image.span}`}
+            className={`relative overflow-hidden transition-all duration-500 cursor-pointer group hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#b8953d]/20 ${image.span}`}
           >
             <img
               src={image.url}
