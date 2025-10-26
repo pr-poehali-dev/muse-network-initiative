@@ -28,23 +28,23 @@ const images = [
     span: 'col-span-1 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/ae061893-14ae-4ddb-b6bc-8720f55af9f0.jpg',
-    alt: 'Элегантный стол с шампанским',
+    url: 'https://cdn.poehali.dev/files/f0466e5f-50a5-442a-9074-15f65e592771.jpg',
+    alt: 'Обед на веранде с участницами клуба',
     span: 'col-span-1 row-span-2',
   },
   {
-    url: 'https://cdn.poehali.dev/files/682fc5ec-435a-4017-bc49-ae4b8b7bdd3b.jpg',
-    alt: 'Творческое пространство',
+    url: 'https://cdn.poehali.dev/files/e178370e-2abd-44f8-832b-4d1f72bc1e82.jpg',
+    alt: 'Творческий мастер-класс по живописи',
     span: 'col-span-2 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/d7831569-230d-42b5-a88a-801853659d8b.jpg',
-    alt: 'Кулинарное мастерство',
+    url: 'https://cdn.poehali.dev/files/82dd3661-c671-4353-9100-b7cf38965d72.jpg',
+    alt: 'Уютное чаепитие на природе',
     span: 'col-span-1 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/2e24f79b-01d0-44e3-9e07-dab34a15a471.jpg',
-    alt: 'Творческий процесс',
+    url: 'https://cdn.poehali.dev/files/33740897-2c82-444b-8620-04f1c61a314c.jpg',
+    alt: 'Встреча участниц клуба на природе',
     span: 'col-span-2 row-span-2',
   }
 ];
