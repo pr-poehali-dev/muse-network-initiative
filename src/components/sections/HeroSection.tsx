@@ -124,6 +124,10 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           <circle cx="50" cy="50" r="30" fill="none" stroke="#d4af37" strokeWidth="0.3"/>
           <path d="M 50 20 L 52 48 L 80 50 L 52 52 L 50 80 L 48 52 L 20 50 L 48 48 Z" fill="none" stroke="#d4af37" strokeWidth="0.5"/>
         </svg>
+        
+        <div className="absolute inset-0 pointer-events-none" style={{
+          boxShadow: 'inset 0 0 200px 100px rgba(0,0,0,0.95), inset 0 0 300px 150px rgba(0,0,0,0.7)'
+        }}></div>
       </div>
       <div className="w-full text-center px-8 relative z-10 mt-48 md:mt-64">
         <div className="relative inline-block mb-12 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
