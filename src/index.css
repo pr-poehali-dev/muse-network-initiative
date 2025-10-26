@@ -467,6 +467,26 @@ body::-webkit-scrollbar {
     position: relative;
   }
 
+  .premium-title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -80px;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37);
+  }
+
+  .premium-title::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -80px;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+  }
+
   .embla {
     overflow: hidden;
   }
