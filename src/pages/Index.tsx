@@ -12,20 +12,6 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } f
 const Index = () => {
   const visibleSections = useScrollAnimation();
   const [scrollY, setScrollY] = useState(0);
-  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-  
-  const leftPhotos = [
-    'https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg',
-    'https://cdn.poehali.dev/files/b63e3f0b-105e-42dd-a627-7aefa37899c7.jpg',
-    'https://cdn.poehali.dev/files/40ce7b2e-0009-4a63-928f-ccf428e03149.jpg'
-  ];
-  
-  const rightPhotos = [
-    'https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg',
-    'https://cdn.poehali.dev/files/66b4d718-2c24-4498-b458-6c0ca65852e5.jpg',
-    'https://cdn.poehali.dev/files/07d2ff03-d5f3-408f-8c15-3c77d747e98f.jpg',
-    'https://cdn.poehali.dev/files/a4a200c2-8bec-487f-b31e-4721f0d4717c.jpg'
-  ];
   
   useEffect(() => {
     const handleScroll = () => {
@@ -34,14 +20,6 @@ const Index = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhotoIndex((prev) => (prev + 1) % Math.max(leftPhotos.length, rightPhotos.length));
-    }, 4000);
-    
-    return () => clearInterval(interval);
   }, []);
   
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
@@ -290,9 +268,9 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src={leftPhotos[currentPhotoIndex % leftPhotos.length]} 
+              src="https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg" 
               alt="" 
-              className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 group-hover:brightness-110"
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
@@ -325,9 +303,9 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src={rightPhotos[currentPhotoIndex % rightPhotos.length]} 
+              src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
               alt="" 
-              className="w-full h-full object-cover object-center transition-all duration-1000 group-hover:scale-105 group-hover:brightness-110"
+              className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
