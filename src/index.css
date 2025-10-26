@@ -199,6 +199,41 @@ body::-webkit-scrollbar {
     }
   }
 
+  .animate-title-appear {
+    animation: title-appear 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes title-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) scale(0.9);
+      filter: blur(10px);
+    }
+    60% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  .animate-text-appear {
+    animation: text-appear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes text-appear {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .hover-scale {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
