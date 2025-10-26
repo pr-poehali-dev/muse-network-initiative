@@ -526,11 +526,7 @@ const Index = () => {
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              О клубе Muse
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">О клубе Muse</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -620,11 +616,7 @@ const Index = () => {
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              Наши ценности
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Наши ценности</h3>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -652,11 +644,7 @@ const Index = () => {
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              События и встречи
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">События и встречи</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
             </p>
@@ -718,11 +706,7 @@ const Index = () => {
       <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
         <div className="w-full mb-16">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              Галерея
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Галерея</h3>
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
@@ -754,11 +738,7 @@ const Index = () => {
       <section id="team" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              Наши эксперты
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Наши эксперты</h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
             </p>
@@ -801,11 +781,7 @@ const Index = () => {
       <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              Вступить в клуб
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
-            </h3>
+            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">Вступить в клуб</h3>
             <p className="text-xl text-white/80 mb-10">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
             </p>
