@@ -1,5 +1,6 @@
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './types';
+import { downloadICS } from '@/utils/icsGenerator';
 
 interface EventCardMobileProps {
   event: Event;
@@ -80,16 +81,34 @@ export const EventCardMobile = ({
             )}
           </div>
           
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              onRegister?.(event.title);
-            }}
-            className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs font-bold py-2.5 px-4 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all flex items-center justify-center gap-2 group"
-          >
-            <span>Записаться на событие</span>
-            <Icon name="ArrowRight" size={14} className="group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                onRegister?.(event.title);
+              }}
+              className="flex-1 bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs font-bold py-2.5 px-4 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all flex items-center justify-center gap-2 group"
+            >
+              <span>Записаться</span>
+              <Icon name="ArrowRight" size={14} className="group-hover:translate-x-0.5 transition-transform" />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                downloadICS(
+                  event.title,
+                  event.description,
+                  event.location,
+                  event.date,
+                  event.time
+                );
+              }}
+              className="px-3 bg-[#1a1a1a] hover:bg-[#2a2a2a] border-2 border-[#d4af37] text-[#d4af37] text-xs py-2.5 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/50 transition-all font-bold flex items-center justify-center"
+              title="Добавить в календарь"
+            >
+              <Icon name="CalendarPlus" size={16} />
+            </button>
+          </div>
         </div>
       )}
     </div>
