@@ -384,20 +384,22 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                         <Icon name={config.icon as any} className="text-white" size={24} />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                        <div className="mb-2">
                           <span className={`px-2 py-0.5 rounded text-xs font-semibold text-white ${config.badge}`}>
                             {config.label}
                           </span>
-                          <div className="flex items-center gap-1 text-xs text-white/60 whitespace-nowrap">
-                            <Icon name="Calendar" size={12} className="text-[#b8953d]" />
+                        </div>
+                        <h5 className="text-lg font-bold text-white/95 mb-3">{event.title}</h5>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <div className="flex items-center gap-1 text-xs text-white/60">
+                            <Icon name="Calendar" size={14} className="text-[#b8953d]" />
                             {eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}
                           </div>
-                          <div className="flex items-center gap-1 text-xs text-white/60 whitespace-nowrap">
-                            <Icon name="Clock" size={12} className="text-[#b8953d]" />
+                          <div className="flex items-center gap-1 text-xs text-white/60">
+                            <Icon name="Clock" size={14} className="text-[#b8953d]" />
                             {event.time}
                           </div>
                         </div>
-                        <h5 className="text-lg font-bold text-white/95 mb-2">{event.title}</h5>
                       </div>
                     </div>
 
