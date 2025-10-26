@@ -1,10 +1,18 @@
-import Icon from '@/components/ui/icon';
+import StatsCard from '@/components/StatsCard';
+import { stats } from '@/constants/stats';
+import { useCounterAnimation } from '@/hooks/useCounterAnimation';
 
 interface HeroSectionProps {
   visibleSections: Set<string>;
 }
 
 const HeroSection = ({ visibleSections }: HeroSectionProps) => {
+  const isVisible = visibleSections.has('hero');
+  
+  const count1 = useCounterAnimation({ target: stats[0].value, delay: 200, enabled: isVisible });
+  const count2 = useCounterAnimation({ target: stats[1].value, delay: 400, enabled: isVisible, duration: 1800 });
+  const count3 = useCounterAnimation({ target: stats[2].value, delay: 600, enabled: isVisible, duration: 1600 });
+
   return (
     <section id="hero" className="relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center">
       <div className="w-full text-center px-8 relative z-10">
@@ -20,30 +28,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
         </p>
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-              <Icon name="Users" className="text-[#b8953d]/60" size={28} />
-            </div>
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
-            <p className="text-base text-white/90 font-medium">Участниц</p>
-            <p className="text-sm text-white/60 mt-2">Успешные женщины из разных сфер</p>
-          </div>
-          <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-              <Icon name="Calendar" className="text-[#b8953d]/60" size={28} />
-            </div>
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">50+</div>
-            <p className="text-base text-white/90 font-medium">Проведённых встреч</p>
-            <p className="text-sm text-white/60 mt-2">Нетворкинг и обмен опытом</p>
-          </div>
-          <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-8 rounded-2xl">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
-              <Icon name="Radio" className="text-[#b8953d]/60" size={28} />
-            </div>
-            <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
-            <p className="text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
-            <p className="text-sm text-white/60 mt-2">Доступ из любой точки мира</p>
-          </div>
+          <StatsCard {...stats[0]} value={count1} />
+          <StatsCard {...stats[1]} value={count2} />
+          <StatsCard {...stats[2]} value={count3} />
         </div>
       </div>
     </section>

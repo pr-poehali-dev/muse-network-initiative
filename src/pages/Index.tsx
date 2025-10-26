@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect, useRef } from 'react';
+import { useState, FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -10,54 +10,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('hero');
   const visibleSections = useScrollAnimation();
-  const [count1, setCount1] = useState(0);
-  const [count2, setCount2] = useState(0);
-  const [count3, setCount3] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const statsRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!visibleSections.has('hero') || hasAnimated) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            setHasAnimated(true);
-            
-            const animateCount = (setter: (value: number) => void, target: number, duration: number = 2000) => {
-              const start = 0;
-              const increment = target / (duration / 16);
-              let current = start;
-              
-              const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                  setter(target);
-                  clearInterval(timer);
-                } else {
-                  setter(Math.floor(current));
-                }
-              }, 16);
-            };
-
-            setTimeout(() => animateCount(setCount1, 250, 2000), 200);
-            setTimeout(() => animateCount(setCount2, 50, 1800), 400);
-            setTimeout(() => animateCount(setCount3, 24, 1600), 600);
-          }
-        });
-      },
-      { threshold: 0.3 }
-    );
-
-    if (statsRef.current) {
-      observer.observe(statsRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [visibleSections, hasAnimated]);
+  
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
@@ -92,7 +46,6 @@ const Index = () => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
     }
   };
 
