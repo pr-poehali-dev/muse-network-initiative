@@ -3,48 +3,48 @@ import Icon from '@/components/ui/icon';
 
 const images = [
   {
-    url: 'https://cdn.poehali.dev/files/0e1b4ab4-a9b6-4a39-8009-df86628d17db.jpg',
+    url: 'https://cdn.poehali.dev/files/ae061893-14ae-4ddb-b6bc-8720f55af9f0.jpg',
     alt: 'Элегантный стол с шампанским и цветами',
     span: 'col-span-2 row-span-2',
   },
   {
-    url: 'https://cdn.poehali.dev/files/00d81cb8-e3b9-4d81-a7f3-41ab95c6c69c.jpg',
-    alt: 'Творческий мастер-класс по живописи',
+    url: 'https://cdn.poehali.dev/files/682fc5ec-435a-4017-bc49-ae4b8b7bdd3b.jpg',
+    alt: 'Творческое мероприятие в книжном пространстве',
     span: 'col-span-1 row-span-2',
   },
   {
-    url: 'https://cdn.poehali.dev/files/3412fdfb-7394-43ca-8e98-0619f6108e4b.jpg',
-    alt: 'Процесс создания искусства',
+    url: 'https://cdn.poehali.dev/files/d7831569-230d-42b5-a88a-801853659d8b.jpg',
+    alt: 'Кулинарный мастер-класс',
     span: 'col-span-1 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/14cfa22e-083c-452d-a145-44f774f9999b.jpg',
-    alt: 'Участницы клуба с работами',
+    url: 'https://cdn.poehali.dev/files/2e24f79b-01d0-44e3-9e07-dab34a15a471.jpg',
+    alt: 'Процесс приготовления на мастер-классе',
     span: 'col-span-2 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/94ff39c7-6325-425f-9be9-cb5da13b951e.jpg',
-    alt: 'Уютное чаепитие на природе',
+    url: 'https://cdn.poehali.dev/files/dfed12c9-c80a-47d7-8761-6a792b7668af.jpg',
+    alt: 'Участницы клуба с готовыми работами',
     span: 'col-span-1 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/b5c0b7b5-06c8-4078-82fa-a13dc15a2c61.jpg',
-    alt: 'Карина Ляшева',
+    url: 'https://cdn.poehali.dev/files/ae061893-14ae-4ddb-b6bc-8720f55af9f0.jpg',
+    alt: 'Элегантный стол с шампанским',
     span: 'col-span-1 row-span-2',
   },
   {
-    url: 'https://cdn.poehali.dev/files/0e1b4ab4-a9b6-4a39-8009-df86628d17db.jpg',
-    alt: 'Элегантный стол с шампанским и цветами',
+    url: 'https://cdn.poehali.dev/files/682fc5ec-435a-4017-bc49-ae4b8b7bdd3b.jpg',
+    alt: 'Творческое пространство',
     span: 'col-span-2 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/00d81cb8-e3b9-4d81-a7f3-41ab95c6c69c.jpg',
-    alt: 'Творческий мастер-класс по живописи',
+    url: 'https://cdn.poehali.dev/files/d7831569-230d-42b5-a88a-801853659d8b.jpg',
+    alt: 'Кулинарное мастерство',
     span: 'col-span-1 row-span-1',
   },
   {
-    url: 'https://cdn.poehali.dev/files/3412fdfb-7394-43ca-8e98-0619f6108e4b.jpg',
-    alt: 'Процесс создания искусства',
+    url: 'https://cdn.poehali.dev/files/2e24f79b-01d0-44e3-9e07-dab34a15a471.jpg',
+    alt: 'Творческий процесс',
     span: 'col-span-2 row-span-2',
   }
 ];
