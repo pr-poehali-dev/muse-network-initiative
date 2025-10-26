@@ -318,11 +318,18 @@ const Index = () => {
               </Button>
               <Button
                 size="lg"
-                className="group relative text-sm font-semibold px-8 py-3 bg-gradient-to-r from-[#d4af37] to-[#b8953d] text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-500 overflow-hidden"
+                className="group relative text-sm font-semibold px-10 py-3.5 bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] text-black hover:scale-105 transition-all duration-500 overflow-hidden shadow-lg hover:shadow-[0_8px_30px_rgba(212,175,55,0.6)]"
                 onClick={() => setIsJoinDialogOpen(true)}
               >
-                <span className="relative z-10">Вступить в клуб</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <span className="relative z-10 flex items-center gap-2">
+                  Вступить в клуб
+                  <span className="inline-block group-hover:translate-x-1 transition-transform duration-300">→</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#ffd700] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 opacity-50">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                  <div className="absolute top-0 left-0 right-0 h-px bg-white/40"></div>
+                </div>
               </Button>
             </div>
           </div>
@@ -356,14 +363,21 @@ const Index = () => {
             </Button>
             <Button
               size="lg"
-              className="group relative w-full text-base font-semibold px-6 py-4 bg-gradient-to-r from-[#d4af37] to-[#b8953d] text-black hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] transition-all duration-500 overflow-hidden"
+              className="group relative w-full text-base font-semibold px-6 py-5 bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] text-black shadow-lg hover:shadow-[0_8px_30px_rgba(212,175,55,0.6)] transition-all duration-500 overflow-hidden"
               onClick={() => {
                 setIsJoinDialogOpen(true);
                 setIsMobileMenuOpen(false);
               }}
             >
-              <span className="relative z-10">Вступить в клуб</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d] to-[#d4af37] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                Вступить в клуб
+                <span className="inline-block group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#ffd700] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-0 opacity-50">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+                <div className="absolute top-0 left-0 right-0 h-px bg-white/40"></div>
+              </div>
             </Button>
           </div>
         </div>
