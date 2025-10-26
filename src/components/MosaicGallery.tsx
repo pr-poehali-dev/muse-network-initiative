@@ -133,19 +133,19 @@ const MosaicGallery = () => {
 
       {selectedImage && (
         <div 
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 md:p-0 animate-fade-in"
           onClick={() => setSelectedImage(null)}
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-8 right-8 text-white/80 hover:text-[#b8953d] transition-colors z-10"
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/80 hover:text-[#b8953d] transition-colors z-10 bg-black/50 rounded-full p-2 md:p-3"
           >
-            <Icon name="X" size={40} />
+            <Icon name="X" size={32} />
           </button>
           <img
             src={selectedImage}
             alt="Увеличенное фото"
-            className="max-w-full max-h-full object-contain rounded-lg animate-scale-in"
+            className="max-w-full max-h-full md:w-screen md:h-screen object-contain rounded-lg md:rounded-none animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           />
         </div>
