@@ -236,7 +236,78 @@ const Index = () => {
       </nav>
 
       <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center`}>
-        <div className="w-full text-center px-8 relative z-10">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_black_100%)] z-10"></div>
+          
+          <div className="absolute left-[5%] top-[15%] w-[25%] h-[70%] opacity-40">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/9679dc3f-e15d-486a-8c38-770167cf95f8.jpg" 
+              alt="" 
+              className="w-full h-full object-cover object-top mix-blend-luminosity"
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, transparent 100%)'
+              }}
+            />
+          </div>
+
+          <div className="absolute right-[5%] top-[20%] w-[22%] h-[65%] opacity-35">
+            <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#d4af37]/10 to-transparent"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/a7c58b65-8563-40cd-bcbd-b1deeb82fd81.jpg" 
+              alt="" 
+              className="w-full h-full object-cover object-top mix-blend-luminosity"
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)'
+              }}
+            />
+          </div>
+
+          <div className="absolute left-[20%] bottom-[5%] w-[20%] h-[50%] opacity-30">
+            <div className="absolute inset-0 bg-gradient-to-t from-transparent via-[#d4af37]/10 to-transparent"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/7996f5d6-a435-4479-b838-adf0b16ecc1f.jpg" 
+              alt="" 
+              className="w-full h-full object-cover object-top mix-blend-luminosity"
+              style={{
+                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)'
+              }}
+            />
+          </div>
+
+          <div className="absolute right-[22%] bottom-[8%] w-[18%] h-[45%] opacity-25">
+            <img 
+              src="https://cdn.poehali.dev/files/fbdbe04e-5947-4166-8d2d-2deee0f946d9.jpg" 
+              alt="" 
+              className="w-full h-full object-cover object-top mix-blend-luminosity"
+              style={{
+                maskImage: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)'
+              }}
+            />
+          </div>
+
+          <div className="absolute left-1/2 top-[10%] -translate-x-1/2 w-[35%] h-[75%] opacity-50">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/20 via-transparent to-transparent"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
+              alt="" 
+              className="w-full h-full object-cover object-center mix-blend-luminosity"
+              style={{
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.3) 70%, transparent 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 40%, rgba(0,0,0,0.3) 70%, transparent 100%)'
+              }}
+            />
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-20"></div>
+        </div>
+
+        <div className="w-full text-center px-8 relative z-30">
           <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
             <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
