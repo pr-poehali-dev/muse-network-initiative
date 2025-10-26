@@ -607,7 +607,7 @@ const Index = () => {
       <Dialog open={isEventDialogOpen} onOpenChange={setIsEventDialogOpen}>
         <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
           <DialogHeader>
-            <DialogTitle>Запись на мероприятие</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Запись на мероприятие</DialogTitle>
             <DialogDescription className="text-white/70">
               Заполните форму, и мы свяжемся с вами для подтверждения
             </DialogDescription>
@@ -686,7 +686,7 @@ const Index = () => {
       <Dialog open={isJoinDialogOpen} onOpenChange={setIsJoinDialogOpen}>
         <DialogContent className="bg-[#1a1a1a]/95 border-[#d4af37]/30 backdrop-blur-xl max-w-lg">
           <DialogHeader>
-            <DialogTitle>Вступить в клуб MUSE</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Вступить в клуб MUSE</DialogTitle>
             <DialogDescription className="text-white/70">
               Заполните заявку, и мы свяжемся с вами для обсуждения членства
             </DialogDescription>
@@ -786,7 +786,7 @@ const Index = () => {
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] max-h-[95vh] bg-black/95 border-[#d4af37]/30">
           <DialogHeader>
-            <DialogTitle className="text-left">Галерея событий</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</DialogTitle>
           </DialogHeader>
           <div className="overflow-y-auto max-h-[80vh] scrollbar-hide">
             <MosaicGallery />
@@ -912,7 +912,7 @@ const Index = () => {
       <Dialog open={isExpertDialogOpen} onOpenChange={setIsExpertDialogOpen}>
         <DialogContent className="bg-gradient-to-br from-[#1a1a1a] to-black border-[#d4af37]/30 text-white max-w-md">
           <DialogHeader>
-            <DialogTitle>Стать экспертом клуба</DialogTitle>
+            <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Стать экспертом клуба</DialogTitle>
             <DialogDescription className="text-white/70">
               Поделитесь своей экспертизой с участницами клуба Muse
             </DialogDescription>
