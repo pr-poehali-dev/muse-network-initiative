@@ -300,7 +300,7 @@ const Index = () => {
           <div className="absolute right-0 top-0 w-[19%] h-full opacity-60">
             <div className="absolute inset-0 bg-gradient-to-l from-black via-transparent to-transparent"></div>
             <img 
-              src="https://cdn.poehali.dev/files/a7c58b65-8563-40cd-bcbd-b1deeb82fd81.jpg" 
+              src="https://cdn.poehali.dev/files/c54b0363-6adc-4a1f-bb8e-750a6fb9c647.jpg" 
               alt="" 
               className="w-full h-full object-cover object-center"
               style={{
