@@ -28,6 +28,13 @@ const JoinClubDialog = ({
   onSubmit,
   isSubmitted
 }: JoinClubDialogProps) => {
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    if (!value.startsWith('+7')) {
+      value = '+7' + value.replace(/^\+?7?/, '');
+    }
+    onFormDataChange({...formData, phone: value});
+  };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
@@ -66,8 +73,8 @@ const JoinClubDialog = ({
             <Input
               type="tel"
               placeholder="Телефон"
-              value={formData.phone}
-              onChange={(e) => onFormDataChange({...formData, phone: e.target.value})}
+              value={formData.phone || '+7'}
+              onChange={handlePhoneChange}
               className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
             />
             <Input
