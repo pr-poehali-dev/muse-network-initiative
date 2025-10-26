@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 from typing import Dict, Any
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -81,7 +81,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     except Exception as e:
         pass
     
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    moscow_tz = timezone(timedelta(hours=3))
+    timestamp = datetime.now(moscow_tz).strftime('%Y-%m-%d %H:%M:%S')
     row_data = [
         timestamp,
         body_data.get('event', ''),
