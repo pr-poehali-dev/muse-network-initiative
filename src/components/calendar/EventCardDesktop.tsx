@@ -28,8 +28,8 @@ export const EventCardDesktop = ({
       onClick={onSelect}
     >
       <div className="flex items-start gap-4 mb-4">
-        <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br ${config.color} flex items-center justify-center shadow-lg`}>
-          <Icon name={config.icon as any} className="text-white" size={24} />
+        <div className={`flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1a1a1a]/60 border border-[#d4af37]/40 flex items-center justify-center shadow-lg`}>
+          <Icon name={config.icon as any} size={24} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="mb-2">

@@ -26,8 +26,8 @@ export const EventCardMobile = ({
       onClick={onSelect}
     >
       <div className="flex items-start gap-3">
-        <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform`}>
-          <Icon name={config.icon as any} size={22} className="text-black" />
+        <div className={`p-3 rounded-xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1a1a1a]/60 border border-[#d4af37]/40 shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform`}>
+          <Icon name={config.icon as any} size={22} />
         </div>
         <div className="flex-1 min-w-0">
           <div className="inline-block px-2 py-0.5 rounded-md bg-[#d4af37]/20 border border-[#d4af37]/40 mb-2">
