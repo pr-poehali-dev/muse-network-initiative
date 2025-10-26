@@ -78,15 +78,31 @@ const Index = () => {
     }, 2000);
   };
 
-  const handleJoinFormSubmit = (e: FormEvent) => {
+  const handleJoinFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    console.log('Join club:', joinFormData);
-    setIsJoinFormSubmitted(true);
-    setTimeout(() => {
-      setIsJoinFormSubmitted(false);
-      setIsJoinDialogOpen(false);
-      setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
-    }, 2000);
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/0dd49b02-038f-429e-b3a3-5fa01ff50b67', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(joinFormData)
+      });
+      
+      if (response.ok) {
+        setIsJoinFormSubmitted(true);
+        setTimeout(() => {
+          setIsJoinFormSubmitted(false);
+          setIsJoinDialogOpen(false);
+          setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
+        }, 2000);
+      } else {
+        console.error('Failed to submit application');
+      }
+    } catch (error) {
+      console.error('Error submitting application:', error);
+    }
   };
 
   const handleExpertFormSubmit = (e: FormEvent) => {
