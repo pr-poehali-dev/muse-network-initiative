@@ -386,6 +386,11 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
+        <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
+      </div>
+
       <section id="about" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full">
           <div className="text-center mb-16">
@@ -470,6 +475,11 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
+        <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
+      </div>
+
       <section id="mission" className={`py-20 px-8 bg-black noise-texture transition-all duration-1000 ${visibleSections.has('mission') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full">
           <div className="text-center mb-16">
@@ -491,6 +501,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
+        <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
+      </div>
 
       <section id="events" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture transition-all duration-1000 ${visibleSections.has('events') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full">
@@ -699,6 +714,11 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
+        <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
+      </div>
+
       <section id="team" className={`py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture transition-all duration-1000 ${visibleSections.has('team') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full">
           <div className="text-center mb-16">
@@ -735,6 +755,11 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent"></div>
+        <div className="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent pointer-events-none"></div>
+      </div>
 
       <section id="contact" className={`py-20 px-8 bg-black luxury-texture transition-all duration-1000 ${visibleSections.has('contact') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="w-full max-w-4xl mx-auto px-4">
