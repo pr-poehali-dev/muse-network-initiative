@@ -4,6 +4,8 @@ from datetime import datetime
 from typing import Dict, Any
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+import urllib.request
+import urllib.parse
 
 SPREADSHEET_ID = '1kJpQ3gNX5Ls47gLsd75lFH9MtxSiaigilkzYR_xBVuk'
 SHEET_NAME = 'Experts'
@@ -96,6 +98,33 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         valueInputOption='RAW',
         body={'values': [row_data]}
     ).execute()
+    
+    telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+    telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+    
+    if telegram_token and telegram_chat_id:
+        message = f"""👩‍🏫 Новая заявка стать экспертом
+
+👤 Имя: {body_data.get('name', '')}
+📧 Email: {body_data.get('email', '')}
+📱 Телефон: {body_data.get('phone', '')}
+💬 Telegram: {body_data.get('telegram', '')}
+🎯 Экспертиза: {body_data.get('expertise', '')}
+📝 Сообщение: {body_data.get('message', '')}
+
+🕐 Время: {timestamp}"""
+        
+        url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+        data = urllib.parse.urlencode({
+            'chat_id': telegram_chat_id,
+            'text': message,
+            'parse_mode': 'HTML'
+        }).encode()
+        
+        try:
+            urllib.request.urlopen(url, data=data)
+        except Exception as e:
+            pass
     
     return {
         'statusCode': 200,
