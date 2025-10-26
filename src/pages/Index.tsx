@@ -810,7 +810,13 @@ const Index = () => {
         </div>
       </section>
 
-      <footer className="py-12 px-4 bg-black text-white border-t-2 border-t-[#d4af37]">
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/15 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/15 to-transparent pointer-events-none"></div>
+      </div>
+
+      <footer className="py-12 px-4 bg-black text-white">
         <div className="container mx-auto text-center">
           <img src="https://cdn.poehali.dev/files/f30f5418-f15c-4feb-85a4-6f3706ea95e5.png" alt="Muse" className="h-16 mx-auto mb-4 floating" />
           <p className="text-lg mb-8">
