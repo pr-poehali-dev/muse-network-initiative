@@ -235,7 +235,7 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center`}>
+      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-[140vh] flex items-end pb-20`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
