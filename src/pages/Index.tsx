@@ -459,12 +459,37 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div className="relative inline-block mb-8 md:mb-10 animate-title-appear" style={{animationDelay: '1.5s', opacity: 0}}>
-            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            {/* Основной текст */}
+            <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#ffd700] to-[#b8953d] px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.8)] relative z-10" style={{
+              textShadow: '0 0 80px rgba(212,175,55,0.5), 0 0 120px rgba(212,175,55,0.3)'
+            }}>
               MUSE
             </h2>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
+            
+            {/* Свечение - слой 1 (пульсация) */}
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/30 blur-3xl px-2 md:px-4 animate-pulse" style={{animationDuration: '3s'}}>
               MUSE
             </div>
+            
+            {/* Свечение - слой 2 */}
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#ffd700]/20 blur-2xl px-2 md:px-4">
+              MUSE
+            </div>
+            
+            {/* Золотая аура */}
+            <div className="absolute -inset-6 bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-3xl animate-pulse" style={{animationDuration: '4s'}}></div>
+            
+            {/* Верхний блик */}
+            <div className="absolute top-0 left-1/4 right-1/4 h-1 bg-gradient-to-r from-transparent via-[#ffd700]/80 to-transparent blur-sm"></div>
+            
+            {/* Нижний блик */}
+            <div className="absolute bottom-0 left-1/3 right-1/3 h-1 bg-gradient-to-r from-transparent via-[#d4af37]/60 to-transparent blur-sm"></div>
+            
+            {/* Светящиеся точки */}
+            <div className="absolute top-1/4 left-0 w-3 h-3 bg-[#ffd700] rounded-full blur-sm animate-pulse opacity-60"></div>
+            <div className="absolute top-3/4 right-0 w-3 h-3 bg-[#d4af37] rounded-full blur-sm animate-pulse opacity-60" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-[#ffd700] rounded-full blur-sm animate-pulse opacity-40" style={{animationDelay: '2s'}}></div>
+            <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse opacity-40" style={{animationDelay: '3s'}}></div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '2.2s', opacity: 0}}>
             Сообщество женщин из сферы бизнеса, культуры, науки и искусства
