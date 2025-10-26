@@ -289,7 +289,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/8c360511-b168-4aaf-9fc8-365fe577f722.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[50%_20%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/40 to-black"></div>
             </div>
@@ -297,7 +297,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/2bcd2460-8ebb-44e4-a487-7713f4df3978.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[50%_25%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
             </div>
@@ -305,7 +305,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/436950d0-40c7-4b74-befd-ad03f7b36d68.jpg"
                 alt="Карина Ляшева"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[50%_15%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
             </div>
@@ -313,7 +313,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/1b947020-cf2f-4f3c-ba14-706dd473e324.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[50%_25%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/30 to-black"></div>
             </div>
@@ -321,7 +321,7 @@ const Index = () => {
               <img 
                 src="https://cdn.poehali.dev/files/06a28c0d-48e7-4171-b137-c5bf89961e22.jpg"
                 alt="Участница клуба"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-[50%_20%]"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent"></div>
             </div>
