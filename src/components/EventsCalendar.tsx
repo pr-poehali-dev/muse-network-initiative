@@ -269,34 +269,34 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
 
         {isExpanded && (
           <div className="animate-fade-in">
-            <div className="flex items-center justify-between mb-4 bg-gradient-to-r from-[#0a0a0a]/60 to-[#1a1a1a]/40 rounded-xl p-2.5 md:p-3 border border-[#b8953d]/20 shadow-inner">
+            <div className="flex items-center justify-between mb-6 bg-gradient-to-br from-[#1a1a1a]/80 to-[#0a0a0a]/60 rounded-xl p-4 border border-[#d4af37]/30 shadow-lg backdrop-blur-sm">
               <button
                 onClick={() => changeMonth(-3)}
-                className="p-2 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
+                className="p-2.5 rounded-lg bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/40 hover:border-[#d4af37] hover:bg-gradient-to-br hover:from-[#d4af37]/30 hover:to-[#b8953d]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 transition-all group"
               >
-                <Icon name="ChevronLeft" className="text-[#b8953d] group-hover:text-[#d4af37]" size={18} />
+                <Icon name="ChevronLeft" className="text-[#d4af37] group-hover:scale-110 transition-transform" size={18} />
               </button>
               
-              <h4 className="text-sm md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#d4af37] to-[#b8953d] capitalize">
+              <h4 className="text-base md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#b8953d] to-[#d4af37] capitalize drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
                 {monthName}
               </h4>
               
               <button
                 onClick={() => changeMonth(3)}
-                className="p-2 rounded-lg bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#b8953d]/20 hover:border-[#d4af37] hover:shadow-lg hover:shadow-[#d4af37]/20 transition-all group"
+                className="p-2.5 rounded-lg bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/40 hover:border-[#d4af37] hover:bg-gradient-to-br hover:from-[#d4af37]/30 hover:to-[#b8953d]/20 hover:shadow-lg hover:shadow-[#d4af37]/40 transition-all group"
               >
-                <Icon name="ChevronRight" className="text-[#b8953d] group-hover:text-[#d4af37]" size={18} />
+                <Icon name="ChevronRight" className="text-[#d4af37] group-hover:scale-110 transition-transform" size={18} />
               </button>
             </div>
 
             <div className="grid md:grid-cols-3 gap-3 mb-6">
               {threeMonths.map(({ offset, daysInMonth, startingDayOfWeek, name, year, month }) => (
-                <div key={offset} className="bg-[#0a0a0a]/40 rounded-xl p-2 border border-[#b8953d]/10">
-                  <h5 className="text-center text-xs font-bold text-[#d4af37] mb-2 capitalize">{name}</h5>
+                <div key={offset} className="bg-gradient-to-br from-[#1a1a1a]/60 to-[#0a0a0a]/80 rounded-xl p-3 border border-[#d4af37]/20 shadow-md backdrop-blur-sm">
+                  <h5 className="text-center text-sm font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] to-[#b8953d] mb-3 capitalize">{name}</h5>
                   
                   <div className="grid grid-cols-7 gap-0.5 mb-1">
                     {['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'].map((day) => (
-                      <div key={day} className="text-center text-[8px] font-bold text-[#d4af37]/60 py-0.5">
+                      <div key={day} className="text-center text-[9px] font-bold text-[#d4af37]/70 py-1">
                         {day}
                       </div>
                     ))}
@@ -322,20 +322,20 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
                               setSelectedEvent(null);
                             }
                           }}
-                          className={`aspect-square border rounded-sm transition-all duration-300 ${
+                          className={`aspect-square border rounded-md transition-all duration-300 ${
                             isSelectedDay
-                              ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/40 to-[#b8860b]/40 shadow-md shadow-[#d4af37]/50 scale-110'
+                              ? 'border-[#d4af37] bg-gradient-to-br from-[#d4af37]/50 to-[#b8860b]/50 shadow-lg shadow-[#d4af37]/60 scale-105'
                               : hasEvents 
-                              ? 'border-[#d4af37]/60 bg-gradient-to-br from-[#d4af37]/15 to-[#b8860b]/15 hover:shadow-sm hover:shadow-[#d4af37]/30 cursor-pointer hover:scale-110' 
-                              : 'border-[#b8953d]/10 bg-[#0a0a0a]/20'
+                              ? 'border-[#d4af37]/50 bg-gradient-to-br from-[#d4af37]/20 to-[#b8860b]/20 hover:shadow-md hover:shadow-[#d4af37]/40 cursor-pointer hover:scale-105 hover:border-[#d4af37]' 
+                              : 'border-[#b8953d]/15 bg-[#0a0a0a]/30'
                           }`}
                         >
                           <div className="h-full flex flex-col items-center justify-center">
-                            <div className={`text-[8px] font-bold ${isSelectedDay ? 'text-white' : hasEvents ? 'text-[#d4af37]' : 'text-white/30'}`}>
+                            <div className={`text-[9px] font-bold ${isSelectedDay ? 'text-white drop-shadow-[0_0_4px_rgba(255,255,255,0.8)]' : hasEvents ? 'text-[#d4af37]' : 'text-white/30'}`}>
                               {day}
                             </div>
                             {hasEvents && dayEvents.length > 0 && (
-                              <div className="w-0.5 h-0.5 rounded-full bg-[#d4af37] mt-0.5" />
+                              <div className="w-1 h-1 rounded-full bg-[#d4af37] mt-0.5 shadow-[0_0_4px_rgba(212,175,55,0.8)]" />
                             )}
                           </div>
                         </div>
