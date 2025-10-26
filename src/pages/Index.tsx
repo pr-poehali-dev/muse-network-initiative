@@ -332,15 +332,17 @@ const Index = () => {
             <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[42%] h-full opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[42%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
               alt="" 
               className="w-full h-full object-cover object-center"
               style={{
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
+                maskComposite: 'intersect',
+                WebkitMaskComposite: 'source-in',
                 filter: 'grayscale(20%) contrast(1.15)'
               }}
             />
