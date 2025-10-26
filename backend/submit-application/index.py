@@ -101,6 +101,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     
+    print(f"Telegram token exists: {bool(telegram_token)}")
+    print(f"Telegram chat_id: {telegram_chat_id}")
+    
     if telegram_token and telegram_chat_id:
         message = f"""🆕 Новая заявка на вступление в клуб MUSE
 
@@ -115,14 +118,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         data = urllib.parse.urlencode({
             'chat_id': telegram_chat_id,
-            'text': message,
-            'parse_mode': 'HTML'
+            'text': message
         }).encode()
         
         try:
-            urllib.request.urlopen(url, data=data)
+            response = urllib.request.urlopen(url, data=data)
+            result = response.read().decode()
+            print(f"Telegram API response: {result}")
         except Exception as e:
-            pass
+            print(f"Telegram error: {str(e)}")
+    else:
+        print("Telegram credentials missing!")
     
     return {
         'statusCode': 200,
