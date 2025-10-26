@@ -235,7 +235,7 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
         </button>
 
         {!isExpanded && currentMonthEvents.length > 0 && (
-          <div className="space-y-3">
+          <div className="flex flex-col gap-3 md:flex-row md:overflow-x-auto md:pb-2 md:scrollbar-hide md:-mx-2 md:px-2">
             {currentMonthEvents.map((event) => {
               const config = getEventTypeConfig(event.type);
               const eventDate = new Date(event.date);
@@ -243,48 +243,50 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
               return (
                 <div
                   key={event.id}
-                  className="bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 border-[#b8953d]/40 rounded-2xl p-4 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/20 transition-all cursor-pointer group"
+                  className="flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 border-[#b8953d]/40 rounded-2xl p-4 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/30 transition-all cursor-pointer group"
                   onClick={() => {
                     setSelectedEvent(event);
                     setIsExpanded(true);
                   }}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className={`p-2.5 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-105 transition-transform`}>
-                      <Icon name={config.icon as any} size={20} className="text-black" />
+                  <div className="flex items-start gap-3 mb-3">
+                    <div className={`p-3 rounded-xl bg-gradient-to-br ${config.color} shadow-lg flex-shrink-0 group-hover:scale-110 transition-transform`}>
+                      <Icon name={config.icon as any} size={24} className="text-black" />
                     </div>
                     <div className="flex-1 min-w-0">
-                      <div className="inline-block px-2 py-0.5 rounded-md bg-[#d4af37]/20 border border-[#d4af37]/40 mb-1.5">
-                        <span className="text-[10px] font-bold text-[#d4af37]">{config.label}</span>
+                      <div className="inline-block px-2 py-0.5 rounded-md bg-[#d4af37]/20 border border-[#d4af37]/40 mb-2">
+                        <span className="text-xs font-bold text-[#d4af37]">{config.label}</span>
                       </div>
-                      <h4 className="text-sm font-bold text-white mb-2 line-clamp-2 leading-tight">
+                      <h4 className="text-base font-bold text-white mb-2 line-clamp-2 leading-tight">
                         {event.title}
                       </h4>
-                      <div className="flex items-center gap-2 text-[11px] text-white/60 mb-2">
-                        <Icon name="Calendar" size={12} className="text-[#d4af37]" />
-                        <span>{eventDate.getDate()} {eventDate.toLocaleDateString('ru-RU', { month: 'long' })}</span>
-                        <Icon name="Clock" size={12} className="text-[#d4af37]" />
-                        <span>{event.time}</span>
-                      </div>
-                      {event.speakers.length > 0 && (
-                        <div className="space-y-1.5">
-                          {event.speakers.map((speaker, idx) => (
-                            <div key={idx} className="flex items-center gap-2">
-                              <img 
-                                src={speaker.image} 
-                                alt={speaker.name}
-                                className="w-7 h-7 rounded-full object-cover border border-[#d4af37]/30"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <p className="text-xs font-semibold text-white/90 truncate">{speaker.name}</p>
-                                <p className="text-[10px] text-white/50 truncate">{speaker.role}</p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   </div>
+                  
+                  <div className="flex items-center gap-2 text-xs text-white/60 mb-3">
+                    <Icon name="Calendar" size={14} className="text-[#d4af37]" />
+                    <span>{eventDate.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' })}</span>
+                    <Icon name="Clock" size={14} className="text-[#d4af37] ml-1" />
+                    <span>{event.time}</span>
+                  </div>
+
+                  {event.speakers.length > 0 && (
+                    <div className="space-y-2 pt-3 border-t border-[#d4af37]/20">
+                      {event.speakers.map((speaker, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <img 
+                            src={speaker.image} 
+                            alt={speaker.name}
+                            className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-white/90 truncate">{speaker.name}</p>
+                            <p className="text-[10px] text-white/50 truncate">{speaker.role}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               );
             })}
