@@ -66,28 +66,28 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
   ];
 
   return (
-    <section id="experts" className={`relative py-16 sm:py-24 md:py-32 px-0 transition-all duration-1000 ${visibleSections.has('experts') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+    <section id="experts" className={`relative py-32 px-8 transition-all duration-1000 ${visibleSections.has('experts') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black"></div>
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20">
-          <div className="inline-block mb-4 sm:mb-6">
-            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 sm:mb-8"></div>
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="text-center mb-20">
+          <div className="inline-block mb-6">
+            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8"></div>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355] px-4">
+          <h2 className="text-5xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355]">
             Наши эксперты
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-6 sm:mb-8 px-4">
+          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed mb-8">
             Успешные женщины-лидеры делятся опытом и знаниями
           </p>
           <Button 
             onClick={onBecomeExpert}
-            className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold py-4 sm:py-5 md:py-6 px-8 sm:px-10 md:px-12 rounded-xl transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+            className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold py-6 px-12 rounded-xl transition-all duration-300 transform hover:scale-105"
           >
             Стать экспертом клуба
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {experts.map((expert, index) => (
             <Card 
               key={index} 
