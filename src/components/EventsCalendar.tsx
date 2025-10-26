@@ -71,8 +71,8 @@ const EventsCalendar = ({ onEventRegister }: EventsCalendarProps) => {
           className="w-full flex items-center justify-between group md:mb-6 bg-gradient-to-br from-[#2a2a2a]/60 to-[#1a1a1a]/40 rounded-xl p-4 border border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-all hover:shadow-lg hover:shadow-[#d4af37]/10"
         >
           <div className="flex items-center gap-3 md:gap-4">
-            <div className="p-3 rounded-xl bg-gradient-to-br from-[#d4af37] to-[#b8860b] group-hover:scale-105 transition-all shadow-lg shadow-[#d4af37]/30">
-              <Icon name="CalendarDays" className="text-black" size={24} />
+            <div className="p-3 rounded-xl bg-gradient-to-br from-[#2a2a2a]/80 to-[#1a1a1a]/60 group-hover:scale-105 transition-all shadow-lg shadow-[#d4af37]/30 border border-[#d4af37]/40">
+              <Icon name="CalendarDays" size={24} />
             </div>
             <div className="text-left">
               <h3 className="text-base md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
