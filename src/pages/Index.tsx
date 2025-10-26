@@ -243,8 +243,8 @@ const Index = () => {
         </div>
       </nav>
 
-      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-[140vh] flex items-end pb-12`}>
-        <div className="absolute inset-0 overflow-hidden">
+      <section id="hero" className={`relative pt-0 pb-0 overflow-hidden bg-black min-h-screen sm:min-h-[120vh] md:min-h-[140vh] flex items-end pb-8 sm:pb-12`}>
+        <div className="absolute inset-0 overflow-hidden hidden sm:block">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>

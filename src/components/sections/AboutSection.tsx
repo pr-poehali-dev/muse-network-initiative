@@ -34,23 +34,23 @@ const AboutSection = ({ visibleSections }: AboutSectionProps) => {
   ];
 
   return (
-    <section id="about" className={`relative py-32 px-8 transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+    <section id="about" className={`relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
       <div className="absolute inset-0 bg-black"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-black via-[#0a0a0a] to-black opacity-90"></div>
       <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-20">
-          <div className="inline-block mb-6">
-            <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-8"></div>
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
+          <div className="inline-block mb-4 sm:mb-6">
+            <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6 sm:mb-8"></div>
           </div>
-          <h2 className="text-5xl md:text-7xl font-black mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-[#8b7355] px-4">
             О MUSE
           </h2>
-          <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed px-4">
             MUSE — это пространство для успешных женщин, которые стремятся к развитию, вдохновению и созданию значимых связей
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 sm:mb-16 md:mb-20">
           {values.map((value, index) => (
             <Card 
               key={index} 
@@ -62,16 +62,16 @@ const AboutSection = ({ visibleSections }: AboutSectionProps) => {
               }}
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl group-hover:bg-[#d4af37]/20 transition-all duration-500"></div>
-              <CardContent className="p-8 relative z-10">
-                <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-300">{value.emoji}</div>
-                <h3 className="text-2xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{value.title}</h3>
-                <p className="text-white/70 leading-relaxed">{value.description}</p>
+              <CardContent className="p-4 sm:p-6 md:p-8 relative z-10">
+                <div className="text-3xl sm:text-4xl md:text-5xl mb-4 sm:mb-6 transform group-hover:scale-110 transition-transform duration-300">{value.emoji}</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{value.title}</h3>
+                <p className="text-sm sm:text-base text-white/70 leading-relaxed">{value.description}</p>
               </CardContent>
             </Card>
           ))}
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           <Card className="bg-[#1a1a1a]/60 backdrop-blur-md border-[#d4af37]/20 hover-scale glow-effect group relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl group-hover:bg-[#d4af37]/20 transition-all duration-500"></div>
             <CardContent className="p-10 relative z-10">
