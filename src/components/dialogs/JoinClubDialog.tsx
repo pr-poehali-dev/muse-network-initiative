@@ -32,7 +32,7 @@ const JoinClubDialog = ({
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">
+          <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
             Вступить в клуб MUSE
           </DialogTitle>
           <DialogDescription className="text-white/70">
