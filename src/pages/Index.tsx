@@ -457,7 +457,7 @@ const Index = () => {
             Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 max-w-5xl mx-auto">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear md:aspect-video flex items-center justify-center" style={{animationDelay: '3.2s', opacity: 0}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '3.2s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
@@ -473,7 +473,7 @@ const Index = () => {
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear md:aspect-video flex items-center justify-center" style={{animationDelay: '3.4s', opacity: 0}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '3.4s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
@@ -489,7 +489,7 @@ const Index = () => {
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear md:aspect-video flex items-center justify-center" style={{animationDelay: '3.6s', opacity: 0}}>
+            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '3.6s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
