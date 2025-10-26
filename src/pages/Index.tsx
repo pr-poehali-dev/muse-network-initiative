@@ -317,10 +317,10 @@ const Index = () => {
 
         <div className="w-full text-center px-8 relative z-30">
           <div className="relative inline-block mb-10 animate-scale-in" style={{animationDelay: '1.2s', animationFillMode: 'backwards'}}>
-            <h2 className="text-7xl md:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            <h2 className="text-9xl md:text-[12rem] lg:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h2>
-            <div className="absolute inset-0 text-7xl md:text-9xl font-black text-[#d4af37]/5 blur-xl px-4">
+            <div className="absolute inset-0 text-9xl md:text-[12rem] lg:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-4">
               MUSE
             </div>
           </div>
