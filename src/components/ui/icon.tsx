@@ -7,22 +7,22 @@ interface IconProps extends LucideProps {
   fallback?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ name, fallback = 'CircleAlert', ...props }) => {
+const Icon: React.FC<IconProps> = ({ name, fallback = 'CircleAlert', className, ...props }) => {
   const IconComponent = (LucideIcons as Record<string, React.FC<LucideProps>>)[name];
+  const defaultColor = 'text-[#b8953d]';
+  const combinedClassName = className ? `${defaultColor} ${className}` : defaultColor;
 
   if (!IconComponent) {
-    // Если иконка не найдена, используем fallback иконку
     const FallbackIcon = (LucideIcons as Record<string, React.FC<LucideProps>>)[fallback];
 
-    // Если даже fallback не найден, возвращаем пустой span
     if (!FallbackIcon) {
       return <span className="text-xs text-gray-400">[icon]</span>;
     }
 
-    return <FallbackIcon {...props} />;
+    return <FallbackIcon className={combinedClassName} {...props} />;
   }
 
-  return <IconComponent {...props} />;
+  return <IconComponent className={combinedClassName} {...props} />;
 };
 
 export default Icon;
