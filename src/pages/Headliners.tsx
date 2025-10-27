@@ -211,6 +211,44 @@ const Headliners = () => {
           {/* Lens flares */}
           <div className="absolute top-[28%] left-[48%] w-40 h-40 bg-[#d4af37]/5 rounded-full blur-3xl z-5"></div>
           <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-5"></div>
+          
+          {/* Center VIP Image */}
+          <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[280px] h-[420px] md:w-[320px] md:h-[480px] z-15 group">
+            <div className="relative w-full h-full">
+              {/* Glow effects behind image */}
+              <div className="absolute -inset-16 z-0">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px] animate-pulse" style={{animationDuration: '4s'}}></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px] animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+              </div>
+              
+              {/* Golden frame effect */}
+              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10 animate-pulse" style={{animationDuration: '3s'}}></div>
+              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
+              
+              {/* Main image */}
+              <img 
+                src="https://cdn.poehali.dev/files/cc73b558-36b0-492e-ae81-fb5b732c9af8.jpg" 
+                alt="VIP Headliner" 
+                className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
+                style={{
+                  objectPosition: 'center center',
+                  filter: 'contrast(1.1) brightness(1.05)'
+                }}
+              />
+              
+              {/* Premium overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
+              
+              {/* Corner accents */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
+            </div>
+          </div>
         </div>
 
         <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
