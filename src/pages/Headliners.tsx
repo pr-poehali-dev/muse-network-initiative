@@ -29,7 +29,10 @@ const Headliners = () => {
               <Icon name="ArrowLeft" size={20} className="mr-2" />
               На главную
             </Button>
-            <div className="text-sm text-white/60">Хедлайнеры</div>
+            <div className="flex items-center gap-3 px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-xs sm:text-sm text-white/90 font-medium">Живая встреча · Loft Hall, 2-й этаж</span>
+            </div>
           </div>
         </div>
       </header>
@@ -142,13 +145,9 @@ const Headliners = () => {
               MUSE
             </div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
             Юлия Викторова — Директор по цифровому маркетингу, Санкт-Петербург
           </p>
-          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm animate-text-appear" style={{animationDelay: '1.3s', opacity: 0}}>
-            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            <span className="text-sm sm:text-base text-white/90 font-medium">Живая встреча · Loft Hall, 2-й этаж</span>
-          </div>
           <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-8 py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png" 
