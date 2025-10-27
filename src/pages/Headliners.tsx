@@ -115,7 +115,7 @@ const Headliners = () => {
           <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
           
           {/* Left image */}
-          <div className="hidden lg:block absolute left-[15%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
+          <div className="hidden lg:block absolute left-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-12 z-0">
                 <div className="absolute top-0 left-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_left,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
@@ -131,8 +131,10 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 30%',
-                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  maskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  maskComposite: 'intersect',
+                  WebkitMaskComposite: 'source-in',
                   filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
                 }}
               />
@@ -142,7 +144,7 @@ const Headliners = () => {
           </div>
           
           {/* Right image */}
-          <div className="hidden lg:block absolute right-[15%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
+          <div className="hidden lg:block absolute right-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-12 z-0">
                 <div className="absolute top-0 right-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_right,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
@@ -158,8 +160,10 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 30%',
-                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  maskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  maskComposite: 'intersect',
+                  WebkitMaskComposite: 'source-in',
                   filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
                 }}
               />
