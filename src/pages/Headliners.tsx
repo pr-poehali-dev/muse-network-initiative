@@ -115,7 +115,7 @@ const Headliners = () => {
           <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
           
           {/* Left image */}
-          <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
+          <div className="hidden lg:block absolute left-[15%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-12 z-0">
                 <div className="absolute top-0 left-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_left,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
@@ -142,7 +142,7 @@ const Headliners = () => {
           </div>
           
           {/* Right image */}
-          <div className="hidden lg:block absolute right-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
+          <div className="hidden lg:block absolute right-[15%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-12 z-0">
                 <div className="absolute top-0 right-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_right,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
