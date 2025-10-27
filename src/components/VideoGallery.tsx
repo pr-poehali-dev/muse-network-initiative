@@ -131,35 +131,41 @@ const VideoGallery = () => {
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in touch-pan-y"
           onClick={() => setSelectedVideo(null)}
         >
-          <button
-            onClick={() => setSelectedVideo(null)}
-            className="absolute top-14 right-4 md:top-8 md:right-8 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
-          >
-            <Icon name="X" size={32} />
-          </button>
+          {/* Navigation bar */}
+          <div className="absolute top-0 left-0 right-0 h-20 md:h-24 flex items-center justify-between px-4 md:px-8 z-10 bg-gradient-to-b from-black/80 to-transparent">
+            {/* Left: Hint arrows for mobile */}
+            <div className="flex items-center gap-2">
+              {showHint && (
+                <>
+                  <div className="md:hidden text-[#d4af37] animate-pulse">
+                    <Icon name="ChevronLeft" size={24} />
+                  </div>
+                  <div className="md:hidden text-[#d4af37] animate-pulse" style={{animationDelay: '0.2s'}}>
+                    <Icon name="ChevronRight" size={24} />
+                  </div>
+                </>
+              )}
+            </div>
 
-          {/* Counter */}
-          <div className="absolute top-14 left-1/2 -translate-x-1/2 md:top-8 text-[#d4af37] text-sm md:text-base backdrop-blur-sm bg-black/30 px-4 py-2 rounded-full">
-            {currentIndex + 1} / {videos.length}
+            {/* Center: Counter */}
+            <div className="absolute left-1/2 -translate-x-1/2 text-[#d4af37] text-base md:text-lg font-medium backdrop-blur-sm bg-black/40 px-4 py-2 rounded-full">
+              {currentIndex + 1} / {videos.length}
+            </div>
+
+            {/* Right: Close button */}
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="text-[#d4af37]/80 hover:text-[#ffd700] transition-colors backdrop-blur-sm bg-black/40 rounded-full p-2 md:p-3"
+            >
+              <Icon name="X" size={28} />
+            </button>
           </div>
-
-          {/* Hint arrows for mobile */}
-          {showHint && (
-            <>
-              <div className="md:hidden absolute top-14 left-4 text-[#d4af37] animate-pulse z-10">
-                <Icon name="ChevronLeft" size={24} />
-              </div>
-              <div className="md:hidden absolute top-14 left-12 text-[#d4af37] animate-pulse z-10" style={{animationDelay: '0.2s'}}>
-                <Icon name="ChevronRight" size={24} />
-              </div>
-            </>
-          )}
           
           {/* Desktop navigation buttons */}
           {currentIndex > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-              className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/40 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronLeft" size={32} />
             </button>
@@ -168,7 +174,7 @@ const VideoGallery = () => {
           {currentIndex < videos.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
-              className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/40 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronRight" size={32} />
             </button>
