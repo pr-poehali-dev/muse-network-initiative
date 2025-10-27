@@ -141,19 +141,19 @@ const Headliners = () => {
               Хедлайнер
             </div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
-            Юлия Викторова — Директор по цифровому маркетингу Digital Agency albe
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
+            Юлия Викторова — Директор по цифровому маркетингу
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.6s', opacity: 0}}>
-            Кейс: Как помогаем бизнесу находить Лиды. Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок.
-          </p>
-          <div className="flex items-center justify-center gap-4 mb-8 animate-text-appear" style={{animationDelay: '2s', opacity: 0}}>
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
-              src="https://cdn.poehali.dev/files/8f2f3fdc-63e8-4204-96d7-dfb5659ba108.png" 
+              src="https://cdn.poehali.dev/files/0e43c7d6-4c5c-447b-b57d-04637fb6c67f.png" 
               alt="Digital Agency albe" 
-              className="h-16 w-16 object-contain drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]"
+              className="h-12 md:h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]"
             />
           </div>
+          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
+            Кейс: Как помогаем бизнесу находить Лиды. Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок.
+          </p>
         </div>
       </section>
 
@@ -264,19 +264,19 @@ const Headliners = () => {
               <div className="space-y-6">
                 <h3 className="text-3xl font-bold text-white">О спикере</h3>
                 <p className="text-white/80 leading-relaxed">
-                  Юлия Викторова — опытный специалист в области цифрового маркетинга с более чем 10-летним опытом работы. 
-                  Директор по цифровому маркетингу в Digital Agency albe.
+                  Юлия Викторова — опытный специалист в области цифрового маркетинга с более чем 10-летним опытом работы.
                 </p>
+                <div className="py-4">
+                  <p className="text-white/60 text-sm mb-3">Директор по цифровому маркетингу</p>
+                  <img 
+                    src="https://cdn.poehali.dev/files/0e43c7d6-4c5c-447b-b57d-04637fb6c67f.png"
+                    alt="Digital Agency albe"
+                    className="h-14 object-contain"
+                  />
+                </div>
                 <p className="text-white/80 leading-relaxed">
                   Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в 3-5 раз.
                 </p>
-                <div className="pt-4">
-                  <img 
-                    src="https://cdn.poehali.dev/files/8f2f3fdc-63e8-4204-96d7-dfb5659ba108.png"
-                    alt="Digital Agency albe"
-                    className="h-16 object-contain"
-                  />
-                </div>
               </div>
             </div>
           </div>
