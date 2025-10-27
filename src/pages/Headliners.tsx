@@ -144,11 +144,11 @@ const Headliners = () => {
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
             Юлия Викторова — Директор по цифровому маркетингу
           </p>
-          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear" style={{animationDelay: '1.4s', opacity: 0}}>
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-8 py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/0e43c7d6-4c5c-447b-b57d-04637fb6c67f.png" 
               alt="Digital Agency albe" 
-              className="h-12 md:h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+              className="h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)] brightness-110 contrast-125"
             />
           </div>
           <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
@@ -268,11 +268,13 @@ const Headliners = () => {
                 </p>
                 <div className="py-4">
                   <p className="text-white/60 text-sm mb-3">Директор по цифровому маркетингу</p>
-                  <img 
-                    src="https://cdn.poehali.dev/files/0e43c7d6-4c5c-447b-b57d-04637fb6c67f.png"
-                    alt="Digital Agency albe"
-                    className="h-14 object-contain"
-                  />
+                  <div className="bg-black/40 backdrop-blur-sm px-6 py-3 rounded-lg border border-[#d4af37]/20 inline-block">
+                    <img 
+                      src="https://cdn.poehali.dev/files/0e43c7d6-4c5c-447b-b57d-04637fb6c67f.png"
+                      alt="Digital Agency albe"
+                      className="h-12 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)] brightness-110 contrast-125"
+                    />
+                  </div>
                 </div>
                 <p className="text-white/80 leading-relaxed">
                   Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в 3-5 раз.
