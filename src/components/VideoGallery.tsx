@@ -117,7 +117,7 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
             className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
             <iframe
-              src={`https://kinescope.io/embed/${video.id}?ui=0`}
+              src={`https://kinescope.io/embed/${video.id}?ui=0&mainPlayButton=0`}
               className="w-full h-full object-cover pointer-events-none"
               frameBorder="0"
             />
