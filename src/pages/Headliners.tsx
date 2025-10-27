@@ -212,41 +212,41 @@ const Headliners = () => {
           <div className="absolute top-[28%] left-[48%] w-40 h-40 bg-[#d4af37]/5 rounded-full blur-3xl z-5"></div>
           <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-5"></div>
           
-          {/* Center VIP Image */}
-          <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[280px] h-[420px] md:w-[320px] md:h-[480px] z-15 group">
+          {/* Center VIP Image - Enlarged Silhouette */}
+          <div className="absolute top-[15%] left-1/2 -translate-x-1/2 w-[400px] h-[600px] md:w-[500px] md:h-[750px] lg:w-[550px] lg:h-[825px] z-15 group">
             <div className="relative w-full h-full">
-              {/* Glow effects behind image */}
-              <div className="absolute -inset-16 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px] animate-pulse" style={{animationDuration: '4s'}}></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px] animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+              {/* Dramatic glow effects behind silhouette */}
+              <div className="absolute -inset-20 z-0">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/30,transparent_65%)] blur-[80px] animate-pulse" style={{animationDuration: '4s'}}></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/20,transparent_60%)] blur-[100px] animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),transparent_70%)] blur-[60px]"></div>
               </div>
               
-              {/* Golden frame effect */}
-              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10 animate-pulse" style={{animationDuration: '3s'}}></div>
-              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
-              
-              {/* Main image */}
+              {/* Main image - Silhouette effect with removed background */}
               <img 
                 src="https://cdn.poehali.dev/files/cc73b558-36b0-492e-ae81-fb5b732c9af8.jpg" 
                 alt="VIP Headliner" 
-                className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
+                className="relative z-20 w-full h-full object-contain transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: 'center center',
-                  filter: 'contrast(1.1) brightness(1.05)'
+                  filter: 'contrast(1.3) brightness(1.1) saturate(0.7)',
+                  mixBlendMode: 'lighten',
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)'
                 }}
               />
               
-              {/* Premium overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 rounded-xl z-25 pointer-events-none"></div>
+              {/* Silhouette enhancement - darker background fade */}
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black opacity-60 z-25 pointer-events-none"></div>
+              
+              {/* Golden rim light effect */}
+              <div className="absolute inset-0 z-30 pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 via-transparent to-[#d4af37]/20 blur-sm"></div>
+                <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-transparent blur-md"></div>
+              </div>
               
               {/* Hover glow */}
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
-              
-              {/* Corner accents */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 transition-all duration-500 blur-2xl z-35"></div>
             </div>
           </div>
         </div>
