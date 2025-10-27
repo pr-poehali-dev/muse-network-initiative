@@ -319,7 +319,8 @@ const Index = () => {
               </div>
             </div>
             
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-bold text-[#b8953d]/90 uppercase tracking-wider">MENU</span>
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
@@ -328,26 +329,6 @@ const Index = () => {
                 <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
                 <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
               </button>
-              
-              <Button
-                size="lg"
-                className="hidden md:block group relative text-sm font-semibold px-6 py-2.5 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
-                onClick={() => setIsExpertDialogOpen(true)}
-              >
-                <span className="relative z-10">Стать экспертом</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              </Button>
-              <Button
-                size="lg"
-                className="hidden md:block group relative text-sm font-semibold px-8 py-3 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
-                onClick={() => setIsJoinDialogOpen(true)}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 group-hover:from-white group-hover:via-white group-hover:to-white">Вступить в клуб</span>
-                  <span className="inline-block text-[#b8953d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">→</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d]/10 to-[#8b7355]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </Button>
             </div>
           </div>
         </div>
