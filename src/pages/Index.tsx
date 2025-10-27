@@ -750,7 +750,7 @@ const Index = () => {
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
-              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden rounded-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
@@ -868,7 +868,7 @@ const Index = () => {
           <div className="text-center">
             <Button 
               onClick={() => setIsJoinDialogOpen(true)}
-              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden rounded-2xl hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-3">
                 Вступить в клуб
