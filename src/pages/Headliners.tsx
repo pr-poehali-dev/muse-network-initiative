@@ -202,6 +202,43 @@ const Headliners = () => {
         </div>
       </section>
 
+      {/* Speaker Quote Section */}
+      <section className="relative py-32 bg-gradient-to-b from-black via-neutral-950 to-black overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_70%)]"></div>
+        <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
+        <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
+        
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+          <div className="max-w-5xl mx-auto">
+            <div className="relative">
+              <div className="absolute -top-8 -left-4 md:-left-8 text-[#d4af37]/20 text-[120px] md:text-[180px] font-serif leading-none">"</div>
+              <div className="absolute -bottom-16 -right-4 md:-right-8 text-[#d4af37]/20 text-[120px] md:text-[180px] font-serif leading-none rotate-180">"</div>
+              
+              <div className="relative bg-gradient-to-br from-neutral-900/40 to-black/60 backdrop-blur-xl rounded-3xl p-10 md:p-16 border-2 border-[#d4af37]/30 shadow-[0_0_80px_rgba(212,175,55,0.15)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-3xl"></div>
+                
+                <div className="relative">
+                  <p className="text-2xl md:text-3xl lg:text-4xl font-light text-white/90 text-center leading-relaxed mb-10">
+                    Мы помогаем компаниям привлекать клиентов и увеличивать продажи через полный цикл digital-инструментов
+                  </p>
+                  
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="h-[2px] w-12 bg-gradient-to-r from-transparent to-[#d4af37]/60"></div>
+                    <div className="text-center">
+                      <p className="text-lg md:text-xl font-bold text-[#d4af37] mb-1">Юлия Викторова</p>
+                      <p className="text-sm md:text-base text-white/50">Директор по цифровому маркетингу</p>
+                    </div>
+                    <div className="h-[2px] w-12 bg-gradient-to-l from-transparent to-[#d4af37]/60"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] bg-[#d4af37]/10 rounded-full blur-[100px] opacity-30"></div>
+      </section>
+
       {/* Section Separator */}
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
