@@ -81,10 +81,10 @@ const VideoGallery = () => {
               className="w-full h-full object-cover pointer-events-none"
               frameBorder="0"
             />
-            <div className="absolute inset-0 backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
               <div className="relative w-14 h-14 md:w-16 md:h-16 transition-all duration-500 group-hover:scale-110">
                 <div className="absolute inset-0 rounded-full border-2 border-[#d4af37]/60 group-hover:border-[#d4af37] transition-all duration-300"></div>
-                <div className="absolute inset-[2px] rounded-full bg-black/40 backdrop-blur-sm"></div>
+                <div className="absolute inset-[2px] rounded-full bg-black/60"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Icon name="Play" size={20} className="ml-0.5 text-[#d4af37] group-hover:text-[#ffd700] transition-colors duration-300" />
                 </div>
