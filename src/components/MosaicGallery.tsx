@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Icon from '@/components/ui/icon';
 
 const images = [
@@ -107,11 +107,22 @@ const images = [
 const MosaicGallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [showHint, setShowHint] = useState(true);
+
+  useEffect(() => {
+    if (selectedImage && showHint) {
+      const timer = setTimeout(() => setShowHint(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedImage, showHint]);
 
   const openImage = (url: string) => {
     const index = images.findIndex(img => img.url === url);
     setCurrentIndex(index);
     setSelectedImage(url);
+    setShowHint(true);
   };
 
   const goToNext = () => {
@@ -124,6 +135,23 @@ const MosaicGallery = () => {
     const prevIndex = (currentIndex - 1 + images.length) % images.length;
     setCurrentIndex(prevIndex);
     setSelectedImage(images[prevIndex].url);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      goToNext();
+    }
+    if (touchStart - touchEnd < -50) {
+      goToPrev();
+    }
   };
 
   return (
@@ -154,6 +182,9 @@ const MosaicGallery = () => {
         <div 
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 md:p-0 animate-fade-in"
           onClick={() => setSelectedImage(null)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={() => setSelectedImage(null)}
@@ -161,17 +192,30 @@ const MosaicGallery = () => {
           >
             <Icon name="X" size={32} />
           </button>
+
+          {/* Hint arrows for mobile */}
+          {showHint && (
+            <>
+              <div className="md:hidden absolute top-4 left-4 text-[#d4af37] animate-pulse z-10">
+                <Icon name="ChevronLeft" size={24} />
+              </div>
+              <div className="md:hidden absolute top-4 left-12 text-[#d4af37] animate-pulse z-10" style={{animationDelay: '0.2s'}}>
+                <Icon name="ChevronRight" size={24} />
+              </div>
+            </>
+          )}
           
+          {/* Desktop navigation buttons */}
           <button
             onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+            className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
           >
             <Icon name="ChevronLeft" size={32} />
           </button>
           
           <button
             onClick={(e) => { e.stopPropagation(); goToNext(); }}
-            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+            className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
           >
             <Icon name="ChevronRight" size={32} />
           </button>

@@ -31,14 +31,25 @@ const videos = [
 const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [showHint, setShowHint] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (selectedVideo) {
       const index = videos.findIndex(v => v.id === selectedVideo);
       if (index !== -1) setCurrentIndex(index);
+      setShowHint(true);
     }
   }, [selectedVideo]);
+
+  useEffect(() => {
+    if (selectedVideo && showHint) {
+      const timer = setTimeout(() => setShowHint(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [selectedVideo, showHint]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -65,6 +76,23 @@ const VideoGallery = () => {
     const prevIndex = (currentIndex - 1 + videos.length) % videos.length;
     setCurrentIndex(prevIndex);
     setSelectedVideo(videos[prevIndex].id);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) {
+      goToNext();
+    }
+    if (touchStart - touchEnd < -50) {
+      goToPrev();
+    }
   };
 
   return (
@@ -99,6 +127,9 @@ const VideoGallery = () => {
         <div 
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in"
           onClick={() => setSelectedVideo(null)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={() => setSelectedVideo(null)}
@@ -106,11 +137,24 @@ const VideoGallery = () => {
           >
             <Icon name="X" size={32} />
           </button>
+
+          {/* Hint arrows for mobile */}
+          {showHint && (
+            <>
+              <div className="md:hidden absolute top-4 left-4 text-[#d4af37] animate-pulse z-10">
+                <Icon name="ChevronLeft" size={24} />
+              </div>
+              <div className="md:hidden absolute top-4 left-12 text-[#d4af37] animate-pulse z-10" style={{animationDelay: '0.2s'}}>
+                <Icon name="ChevronRight" size={24} />
+              </div>
+            </>
+          )}
           
+          {/* Desktop navigation buttons */}
           {currentIndex > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="hidden md:block absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronLeft" size={32} />
             </button>
@@ -119,7 +163,7 @@ const VideoGallery = () => {
           {currentIndex < videos.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="hidden md:block absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronRight" size={32} />
             </button>
