@@ -191,7 +191,7 @@ const MosaicGallery = () => {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
+            className="absolute top-14 right-4 md:top-8 md:right-8 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
           >
             <Icon name="X" size={32} />
           </button>
@@ -199,10 +199,10 @@ const MosaicGallery = () => {
           {/* Hint arrows for mobile */}
           {showHint && (
             <>
-              <div className="md:hidden absolute top-4 left-4 text-[#d4af37] animate-pulse z-10">
+              <div className="md:hidden absolute top-14 left-4 text-[#d4af37] animate-pulse z-10">
                 <Icon name="ChevronLeft" size={24} />
               </div>
-              <div className="md:hidden absolute top-4 left-12 text-[#d4af37] animate-pulse z-10" style={{animationDelay: '0.2s'}}>
+              <div className="md:hidden absolute top-14 left-12 text-[#d4af37] animate-pulse z-10" style={{animationDelay: '0.2s'}}>
                 <Icon name="ChevronRight" size={24} />
               </div>
             </>
