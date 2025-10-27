@@ -750,7 +750,7 @@ const Index = () => {
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
               onClick={() => setGalleryOpen(true)}
-              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:from-white hover:via-white hover:to-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(184,149,61,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-2">
                 Смотреть
@@ -868,7 +868,7 @@ const Index = () => {
           <div className="text-center">
             <Button 
               onClick={() => setIsJoinDialogOpen(true)}
-              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37]/20 hover:to-[#b8953d]/20 text-[#d4af37] hover:text-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+              className="group relative text-lg md:text-xl font-semibold px-12 md:px-16 py-6 md:py-8 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:from-white hover:via-white hover:to-white transition-all duration-500 overflow-hidden hover:shadow-[0_0_30px_rgba(184,149,61,0.4)]"
             >
               <span className="relative z-10 flex items-center gap-3">
                 Вступить в клуб
