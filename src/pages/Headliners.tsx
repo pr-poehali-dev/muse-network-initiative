@@ -135,10 +135,10 @@ const Headliners = () => {
             }}
           >
             <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              MUSE — Гость
+              MUSE
             </h1>
             <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
-              MUSE — Гость
+              MUSE
             </div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
