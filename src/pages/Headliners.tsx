@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Headliners = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,9 +17,25 @@ const Headliners = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const navHeight = 80;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navHeight;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-sm border-b border-white/10">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-[#d4af37]/30">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <Button
@@ -29,15 +46,58 @@ const Headliners = () => {
               <Icon name="ArrowLeft" size={20} className="mr-2" />
               На главную
             </Button>
-            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
-              <span className="text-xs sm:text-sm text-white/90 font-medium whitespace-nowrap overflow-hidden text-ellipsis">Живая встреча · Loft Hall</span>
+            
+            <div className="hidden md:flex items-center gap-6">
+              {['hero', 'speaker', 'program', 'details'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+                >
+                  {section === 'hero' ? 'Главная' : 
+                   section === 'speaker' ? 'Спикер' :
+                   section === 'program' ? 'Программа' : 'Детали'}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+                </button>
+              ))}
             </div>
+
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
+                <span className="text-xs sm:text-sm text-white/90 font-medium whitespace-nowrap overflow-hidden text-ellipsis">Живая встреча · Loft Hall</span>
+              </div>
+              
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden flex flex-col gap-2 w-8 h-8 justify-center items-center"
+                aria-label="Toggle menu"
+              >
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={`md:hidden fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '76px' }}>
+          <div className="flex flex-col items-center py-6 gap-4">
+            {['hero', 'speaker', 'program', 'details'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3"
+              >
+                {section === 'hero' ? 'Главная' : 
+                 section === 'speaker' ? 'Спикер' :
+                 section === 'program' ? 'Программа' : 'Детали'}
+              </button>
+            ))}
           </div>
         </div>
       </header>
 
-      <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
+      <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
         <div className="absolute inset-0 overflow-hidden">
           {/* Main background gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
@@ -256,7 +316,7 @@ const Headliners = () => {
       </div>
 
       {/* Speaker Quote Section */}
-      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black via-neutral-950 to-black overflow-hidden">
+      <section id="speaker" className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black via-neutral-950 to-black overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_70%)]"></div>
         <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
@@ -306,7 +366,7 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black to-neutral-950">
+      <section id="program" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black to-neutral-950">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -443,7 +503,7 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section className="py-12 sm:py-16 bg-gradient-to-b from-neutral-950 to-black">
+      <section id="details" className="py-12 sm:py-16 bg-gradient-to-b from-neutral-950 to-black">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#d4af37]/30">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
