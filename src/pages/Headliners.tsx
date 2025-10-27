@@ -368,7 +368,9 @@ const Headliners = () => {
                   alt="Юлия Викторова"
                   className="relative w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                {/* Premium darkening overlay */}
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
               </div>
 
@@ -380,7 +382,9 @@ const Headliners = () => {
                   alt="Юлия Викторова"
                   className="relative w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                {/* Premium darkening overlay */}
+                <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
               </div>
             </div>
@@ -443,12 +447,16 @@ const Headliners = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#d4af37]/30">
             <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-              <div>
+              <div className="relative">
                 <img 
                   src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
                   alt="Юлия Викторова"
                   className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg sm:rounded-xl"
                 />
+                {/* Premium darkening overlay */}
+                <div className="absolute inset-0 bg-black/35 rounded-lg sm:rounded-xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent rounded-lg sm:rounded-xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/8 via-transparent to-transparent mix-blend-overlay rounded-lg sm:rounded-xl"></div>
               </div>
               <div className="space-y-4 sm:space-y-6">
                 <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">О спикере</h3>
