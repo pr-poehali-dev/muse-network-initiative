@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 
 const videos = [
@@ -31,6 +31,7 @@ const videos = [
 const VideoGallery = () => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     if (selectedVideo) {
@@ -38,6 +39,21 @@ const VideoGallery = () => {
       if (index !== -1) setCurrentIndex(index);
     }
   }, [selectedVideo]);
+
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data && event.data.type === 'kinescope') {
+        if (event.data.event === 'ended') {
+          if (currentIndex < videos.length - 1) {
+            goToNext();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, [currentIndex]);
 
   const goToNext = () => {
     const nextIndex = (currentIndex + 1) % videos.length;
@@ -67,10 +83,10 @@ const VideoGallery = () => {
             />
             <div className="absolute inset-0 backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
               <div className="relative w-14 h-14 md:w-16 md:h-16 transition-all duration-500 group-hover:scale-110">
-                <div className="absolute inset-0 rounded-full border-2 border-transparent bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] group-hover:from-[#b8953d] group-hover:via-[#d4af37] group-hover:to-[#8b7355] transition-all duration-300"></div>
-                <div className="absolute inset-[2px] rounded-full bg-black/60 backdrop-blur-sm"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-[#d4af37]/60 group-hover:border-[#d4af37] transition-all duration-300"></div>
+                <div className="absolute inset-[2px] rounded-full bg-black/40 backdrop-blur-sm"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <Icon name="Play" size={20} className="ml-0.5 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] group-hover:from-[#b8953d] group-hover:via-[#d4af37] group-hover:to-[#8b7355] transition-all duration-300" />
+                  <Icon name="Play" size={20} className="ml-0.5 text-[#d4af37] group-hover:text-[#ffd700] transition-colors duration-300" />
                 </div>
               </div>
             </div>
@@ -86,7 +102,7 @@ const VideoGallery = () => {
         >
           <button
             onClick={() => setSelectedVideo(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
           >
             <Icon name="X" size={32} />
           </button>
@@ -94,7 +110,7 @@ const VideoGallery = () => {
           {currentIndex > 0 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToPrev(); }}
-              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronLeft" size={32} />
             </button>
@@ -103,7 +119,7 @@ const VideoGallery = () => {
           {currentIndex < videos.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); goToNext(); }}
-              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-white/80 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-br hover:from-[#b8953d] hover:via-[#d4af37] hover:to-[#8b7355] transition-all z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+              className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
             >
               <Icon name="ChevronRight" size={32} />
             </button>
@@ -114,8 +130,9 @@ const VideoGallery = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <iframe
+              ref={iframeRef}
               key={selectedVideo}
-              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1`}
+              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
               allowFullScreen
