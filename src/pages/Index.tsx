@@ -766,7 +766,19 @@ const Index = () => {
             <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
           </div>
           <DialogHeader className="px-0 flex-shrink-0">
-            <div className="relative flex gap-0 mb-3 md:mb-4 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm">
+            <div 
+              className="relative flex gap-0 mb-3 md:mb-4 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm"
+              onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+              onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+              onTouchEnd={() => {
+                if (touchStart - touchEnd > 75) {
+                  if (galleryTab === 'photos') setGalleryTab('videos');
+                }
+                if (touchStart - touchEnd < -75) {
+                  if (galleryTab === 'videos') setGalleryTab('photos');
+                }
+              }}
+            >
               <div 
                 className="absolute top-1 bottom-1 bg-gradient-to-r from-[#d4af37]/20 to-[#8b7355]/20 rounded-md transition-all duration-300 ease-out"
                 style={{
@@ -796,21 +808,7 @@ const Index = () => {
               </button>
             </div>
           </DialogHeader>
-          <div 
-            className="overflow-y-auto flex-1 scrollbar-hide overflow-x-hidden px-0"
-            onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
-            onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
-            onTouchEnd={() => {
-              if (touchStart - touchEnd > 75) {
-                // Свайп влево - переключаем на видео
-                if (galleryTab === 'photos') setGalleryTab('videos');
-              }
-              if (touchStart - touchEnd < -75) {
-                // Свайп вправо - переключаем на фото
-                if (galleryTab === 'videos') setGalleryTab('photos');
-              }
-            }}
-          >
+          <div className="overflow-y-auto flex-1 scrollbar-hide overflow-x-hidden px-0">
             {galleryTab === 'photos' ? (
               <MosaicGallery />
             ) : (
