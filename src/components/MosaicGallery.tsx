@@ -104,7 +104,11 @@ const images = [
   }
 ];
 
-const MosaicGallery = () => {
+interface MosaicGalleryProps {
+  onViewingChange?: (isViewing: boolean) => void;
+}
+
+const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -117,6 +121,10 @@ const MosaicGallery = () => {
       return () => clearTimeout(timer);
     }
   }, [selectedImage, showHint]);
+
+  useEffect(() => {
+    onViewingChange?.(selectedImage !== null);
+  }, [selectedImage, onViewingChange]);
 
   const openImage = (url: string) => {
     const index = images.findIndex(img => img.url === url);

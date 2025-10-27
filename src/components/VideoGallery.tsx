@@ -28,7 +28,11 @@ const videos = [
   },
 ];
 
-const VideoGallery = () => {
+interface VideoGalleryProps {
+  onViewingChange?: (isViewing: boolean) => void;
+}
+
+const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -50,6 +54,10 @@ const VideoGallery = () => {
       return () => clearTimeout(timer);
     }
   }, [selectedVideo, showHint]);
+
+  useEffect(() => {
+    onViewingChange?.(selectedVideo !== null);
+  }, [selectedVideo, onViewingChange]);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
