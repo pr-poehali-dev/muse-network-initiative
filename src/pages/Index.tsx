@@ -350,7 +350,7 @@ const Index = () => {
             ))}
             <Button
               size="lg"
-              className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-[#d4af37] transition-all duration-500 overflow-hidden mt-4"
+              className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden mt-4"
               onClick={() => {
                 setIsExpertDialogOpen(true);
                 setIsMobileMenuOpen(false);
@@ -361,21 +361,17 @@ const Index = () => {
             </Button>
             <Button
               size="lg"
-              className="group relative w-full text-base font-semibold px-6 py-5 bg-gradient-to-r from-[#d4af37] via-[#ffd700] to-[#d4af37] text-black shadow-lg hover:shadow-[0_8px_30px_rgba(212,175,55,0.6)] transition-all duration-500 overflow-hidden"
+              className="group relative w-full text-base font-semibold px-6 py-5 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
               onClick={() => {
                 setIsJoinDialogOpen(true);
                 setIsMobileMenuOpen(false);
               }}
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
-                Вступить в клуб
-                <span className="inline-block group-hover:translate-x-1 transition-transform duration-300">→</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 group-hover:from-white group-hover:via-white group-hover:to-white">Вступить в клуб</span>
+                <span className="inline-block text-[#b8953d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">→</span>
               </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-[#ffd700] via-[#d4af37] to-[#ffd700] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-0 opacity-50">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
-                <div className="absolute top-0 left-0 right-0 h-px bg-white/40"></div>
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d]/10 to-[#8b7355]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </Button>
           </div>
         </div>
