@@ -42,10 +42,22 @@ const Headliners = () => {
           {/* Main background gradient */}
           <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
           
-          {/* Subtle golden glow effects */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] opacity-40"></div>
-          <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30"></div>
-          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30"></div>
+          {/* Animated particles */}
+          <div className="absolute top-[10%] left-[15%] w-2 h-2 bg-[#d4af37] rounded-full blur-[1px] opacity-60 animate-float" style={{animationDuration: '6s', animationDelay: '0s'}}></div>
+          <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '8s', animationDelay: '1s'}}></div>
+          <div className="absolute top-[40%] left-[25%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-40 animate-float" style={{animationDuration: '7s', animationDelay: '2s'}}></div>
+          <div className="absolute top-[60%] right-[30%] w-2 h-2 bg-[#8b7355] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '9s', animationDelay: '0.5s'}}></div>
+          <div className="absolute top-[75%] left-[35%] w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] opacity-45 animate-float" style={{animationDuration: '7.5s', animationDelay: '1.5s'}}></div>
+          <div className="absolute top-[20%] right-[40%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-35 animate-float" style={{animationDuration: '8.5s', animationDelay: '3s'}}></div>
+          
+          {/* Dynamic golden glow effects with pulse */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
+          <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+          
+          {/* Animated light orbs */}
+          <div className="absolute top-[30%] left-[10%] w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl animate-float opacity-60" style={{animationDuration: '10s'}}></div>
+          <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
           
           {/* Left image */}
           <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
@@ -159,18 +171,33 @@ const Headliners = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
               animationDelay: '0.8s',
               opacity: 0
             }}
           >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            {/* Multiple glow layers for depth */}
+            <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
+            
+            <h1 className="relative text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
               MUSE
             </h1>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
+            
+            {/* Animated glow text shadow */}
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
               MUSE
             </div>
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/3 blur-2xl px-2 md:px-4">
+              MUSE
+            </div>
+            
+            {/* Sparkle effects on corners */}
+            <div className="absolute -top-4 -left-4 w-3 h-3 bg-[#d4af37] rounded-full blur-sm animate-ping" style={{animationDuration: '2s'}}></div>
+            <div className="absolute -top-4 -right-4 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-ping" style={{animationDuration: '2.5s', animationDelay: '0.5s'}}></div>
+            <div className="absolute -bottom-4 -left-4 w-2 h-2 bg-[#8b7355] rounded-full blur-sm animate-ping" style={{animationDuration: '3s', animationDelay: '1s'}}></div>
+            <div className="absolute -bottom-4 -right-4 w-3 h-3 bg-[#d4af37] rounded-full blur-sm animate-ping" style={{animationDuration: '2.2s', animationDelay: '1.5s'}}></div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
             Юлия Викторова — Директор по цифровому маркетингу, Санкт-Петербург
