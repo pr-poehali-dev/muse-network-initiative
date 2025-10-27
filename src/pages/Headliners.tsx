@@ -135,15 +135,19 @@ const Headliners = () => {
             }}
           >
             <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              Хедлайнер
+              MUSE — Гость
             </h1>
             <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
-              Хедлайнер
+              MUSE — Гость
             </div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-3 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
-            Юлия Викторова — Директор по цифровому маркетингу
+            Юлия Викторова — Директор по цифровому маркетингу, Санкт-Петербург
           </p>
+          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm animate-text-appear" style={{animationDelay: '1.3s', opacity: 0}}>
+            <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            <span className="text-sm sm:text-base text-white/90 font-medium">Живая встреча · Loft Hall, 2-й этаж</span>
+          </div>
           <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-8 py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png" 
