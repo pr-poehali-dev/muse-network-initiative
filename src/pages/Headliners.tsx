@@ -204,7 +204,9 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: 'center center',
-                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)'
+                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)',
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)'
                 }}
               />
               
