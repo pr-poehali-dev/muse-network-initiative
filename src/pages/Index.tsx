@@ -760,7 +760,7 @@ const Index = () => {
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden">
-          <div className="flex items-center justify-between mb-6 mt-6 md:mt-0 pr-8">
+          <div className="flex items-center justify-between mb-6 mt-8 md:mt-0">
             <h2 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
           </div>
           <DialogHeader className="px-0">
