@@ -764,23 +764,30 @@ const Index = () => {
             <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
           </div>
           <DialogHeader className="px-0">
-            <div className="flex gap-4 mb-4 -mt-2">
+            <div className="relative flex gap-0 mb-4 -mt-2 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm">
+              <div 
+                className="absolute top-1 bottom-1 bg-gradient-to-r from-[#d4af37]/20 to-[#8b7355]/20 rounded-md transition-all duration-300 ease-out"
+                style={{
+                  left: galleryTab === 'photos' ? '4px' : '50%',
+                  width: 'calc(50% - 4px)'
+                }}
+              />
               <button
                 onClick={() => setGalleryTab('photos')}
-                className={`px-6 py-2 font-semibold transition-all duration-300 border-b-2 ${
+                className={`relative flex-1 px-6 py-2.5 font-semibold transition-all duration-300 rounded-md z-10 ${
                   galleryTab === 'photos'
-                    ? 'border-[#d4af37] text-[#d4af37]'
-                    : 'border-transparent text-white/60 hover:text-white/80'
+                    ? 'text-[#d4af37]'
+                    : 'text-white/60 hover:text-white/80'
                 }`}
               >
                 Фото
               </button>
               <button
                 onClick={() => setGalleryTab('videos')}
-                className={`px-6 py-2 font-semibold transition-all duration-300 border-b-2 ${
+                className={`relative flex-1 px-6 py-2.5 font-semibold transition-all duration-300 rounded-md z-10 ${
                   galleryTab === 'videos'
-                    ? 'border-[#d4af37] text-[#d4af37]'
-                    : 'border-transparent text-white/60 hover:text-white/80'
+                    ? 'text-[#d4af37]'
+                    : 'text-white/60 hover:text-white/80'
                 }`}
               >
                 Видео
