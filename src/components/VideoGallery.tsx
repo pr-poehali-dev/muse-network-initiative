@@ -44,16 +44,8 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
     if (selectedVideo) {
       const index = videos.findIndex(v => v.id === selectedVideo);
       if (index !== -1) setCurrentIndex(index);
-      setShowHint(true);
     }
   }, [selectedVideo]);
-
-  useEffect(() => {
-    if (selectedVideo && showHint) {
-      const timer = setTimeout(() => setShowHint(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [selectedVideo, showHint]);
 
   useEffect(() => {
     onViewingChange?.(selectedVideo !== null);

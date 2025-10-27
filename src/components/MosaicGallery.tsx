@@ -116,13 +116,6 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
-    if (selectedImage && showHint) {
-      const timer = setTimeout(() => setShowHint(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [selectedImage, showHint]);
-
-  useEffect(() => {
     onViewingChange?.(selectedImage !== null);
   }, [selectedImage, onViewingChange]);
 
@@ -130,7 +123,6 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
     const index = images.findIndex(img => img.url === url);
     setCurrentIndex(index);
     setSelectedImage(url);
-    setShowHint(true);
   };
 
   const goToNext = () => {
