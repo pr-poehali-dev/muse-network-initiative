@@ -42,10 +42,13 @@ const VideoGallery = () => {
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data && event.data.type === 'kinescope') {
-        if (event.data.event === 'ended') {
+      console.log('Received message:', event.data);
+      
+      if (event.data && typeof event.data === 'object') {
+        if (event.data.event === 'ended' || event.data.type === 'ended') {
+          console.log('Video ended, switching to next');
           if (currentIndex < videos.length - 1) {
-            goToNext();
+            setTimeout(() => goToNext(), 500);
           }
         }
       }
@@ -81,10 +84,10 @@ const VideoGallery = () => {
               className="w-full h-full object-cover pointer-events-none"
               frameBorder="0"
             />
-            <div className="absolute inset-0 backdrop-blur-sm bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-500 flex items-center justify-center">
               <div className="relative w-14 h-14 md:w-16 md:h-16 transition-all duration-500 group-hover:scale-110">
                 <div className="absolute inset-0 rounded-full border-2 border-[#d4af37]/60 group-hover:border-[#d4af37] transition-all duration-300"></div>
-                <div className="absolute inset-[2px] rounded-full bg-black/40 backdrop-blur-sm"></div>
+                <div className="absolute inset-[2px] rounded-full bg-black/60"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <Icon name="Play" size={20} className="ml-0.5 text-[#d4af37] group-hover:text-[#ffd700] transition-colors duration-300" />
                 </div>
@@ -132,11 +135,12 @@ const VideoGallery = () => {
             <iframe
               ref={iframeRef}
               key={selectedVideo}
-              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1`}
+              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&loop=0`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
               allowFullScreen
               className="w-full h-full"
+              id="kinescope-player"
             />
           </div>
         </div>
