@@ -79,19 +79,22 @@ const VideoGallery = () => {
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchStart(e.targetTouches[0].clientX);
+    setTouchStart(e.touches[0].clientX);
+    setTouchEnd(e.touches[0].clientX);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
+    setTouchEnd(e.touches[0].clientX);
   };
 
   const handleTouchEnd = () => {
-    if (touchStart - touchEnd > 50) {
-      goToNext();
-    }
-    if (touchStart - touchEnd < -50) {
-      goToPrev();
+    const diff = touchStart - touchEnd;
+    if (Math.abs(diff) > 75) {
+      if (diff > 0) {
+        goToNext();
+      } else {
+        goToPrev();
+      }
     }
   };
 
@@ -125,11 +128,8 @@ const VideoGallery = () => {
 
       {selectedVideo && (
         <div 
-          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in"
+          className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4 animate-fade-in touch-pan-y"
           onClick={() => setSelectedVideo(null)}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
         >
           <button
             onClick={() => setSelectedVideo(null)}
@@ -172,6 +172,9 @@ const VideoGallery = () => {
           <div 
             className="w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             <iframe
               ref={iframeRef}
@@ -180,7 +183,7 @@ const VideoGallery = () => {
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
               allowFullScreen
-              className="w-full h-full"
+              className="w-full h-full pointer-events-none"
             />
           </div>
         </div>
