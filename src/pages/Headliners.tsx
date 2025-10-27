@@ -236,10 +236,8 @@ const Headliners = () => {
                 <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
               
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#d4af37] to-white">
-                  Как помогаем бизнесу находить Лиды
-                </span>
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">
+                Как помогаем бизнесу находить Лиды
               </h3>
               
               <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
@@ -301,7 +299,7 @@ const Headliners = () => {
               <div className="inline-block mb-6 px-8 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm">
                 <span className="text-sm font-bold text-[#d4af37] uppercase tracking-[0.3em]">О Выступлении</span>
               </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-[#d4af37] to-white mb-6 leading-tight">
+              <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] mb-6 leading-tight">
                 Премиальные знания<br />для вашего бизнеса
               </h3>
               <p className="text-lg md:text-xl text-white/50 max-w-3xl mx-auto leading-relaxed">
@@ -317,7 +315,7 @@ const Headliners = () => {
                   <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
                     <Icon name="Target" className="w-12 h-12 text-[#d4af37]" />
                   </div>
-                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-white leading-tight">Стратегии<br />лидогенерации</h4>
+                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Стратегии<br />лидогенерации</h4>
                   <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Эффективные методы привлечения клиентов</p>
                 </div>
               </div>
@@ -329,7 +327,7 @@ const Headliners = () => {
                   <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
                     <Icon name="TrendingUp" className="w-12 h-12 text-[#d4af37]" />
                   </div>
-                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-white leading-tight">Реальные<br />кейсы</h4>
+                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Реальные<br />кейсы</h4>
                   <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Примеры успешных проектов</p>
                 </div>
               </div>
@@ -341,7 +339,7 @@ const Headliners = () => {
                   <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
                     <Icon name="Rocket" className="w-12 h-12 text-[#d4af37]" />
                   </div>
-                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-white leading-tight">Практические<br />инструменты</h4>
+                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Практические<br />инструменты</h4>
                   <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Готовые решения для вашего бизнеса</p>
                 </div>
               </div>
@@ -378,7 +376,7 @@ const Headliners = () => {
 
       <section className="py-20 bg-neutral-950">
         <div className="container mx-auto px-6 text-center">
-          <h3 className="text-3xl md:text-4xl font-bold mb-8 text-white">
+          <h3 className="text-3xl md:text-4xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">
             Что вы узнаете
           </h3>
           
@@ -425,7 +423,7 @@ const Headliners = () => {
                 />
               </div>
               <div className="space-y-6">
-                <h3 className="text-3xl font-bold text-white">О спикере</h3>
+                <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">О спикере</h3>
                 <p className="text-white/80 leading-relaxed">
                   Юлия Викторова — опытный специалист в области цифрового маркетинга с более чем 10-летним опытом работы.
                 </p>
