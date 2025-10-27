@@ -156,39 +156,21 @@ const Headliners = () => {
               className="h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
           </div>
-          <div className="max-w-5xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
-            <div className="relative group">
-              {/* Animated glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37] via-amber-300 to-[#d4af37] rounded-3xl opacity-30 blur-2xl group-hover:opacity-50 transition-opacity duration-500"></div>
-              
-              {/* Main card */}
-              <div className="relative bg-black/60 backdrop-blur-xl border border-[#d4af37]/30 rounded-3xl overflow-hidden">
-                {/* Top accent line */}
-                <div className="h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
-                
-                <div className="px-8 sm:px-12 py-8 sm:py-10">
-                  {/* Badge */}
-                  <div className="inline-block mb-4 px-4 py-1.5 bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-full">
-                    <span className="text-xs sm:text-sm font-semibold text-[#d4af37] uppercase tracking-wider">Кейс выступления</span>
-                  </div>
-                  
-                  {/* Main title */}
-                  <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-[#d4af37] to-white mb-4 leading-tight">
-                    Как помогаем бизнесу находить Лиды
-                  </h3>
-                  
-                  {/* Divider */}
-                  <div className="w-20 h-1 bg-gradient-to-r from-[#d4af37] to-transparent mb-4"></div>
-                  
-                  {/* Description */}
-                  <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl">
-                    Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
-                  </p>
-                </div>
-                
-                {/* Bottom accent line */}
-                <div className="h-1 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+          <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
+            <div className="text-center">
+              <div className="inline-block mb-6 px-6 py-2 bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-full backdrop-blur-sm">
+                <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
+              
+              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#d4af37] to-white">
+                  Как помогаем бизнесу находить Лиды
+                </span>
+              </h3>
+              
+              <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+                Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
+              </p>
             </div>
           </div>
         </div>
