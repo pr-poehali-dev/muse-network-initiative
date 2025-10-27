@@ -789,7 +789,7 @@ const Index = () => {
               </button>
             </div>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide">
+          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden">
             {galleryTab === 'photos' ? (
               <MosaicGallery />
             ) : (
