@@ -29,9 +29,9 @@ const Headliners = () => {
               <Icon name="ArrowLeft" size={20} className="mr-2" />
               На главную
             </Button>
-            <div className="flex items-center gap-3 px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-xs sm:text-sm text-white/90 font-medium">Живая встреча · Loft Hall, 2-й этаж</span>
+            <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
+              <span className="text-xs sm:text-sm text-white/90 font-medium whitespace-nowrap overflow-hidden text-ellipsis">Живая встреча · Loft Hall</span>
             </div>
           </div>
         </div>
@@ -190,7 +190,7 @@ const Headliners = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40 blur-[2px]"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+        <div className="w-full text-center px-4 sm:px-6 md:px-8 relative z-30 pt-[30vh] sm:pt-[35vh] md:pt-0">
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
@@ -202,15 +202,15 @@ const Headliners = () => {
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
             
-            <h1 className="relative text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+            <h1 className="relative text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
               MUSE
             </h1>
             
             {/* Animated glow text shadow */}
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
+            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
               MUSE
             </div>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/3 blur-2xl px-2 md:px-4">
+            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/3 blur-2xl px-2 md:px-4">
               MUSE
             </div>
             
@@ -220,14 +220,14 @@ const Headliners = () => {
             <div className="absolute -bottom-4 -left-4 w-2 h-2 bg-[#8b7355] rounded-full blur-sm animate-ping" style={{animationDuration: '3s', animationDelay: '1s'}}></div>
             <div className="absolute -bottom-4 -right-4 w-3 h-3 bg-[#d4af37] rounded-full blur-sm animate-ping" style={{animationDuration: '2.2s', animationDelay: '1.5s'}}></div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
-            Юлия Викторова — Директор по цифровому маркетингу, Санкт-Петербург
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear px-2" style={{animationDelay: '1.2s', opacity: 0}}>
+            Юлия Викторова<br className="sm:hidden" /> — Директор по цифровому маркетингу,<br className="sm:hidden" /> Санкт-Петербург
           </p>
-          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-8 py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png" 
               alt="Digital Agency albe" 
-              className="h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+              className="h-10 sm:h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
           </div>
           <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
@@ -236,11 +236,11 @@ const Headliners = () => {
                 <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
               
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-2">
                 Как помогаем бизнесу находить Лиды
               </h3>
               
-              <p className="text-lg sm:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-2">
                 Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
               </p>
             </div>
@@ -256,7 +256,7 @@ const Headliners = () => {
       </div>
 
       {/* Speaker Quote Section */}
-      <section className="relative py-32 bg-gradient-to-b from-black via-neutral-950 to-black overflow-hidden">
+      <section className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black via-neutral-950 to-black overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.05)_0%,_transparent_70%)]"></div>
         <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
@@ -264,14 +264,14 @@ const Headliners = () => {
         <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="relative px-8 md:px-16">
-              <div className="absolute -top-4 left-0 md:-left-4 text-[#d4af37]/30 text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
-              <div className="absolute -bottom-8 right-0 md:-right-4 text-[#d4af37]/30 text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
+              <div className="absolute -top-2 sm:-top-4 left-0 md:-left-4 text-[#d4af37]/30 text-[60px] sm:text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
+              <div className="absolute -bottom-4 sm:-bottom-8 right-0 md:-right-4 text-[#d4af37]/30 text-[60px] sm:text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
               
-              <div className="relative bg-gradient-to-br from-neutral-900/40 to-black/60 backdrop-blur-xl rounded-3xl p-10 md:p-16 border-2 border-[#d4af37]/30 shadow-[0_0_80px_rgba(212,175,55,0.15)]">
+              <div className="relative bg-gradient-to-br from-neutral-900/40 to-black/60 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-10 md:p-16 border-2 border-[#d4af37]/30 shadow-[0_0_80px_rgba(212,175,55,0.15)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-3xl"></div>
                 
                 <div className="relative">
-                  <p className="text-2xl md:text-3xl lg:text-4xl font-light text-white/90 text-center leading-relaxed mb-10">
+                  <p className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-light text-white/90 text-center leading-relaxed mb-6 sm:mb-10">
                     Мы помогаем компаниям привлекать клиентов и увеличивать продажи через полный цикл digital-инструментов
                   </p>
                   
@@ -306,52 +306,52 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section className="py-32 bg-gradient-to-b from-black to-neutral-950">
+      <section className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black to-neutral-950">
         <div className="container mx-auto px-6 md:px-12 lg:px-20">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20">
               <div className="inline-block mb-6 px-8 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm">
                 <span className="text-sm font-bold text-[#d4af37] uppercase tracking-[0.3em]">О Выступлении</span>
               </div>
-              <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] mb-6 leading-tight">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] mb-4 sm:mb-6 leading-tight px-4">
                 Премиальные знания<br />для вашего бизнеса
               </h3>
-              <p className="text-lg md:text-xl text-white/50 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-3xl mx-auto leading-relaxed px-4">
                 Эксклюзивные стратегии и инструменты от ведущего эксперта
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-8 lg:gap-10 mb-20">
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 mb-12 sm:mb-16 md:mb-20">
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="Target" className="w-12 h-12 text-[#d4af37]" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="Target" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
                   </div>
-                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Стратегии<br />лидогенерации</h4>
-                  <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Эффективные методы привлечения клиентов</p>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Стратегии<br />лидогенерации</h4>
+                  <p className="text-white/50 text-center text-sm sm:text-base lg:text-lg leading-relaxed">Эффективные методы привлечения клиентов</p>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="TrendingUp" className="w-12 h-12 text-[#d4af37]" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="TrendingUp" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
                   </div>
-                  <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Реальные<br />кейсы</h4>
-                  <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Примеры успешных проектов</p>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Реальные<br />кейсы</h4>
+                  <p className="text-white/50 text-center text-sm sm:text-base lg:text-lg leading-relaxed">Примеры успешных проектов</p>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="Rocket" className="w-12 h-12 text-[#d4af37]" />
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="Rocket" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
                   </div>
                   <h4 className="text-2xl lg:text-3xl font-black text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Практические<br />инструменты</h4>
                   <p className="text-white/50 text-center text-base lg:text-lg leading-relaxed">Готовые решения для вашего бизнеса</p>
@@ -359,8 +359,8 @@ const Headliners = () => {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-10 lg:gap-12">
-              <div className="relative h-[450px] lg:h-[550px] rounded-3xl overflow-hidden group">
+            <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12">
+              <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-2xl sm:rounded-3xl overflow-hidden group">
                 <div className="absolute inset-0 border-2 border-[#d4af37]/30 rounded-3xl z-10 group-hover:border-[#d4af37]/60 transition-all duration-500"></div>
                 <div className="absolute -inset-1 bg-gradient-to-br from-[#d4af37]/20 to-[#8b7355]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <img 
@@ -372,7 +372,7 @@ const Headliners = () => {
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
               </div>
 
-              <div className="relative h-[450px] lg:h-[550px] rounded-3xl overflow-hidden group">
+              <div className="relative h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] rounded-2xl sm:rounded-3xl overflow-hidden group">
                 <div className="absolute inset-0 border-2 border-[#d4af37]/30 rounded-3xl z-10 group-hover:border-[#d4af37]/60 transition-all duration-500"></div>
                 <div className="absolute -inset-1 bg-gradient-to-br from-[#d4af37]/20 to-[#8b7355]/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <img 
@@ -395,13 +395,13 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section className="py-20 bg-neutral-950">
+      <section className="py-12 sm:py-16 md:py-20 bg-neutral-950">
         <div className="container mx-auto px-6 text-center">
-          <h3 className="text-3xl md:text-4xl font-black mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-6 sm:mb-8 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-4">
             Что вы узнаете
           </h3>
           
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="max-w-3xl mx-auto space-y-4 sm:space-y-6 px-4">
             {[
               'Как настроить воронку продаж для максимальной конверсии',
               'Секреты работы с холодной аудиторией',
@@ -411,12 +411,12 @@ const Headliners = () => {
             ].map((item, index) => (
               <div 
                 key={index}
-                className="flex items-start gap-4 p-6 bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl border border-white/10 hover:border-[#d4af37]/30 transition-all"
+                className="flex items-start gap-3 sm:gap-4 p-4 sm:p-6 bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-lg sm:rounded-xl border border-white/10 hover:border-[#d4af37]/30 transition-all"
               >
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#8b7355] flex items-center justify-center flex-shrink-0 mt-1">
-                  <Icon name="Check" className="w-5 h-5 text-black" />
+                <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gradient-to-br from-[#d4af37] to-[#8b7355] flex items-center justify-center flex-shrink-0 mt-1">
+                  <Icon name="Check" className="w-4 h-4 sm:w-5 sm:h-5 text-black" />
                 </div>
-                <p className="text-lg text-white text-left">{item}</p>
+                <p className="text-sm sm:text-base md:text-lg text-white text-left">{item}</p>
               </div>
             ))}
           </div>
@@ -424,7 +424,7 @@ const Headliners = () => {
           <div className="mt-12">
             <Button
               onClick={() => navigate('/')}
-              className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-10 py-6 text-lg rounded-full shadow-2xl shadow-[#d4af37]/20 transition-all hover:scale-105"
+              className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 sm:px-10 py-4 sm:py-6 text-base sm:text-lg rounded-full shadow-2xl shadow-[#d4af37]/20 transition-all hover:scale-105"
             >
               Присоединиться к событию
             </Button>
@@ -439,33 +439,33 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section className="py-16 bg-gradient-to-b from-neutral-950 to-black">
+      <section className="py-12 sm:py-16 bg-gradient-to-b from-neutral-950 to-black">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-2xl p-12 border border-[#d4af37]/30">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="max-w-4xl mx-auto bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#d4af37]/30">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
               <div>
                 <img 
                   src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
                   alt="Юлия Викторова"
-                  className="w-full h-96 object-cover rounded-xl"
+                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg sm:rounded-xl"
                 />
               </div>
-              <div className="space-y-6">
-                <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">О спикере</h3>
-                <p className="text-white/80 leading-relaxed">
+              <div className="space-y-4 sm:space-y-6">
+                <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">О спикере</h3>
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
                   Юлия Викторова — опытный специалист в области цифрового маркетинга с более чем 10-летним опытом работы.
                 </p>
                 <div className="py-4">
-                  <p className="text-white/60 text-sm mb-3">Директор по цифровому маркетингу</p>
-                  <div className="bg-black/40 backdrop-blur-sm px-6 py-3 rounded-lg border border-[#d4af37]/20 inline-block">
+                  <p className="text-white/60 text-xs sm:text-sm mb-2 sm:mb-3">Директор по цифровому маркетингу</p>
+                  <div className="bg-black/40 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-[#d4af37]/20 inline-block">
                     <img 
                       src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png"
                       alt="Digital Agency albe"
-                      className="h-12 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+                      className="h-8 sm:h-10 md:h-12 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
                     />
                   </div>
                 </div>
-                <p className="text-white/80 leading-relaxed">
+                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
                   Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в 3-5 раз.
                 </p>
               </div>
