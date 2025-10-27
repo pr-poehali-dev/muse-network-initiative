@@ -113,28 +113,48 @@ const Headliners = () => {
             </div>
           </div>
           
+          {/* Cinematic light rays - from top */}
+          <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
+          <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+          <div className="absolute top-0 left-1/2 w-[3px] h-[90%] bg-gradient-to-b from-[#d4af37]/20 via-[#d4af37]/5 to-transparent blur-md opacity-50"></div>
+          
+          {/* Dramatic vignette - cinematic frame */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
+          
+          {/* Top and bottom cinematic bars effect */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
+          
           {/* Overlay gradients for depth */}
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_30%,_black_100%)] z-15"></div>
           
-          {/* Decorative elements */}
-          <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent"></div>
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent"></div>
+          {/* Film grain texture effect */}
+          <div className="absolute inset-0 opacity-[0.015] z-25 mix-blend-overlay" style={{
+            backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
+            backgroundRepeat: 'repeat'
+          }}></div>
           
-          {/* Subtle animated dots */}
-          <div className="absolute top-32 left-20 w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-pulse"></div>
-          <div className="absolute top-48 right-32 w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-48 left-40 w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-40 right-24 w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-pulse" style={{animationDelay: '1.5s'}}></div>
+          {/* Spotlight effect on center */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[120%] h-[60%] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.08)_0%,_transparent_60%)] z-6"></div>
           
-          {/* Bottom fade to black */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black to-transparent z-20"></div>
+          {/* Side shadows for depth */}
+          <div className="absolute inset-y-0 left-0 w-[30%] bg-gradient-to-r from-black via-black/40 to-transparent z-15"></div>
+          <div className="absolute inset-y-0 right-0 w-[30%] bg-gradient-to-l from-black via-black/40 to-transparent z-15"></div>
           
+          {/* Lens flare effects */}
+          <div className="absolute top-[20%] right-[15%] w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-60 animate-pulse" style={{animationDuration: '3s'}}></div>
+          <div className="absolute top-[25%] right-[18%] w-16 h-16 bg-white/5 rounded-full blur-2xl opacity-40"></div>
+          <div className="absolute bottom-[30%] left-[20%] w-24 h-24 bg-[#d4af37]/8 rounded-full blur-3xl opacity-50 animate-pulse" style={{animationDuration: '4s', animationDelay: '1s'}}></div>
+          
+          {/* Bottom fade to black - stronger */}
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/70 to-transparent z-20"></div>
+          
+          {/* Golden overlay for warmth */}
           <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
           
-          <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent opacity-50"></div>
-          <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
+          {/* Horizontal light streaks */}
+          <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent opacity-50 blur-[2px]"></div>
+          <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40 blur-[2px]"></div>
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
