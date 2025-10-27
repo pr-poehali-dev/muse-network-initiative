@@ -47,8 +47,23 @@ const Headliners = () => {
           <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30"></div>
           <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30"></div>
           
+          {/* Left image */}
+          <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] opacity-25 z-4" style={{transform: `translateY(${scrollY * 0.15}px)`}}>
+            <img 
+              src="https://cdn.poehali.dev/files/a539c37d-ec46-43b9-92f7-17506ab8740b.jpg" 
+              alt="" 
+              className="w-full h-full object-cover rounded-2xl"
+              style={{
+                objectPosition: '50% 30%',
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
+              }}
+            />
+          </div>
+          
           {/* Center image - hero portrait */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[60%] lg:w-[50%] h-full opacity-50 md:opacity-40 z-5" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[60%] lg:w-[45%] h-full opacity-50 md:opacity-40 z-5" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
             <img 
               src="https://cdn.poehali.dev/files/19ea472f-0e08-4164-80c5-ca52c6927fd6.jpg" 
               alt="" 
@@ -58,6 +73,21 @@ const Headliners = () => {
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)',
                 filter: 'grayscale(30%) contrast(1.1) brightness(0.9)'
+              }}
+            />
+          </div>
+          
+          {/* Right image */}
+          <div className="hidden lg:block absolute right-[8%] top-[20%] w-[22%] h-[50%] opacity-25 z-4" style={{transform: `translateY(${scrollY * 0.12}px)`}}>
+            <img 
+              src="https://cdn.poehali.dev/files/883ff23a-ef59-444e-90ac-e80164dd5a2f.jpg" 
+              alt="" 
+              className="w-full h-full object-cover rounded-2xl"
+              style={{
+                objectPosition: '50% 25%',
+                maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
               }}
             />
           </div>
