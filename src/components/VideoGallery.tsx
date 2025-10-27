@@ -138,6 +138,11 @@ const VideoGallery = () => {
             <Icon name="X" size={32} />
           </button>
 
+          {/* Counter */}
+          <div className="absolute top-14 left-1/2 -translate-x-1/2 md:top-8 text-[#d4af37] text-sm md:text-base backdrop-blur-sm bg-black/30 px-4 py-2 rounded-full">
+            {currentIndex + 1} / {videos.length}
+          </div>
+
           {/* Hint arrows for mobile */}
           {showHint && (
             <>
