@@ -237,7 +237,7 @@ const Headliners = () => {
               </div>
               
               <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-2">
-                Как помогаем бизнесу находить Лиды
+                Как мы помогаем бизнесу находить лиды
               </h3>
               
               <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-2">
