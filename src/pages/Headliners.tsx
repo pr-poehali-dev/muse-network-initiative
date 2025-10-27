@@ -237,8 +237,11 @@ const Headliners = () => {
               />
               
               {/* VIP Premium Darkening Overlays */}
-              {/* Rich black vignette with golden edge */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/50 rounded-xl z-25 pointer-events-none"></div>
+              {/* Rich black vignette with golden edge - stronger bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/50 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Additional strong bottom fade */}
+              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent rounded-xl z-26 pointer-events-none"></div>
               
               {/* Cinematic side darkening */}
               <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 rounded-xl z-25 pointer-events-none"></div>
