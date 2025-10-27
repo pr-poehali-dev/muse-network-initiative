@@ -319,15 +319,41 @@ const Index = () => {
               </div>
             </div>
             
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
-              aria-label="Toggle menu"
-            >
-              <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-              <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
-            </button>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
+                aria-label="Toggle menu"
+              >
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              </button>
+              
+              <Button
+                size="lg"
+                className="group relative text-sm font-semibold px-6 py-2.5 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
+                onClick={() => setIsExpertDialogOpen(true)}
+              >
+                <span className="relative z-10">Стать экспертом</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+              </Button>
+              <Button
+                size="lg"
+                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
+                onClick={() => setIsJoinDialogOpen(true)}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 group-hover:from-white group-hover:via-white group-hover:to-white">Вступить в клуб</span>
+                  <span className="inline-block text-[#b8953d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">→</span>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d]/10 to-[#8b7355]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </Button>
+            </div>
+          </div>
+        </div>
 
+        <div className={`fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
+          <div className="flex flex-col items-center justify-start pt-6 h-full gap-6 px-8 overflow-y-auto">
             <div className="hidden md:flex items-center gap-8">
               {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
                 <button
@@ -350,31 +376,7 @@ const Index = () => {
                 Хедлайнеры
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
               </button>
-              <Button
-                size="lg"
-                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
-                onClick={() => setIsExpertDialogOpen(true)}
-              >
-                <span className="relative z-10">Стать экспертом</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              </Button>
-              <Button
-                size="lg"
-                className="group relative text-sm font-semibold px-10 py-3.5 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
-                onClick={() => setIsJoinDialogOpen(true)}
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 group-hover:from-white group-hover:via-white group-hover:to-white">Вступить в клуб</span>
-                  <span className="inline-block text-[#b8953d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">→</span>
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d]/10 to-[#8b7355]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              </Button>
             </div>
-          </div>
-        </div>
-
-        <div className={`md:hidden fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
-          <div className="flex flex-col items-center justify-start pt-6 h-full gap-6 px-8 overflow-y-auto">
             {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
               <button
                 key={section}
