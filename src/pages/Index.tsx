@@ -331,7 +331,7 @@ const Index = () => {
               
               <Button
                 size="lg"
-                className="group relative text-sm font-semibold px-6 py-2.5 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
+                className="hidden md:block group relative text-sm font-semibold px-6 py-2.5 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
                 onClick={() => setIsExpertDialogOpen(true)}
               >
                 <span className="relative z-10">Стать экспертом</span>
@@ -339,7 +339,7 @@ const Index = () => {
               </Button>
               <Button
                 size="lg"
-                className="group relative text-sm font-semibold px-8 py-3 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
+                className="hidden md:block group relative text-sm font-semibold px-8 py-3 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
                 onClick={() => setIsJoinDialogOpen(true)}
               >
                 <span className="relative z-10 flex items-center gap-2">
