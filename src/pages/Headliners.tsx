@@ -385,6 +385,42 @@ const Headliners = () => {
                   <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Инструменты для масштабирования бизнеса</p>
                 </div>
               </div>
+
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="Users" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  </div>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Работа с аудиторией</h4>
+                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Секреты работы с холодной и теплой аудиторией</p>
+                </div>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="BarChart3" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  </div>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Аналитика</h4>
+                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Анализ эффективности рекламных кампаний</p>
+                </div>
+              </div>
+
+              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="relative">
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
+                    <Icon name="Repeat" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  </div>
+                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Постоянный поток</h4>
+                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Построение системы постоянного потока клиентов</p>
+                </div>
+              </div>
             </div>
 
             <div className="mt-16 text-center">
