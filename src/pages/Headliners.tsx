@@ -99,7 +99,7 @@ const Headliners = () => {
 
       {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
           
           <div className="absolute top-[10%] left-[15%] w-2 h-2 bg-[#d4af37] rounded-full blur-[1px] opacity-60 animate-float" style={{animationDuration: '6s'}}></div>
@@ -186,16 +186,16 @@ const Headliners = () => {
           
           {/* Center VIP Image */}
           <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] h-[500px] md:w-[400px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-full h-full">
+            <div className="relative w-full h-full mx-auto">
               {/* Glow effects behind image */}
-              <div className="absolute left-1/2 -translate-x-1/2 -inset-y-16 w-full z-0">
+              <div className="absolute -inset-16 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px]"></div>
               </div>
               
               {/* Golden frame effect */}
-              <div className="absolute left-1/2 -translate-x-1/2 w-[calc(100%-24px)] -inset-y-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
-              <div className="absolute left-1/2 -translate-x-1/2 w-[calc(100%-48px)] -inset-y-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
+              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
+              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
               
               {/* Main image */}
               <img 
@@ -230,10 +230,10 @@ const Headliners = () => {
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
               
               {/* Corner accents */}
-              <div className="absolute -top-2 left-3 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -top-2 right-3 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 left-3 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 right-3 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
             </div>
           </div>
           
