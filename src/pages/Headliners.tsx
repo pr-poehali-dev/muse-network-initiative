@@ -62,12 +62,11 @@ const Headliners = () => {
           {/* Left image */}
           <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
-              {/* Premium abstract background */}
-              <div className="absolute -inset-8 z-0">
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#d4af37/15,transparent_50%)] blur-2xl"></div>
-                <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-[radial-gradient(circle,_#8b7355/10,transparent_60%)] blur-3xl animate-pulse" style={{animationDuration: '6s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#d4af37]/10 rounded-full"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-[#d4af37]/5 rounded-full animate-pulse" style={{animationDuration: '8s'}}></div>
+              {/* Subtle elite background */}
+              <div className="absolute -inset-12 z-0">
+                <div className="absolute top-0 left-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_left,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
+                <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '8s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
               </div>
               
               {/* Golden glow on hover */}
@@ -93,13 +92,11 @@ const Headliners = () => {
           {/* Center image - hero portrait */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[60%] lg:w-[45%] h-full z-5 animate-zoom-in" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`, animationDelay: '0s', opacity: 0}}>
             <div className="relative w-full h-full">
-              {/* Elite abstract background for center */}
-              <div className="absolute -inset-12 z-0">
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[radial-gradient(ellipse,_#d4af37/20,transparent_70%)] blur-3xl"></div>
-                <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-4/5 h-1/2 bg-[radial-gradient(circle,_#8b7355/15,transparent_65%)] blur-[100px] animate-pulse" style={{animationDuration: '7s'}}></div>
-                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent"></div>
-                <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
-                <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
+              {/* Refined center background */}
+              <div className="absolute -inset-16 z-0">
+                <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-4/5 h-1/2 bg-[radial-gradient(ellipse,_#d4af37/8,transparent_75%)] blur-[120px]"></div>
+                <div className="absolute bottom-1/3 left-1/2 -translate-x-1/2 w-3/4 h-2/5 bg-[radial-gradient(circle,_#8b7355/5,transparent_70%)] blur-[140px] animate-pulse" style={{animationDuration: '10s'}}></div>
+                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/8 to-transparent opacity-50"></div>
               </div>
               
               {/* Subtle pulsing glow */}
@@ -122,12 +119,11 @@ const Headliners = () => {
           {/* Right image */}
           <div className="hidden lg:block absolute right-[8%] top-[20%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.12}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
-              {/* Premium abstract background */}
-              <div className="absolute -inset-8 z-0">
-                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_#d4af37/15,transparent_50%)] blur-2xl"></div>
-                <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-[radial-gradient(circle,_#8b7355/10,transparent_60%)] blur-3xl animate-pulse" style={{animationDuration: '7s', animationDelay: '1s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#d4af37]/10 rounded-full"></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-[#d4af37]/5 rounded-full animate-pulse" style={{animationDuration: '9s'}}></div>
+              {/* Elegant subtle background */}
+              <div className="absolute -inset-12 z-0">
+                <div className="absolute top-0 right-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_right,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
+                <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '9s', animationDelay: '1.5s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
               </div>
               
               {/* Golden glow on hover */}
