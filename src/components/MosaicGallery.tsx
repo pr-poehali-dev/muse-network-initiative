@@ -113,6 +113,8 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const [showHint, setShowHint] = useState(true);
 
   useEffect(() => {
@@ -140,13 +142,19 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
     setTouchEnd(e.touches[0].clientX);
+    setIsDragging(true);
+    setDragOffset(0);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.touches[0].clientX);
+    if (!isDragging) return;
+    const currentTouch = e.touches[0].clientX;
+    setTouchEnd(currentTouch);
+    setDragOffset(currentTouch - touchStart);
   };
 
   const handleTouchEnd = () => {
+    setIsDragging(false);
     const diff = touchStart - touchEnd;
     if (Math.abs(diff) > 75) {
       if (diff > 0) {
@@ -155,6 +163,7 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
         goToPrev();
       }
     }
+    setDragOffset(0);
   };
 
   return (
@@ -234,12 +243,20 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
             <Icon name="ChevronRight" size={32} />
           </button>
 
-          <img
-            src={selectedImage}
-            alt="Увеличенное фото"
-            className="max-w-full max-h-full md:w-screen md:h-screen object-contain rounded-lg md:rounded-none animate-scale-in"
+          <div 
+            className="relative max-w-full max-h-full md:w-screen md:h-screen flex items-center justify-center overflow-hidden"
             onClick={(e) => e.stopPropagation()}
-          />
+          >
+            <img
+              src={selectedImage}
+              alt="Увеличенное фото"
+              className="max-w-full max-h-full object-contain rounded-lg md:rounded-none animate-scale-in transition-transform duration-200 ease-out"
+              style={{
+                transform: `translateX(${dragOffset}px)`,
+                transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+              }}
+            />
+          </div>
         </div>
       )}
     </>

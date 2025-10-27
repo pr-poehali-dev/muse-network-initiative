@@ -37,6 +37,8 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
   const [showHint, setShowHint] = useState(true);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
@@ -81,13 +83,19 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
   const handleTouchStart = (e: React.TouchEvent) => {
     setTouchStart(e.touches[0].clientX);
     setTouchEnd(e.touches[0].clientX);
+    setIsDragging(true);
+    setDragOffset(0);
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.touches[0].clientX);
+    if (!isDragging) return;
+    const currentTouch = e.touches[0].clientX;
+    setTouchEnd(currentTouch);
+    setDragOffset(currentTouch - touchStart);
   };
 
   const handleTouchEnd = () => {
+    setIsDragging(false);
     const diff = touchStart - touchEnd;
     if (Math.abs(diff) > 75) {
       if (diff > 0) {
@@ -96,6 +104,7 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
         goToPrev();
       }
     }
+    setDragOffset(0);
   };
 
   return (
@@ -181,21 +190,29 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
           )}
           
           <div 
-            className="w-full h-full flex items-center justify-center"
+            className="w-full h-full flex items-center justify-center overflow-hidden"
             onClick={(e) => e.stopPropagation()}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
           >
-            <iframe
-              ref={iframeRef}
-              key={selectedVideo}
-              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0`}
-              allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
-              frameBorder="0"
-              allowFullScreen
-              className="w-full h-full pointer-events-none"
-            />
+            <div 
+              className="w-full h-full transition-transform duration-200 ease-out"
+              style={{
+                transform: `translateX(${dragOffset}px)`,
+                transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+              }}
+            >
+              <iframe
+                ref={iframeRef}
+                key={selectedVideo}
+                src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0`}
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+                frameBorder="0"
+                allowFullScreen
+                className="w-full h-full pointer-events-none"
+              />
+            </div>
           </div>
         </div>
       )}
