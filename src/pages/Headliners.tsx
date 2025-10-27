@@ -262,7 +262,7 @@ const Headliners = () => {
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
               
-              <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 p-8 sm:p-12 md:p-16">
+              <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 py-8 px-4 sm:p-12 md:p-16">
                 <div className="relative group flex justify-center lg:justify-start">
                   <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none">
                     <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
