@@ -244,9 +244,9 @@ const Headliners = () => {
         <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-12 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12 sm:mb-16 md:mb-20">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0">
               <div className="inline-block mb-6 px-8 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm">
                 <span className="text-sm font-bold text-[#d4af37] uppercase tracking-[0.3em]">Спикер</span>
               </div>
@@ -258,7 +258,7 @@ const Headliners = () => {
               </p>
             </div>
 
-            <div className="relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl overflow-hidden border-2 border-[#d4af37]/30 shadow-[0_0_100px_rgba(212,175,55,0.2)]">
+            <div className="relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-none sm:rounded-3xl overflow-hidden border-2 border-[#d4af37]/30 shadow-[0_0_100px_rgba(212,175,55,0.2)]">
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
               
