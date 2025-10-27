@@ -180,40 +180,8 @@ const Headliners = () => {
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
-          {/* VIP Center Effects */}
-          {/* Central spotlight */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_rgba(212,175,55,0.08)_30%,_transparent_70%)] z-5 animate-pulse" style={{animationDuration: '6s'}}></div>
-          
-          {/* Rotating golden ring */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-2 border-[#d4af37]/20 rounded-full z-5 animate-spin-slow"></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#d4af37]/10 rounded-full z-5" style={{animation: 'spin 40s linear infinite reverse'}}></div>
-          
-          {/* Diamond sparkles */}
-          <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37] rotate-45 opacity-70 animate-ping z-5" style={{animationDuration: '3s'}}></div>
-          <div className="absolute top-[25%] left-[48%] w-2 h-2 bg-white rotate-45 opacity-60 animate-ping z-5" style={{animationDuration: '2.5s', animationDelay: '0.5s'}}></div>
-          <div className="absolute top-[28%] left-[52%] w-2 h-2 bg-[#f4d683] rotate-45 opacity-50 animate-ping z-5" style={{animationDuration: '3.5s', animationDelay: '1s'}}></div>
-          
-          {/* Luxury light beams from center */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent rotate-45 blur-md opacity-40 z-5 animate-pulse" style={{animationDuration: '5s'}}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent -rotate-45 blur-md opacity-40 z-5 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-md opacity-40 z-5 animate-pulse" style={{animationDuration: '5s', animationDelay: '0.5s'}}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/15 to-transparent rotate-90 blur-md opacity-30 z-5 animate-pulse" style={{animationDuration: '5s', animationDelay: '1.5s'}}></div>
-          
-          {/* Premium floating orbs */}
-          <div className="absolute top-[35%] left-[45%] w-4 h-4 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-float z-5" style={{animationDuration: '8s'}}></div>
-          <div className="absolute top-[40%] left-[55%] w-3 h-3 bg-[#f4d683] rounded-full blur-sm opacity-50 animate-float z-5" style={{animationDuration: '7s', animationDelay: '1s'}}></div>
-          <div className="absolute top-[32%] left-[50%] w-2 h-2 bg-white rounded-full blur-[1px] opacity-70 animate-float z-5" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
-          
-          {/* Glowing center core */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#d4af37]/20 rounded-full blur-3xl z-5 animate-pulse" style={{animationDuration: '3s'}}></div>
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/10 rounded-full blur-2xl z-5 animate-pulse" style={{animationDuration: '2s', animationDelay: '0.5s'}}></div>
-          
-          {/* Lens flares */}
-          <div className="absolute top-[28%] left-[48%] w-40 h-40 bg-[#d4af37]/5 rounded-full blur-3xl z-5"></div>
-          <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-5"></div>
-          
           {/* Center VIP Image */}
-          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] h-[520px] md:w-[340px] md:h-[600px] lg:w-[380px] lg:h-[680px] z-8 group animate-fade-in-up" style={{animationDelay: '0.6s', opacity: 0}}>
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] h-[520px] md:w-[340px] md:h-[600px] lg:w-[380px] lg:h-[680px] z-5 group animate-fade-in-up" style={{animationDelay: '0.6s', opacity: 0}}>
             <div className="relative w-full h-full">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
@@ -262,6 +230,38 @@ const Headliners = () => {
               <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
             </div>
           </div>
+          
+          {/* VIP Center Effects - Above Photo */}
+          {/* Central spotlight */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_rgba(212,175,55,0.08)_30%,_transparent_70%)] z-10 animate-pulse pointer-events-none" style={{animationDuration: '6s'}}></div>
+          
+          {/* Rotating golden rings */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border-2 border-[#d4af37]/20 rounded-full z-10 animate-spin-slow pointer-events-none"></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-[#d4af37]/10 rounded-full z-10 pointer-events-none" style={{animation: 'spin 40s linear infinite reverse'}}></div>
+          
+          {/* Diamond sparkles */}
+          <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37] rotate-45 opacity-70 animate-ping z-10 pointer-events-none" style={{animationDuration: '3s'}}></div>
+          <div className="absolute top-[25%] left-[48%] w-2 h-2 bg-white rotate-45 opacity-60 animate-ping z-10 pointer-events-none" style={{animationDuration: '2.5s', animationDelay: '0.5s'}}></div>
+          <div className="absolute top-[28%] left-[52%] w-2 h-2 bg-[#f4d683] rotate-45 opacity-50 animate-ping z-10 pointer-events-none" style={{animationDuration: '3.5s', animationDelay: '1s'}}></div>
+          
+          {/* Luxury light beams from center */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent rotate-45 blur-md opacity-40 z-10 animate-pulse pointer-events-none" style={{animationDuration: '5s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent -rotate-45 blur-md opacity-40 z-10 animate-pulse pointer-events-none" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-md opacity-40 z-10 animate-pulse pointer-events-none" style={{animationDuration: '5s', animationDelay: '0.5s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/15 to-transparent rotate-90 blur-md opacity-30 z-10 animate-pulse pointer-events-none" style={{animationDuration: '5s', animationDelay: '1.5s'}}></div>
+          
+          {/* Premium floating orbs */}
+          <div className="absolute top-[35%] left-[45%] w-4 h-4 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-float z-10 pointer-events-none" style={{animationDuration: '8s'}}></div>
+          <div className="absolute top-[40%] left-[55%] w-3 h-3 bg-[#f4d683] rounded-full blur-sm opacity-50 animate-float z-10 pointer-events-none" style={{animationDuration: '7s', animationDelay: '1s'}}></div>
+          <div className="absolute top-[32%] left-[50%] w-2 h-2 bg-white rounded-full blur-[1px] opacity-70 animate-float z-10 pointer-events-none" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+          
+          {/* Glowing center core */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#d4af37]/20 rounded-full blur-3xl z-10 animate-pulse pointer-events-none" style={{animationDuration: '3s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/10 rounded-full blur-2xl z-10 animate-pulse pointer-events-none" style={{animationDuration: '2s', animationDelay: '0.5s'}}></div>
+          
+          {/* Lens flares */}
+          <div className="absolute top-[28%] left-[48%] w-40 h-40 bg-[#d4af37]/5 rounded-full blur-3xl z-10 pointer-events-none"></div>
+          <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-10 pointer-events-none"></div>
         </div>
 
         <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
