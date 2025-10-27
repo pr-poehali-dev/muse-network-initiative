@@ -5,26 +5,32 @@ const videos = [
   {
     id: '6DNFMoaf85akazKot4D3v7',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/6DNFMoaf85akazKot4D3v7/preview',
   },
   {
     id: 'kVW5XjxAQRqsgRUjebtttm',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/kVW5XjxAQRqsgRUjebtttm/preview',
   },
   {
     id: '134BF5vbsSb5pdMUgRumai',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/134BF5vbsSb5pdMUgRumai/preview',
   },
   {
     id: 'mstH2xzCyPCbhxySejbT2G',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/mstH2xzCyPCbhxySejbT2G/preview',
   },
   {
     id: '4bAKvqDzot9eEM2U579bkF',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/4bAKvqDzot9eEM2U579bkF/preview',
   },
   {
     id: 'cRMvVQzRQAeTjSS9WQnQdX',
     title: 'Событие клуба Muse',
+    poster: 'https://kinescope.io/cRMvVQzRQAeTjSS9WQnQdX/preview',
   },
 ];
 
@@ -117,9 +123,10 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
             className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
             <img
-              src={`https://kinescope.io/${video.id}/preview.jpg`}
+              src={video.poster}
               alt={video.title}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute inset-0 border-2 border-[#d4af37] opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-xl"></div>
