@@ -56,8 +56,8 @@ const Index = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryTab, setGalleryTab] = useState<'photos' | 'videos'>('photos');
   const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -761,7 +761,42 @@ const Index = () => {
       </section>
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col" hideClose>
+        <DialogContent 
+          className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col" 
+          hideClose
+          onTouchStart={(e) => {
+            setTouchStart({
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY
+            });
+          }}
+          onTouchMove={(e) => {
+            setTouchEnd({
+              x: e.touches[0].clientX,
+              y: e.touches[0].clientY
+            });
+          }}
+          onTouchEnd={() => {
+            if (!touchStart || !touchEnd) return;
+            
+            const deltaX = touchStart.x - touchEnd.x;
+            const deltaY = touchStart.y - touchEnd.y;
+            const absDeltaX = Math.abs(deltaX);
+            const absDeltaY = Math.abs(deltaY);
+            
+            // Свайп только если горизонтальное движение больше вертикального
+            if (absDeltaX > absDeltaY && absDeltaX > 75) {
+              if (deltaX > 0 && galleryTab === 'photos') {
+                setGalleryTab('videos');
+              } else if (deltaX < 0 && galleryTab === 'videos') {
+                setGalleryTab('photos');
+              }
+            }
+            
+            setTouchStart(null);
+            setTouchEnd(null);
+          }}
+        >
           <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
             <button
@@ -772,26 +807,7 @@ const Index = () => {
             </button>
           </div>
           <DialogHeader className="px-0 flex-shrink-0">
-            <div 
-              className="relative flex gap-0 mb-3 md:mb-4 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm touch-pan-y"
-              onTouchStart={(e) => {
-                setTouchStart(e.targetTouches[0].clientX);
-                setTouchEnd(e.targetTouches[0].clientX);
-              }}
-              onTouchMove={(e) => {
-                setTouchEnd(e.targetTouches[0].clientX);
-              }}
-              onTouchEnd={() => {
-                const swipeDistance = touchStart - touchEnd;
-                if (Math.abs(swipeDistance) > 50) {
-                  if (swipeDistance > 0 && galleryTab === 'photos') {
-                    setGalleryTab('videos');
-                  } else if (swipeDistance < 0 && galleryTab === 'videos') {
-                    setGalleryTab('photos');
-                  }
-                }
-              }}
-            >
+            <div className="relative flex gap-0 mb-3 md:mb-4 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm">
               <div 
                 className="absolute top-1 bottom-1 bg-gradient-to-r from-[#d4af37]/20 to-[#8b7355]/20 rounded-md transition-all duration-300 ease-out"
                 style={{
