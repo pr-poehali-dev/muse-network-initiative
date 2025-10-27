@@ -263,22 +263,24 @@ const Headliners = () => {
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
               
               <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 p-8 sm:p-12 md:p-16">
-                <div className="relative group">
-                  <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative h-[400px] sm:h-[500px] lg:h-full rounded-2xl overflow-hidden">
+                <div className="relative group flex justify-center lg:justify-start">
+                  <div className="relative w-full max-w-[280px] sm:max-w-[320px] lg:max-w-none">
+                    <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div className="relative h-[400px] sm:h-[500px] lg:h-full rounded-2xl overflow-hidden">
                     <div className="absolute inset-0 border-2 border-[#d4af37]/40 rounded-2xl z-10"></div>
                     <img 
                       src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
                       alt="Юлия Викторова"
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/30"></div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
+                      <div className="absolute inset-0 bg-black/30"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-center space-y-6 sm:space-y-8">
+                <div className="flex flex-col justify-center space-y-6 sm:space-y-8 items-center lg:items-start">
                   <div className="relative">
                     <div className="absolute -inset-4 bg-[#d4af37]/5 rounded-2xl blur-xl"></div>
                     <div className="relative bg-black/50 backdrop-blur-sm px-6 sm:px-8 py-4 sm:py-5 rounded-xl border border-[#d4af37]/30 inline-flex items-center gap-4">
@@ -290,7 +292,7 @@ const Headliners = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4">
+                  <div className="space-y-4 text-center lg:text-left">
                     <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
                       Опытный специалист в области цифрового маркетинга с более чем <span className="text-[#d4af37] font-bold">10-летним опытом</span> работы.
                     </p>
@@ -299,7 +301,7 @@ const Headliners = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-[#d4af37]/20">
+                  <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-[#d4af37]/20 w-full">
                     <div className="text-center">
                       <div className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355] mb-2">10+</div>
                       <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">Лет опыта</div>
