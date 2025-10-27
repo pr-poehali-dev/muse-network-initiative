@@ -327,6 +327,21 @@ body::-webkit-scrollbar {
     }
   }
 
+  .animate-fade-in-up {
+    animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateX(-50%) translateY(60px) scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+  }
+
   .glow-effect {
     position: relative;
     overflow: hidden;
