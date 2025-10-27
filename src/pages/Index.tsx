@@ -390,15 +390,6 @@ const Index = () => {
                  section === 'gallery' ? 'Галерея' : 'Календарь'}
               </button>
             ))}
-            <button
-              onClick={() => {
-                navigate('/headliners');
-                setIsMobileMenuOpen(false);
-              }}
-              className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3 border-b border-[#d4af37]/20"
-            >
-              Хедлайнеры
-            </button>
             <Button
               size="lg"
               className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden mt-4"
