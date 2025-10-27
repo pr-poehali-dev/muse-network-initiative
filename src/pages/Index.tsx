@@ -54,6 +54,9 @@ const Index = () => {
   const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
   const [isJoinFormSubmitted, setIsJoinFormSubmitted] = useState(false);
   const [isExpertFormSubmitted, setIsExpertFormSubmitted] = useState(false);
+  const [isEventFormSubmitting, setIsEventFormSubmitting] = useState(false);
+  const [isJoinFormSubmitting, setIsJoinFormSubmitting] = useState(false);
+  const [isExpertFormSubmitting, setIsExpertFormSubmitting] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryTab, setGalleryTab] = useState<'photos' | 'videos'>('photos');
@@ -90,6 +93,7 @@ const Index = () => {
 
   const handleEventFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsEventFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47', {
@@ -101,6 +105,7 @@ const Index = () => {
       });
       
       if (response.ok) {
+        setIsEventFormSubmitting(false);
         setIsEventFormSubmitted(true);
         setTimeout(() => {
           setIsEventFormSubmitted(false);
@@ -108,15 +113,18 @@ const Index = () => {
           setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
         }, 2000);
       } else {
+        setIsEventFormSubmitting(false);
         console.error('Failed to submit event registration');
       }
     } catch (error) {
+      setIsEventFormSubmitting(false);
       console.error('Error submitting event registration:', error);
     }
   };
 
   const handleJoinFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsJoinFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/0dd49b02-038f-429e-b3a3-5fa01ff50b67', {
@@ -128,6 +136,7 @@ const Index = () => {
       });
       
       if (response.ok) {
+        setIsJoinFormSubmitting(false);
         setIsJoinFormSubmitted(true);
         setTimeout(() => {
           setIsJoinFormSubmitted(false);
@@ -135,15 +144,18 @@ const Index = () => {
           setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
         }, 2000);
       } else {
+        setIsJoinFormSubmitting(false);
         console.error('Failed to submit application');
       }
     } catch (error) {
+      setIsJoinFormSubmitting(false);
       console.error('Error submitting application:', error);
     }
   };
 
   const handleExpertFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsExpertFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/8ab02561-3cbe-42f7-9c3d-42f2c964f007', {
@@ -155,6 +167,7 @@ const Index = () => {
       });
       
       if (response.ok) {
+        setIsExpertFormSubmitting(false);
         setIsExpertFormSubmitted(true);
         setTimeout(() => {
           setIsExpertFormSubmitted(false);
@@ -162,9 +175,11 @@ const Index = () => {
           setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
         }, 2000);
       } else {
+        setIsExpertFormSubmitting(false);
         console.error('Failed to submit expert application');
       }
     } catch (error) {
+      setIsExpertFormSubmitting(false);
       console.error('Error submitting expert application:', error);
     }
   };
@@ -740,6 +755,7 @@ const Index = () => {
         onFormDataChange={setEventFormData}
         onSubmit={handleEventFormSubmit}
         isSubmitted={isEventFormSubmitted}
+        isSubmitting={isEventFormSubmitting}
       />
 
       <JoinClubDialog
@@ -749,6 +765,7 @@ const Index = () => {
         onFormDataChange={setJoinFormData}
         onSubmit={handleJoinFormSubmit}
         isSubmitted={isJoinFormSubmitted}
+        isSubmitting={isJoinFormSubmitting}
       />
 
       <div className="relative h-px">
@@ -999,6 +1016,7 @@ const Index = () => {
         onFormDataChange={setExpertFormData}
         onSubmit={handleExpertFormSubmit}
         isSubmitted={isExpertFormSubmitted}
+        isSubmitting={isExpertFormSubmitting}
       />
     </div>
   );

@@ -19,6 +19,7 @@ interface BecomeExpertDialogProps {
   onFormDataChange: (data: any) => void;
   onSubmit: (e: FormEvent) => void;
   isSubmitted: boolean;
+  isSubmitting: boolean;
 }
 
 const BecomeExpertDialog = ({
@@ -27,7 +28,8 @@ const BecomeExpertDialog = ({
   formData,
   onFormDataChange,
   onSubmit,
-  isSubmitted
+  isSubmitted,
+  isSubmitting
 }: BecomeExpertDialogProps) => {
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
@@ -63,7 +65,15 @@ const BecomeExpertDialog = ({
             Поделитесь своим опытом с участницами клуба
           </DialogDescription>
         </DialogHeader>
-        {isSubmitted ? (
+        {isSubmitting ? (
+          <div className="text-center py-12">
+            <div className="relative w-20 h-20 mx-auto mb-6">
+              <div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div>
+              <div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] border-r-[#d4af37] border-b-transparent border-l-transparent animate-spin"></div>
+            </div>
+            <p className="text-lg text-[#d4af37] font-semibold">Отправка...</p>
+          </div>
+        ) : isSubmitted ? (
           <div className="text-center py-8">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#8b7355]/20 flex items-center justify-center mb-4 mx-auto">
               <Icon name="Check" className="w-8 h-8 text-[#d4af37]" />
@@ -115,9 +125,10 @@ const BecomeExpertDialog = ({
             />
             <Button 
               type="submit"
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Отправить заявку
+              {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
             </Button>
           </form>
         )}
