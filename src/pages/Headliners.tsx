@@ -184,7 +184,90 @@ const Headliners = () => {
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
-
+          {/* Center VIP Image */}
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
+            <div className="relative w-full h-full">
+              {/* Glow effects behind image */}
+              <div className="absolute -inset-16 z-0">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px]"></div>
+              </div>
+              
+              {/* Golden frame effect */}
+              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
+              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
+              
+              {/* Main image */}
+              <img 
+                src="https://cdn.poehali.dev/files/b0b98e59-b32d-45b6-8391-116391b681cf.jpg" 
+                alt="VIP Headliner" 
+                className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
+                style={{
+                  objectPosition: 'center center',
+                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)',
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)'
+                }}
+              />
+              
+              {/* VIP Premium Darkening Overlays */}
+              {/* Rich black vignette with golden edge - stronger bottom */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/50 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Additional strong bottom fade */}
+              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent rounded-xl z-26 pointer-events-none"></div>
+              
+              {/* Cinematic side darkening */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Golden tint overlay for luxury feel */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-[#8b7355]/20 rounded-xl z-25 pointer-events-none mix-blend-overlay"></div>
+              
+              {/* Spotlight effect from top */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_transparent_20%,_rgba(0,0,0,0.5)_60%,_rgba(0,0,0,0.7)_100%)] rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Hover glow */}
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
+              
+              {/* Corner accents */}
+              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
+              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
+            </div>
+          </div>
+          
+          {/* VIP Center Effects - Above Photo */}
+          {/* Central spotlight */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_rgba(212,175,55,0.08)_30%,_transparent_70%)] z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '0.8s'}}></div>
+          
+          {/* Golden ring glow (no border, just glow) */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(212,175,55,0.12)_0%,_rgba(212,175,55,0.06)_40%,_transparent_70%)] rounded-full z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[radial-gradient(circle,_rgba(212,175,55,0.1)_0%,_rgba(212,175,55,0.05)_50%,_transparent_80%)] rounded-full z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '1.2s'}}></div>
+          
+          {/* Diamond sparkles */}
+          <div className="absolute top-[30%] left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37] rotate-45 animate-vip-glow z-10 pointer-events-none" style={{animationDelay: '1.4s'}}></div>
+          <div className="absolute top-[25%] left-[48%] w-2 h-2 bg-white rotate-45 animate-vip-glow z-10 pointer-events-none" style={{animationDelay: '1.5s'}}></div>
+          <div className="absolute top-[28%] left-[52%] w-2 h-2 bg-[#f4d683] rotate-45 animate-vip-glow z-10 pointer-events-none" style={{animationDelay: '1.6s'}}></div>
+          
+          {/* Luxury light beams from center */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent rotate-45 blur-md z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '1.7s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[3px] h-[900px] bg-gradient-to-b from-transparent via-[#d4af37]/20 to-transparent -rotate-45 blur-md z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '1.8s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-md z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '1.9s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[3px] bg-gradient-to-r from-transparent via-[#d4af37]/15 to-transparent rotate-90 blur-md z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2s'}}></div>
+          
+          {/* Premium floating orbs */}
+          <div className="absolute top-[35%] left-[45%] w-4 h-4 bg-[#d4af37] rounded-full blur-sm opacity-60 animate-float z-10 pointer-events-none" style={{animationDuration: '8s'}}></div>
+          <div className="absolute top-[40%] left-[55%] w-3 h-3 bg-[#f4d683] rounded-full blur-sm opacity-50 animate-float z-10 pointer-events-none" style={{animationDuration: '7s', animationDelay: '1s'}}></div>
+          <div className="absolute top-[32%] left-[50%] w-2 h-2 bg-white rounded-full blur-[1px] opacity-70 animate-float z-10 pointer-events-none" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+          
+          {/* Glowing center core */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#d4af37]/20 rounded-full blur-3xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.1s'}}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/10 rounded-full blur-2xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.2s'}}></div>
+          
+          {/* Lens flares */}
+          <div className="absolute top-[28%] left-[48%] w-40 h-40 bg-[#d4af37]/5 rounded-full blur-3xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.3s'}}></div>
+          <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.4s'}}></div>
         </div>
 
         <div className="w-full text-center px-4 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
@@ -226,55 +309,6 @@ const Headliners = () => {
               <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6">
                 Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* VIP Photo Section - Independent */}
-      <section className="relative -mt-[500px] md:-mt-[700px] lg:-mt-[800px] pb-32 md:pb-48 bg-transparent pointer-events-none">
-        <div className="relative w-full h-[600px] md:h-[800px] lg:h-[900px]">
-          {/* Center VIP Image */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px] z-50 group animate-fade-in-gentle pointer-events-auto" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-full h-full">
-              {/* Glow effects behind image */}
-              <div className="absolute -inset-16 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px]"></div>
-              </div>
-              
-              {/* Golden frame effect */}
-              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
-              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
-              
-              {/* Main image */}
-              <img 
-                src="https://cdn.poehali.dev/files/b0b98e59-b32d-45b6-8391-116391b681cf.jpg" 
-                alt="VIP Headliner" 
-                className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
-                style={{
-                  objectPosition: 'center center',
-                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)',
-                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)'
-                }}
-              />
-              
-              {/* VIP Premium Darkening Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/50 rounded-xl z-25 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent rounded-xl z-26 pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 rounded-xl z-25 pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-[#8b7355]/20 rounded-xl z-25 pointer-events-none mix-blend-overlay"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_transparent_20%,_rgba(0,0,0,0.5)_60%,_rgba(0,0,0,0.7)_100%)] rounded-xl z-25 pointer-events-none"></div>
-              
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
-              
-              {/* Corner accents */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
             </div>
           </div>
         </div>
