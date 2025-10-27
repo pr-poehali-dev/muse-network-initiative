@@ -190,9 +190,9 @@ const Headliners = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40 blur-[2px]"></div>
         </div>
 
-        <div className="w-full text-center px-4 sm:px-6 md:px-8 relative z-30 pt-[30vh] sm:pt-[35vh] md:pt-0">
+        <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
+            className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" 
             style={{
               animationDelay: '0.8s',
               opacity: 0
@@ -220,7 +220,7 @@ const Headliners = () => {
             <div className="absolute -bottom-4 -left-4 w-2 h-2 bg-[#8b7355] rounded-full blur-sm animate-ping" style={{animationDuration: '3s', animationDelay: '1s'}}></div>
             <div className="absolute -bottom-4 -right-4 w-3 h-3 bg-[#d4af37] rounded-full blur-sm animate-ping" style={{animationDuration: '2.2s', animationDelay: '1.5s'}}></div>
           </div>
-          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear px-2" style={{animationDelay: '1.2s', opacity: 0}}>
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear px-6" style={{animationDelay: '1.2s', opacity: 0}}>
             Юлия Викторова<br className="sm:hidden" /> — Директор по цифровому маркетингу,<br className="sm:hidden" /> Санкт-Петербург
           </p>
           <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
@@ -236,11 +236,11 @@ const Headliners = () => {
                 <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
               
-              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-2">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-6">
                 Как мы помогаем бизнесу находить лиды
               </h3>
               
-              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-2">
+              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6">
                 Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
               </p>
             </div>
