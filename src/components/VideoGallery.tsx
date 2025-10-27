@@ -186,28 +186,32 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
           )}
           
           <div 
-            className="w-full h-full flex items-center justify-center overflow-hidden"
+            className="absolute inset-0 flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
           >
             <div 
-              className="w-full h-full transition-transform duration-200 ease-out"
-              style={{
-                transform: `translateX(${dragOffset}px)`,
-                transition: isDragging ? 'none' : 'transform 0.3s ease-out'
-              }}
+              className="h-full w-auto aspect-[9/16] relative"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              <iframe
-                ref={iframeRef}
-                key={selectedVideo}
-                src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0&ui=0`}
-                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
-                frameBorder="0"
-                allowFullScreen
-                className="w-full h-full pointer-events-none"
-              />
+              <div
+                className="absolute inset-0 transition-transform duration-200 ease-out"
+                style={{
+                  transform: `translateX(${dragOffset}px)`,
+                  transition: isDragging ? 'none' : 'transform 0.3s ease-out'
+                }}
+              >
+                <iframe
+                  ref={iframeRef}
+                  key={selectedVideo}
+                  src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0&ui=0`}
+                  allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+                  frameBorder="0"
+                  allowFullScreen
+                  className="w-full h-full pointer-events-none"
+                />
+              </div>
             </div>
           </div>
         </div>
