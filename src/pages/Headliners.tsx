@@ -153,7 +153,7 @@ const Headliners = () => {
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
               
               <img 
-                src="https://cdn.poehali.dev/files/db81dd5d-ecc0-433f-a5ba-4e3072c571cb.jpg" 
+                src="https://cdn.poehali.dev/files/27972918-2163-49b0-b132-341cfdeecfe1.jpg" 
                 alt="" 
                 className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
