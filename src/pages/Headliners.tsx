@@ -213,7 +213,7 @@ const Headliners = () => {
           <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-5"></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[25%] left-1/2 -translate-x-1/2 w-[280px] h-[420px] md:w-[320px] md:h-[480px] z-15 group">
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] h-[520px] md:w-[340px] md:h-[600px] lg:w-[380px] lg:h-[680px] z-8 group">
             <div className="relative w-full h-full">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
