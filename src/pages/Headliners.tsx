@@ -287,7 +287,7 @@ const Headliners = () => {
             <img 
               src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
               alt="Digital Agency albe" 
-              className="h-10 sm:h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+              className="h-16 sm:h-20 md:h-28 lg:h-32 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
           </div>
           <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
@@ -533,7 +533,7 @@ const Headliners = () => {
                     <img 
                       src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png"
                       alt="Digital Agency albe"
-                      className="h-8 sm:h-10 md:h-12 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+                      className="h-12 sm:h-14 md:h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
                     />
                   </div>
                 </div>
