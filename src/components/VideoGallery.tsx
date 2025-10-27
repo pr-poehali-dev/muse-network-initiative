@@ -116,11 +116,12 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
             onClick={() => setSelectedVideo(video.id)}
             className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
-            <iframe
-              src={`https://kinescope.io/embed/${video.id}?ui=0&mainPlayButton=0`}
-              className="w-full h-full object-cover pointer-events-none"
-              frameBorder="0"
+            <img
+              src={`https://kinescope.io/${video.id}/preview.jpg`}
+              alt={video.title}
+              className="w-full h-full object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="absolute inset-0 border-2 border-[#d4af37] opacity-0 group-hover:opacity-40 transition-opacity duration-500 rounded-xl"></div>
           </div>
         ))}

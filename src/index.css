@@ -355,6 +355,18 @@ body::-webkit-scrollbar {
     display: none;
   }
 
+  iframe[src*="kinescope.io"] {
+    pointer-events: none !important;
+  }
+
+  iframe[src*="kinescope.io"]::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    z-index: 1;
+  }
+
   .animate-expand-center {
     animation: expand-from-center 1.2s ease-out;
   }
