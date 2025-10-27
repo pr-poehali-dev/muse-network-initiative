@@ -232,12 +232,22 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: 'center center',
-                  filter: 'contrast(1.1) brightness(1.05)'
+                  filter: 'contrast(1.15) brightness(0.75) saturate(0.85)'
                 }}
               />
               
-              {/* Premium overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 rounded-xl z-25 pointer-events-none"></div>
+              {/* VIP Premium Darkening Overlays */}
+              {/* Rich black vignette with golden edge */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/50 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Cinematic side darkening */}
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 rounded-xl z-25 pointer-events-none"></div>
+              
+              {/* Golden tint overlay for luxury feel */}
+              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-[#8b7355]/20 rounded-xl z-25 pointer-events-none mix-blend-overlay"></div>
+              
+              {/* Spotlight effect from top */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_transparent_20%,_rgba(0,0,0,0.5)_60%,_rgba(0,0,0,0.7)_100%)] rounded-xl z-25 pointer-events-none"></div>
               
               {/* Hover glow */}
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
