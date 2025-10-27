@@ -181,16 +181,16 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[320px] h-[520px] md:w-[400px] md:h-[600px] lg:w-[450px] lg:h-[680px] z-5 group animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[320px] h-[520px] md:w-[400px] md:h-[600px] lg:w-[450px] lg:h-[680px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
             <div className="relative w-full h-full">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px] animate-pulse" style={{animationDuration: '4s'}}></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px] animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px]"></div>
               </div>
               
               {/* Golden frame effect */}
-              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10 animate-pulse" style={{animationDuration: '3s'}}></div>
+              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
               <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
               
               {/* Main image */}
@@ -200,7 +200,7 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: 'center center',
-                  filter: 'contrast(1.15) brightness(0.75) saturate(0.85)'
+                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)'
                 }}
               />
               
