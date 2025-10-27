@@ -185,8 +185,8 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[12%] w-full flex justify-center z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px]">
+          <div className="absolute top-[12%] left-0 right-0 flex justify-center z-5 group animate-fade-in-gentle px-4" style={{animationDelay: '0.6s', opacity: 0}}>
+            <div className="relative w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px] flex-shrink-0">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
@@ -270,16 +270,16 @@ const Headliners = () => {
           <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.4s'}}></div>
         </div>
 
-        <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
+        <div className="w-full max-w-7xl mx-auto text-center px-4 sm:px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
           <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
             
-            <h1 className="relative text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+            <h1 className="relative text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)] break-words">
               MUSE
             </h1>
             
-            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
+            <div className="absolute inset-0 text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse break-words" style={{animationDuration: '4s'}}>
               MUSE
             </div>
           </div>
