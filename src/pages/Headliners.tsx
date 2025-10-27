@@ -194,6 +194,13 @@ const Headliners = () => {
         </div>
       </section>
 
+      {/* Section Separator */}
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       <section className="py-20 bg-gradient-to-b from-black to-neutral-950">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
