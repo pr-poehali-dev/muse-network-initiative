@@ -210,9 +210,9 @@ const Headliners = () => {
         
         <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
           <div className="max-w-5xl mx-auto">
-            <div className="relative">
-              <div className="absolute -top-8 -left-4 md:-left-8 text-[#d4af37]/20 text-[120px] md:text-[180px] font-serif leading-none">"</div>
-              <div className="absolute -bottom-16 -right-4 md:-right-8 text-[#d4af37]/20 text-[120px] md:text-[180px] font-serif leading-none rotate-180">"</div>
+            <div className="relative px-8 md:px-16">
+              <div className="absolute -top-4 left-0 md:-left-4 text-[#d4af37]/30 text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
+              <div className="absolute -bottom-8 right-0 md:-right-4 text-[#d4af37]/30 text-[100px] md:text-[140px] font-serif leading-none select-none">"</div>
               
               <div className="relative bg-gradient-to-br from-neutral-900/40 to-black/60 backdrop-blur-xl rounded-3xl p-10 md:p-16 border-2 border-[#d4af37]/30 shadow-[0_0_80px_rgba(212,175,55,0.15)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-3xl"></div>
