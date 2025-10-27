@@ -117,7 +117,7 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
             className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
             <iframe
-              src={`https://kinescope.io/embed/${video.id}`}
+              src={`https://kinescope.io/embed/${video.id}?ui=0`}
               className="w-full h-full object-cover pointer-events-none"
               frameBorder="0"
             />
@@ -197,7 +197,7 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
               <iframe
                 ref={iframeRef}
                 key={selectedVideo}
-                src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0`}
+                src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0&ui=0`}
                 allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
                 frameBorder="0"
                 allowFullScreen
