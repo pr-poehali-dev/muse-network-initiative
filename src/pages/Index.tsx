@@ -335,7 +335,7 @@ const Index = () => {
           </div>
         </div>
 
-        <div className={`md:hidden fixed left-0 right-0 bg-black backdrop-blur-xl transition-all duration-300 z-40 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`} style={{ top: '76px', bottom: 0, height: 'calc(100vh - 76px)' }}>
+        <div className={`md:hidden fixed left-0 right-0 bg-black/95 backdrop-blur-xl transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '76px', bottom: 0, height: 'calc(100vh - 76px)' }}>
           <div className="flex flex-col items-center justify-start pt-8 h-full gap-6 px-8 overflow-y-auto">
             {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
               <button
