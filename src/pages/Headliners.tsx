@@ -507,43 +507,106 @@ const Headliners = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="details" className="py-12 sm:py-16 bg-gradient-to-b from-neutral-950 to-black">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto bg-gradient-to-r from-neutral-900 to-neutral-800 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-12 border border-[#d4af37]/30">
-            <div className="grid md:grid-cols-2 gap-6 sm:gap-8 items-center">
-              <div className="relative">
-                <img 
-                  src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
-                  alt="Юлия Викторова"
-                  className="w-full h-64 sm:h-80 md:h-96 object-cover rounded-lg sm:rounded-xl"
-                />
-                {/* Premium darkening overlay */}
-                <div className="absolute inset-0 bg-black/35 rounded-lg sm:rounded-xl"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent rounded-lg sm:rounded-xl"></div>
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/8 via-transparent to-transparent mix-blend-overlay rounded-lg sm:rounded-xl"></div>
+      {/* Combined Details & Speaker Section */}
+      <section id="details" className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-neutral-950 via-black to-neutral-950 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.08)_0%,_transparent_70%)]"></div>
+        <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
+        <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
+        
+        <div className="container mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header */}
+            <div className="text-center mb-12 sm:mb-16 md:mb-20">
+              <div className="inline-block mb-6 px-8 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm">
+                <span className="text-sm font-bold text-[#d4af37] uppercase tracking-[0.3em]">Спикер</span>
               </div>
-              <div className="space-y-4 sm:space-y-6">
-                <h3 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37]">О спикере</h3>
-                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
-                  Юлия Викторова — опытный специалист в области цифрового маркетинга с более чем 10-летним опытом работы.
-                </p>
-                <div className="py-4">
-                  <p className="text-white/60 text-xs sm:text-sm mb-2 sm:mb-3">Директор по цифровому маркетингу</p>
-                  <div className="bg-black/40 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-[#d4af37]/20 inline-block">
+              <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] mb-4 leading-tight">
+                Юлия Викторова
+              </h3>
+              <p className="text-lg sm:text-xl md:text-2xl text-white/60 font-light">
+                Директор по цифровому маркетингу
+              </p>
+            </div>
+
+            {/* Main Content Card */}
+            <div className="relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl overflow-hidden border-2 border-[#d4af37]/30 shadow-[0_0_100px_rgba(212,175,55,0.2)]">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
+              
+              <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 p-8 sm:p-12 md:p-16">
+                {/* Photo */}
+                <div className="relative group">
+                  <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative h-[400px] sm:h-[500px] lg:h-full rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 border-2 border-[#d4af37]/40 rounded-2xl z-10"></div>
                     <img 
-                      src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png"
-                      alt="Digital Agency albe"
-                      className="h-12 sm:h-14 md:h-16 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
+                      src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
+                      alt="Юлия Викторова"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
+                    <div className="absolute inset-0 bg-black/30"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent mix-blend-overlay"></div>
                   </div>
                 </div>
-                <p className="text-sm sm:text-base text-white/80 leading-relaxed">
-                  Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в 3-5 раз.
-                </p>
+
+                {/* Info */}
+                <div className="flex flex-col justify-center space-y-6 sm:space-y-8">
+                  {/* Company Logo */}
+                  <div className="relative">
+                    <div className="absolute -inset-4 bg-[#d4af37]/5 rounded-2xl blur-xl"></div>
+                    <div className="relative bg-black/50 backdrop-blur-sm px-6 sm:px-8 py-4 sm:py-5 rounded-xl border border-[#d4af37]/30 inline-flex items-center gap-4">
+                      <img 
+                        src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png"
+                        alt="Digital Agency albe"
+                        className="h-14 sm:h-16 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="space-y-4">
+                    <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+                      Опытный специалист в области цифрового маркетинга с более чем <span className="text-[#d4af37] font-bold">10-летним опытом</span> работы.
+                    </p>
+                    <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+                      Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в <span className="text-[#d4af37] font-bold">3-5 раз</span>.
+                    </p>
+                  </div>
+
+                  {/* Achievements */}
+                  <div className="grid grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-[#d4af37]/20">
+                    <div className="text-center">
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355] mb-2">10+</div>
+                      <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">Лет опыта</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355] mb-2">50+</div>
+                      <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">Проектов</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl sm:text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355] mb-2">5x</div>
+                      <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">Рост продаж</div>
+                    </div>
+                  </div>
+
+                  {/* CTA Button */}
+                  <Button
+                    onClick={() => navigate('/')}
+                    className="group relative w-full sm:w-auto text-base font-semibold px-8 sm:px-10 py-5 sm:py-6 bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#b8953d] hover:to-[#d4af37] transition-all duration-500 shadow-[0_0_40px_rgba(212,175,55,0.3)] hover:shadow-[0_0_60px_rgba(212,175,55,0.5)]"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      <span>Зарегистрироваться</span>
+                      <Icon name="ArrowRight" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-[#d4af37]/10 rounded-full blur-[120px] opacity-40"></div>
       </section>
     </div>
   );
