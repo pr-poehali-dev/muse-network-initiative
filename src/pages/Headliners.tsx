@@ -231,54 +231,6 @@ const Headliners = () => {
         </div>
       </section>
 
-      {/* Центральное фото - отдельная секция */}
-      <section className="relative -mt-[60vh] md:-mt-[70vh] pb-32 md:pb-48 bg-transparent pointer-events-none">
-        <div className="flex justify-center items-start w-full px-4">
-          <div className="w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px] group animate-fade-in-gentle pointer-events-auto" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-full h-full">
-              {/* Glow effects */}
-              <div className="absolute -inset-16 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle,_#f4d683/15,transparent_60%)] blur-[80px]"></div>
-              </div>
-              
-              {/* Golden frames */}
-              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
-              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
-              
-              {/* Main image */}
-              <img 
-                src="https://cdn.poehali.dev/files/b0b98e59-b32d-45b6-8391-116391b681cf.jpg" 
-                alt="VIP Headliner" 
-                className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
-                style={{
-                  objectPosition: 'center center',
-                  filter: 'contrast(1.1) brightness(0.65) saturate(0.85)',
-                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)'
-                }}
-              />
-              
-              {/* Darkening overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/50 rounded-xl z-25 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/60 to-transparent rounded-xl z-26 pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/60 rounded-xl z-25 pointer-events-none"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/15 via-transparent to-[#8b7355]/20 rounded-xl z-25 pointer-events-none mix-blend-overlay"></div>
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_transparent_0%,_transparent_20%,_rgba(0,0,0,0.5)_60%,_rgba(0,0,0,0.7)_100%)] rounded-xl z-25 pointer-events-none"></div>
-              
-              {/* Hover glow */}
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-xl transition-all duration-500 blur-xl z-30"></div>
-              
-              {/* Corner accents */}
-              <div className="absolute -top-2 -left-2 w-6 h-6 border-t-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -top-2 -right-2 w-6 h-6 border-t-2 border-r-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -left-2 w-6 h-6 border-b-2 border-l-2 border-[#d4af37] z-35"></div>
-              <div className="absolute -bottom-2 -right-2 w-6 h-6 border-b-2 border-r-2 border-[#d4af37] z-35"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Section Separator */}
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
