@@ -266,7 +266,7 @@ const Headliners = () => {
                 <div className="relative group p-6 sm:p-8 md:p-12 lg:p-16 flex items-center justify-center">
                   <div className="relative w-full">
                     <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div className="relative h-[400px] sm:h-[500px] lg:h-full rounded-2xl overflow-hidden">
+                    <div className="relative h-[350px] sm:h-[420px] lg:h-full rounded-2xl overflow-hidden">
                     <div className="absolute inset-0 border-2 border-[#d4af37]/40 rounded-2xl z-10"></div>
                     <img 
                       src="https://cdn.poehali.dev/files/e501d365-c5a3-4d4b-aa9c-ffefddb14a4a.jpg"
@@ -280,23 +280,23 @@ const Headliners = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-center space-y-6 sm:space-y-8 items-center lg:items-start p-6 sm:p-8 md:p-12 lg:p-16">
+                <div className="flex flex-col justify-start space-y-4 sm:space-y-5 items-start p-6 sm:p-8 md:p-12 lg:p-16">
                   <div className="relative">
                     <div className="absolute -inset-4 bg-[#d4af37]/5 rounded-2xl blur-xl"></div>
-                    <div className="relative bg-black/50 backdrop-blur-sm px-6 sm:px-8 py-4 sm:py-5 rounded-xl border border-[#d4af37]/30 inline-flex items-center gap-4">
+                    <div className="relative bg-black/50 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#d4af37]/30 inline-flex items-center gap-4">
                       <img 
                         src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png"
                         alt="Digital Agency albe"
-                        className="h-14 sm:h-16 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+                        className="h-10 sm:h-12 md:h-14 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
                       />
                     </div>
                   </div>
 
-                  <div className="space-y-4 text-center lg:text-left">
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+                  <div className="space-y-3 text-left">
+                    <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
                       Опытный специалист в области цифрового маркетинга с более чем <span className="text-[#d4af37] font-bold">10-летним опытом</span> работы.
                     </p>
-                    <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
+                    <p className="text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
                       Помогла десяткам компаний построить эффективные системы привлечения клиентов и увеличить продажи в <span className="text-[#d4af37] font-bold">3-5 раз</span>.
                     </p>
                   </div>
