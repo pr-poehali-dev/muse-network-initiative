@@ -106,7 +106,7 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
                     alt={expert.name}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10 pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none"></div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-bold mb-2 text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] to-[#8b7355]">{expert.name}</h3>
