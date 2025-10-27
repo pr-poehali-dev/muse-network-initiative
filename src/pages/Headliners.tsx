@@ -285,7 +285,7 @@ const Headliners = () => {
           </p>
           <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
-              src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png" 
+              src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
               alt="Digital Agency albe" 
               className="h-10 sm:h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
@@ -531,7 +531,7 @@ const Headliners = () => {
                   <p className="text-white/60 text-xs sm:text-sm mb-2 sm:mb-3">Директор по цифровому маркетингу</p>
                   <div className="bg-black/40 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-[#d4af37]/20 inline-block">
                     <img 
-                      src="https://cdn.poehali.dev/files/e070ce34-1c28-4bce-a397-2b21f267b2d2.png"
+                      src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png"
                       alt="Digital Agency albe"
                       className="h-8 sm:h-10 md:h-12 object-contain drop-shadow-[0_0_15px_rgba(212,175,55,0.5)]"
                     />
