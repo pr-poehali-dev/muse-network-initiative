@@ -761,9 +761,15 @@ const Index = () => {
       </section>
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col">
-          <div className="flex items-center justify-between mb-4 md:mb-6 pr-10">
+        <DialogContent className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col" hideClose>
+          <div className="flex items-center justify-between mb-4 md:mb-6">
             <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
+            <button
+              onClick={() => setGalleryOpen(false)}
+              className="rounded-lg p-1.5 text-[#d4af37]/60 hover:text-[#d4af37] hover:bg-[#d4af37]/10 transition-all"
+            >
+              <Icon name="X" size={24} />
+            </button>
           </div>
           <DialogHeader className="px-0 flex-shrink-0">
             <div 
