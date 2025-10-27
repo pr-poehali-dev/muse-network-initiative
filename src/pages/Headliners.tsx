@@ -151,9 +151,19 @@ const Headliners = () => {
               className="h-14 md:h-20 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
           </div>
-          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
-            Кейс: Как помогаем бизнесу находить Лиды. Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок.
-          </p>
+          <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
+            <div className="relative bg-gradient-to-r from-[#d4af37]/10 via-[#d4af37]/20 to-[#d4af37]/10 backdrop-blur-md border-2 border-[#d4af37]/50 rounded-2xl px-8 py-6 shadow-[0_0_40px_rgba(212,175,55,0.3)]">
+              <div className="absolute -top-1 -left-1 -right-1 -bottom-1 bg-gradient-to-r from-[#d4af37]/30 via-[#d4af37]/50 to-[#d4af37]/30 rounded-2xl blur-xl -z-10"></div>
+              <p className="text-lg sm:text-xl md:text-2xl font-bold text-center mb-2">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-white to-[#d4af37]">
+                  Кейс: Как помогаем бизнесу находить Лиды
+                </span>
+              </p>
+              <p className="text-sm sm:text-base md:text-lg text-white/80 text-center">
+                Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
