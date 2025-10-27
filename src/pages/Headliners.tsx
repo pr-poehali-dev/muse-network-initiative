@@ -185,8 +185,8 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[calc(280px+24px)] md:w-[400px] h-[500px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle flex items-center justify-center" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-[280px] md:w-full h-full">
+          <div className="absolute top-[12%] left-0 right-0 mx-auto w-[280px] md:w-[400px] h-[500px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
+            <div className="relative w-full h-full">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
