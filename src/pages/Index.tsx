@@ -381,7 +381,7 @@ const Index = () => {
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3 border-b border-[#d4af37]/20"
+                className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
               >
                 {section === 'hero' ? 'Главная' : 
                  section === 'about' ? 'О клубе' :
