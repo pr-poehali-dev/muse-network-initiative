@@ -184,8 +184,6 @@ const Headliners = () => {
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
-
-          
           {/* VIP Center Effects - Above Photo */}
           {/* Central spotlight */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15)_0%,_rgba(212,175,55,0.08)_30%,_transparent_70%)] z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '0.8s'}}></div>
