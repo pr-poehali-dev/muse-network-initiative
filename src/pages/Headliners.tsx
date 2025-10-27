@@ -275,11 +275,11 @@ const Headliners = () => {
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
             
-            <h1 className="relative text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+            <h1 className="relative text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
               MUSE
             </h1>
             
-            <div className="absolute inset-0 text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-[#d4af37]/5 blur-xl animate-pulse" style={{animationDuration: '4s'}}>
+            <div className="absolute inset-0 text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-black text-[#d4af37]/5 blur-xl animate-pulse" style={{animationDuration: '4s'}}>
               MUSE
             </div>
           </div>
