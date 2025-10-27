@@ -109,7 +109,7 @@ const MosaicGallery = () => {
 
   return (
     <>
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-3 auto-rows-[100px] pr-2">
+      <div className="grid grid-cols-3 md:grid-cols-6 gap-3 auto-rows-[100px]">
         {images.map((image, index) => (
           <div
             key={index}

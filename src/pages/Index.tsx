@@ -763,8 +763,8 @@ const Index = () => {
       </section>
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 md:p-8 overflow-hidden">
-          <DialogHeader>
+        <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden">
+          <DialogHeader className="px-0">
             <DialogTitle className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-6">Галерея событий</DialogTitle>
             <div className="flex gap-4 mb-4">
               <button
@@ -789,7 +789,7 @@ const Index = () => {
               </button>
             </div>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden">
+          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden px-0">
             {galleryTab === 'photos' ? (
               <MosaicGallery />
             ) : (
