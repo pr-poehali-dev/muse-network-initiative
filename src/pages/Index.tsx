@@ -762,8 +762,8 @@ const Index = () => {
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col">
-          <div className="flex items-start justify-between mb-4 md:mb-6">
-            <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 pr-4">Галерея событий</h2>
+          <div className="flex items-center justify-between mb-4 md:mb-6 pr-10">
+            <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
           </div>
           <DialogHeader className="px-0 flex-shrink-0">
             <div 
