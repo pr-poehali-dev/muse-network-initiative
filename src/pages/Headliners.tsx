@@ -185,8 +185,8 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[320px] h-[580px] md:w-[400px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
-            <div className="relative w-full h-full">
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[300px] h-[580px] md:w-[400px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
+            <div className="relative w-full h-full mx-auto">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] blur-[60px]"></div>
@@ -194,8 +194,8 @@ const Headliners = () => {
               </div>
               
               {/* Golden frame effect */}
-              <div className="absolute -inset-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
-              <div className="absolute -inset-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
+              <div className="absolute inset-x-3 -inset-y-3 border-2 border-[#d4af37]/30 rounded-2xl z-10"></div>
+              <div className="absolute inset-x-6 -inset-y-6 border border-[#d4af37]/15 rounded-3xl z-10"></div>
               
               {/* Main image */}
               <img 
