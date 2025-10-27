@@ -281,13 +281,13 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4" onClick={() => window.location.href = '/'}>
               <img 
                 src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
                 alt="Muse" 
-                className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)] cursor-pointer hover:scale-105 transition-transform"
+                className="h-10 md:h-12 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)] cursor-pointer hover:scale-105 transition-transform"
               />
               <div 
                 className="transition-all duration-500 overflow-hidden"
@@ -296,7 +296,7 @@ const Index = () => {
                   opacity: titleInHeader ? 1 : 0,
                 }}
               >
-                <h2 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
+                <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
                   MUSE
                 </h2>
               </div>
