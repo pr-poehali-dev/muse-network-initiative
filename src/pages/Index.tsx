@@ -13,12 +13,10 @@ import CounterAnimation from '@/components/CounterAnimation';
 
 const Index = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [titleInHeader, setTitleInHeader] = useState(false);
   
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
-      setTitleInHeader(window.scrollY > 400);
     };
     
     window.addEventListener('scroll', handleScroll);
@@ -283,24 +281,12 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4" onClick={() => window.location.href = '/'}>
-              <img 
-                src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
-                alt="Muse" 
-                className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)] cursor-pointer hover:scale-105 transition-transform"
-              />
-              <div 
-                className="transition-all duration-500 overflow-hidden"
-                style={{
-                  maxWidth: titleInHeader ? '200px' : '0px',
-                  opacity: titleInHeader ? 1 : 0,
-                }}
-              >
-                <h2 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
-                  MUSE
-                </h2>
-              </div>
-            </div>
+            <img 
+              src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
+              alt="Muse" 
+              className="h-12 md:h-16 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)] cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => window.location.href = '/'}
+            />
             
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -487,10 +473,10 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear transition-opacity duration-500" 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
             style={{
               animationDelay: '1.5s', 
-              opacity: titleInHeader ? 0 : undefined,
+              opacity: 0
             }}
           >
             <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
