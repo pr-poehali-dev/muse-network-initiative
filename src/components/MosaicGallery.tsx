@@ -106,6 +106,25 @@ const images = [
 
 const MosaicGallery = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const openImage = (url: string) => {
+    const index = images.findIndex(img => img.url === url);
+    setCurrentIndex(index);
+    setSelectedImage(url);
+  };
+
+  const goToNext = () => {
+    const nextIndex = (currentIndex + 1) % images.length;
+    setCurrentIndex(nextIndex);
+    setSelectedImage(images[nextIndex].url);
+  };
+
+  const goToPrev = () => {
+    const prevIndex = (currentIndex - 1 + images.length) % images.length;
+    setCurrentIndex(prevIndex);
+    setSelectedImage(images[prevIndex].url);
+  };
 
   return (
     <>
@@ -113,7 +132,7 @@ const MosaicGallery = () => {
         {images.map((image, index) => (
           <div
             key={index}
-            onClick={() => setSelectedImage(image.url)}
+            onClick={() => openImage(image.url)}
             className={`relative overflow-hidden transition-all duration-500 cursor-pointer group hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#b8953d]/20 ${image.span}`}
           >
             <img
@@ -138,10 +157,25 @@ const MosaicGallery = () => {
         >
           <button
             onClick={() => setSelectedImage(null)}
-            className="absolute top-4 right-4 md:top-8 md:right-8 text-white/80 hover:text-[#b8953d] transition-colors z-10 bg-black/50 rounded-full p-2 md:p-3"
+            className="absolute top-4 right-4 md:top-8 md:right-8 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-2 md:p-3"
           >
             <Icon name="X" size={32} />
           </button>
+          
+          <button
+            onClick={(e) => { e.stopPropagation(); goToPrev(); }}
+            className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+          >
+            <Icon name="ChevronLeft" size={32} />
+          </button>
+          
+          <button
+            onClick={(e) => { e.stopPropagation(); goToNext(); }}
+            className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 text-[#d4af37]/80 hover:text-[#ffd700] transition-colors z-10 backdrop-blur-sm bg-black/30 rounded-full p-3 md:p-4"
+          >
+            <Icon name="ChevronRight" size={32} />
+          </button>
+
           <img
             src={selectedImage}
             alt="Увеличенное фото"
