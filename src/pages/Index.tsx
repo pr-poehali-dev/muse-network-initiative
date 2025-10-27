@@ -487,11 +487,10 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear transition-all duration-500" 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear transition-opacity duration-500" 
             style={{
               animationDelay: '1.5s', 
               opacity: titleInHeader ? 0 : undefined,
-              transform: titleInHeader ? 'translateY(-100px) scale(0.3)' : 'translateY(0) scale(1)',
             }}
           >
             <h2 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
