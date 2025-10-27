@@ -761,12 +761,12 @@ const Index = () => {
       </section>
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
-        <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden">
-          <div className="flex items-center justify-between mb-6 mt-6 md:mt-0">
+        <DialogContent className="max-w-[95vw] md:max-w-[98vw] h-[100dvh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden flex flex-col">
+          <div className="flex items-center justify-between mb-3 md:mb-6 mt-2 md:mt-0">
             <h2 className="text-lg md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
           </div>
-          <DialogHeader className="px-0">
-            <div className="relative flex gap-0 mb-4 -mt-2 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm">
+          <DialogHeader className="px-0 flex-shrink-0">
+            <div className="relative flex gap-0 mb-3 md:mb-4 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm">
               <div 
                 className="absolute top-1 bottom-1 bg-gradient-to-r from-[#d4af37]/20 to-[#8b7355]/20 rounded-md transition-all duration-300 ease-out"
                 style={{
@@ -797,7 +797,7 @@ const Index = () => {
             </div>
           </DialogHeader>
           <div 
-            className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden px-0"
+            className="overflow-y-auto flex-1 scrollbar-hide overflow-x-hidden px-0"
             onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
             onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
             onTouchEnd={() => {
