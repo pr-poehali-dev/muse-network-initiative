@@ -550,9 +550,9 @@ const Index = () => {
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               О клубе Muse
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
           </div>
 
@@ -644,9 +644,9 @@ const Index = () => {
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               Наши ценности
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
           </div>
 
@@ -676,9 +676,9 @@ const Index = () => {
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               События и встречи
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Разнообразные форматы для вашего роста и вдохновения
@@ -742,9 +742,9 @@ const Index = () => {
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               Галерея
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 mb-8">Моменты, которые вдохновляют</p>
             <Button 
@@ -859,9 +859,9 @@ const Index = () => {
         <div className="w-full">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               Наши эксперты
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
               Команда талантливых преподавателей и наставников
@@ -906,9 +906,9 @@ const Index = () => {
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
               Вступить в клуб
-              <span className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h3>
             <p className="text-xl text-white/80 mb-10">
               Клуб "Muse" приглашает всех женщин, стремящихся к самосовершенствованию и желающих делиться своим вдохновением
