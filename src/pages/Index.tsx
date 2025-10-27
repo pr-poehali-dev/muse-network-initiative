@@ -10,8 +10,10 @@ import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialo
 import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
 import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
 import CounterAnimation from '@/components/CounterAnimation';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
+  const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [titleInHeader, setTitleInHeader] = useState(false);
   
@@ -341,6 +343,13 @@ const Index = () => {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
+              <button
+                onClick={() => navigate('/headliners')}
+                className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+              >
+                Хедлайнеры
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+              </button>
               <Button
                 size="lg"
                 className="group relative text-sm font-semibold px-8 py-3 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden"
@@ -379,6 +388,15 @@ const Index = () => {
                  section === 'gallery' ? 'Галерея' : 'Календарь'}
               </button>
             ))}
+            <button
+              onClick={() => {
+                navigate('/headliners');
+                setIsMobileMenuOpen(false);
+              }}
+              className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3 border-b border-[#d4af37]/20"
+            >
+              Хедлайнеры
+            </button>
             <Button
               size="lg"
               className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden mt-4"
