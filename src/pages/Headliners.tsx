@@ -220,7 +220,7 @@ const Headliners = () => {
         </div>
 
         {/* Center VIP Image */}
-        <div className="absolute top-[10%] md:top-[15%] left-1/2 -translate-x-1/2 w-[45%] md:w-[28%] h-[45vh] md:h-[50vh] z-40 group animate-vip-appear" style={{animationDelay: '0.6s', opacity: 0}}>
+        <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[280px] md:w-[400px] lg:w-[450px] h-[500px] md:h-[700px] lg:h-[800px] z-40 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
           <div className="relative w-full h-full">
             {/* Glow effects behind image */}
             <div className="absolute -inset-16 z-0">
