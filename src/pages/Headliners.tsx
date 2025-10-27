@@ -244,7 +244,7 @@ const Headliners = () => {
         <div className="absolute top-0 left-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         <div className="absolute top-0 right-1/4 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
         
-        <div className="container mx-auto px-0 sm:px-6 md:px-8 lg:px-12 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 relative z-10">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12 sm:mb-16 md:mb-20 px-4 sm:px-0">
               <div className="inline-block mb-6 px-8 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full backdrop-blur-sm">
@@ -258,13 +258,13 @@ const Headliners = () => {
               </p>
             </div>
 
-            <div className="relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-none sm:rounded-3xl overflow-hidden border-2 border-[#d4af37]/30 shadow-[0_0_100px_rgba(212,175,55,0.2)]">
+            <div className="relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-3xl overflow-hidden border-2 border-[#d4af37]/30 shadow-[0_0_100px_rgba(212,175,55,0.2)]">
               <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 to-transparent"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
               
               <div className="relative grid lg:grid-cols-2 gap-0 lg:gap-0">
-                <div className="relative group p-6 sm:p-8 md:p-12 lg:p-16">
-                  <div className="relative w-full max-w-md mx-auto lg:max-w-none">
+                <div className="relative group p-6 sm:p-8 md:p-12 lg:p-16 flex items-center justify-center">
+                  <div className="relative w-full">
                     <div className="absolute -inset-2 bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
                     <div className="relative h-[400px] sm:h-[500px] lg:h-full rounded-2xl overflow-hidden">
                     <div className="absolute inset-0 border-2 border-[#d4af37]/40 rounded-2xl z-10"></div>
