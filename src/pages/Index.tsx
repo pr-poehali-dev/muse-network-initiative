@@ -352,13 +352,36 @@ const Index = () => {
           </div>
         </div>
 
-        <div className={`md:hidden fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
+        <div className={`fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
           <div className="flex flex-col items-center justify-start pt-6 h-full gap-6 px-8 overflow-y-auto">
+            <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
+              {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+                >
+                  {section === 'hero' ? 'Главная' : 
+                   section === 'about' ? 'О клубе' :
+                   section === 'experts' ? 'Эксперты' :
+                   section === 'events' ? 'События' :
+                   section === 'gallery' ? 'Галерея' : 'Календарь'}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+                </button>
+              ))}
+              <button
+                onClick={() => navigate('/headliners')}
+                className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+              >
+                Хедлайнеры
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+              </button>
+            </div>
             {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+                className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
               >
                 {section === 'hero' ? 'Главная' : 
                  section === 'about' ? 'О клубе' :
