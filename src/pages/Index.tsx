@@ -56,6 +56,8 @@ const Index = () => {
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [galleryTab, setGalleryTab] = useState<'photos' | 'videos'>('photos');
   const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -794,7 +796,21 @@ const Index = () => {
               </button>
             </div>
           </DialogHeader>
-          <div className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden px-0">
+          <div 
+            className="overflow-y-auto max-h-[80vh] md:max-h-[88vh] scrollbar-hide overflow-x-hidden px-0"
+            onTouchStart={(e) => setTouchStart(e.targetTouches[0].clientX)}
+            onTouchMove={(e) => setTouchEnd(e.targetTouches[0].clientX)}
+            onTouchEnd={() => {
+              if (touchStart - touchEnd > 75) {
+                // Свайп влево - переключаем на видео
+                if (galleryTab === 'photos') setGalleryTab('videos');
+              }
+              if (touchStart - touchEnd < -75) {
+                // Свайп вправо - переключаем на фото
+                if (galleryTab === 'videos') setGalleryTab('photos');
+              }
+            }}
+          >
             {galleryTab === 'photos' ? (
               <MosaicGallery />
             ) : (
