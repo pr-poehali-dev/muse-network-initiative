@@ -185,7 +185,7 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
           
           {/* Center VIP Image */}
-          <div className="absolute top-[8%] md:top-[12%] left-1/2 -translate-x-1/2 w-[280px] h-[500px] md:w-[400px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
+          <div className="absolute top-[12%] left-1/2 -translate-x-1/2 w-[320px] h-[580px] md:w-[400px] md:h-[700px] lg:w-[450px] lg:h-[800px] z-5 group animate-fade-in-gentle" style={{animationDelay: '0.6s', opacity: 0}}>
             <div className="relative w-full h-full">
               {/* Glow effects behind image */}
               <div className="absolute -inset-16 z-0">
@@ -270,29 +270,29 @@ const Headliners = () => {
           <div className="absolute top-[30%] left-[52%] w-24 h-24 bg-white/5 rounded-full blur-2xl z-10 animate-vip-glow pointer-events-none" style={{animationDelay: '2.4s'}}></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[54vh] sm:pt-[56vh] md:pt-0">
-          <div className="relative inline-block mb-4 sm:mb-6 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
+        <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
+          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
             
-            <h1 className="relative text-4xl sm:text-5xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+            <h1 className="relative text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
               MUSE
             </h1>
             
-            <div className="absolute inset-0 text-4xl sm:text-5xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
+            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
               MUSE
             </div>
           </div>
           
-          <p className="text-xs sm:text-sm md:text-xl lg:text-2xl text-white/80 mb-4 md:mb-10 leading-relaxed animate-text-appear px-4" style={{animationDelay: '1.2s', opacity: 0}}>
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear px-6" style={{animationDelay: '1.2s', opacity: 0}}>
             Юлия Викторова<br className="sm:hidden" /> — Директор по цифровому маркетингу,<br className="sm:hidden" /> Санкт-Петербург
           </p>
           
-          <div className="flex items-center justify-center gap-4 mb-4 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 md:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
               alt="Digital Agency albe" 
-              className="h-12 sm:h-16 md:h-28 lg:h-32 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+              className="h-16 sm:h-20 md:h-28 lg:h-32 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
             />
           </div>
           
