@@ -97,34 +97,109 @@ const Headliners = () => {
         </div>
       </header>
 
-      {/* 1. HERO - Заголовок + Тема выступления */}
-      <section id="hero" className="relative pt-0 md:pt-0 pb-16 md:pb-24 overflow-hidden bg-black min-h-screen flex items-center">
+      {/* 1. HERO - Героический баннер */}
+      <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
           
           <div className="absolute top-[10%] left-[15%] w-2 h-2 bg-[#d4af37] rounded-full blur-[1px] opacity-60 animate-float" style={{animationDuration: '6s'}}></div>
           <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '8s', animationDelay: '1s'}}></div>
+          <div className="absolute top-[40%] left-[25%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-40 animate-float" style={{animationDuration: '7s', animationDelay: '2s'}}></div>
           <div className="absolute top-[60%] right-[30%] w-2 h-2 bg-[#8b7355] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '9s', animationDelay: '0.5s'}}></div>
           
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+          
+          <div className="absolute top-[30%] left-[10%] w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl animate-float opacity-60" style={{animationDuration: '10s'}}></div>
+          <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
+          
+          {/* Left image */}
+          <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
+            <div className="relative w-full h-full">
+              <div className="absolute -inset-12 z-0">
+                <div className="absolute top-0 left-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_left,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
+                <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '8s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
+              </div>
+              
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
+              
+              <img 
+                src="https://cdn.poehali.dev/files/a539c37d-ec46-43b9-92f7-17506ab8740b.jpg" 
+                alt="" 
+                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
+                style={{
+                  objectPosition: '50% 30%',
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
+                }}
+              />
+              
+              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
+            </div>
+          </div>
+          
+          {/* Right image */}
+          <div className="hidden lg:block absolute right-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
+            <div className="relative w-full h-full">
+              <div className="absolute -inset-12 z-0">
+                <div className="absolute top-0 right-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_right,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
+                <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '9s', animationDelay: '1s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
+              </div>
+              
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
+              
+              <img 
+                src="https://cdn.poehali.dev/files/db81dd5d-ecc0-433f-a5ba-4e3072c571cb.jpg" 
+                alt="" 
+                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
+                style={{
+                  objectPosition: '50% 30%',
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
+                }}
+              />
+              
+              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
+            </div>
+          </div>
+          
+          {/* Cinematic overlays */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/70 to-transparent z-20"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
+          
+          {/* Light effects */}
+          <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
+          <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full text-center px-6 md:px-8 relative z-30 container mx-auto">
-          <div className="relative inline-block mb-8 md:mb-12 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
+        <div className="w-full text-center px-6 md:px-8 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
+          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
             
-            <h1 className="relative text-6xl sm:text-7xl md:text-8xl lg:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-4 tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+            <h1 className="relative text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
               MUSE
             </h1>
+            
+            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 animate-pulse" style={{animationDuration: '4s'}}>
+              MUSE
+            </div>
           </div>
           
-          <p className="text-base sm:text-xl md:text-2xl text-white/80 mb-8 md:mb-12 leading-relaxed animate-text-appear px-6" style={{animationDelay: '1.2s', opacity: 0}}>
-            Юлия Викторова — Директор по цифровому маркетингу
+          <p className="text-sm sm:text-base md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear px-6" style={{animationDelay: '1.2s', opacity: 0}}>
+            Юлия Викторова<br className="sm:hidden" /> — Директор по цифровому маркетингу,<br className="sm:hidden" /> Санкт-Петербург
           </p>
           
-          <div className="flex items-center justify-center gap-4 mb-12 md:mb-16 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-4 sm:py-5 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
             <img 
               src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
               alt="Digital Agency albe" 
@@ -132,29 +207,19 @@ const Headliners = () => {
             />
           </div>
           
-          <div className="max-w-4xl mx-auto animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
+          <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
             <div className="text-center">
               <div className="inline-block mb-6 px-6 py-2 bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-full backdrop-blur-sm">
                 <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
               
-              <h3 className="text-3xl sm:text-4xl md:text-5xl font-black mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-6">
+              <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-6">
                 Как мы помогаем бизнесу находить лиды
               </h3>
               
-              <p className="text-lg sm:text-xl md:text-2xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6 mb-12">
+              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6">
                 Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
               </p>
-
-              <Button
-                onClick={() => navigate('/')}
-                className="group relative text-lg font-semibold px-10 py-6 bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#b8953d] hover:to-[#d4af37] transition-all duration-500 shadow-[0_0_40px_rgba(212,175,55,0.3)] hover:shadow-[0_0_60px_rgba(212,175,55,0.5)]"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  <span>Зарегистрироваться</span>
-                  <Icon name="ArrowRight" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </Button>
             </div>
           </div>
         </div>
@@ -242,6 +307,16 @@ const Headliners = () => {
                       <div className="text-xs sm:text-sm text-white/60 uppercase tracking-wider">Рост продаж</div>
                     </div>
                   </div>
+
+                  <Button
+                    onClick={() => navigate('/')}
+                    className="group relative w-full sm:w-auto text-base font-semibold px-8 sm:px-10 py-5 sm:py-6 bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#b8953d] hover:to-[#d4af37] transition-all duration-500 shadow-[0_0_40px_rgba(212,175,55,0.3)] hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] mt-8"
+                  >
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      <span>Зарегистрироваться</span>
+                      <Icon name="ArrowRight" className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </Button>
                 </div>
               </div>
             </div>
