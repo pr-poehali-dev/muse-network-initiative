@@ -227,7 +227,7 @@ const Headliners = () => {
               
               {/* Main image */}
               <img 
-                src="https://cdn.poehali.dev/files/cc73b558-36b0-492e-ae81-fb5b732c9af8.jpg" 
+                src="https://cdn.poehali.dev/files/b0b98e59-b32d-45b6-8391-116391b681cf.jpg" 
                 alt="VIP Headliner" 
                 className="relative z-20 w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
