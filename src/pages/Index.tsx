@@ -893,7 +893,10 @@ const Index = () => {
                 <CardContent className="p-0">
                   <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
-                      <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top md:object-top" />
+                      <>
+                        <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top md:object-top" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      </>
                     ) : (
                       <>
                         <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
