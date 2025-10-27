@@ -62,13 +62,21 @@ const Headliners = () => {
           {/* Left image */}
           <div className="hidden lg:block absolute left-[8%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
+              {/* Premium abstract background */}
+              <div className="absolute -inset-8 z-0">
+                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(ellipse_at_top_left,_#d4af37/15,transparent_50%)] blur-2xl"></div>
+                <div className="absolute bottom-0 right-0 w-3/4 h-3/4 bg-[radial-gradient(circle,_#8b7355/10,transparent_60%)] blur-3xl animate-pulse" style={{animationDuration: '6s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#d4af37]/10 rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-[#d4af37]/5 rounded-full animate-pulse" style={{animationDuration: '8s'}}></div>
+              </div>
+              
               {/* Golden glow on hover */}
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl"></div>
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
               
               <img 
                 src="https://cdn.poehali.dev/files/a539c37d-ec46-43b9-92f7-17506ab8740b.jpg" 
                 alt="" 
-                className="w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
+                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 30%',
                   maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
@@ -78,20 +86,29 @@ const Headliners = () => {
               />
               
               {/* Border on hover */}
-              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500"></div>
+              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
             </div>
           </div>
           
           {/* Center image - hero portrait */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[60%] lg:w-[45%] h-full z-5 animate-zoom-in" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`, animationDelay: '0s', opacity: 0}}>
             <div className="relative w-full h-full">
+              {/* Elite abstract background for center */}
+              <div className="absolute -inset-12 z-0">
+                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-full h-1/2 bg-[radial-gradient(ellipse,_#d4af37/20,transparent_70%)] blur-3xl"></div>
+                <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-4/5 h-1/2 bg-[radial-gradient(circle,_#8b7355/15,transparent_65%)] blur-[100px] animate-pulse" style={{animationDuration: '7s'}}></div>
+                <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent"></div>
+                <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
+                <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/10 to-transparent"></div>
+              </div>
+              
               {/* Subtle pulsing glow */}
-              <div className="absolute inset-0 bg-[#d4af37]/5 blur-3xl animate-pulse"></div>
+              <div className="absolute inset-0 bg-[#d4af37]/5 blur-3xl animate-pulse z-10"></div>
               
               <img 
                 src="https://cdn.poehali.dev/files/19ea472f-0e08-4164-80c5-ca52c6927fd6.jpg" 
                 alt="" 
-                className="w-full h-full object-cover transition-all duration-1000"
+                className="relative z-20 w-full h-full object-cover transition-all duration-1000"
                 style={{
                   objectPosition: '50% 25%',
                   maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 20%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0) 100%)',
@@ -105,13 +122,21 @@ const Headliners = () => {
           {/* Right image */}
           <div className="hidden lg:block absolute right-[8%] top-[20%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.12}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
+              {/* Premium abstract background */}
+              <div className="absolute -inset-8 z-0">
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(ellipse_at_top_right,_#d4af37/15,transparent_50%)] blur-2xl"></div>
+                <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-[radial-gradient(circle,_#8b7355/10,transparent_60%)] blur-3xl animate-pulse" style={{animationDuration: '7s', animationDelay: '1s'}}></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-[#d4af37]/10 rounded-full"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border border-[#d4af37]/5 rounded-full animate-pulse" style={{animationDuration: '9s'}}></div>
+              </div>
+              
               {/* Golden glow on hover */}
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl"></div>
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
               
               <img 
                 src="https://cdn.poehali.dev/files/883ff23a-ef59-444e-90ac-e80164dd5a2f.jpg" 
                 alt="" 
-                className="w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
+                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 25%',
                   maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
@@ -121,7 +146,7 @@ const Headliners = () => {
               />
               
               {/* Border on hover */}
-              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500"></div>
+              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
             </div>
           </div>
           
