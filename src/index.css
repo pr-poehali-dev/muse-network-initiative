@@ -8,6 +8,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 100px;
 }
 
 html::-webkit-scrollbar {
@@ -19,6 +20,7 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
 }
 
 body::-webkit-scrollbar {
