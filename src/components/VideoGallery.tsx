@@ -131,8 +131,8 @@ const VideoGallery = () => {
           >
             <iframe
               ref={iframeRef}
-              key={selectedVideo}
-              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1`}
+              key={`${selectedVideo}-${Date.now()}`}
+              src={`https://kinescope.io/embed/${selectedVideo}?autoplay=1&api=1&t=0`}
               allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
               frameBorder="0"
               allowFullScreen
