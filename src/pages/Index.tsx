@@ -760,9 +760,11 @@ const Index = () => {
 
       <Dialog open={galleryOpen} onOpenChange={setGalleryOpen}>
         <DialogContent className="max-w-[95vw] md:max-w-[98vw] max-h-[95vh] md:max-h-[98vh] bg-black/95 border-[#d4af37]/30 p-4 md:p-8 overflow-hidden">
-          <DialogHeader className="px-0 pr-12 pt-6 md:pt-0">
-            <DialogTitle className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-6">Галерея событий</DialogTitle>
-            <div className="flex gap-4 mb-4">
+          <div className="flex items-center justify-between mb-6 mt-6 md:mt-0 pr-8">
+            <h2 className="text-xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Галерея событий</h2>
+          </div>
+          <DialogHeader className="px-0">
+            <div className="flex gap-4 mb-4 -mt-2">
               <button
                 onClick={() => setGalleryTab('photos')}
                 className={`px-6 py-2 font-semibold transition-all duration-300 border-b-2 ${
