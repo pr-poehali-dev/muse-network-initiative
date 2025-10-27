@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './calendar/types';
@@ -18,6 +18,11 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
   const [isExpanded, setIsExpanded] = useState(autoExpand);
   const [selectedDay, setSelectedDay] = useState<number | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+  const mobileEventsRef = useRef<HTMLDivElement>(null);
+
+  const minSwipeDistance = 50;
 
   useEffect(() => {
     if (autoExpand) {
@@ -58,10 +63,35 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
 
   const changeMonth = (delta: number) => {
     setIsAnimating(true);
+    setSelectedEvent(null);
     setTimeout(() => {
       setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + delta));
       setTimeout(() => setIsAnimating(false), 50);
     }, 150);
+  };
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      changeMonth(1);
+    }
+    if (isRightSwipe) {
+      changeMonth(-1);
+    }
   };
 
   const currentMonthEvents = events.filter(event => {
@@ -99,23 +129,63 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
           </div>
         </button>
 
-        {isExpanded && currentMonthEvents.length > 0 && (
-          <div className="space-y-3 mt-6 md:hidden">
-            {currentMonthEvents.map((event) => {
-              const config = getEventTypeConfig(event.type);
-              const isSelected = selectedEvent?.id === event.id;
-              
-              return (
-                <EventCardMobile
-                  key={event.id}
-                  event={event}
-                  config={config}
-                  isSelected={isSelected}
-                  onSelect={() => setSelectedEvent(isSelected ? null : event)}
-                  onRegister={onEventRegister}
-                />
-              );
-            })}
+        {isExpanded && (
+          <div 
+            ref={mobileEventsRef}
+            className="md:hidden mt-6"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <div className="flex items-center justify-between mb-4 px-1">
+              <button
+                onClick={() => changeMonth(-1)}
+                className="p-2 rounded-lg hover:bg-[#d4af37]/10 transition-colors"
+              >
+                <Icon name="ChevronLeft" size={20} className="text-[#d4af37]" />
+              </button>
+              <h4 className="text-sm font-bold text-[#d4af37]">
+                {currentMonth.toLocaleDateString('ru-RU', { month: 'long', year: 'numeric' })}
+              </h4>
+              <button
+                onClick={() => changeMonth(1)}
+                className="p-2 rounded-lg hover:bg-[#d4af37]/10 transition-colors"
+              >
+                <Icon name="ChevronRight" size={20} className="text-[#d4af37]" />
+              </button>
+            </div>
+
+            {currentMonthEvents.length > 0 ? (
+              <div className="space-y-3">
+                {currentMonthEvents.map((event) => {
+                  const config = getEventTypeConfig(event.type);
+                  const isSelected = selectedEvent?.id === event.id;
+                  
+                  return (
+                    <EventCardMobile
+                      key={event.id}
+                      event={event}
+                      config={config}
+                      isSelected={isSelected}
+                      onSelect={() => setSelectedEvent(isSelected ? null : event)}
+                      onRegister={onEventRegister}
+                    />
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="bg-gradient-to-br from-[#2a2a2a]/60 to-[#1a1a1a]/40 rounded-xl p-6 border border-[#d4af37]/20 text-center">
+                <div className="p-4 rounded-full bg-gradient-to-br from-[#2a2a2a]/80 to-[#1a1a1a]/60 w-16 h-16 mx-auto mb-4 flex items-center justify-center border border-[#d4af37]/30">
+                  <Icon name="CalendarOff" size={32} className="text-[#d4af37]/60" />
+                </div>
+                <h4 className="text-base font-bold text-[#d4af37]/80 mb-2">
+                  Событий пока нет
+                </h4>
+                <p className="text-xs text-white/50">
+                  На этот месяц события ещё не запланированы
+                </p>
+              </div>
+            )}
           </div>
         )}
 
