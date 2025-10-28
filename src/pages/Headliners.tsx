@@ -129,6 +129,14 @@ const Headliners = () => {
           <div className="absolute top-[40%] left-[25%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-40 animate-float" style={{animationDuration: '7s', animationDelay: '2s'}}></div>
           <div className="absolute top-[60%] right-[30%] w-2 h-2 bg-[#8b7355] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '9s', animationDelay: '0.5s'}}></div>
           
+          {/* Тусклые золотые круги */}
+          <div className="absolute top-[15%] left-[30%] w-64 h-64 border border-[#d4af37]/10 rounded-full opacity-40 animate-pulse" style={{animationDuration: '8s'}}></div>
+          <div className="absolute top-[25%] right-[35%] w-48 h-48 border border-[#b8953d]/8 rounded-full opacity-30 animate-pulse" style={{animationDuration: '10s', animationDelay: '1s'}}></div>
+          <div className="absolute bottom-[30%] left-[25%] w-56 h-56 border border-[#d4af37]/12 rounded-full opacity-35 animate-pulse" style={{animationDuration: '9s', animationDelay: '2s'}}></div>
+          <div className="absolute top-[50%] right-[20%] w-40 h-40 border border-[#8b7355]/10 rounded-full opacity-25 animate-pulse" style={{animationDuration: '11s', animationDelay: '0.5s'}}></div>
+          <div className="absolute bottom-[20%] left-[40%] w-52 h-52 border-2 border-[#d4af37]/8 rounded-full opacity-30 animate-pulse" style={{animationDuration: '12s', animationDelay: '1.5s'}}></div>
+          <div className="absolute top-[35%] left-[15%] w-44 h-44 border border-[#b8953d]/10 rounded-full opacity-28 animate-pulse" style={{animationDuration: '10.5s', animationDelay: '0.8s'}}></div>
+          
           {/* Left image */}
           <div className="hidden lg:block absolute left-[20%] top-[15%] w-[22%] h-[50%] z-10 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
