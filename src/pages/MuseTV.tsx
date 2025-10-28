@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import Header from '@/components/Header';
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -243,26 +244,7 @@ const MuseTV = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
-      {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/20">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-8">
-              <button onClick={() => navigate('/')} className="text-2xl font-bold text-[#d4af37] hover:opacity-80 transition-opacity">
-                MUSE
-              </button>
-              <nav className="hidden md:flex items-center gap-6">
-                <button onClick={() => navigate('/')} className="text-white/70 hover:text-white transition-colors text-sm">Главная</button>
-                <button className="text-white hover:text-[#d4af37] transition-colors text-sm font-medium">MUSE TV</button>
-                <button onClick={() => navigate('/headliners')} className="text-white/70 hover:text-white transition-colors text-sm">Хэдлайнеры</button>
-              </nav>
-            </div>
-            <Button className="bg-[#d4af37] hover:bg-[#c4a137] text-black">
-              Подписаться
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Header titleInHeader={scrollY > 100} />
 
       {/* Hero */}
       <section className="relative pt-0 pb-0 overflow-hidden bg-black min-h-[60vh] md:min-h-[80vh] flex items-center">
