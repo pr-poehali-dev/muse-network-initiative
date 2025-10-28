@@ -129,7 +129,7 @@ const Headliners = () => {
 
 
           {/* Right photo */}
-          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-100 group z-30" style={{transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-100 group z-0" style={{transform: `translateY(${scrollY * 0.15}px)`}}>
             <img 
               src="https://cdn.poehali.dev/files/2369818b-9458-422b-93ea-c39335bb7f6d.jpg" 
               alt="" 
