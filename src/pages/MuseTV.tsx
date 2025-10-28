@@ -249,7 +249,7 @@ const MuseTV = () => {
         <Header titleInHeader={scrollY > 100} />
 
       {/* Hero */}
-      <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
+      <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
@@ -279,7 +279,7 @@ const MuseTV = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-32 md:pt-24">
+        <div className="w-full text-center px-4 md:px-8 relative z-30">
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
             style={{
