@@ -151,7 +151,7 @@ const Headliners = () => {
           </div>
           
           {/* Center image - overlapping */}
-          <div className="absolute top-[15%] sm:top-[12%] lg:top-[6%] left-0 right-0 mx-6 sm:mx-8 lg:w-[32%] lg:mx-auto lg:left-0 lg:right-0 h-[40%] sm:h-[50%] lg:h-[60%] z-20 group animate-center-reveal" style={{transform: `translateY(${scrollY * 0.1}px)`}}>
+          <div className="absolute top-[15%] sm:top-[12%] lg:top-[10%] left-0 right-0 mx-6 sm:mx-8 lg:w-[32%] lg:mx-auto lg:left-0 lg:right-0 h-[40%] sm:h-[50%] lg:h-[60%] z-20 group animate-center-reveal" style={{transform: `translateY(${scrollY * 0.1}px)`}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-8 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
