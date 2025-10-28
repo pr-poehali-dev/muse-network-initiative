@@ -144,28 +144,16 @@ const Headliners = () => {
           </div>
           
           {/* Center image - overlapping */}
-          <div className="hidden lg:block absolute top-[4%] w-[26%] h-[60%] z-20 group animate-center-reveal" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
+          <div className="hidden lg:block absolute top-[4%] w-[26%] h-[60%] z-20" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
             <div className="relative w-full h-full">
-              <div className="absolute -inset-8 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-[#d4af37]/20 rounded-full opacity-50"></div>
-              </div>
-              
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
-              
               <img 
                 src="https://cdn.poehali.dev/files/3125a1d7-e384-403a-8436-f4c5e05fdc08.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
+                className="w-full h-full object-cover rounded-3xl"
                 style={{
-                  objectPosition: '50% 30%',
-                  filter: 'contrast(1.1) brightness(0.2) saturate(0.3)'
+                  objectPosition: '50% 30%'
                 }}
               />
-              
-              <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
-              <div className="absolute inset-0 border-3 border-[#d4af37]/40 group-hover:border-[#d4af37]/60 rounded-3xl transition-all duration-500 z-30 shadow-[inset_0_0_60px_rgba(212,175,55,0.1)]"></div>
             </div>
           </div>
           
