@@ -153,7 +153,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
               })}
             </div>
 
-            <div className="w-full max-w-md space-y-4 mt-8">
+            <div className="w-full max-w-md space-y-3 mt-8">
               <Button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -161,7 +161,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     onOpenExpertDialog();
                   }
                 }}
-                className="w-full bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black text-base font-bold py-5 transition-all duration-300"
+                className="w-full bg-transparent border border-[#d4af37]/50 text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-300 rounded-md"
               >
                 Стать экспертом
               </Button>
@@ -173,7 +173,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     onOpenJoinDialog();
                   }
                 }}
-                className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black text-base font-bold py-5 shadow-2xl shadow-[#d4af37]/30"
+                className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-300 rounded-md"
               >
                 Вступить в клуб →
               </Button>
