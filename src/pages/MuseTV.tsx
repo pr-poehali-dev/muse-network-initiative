@@ -360,12 +360,11 @@ const MuseTV = () => {
               opacity: 0
             }}
           >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider relative" style={{
+            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider relative neon-flicker" style={{
               background: 'linear-gradient(to bottom, #d4af37 0%, #b8953d 50%, #8b7355 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.9))'
+              backgroundClip: 'text'
             }}>
               MUSE TV
             </h1>

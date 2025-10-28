@@ -242,6 +242,38 @@ body::-webkit-scrollbar {
     }
   }
 
+  .neon-flicker {
+    animation: neon-flicker 3s ease-in-out infinite;
+  }
+
+  @keyframes neon-flicker {
+    0%,
+    18%,
+    22%,
+    25%,
+    53%,
+    57%,
+    100% {
+      text-shadow:
+        0 0 10px rgba(212, 175, 55, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.6),
+        0 0 30px rgba(212, 175, 55, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.4),
+        0 0 70px rgba(212, 175, 55, 0.3),
+        0 0 80px rgba(212, 175, 55, 0.2),
+        0 0 100px rgba(212, 175, 55, 0.1);
+      filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    }
+    20%,
+    24%,
+    55% {
+      text-shadow:
+        0 0 5px rgba(212, 175, 55, 0.4),
+        0 0 10px rgba(212, 175, 55, 0.3);
+      filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+    }
+  }
+
   .animate-text-appear {
     animation: text-appear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
