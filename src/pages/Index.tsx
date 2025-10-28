@@ -357,6 +357,13 @@ const Index = () => {
                 Хедлайнеры
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
               </button>
+              <button
+                onClick={() => navigate('/muse-tv')}
+                className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+              >
+                MUSE TV
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+              </button>
             </div>
             {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
               <button
@@ -371,6 +378,24 @@ const Index = () => {
                  section === 'gallery' ? 'Галерея' : 'Календарь'}
               </button>
             ))}
+            <button
+              onClick={() => {
+                navigate('/headliners');
+                setIsMobileMenuOpen(false);
+              }}
+              className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+            >
+              Хедлайнеры
+            </button>
+            <button
+              onClick={() => {
+                navigate('/muse-tv');
+                setIsMobileMenuOpen(false);
+              }}
+              className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+            >
+              MUSE TV
+            </button>
             <Button
               size="lg"
               className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden mt-4"
