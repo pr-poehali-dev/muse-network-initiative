@@ -161,6 +161,7 @@ const Headliners = () => {
                   objectPosition: '50% 30%'
                 }}
               />
+              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
               <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
               
               <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
