@@ -566,4 +566,63 @@ body::-webkit-scrollbar {
     transform: translate3d(0, 0, 0);
     flex: 0 0 auto;
   }
+
+  .tv-scanlines {
+    animation: tv-scanlines 8s linear infinite;
+  }
+
+  @keyframes tv-scanlines {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(10px);
+    }
+  }
+
+  .tv-static {
+    animation: tv-static 0.15s steps(2) infinite;
+  }
+
+  @keyframes tv-static {
+    0%,
+    100% {
+      opacity: 0.03;
+    }
+    50% {
+      opacity: 0.06;
+    }
+  }
+
+  .tv-flicker {
+    animation: tv-flicker 0.3s ease-in-out infinite alternate;
+  }
+
+  @keyframes tv-flicker {
+    0%,
+    100% {
+      opacity: 0.9;
+    }
+    50% {
+      opacity: 0.95;
+    }
+  }
+
+  .tv-glow {
+    animation: tv-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes tv-glow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 40px rgba(212, 175, 55, 0.2),
+        inset 0 0 60px rgba(212, 175, 55, 0.05);
+    }
+    50% {
+      box-shadow:
+        0 0 60px rgba(212, 175, 55, 0.3),
+        inset 0 0 80px rgba(212, 175, 55, 0.08);
+    }
+  }
 }
