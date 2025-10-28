@@ -20,6 +20,17 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    featuredContent.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
+
   const fetchRutubeMetadata = async (videoId: string) => {
     if (videoMetadata[videoId]) return videoMetadata[videoId];
     
