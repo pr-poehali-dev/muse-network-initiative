@@ -84,8 +84,8 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
-      url: 'https://vkvideo.ru/video-145018889_456239198',
-      vkEmbed: 'https://vk.com/video_ext.php?oid=-145018889&id=456239198&hd=2'
+      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
+      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
     }
   ];
 
