@@ -232,7 +232,7 @@ const Headliners = () => {
 
         </div>
 
-        <div className="w-full text-center px-4 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-[15vh]">
+        <div className="w-full text-center px-4 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-[25vh]">
           <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
             <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
             <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
