@@ -155,7 +155,18 @@ const Headliners = () => {
             <div className="relative w-full h-full">
               <div className="absolute -inset-8 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
-
+                
+                {/* VIP декоративные элементы */}
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#d4af37]/10 rounded-full blur-[60px] animate-pulse opacity-60" style={{animationDuration: '5s'}}></div>
+                <div className="absolute -top-6 -right-6 w-28 h-28 bg-[#b8953d]/8 rounded-full blur-[70px] animate-pulse opacity-50" style={{animationDuration: '6s', animationDelay: '1s'}}></div>
+                <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-[#d4af37]/12 rounded-full blur-[80px] animate-pulse opacity-55" style={{animationDuration: '7s', animationDelay: '0.5s'}}></div>
+                <div className="absolute -bottom-6 -right-10 w-36 h-36 bg-[#8b7355]/9 rounded-full blur-[75px] animate-pulse opacity-45" style={{animationDuration: '8s', animationDelay: '2s'}}></div>
+                
+                {/* Золотые точки */}
+                <div className="absolute top-[10%] -left-2 w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[0.5px] opacity-70 animate-float" style={{animationDuration: '4s'}}></div>
+                <div className="absolute top-[30%] -right-3 w-1 h-1 bg-[#d4af37] rounded-full blur-[0.5px] opacity-60 animate-float" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+                <div className="absolute bottom-[25%] -left-3 w-1.5 h-1.5 bg-[#b8953d] rounded-full blur-[0.5px] opacity-65 animate-float" style={{animationDuration: '6s', animationDelay: '0.5s'}}></div>
+                <div className="absolute bottom-[15%] -right-2 w-1 h-1 bg-[#d4af37] rounded-full blur-[0.5px] opacity-55 animate-float" style={{animationDuration: '5.5s', animationDelay: '1.5s'}}></div>
               </div>
               
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
