@@ -156,10 +156,12 @@ const Headliners = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ab4cf310-086c-470f-8610-ee900bd26007.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
+                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 20%',
-                  filter: 'contrast(1.1) brightness(0.2) saturate(0.3)'
+                  maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%)',
+                  WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0) 100%)',
+                  filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
                 }}
               />
               
