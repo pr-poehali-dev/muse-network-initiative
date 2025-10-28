@@ -167,9 +167,9 @@ const Headliners = () => {
             }}></div>
             
             {/* Золотые кольца вокруг фото */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/40 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '20s'}}></div>
-              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/30 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-spin" style={{animationDuration: '20s'}}></div>
+              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/50 shadow-[0_0_15px_rgba(184,149,61,0.3)] animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
             </div>
           </div>
           
@@ -193,9 +193,9 @@ const Headliners = () => {
             }}></div>
             
             {/* Золотые кольца вокруг фото */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/40 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '20s'}}></div>
-              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/30 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-spin" style={{animationDuration: '20s'}}></div>
+              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/50 shadow-[0_0_15px_rgba(184,149,61,0.3)] animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
             </div>
           </div>
           
