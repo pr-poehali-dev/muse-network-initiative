@@ -174,18 +174,18 @@ const Headliners = () => {
               <img 
                 src="https://cdn.poehali.dev/files/ca9c2b42-4b0e-42f8-9555-c47fd0d5dc53.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)] opacity-25"
+                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.2)] opacity-20"
                 style={{
                   objectPosition: '50% 30%'
                 }}
               />
-              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
-              <div className="absolute top-0 bottom-0 left-0 w-1/3 bg-gradient-to-r from-black/95 via-black/60 to-transparent rounded-3xl z-30 pointer-events-none"></div>
-              <div className="absolute top-0 bottom-0 right-0 w-1/3 bg-gradient-to-l from-black/95 via-black/60 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute top-0 left-0 right-0 h-2/5 bg-gradient-to-b from-black via-black/90 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute bottom-0 left-0 right-0 h-3/5 bg-gradient-to-t from-black via-black/90 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute top-0 bottom-0 left-0 w-2/5 bg-gradient-to-r from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute top-0 bottom-0 right-0 w-2/5 bg-gradient-to-l from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
               
-              <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
+              <div className="absolute inset-0 bg-black/75 rounded-3xl z-21"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/40 rounded-3xl z-25"></div>
 
             </div>
           </div>
