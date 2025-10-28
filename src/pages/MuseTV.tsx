@@ -602,13 +602,13 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black border-[#d4af37]/30">
+        <DialogContent className="max-w-none w-screen h-screen p-0 bg-black border-0 m-0">
           <div className="relative w-full h-full">
             <button
               onClick={() => setSelectedVideo(null)}
-              className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/80 hover:bg-[#d4af37] text-white hover:text-black transition-all flex items-center justify-center"
+              className="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-black/80 hover:bg-[#d4af37] text-white hover:text-black transition-all flex items-center justify-center shadow-lg"
             >
-              <Icon name="X" size={24} />
+              <Icon name="X" size={28} />
             </button>
             {selectedVideo?.vkEmbed && (
               <iframe
