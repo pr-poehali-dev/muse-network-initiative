@@ -278,7 +278,9 @@ const MuseTV = () => {
             opacity: 0.03
           }}></div>
 
-          <div className="absolute inset-0 tv-flicker z-40 pointer-events-none bg-gradient-to-b from-[#d4af37]/5 to-transparent"></div>
+          <div className="absolute inset-0 z-45 pointer-events-none" style={{
+            boxShadow: 'inset 0 0 200px rgba(0,0,0,0.9), inset 0 0 100px rgba(0,0,0,0.7), inset 0 0 50px rgba(0,0,0,0.5)'
+          }}></div>
 
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
