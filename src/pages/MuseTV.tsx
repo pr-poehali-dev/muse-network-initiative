@@ -35,7 +35,7 @@ const MuseTV = () => {
     if (videoMetadata[videoId]) return videoMetadata[videoId];
     
     try {
-      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
+      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
       const data = await response.json();
       
       const metadata = {
