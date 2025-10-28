@@ -653,7 +653,7 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-7xl w-[90vw] p-0 bg-black border-0">
+        <DialogContent className="max-w-[95vw] w-[95vw] p-0 bg-black border-0">
           <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             {selectedVideo?.vkEmbed && (
               <iframe
