@@ -137,6 +137,18 @@ const Headliners = () => {
             }}></div>
           </div>
           
+          {/* Center photo (behind) */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[28%] h-full opacity-50 z-0" style={{transform: `translateX(-50%) translateY(${scrollY * 0.12}px)`}}>
+            <img 
+              src="https://cdn.poehali.dev/files/b2dfe121-8c0c-4257-92b4-b1b12d189ae6.jpg" 
+              alt="" 
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: '50% 30%',
+                filter: 'grayscale(30%) contrast(0.95) brightness(0.9) blur(1px)'
+              }}
+            />
+          </div>
 
           
           {/* Right photo */}
