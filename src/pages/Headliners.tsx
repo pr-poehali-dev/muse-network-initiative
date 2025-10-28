@@ -113,7 +113,7 @@ const Headliners = () => {
           }}></div>
           
           {/* Left photo */}
-          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left z-10" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -132,8 +132,22 @@ const Headliners = () => {
             }}></div>
           </div>
           
+          {/* Center photo (behind side photos) */}
+          <div className="hidden md:block absolute left-1/2 top-0 w-[30%] h-full opacity-60 -translate-x-1/2 animate-fade-in z-0" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
+            <img 
+              src="https://cdn.poehali.dev/files/84d5e4f5-7b1e-4bcb-8104-30e23f60c34a.jpg" 
+              alt="" 
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: '50% 30%',
+                filter: 'grayscale(20%) contrast(1.1) brightness(0.9)'
+              }}
+            />
+            <div className="absolute inset-0 bg-black/30"></div>
+          </div>
+          
           {/* Right photo */}
-          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right z-10" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
