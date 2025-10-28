@@ -121,90 +121,11 @@ const Headliners = () => {
           <div className="absolute bottom-[30%] left-[20%] w-44 h-44 bg-[#d4af37]/5 rounded-full blur-[110px] opacity-25 animate-pulse" style={{animationDuration: '10s', animationDelay: '2s'}}></div>
           <div className="absolute top-[45%] right-[40%] w-36 h-36 bg-[#8b7355]/8 rounded-full blur-[85px] opacity-30 animate-pulse" style={{animationDuration: '11s', animationDelay: '1s'}}></div>
           
-          {/* Left image */}
-          <div className="hidden lg:block absolute left-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
-            <div className="relative w-full h-full">
-              <div className="absolute -inset-12 z-0">
-                <div className="absolute top-0 left-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_left,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
-                <div className="absolute bottom-0 right-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '8s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
-              </div>
-              
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
-              
-              <img 
-                src="https://cdn.poehali.dev/files/a539c37d-ec46-43b9-92f7-17506ab8740b.jpg" 
-                alt="" 
-                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
-                style={{
-                  objectPosition: '50% 30%',
-                  maskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  maskComposite: 'intersect',
-                  WebkitMaskComposite: 'source-in',
-                  filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
-                }}
-              />
-              
-              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
-            </div>
-          </div>
+
           
-          {/* Center image - overlapping */}
-          <div className="absolute top-[15%] sm:top-[12%] lg:top-[6%] left-0 right-0 mx-6 sm:mx-8 lg:w-[26%] lg:left-1/2 lg:-translate-x-1/2 lg:mx-0 h-[40%] sm:h-[50%] lg:h-[60%] z-20 group animate-center-reveal" style={{transform: `translateY(${scrollY * 0.1}px)`}}>
-            <div className="relative w-full h-full">
-              <div className="absolute -inset-8 z-0">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-[#d4af37]/20 rounded-full opacity-50"></div>
-              </div>
-              
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
-              
-              <img 
-                src="https://cdn.poehali.dev/files/ca9c2b42-4b0e-42f8-9555-c47fd0d5dc53.jpg" 
-                alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)] opacity-25"
-                style={{
-                  objectPosition: '50% 30%'
-                }}
-              />
-              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
-              <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
-              
-              <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
-              <div className="absolute inset-0 border-3 border-[#d4af37]/40 group-hover:border-[#d4af37]/60 rounded-3xl transition-all duration-500 z-30 shadow-[inset_0_0_60px_rgba(212,175,55,0.1)]"></div>
-            </div>
-          </div>
+
           
-          {/* Right image */}
-          <div className="hidden lg:block absolute right-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-right" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.5s', opacity: 0}}>
-            <div className="relative w-full h-full">
-              <div className="absolute -inset-12 z-0">
-                <div className="absolute top-0 right-0 w-full h-3/4 bg-[radial-gradient(ellipse_at_top_right,_#d4af37/6,transparent_60%)] blur-[80px]"></div>
-                <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[radial-gradient(circle,_#8b7355/4,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '9s', animationDelay: '1s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] border border-[#d4af37]/3 rounded-full opacity-40"></div>
-              </div>
-              
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/10 rounded-2xl transition-all duration-500 blur-xl z-10"></div>
-              
-              <img 
-                src="https://cdn.poehali.dev/files/27972918-2163-49b0-b132-341cfdeecfe1.jpg" 
-                alt="" 
-                className="relative z-20 w-full h-full object-cover rounded-2xl transition-all duration-700 group-hover:scale-105"
-                style={{
-                  objectPosition: '50% 30%',
-                  maskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  WebkitMaskImage: 'linear-gradient(to left, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0) 100%), linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
-                  maskComposite: 'intersect',
-                  WebkitMaskComposite: 'source-in',
-                  filter: 'grayscale(40%) contrast(1.05) brightness(0.85)'
-                }}
-              />
-              
-              <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 rounded-2xl transition-all duration-500 z-30"></div>
-            </div>
-          </div>
+
           
           {/* Cinematic overlays */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
