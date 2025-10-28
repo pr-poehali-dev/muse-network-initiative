@@ -129,13 +129,13 @@ const Headliners = () => {
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(0%) contrast(1.1) brightness(1.3)'
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(0%) contrast(1.15) brightness(1.4)'
               }}
             />
-            <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-40" style={{
-              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.2) 0%, transparent 60%)'
+            <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-30" style={{
+              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.15) 0%, transparent 60%)'
             }}></div>
           </div>
           
