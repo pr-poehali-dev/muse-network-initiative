@@ -11,8 +11,6 @@ import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
 import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
 import CounterAnimation from '@/components/CounterAnimation';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
-import PageTransition from '@/components/PageTransition';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -298,9 +296,134 @@ const Index = () => {
   ];
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
-        <Header titleInHeader={titleInHeader} onScrollToSection={scrollToSection} />
+    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
+      <nav className="fixed top-0 w-full bg-gradient-to-b from-black via-black/98 to-black/95 backdrop-blur-xl z-50 border-b border-[#d4af37]/30 shadow-[0_4px_24px_rgba(212,175,55,0.15)]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4" onClick={() => window.location.href = '/'}>
+              <img 
+                src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
+                alt="Muse" 
+                className="h-10 md:h-12 drop-shadow-[0_0_10px_rgba(212,175,55,0.3)] cursor-pointer hover:scale-105 transition-transform"
+              />
+              <div 
+                className="transition-all duration-500 overflow-hidden"
+                style={{
+                  maxWidth: titleInHeader ? '200px' : '0px',
+                  opacity: titleInHeader ? 1 : 0,
+                }}
+              >
+                <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
+                  MUSE
+                </h2>
+              </div>
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-bold text-[#b8953d]/90 uppercase tracking-wider">MENU</span>
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
+                aria-label="Toggle menu"
+              >
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={`fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
+          <div className="flex flex-col items-center justify-start pt-6 h-full gap-6 px-8 overflow-y-auto">
+            <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
+              {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+                >
+                  {section === 'hero' ? 'Главная' : 
+                   section === 'about' ? 'О клубе' :
+                   section === 'experts' ? 'Эксперты' :
+                   section === 'events' ? 'События' :
+                   section === 'gallery' ? 'Галерея' : 'Календарь'}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+                </button>
+              ))}
+              <button
+                onClick={() => navigate('/headliners')}
+                className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+              >
+                Хедлайнеры
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+              </button>
+              <button
+                onClick={() => navigate('/muse-tv')}
+                className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+              >
+                MUSE TV
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+              </button>
+            </div>
+            {['hero', 'about', 'experts', 'events', 'gallery', 'calendar'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+              >
+                {section === 'hero' ? 'Главная' : 
+                 section === 'about' ? 'О клубе' :
+                 section === 'experts' ? 'Эксперты' :
+                 section === 'events' ? 'События' :
+                 section === 'gallery' ? 'Галерея' : 'Календарь'}
+              </button>
+            ))}
+            <button
+              onClick={() => {
+                navigate('/headliners');
+                setIsMobileMenuOpen(false);
+              }}
+              className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+            >
+              Хедлайнеры
+            </button>
+            <button
+              onClick={() => {
+                navigate('/muse-tv');
+                setIsMobileMenuOpen(false);
+              }}
+              className="md:hidden text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-4"
+            >
+              MUSE TV
+            </button>
+            <Button
+              size="lg"
+              className="group relative w-full text-base font-semibold px-6 py-4 bg-transparent border border-[#8b7355]/50 hover:border-[#d4af37] text-[#b8953d] hover:text-black transition-all duration-500 overflow-hidden mt-4"
+              onClick={() => {
+                setIsExpertDialogOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              <span className="relative z-10">Стать экспертом</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#8b7355]/0 via-[#8b7355]/10 to-[#8b7355]/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+            </Button>
+            <Button
+              size="lg"
+              className="group relative w-full text-base font-semibold px-6 py-5 bg-transparent border-2 border-[#b8953d]/80 hover:bg-gradient-to-r hover:from-[#b8953d]/20 hover:to-[#8b7355]/20 transition-all duration-500 overflow-hidden"
+              onClick={() => {
+                setIsJoinDialogOpen(true);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 group-hover:from-white group-hover:via-white group-hover:to-white">Вступить в клуб</span>
+                <span className="inline-block text-[#b8953d] group-hover:text-white group-hover:translate-x-1 transition-all duration-300">→</span>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#b8953d]/10 to-[#8b7355]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </Button>
+          </div>
+        </div>
+      </nav>
 
       <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
@@ -912,8 +1035,7 @@ const Index = () => {
         isSubmitted={isExpertFormSubmitted}
         isSubmitting={isExpertFormSubmitting}
       />
-      </div>
-    </PageTransition>
+    </div>
   );
 };
 

@@ -5,8 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import Header from '@/components/Header';
-import PageTransition from '@/components/PageTransition';
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -37,7 +35,7 @@ const MuseTV = () => {
     if (videoMetadata[videoId]) return videoMetadata[videoId];
     
     try {
-      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
       const data = await response.json();
       
       const metadata = {
@@ -56,7 +54,7 @@ const MuseTV = () => {
     }
   };
 
-  const isLive = false;
+  const isLive = true;
   const viewersCount = 234;
 
   const upcomingStreams = [
@@ -88,6 +86,33 @@ const MuseTV = () => {
 
   const featuredContent = [
     {
+      id: 1,
+      title: 'Как создать успешный бизнес с нуля',
+      type: 'Видео',
+      duration: '45 мин',
+      views: '12.5K',
+      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800',
+      url: null
+    },
+    {
+      id: 2,
+      title: 'Психология успеха в переговорах',
+      type: 'Подкаст',
+      duration: '32 мин',
+      views: '8.2K',
+      thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=800',
+      url: null
+    },
+    {
+      id: 3,
+      title: 'Мастер-класс по личному бренду',
+      type: 'Видео',
+      duration: '58 мин',
+      views: '15.7K',
+      thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800',
+      url: null
+    },
+    {
       id: 4,
       title: 'MUSE Podcast - Интервью с экспертами',
       type: 'Подкаст',
@@ -96,158 +121,69 @@ const MuseTV = () => {
       thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
       vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
-    },
-    {
-      id: 5,
-      title: 'Подкаст MUSE - Эпизод 1',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
-      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
-    },
-    {
-      id: 6,
-      title: 'Подкаст MUSE - Эпизод 2',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
-      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
-    },
-    {
-      id: 7,
-      title: 'Подкаст MUSE - Эпизод 3',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
-      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
-    },
-    {
-      id: 8,
-      title: 'Подкаст MUSE - Эпизод 4',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
-      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
-    },
-    {
-      id: 9,
-      title: 'Подкаст MUSE - Эпизод 5',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
-      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
     }
   ];
 
-  const podcastVideos = featuredContent.filter(item => item.vkEmbed);
-  const [randomPodcast] = useState(() => {
-    if (podcastVideos.length > 0) {
-      return podcastVideos[Math.floor(Math.random() * podcastVideos.length)];
-    }
-    return null;
-  });
-
-  useEffect(() => {
-    if (randomPodcast?.vkEmbed) {
-      const videoId = randomPodcast.vkEmbed.split('/').pop();
-      if (videoId) {
-        fetchRutubeMetadata(videoId);
-      }
-    }
-  }, [randomPodcast]);
-
-  const formatDuration = (seconds: number) => {
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    if (hours > 0) {
-      return `${hours} ч ${minutes} мин`;
-    }
-    return `${minutes} мин`;
-  };
-
-  const formatViews = (views: number | undefined) => {
-    if (!views) return '0';
-    if (views >= 1000000) {
-      return `${(views / 1000000).toFixed(1)}M`;
-    }
-    if (views >= 1000) {
-      return `${(views / 1000).toFixed(1)}K`;
-    }
-    return views.toString();
-  };
-
   const contentLibrary = [
     {
-      id: 10,
-      title: 'MUSE Podcast - Интервью с экспертами',
-      type: 'podcast',
-      category: 'Подкаст',
+      id: 1,
+      title: 'Основы инвестирования для начинающих',
+      type: 'video',
+      category: 'Лекции',
       duration: '42 мин',
-      views: '5.3K',
+      views: '9.8K',
+      date: '10.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600'
+    },
+    {
+      id: 2,
+      title: 'Разбор успешных кейсов в бизнесе',
+      type: 'video',
+      category: 'Разборы',
+      duration: '35 мин',
+      views: '11.2K',
+      date: '08.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600'
+    },
+    {
+      id: 3,
+      title: 'Интервью с успешным предпринимателем',
+      type: 'podcast',
+      category: 'Интервью',
+      duration: '28 мин',
+      views: '7.5K',
+      date: '05.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600'
+    },
+    {
+      id: 4,
+      title: 'Тренды маркетинга 2024',
+      type: 'video',
+      category: 'Новости',
+      duration: '22 мин',
+      views: '13.4K',
+      date: '03.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600'
+    },
+    {
+      id: 5,
+      title: 'Как выйти на международный рынок',
+      type: 'podcast',
+      category: 'Лекции',
+      duration: '50 мин',
+      views: '6.9K',
+      date: '01.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600'
+    },
+    {
+      id: 6,
+      title: 'Секреты эффективного тайм-менеджмента',
+      type: 'video',
+      category: 'Мастер-классы',
+      duration: '38 мин',
+      views: '10.1K',
       date: '29.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
-      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
-      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
-    },
-    {
-      id: 11,
-      title: 'Подкаст MUSE - Эпизод 1',
-      type: 'podcast',
-      category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '28.10.2024',
-      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
-      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
-    },
-    {
-      id: 12,
-      title: 'Подкаст MUSE - Эпизод 2',
-      type: 'podcast',
-      category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '27.10.2024',
-      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
-      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
-    },
-    {
-      id: 13,
-      title: 'Подкаст MUSE - Эпизод 3',
-      type: 'podcast',
-      category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '26.10.2024',
-      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
-      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
-    },
-    {
-      id: 14,
-      title: 'Подкаст MUSE - Эпизод 4',
-      type: 'podcast',
-      category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '25.10.2024',
-      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
-      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
-    },
-    {
-      id: 15,
-      title: 'Подкаст MUSE - Эпизод 5',
-      type: 'podcast',
-      category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '24.10.2024',
-      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
-      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
+      thumbnail: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600'
     }
   ];
 
@@ -306,20 +242,38 @@ const MuseTV = () => {
   });
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
-        <Header titleInHeader={scrollY > 100} />
+    <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/20">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <button onClick={() => navigate('/')} className="text-2xl font-bold text-[#d4af37] hover:opacity-80 transition-opacity">
+                MUSE
+              </button>
+              <nav className="hidden md:flex items-center gap-6">
+                <button onClick={() => navigate('/')} className="text-white/70 hover:text-white transition-colors text-sm">Главная</button>
+                <button className="text-white hover:text-[#d4af37] transition-colors text-sm font-medium">MUSE TV</button>
+                <button onClick={() => navigate('/headliners')} className="text-white/70 hover:text-white transition-colors text-sm">Хэдлайнеры</button>
+              </nav>
+            </div>
+            <Button className="bg-[#d4af37] hover:bg-[#c4a137] text-black">
+              Подписаться
+            </Button>
+          </div>
+        </div>
+      </header>
 
       {/* Hero */}
-      <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
+      <section className="relative pt-0 pb-0 overflow-hidden bg-black min-h-[60vh] md:min-h-[80vh] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20" style={{backgroundSize: '50px 50px'}}></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px]"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s'}}></div>
           
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
@@ -330,47 +284,39 @@ const MuseTV = () => {
             mixBlendMode: 'screen'
           }}></div>
 
-          <div className="absolute inset-0 tv-scanlines z-40 pointer-events-none" style={{
-            background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px)',
-            backgroundSize: '100% 4px'
-          }}></div>
-
-
-
-          <div className="absolute inset-0 z-45 pointer-events-none" style={{
-            boxShadow: 'inset 0 0 200px rgba(0,0,0,0.9), inset 0 0 100px rgba(0,0,0,0.7), inset 0 0 50px rgba(0,0,0,0.5)'
-          }}></div>
-
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/70 to-transparent z-20"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-20"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-25"></div>
+          
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-transparent via-[#d4af37]/30 to-transparent blur-sm"></div>
+          <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-sm"></div>
+          
+          <div className="absolute top-20 left-20 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse"></div>
+          <div className="absolute top-40 right-32 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '0.5s'}}></div>
+          <div className="absolute bottom-40 left-40 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute bottom-32 right-20 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1.5s'}}></div>
+          
           <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
           
-          <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40"></div>
-          <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30"></div>
+          <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent opacity-50"></div>
+          <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
+            className="relative inline-block mb-6 md:mb-8 animate-title-appear" 
             style={{
-              animationDelay: '0.8s',
+              animationDelay: '0.3s',
               opacity: 0
             }}
           >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider relative" style={{
-              background: 'linear-gradient(to bottom, #d4af37 0%, #b8953d 50%, #8b7355 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.9))'
-            }}>
+            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE TV
             </h1>
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[10rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
+              MUSE TV
+            </div>
           </div>
-          <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-white mb-6 md:mb-10 leading-relaxed animate-text-appear max-w-3xl mx-auto font-medium" style={{animationDelay: '1.2s', opacity: 0, textShadow: '0 2px 20px rgba(212,175,55,0.3), 0 0 40px rgba(0,0,0,0.8)'}}>
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-4 md:mb-6 leading-relaxed animate-text-appear" style={{animationDelay: '0.7s', opacity: 0}}>
             Эксклюзивный контент, прямые эфиры и архив событий клуба
           </p>
         </div>
@@ -383,7 +329,7 @@ const MuseTV = () => {
       </div>
 
       {/* Live Section */}
-      {isLive ? (
+      {isLive && (
         <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
@@ -412,78 +358,7 @@ const MuseTV = () => {
             </Card>
           </div>
         </section>
-      ) : randomPodcast ? (
-        <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-          <div className="container mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <Badge className="bg-[#d4af37] text-black">
-                <Icon name="Radio" size={14} className="mr-2" />
-                Видео подкасты
-              </Badge>
-              {(() => {
-                const videoId = randomPodcast.vkEmbed?.split('/').pop();
-                const metadata = videoId ? videoMetadata[videoId] : null;
-                return metadata ? (
-                  <span className="text-white/60 text-sm flex items-center gap-2">
-                    <Icon name="Eye" size={16} />
-                    {formatViews(metadata.views)} просмотров
-                  </span>
-                ) : null;
-              })()}
-            </div>
-            
-            <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
-              <CardContent className="p-0">
-                <div className="relative aspect-video bg-black">
-                  {randomPodcast.vkEmbed ? (
-                    <iframe
-                      src={randomPodcast.vkEmbed}
-                      allow="clipboard-write; autoplay"
-                      allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{randomPodcast.title}</h3>
-                  <div className="flex items-center gap-4 text-white/70">
-                    {(() => {
-                      const videoId = randomPodcast.vkEmbed?.split('/').pop();
-                      const metadata = videoId ? videoMetadata[videoId] : null;
-                      return metadata ? (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} />
-                            {formatDuration(metadata.duration)}
-                          </span>
-                          <span>•</span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={16} />
-                            {formatViews(metadata.views)}
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} />
-                            {randomPodcast.duration}
-                          </span>
-                          <span>•</span>
-                          <span>{randomPodcast.type}</span>
-                        </>
-                      );
-                    })()}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      ) : null}
+      )}
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
@@ -531,7 +406,75 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      {/* Featured Content */}
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {featuredContent.map(content => {
+              const videoId = content.vkEmbed?.includes('rutube.ru') 
+                ? content.vkEmbed.split('/').pop()
+                : null;
+              const metadata = videoId ? videoMetadata[videoId] : null;
 
+              return (
+                <Card 
+                  key={content.id} 
+                  className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                  onClick={async () => {
+                    if (content.vkEmbed) {
+                      if (videoId && !metadata) {
+                        await fetchRutubeMetadata(videoId);
+                      }
+                      setSelectedVideo(content);
+                    }
+                  }}
+                >
+                  <CardContent className="p-0">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img 
+                        src={metadata?.thumbnail || content.thumbnail} 
+                        alt={metadata?.title || content.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                        <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                        {metadata?.title || content.title}
+                      </h3>
+                      {metadata?.description && (
+                        <p className="text-white/60 text-sm mb-3 line-clamp-2">
+                          {metadata.description}
+                        </p>
+                      )}
+                      <div className="flex items-center justify-between text-white/60 text-sm">
+                        <span className="flex items-center gap-1">
+                          <Icon name="Clock" size={14} />
+                          {metadata?.duration ? `${Math.floor(metadata.duration / 60)} мин` : content.duration}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Icon name="Eye" size={14} />
+                          {metadata?.views ? `${(metadata.views / 1000).toFixed(1)}K` : content.views}
+                        </span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
 
       {/* Main Catalog */}
       <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
@@ -562,7 +505,7 @@ const MuseTV = () => {
             <div>
               <p className="text-white/60 text-sm mb-3">Категория</p>
               <div className="flex flex-wrap gap-2">
-                {['all', 'Интервью', 'Лекции', 'Разборы', 'Новости', 'Мастер-классы', 'Подкаст'].map(category => (
+                {['all', 'Интервью', 'Лекции', 'Разборы', 'Новости', 'Мастер-классы'].map(category => (
                   <Button
                     key={category}
                     onClick={() => setActiveCategory(category)}
@@ -580,85 +523,33 @@ const MuseTV = () => {
           </div>
 
           {/* Content Grid */}
-          {filteredContent.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="w-24 h-24 bg-[#d4af37]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Search" size={48} className="text-[#d4af37]/50" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3 text-white/80">Контент еще не загружен</h3>
-              <p className="text-white/60 mb-6 max-w-md mx-auto">
-                В этом разделе пока нет материалов. Посмотрите или послушайте наши доступные подкасты!
-              </p>
-              <Button 
-                onClick={() => {
-                  setActiveFilter('podcast');
-                  setActiveCategory('Подкаст');
-                }}
-                className="bg-[#d4af37] text-black hover:bg-[#d4af37]/90"
-              >
-                Перейти к подкастам
-              </Button>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-6">
-              {filteredContent.map(item => {
-                const videoId = item.vkEmbed?.includes('rutube.ru') 
-                  ? item.vkEmbed.split('/').pop()
-                  : null;
-                const metadata = videoId ? videoMetadata[videoId] : null;
-
-                return (
-                  <Card 
-                    key={item.id} 
-                    className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                    onClick={async () => {
-                      if (item.vkEmbed) {
-                        if (videoId && !metadata) {
-                          await fetchRutubeMetadata(videoId);
-                        }
-                        setSelectedVideo(item);
-                      }
-                    }}
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden">
-                        <img 
-                          src={metadata?.thumbnail || item.thumbnail} 
-                          alt={metadata?.title || item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
-                        </div>
-                      </div>
-                      <div className="p-4">
-                        <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                        <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title}
-                        </h3>
-                        {metadata?.description && (
-                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {metadata.description}
-                          </p>
-                        )}
-                        <div className="flex items-center justify-between text-white/60 text-xs">
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={12} />
-                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={12} />
-                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
-                          </span>
-                        </div>
-                        <p className="text-white/40 text-xs mt-1">{item.date}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          )}
+          <div className="grid md:grid-cols-3 gap-6">
+            {filteredContent.map(item => (
+              <Card key={item.id} className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img 
+                      src={item.thumbnail} 
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                      <Icon name={item.type === 'video' ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{item.title}</h3>
+                    <div className="flex items-center justify-between text-white/60 text-xs">
+                      <span>{item.duration}</span>
+                      <span>{item.views} просмотров</span>
+                    </div>
+                    <p className="text-white/40 text-xs mt-1">{item.date}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -832,8 +723,7 @@ const MuseTV = () => {
           })()}
         </DialogContent>
       </Dialog>
-      </div>
-    </PageTransition>
+    </div>
   );
 };
 

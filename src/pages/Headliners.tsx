@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
-import PageTransition from '@/components/PageTransition';
 
 const Headliners = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -36,9 +34,63 @@ const Headliners = () => {
   };
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
-        <Header titleInHeader={scrollY > 100} />
+    <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-[#d4af37]/30">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Button
+              onClick={() => navigate('/')}
+              variant="ghost"
+              className="text-white hover:text-[#d4af37] transition-colors"
+            >
+              <Icon name="ArrowLeft" size={20} className="mr-2" />
+              На главную
+            </Button>
+            
+            <div className="hidden md:flex items-center gap-6">
+              {['hero', 'speaker', 'program', 'gallery'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+                >
+                  {section === 'hero' ? 'Главная' : 
+                   section === 'speaker' ? 'Спикер' :
+                   section === 'program' ? 'Программа' : 'Галерея'}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="md:hidden flex flex-col gap-2 w-8 h-8 justify-center items-center"
+                aria-label="Toggle menu"
+              >
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className={`md:hidden fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '76px' }}>
+          <div className="flex flex-col items-center py-6 gap-4">
+            {['hero', 'speaker', 'program', 'gallery'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="text-base font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider w-full text-center py-3"
+              >
+                {section === 'hero' ? 'Главная' : 
+                 section === 'speaker' ? 'Спикер' :
+                 section === 'program' ? 'Программа' : 'Галерея'}
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
 
       {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
@@ -446,8 +498,7 @@ const Headliners = () => {
           </div>
         </div>
       </section>
-      </div>
-    </PageTransition>
+    </div>
   );
 };
 
