@@ -131,7 +131,7 @@ const Headliners = () => {
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(0%) contrast(1.15) brightness(1.4)'
+                filter: 'grayscale(0%) contrast(1.25) brightness(1.4) saturate(1.2)'
               }}
             />
             <div className="absolute inset-0 opacity-15 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-30" style={{
