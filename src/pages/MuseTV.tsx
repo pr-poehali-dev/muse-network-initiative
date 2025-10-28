@@ -12,29 +12,6 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  const toggleFullscreen = () => {
-    const dialog = document.querySelector('[role="dialog"]');
-    if (!dialog) return;
-
-    if (!document.fullscreenElement) {
-      dialog.requestFullscreen().then(() => setIsFullscreen(true)).catch(err => {
-        console.error(`Error attempting to enable fullscreen: ${err.message}`);
-      });
-    } else {
-      document.exitFullscreen().then(() => setIsFullscreen(false));
-    }
-  };
-
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-
-    document.addEventListener('fullscreenchange', handleFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -625,37 +602,17 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent hideClose className="max-w-none w-screen h-screen p-0 bg-black border-0 m-0">
-          <div className="relative w-full h-full">
+        <DialogContent className="max-w-7xl w-[90vw] p-0 bg-black border-0">
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
             {selectedVideo?.vkEmbed && (
               <iframe
                 src={selectedVideo.vkEmbed}
-                width="100%"
-                height="100%"
+                className="absolute inset-0 w-full h-full"
                 allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
                 frameBorder="0"
                 allowFullScreen
-                className="w-full h-full"
               ></iframe>
             )}
-            
-            {/* Fullscreen Control */}
-            <div className="absolute bottom-6 right-6 z-50 flex items-center gap-3">
-              <button
-                onClick={toggleFullscreen}
-                className="w-12 h-12 rounded-full bg-black/80 hover:bg-[#d4af37] text-white hover:text-black transition-all flex items-center justify-center shadow-lg backdrop-blur-sm"
-                title={isFullscreen ? "Выйти из полноэкранного режима" : "Полноэкранный режим"}
-              >
-                <Icon name={isFullscreen ? "Minimize" : "Maximize"} size={24} />
-              </button>
-              <button
-                onClick={() => setSelectedVideo(null)}
-                className="w-12 h-12 rounded-full bg-black/80 hover:bg-red-600 text-white transition-all flex items-center justify-center shadow-lg backdrop-blur-sm"
-                title="Закрыть"
-              >
-                <Icon name="X" size={24} />
-              </button>
-            </div>
           </div>
         </DialogContent>
       </Dialog>
