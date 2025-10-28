@@ -198,7 +198,7 @@ const Headliners = () => {
                 alt="Юлия Викторова" 
                 className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_100px_rgba(212,175,55,0.5),0_0_50px_rgba(212,175,55,0.3)] opacity-35"
                 style={{
-                  objectPosition: '50% 30%'
+                  objectPosition: '50% 0%'
                 }}
               />
               <div className="absolute top-0 left-0 right-0 h-2/5 bg-gradient-to-b from-black via-black/90 to-transparent rounded-3xl z-30 pointer-events-none"></div>
