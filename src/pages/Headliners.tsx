@@ -113,17 +113,17 @@ const Headliners = () => {
           }}></div>
           
           {/* Mobile background photo */}
-          <div className="md:hidden absolute inset-0 opacity-40">
+          <div className="md:hidden absolute inset-0 z-0 opacity-70">
             <img 
               src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
               alt="" 
               className="w-full h-full object-cover"
               style={{
-                objectPosition: '50% 30%',
-                filter: 'grayscale(20%) brightness(0.7)'
+                objectPosition: '50% 20%',
+                filter: 'grayscale(10%) brightness(0.9) contrast(1.1)'
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
           </div>
           
           {/* Left photo */}
