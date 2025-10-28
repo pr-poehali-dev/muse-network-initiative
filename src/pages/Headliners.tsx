@@ -135,7 +135,7 @@ const Headliners = () => {
             <img 
               src="https://cdn.poehali.dev/files/2369818b-9458-422b-93ea-c39335bb7f6d.jpg" 
               alt="" 
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
