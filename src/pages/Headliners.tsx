@@ -159,11 +159,11 @@ const Headliners = () => {
                 className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
                 style={{
                   objectPosition: '50% 20%',
-                  filter: 'contrast(1.1) brightness(0.45) saturate(0.8)'
+                  filter: 'contrast(1.1) brightness(0.3) saturate(0.6)'
                 }}
               />
               
-              <div className="absolute inset-0 bg-black/50 rounded-3xl z-21"></div>
+              <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
               <div className="absolute inset-0 border-3 border-[#d4af37]/40 group-hover:border-[#d4af37]/60 rounded-3xl transition-all duration-500 z-30 shadow-[inset_0_0_60px_rgba(212,175,55,0.1)]"></div>
             </div>
