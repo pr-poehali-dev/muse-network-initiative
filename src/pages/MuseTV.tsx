@@ -56,8 +56,16 @@ const MuseTV = () => {
     }
   };
 
-  const isLive = true;
+  const isLive = false;
   const viewersCount = 234;
+
+  const podcastVideos = featuredContent.filter(item => item.vkEmbed);
+  const [randomPodcast] = useState(() => {
+    if (podcastVideos.length > 0) {
+      return podcastVideos[Math.floor(Math.random() * podcastVideos.length)];
+    }
+    return null;
+  });
 
   const upcomingStreams = [
     {
@@ -321,7 +329,7 @@ const MuseTV = () => {
       </div>
 
       {/* Live Section */}
-      {isLive && (
+      {isLive ? (
         <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
@@ -350,7 +358,52 @@ const MuseTV = () => {
             </Card>
           </div>
         </section>
-      )}
+      ) : randomPodcast ? (
+        <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+          <div className="container mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <Badge className="bg-[#d4af37] text-black">
+                <Icon name="Radio" size={14} className="mr-2" />
+                Рекомендуем посмотреть
+              </Badge>
+              <span className="text-white/60 text-sm flex items-center gap-2">
+                <Icon name="Eye" size={16} />
+                {randomPodcast.views} просмотров
+              </span>
+            </div>
+            
+            <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
+              <CardContent className="p-0">
+                <div className="relative aspect-video bg-black">
+                  {randomPodcast.vkEmbed ? (
+                    <iframe
+                      src={randomPodcast.vkEmbed}
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
+                    </div>
+                  )}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-2">{randomPodcast.title}</h3>
+                  <div className="flex items-center gap-4 text-white/70">
+                    <span className="flex items-center gap-1">
+                      <Icon name="Clock" size={16} />
+                      {randomPodcast.duration}
+                    </span>
+                    <span>•</span>
+                    <span>{randomPodcast.type}</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      ) : null}
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
