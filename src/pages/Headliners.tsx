@@ -124,11 +124,6 @@ const Headliners = () => {
           <div className="absolute top-1/3 left-0 w-1 h-48 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-80 animate-pulse z-20 shadow-[0_0_30px_#d4af37]" style={{animationDuration: '2s'}}></div>
           <div className="absolute top-1/3 right-0 w-1 h-48 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-80 animate-pulse z-20 shadow-[0_0_30px_#d4af37]" style={{animationDuration: '2s', animationDelay: '1s'}}></div>
           
-          <div className="absolute top-20 left-20 w-8 h-8 bg-[#d4af37] rounded-full opacity-60 animate-ping z-20 shadow-[0_0_40px_#d4af37]" style={{animationDuration: '2s'}}></div>
-          <div className="absolute top-32 right-32 w-6 h-6 bg-[#d4af37] rounded-full opacity-60 animate-ping z-20 shadow-[0_0_35px_#d4af37]" style={{animationDuration: '3s', animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-24 left-1/4 w-6 h-6 bg-[#d4af37] rounded-full opacity-60 animate-ping z-20 shadow-[0_0_35px_#d4af37]" style={{animationDuration: '2.5s', animationDelay: '1s'}}></div>
-          <div className="absolute bottom-32 right-1/4 w-5 h-5 bg-[#d4af37] rounded-full opacity-60 animate-ping z-20 shadow-[0_0_30px_#d4af37]" style={{animationDuration: '3.5s', animationDelay: '1.5s'}}></div>
-          
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(212,175,55,0.15)_0%,transparent_40%)] z-20 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(212,175,55,0.15)_0%,transparent_40%)] z-20 animate-pulse" style={{animationDuration: '5s', animationDelay: '2s'}}></div>
 
