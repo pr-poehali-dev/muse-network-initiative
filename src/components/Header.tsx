@@ -151,28 +151,53 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
               })}
             </div>
 
-            <Button
-              onClick={() => {
-                if (location.pathname !== '/') {
-                  navigate('/');
-                  setTimeout(() => {
+            <div className="w-full max-w-md space-y-4 mt-8">
+              <Button
+                onClick={() => {
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const element = document.getElementById('experts');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 100);
+                  } else {
+                    const element = document.getElementById('experts');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black text-base font-bold py-5 transition-all duration-300"
+              >
+                Стать экспертом
+              </Button>
+
+              <Button
+                onClick={() => {
+                  if (location.pathname !== '/') {
+                    navigate('/');
+                    setTimeout(() => {
+                      const element = document.getElementById('join');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 100);
+                  } else {
                     const element = document.getElementById('join');
                     if (element) {
                       element.scrollIntoView({ behavior: 'smooth' });
                     }
-                  }, 100);
-                } else {
-                  const element = document.getElementById('join');
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
                   }
-                }
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full max-w-xs bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-white text-lg font-bold py-6 mt-8 shadow-2xl shadow-[#d4af37]/30"
-            >
-              Присоединиться к MUSE
-            </Button>
+                  setIsMobileMenuOpen(false);
+                }}
+                className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black text-base font-bold py-5 shadow-2xl shadow-[#d4af37]/30"
+              >
+                Вступить в клуб →
+              </Button>
+            </div>
           </div>
         </div>
       </header>
