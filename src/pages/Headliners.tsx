@@ -114,6 +114,13 @@ const Headliners = () => {
           <div className="absolute top-[30%] left-[10%] w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl animate-float opacity-60" style={{animationDuration: '10s'}}></div>
           <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
           
+          {/* VIP Golden glows */}
+          <div className="absolute top-[20%] left-[35%] w-48 h-48 bg-[#d4af37]/8 rounded-full blur-[100px] opacity-40 animate-pulse" style={{animationDuration: '7s'}}></div>
+          <div className="absolute top-[50%] right-[25%] w-56 h-56 bg-[#d4af37]/6 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '9s', animationDelay: '1.5s'}}></div>
+          <div className="absolute top-[35%] left-[45%] w-40 h-40 bg-[#b8953d]/7 rounded-full blur-[90px] opacity-35 animate-pulse" style={{animationDuration: '8s', animationDelay: '0.8s'}}></div>
+          <div className="absolute bottom-[30%] left-[20%] w-44 h-44 bg-[#d4af37]/5 rounded-full blur-[110px] opacity-25 animate-pulse" style={{animationDuration: '10s', animationDelay: '2s'}}></div>
+          <div className="absolute top-[45%] right-[40%] w-36 h-36 bg-[#8b7355]/8 rounded-full blur-[85px] opacity-30 animate-pulse" style={{animationDuration: '11s', animationDelay: '1s'}}></div>
+          
           {/* Left image */}
           <div className="hidden lg:block absolute left-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
             <div className="relative w-full h-full">
