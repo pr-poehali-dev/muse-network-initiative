@@ -137,6 +137,25 @@ const Headliners = () => {
             }}></div>
           </div>
           
+          {/* Center photo */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[26%] h-full opacity-85 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/2369818b-9458-422b-93ea-c39335bb7f6d.jpg" 
+              alt="" 
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              style={{
+                objectPosition: '50% 30%',
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(0%) contrast(1.05) brightness(1.1)'
+              }}
+            />
+            <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-60" style={{
+              background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.4) 0%, transparent 70%)'
+            }}></div>
+          </div>
 
           
           {/* Right photo */}
