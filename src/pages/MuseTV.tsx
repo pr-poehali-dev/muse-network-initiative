@@ -12,12 +12,36 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [videoMetadata, setVideoMetadata] = useState<any>({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const fetchRutubeMetadata = async (videoId: string) => {
+    if (videoMetadata[videoId]) return videoMetadata[videoId];
+    
+    try {
+      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
+      const data = await response.json();
+      
+      const metadata = {
+        title: data.title,
+        description: data.description,
+        thumbnail: data.thumbnail_url,
+        duration: data.duration,
+        views: data.hits
+      };
+      
+      setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
+      return metadata;
+    } catch (error) {
+      console.error('Error fetching Rutube metadata:', error);
+      return null;
+    }
+  };
 
   const isLive = true;
   const viewersCount = 234;
@@ -376,40 +400,56 @@ const MuseTV = () => {
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {featuredContent.map(content => (
-              <Card 
-                key={content.id} 
-                className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                onClick={() => content.vkEmbed && setSelectedVideo(content)}
-              >
-                <CardContent className="p-0">
-                  <div className="relative aspect-video overflow-hidden">
-                    <img 
-                      src={content.thumbnail} 
-                      alt={content.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                      <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+            {featuredContent.map(content => {
+              const videoId = content.vkEmbed?.includes('rutube.ru') 
+                ? content.vkEmbed.split('/').pop()
+                : null;
+              const metadata = videoId ? videoMetadata[videoId] : null;
+
+              return (
+                <Card 
+                  key={content.id} 
+                  className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                  onClick={async () => {
+                    if (content.vkEmbed) {
+                      if (videoId && !metadata) {
+                        await fetchRutubeMetadata(videoId);
+                      }
+                      setSelectedVideo(content);
+                    }
+                  }}
+                >
+                  <CardContent className="p-0">
+                    <div className="relative aspect-video overflow-hidden">
+                      <img 
+                        src={metadata?.thumbnail || content.thumbnail} 
+                        alt={metadata?.title || content.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                        <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+                      </div>
+                      <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
                     </div>
-                    <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">{content.title}</h3>
-                    <div className="flex items-center justify-between text-white/60 text-sm">
-                      <span className="flex items-center gap-1">
-                        <Icon name="Clock" size={14} />
-                        {content.duration}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Icon name="Eye" size={14} />
-                        {content.views}
-                      </span>
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">
+                        {metadata?.title || content.title}
+                      </h3>
+                      <div className="flex items-center justify-between text-white/60 text-sm">
+                        <span className="flex items-center gap-1">
+                          <Icon name="Clock" size={14} />
+                          {metadata?.duration ? `${Math.floor(metadata.duration / 60)} мин` : content.duration}
+                        </span>
+                        <span className="flex items-center gap-1">
+                          <Icon name="Eye" size={14} />
+                          {metadata?.views ? `${(metadata.views / 1000).toFixed(1)}K` : content.views}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
