@@ -183,66 +183,6 @@ const MuseTV = () => {
 
   const contentLibrary = [
     {
-      id: 1,
-      title: 'Основы инвестирования для начинающих',
-      type: 'video',
-      category: 'Лекции',
-      duration: '42 мин',
-      views: '9.8K',
-      date: '10.11.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600'
-    },
-    {
-      id: 2,
-      title: 'Разбор успешных кейсов в бизнесе',
-      type: 'video',
-      category: 'Разборы',
-      duration: '35 мин',
-      views: '11.2K',
-      date: '08.11.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600'
-    },
-    {
-      id: 3,
-      title: 'Интервью с успешным предпринимателем',
-      type: 'podcast',
-      category: 'Интервью',
-      duration: '28 мин',
-      views: '7.5K',
-      date: '05.11.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600'
-    },
-    {
-      id: 4,
-      title: 'Тренды маркетинга 2024',
-      type: 'video',
-      category: 'Новости',
-      duration: '22 мин',
-      views: '13.4K',
-      date: '03.11.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600'
-    },
-    {
-      id: 5,
-      title: 'Как выйти на международный рынок',
-      type: 'podcast',
-      category: 'Лекции',
-      duration: '50 мин',
-      views: '6.9K',
-      date: '01.11.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600'
-    },
-    {
-      id: 6,
-      title: 'Секреты эффективного тайм-менеджмента',
-      type: 'video',
-      category: 'Мастер-классы',
-      duration: '38 мин',
-      views: '10.1K',
-      date: '29.10.2024',
-      thumbnail: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600'
-    },
-    {
       id: 10,
       title: 'MUSE Podcast - Интервью с экспертами',
       type: 'podcast',
@@ -640,64 +580,85 @@ const MuseTV = () => {
           </div>
 
           {/* Content Grid */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {filteredContent.map(item => {
-              const videoId = item.vkEmbed?.includes('rutube.ru') 
-                ? item.vkEmbed.split('/').pop()
-                : null;
-              const metadata = videoId ? videoMetadata[videoId] : null;
+          {filteredContent.length === 0 ? (
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-[#d4af37]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Icon name="Search" size={48} className="text-[#d4af37]/50" />
+              </div>
+              <h3 className="text-2xl font-bold mb-3 text-white/80">Контент еще не загружен</h3>
+              <p className="text-white/60 mb-6 max-w-md mx-auto">
+                В этом разделе пока нет материалов. Посмотрите или послушайте наши доступные подкасты!
+              </p>
+              <Button 
+                onClick={() => {
+                  setActiveFilter('podcast');
+                  setActiveCategory('Подкаст');
+                }}
+                className="bg-[#d4af37] text-black hover:bg-[#d4af37]/90"
+              >
+                Перейти к подкастам
+              </Button>
+            </div>
+          ) : (
+            <div className="grid md:grid-cols-3 gap-6">
+              {filteredContent.map(item => {
+                const videoId = item.vkEmbed?.includes('rutube.ru') 
+                  ? item.vkEmbed.split('/').pop()
+                  : null;
+                const metadata = videoId ? videoMetadata[videoId] : null;
 
-              return (
-                <Card 
-                  key={item.id} 
-                  className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                  onClick={async () => {
-                    if (item.vkEmbed) {
-                      if (videoId && !metadata) {
-                        await fetchRutubeMetadata(videoId);
+                return (
+                  <Card 
+                    key={item.id} 
+                    className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                    onClick={async () => {
+                      if (item.vkEmbed) {
+                        if (videoId && !metadata) {
+                          await fetchRutubeMetadata(videoId);
+                        }
+                        setSelectedVideo(item);
                       }
-                      setSelectedVideo(item);
-                    }
-                  }}
-                >
-                  <CardContent className="p-0">
-                    <div className="relative aspect-video overflow-hidden">
-                      <img 
-                        src={metadata?.thumbnail || item.thumbnail} 
-                        alt={metadata?.title || item.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                        <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                    }}
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative aspect-video overflow-hidden">
+                        <img 
+                          src={metadata?.thumbnail || item.thumbnail} 
+                          alt={metadata?.title || item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                        </div>
                       </div>
-                    </div>
-                    <div className="p-4">
-                      <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                      <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                        {metadata?.title || item.title}
-                      </h3>
-                      {metadata?.description && (
-                        <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                          {metadata.description}
-                        </p>
-                      )}
-                      <div className="flex items-center justify-between text-white/60 text-xs">
-                        <span className="flex items-center gap-1">
-                          <Icon name="Clock" size={12} />
-                          {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
-                        </span>
-                        <span className="flex items-center gap-1">
-                          <Icon name="Eye" size={12} />
-                          {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
-                        </span>
+                      <div className="p-4">
+                        <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
+                        <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                          {metadata?.title || item.title}
+                        </h3>
+                        {metadata?.description && (
+                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
+                            {metadata.description}
+                          </p>
+                        )}
+                        <div className="flex items-center justify-between text-white/60 text-xs">
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={12} />
+                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Eye" size={12} />
+                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
+                          </span>
+                        </div>
+                        <p className="text-white/40 text-xs mt-1">{item.date}</p>
                       </div>
-                      <p className="text-white/40 text-xs mt-1">{item.date}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
         </div>
       </section>
 
