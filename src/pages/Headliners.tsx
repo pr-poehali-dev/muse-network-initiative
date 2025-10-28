@@ -165,6 +165,12 @@ const Headliners = () => {
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
+            
+            {/* Золотые кольца вокруг фото */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/40 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '20s'}}></div>
+              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/30 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            </div>
           </div>
           
           {/* Right photo */}
@@ -185,6 +191,12 @@ const Headliners = () => {
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
+            
+            {/* Золотые кольца вокруг фото */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/40 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '20s'}}></div>
+              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/30 opacity-0 group-hover:opacity-100 transition-all duration-700 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            </div>
           </div>
           
           {/* Cinematic overlays */}
