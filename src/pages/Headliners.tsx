@@ -144,7 +144,7 @@ const Headliners = () => {
           </div>
           
           {/* Center image - overlapping */}
-          <div className="hidden lg:block absolute top-[4%] w-[26%] h-[60%] z-20 group animate-center-reveal" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
+          <div className="hidden lg:block absolute top-[10%] w-[26%] h-[60%] z-20 group animate-center-reveal" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-8 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
@@ -156,7 +156,7 @@ const Headliners = () => {
               <img 
                 src="https://cdn.poehali.dev/files/3125a1d7-e384-403a-8436-f4c5e05fdc08.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)] opacity-40"
+                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)] opacity-25"
                 style={{
                   objectPosition: '50% 30%'
                 }}
