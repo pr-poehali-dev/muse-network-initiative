@@ -142,7 +142,7 @@ const Headliners = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src="https://cdn.poehali.dev/files/551a8db5-47f6-4ae2-9185-76d5c1b6bbe5.jpg" 
+              src="https://cdn.poehali.dev/files/e0935c3d-2366-487f-b33e-5501cda565a6.jpg" 
               alt="" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
