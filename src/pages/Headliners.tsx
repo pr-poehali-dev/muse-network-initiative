@@ -138,7 +138,7 @@ const Headliners = () => {
           </div>
           
           {/* Center photo */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[26%] h-full opacity-85 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[34%] h-full opacity-85 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
             <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
