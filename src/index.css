@@ -203,6 +203,27 @@ body::-webkit-scrollbar {
     }
   }
 
+  .animate-center-reveal {
+    animation: center-reveal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes center-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+      filter: blur(20px) brightness(0.3);
+    }
+    40% {
+      opacity: 0.5;
+      filter: blur(10px) brightness(0.4);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0) brightness(1);
+    }
+  }
+
   .animate-title-appear {
     animation: title-appear 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
