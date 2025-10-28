@@ -51,9 +51,9 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
                 className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
               >
                 <img 
-                  src="https://cdn.poehali.dev/files/f4a62757-f055-4fcc-aa99-6c893bb3e71b.png"
+                  src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                   alt="MUSE Logo"
-                  className="w-16 h-16 transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
+                  className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
                 />
               </button>
               
@@ -97,19 +97,26 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
                 </button>
               ))}
-              {pageLinks.map((link) => (
-                <button
-                  key={link.path}
-                  onClick={() => {
-                    navigate(link.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
-                </button>
-              ))}
+              {pageLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <button
+                    key={link.path}
+                    onClick={() => {
+                      navigate(link.path);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`text-sm font-semibold transition-all duration-300 uppercase tracking-wider relative group ${
+                      isActive ? 'text-[#d4af37]' : 'text-[#b8953d]/80 hover:text-[#d4af37]'
+                    }`}
+                  >
+                    {link.label}
+                    <span className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] transition-all duration-300 ${
+                      isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                    }`}></span>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="w-full max-w-md space-y-6 md:hidden">
@@ -122,18 +129,23 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
                   {item.label}
                 </button>
               ))}
-              {pageLinks.map((link) => (
-                <button
-                  key={link.path}
-                  onClick={() => {
-                    navigate(link.path);
-                    setIsMobileMenuOpen(false);
-                  }}
-                  className="w-full text-center text-lg font-semibold text-[#b8953d]/90 hover:text-[#d4af37] transition-all duration-300 py-3 border-b border-[#d4af37]/20 uppercase tracking-wider"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {pageLinks.map((link) => {
+                const isActive = location.pathname === link.path;
+                return (
+                  <button
+                    key={link.path}
+                    onClick={() => {
+                      navigate(link.path);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-center text-lg font-semibold transition-all duration-300 py-3 border-b uppercase tracking-wider ${
+                      isActive ? 'text-[#d4af37] border-[#d4af37]/60' : 'text-[#b8953d]/90 hover:text-[#d4af37] border-[#d4af37]/20'
+                    }`}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
             </div>
 
             <Button
