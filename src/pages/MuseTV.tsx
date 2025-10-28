@@ -279,7 +279,7 @@ const MuseTV = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-32 md:pt-24">
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
             style={{
