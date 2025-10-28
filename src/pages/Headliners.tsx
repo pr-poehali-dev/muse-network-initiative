@@ -99,33 +99,83 @@ const Headliners = () => {
 
       {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
-          <div className="absolute top-[10%] left-[15%] w-2 h-2 bg-[#d4af37] rounded-full blur-[1px] opacity-60 animate-float" style={{animationDuration: '6s'}}></div>
-          <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '8s', animationDelay: '1s'}}></div>
-          <div className="absolute top-[40%] left-[25%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-40 animate-float" style={{animationDuration: '7s', animationDelay: '2s'}}></div>
-          <div className="absolute top-[60%] right-[30%] w-2 h-2 bg-[#8b7355] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '9s', animationDelay: '0.5s'}}></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
-          <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
-          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s'}}></div>
           
-          <div className="absolute top-[30%] left-[10%] w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl animate-float opacity-60" style={{animationDuration: '10s'}}></div>
-          <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
-          {/* VIP Golden glows */}
-          <div className="absolute top-[20%] left-[35%] w-48 h-48 bg-[#d4af37]/8 rounded-full blur-[100px] opacity-40 animate-pulse" style={{animationDuration: '7s'}}></div>
-          <div className="absolute top-[50%] right-[25%] w-56 h-56 bg-[#d4af37]/6 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '9s', animationDelay: '1.5s'}}></div>
-          <div className="absolute top-[35%] left-[45%] w-40 h-40 bg-[#b8953d]/7 rounded-full blur-[90px] opacity-35 animate-pulse" style={{animationDuration: '8s', animationDelay: '0.8s'}}></div>
-          <div className="absolute bottom-[30%] left-[20%] w-44 h-44 bg-[#d4af37]/5 rounded-full blur-[110px] opacity-25 animate-pulse" style={{animationDuration: '10s', animationDelay: '2s'}}></div>
-          <div className="absolute top-[45%] right-[40%] w-36 h-36 bg-[#8b7355]/8 rounded-full blur-[85px] opacity-30 animate-pulse" style={{animationDuration: '11s', animationDelay: '1s'}}></div>
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent"></div>
           
-
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at 20% 30%, rgba(212,175,55,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139,115,85,0.15) 0%, transparent 50%)',
+            mixBlendMode: 'screen'
+          }}></div>
           
-
+          {/* Left photo */}
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
+              alt="" 
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              style={{
+                objectPosition: '50% 20%',
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(40%) contrast(1.1)'
+              }}
+            />
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
+              background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
+            }}></div>
+          </div>
           
-
+          {/* Center photo */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[26%] h-full opacity-70 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/551a8db5-47f6-4ae2-9185-76d5c1b6bbe5.jpg" 
+              alt="" 
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              style={{
+                objectPosition: '50% 30%',
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.9) 85%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.9) 85%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(30%) contrast(1.15)'
+              }}
+            />
+            <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-60" style={{
+              background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.4) 0%, transparent 70%)'
+            }}></div>
+          </div>
+          
+          {/* Right photo */}
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+            <img 
+              src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
+              alt="" 
+              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              style={{
+                objectPosition: '50% 20%',
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(40%) contrast(1.1)'
+              }}
+            />
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
+              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
+            }}></div>
+          </div>
           
           {/* Cinematic overlays */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
@@ -138,8 +188,6 @@ const Headliners = () => {
           {/* Light effects */}
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
-          
-
         </div>
 
         <div className="w-full text-center px-4 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
