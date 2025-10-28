@@ -120,7 +120,7 @@ const Headliners = () => {
 
 
           {/* Right photo */}
-          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-100 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -129,13 +129,13 @@ const Headliners = () => {
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(10%) contrast(1.0) brightness(1.2)'
+                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
+                filter: 'grayscale(0%) contrast(1.1) brightness(1.3)'
               }}
             />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
-              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
+            <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-40" style={{
+              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.2) 0%, transparent 60%)'
             }}></div>
           </div>
           
