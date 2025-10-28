@@ -156,7 +156,7 @@ const Headliners = () => {
               <img 
                 src="https://cdn.poehali.dev/files/3125a1d7-e384-403a-8436-f4c5e05fdc08.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
+                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)] opacity-40"
                 style={{
                   objectPosition: '50% 30%'
                 }}
