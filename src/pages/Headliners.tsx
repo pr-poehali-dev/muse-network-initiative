@@ -144,7 +144,7 @@ const Headliners = () => {
           </div>
           
           {/* Center image - overlapping */}
-          <div className="hidden lg:block absolute top-[8%] w-[26%] h-[60%] z-20 group animate-center-reveal" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
+          <div className="hidden lg:block absolute top-[4%] w-[26%] h-[60%] z-20 group animate-center-reveal" style={{left: '50%', transform: `translate(-50%, ${scrollY * 0.1}px)`}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-8 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
@@ -158,7 +158,7 @@ const Headliners = () => {
                 alt="Юлия Викторова" 
                 className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
                 style={{
-                  objectPosition: '50% 20%',
+                  objectPosition: '50% 30%',
                   filter: 'contrast(1.1) brightness(0.2) saturate(0.3)'
                 }}
               />
