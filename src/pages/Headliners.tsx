@@ -185,12 +185,18 @@ const Headliners = () => {
                 <div className="absolute bottom-[15%] -right-2 w-1 h-1 bg-[#d4af37] rounded-full blur-[0.5px] opacity-55 animate-float" style={{animationDuration: '5.5s', animationDelay: '1.5s'}}></div>
               </div>
               
-              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
+              <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/20 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
+              
+              <div className="absolute inset-0 rounded-3xl z-10">
+                <div className="absolute inset-0 rounded-3xl border-2 border-[#d4af37]/40 shadow-[0_0_30px_rgba(212,175,55,0.4),inset_0_0_30px_rgba(212,175,55,0.15)] animate-pulse" style={{animationDuration: '3s'}}></div>
+              </div>
+              
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#d4af37]/20 via-[#b8953d]/15 to-[#d4af37]/20 rounded-3xl blur-xl opacity-60 animate-pulse z-5" style={{animationDuration: '4s'}}></div>
               
               <img 
                 src="https://cdn.poehali.dev/files/ca9c2b42-4b0e-42f8-9555-c47fd0d5dc53.jpg" 
                 alt="Юлия Викторова" 
-                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.3)] opacity-35"
+                className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_100px_rgba(212,175,55,0.5),0_0_50px_rgba(212,175,55,0.3)] opacity-35"
                 style={{
                   objectPosition: '50% 30%'
                 }}
