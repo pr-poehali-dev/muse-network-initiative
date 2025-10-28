@@ -63,11 +63,6 @@ const Headliners = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
-                <span className="text-xs sm:text-sm text-white/90 font-medium whitespace-nowrap overflow-hidden text-ellipsis">Живая встреча · Loft Hall</span>
-              </div>
-              
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="md:hidden flex flex-col gap-2 w-8 h-8 justify-center items-center"
@@ -171,6 +166,13 @@ const Headliners = () => {
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+          <div className="flex justify-center mb-6 md:mb-8 animate-text-appear" style={{animationDelay: '0.5s', opacity: 0}}>
+            <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
+              <span className="text-sm sm:text-base text-white/90 font-medium whitespace-nowrap">Живая встреча · Loft Hall</span>
+            </div>
+          </div>
+          
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
             style={{
