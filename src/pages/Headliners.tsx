@@ -99,27 +99,35 @@ const Headliners = () => {
 
       {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-black"></div>
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Точечный паттерн */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
           
+          {/* Базовый градиент */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
+          
+          {/* Большие световые пятна */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s'}}></div>
+          
+          {/* Диагональная сетка */}
+          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
+          
+          {/* Центральное свечение сверху */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent"></div>
+          
+          {/* Радиальные световые точки */}
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at 20% 30%, rgba(212,175,55,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139,115,85,0.15) 0%, transparent 50%)',
+            mixBlendMode: 'screen'
+          }}></div>
+          
+          {/* Маленькие плавающие точки */}
           <div className="absolute top-[10%] left-[15%] w-2 h-2 bg-[#d4af37] rounded-full blur-[1px] opacity-60 animate-float" style={{animationDuration: '6s'}}></div>
           <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 bg-[#d4af37] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '8s', animationDelay: '1s'}}></div>
           <div className="absolute top-[40%] left-[25%] w-1 h-1 bg-[#d4af37] rounded-full blur-[1px] opacity-40 animate-float" style={{animationDuration: '7s', animationDelay: '2s'}}></div>
           <div className="absolute top-[60%] right-[30%] w-2 h-2 bg-[#8b7355] rounded-full blur-[1px] opacity-50 animate-float" style={{animationDuration: '9s', animationDelay: '0.5s'}}></div>
-          
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
-          <div className="absolute bottom-0 left-1/4 w-[600px] h-[400px] bg-[#8b7355]/10 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
-          <div className="absolute bottom-0 right-1/4 w-[600px] h-[400px] bg-[#d4af37]/8 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '6s', animationDelay: '2s'}}></div>
-          
-          <div className="absolute top-[30%] left-[10%] w-32 h-32 bg-[#d4af37]/15 rounded-full blur-2xl animate-float opacity-60" style={{animationDuration: '10s'}}></div>
-          <div className="absolute bottom-[40%] right-[15%] w-40 h-40 bg-[#8b7355]/12 rounded-full blur-3xl animate-float opacity-50" style={{animationDuration: '12s', animationDelay: '2s'}}></div>
-          
-          {/* VIP Golden glows */}
-          <div className="absolute top-[20%] left-[35%] w-48 h-48 bg-[#d4af37]/8 rounded-full blur-[100px] opacity-40 animate-pulse" style={{animationDuration: '7s'}}></div>
-          <div className="absolute top-[50%] right-[25%] w-56 h-56 bg-[#d4af37]/6 rounded-full blur-[120px] opacity-30 animate-pulse" style={{animationDuration: '9s', animationDelay: '1.5s'}}></div>
-          <div className="absolute top-[35%] left-[45%] w-40 h-40 bg-[#b8953d]/7 rounded-full blur-[90px] opacity-35 animate-pulse" style={{animationDuration: '8s', animationDelay: '0.8s'}}></div>
-          <div className="absolute bottom-[30%] left-[20%] w-44 h-44 bg-[#d4af37]/5 rounded-full blur-[110px] opacity-25 animate-pulse" style={{animationDuration: '10s', animationDelay: '2s'}}></div>
-          <div className="absolute top-[45%] right-[40%] w-36 h-36 bg-[#8b7355]/8 rounded-full blur-[85px] opacity-30 animate-pulse" style={{animationDuration: '11s', animationDelay: '1s'}}></div>
           
           {/* Left image */}
           <div className="hidden lg:block absolute left-[20%] top-[15%] w-[22%] h-[50%] z-4 group animate-slide-in-from-left" style={{transform: `translateY(${scrollY * 0.15}px)`, animationDelay: '0.3s', opacity: 0}}>
