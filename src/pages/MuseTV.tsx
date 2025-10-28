@@ -527,7 +527,7 @@ const MuseTV = () => {
       {/* Featured Content */}
       <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Видео подкасты</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {featuredContent.map(content => {
               const videoId = content.vkEmbed?.includes('rutube.ru') 
