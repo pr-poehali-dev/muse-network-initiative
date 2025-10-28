@@ -175,8 +175,6 @@ const Headliners = () => {
           
           {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
               src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
               alt="" 
@@ -188,9 +186,12 @@ const Headliners = () => {
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)'
               }}
             />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
-              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
-            }}></div>
+            
+            {/* Золотые кольца вокруг фото */}
+            <div className="absolute inset-0 pointer-events-none z-10">
+              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-spin" style={{animationDuration: '20s'}}></div>
+              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/50 shadow-[0_0_15px_rgba(184,149,61,0.3)] animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            </div>
           </div>
           
           {/* Cinematic overlays */}
