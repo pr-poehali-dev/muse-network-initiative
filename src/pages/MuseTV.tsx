@@ -654,17 +654,68 @@ const MuseTV = () => {
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-[95vw] w-[95vw] p-0 bg-black border-0">
-          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-            {selectedVideo?.vkEmbed && (
-              <iframe
-                src={selectedVideo.vkEmbed}
-                className="absolute inset-0 w-full h-full"
-                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                frameBorder="0"
-                allowFullScreen
-              ></iframe>
-            )}
-          </div>
+          {selectedVideo && (() => {
+            const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
+              ? selectedVideo.vkEmbed.split('/').pop()
+              : null;
+            const metadata = videoId ? videoMetadata[videoId] : null;
+
+            return (
+              <div className="flex flex-col gap-6 p-6">
+                {/* Video Player */}
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  {selectedVideo?.vkEmbed && (
+                    <iframe
+                      src={selectedVideo.vkEmbed}
+                      className="absolute inset-0 w-full h-full rounded-lg"
+                      allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                      frameBorder="0"
+                      allowFullScreen
+                    ></iframe>
+                  )}
+                </div>
+
+                {/* Video Info */}
+                <div className="space-y-4">
+                  <div>
+                    <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
+                      {metadata?.title || selectedVideo.title}
+                    </h2>
+                    <div className="flex items-center gap-6 text-white/60">
+                      <span className="flex items-center gap-2">
+                        <Icon name="Eye" size={18} />
+                        {metadata?.views 
+                          ? `${(metadata.views / 1000).toFixed(1)}K просмотров`
+                          : selectedVideo.views
+                        }
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Icon name="Clock" size={18} />
+                        {metadata?.duration 
+                          ? `${Math.floor(metadata.duration / 60)} мин`
+                          : selectedVideo.duration
+                        }
+                      </span>
+                      {selectedVideo.type && (
+                        <Badge className="bg-[#d4af37]/20 text-[#d4af37]">
+                          {selectedVideo.type}
+                        </Badge>
+                      )}
+                    </div>
+                  </div>
+
+                  {metadata?.description && (
+                    <div className="border-t border-white/10 pt-4">
+                      <h3 className="text-lg font-semibold text-white mb-2">Описание</h3>
+                      <p className="text-white/70 leading-relaxed whitespace-pre-line">
+                        {metadata.description}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
         </DialogContent>
       </Dialog>
     </div>
