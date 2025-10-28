@@ -151,11 +151,11 @@ const Headliners = () => {
           </div>
           
           {/* Center image - overlapping */}
-          <div className="absolute top-[15%] sm:top-[12%] lg:top-[6%] left-0 right-0 mx-6 sm:mx-8 lg:w-[26%] lg:left-1/2 lg:-translate-x-1/2 lg:mx-0 h-[40%] sm:h-[50%] lg:h-[60%] z-20 group animate-center-reveal" style={{transform: `translateY(${scrollY * 0.1}px)`}}>
+          <div className="absolute top-[15%] sm:top-[12%] lg:top-[6%] left-0 right-0 mx-6 sm:mx-8 lg:w-[26%] lg:mx-auto lg:left-0 lg:right-0 h-[40%] sm:h-[50%] lg:h-[60%] z-20 group animate-center-reveal" style={{transform: `translateY(${scrollY * 0.1}px)`}}>
             <div className="relative w-full h-full">
               <div className="absolute -inset-8 z-0">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/15,transparent_70%)] blur-[100px] animate-pulse" style={{animationDuration: '6s'}}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] border-2 border-[#d4af37]/20 rounded-full opacity-50"></div>
+
               </div>
               
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
@@ -173,7 +173,7 @@ const Headliners = () => {
               
               <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
-              <div className="absolute inset-0 border-3 border-[#d4af37]/40 group-hover:border-[#d4af37]/60 rounded-3xl transition-all duration-500 z-30 shadow-[inset_0_0_60px_rgba(212,175,55,0.1)]"></div>
+
             </div>
           </div>
           
