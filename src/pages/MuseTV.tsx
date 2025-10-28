@@ -197,7 +197,8 @@ const MuseTV = () => {
     return `${minutes} мин`;
   };
 
-  const formatViews = (views: number) => {
+  const formatViews = (views: number | undefined) => {
+    if (!views) return '0';
     if (views >= 1000000) {
       return `${(views / 1000000).toFixed(1)}M`;
     }
