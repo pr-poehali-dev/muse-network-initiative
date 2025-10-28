@@ -443,9 +443,14 @@ const MuseTV = () => {
                       <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
                     </div>
                     <div className="p-6">
-                      <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">
+                      <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors line-clamp-2">
                         {metadata?.title || content.title}
                       </h3>
+                      {metadata?.description && (
+                        <p className="text-white/60 text-sm mb-3 line-clamp-2">
+                          {metadata.description}
+                        </p>
+                      )}
                       <div className="flex items-center justify-between text-white/60 text-sm">
                         <span className="flex items-center gap-1">
                           <Icon name="Clock" size={14} />
