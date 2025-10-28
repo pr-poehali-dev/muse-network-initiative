@@ -163,6 +163,38 @@ const Headliners = () => {
           {/* Light effects */}
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40 animate-pulse" style={{animationDuration: '4s'}}></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
+          
+          {/* VIP Center Effects */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none z-25">
+            {/* Центральное сияние */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle,_#d4af37_0%,_transparent_70%)] opacity-20 animate-pulse" style={{animationDuration: '3s'}}></div>
+            
+            {/* Вращающиеся золотые кольца */}
+            <div className="absolute inset-0 rounded-full border-2 border-[#d4af37]/30 animate-spin" style={{animationDuration: '20s'}}></div>
+            <div className="absolute inset-8 rounded-full border border-[#b8953d]/20 animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
+            
+            {/* Блестящие частицы */}
+            <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '0s'}}></div>
+            <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-[#b8953d] rounded-full blur-sm animate-pulse" style={{animationDelay: '0.5s'}}></div>
+            <div className="absolute bottom-1/3 left-1/3 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1s'}}></div>
+            <div className="absolute bottom-1/4 right-1/3 w-1.5 h-1.5 bg-[#8b7355] rounded-full blur-sm animate-pulse" style={{animationDelay: '1.5s'}}></div>
+            
+            {/* Световые лучи */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-[#d4af37]/40 to-transparent opacity-50"></div>
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent opacity-50"></div>
+            
+            {/* Диагональные лучи */}
+            <div className="absolute inset-0 rotate-45">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-full bg-gradient-to-b from-transparent via-[#b8953d]/30 to-transparent opacity-40"></div>
+              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-[#b8953d]/30 to-transparent opacity-40"></div>
+            </div>
+            
+            {/* Золотые искры по краям */}
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37]/60 rounded-full blur-md animate-pulse" style={{animationDuration: '2s'}}></div>
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#d4af37]/60 rounded-full blur-md animate-pulse" style={{animationDuration: '2.5s'}}></div>
+            <div className="absolute top-1/2 -translate-y-1/2 -left-4 w-3 h-3 bg-[#b8953d]/60 rounded-full blur-md animate-pulse" style={{animationDuration: '2.2s'}}></div>
+            <div className="absolute top-1/2 -translate-y-1/2 -right-4 w-3 h-3 bg-[#b8953d]/60 rounded-full blur-md animate-pulse" style={{animationDuration: '2.7s'}}></div>
+          </div>
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
