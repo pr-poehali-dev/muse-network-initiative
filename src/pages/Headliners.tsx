@@ -122,7 +122,7 @@ const Headliners = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
+              src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
               alt="" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
@@ -137,32 +137,14 @@ const Headliners = () => {
             }}></div>
           </div>
           
-          {/* Center photo */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[26%] h-full opacity-70 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <img 
-              src="https://cdn.poehali.dev/files/59e79604-8033-448c-b05b-83254e17361d.jpg" 
-              alt="" 
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
-              style={{
-                objectPosition: '50% 30%',
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.9) 85%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 15%, rgba(0,0,0,0.9) 85%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(30%) contrast(1.15)'
-              }}
-            />
-            <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-60" style={{
-              background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.4) 0%, transparent 70%)'
-            }}></div>
-          </div>
+
           
           {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
+              src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
               alt="" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
