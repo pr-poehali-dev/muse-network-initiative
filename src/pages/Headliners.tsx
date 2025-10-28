@@ -112,6 +112,20 @@ const Headliners = () => {
             mixBlendMode: 'screen'
           }}></div>
           
+          {/* Mobile background photo */}
+          <div className="md:hidden absolute inset-0 opacity-40">
+            <img 
+              src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
+              alt="" 
+              className="w-full h-full object-cover"
+              style={{
+                objectPosition: '50% 30%',
+                filter: 'grayscale(20%) brightness(0.7)'
+              }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/80"></div>
+          </div>
+          
           {/* Left photo */}
           <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
