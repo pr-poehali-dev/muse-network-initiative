@@ -602,26 +602,18 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-none w-screen h-screen p-0 bg-black border-0 m-0">
-          <div className="relative w-full h-full">
-            <button
-              onClick={() => setSelectedVideo(null)}
-              className="absolute top-6 right-6 z-50 w-12 h-12 rounded-full bg-black/80 hover:bg-[#d4af37] text-white hover:text-black transition-all flex items-center justify-center shadow-lg"
-            >
-              <Icon name="X" size={28} />
-            </button>
-            {selectedVideo?.vkEmbed && (
-              <iframe
-                src={selectedVideo.vkEmbed}
-                width="100%"
-                height="100%"
-                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                frameBorder="0"
-                allowFullScreen
-                className="w-full h-full"
-              ></iframe>
-            )}
-          </div>
+        <DialogContent hideClose className="max-w-none w-screen h-screen p-0 bg-black border-0 m-0">
+          {selectedVideo?.vkEmbed && (
+            <iframe
+              src={selectedVideo.vkEmbed}
+              width="100%"
+              height="100%"
+              allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+              frameBorder="0"
+              allowFullScreen
+              className="w-full h-full"
+            ></iframe>
+          )}
         </DialogContent>
       </Dialog>
     </div>
