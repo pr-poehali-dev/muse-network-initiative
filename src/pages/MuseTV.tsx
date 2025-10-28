@@ -54,7 +54,8 @@ const MuseTV = () => {
       type: 'Видео',
       duration: '45 мин',
       views: '12.5K',
-      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800'
+      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800',
+      url: null
     },
     {
       id: 2,
@@ -62,7 +63,8 @@ const MuseTV = () => {
       type: 'Подкаст',
       duration: '32 мин',
       views: '8.2K',
-      thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=800'
+      thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=800',
+      url: null
     },
     {
       id: 3,
@@ -70,7 +72,18 @@ const MuseTV = () => {
       type: 'Видео',
       duration: '58 мин',
       views: '15.7K',
-      thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800'
+      thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800',
+      url: null
+    },
+    {
+      id: 4,
+      title: 'MUSE Podcast - Интервью с экспертами',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
+      url: 'https://vkvideo.ru/video-145018889_456239198',
+      vkEmbed: 'https://vk.com/video_ext.php?oid=-145018889&id=456239198&hd=2'
     }
   ];
 
@@ -365,15 +378,29 @@ const MuseTV = () => {
               <Card key={content.id} className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all">
                 <CardContent className="p-0">
                   <div className="relative aspect-video overflow-hidden">
-                    <img 
-                      src={content.thumbnail} 
-                      alt={content.title}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                      <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
-                    </div>
-                    <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black">{content.type}</Badge>
+                    {content.vkEmbed ? (
+                      <iframe
+                        src={content.vkEmbed}
+                        width="100%"
+                        height="100%"
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                        frameBorder="0"
+                        allowFullScreen
+                        className="absolute inset-0 w-full h-full"
+                      ></iframe>
+                    ) : (
+                      <>
+                        <img 
+                          src={content.thumbnail} 
+                          alt={content.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                          <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+                        </div>
+                      </>
+                    )}
+                    <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">{content.title}</h3>
