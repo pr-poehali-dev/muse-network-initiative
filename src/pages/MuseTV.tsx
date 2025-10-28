@@ -1,0 +1,502 @@
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import Icon from '@/components/ui/icon';
+import { useNavigate } from 'react-router-dom';
+
+const MuseTV = () => {
+  const navigate = useNavigate();
+  const [scrollY, setScrollY] = useState(0);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('all');
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isLive = true;
+  const viewersCount = 234;
+
+  const upcomingStreams = [
+    {
+      id: 1,
+      title: 'Секреты продвижения в социальных сетях',
+      date: '15 ноября 2024',
+      time: '19:00 МСК',
+      category: 'Мастер-класс',
+      speaker: 'Анна Петрова'
+    },
+    {
+      id: 2,
+      title: 'Интервью с основателем IT-стартапа',
+      date: '18 ноября 2024',
+      time: '20:00 МСК',
+      category: 'Интервью',
+      speaker: 'Дмитрий Иванов'
+    },
+    {
+      id: 3,
+      title: 'Искусство нетворкинга: как находить нужные связи',
+      date: '22 ноября 2024',
+      time: '18:30 МСК',
+      category: 'Лекция',
+      speaker: 'Мария Соколова'
+    }
+  ];
+
+  const featuredContent = [
+    {
+      id: 1,
+      title: 'Как создать успешный бизнес с нуля',
+      type: 'Видео',
+      duration: '45 мин',
+      views: '12.5K',
+      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800'
+    },
+    {
+      id: 2,
+      title: 'Психология успеха в переговорах',
+      type: 'Подкаст',
+      duration: '32 мин',
+      views: '8.2K',
+      thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=800'
+    },
+    {
+      id: 3,
+      title: 'Мастер-класс по личному бренду',
+      type: 'Видео',
+      duration: '58 мин',
+      views: '15.7K',
+      thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800'
+    }
+  ];
+
+  const contentLibrary = [
+    {
+      id: 1,
+      title: 'Основы инвестирования для начинающих',
+      type: 'video',
+      category: 'Лекции',
+      duration: '42 мин',
+      views: '9.8K',
+      date: '10.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600'
+    },
+    {
+      id: 2,
+      title: 'Разбор успешных кейсов в бизнесе',
+      type: 'video',
+      category: 'Разборы',
+      duration: '35 мин',
+      views: '11.2K',
+      date: '08.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600'
+    },
+    {
+      id: 3,
+      title: 'Интервью с успешным предпринимателем',
+      type: 'podcast',
+      category: 'Интервью',
+      duration: '28 мин',
+      views: '7.5K',
+      date: '05.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600'
+    },
+    {
+      id: 4,
+      title: 'Тренды маркетинга 2024',
+      type: 'video',
+      category: 'Новости',
+      duration: '22 мин',
+      views: '13.4K',
+      date: '03.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=600'
+    },
+    {
+      id: 5,
+      title: 'Как выйти на международный рынок',
+      type: 'podcast',
+      category: 'Лекции',
+      duration: '50 мин',
+      views: '6.9K',
+      date: '01.11.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600'
+    },
+    {
+      id: 6,
+      title: 'Секреты эффективного тайм-менеджмента',
+      type: 'video',
+      category: 'Мастер-классы',
+      duration: '38 мин',
+      views: '10.1K',
+      date: '29.10.2024',
+      thumbnail: 'https://images.unsplash.com/photo-1434626881859-194d67b2b86f?w=600'
+    }
+  ];
+
+  const popularPodcasts = [
+    {
+      id: 1,
+      title: 'Бизнес без границ',
+      episodes: 24,
+      subscribers: '15K',
+      platforms: ['apple', 'spotify', 'yandex']
+    },
+    {
+      id: 2,
+      title: 'Истории успеха',
+      episodes: 18,
+      subscribers: '12K',
+      platforms: ['apple', 'spotify', 'yandex']
+    },
+    {
+      id: 3,
+      title: 'Технологии будущего',
+      episodes: 31,
+      subscribers: '18K',
+      platforms: ['apple', 'spotify', 'yandex']
+    }
+  ];
+
+  const archiveEvents = [
+    {
+      id: 1,
+      title: 'Конференция "Будущее бизнеса 2024"',
+      date: '25.10.2024',
+      duration: '2 ч 45 мин',
+      views: '22.3K'
+    },
+    {
+      id: 2,
+      title: 'Круглый стол: Цифровая трансформация',
+      date: '20.10.2024',
+      duration: '1 ч 30 мин',
+      views: '18.7K'
+    },
+    {
+      id: 3,
+      title: 'Встреча клуба MUSE: Нетворкинг сессия',
+      date: '15.10.2024',
+      duration: '3 ч 15 мин',
+      views: '14.2K'
+    }
+  ];
+
+  const filteredContent = contentLibrary.filter(item => {
+    const typeMatch = activeFilter === 'all' || item.type === activeFilter;
+    const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
+    return typeMatch && categoryMatch;
+  });
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
+      {/* Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/20">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-8">
+              <button onClick={() => navigate('/')} className="text-2xl font-bold text-[#d4af37] hover:opacity-80 transition-opacity">
+                MUSE
+              </button>
+              <nav className="hidden md:flex items-center gap-6">
+                <button onClick={() => navigate('/')} className="text-white/70 hover:text-white transition-colors text-sm">Главная</button>
+                <button className="text-white hover:text-[#d4af37] transition-colors text-sm font-medium">MUSE TV</button>
+                <button onClick={() => navigate('/headliners')} className="text-white/70 hover:text-white transition-colors text-sm">Хэдлайнеры</button>
+              </nav>
+            </div>
+            <Button className="bg-[#d4af37] hover:bg-[#c4a137] text-black">
+              Подписаться
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 px-6">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent"></div>
+        <div className="container mx-auto relative z-10">
+          <div className="text-center max-w-3xl mx-auto animate-fade-in">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-[#d4af37]">
+              MUSE TV
+            </h1>
+            <p className="text-xl text-white/70 mb-8">
+              Эксклюзивный контент, прямые эфиры и архив событий клуба
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Live Section */}
+      {isLive && (
+        <section className="py-12 px-6">
+          <div className="container mx-auto">
+            <div className="flex items-center gap-3 mb-6">
+              <Badge className="bg-red-600 text-white animate-pulse">
+                <div className="w-2 h-2 bg-white rounded-full mr-2"></div>
+                LIVE
+              </Badge>
+              <span className="text-white/60 text-sm flex items-center gap-2">
+                <Icon name="Users" size={16} />
+                {viewersCount.toLocaleString()} зрителей
+              </span>
+            </div>
+            
+            <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden">
+              <CardContent className="p-0">
+                <div className="relative aspect-video bg-gradient-to-br from-[#d4af37]/20 to-black">
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
+                    <h3 className="text-2xl font-bold mb-2">Секреты успешного нетворкинга</h3>
+                    <p className="text-white/70">Прямой эфир с экспертами клуба MUSE</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
+
+      {/* Upcoming Streams */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {upcomingStreams.map(stream => (
+              <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
+                <CardContent className="p-6">
+                  <Badge className="mb-4 bg-[#d4af37]/20 text-[#d4af37]">{stream.category}</Badge>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
+                  <div className="space-y-2 text-white/60 text-sm mb-4">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calendar" size={16} />
+                      {stream.date}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Clock" size={16} />
+                      {stream.time}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="User" size={16} />
+                      {stream.speaker}
+                    </div>
+                  </div>
+                  <Button className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
+                    Напомнить
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Content */}
+      <section className="py-16 px-6 bg-gradient-to-b from-transparent to-black/50">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {featuredContent.map(content => (
+              <Card key={content.id} className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img 
+                      src={content.thumbnail} 
+                      alt={content.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                      <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+                    </div>
+                    <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black">{content.type}</Badge>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">{content.title}</h3>
+                    <div className="flex items-center justify-between text-white/60 text-sm">
+                      <span className="flex items-center gap-1">
+                        <Icon name="Clock" size={14} />
+                        {content.duration}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Icon name="Eye" size={14} />
+                        {content.views}
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Main Catalog */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Каталог контента</h2>
+          
+          {/* Filters */}
+          <div className="mb-8 space-y-4">
+            <div>
+              <p className="text-white/60 text-sm mb-3">Тип контента</p>
+              <div className="flex flex-wrap gap-2">
+                {['all', 'video', 'podcast', 'stream'].map(filter => (
+                  <Button
+                    key={filter}
+                    onClick={() => setActiveFilter(filter)}
+                    className={`${
+                      activeFilter === filter
+                        ? 'bg-[#d4af37] text-black'
+                        : 'bg-black/40 text-white border border-[#d4af37]/20 hover:border-[#d4af37]/50'
+                    }`}
+                  >
+                    {filter === 'all' ? 'Все' : filter === 'video' ? 'Видео' : filter === 'podcast' ? 'Подкаст' : 'Трансляция'}
+                  </Button>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <p className="text-white/60 text-sm mb-3">Категория</p>
+              <div className="flex flex-wrap gap-2">
+                {['all', 'Интервью', 'Лекции', 'Разборы', 'Новости', 'Мастер-классы'].map(category => (
+                  <Button
+                    key={category}
+                    onClick={() => setActiveCategory(category)}
+                    className={`${
+                      activeCategory === category
+                        ? 'bg-[#d4af37] text-black'
+                        : 'bg-black/40 text-white border border-[#d4af37]/20 hover:border-[#d4af37]/50'
+                    }`}
+                  >
+                    {category === 'all' ? 'Все' : category}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Content Grid */}
+          <div className="grid md:grid-cols-3 gap-6">
+            {filteredContent.map(item => (
+              <Card key={item.id} className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all">
+                <CardContent className="p-0">
+                  <div className="relative aspect-video overflow-hidden">
+                    <img 
+                      src={item.thumbnail} 
+                      alt={item.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                      <Icon name={item.type === 'video' ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                    </div>
+                  </div>
+                  <div className="p-4">
+                    <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{item.title}</h3>
+                    <div className="flex items-center justify-between text-white/60 text-xs">
+                      <span>{item.duration}</span>
+                      <span>{item.views} просмотров</span>
+                    </div>
+                    <p className="text-white/40 text-xs mt-1">{item.date}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Popular Podcasts */}
+      <section className="py-16 px-6 bg-gradient-to-b from-black/50 to-transparent">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Популярные подкасты</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {popularPodcasts.map(podcast => (
+              <Card key={podcast.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all">
+                <CardContent className="p-6">
+                  <div className="flex items-start gap-4 mb-4">
+                    <div className="w-16 h-16 bg-[#d4af37]/20 rounded-lg flex items-center justify-center">
+                      <Icon name="Mic" size={32} className="text-[#d4af37]" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-1">{podcast.title}</h3>
+                      <p className="text-white/60 text-sm">{podcast.episodes} выпусков</p>
+                      <p className="text-white/40 text-xs">{podcast.subscribers} подписчиков</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3 mb-4">
+                    {podcast.platforms.map(platform => (
+                      <button key={platform} className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#d4af37]/20 transition-colors">
+                        <Icon name="Radio" size={16} className="text-white/60" />
+                      </button>
+                    ))}
+                  </div>
+                  <Button className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
+                    Слушать
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Archive */}
+      <section className="py-16 px-6">
+        <div className="container mx-auto">
+          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Архив трансляций</h2>
+          <div className="space-y-4">
+            {archiveEvents.map(event => (
+              <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
+                      <div className="flex items-center gap-6 text-white/60 text-sm">
+                        <span className="flex items-center gap-2">
+                          <Icon name="Calendar" size={14} />
+                          {event.date}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Clock" size={14} />
+                          {event.duration}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Eye" size={14} />
+                          {event.views} просмотров
+                        </span>
+                      </div>
+                    </div>
+                    <Button className="bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
+                      Смотреть
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer CTA */}
+      <section className="py-20 px-6 bg-gradient-to-t from-[#d4af37]/10 to-transparent">
+        <div className="container mx-auto text-center">
+          <h2 className="text-4xl font-bold mb-4 text-[#d4af37]">Не пропустите новый контент</h2>
+          <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
+            Подпишитесь на рассылку и получайте уведомления о новых эфирах и выпусках
+          </p>
+          <Button className="bg-[#d4af37] hover:bg-[#c4a137] text-black text-lg px-12 py-6">
+            Подписаться на рассылку
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default MuseTV;
