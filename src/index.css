@@ -204,20 +204,28 @@ body::-webkit-scrollbar {
   }
 
   .animate-center-reveal {
-    animation: center-reveal 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: center-reveal 3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
   @keyframes center-reveal {
     0% {
       opacity: 0;
-      filter: blur(20px) brightness(0.3);
+      transform: scale(0.92);
+      filter: blur(30px) brightness(0.2);
     }
-    40% {
-      opacity: 0.5;
-      filter: blur(10px) brightness(0.4);
+    30% {
+      opacity: 0.3;
+      transform: scale(0.95);
+      filter: blur(15px) brightness(0.35);
+    }
+    60% {
+      opacity: 0.6;
+      transform: scale(0.98);
+      filter: blur(5px) brightness(0.6);
     }
     100% {
       opacity: 1;
+      transform: scale(1);
       filter: blur(0) brightness(1);
     }
   }
