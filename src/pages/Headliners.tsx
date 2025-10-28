@@ -280,7 +280,7 @@ const Headliners = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col justify-center space-y-6 sm:space-y-8 items-center lg:items-start">
+                <div className="flex flex-col justify-center space-y-6 sm:space-y-8 items-start">
                   <div className="relative">
                     <div className="absolute -inset-4 bg-[#d4af37]/5 rounded-2xl blur-xl"></div>
                     <div className="relative bg-black/50 backdrop-blur-sm px-6 sm:px-8 py-4 sm:py-5 rounded-xl border border-[#d4af37]/30 inline-flex items-center gap-4">
@@ -292,7 +292,7 @@ const Headliners = () => {
                     </div>
                   </div>
 
-                  <div className="space-y-4 text-center lg:text-left">
+                  <div className="space-y-4 text-left">
                     <p className="text-base sm:text-lg md:text-xl text-white/90 leading-relaxed">
                       Опытный специалист в области цифрового маркетинга с более чем <span className="text-[#d4af37] font-bold">10-летним опытом</span> работы.
                     </p>
