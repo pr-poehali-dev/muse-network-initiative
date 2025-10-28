@@ -134,6 +134,34 @@ const MuseTV = () => {
     return null;
   });
 
+  useEffect(() => {
+    if (randomPodcast?.vkEmbed) {
+      const videoId = randomPodcast.vkEmbed.split('/').pop();
+      if (videoId) {
+        fetchRutubeMetadata(videoId);
+      }
+    }
+  }, [randomPodcast]);
+
+  const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    if (hours > 0) {
+      return `${hours} ч ${minutes} мин`;
+    }
+    return `${minutes} мин`;
+  };
+
+  const formatViews = (views: number) => {
+    if (views >= 1000000) {
+      return `${(views / 1000000).toFixed(1)}M`;
+    }
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}K`;
+    }
+    return views.toString();
+  };
+
   const contentLibrary = [
     {
       id: 1,
@@ -366,10 +394,16 @@ const MuseTV = () => {
                 <Icon name="Radio" size={14} className="mr-2" />
                 Рекомендуем посмотреть
               </Badge>
-              <span className="text-white/60 text-sm flex items-center gap-2">
-                <Icon name="Eye" size={16} />
-                {randomPodcast.views} просмотров
-              </span>
+              {(() => {
+                const videoId = randomPodcast.vkEmbed?.split('/').pop();
+                const metadata = videoId ? videoMetadata[videoId] : null;
+                return metadata ? (
+                  <span className="text-white/60 text-sm flex items-center gap-2">
+                    <Icon name="Eye" size={16} />
+                    {formatViews(metadata.views)} просмотров
+                  </span>
+                ) : null;
+              })()}
             </div>
             
             <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
@@ -391,12 +425,32 @@ const MuseTV = () => {
                 <div className="p-6">
                   <h3 className="text-2xl font-bold mb-2">{randomPodcast.title}</h3>
                   <div className="flex items-center gap-4 text-white/70">
-                    <span className="flex items-center gap-1">
-                      <Icon name="Clock" size={16} />
-                      {randomPodcast.duration}
-                    </span>
-                    <span>•</span>
-                    <span>{randomPodcast.type}</span>
+                    {(() => {
+                      const videoId = randomPodcast.vkEmbed?.split('/').pop();
+                      const metadata = videoId ? videoMetadata[videoId] : null;
+                      return metadata ? (
+                        <>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={16} />
+                            {formatDuration(metadata.duration)}
+                          </span>
+                          <span>•</span>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Eye" size={16} />
+                            {formatViews(metadata.views)}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={16} />
+                            {randomPodcast.duration}
+                          </span>
+                          <span>•</span>
+                          <span>{randomPodcast.type}</span>
+                        </>
+                      );
+                    })()}
                   </div>
                 </div>
               </CardContent>
