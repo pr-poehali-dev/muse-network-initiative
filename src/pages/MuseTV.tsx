@@ -59,14 +59,6 @@ const MuseTV = () => {
   const isLive = false;
   const viewersCount = 234;
 
-  const podcastVideos = featuredContent.filter(item => item.vkEmbed);
-  const [randomPodcast] = useState(() => {
-    if (podcastVideos.length > 0) {
-      return podcastVideos[Math.floor(Math.random() * podcastVideos.length)];
-    }
-    return null;
-  });
-
   const upcomingStreams = [
     {
       id: 1,
@@ -133,6 +125,14 @@ const MuseTV = () => {
       vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
     }
   ];
+
+  const podcastVideos = featuredContent.filter(item => item.vkEmbed);
+  const [randomPodcast] = useState(() => {
+    if (podcastVideos.length > 0) {
+      return podcastVideos[Math.floor(Math.random() * podcastVideos.length)];
+    }
+    return null;
+  });
 
   const contentLibrary = [
     {
