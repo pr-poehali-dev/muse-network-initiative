@@ -411,7 +411,7 @@ const MuseTV = () => {
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-[#d4af37] text-black">
                 <Icon name="Radio" size={14} className="mr-2" />
-                Рекомендуем посмотреть
+                Видео подкасты
               </Badge>
               {(() => {
                 const videoId = randomPodcast.vkEmbed?.split('/').pop();
