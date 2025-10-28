@@ -5,9 +5,11 @@ import { Button } from '@/components/ui/button';
 interface HeaderProps {
   titleInHeader?: boolean;
   onScrollToSection?: (section: string) => void;
+  onOpenExpertDialog?: () => void;
+  onOpenJoinDialog?: () => void;
 }
 
-const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
+const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, onOpenJoinDialog }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -154,21 +156,10 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
             <div className="w-full max-w-md space-y-4 mt-8">
               <Button
                 onClick={() => {
-                  if (location.pathname !== '/') {
-                    navigate('/');
-                    setTimeout(() => {
-                      const element = document.getElementById('experts');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }, 100);
-                  } else {
-                    const element = document.getElementById('experts');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
                   setIsMobileMenuOpen(false);
+                  if (onOpenExpertDialog) {
+                    onOpenExpertDialog();
+                  }
                 }}
                 className="w-full bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black text-base font-bold py-5 transition-all duration-300"
               >
@@ -177,21 +168,10 @@ const Header = ({ titleInHeader = false, onScrollToSection }: HeaderProps) => {
 
               <Button
                 onClick={() => {
-                  if (location.pathname !== '/') {
-                    navigate('/');
-                    setTimeout(() => {
-                      const element = document.getElementById('join');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }, 100);
-                  } else {
-                    const element = document.getElementById('join');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
                   setIsMobileMenuOpen(false);
+                  if (onOpenJoinDialog) {
+                    onOpenJoinDialog();
+                  }
                 }}
                 className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black text-base font-bold py-5 shadow-2xl shadow-[#d4af37]/30"
               >
