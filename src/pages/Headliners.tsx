@@ -154,7 +154,7 @@ const Headliners = () => {
               <div className="absolute inset-0 bg-[#d4af37]/0 group-hover:bg-[#d4af37]/15 rounded-3xl transition-all duration-500 blur-2xl z-10"></div>
               
               <img 
-                src="https://cdn.poehali.dev/files/ab4cf310-086c-470f-8610-ee900bd26007.jpg" 
+                src="https://cdn.poehali.dev/files/3125a1d7-e384-403a-8436-f4c5e05fdc08.jpg" 
                 alt="Юлия Викторова" 
                 className="relative z-20 w-full h-full object-cover rounded-3xl transition-all duration-700 group-hover:scale-105 shadow-[0_0_80px_rgba(212,175,55,0.4)]"
                 style={{
