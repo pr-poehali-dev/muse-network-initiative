@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 
 const Headliners = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,26 +18,10 @@ const Headliners = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const navHeight = 80;
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      
-      setIsMobileMenuOpen(false);
-    }
-  };
-
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
-        <Header titleInHeader={scrollY > 100} />
+      <Layout titleInHeader={scrollY > 100}>
+        <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
 
       {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12">
@@ -446,7 +429,8 @@ const Headliners = () => {
           </div>
         </div>
       </section>
-      </div>
+        </div>
+      </Layout>
     </PageTransition>
   );
 };

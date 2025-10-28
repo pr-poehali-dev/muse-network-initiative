@@ -5,7 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
-import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 
 const MuseTV = () => {
@@ -307,8 +307,8 @@ const MuseTV = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
-        <Header titleInHeader={scrollY > 100} />
+      <Layout titleInHeader={scrollY > 100}>
+        <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
 
       {/* Hero */}
       <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
@@ -832,7 +832,8 @@ const MuseTV = () => {
           })()}
         </DialogContent>
       </Dialog>
-      </div>
+        </div>
+      </Layout>
     </PageTransition>
   );
 };
