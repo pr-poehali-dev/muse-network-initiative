@@ -130,8 +130,6 @@ const Headliners = () => {
 
           {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-100 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
               src="https://cdn.poehali.dev/files/2369818b-9458-422b-93ea-c39335bb7f6d.jpg" 
               alt="" 
@@ -143,9 +141,6 @@ const Headliners = () => {
                 filter: 'grayscale(0%) contrast(1.1) brightness(1.3)'
               }}
             />
-            <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-40" style={{
-              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.2) 0%, transparent 60%)'
-            }}></div>
           </div>
           
           {/* Cinematic overlays */}
