@@ -88,33 +88,6 @@ const MuseTV = () => {
 
   const featuredContent = [
     {
-      id: 1,
-      title: 'Как создать успешный бизнес с нуля',
-      type: 'Видео',
-      duration: '45 мин',
-      views: '12.5K',
-      thumbnail: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800',
-      url: null
-    },
-    {
-      id: 2,
-      title: 'Психология успеха в переговорах',
-      type: 'Подкаст',
-      duration: '32 мин',
-      views: '8.2K',
-      thumbnail: 'https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=800',
-      url: null
-    },
-    {
-      id: 3,
-      title: 'Мастер-класс по личному бренду',
-      type: 'Видео',
-      duration: '58 мин',
-      views: '15.7K',
-      thumbnail: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800',
-      url: null
-    },
-    {
       id: 4,
       title: 'MUSE Podcast - Интервью с экспертами',
       type: 'Подкаст',
