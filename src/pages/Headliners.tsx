@@ -137,27 +137,6 @@ const Headliners = () => {
             }}></div>
           </div>
           
-          {/* Center photo */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 w-[34%] h-full opacity-85 group animate-center-reveal z-10" style={{transform: `translateX(-50%) translateY(${scrollY * 0.1}px)`}}>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37/25,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <img 
-              src="https://cdn.poehali.dev/files/2369818b-9458-422b-93ea-c39335bb7f6d.jpg" 
-              alt="" 
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
-              style={{
-                objectPosition: '50% 30%',
-                maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(0%) contrast(1.05) brightness(1.1)'
-              }}
-            />
-            <div className="absolute inset-0 opacity-40 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-60" style={{
-              background: 'radial-gradient(circle at 50% 50%, rgba(212,175,55,0.4) 0%, transparent 70%)'
-            }}></div>
-          </div>
-
-          
           {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
@@ -191,16 +170,18 @@ const Headliners = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full text-center px-4 relative z-30 pt-[40vh] sm:pt-[45vh] md:pt-0">
-          <div className="relative inline-block mb-6 sm:mb-8 md:mb-10 animate-title-appear group" style={{animationDelay: '0.8s', opacity: 0}}>
-            <div className="absolute -inset-8 bg-gradient-to-r from-[#d4af37]/0 via-[#d4af37]/20 to-[#d4af37]/0 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
-            <div className="absolute -inset-4 bg-[#d4af37]/10 blur-2xl animate-pulse" style={{animationDuration: '3s'}}></div>
-            
-            <h1 className="relative text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 tracking-wide md:tracking-wider drop-shadow-[0_0_40px_rgba(212,175,55,0.5)] transition-all duration-500 group-hover:drop-shadow-[0_0_60px_rgba(212,175,55,0.8)]">
+        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+          <div 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
+            style={{
+              animationDelay: '0.8s',
+              opacity: 0
+            }}
+          >
+            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               MUSE
             </h1>
-            
-            <div className="absolute inset-0 text-7xl sm:text-8xl md:text-[10rem] lg:text-[12rem] font-black text-[#d4af37]/5 blur-xl animate-pulse" style={{animationDuration: '4s'}}>
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               MUSE
             </div>
           </div>
