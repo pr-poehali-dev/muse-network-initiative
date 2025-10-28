@@ -181,6 +181,8 @@ const Headliners = () => {
               />
               <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
               <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/80 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute top-0 bottom-0 left-0 w-1/4 bg-gradient-to-r from-black via-black/60 to-transparent rounded-3xl z-30 pointer-events-none"></div>
+              <div className="absolute top-0 bottom-0 right-0 w-1/4 bg-gradient-to-l from-black via-black/60 to-transparent rounded-3xl z-30 pointer-events-none"></div>
               
               <div className="absolute inset-0 bg-black/65 rounded-3xl z-21"></div>
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/95 to-black/20 rounded-3xl z-25"></div>
