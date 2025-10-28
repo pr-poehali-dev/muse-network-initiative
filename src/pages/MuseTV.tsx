@@ -272,9 +272,15 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Live Section */}
       {isLive && (
-        <section className="py-12 px-6">
+        <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-red-600 text-white animate-pulse">
@@ -304,8 +310,14 @@ const MuseTV = () => {
         </section>
       )}
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Upcoming Streams */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -338,8 +350,14 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Featured Content */}
-      <section className="py-16 px-6 bg-gradient-to-b from-transparent to-black/50">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -377,8 +395,14 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Main Catalog */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Каталог контента</h2>
           
@@ -454,8 +478,14 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Popular Podcasts */}
-      <section className="py-16 px-6 bg-gradient-to-b from-black/50 to-transparent">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Популярные подкасты</h2>
           <div className="grid md:grid-cols-3 gap-6">
@@ -489,8 +519,14 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Archive */}
-      <section className="py-16 px-6">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Архив трансляций</h2>
           <div className="space-y-4">
@@ -526,8 +562,14 @@ const MuseTV = () => {
         </div>
       </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
+
       {/* Footer CTA */}
-      <section className="py-20 px-6 bg-gradient-to-t from-[#d4af37]/10 to-transparent">
+      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl font-bold mb-4 text-[#d4af37]">Не пропустите новый контент</h2>
           <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
