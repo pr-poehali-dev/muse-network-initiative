@@ -113,7 +113,7 @@ const Headliners = () => {
           }}></div>
           
           {/* VIP Center Effects - BEHIND PHOTOS */}
-          <div className="absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none z-[5]">
+          <div className="absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none z-[5] opacity-0 animate-title-appear" style={{animationDelay: '0.6s'}}>
             {/* Центральное сияние */}
             <div className="absolute inset-0 bg-[radial-gradient(circle,_#d4af37_0%,_transparent_60%)] opacity-40 animate-pulse" style={{animationDuration: '3s'}}></div>
             
