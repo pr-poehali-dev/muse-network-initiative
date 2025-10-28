@@ -112,41 +112,6 @@ const Headliners = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          {/* VIP Center Effects - BEHIND PHOTOS */}
-          <div className="absolute left-1/2 top-[30%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] pointer-events-none z-[5] opacity-0 animate-title-appear" style={{animationDelay: '0.6s'}}>
-            {/* Центральное сияние */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle,_#d4af37_0%,_transparent_60%)] opacity-40 animate-pulse" style={{animationDuration: '3s'}}></div>
-            
-            {/* Вращающиеся золотые кольца */}
-            <div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/60 shadow-[0_0_30px_rgba(212,175,55,0.5)] animate-spin" style={{animationDuration: '20s'}}></div>
-            <div className="absolute inset-12 rounded-full border-2 border-[#b8953d]/50 shadow-[0_0_20px_rgba(184,149,61,0.4)] animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
-            <div className="absolute inset-24 rounded-full border border-[#d4af37]/40 shadow-[0_0_15px_rgba(212,175,55,0.3)] animate-spin" style={{animationDuration: '25s'}}></div>
-            
-            {/* Блестящие частицы */}
-            <div className="absolute top-1/4 left-1/4 w-4 h-4 bg-[#d4af37] rounded-full shadow-[0_0_20px_#d4af37] animate-pulse" style={{animationDelay: '0s'}}></div>
-            <div className="absolute top-1/3 right-1/4 w-3 h-3 bg-[#b8953d] rounded-full shadow-[0_0_15px_#b8953d] animate-pulse" style={{animationDelay: '0.5s'}}></div>
-            <div className="absolute bottom-1/3 left-1/3 w-4 h-4 bg-[#d4af37] rounded-full shadow-[0_0_20px_#d4af37] animate-pulse" style={{animationDelay: '1s'}}></div>
-            <div className="absolute bottom-1/4 right-1/3 w-3 h-3 bg-[#8b7355] rounded-full shadow-[0_0_15px_#8b7355] animate-pulse" style={{animationDelay: '1.5s'}}></div>
-            <div className="absolute top-1/2 left-1/4 w-2 h-2 bg-[#d4af37] rounded-full shadow-[0_0_10px_#d4af37] animate-pulse" style={{animationDelay: '0.7s'}}></div>
-            <div className="absolute top-1/2 right-1/4 w-2 h-2 bg-[#b8953d] rounded-full shadow-[0_0_10px_#b8953d] animate-pulse" style={{animationDelay: '1.2s'}}></div>
-            
-            {/* Световые лучи */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-60 blur-sm"></div>
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-60 blur-sm"></div>
-            
-            {/* Диагональные лучи */}
-            <div className="absolute inset-0 rotate-45">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[2px] h-full bg-gradient-to-b from-transparent via-[#b8953d] to-transparent opacity-50 blur-sm"></div>
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-[2px] bg-gradient-to-r from-transparent via-[#b8953d] to-transparent opacity-50 blur-sm"></div>
-            </div>
-            
-            {/* Золотые искры по краям */}
-            <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#d4af37] rounded-full shadow-[0_0_30px_#d4af37] animate-pulse" style={{animationDuration: '2s'}}></div>
-            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-6 h-6 bg-[#d4af37] rounded-full shadow-[0_0_30px_#d4af37] animate-pulse" style={{animationDuration: '2.5s'}}></div>
-            <div className="absolute top-1/2 -translate-y-1/2 -left-6 w-6 h-6 bg-[#b8953d] rounded-full shadow-[0_0_30px_#b8953d] animate-pulse" style={{animationDuration: '2.2s'}}></div>
-            <div className="absolute top-1/2 -translate-y-1/2 -right-6 w-6 h-6 bg-[#b8953d] rounded-full shadow-[0_0_30px_#b8953d] animate-pulse" style={{animationDuration: '2.7s'}}></div>
-          </div>
-          
           {/* Left photo */}
           <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
@@ -165,16 +130,12 @@ const Headliners = () => {
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
-            
-            {/* Золотые кольца вокруг фото */}
-            <div className="absolute inset-0 pointer-events-none z-10">
-              <div className="absolute inset-[-10px] rounded-full border-2 border-[#d4af37]/60 shadow-[0_0_20px_rgba(212,175,55,0.4)] animate-spin" style={{animationDuration: '20s'}}></div>
-              <div className="absolute inset-[-20px] rounded-full border border-[#b8953d]/50 shadow-[0_0_15px_rgba(184,149,61,0.3)] animate-spin" style={{animationDuration: '15s', animationDirection: 'reverse'}}></div>
-            </div>
           </div>
           
           {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
               src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
               alt="" 
@@ -186,6 +147,9 @@ const Headliners = () => {
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)'
               }}
             />
+            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
+              background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
+            }}></div>
           </div>
           
           {/* Cinematic overlays */}
