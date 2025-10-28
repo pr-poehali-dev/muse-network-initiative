@@ -4,12 +4,14 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
+import { Dialog, DialogContent } from '@/components/ui/dialog';
 
 const MuseTV = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
+  const [selectedVideo, setSelectedVideo] = useState<any>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -375,31 +377,21 @@ const MuseTV = () => {
           <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Рекомендуем к просмотру</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {featuredContent.map(content => (
-              <Card key={content.id} className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all">
+              <Card 
+                key={content.id} 
+                className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                onClick={() => content.vkEmbed && setSelectedVideo(content)}
+              >
                 <CardContent className="p-0">
                   <div className="relative aspect-video overflow-hidden">
-                    {content.vkEmbed ? (
-                      <iframe
-                        src={content.vkEmbed}
-                        width="100%"
-                        height="100%"
-                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                        frameBorder="0"
-                        allowFullScreen
-                        className="absolute inset-0 w-full h-full"
-                      ></iframe>
-                    ) : (
-                      <>
-                        <img 
-                          src={content.thumbnail} 
-                          alt={content.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                          <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
-                        </div>
-                      </>
-                    )}
+                    <img 
+                      src={content.thumbnail} 
+                      alt={content.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                      <Icon name="Play" size={60} className="text-white opacity-80 group-hover:scale-110 transition-transform" />
+                    </div>
                     <Badge className="absolute top-4 left-4 bg-[#d4af37] text-black z-10">{content.type}</Badge>
                   </div>
                   <div className="p-6">
@@ -607,6 +599,31 @@ const MuseTV = () => {
           </Button>
         </div>
       </section>
+
+      {/* Video Dialog */}
+      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+        <DialogContent className="max-w-[95vw] w-full h-[95vh] p-0 bg-black border-[#d4af37]/30">
+          <div className="relative w-full h-full">
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/80 hover:bg-[#d4af37] text-white hover:text-black transition-all flex items-center justify-center"
+            >
+              <Icon name="X" size={24} />
+            </button>
+            {selectedVideo?.vkEmbed && (
+              <iframe
+                src={selectedVideo.vkEmbed}
+                width="100%"
+                height="100%"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                frameBorder="0"
+                allowFullScreen
+                className="w-full h-full"
+              ></iframe>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
