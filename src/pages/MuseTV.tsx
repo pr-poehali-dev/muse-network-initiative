@@ -479,9 +479,8 @@ const MuseTV = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
-                const currentMetadata = videoId ? videoMetadata[videoId] : null;
-                const displayTitle = currentMetadata?.title || (item.title && item.title.trim()) || 'Загрузка...';
-
+                const metadata = videoId && videoMetadata[videoId];
+                
                 return (
                   <Card 
                     key={`${item.id}-${updateTrigger}`}
@@ -490,14 +489,13 @@ const MuseTV = () => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {currentMetadata?.thumbnail ? (
+                        {metadata?.thumbnail && (
                           <img 
-                            src={currentMetadata.thumbnail} 
-                            alt={displayTitle}
+                            src={metadata.thumbnail} 
+                            alt={metadata.title || 'Видео'}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}
                           />
-                        ) : null}
+                        )}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
                           <Icon name="Play" size={50} className="text-white opacity-80" />
                         </div>
@@ -505,22 +503,22 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {displayTitle}
+                          {metadata?.title || (item.title?.trim() || 'Загрузка...')}
                         </h3>
-                        {currentMetadata?.description && (
+                        {metadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {currentMetadata.description}
+                            {metadata.description}
                           </p>
                         )}
-                        {currentMetadata && (
+                        {metadata && (
                           <div className="flex items-center justify-between text-white/60 text-xs">
                             <span className="flex items-center gap-1">
                               <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                              {formatDuration(currentMetadata.duration)}
+                              {formatDuration(metadata.duration)}
                             </span>
                             <span className="flex items-center gap-1">
                               <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                              {formatViews(currentMetadata.views)}
+                              {formatViews(metadata.views)}
                             </span>
                           </div>
                         )}
