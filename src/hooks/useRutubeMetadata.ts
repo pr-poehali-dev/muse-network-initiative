@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { VideoMetadata } from '@/data/museTvData';
 
 const RUTUBE_METADATA_API = 'https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f';
@@ -6,11 +6,13 @@ const RUTUBE_METADATA_API = 'https://functions.poehali.dev/2f9b4509-3a9d-47f2-97
 export const useRutubeMetadata = (videoIds: string[]) => {
   const [metadata, setMetadata] = useState<Record<string, VideoMetadata>>({});
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+  const loadedRef = useRef<Set<string>>(new Set());
 
   const fetchMetadata = useCallback(async (videoId: string): Promise<VideoMetadata | null> => {
     if (metadata[videoId]) return metadata[videoId];
-    if (loading[videoId]) return null;
+    if (loading[videoId] || loadedRef.current.has(videoId)) return null;
     
+    loadedRef.current.add(videoId);
     setLoading(prev => ({ ...prev, [videoId]: true }));
     
     try {
@@ -43,9 +45,25 @@ export const useRutubeMetadata = (videoIds: string[]) => {
     } catch (error) {
       console.error('Error fetching Rutube metadata for', videoId, ':', error);
       setLoading(prev => ({ ...prev, [videoId]: false }));
+      loadedRef.current.delete(videoId);
       return null;
     }
   }, [metadata, loading]);
+
+  useEffect(() => {
+    const loadAllMetadata = async () => {
+      for (const videoId of videoIds) {
+        if (videoId && !metadata[videoId] && !loadedRef.current.has(videoId)) {
+          await fetchMetadata(videoId);
+          await new Promise(resolve => setTimeout(resolve, 200));
+        }
+      }
+    };
+
+    if (videoIds.length > 0) {
+      loadAllMetadata();
+    }
+  }, [videoIds.join(',')]);
 
   return { metadata, fetchMetadata, loading };
 };
