@@ -67,6 +67,41 @@ const Layout = ({ children, titleInHeader = false }: LayoutProps) => {
 
       {children}
 
+      <footer className="py-12 px-4 bg-black text-white relative">
+        <div className="container mx-auto">
+          <div className="text-center mb-16">
+            <img 
+              src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
+              alt="Muse" 
+              className="h-16 mx-auto mb-4 floating cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => navigate('/')}
+            />
+            <p className="text-lg mb-8">
+              Вместе мы можем достичь большего
+            </p>
+            <p className="text-sm opacity-75">
+              © 2025 Клуб Muse. Все права защищены.
+            </p>
+          </div>
+          
+          <div className="flex justify-center md:justify-end">
+            <a 
+              href="https://albeweb.ru/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-base text-white/50 hover:text-white/80 transition-colors group"
+            >
+              <span>Разработано в</span>
+              <img 
+                src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
+                alt="Albe" 
+                className="h-12 opacity-50 group-hover:opacity-80 transition-opacity"
+              />
+            </a>
+          </div>
+        </div>
+      </footer>
+
       <Dialog open={isExpertDialogOpen} onOpenChange={setIsExpertDialogOpen}>
         <DialogContent className="bg-black/95 border-[#d4af37]/30 text-white max-w-md">
           <DialogHeader>
