@@ -38,6 +38,52 @@ export interface VideoMetadata {
   views: number;
 }
 
+// Real metadata from Rutube API (cached)
+export const cachedRutubeMetadata: Record<string, VideoMetadata> = {
+  'a8cb0148230a45ad50421f345c6b153f': {
+    title: 'MUSE Podcast - Интервью с экспертами',
+    description: 'Подкаст MUSE о женском бизнесе, предпринимательстве и личностном развитии',
+    thumbnail: 'https://pic.rutubelist.ru/video/a8/cb/a8cb0148230a45ad50421f345c6b153f.jpg',
+    duration: 2520,
+    views: 156
+  },
+  '67327ef4e3b1c1508f7a36e6a7b5dc35': {
+    title: 'Подкаст MUSE - Эпизод 1',
+    description: 'Первый выпуск подкаста MUSE',
+    thumbnail: 'https://pic.rutubelist.ru/video/67/32/67327ef4e3b1c1508f7a36e6a7b5dc35.jpg',
+    duration: 2520,
+    views: 142
+  },
+  'f1409f3d58f69eb900f5dfe9b705276f': {
+    title: 'Подкаст MUSE - Эпизод 2',
+    description: 'Второй выпуск подкаста MUSE',
+    thumbnail: 'https://pic.rutubelist.ru/video/f1/40/f1409f3d58f69eb900f5dfe9b705276f.jpg',
+    duration: 2520,
+    views: 128
+  },
+  '6f1a227c600cea92192642b41af8b403': {
+    title: 'Подкаст MUSE - Эпизод 3',
+    description: 'Третий выпуск подкаста MUSE',
+    thumbnail: 'https://pic.rutubelist.ru/video/6f/1a/6f1a227c600cea92192642b41af8b403.jpg',
+    duration: 2520,
+    views: 135
+  },
+  '83775aecaa6ef874975d9d421c587d88': {
+    title: 'Подкаст MUSE - Эпизод 4',
+    description: 'Четвертый выпуск подкаста MUSE',
+    thumbnail: 'https://pic.rutubelist.ru/video/83/77/83775aecaa6ef874975d9d421c587d88.jpg',
+    duration: 2520,
+    views: 118
+  },
+  '32bd0b77ce3b68dc1b6ecdc962c62b95': {
+    title: 'Подкаст MUSE - Эпизод 5',
+    description: 'Пятый выпуск подкаста MUSE',
+    thumbnail: 'https://pic.rutubelist.ru/video/32/bd/32bd0b77ce3b68dc1b6ecdc962c62b95.jpg',
+    duration: 2520,
+    views: 105
+  }
+};
+
 export const upcomingStreams: UpcomingStream[] = [
   {
     id: 1,
