@@ -53,15 +53,6 @@ const MuseTV = () => {
     return null;
   });
 
-  useEffect(() => {
-    if (randomPodcast?.vkEmbed) {
-      const videoId = extractVideoId(randomPodcast.vkEmbed);
-      if (videoId) {
-        fetchMetadata(videoId);
-      }
-    }
-  }, [randomPodcast, fetchMetadata]);
-
   const filteredContent = contentLibrary.filter(item => {
     const typeMatch = activeFilter === 'all' || item.type === activeFilter;
     const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
