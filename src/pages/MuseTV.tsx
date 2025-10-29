@@ -535,12 +535,18 @@ const MuseTV = () => {
                     }}
                   >
                     <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden">
-                        <img 
-                          src={item.thumbnail} 
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
+                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
+                        {item.thumbnail ? (
+                          <img 
+                            src={item.thumbnail} 
+                            alt={item.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Icon name="Radio" size={80} className="text-[#d4af37]/30" />
+                          </div>
+                        )}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
                           <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
                         </div>
