@@ -671,6 +671,7 @@ const MuseTV = () => {
                   ? item.vkEmbed.split('/').pop()
                   : null;
                 const metadata = videoId ? videoMetadata[videoId] : null;
+                const rutubeThumbnail = videoId ? `https://pic.rutubelist.ru/video/${videoId.substring(0, 2)}/${videoId}.jpg` : null;
 
                 return (
                   <Card 
@@ -686,12 +687,17 @@ const MuseTV = () => {
                     }}
                   >
                     <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden">
-                        <img 
-                          src={metadata?.thumbnail || item.thumbnail} 
-                          alt={metadata?.title || item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
+                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
+                        {(metadata?.thumbnail || item.thumbnail || rutubeThumbnail) && (
+                          <img 
+                            src={metadata?.thumbnail || item.thumbnail || rutubeThumbnail || ''} 
+                            alt={metadata?.title || item.title}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display = 'none';
+                            }}
+                          />
+                        )}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
                           <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
                         </div>
