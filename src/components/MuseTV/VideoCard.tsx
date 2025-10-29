@@ -1,7 +1,8 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
-import { VideoContent, VideoMetadata, formatDuration, formatViews, extractVideoId, generateRutubeThumbnail } from '@/data/museTvData';
+import { VideoContent, formatDuration, formatViews, extractVideoId, generateRutubeThumbnail } from '@/data/museTvData';
+import { VideoMetadata } from '@/hooks/useRutubeMetadata';
 
 interface VideoCardProps {
   item: VideoContent;

@@ -38,52 +38,6 @@ export interface VideoMetadata {
   views: number;
 }
 
-// Real metadata from Rutube API (cached)
-export const cachedRutubeMetadata: Record<string, VideoMetadata> = {
-  'a8cb0148230a45ad50421f345c6b153f': {
-    title: 'Наш первый подкаст болталка 🔥, ПРО СМЫСЛЫ И ПЕЙСК СЕБЯ!',
-    description: 'Подкаст MUSE о женском бизнесе, предпринимательстве и личностном развитии',
-    thumbnail: 'https://pic.rutubelist.ru/video/a8/cb/a8cb0148230a45ad50421f345c6b153f.jpg',
-    duration: 389,
-    views: 21
-  },
-  '67327ef4e3b1c1508f7a36e6a7b5dc35': {
-    title: 'Наш второй подкаст болталка 🔥, ПРО СМЫСЛЫ И ПЕЙСК СЕБЯ!',
-    description: 'Второй выпуск подкаста MUSE',
-    thumbnail: 'https://pic.rutubelist.ru/video/67/32/67327ef4e3b1c1508f7a36e6a7b5dc35.jpg',
-    duration: 190,
-    views: 6
-  },
-  'f1409f3d58f69eb900f5dfe9b705276f': {
-    title: 'ЗАВТРАК С ПОДРУГОЙ: говорим про забытьі ЗНАКОМСТВА 😁 и о том, где найти своего человека ❤️',
-    description: 'Завтрак с подругой - откровенный разговор',
-    thumbnail: 'https://pic.rutubelist.ru/video/f1/40/f1409f3d58f69eb900f5dfe9b705276f.jpg',
-    duration: 291,
-    views: 11
-  },
-  '6f1a227c600cea92192642b41af8b403': {
-    title: 'Наш третий подкаст болталка 🔥, ПРО ТЕПЛО!',
-    description: 'Третий выпуск подкаста MUSE',
-    thumbnail: 'https://pic.rutubelist.ru/video/6f/1a/6f1a227c600cea92192642b41af8b403.jpg',
-    duration: 465,
-    views: 10
-  },
-  '83775aecaa6ef874975d9d421c587d88': {
-    title: 'Многие женщины думают: «Он должен сам догадаться»',
-    description: 'О коммуникации в отношениях',
-    thumbnail: 'https://pic.rutubelist.ru/video/83/77/83775aecaa6ef874975d9d421c587d88.jpg',
-    duration: 429,
-    views: 12
-  },
-  '32bd0b77ce3b68dc1b6ecdc962c62b95': {
-    title: 'Подкаст MUSE - Эпизод 5',
-    description: 'Пятый выпуск подкаста MUSE',
-    thumbnail: 'https://pic.rutubelist.ru/video/32/bd/32bd0b77ce3b68dc1b6ecdc962c62b95.jpg',
-    duration: 300,
-    views: 8
-  }
-};
-
 export const upcomingStreams: UpcomingStream[] = [
   {
     id: 1,

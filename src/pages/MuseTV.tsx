@@ -34,7 +34,7 @@ const MuseTV = () => {
     .map(item => extractVideoId(item.vkEmbed))
     .filter((id): id is string => id !== null);
 
-  const { metadata: videoMetadata, fetchMetadata } = useRutubeMetadata(videoIds);
+  const { metadata: videoMetadata, loading: metadataLoading } = useRutubeMetadata(videoIds);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
