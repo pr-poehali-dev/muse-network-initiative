@@ -14,6 +14,7 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [videoMetadata, setVideoMetadata] = useState<any>({});
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
@@ -22,6 +23,66 @@ const MuseTV = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    featuredContent.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
+
+  const fetchRutubeMetadata = async (videoId: string) => {
+    if (videoMetadata[videoId]) {
+      console.log('[Rutube] Cache hit for:', videoId);
+      return videoMetadata[videoId];
+    }
+    
+    console.log('[Rutube] Fetching metadata for:', videoId);
+    
+    try {
+      const url = `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`;
+      console.log('[Rutube] Fetch URL:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('[Rutube] Response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('[Rutube] Received data:', data);
+      
+      const metadata = {
+        title: data.title,
+        description: data.description,
+        thumbnail: data.thumbnail_url,
+        duration: data.duration,
+        views: data.hits
+      };
+      
+      console.log('[Rutube] Processed metadata:', metadata);
+      setVideoMetadata((prev: any) => {
+        const updated = { ...prev, [videoId]: metadata };
+        console.log('[Rutube] Updated videoMetadata state:', updated);
+        return updated;
+      });
+      return metadata;
+    } catch (error) {
+      console.error('[Rutube] Error fetching metadata for', videoId, ':', error);
+      return null;
+    }
+  };
 
   const isLive = false;
   const viewersCount = 234;
