@@ -724,9 +724,9 @@ const MuseTV = () => {
             }
 
             return (
-              <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
+              <div className="flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto max-h-[85vh]">
                 {/* Video Player */}
-                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <div className="relative w-full" style={{ paddingBottom: '50%' }}>
                   {selectedVideo?.vkEmbed && (
                     <iframe
                       src={videoUrl}
@@ -739,10 +739,10 @@ const MuseTV = () => {
                 </div>
 
                 {/* Video Info */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <div>
-                    <Badge className="mb-3 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
-                    <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
+                    <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
+                    <h2 className="text-xl font-bold text-[#d4af37] mb-2">
                       {metadata?.title || selectedVideo.title}
                     </h2>
                     <div className="flex items-center gap-4 text-white/60 text-xs">
@@ -765,9 +765,9 @@ const MuseTV = () => {
                   </div>
 
                   {metadata?.description && (
-                    <div className="border-t border-white/10 pt-4">
-                      <h3 className="text-lg font-semibold text-white mb-2">Описание</h3>
-                      <p className="text-white/70 leading-relaxed whitespace-pre-line">
+                    <div className="border-t border-white/10 pt-3">
+                      <h3 className="text-base font-semibold text-white mb-2">Описание</h3>
+                      <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">
                         {metadata.description}
                       </p>
                     </div>
