@@ -11,11 +11,15 @@ interface VideoCardProps {
 
 export const VideoCard = ({ item, metadata, onClick }: VideoCardProps) => {
   const videoId = extractVideoId(item.vkEmbed);
+  
+  // Приоритет данным из metadata (Rutube)
   const thumbnail = metadata?.thumbnail || generateRutubeThumbnail(videoId) || item.thumbnail;
   const title = metadata?.title || item.title;
   const description = metadata?.description || '';
+  
+  // ВАЖНО: всегда используем данные из metadata, если они есть
   const duration = metadata?.duration ? formatDuration(metadata.duration) : item.duration;
-  const views = metadata?.views ? formatViews(metadata.views) : item.views;
+  const views = metadata?.views !== undefined ? formatViews(metadata.views) : item.views;
 
   // Ограничиваем длину заголовка и описания
   const truncateText = (text: string, maxLength: number) => {
