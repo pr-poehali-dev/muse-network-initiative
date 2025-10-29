@@ -733,13 +733,15 @@ const MuseTV = () => {
               : null;
             const metadata = videoId ? videoMetadata[videoId] : null;
 
+            const videoUrl = selectedVideo.vkEmbed + (selectedVideo.vkEmbed.includes('?') ? '&' : '?') + 'autoplay=1';
+
             return (
               <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
                 {/* Video Player */}
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   {selectedVideo?.vkEmbed && (
                     <iframe
-                      src={selectedVideo.vkEmbed}
+                      src={videoUrl}
                       className="absolute inset-0 w-full h-full md:rounded-lg"
                       allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
                       frameBorder="0"
