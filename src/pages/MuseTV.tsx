@@ -110,6 +110,8 @@ const MuseTV = () => {
     return typeMatch && categoryMatch;
   });
 
+  console.log('filteredContent.length:', filteredContent.length, 'activeFilter:', activeFilter, 'activeCategory:', activeCategory);
+
   return (
     <PageTransition>
       <Layout titleInHeader={scrollY > 100}>
@@ -508,7 +510,7 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         {metadata?.title && (
-                          <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                          <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
                             {metadata.title}
                           </h3>
                         )}
