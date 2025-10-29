@@ -36,16 +36,26 @@ const MuseTV = () => {
   }, []);
 
   const fetchRutubeMetadata = async (videoId: string) => {
-    if (videoMetadata[videoId]) return videoMetadata[videoId];
+    if (videoMetadata[videoId]) {
+      console.log('[Rutube] Cache hit for:', videoId);
+      return videoMetadata[videoId];
+    }
+    
+    console.log('[Rutube] Fetching metadata for:', videoId);
     
     try {
-      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+      const url = `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`;
+      console.log('[Rutube] Fetch URL:', url);
+      
+      const response = await fetch(url);
+      console.log('[Rutube] Response status:', response.status);
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       
       const data = await response.json();
+      console.log('[Rutube] Received data:', data);
       
       const metadata = {
         title: data.title,
@@ -55,10 +65,15 @@ const MuseTV = () => {
         views: data.hits
       };
       
-      setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
+      console.log('[Rutube] Processed metadata:', metadata);
+      setVideoMetadata((prev: any) => {
+        const updated = { ...prev, [videoId]: metadata };
+        console.log('[Rutube] Updated videoMetadata state:', updated);
+        return updated;
+      });
       return metadata;
     } catch (error) {
-      console.error('Error fetching Rutube metadata for video', videoId, ':', error);
+      console.error('[Rutube] Error fetching metadata for', videoId, ':', error);
       return null;
     }
   };
