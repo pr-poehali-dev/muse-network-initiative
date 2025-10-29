@@ -4,19 +4,36 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
-import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import { VideoCard } from '@/components/MuseTV/VideoCard';
+import { VideoDialog } from '@/components/MuseTV/VideoDialog';
+import { useRutubeMetadata } from '@/hooks/useRutubeMetadata';
+import {
+  upcomingStreams,
+  featuredContent,
+  contentLibrary,
+  archiveEvents,
+  VideoContent,
+  extractVideoId,
+  formatDuration,
+  formatViews
+} from '@/data/museTvData';
 
 const MuseTV = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
-  const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [videoMetadata, setVideoMetadata] = useState<any>({});
+  const [selectedVideo, setSelectedVideo] = useState<VideoContent | null>(null);
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
   const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
+
+  const videoIds = [...featuredContent, ...contentLibrary]
+    .map(item => extractVideoId(item.vkEmbed))
+    .filter((id): id is string => id !== null);
+
+  const { metadata: videoMetadata, fetchMetadata } = useRutubeMetadata(videoIds);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -24,134 +41,8 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    featuredContent.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = content.vkEmbed.split('/').pop();
-        if (videoId) {
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
-
-  const fetchRutubeMetadata = async (videoId: string) => {
-    if (videoMetadata[videoId]) return videoMetadata[videoId];
-    
-    try {
-      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
-      const data = await response.json();
-      
-      const metadata = {
-        title: data.title,
-        description: data.description,
-        thumbnail: data.thumbnail_url,
-        duration: data.duration,
-        views: data.hits
-      };
-      
-      setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
-      return metadata;
-    } catch (error) {
-      console.error('Error fetching Rutube metadata:', error);
-      return null;
-    }
-  };
-
   const isLive = false;
   const viewersCount = 234;
-
-  const upcomingStreams = [
-    {
-      id: 1,
-      title: 'Секреты продвижения в социальных сетях',
-      date: '15 ноября 2024',
-      time: '19:00 МСК',
-      category: 'Мастер-класс',
-      speaker: 'Анна Петрова'
-    },
-    {
-      id: 2,
-      title: 'Интервью с основателем IT-стартапа',
-      date: '18 ноября 2024',
-      time: '20:00 МСК',
-      category: 'Интервью',
-      speaker: 'Дмитрий Иванов'
-    },
-    {
-      id: 3,
-      title: 'Искусство нетворкинга: как находить нужные связи',
-      date: '22 ноября 2024',
-      time: '18:30 МСК',
-      category: 'Лекция',
-      speaker: 'Мария Соколова'
-    }
-  ];
-
-  const defaultPodcastThumbnail = 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/2cfacf64-7d13-4be8-9475-004939fd4c65.jpg';
-
-  const featuredContent = [
-    {
-      id: 4,
-      title: 'MUSE Podcast - Интервью с экспертами',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
-      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
-    },
-    {
-      id: 5,
-      title: 'Подкаст MUSE - Эпизод 1',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
-      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
-    },
-    {
-      id: 6,
-      title: 'Подкаст MUSE - Эпизод 2',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
-      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
-    },
-    {
-      id: 7,
-      title: 'Подкаст MUSE - Эпизод 3',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
-      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
-    },
-    {
-      id: 8,
-      title: 'Подкаст MUSE - Эпизод 4',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
-      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
-    },
-    {
-      id: 9,
-      title: 'Подкаст MUSE - Эпизод 5',
-      type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: defaultPodcastThumbnail,
-      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
-      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
-    }
-  ];
 
   const podcastVideos = featuredContent.filter(item => item.vkEmbed);
   const [randomPodcast] = useState(() => {
