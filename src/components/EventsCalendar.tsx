@@ -33,13 +33,13 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
   const getEventTypeConfig = (type: Event['type']): EventTypeConfig => {
     switch(type) {
       case 'offline':
-        return { icon: 'Users', color: 'from-[#d4af37] to-[#b8860b]', badge: 'bg-[#d4af37]', label: 'Очно' };
+        return { icon: 'Users', color: 'from-[#d4af37] to-[#b8860b]', badge: 'bg-[#d4af37]', label: 'Офлайн' };
       case 'online':
         return { icon: 'MonitorPlay', color: 'from-[#9d7e54] to-[#7a6240]', badge: 'bg-[#9d7e54]', label: 'Онлайн' };
       case 'workshop':
         return { icon: 'Palette', color: 'from-[#c9a961] to-[#a8894f]', badge: 'bg-[#c9a961]', label: 'Мастер-класс' };
       case 'guest':
-        return { icon: 'Mic', color: 'from-[#b8953d] to-[#9a7b32]', badge: 'bg-[#b8953d]', label: 'Спикер' };
+        return { icon: 'Mic', color: 'from-[#b8953d] to-[#9a7b32]', badge: 'bg-[#b8953d]', label: 'Онлайн' };
     }
   };
 

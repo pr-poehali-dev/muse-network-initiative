@@ -24,7 +24,7 @@ export const EXPERTS = [
     image: 'https://cdn.poehali.dev/files/37231f0d-7f2c-44ec-a259-688241e59545.jpg',
   },
   {
-    name: 'Мазмишаили Тамара Васильевна',
+    name: 'Рябова Тамара Васильевна',
     role: 'Фитнес тренер',
     description: 'Эксперт здорового образа жизни',
     image: 'https://cdn.poehali.dev/files/7fa24823-78a5-4550-8937-8659f6f2fb59.jpg',
