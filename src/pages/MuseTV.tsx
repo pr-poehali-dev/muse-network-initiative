@@ -490,15 +490,14 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" key={Object.keys(videoMetadata).length}>
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const currentMetadata = videoId ? videoMetadata[videoId] : null;
-                console.log(`🎴 Render card ${item.id}, videoId: ${videoId}, metadata:`, currentMetadata ? 'EXISTS' : 'NULL', currentMetadata);
 
                 return (
                   <Card 
-                    key={`${item.id}-${videoId || 'no-video'}-${currentMetadata?.title || 'loading'}`}
+                    key={item.id}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
