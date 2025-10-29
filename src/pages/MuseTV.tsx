@@ -25,8 +25,7 @@ const MuseTV = () => {
   }, []);
 
   useEffect(() => {
-    const allContent = [...featuredContent, ...contentLibrary];
-    allContent.forEach(content => {
+    featuredContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = content.vkEmbed.split('/').pop();
         if (videoId) {
@@ -307,6 +306,17 @@ const MuseTV = () => {
     const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
     return typeMatch && categoryMatch;
   });
+
+  useEffect(() => {
+    contentLibrary.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
 
   return (
     <PageTransition>
