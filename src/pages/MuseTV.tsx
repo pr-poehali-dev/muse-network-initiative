@@ -379,7 +379,7 @@ const MuseTV = () => {
 
       {/* Live Section */}
       {isLive ? (
-        <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-red-600 text-white animate-pulse">
@@ -408,7 +408,7 @@ const MuseTV = () => {
           </div>
         </section>
       ) : randomPodcast ? (
-        <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-[#d4af37] text-black">
@@ -487,7 +487,7 @@ const MuseTV = () => {
       </div>
 
       {/* Upcoming Streams */}
-      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
@@ -529,7 +529,7 @@ const MuseTV = () => {
 
 
       {/* Main Catalog */}
-      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Каталог контента</h2>
           
@@ -664,7 +664,7 @@ const MuseTV = () => {
       </div>
 
       {/* Popular Podcasts */}
-      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Популярные подкасты</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
@@ -705,7 +705,7 @@ const MuseTV = () => {
       </div>
 
       {/* Archive */}
-      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Архив трансляций</h2>
           <div className="space-y-4">
