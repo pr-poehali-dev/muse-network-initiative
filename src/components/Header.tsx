@@ -124,12 +124,12 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
               })}
             </div>
 
-            <div className="w-full max-w-md space-y-6 md:hidden">
+            <div className="w-full max-w-md space-y-4 md:hidden">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavigation(item.id)}
-                  className="w-full text-center text-lg font-semibold text-[#b8953d]/90 hover:text-[#d4af37] transition-all duration-300 py-3 border-b border-[#d4af37]/20 uppercase tracking-wider"
+                  className="w-full text-center text-sm font-semibold text-[#b8953d]/90 hover:text-[#d4af37] transition-all duration-300 py-2 border-b border-[#d4af37]/20 uppercase tracking-wider"
                 >
                   {item.label}
                 </button>
@@ -143,7 +143,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                       navigate(link.path);
                       setIsMobileMenuOpen(false);
                     }}
-                    className={`w-full text-center text-lg font-semibold transition-all duration-300 py-3 border-b uppercase tracking-wider ${
+                    className={`w-full text-center text-sm font-semibold transition-all duration-300 py-2 border-b uppercase tracking-wider ${
                       isActive ? 'text-[#d4af37] border-[#d4af37]/60' : 'text-[#b8953d]/90 hover:text-[#d4af37] border-[#d4af37]/20'
                     }`}
                   >
