@@ -701,7 +701,7 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-full w-full h-full md:max-w-[95vw] md:w-[95vw] md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
+        <DialogContent className="max-w-full w-full h-full md:max-w-4xl md:w-full md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
           {selectedVideo && (() => {
             const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
               ? selectedVideo.vkEmbed.split('/').pop()
