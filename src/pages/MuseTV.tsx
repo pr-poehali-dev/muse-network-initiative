@@ -701,7 +701,7 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-full w-full h-full md:max-w-4xl md:w-full md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
+        <DialogContent className="max-w-full w-full h-full md:max-w-4xl md:w-full md:max-h-[80vh] p-0 bg-black border-0 md:rounded-lg overflow-hidden" hideClose>
           {selectedVideo && (() => {
             const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
               ? selectedVideo.vkEmbed.split('/').pop()
@@ -724,7 +724,15 @@ const MuseTV = () => {
             }
 
             return (
-              <div className="flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto max-h-[85vh]">
+              <div className="relative flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto">
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedVideo(null)}
+                  className="absolute -top-14 right-2 md:-right-14 md:top-2 z-10 rounded-full p-2 bg-black/80 text-white/80 hover:text-white hover:bg-[#d4af37]/20 transition-all border border-white/20"
+                >
+                  <Icon name="X" size={24} />
+                </button>
+                
                 {/* Video Player */}
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   {selectedVideo?.vkEmbed && (
