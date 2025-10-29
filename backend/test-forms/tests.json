@@ -1,0 +1,13 @@
+{
+  "tests": [
+    {
+      "name": "Test form tester",
+      "method": "POST",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "message": "Form tests completed"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

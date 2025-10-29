@@ -8,6 +8,7 @@ import { AnimatePresence } from "framer-motion";
 import Index from "./pages/Index";
 import Headliners from "./pages/Headliners";
 import MuseTV from "./pages/MuseTV";
+import TestForms from "./pages/TestForms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<Index />} />
         <Route path="/headliners" element={<Headliners />} />
         <Route path="/muse-tv" element={<MuseTV />} />
+        <Route path="/test-forms" element={<TestForms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
