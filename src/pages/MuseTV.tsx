@@ -730,9 +730,9 @@ const MuseTV = () => {
                   {/* Close Button */}
                   <button
                     onClick={() => setSelectedVideo(null)}
-                    className="absolute top-3 right-3 z-[60] rounded-full p-2.5 bg-[#d4af37] text-black hover:bg-[#ffd700] transition-all shadow-lg"
+                    className="absolute top-3 right-3 z-[60] rounded-full p-2 bg-black/60 backdrop-blur-sm text-white/90 hover:bg-[#d4af37]/90 hover:text-black transition-all duration-300 border border-white/20 hover:border-[#d4af37] shadow-xl hover:shadow-[#d4af37]/50 hover:scale-110"
                   >
-                    <Icon name="X" size={20} />
+                    <Icon name="X" size={18} />
                   </button>
                   {selectedVideo?.vkEmbed && (
                     <iframe
