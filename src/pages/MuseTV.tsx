@@ -590,12 +590,12 @@ const MuseTV = () => {
               </p>
               <Button 
                 onClick={() => {
-                  setActiveFilter('podcast');
-                  setActiveCategory('Подкаст');
+                  setActiveFilter('all');
+                  setActiveCategory('all');
                 }}
                 className="bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black hover:opacity-90"
               >
-                Перейти к подкастам
+                Сбросить фильтры
               </Button>
             </div>
           ) : (
