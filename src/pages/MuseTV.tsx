@@ -35,18 +35,6 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const allContent = [...featuredContent, ...contentLibrary];
-    allContent.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = extractVideoId(content.vkEmbed);
-        if (videoId) {
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
-
   const fetchRutubeMetadata = async (videoId: string) => {
     if (videoMetadata[videoId]) return videoMetadata[videoId];
     
@@ -79,6 +67,18 @@ const MuseTV = () => {
       return null;
     }
   };
+
+  useEffect(() => {
+    const allContent = [...featuredContent, ...contentLibrary];
+    allContent.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = extractVideoId(content.vkEmbed);
+        if (videoId && !videoMetadata[videoId]) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
 
   const isLive = false;
   const viewersCount = 234;
@@ -471,6 +471,8 @@ const MuseTV = () => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const metadata = videoId ? videoMetadata[videoId] : null;
                 const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
+                
+                console.log(`Render card ${item.id}, videoId: ${videoId}, has metadata:`, !!metadata, metadata);
 
                 return (
                   <Card 
