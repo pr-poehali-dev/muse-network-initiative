@@ -24,9 +24,10 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [videoMetadata, setVideoMetadata] = useState<any>({});
+  const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
   const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
+  const [, forceUpdate] = useState({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -67,7 +68,11 @@ const MuseTV = () => {
         views: data.hits
       };
       
-      setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
+      setVideoMetadata((prev) => {
+        const updated = { ...prev, [videoId]: metadata };
+        return updated;
+      });
+      forceUpdate({});
       return metadata;
     } catch (error) {
       console.error(`Error fetching Rutube metadata for ${videoId}:`, error);
@@ -88,7 +93,7 @@ const MuseTV = () => {
 
   useEffect(() => {
     if (randomPodcast?.vkEmbed) {
-      const videoId = randomPodcast.vkEmbed.split('/').pop();
+      const videoId = extractVideoId(randomPodcast.vkEmbed);
       if (videoId) {
         fetchRutubeMetadata(videoId);
       }
@@ -463,11 +468,9 @@ const MuseTV = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
-                const videoId = item.vkEmbed?.includes('rutube.ru') 
-                  ? item.vkEmbed.split('/').pop()
-                  : null;
+                const videoId = extractVideoId(item.vkEmbed);
                 const metadata = videoId ? videoMetadata[videoId] : null;
-                const rutubeThumbnail = videoId ? `https://pic.rutubelist.ru/video/${videoId.substring(0, 2)}/${videoId}.jpg` : null;
+                const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
 
                 return (
                   <Card 
