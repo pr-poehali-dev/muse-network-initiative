@@ -36,8 +36,13 @@ const MuseTV = () => {
   }, []);
 
   const fetchRutubeMetadata = async (videoId: string) => {
-    if (!videoId || videoMetadata[videoId]) return;
+    console.log(`📡 fetchRutubeMetadata called for:`, videoId, 'exists:', !!videoMetadata[videoId]);
+    if (!videoId || videoMetadata[videoId]) {
+      console.log(`⏭️ Skipping ${videoId}: ${!videoId ? 'no ID' : 'already exists'}`);
+      return;
+    }
     
+    console.log(`⬇️ Fetching data for:`, videoId);
     setLoadingVideos(prev => new Set(prev).add(videoId));
     
     try {
@@ -68,11 +73,16 @@ const MuseTV = () => {
   };
 
   useEffect(() => {
+    console.log('🚀 Loading metadata for all videos...');
     const allContent = [...featuredContent, ...contentLibrary];
+    console.log('Total content items:', allContent.length);
+    
     allContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = extractVideoId(content.vkEmbed);
+        console.log(`Processing video ${content.id}, extracted ID:`, videoId);
         if (videoId) {
+          console.log(`Fetching metadata for:`, videoId);
           fetchRutubeMetadata(videoId);
         }
       }
