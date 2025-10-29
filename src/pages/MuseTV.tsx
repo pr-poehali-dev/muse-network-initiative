@@ -478,7 +478,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={item.id} 
+                    key={`${item.id}-${!!metadata}`} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={async () => {
                       if (item.vkEmbed) {
@@ -507,11 +507,9 @@ const MuseTV = () => {
                       </div>
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
-                        {metadata?.title && (
-                          <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                            {metadata.title}
-                          </h3>
-                        )}
+                        <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                          {metadata?.title || item.title || 'Загрузка...'}
+                        </h3>
                         {metadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
                             {metadata.description}
