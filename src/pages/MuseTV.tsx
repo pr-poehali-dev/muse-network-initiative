@@ -313,43 +313,34 @@ const MuseTV = () => {
       {/* Hero */}
       <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20" style={{backgroundSize: '50px 50px'}}></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1a0a0a] to-black"></div>
           
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
+          <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] animate-float"></div>
+          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#8b7355]/10 rounded-full blur-[150px] animate-float" style={{animationDelay: '2s'}}></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px]"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px]"></div>
-          
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
-          
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#d4af37]/10 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,_rgba(212,175,55,0.08)_0%,_transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,_rgba(139,115,85,0.08)_0%,_transparent_50%)]"></div>
           
           <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at 20% 30%, rgba(212,175,55,0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(139,115,85,0.15) 0%, transparent 50%)',
-            mixBlendMode: 'screen'
+            backgroundImage: 'linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px)',
+            backgroundSize: '100px 100px'
           }}></div>
 
-          <div className="absolute inset-0 tv-scanlines z-40 pointer-events-none" style={{
-            background: 'repeating-linear-gradient(0deg, rgba(0,0,0,0.15) 0px, rgba(0,0,0,0.15) 1px, transparent 1px, transparent 2px)',
-            backgroundSize: '100% 4px'
-          }}></div>
-
-
-
-          <div className="absolute inset-0 z-45 pointer-events-none" style={{
-            boxShadow: 'inset 0 0 200px rgba(0,0,0,0.9), inset 0 0 100px rgba(0,0,0,0.7), inset 0 0 50px rgba(0,0,0,0.5)'
-          }}></div>
-
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-transparent z-10"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/70 to-transparent z-20"></div>
-          <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
           
-          <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40"></div>
-          <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30"></div>
+          <div className="absolute top-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
+          
+          <div className="absolute top-8 left-8 text-white/30 font-mono text-sm z-40">REC ●</div>
+          <div className="absolute top-8 right-8 text-white/30 font-mono text-sm z-40">16:9</div>
+          <div className="absolute bottom-8 left-8 text-white/30 font-mono text-sm z-40">MUSE</div>
+          <div className="absolute bottom-8 right-8 text-white/30 font-mono text-sm z-40">4K</div>
+          
+          <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-white/20 z-40"></div>
+          <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-white/20 z-40"></div>
+          <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-white/20 z-40"></div>
+          <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-white/20 z-40"></div>
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30">
