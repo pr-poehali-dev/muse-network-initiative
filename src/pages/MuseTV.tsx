@@ -637,11 +637,6 @@ const MuseTV = () => {
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-full w-full h-full md:max-w-[95vw] md:w-[95vw] md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
           {selectedVideo && (() => {
-            const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
-              ? selectedVideo.vkEmbed.split('/').pop()
-              : null;
-            const metadata = videoId ? videoMetadata[videoId] : null;
-
             const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
@@ -677,35 +672,20 @@ const MuseTV = () => {
                   <div>
                     <Badge className="mb-3 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
-                      {metadata?.title || selectedVideo.title}
+                      {selectedVideo.title}
                     </h2>
                     <div className="flex items-center gap-4 text-white/60 text-xs">
                       <span className="flex items-center gap-1">
                         <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                        {metadata?.duration 
-                          ? formatDuration(metadata.duration)
-                          : selectedVideo.duration
-                        }
+                        {selectedVideo.duration}
                       </span>
                       <span className="flex items-center gap-1">
                         <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                        {metadata?.views 
-                          ? formatViews(metadata.views)
-                          : selectedVideo.views
-                        } просмотров
+                        {selectedVideo.views} просмотров
                       </span>
                     </div>
                     <p className="text-white/40 text-xs mt-1">{selectedVideo.date}</p>
                   </div>
-
-                  {metadata?.description && (
-                    <div className="border-t border-white/10 pt-4">
-                      <h3 className="text-lg font-semibold text-white mb-2">Описание</h3>
-                      <p className="text-white/70 leading-relaxed whitespace-pre-line">
-                        {metadata.description}
-                      </p>
-                    </div>
-                  )}
                 </div>
               </div>
             );
