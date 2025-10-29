@@ -23,36 +23,47 @@ const VideoCard = ({ item, onClick }: VideoCardProps) => {
 
   useEffect(() => {
     const loadMetadata = async () => {
-      if (!item.vkEmbed?.includes('rutube.ru')) return;
+      if (!item.vkEmbed?.includes('rutube.ru')) {
+        console.log('No rutube embed:', item.id);
+        return;
+      }
       
       const videoId = extractVideoId(item.vkEmbed);
-      if (!videoId) return;
+      if (!videoId) {
+        console.log('No videoId extracted:', item.id);
+        return;
+      }
 
+      console.log(`Loading metadata for card ${item.id}, videoId: ${videoId}`);
       setLoading(true);
       try {
         const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
-        if (!response.ok) throw new Error('API error');
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
         
         const data = await response.json();
-        setMetadata({
+        const newMetadata = {
           title: data.title,
           description: data.description,
           thumbnail_url: data.thumbnail_url,
           duration: data.duration,
           hits: data.hits
-        });
+        };
+        console.log(`Metadata loaded for card ${item.id}:`, newMetadata.title);
+        setMetadata(newMetadata);
       } catch (error) {
-        console.error(`Failed to load metadata for ${videoId}:`, error);
+        console.error(`Failed to load metadata for card ${item.id}:`, error);
       } finally {
         setLoading(false);
       }
     };
 
     loadMetadata();
-  }, [item.vkEmbed]);
+  }, [item.vkEmbed, item.id]);
 
   const displayTitle = metadata?.title || item.title?.trim() || 'Загрузка...';
   const thumbnail = metadata?.thumbnail_url;
+  
+  console.log(`Rendering card ${item.id}: title="${displayTitle}", thumbnail=${!!thumbnail}`);
 
   return (
     <Card 
@@ -82,6 +93,7 @@ const VideoCard = ({ item, onClick }: VideoCardProps) => {
           <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
             {displayTitle}
           </h3>
+          <p className="text-xs text-red-500">DEBUG: {metadata ? 'HAS DATA' : 'NO DATA'} | ID: {item.id}</p>
           {metadata?.description && (
             <p className="text-white/60 text-xs mb-2 line-clamp-2">
               {metadata.description}
