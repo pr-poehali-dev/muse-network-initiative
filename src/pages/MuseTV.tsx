@@ -659,7 +659,7 @@ const MuseTV = () => {
                       </div>
                       <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-1">
                           {metadata?.title || 'Загрузка...'}
                         </h3>
                         {metadata?.description && (
