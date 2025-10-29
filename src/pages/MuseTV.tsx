@@ -313,29 +313,29 @@ const MuseTV = () => {
       {/* Hero */}
       <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-[#1a0a0a] to-black"></div>
+          <img 
+            src="https://cdn.poehali.dev/files/0a4d076c-a60c-4a0a-9bf1-eab254a3f261.png"
+            alt="MUSE TV Background"
+            className="absolute inset-0 w-full h-full object-cover"
+            style={{ filter: 'grayscale(100%) brightness(0.4)' }}
+          />
           
-          <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#d4af37]/10 rounded-full blur-[150px] animate-float"></div>
-          <div className="absolute bottom-1/4 right-1/3 w-[500px] h-[500px] bg-[#8b7355]/10 rounded-full blur-[150px] animate-float" style={{animationDelay: '2s'}}></div>
-          
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,_rgba(212,175,55,0.08)_0%,_transparent_50%)]"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,_rgba(139,115,85,0.08)_0%,_transparent_50%)]"></div>
+          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70"></div>
           
           <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px)',
             backgroundSize: '100px 100px'
           }}></div>
-
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/50"></div>
           
           <div className="absolute top-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
           <div className="absolute bottom-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
           
-          <div className="absolute top-8 left-8 text-white/30 font-mono text-sm z-40">REC ●</div>
-          <div className="absolute top-8 right-8 text-white/30 font-mono text-sm z-40">16:9</div>
-          <div className="absolute bottom-8 left-8 text-white/30 font-mono text-sm z-40">MUSE</div>
-          <div className="absolute bottom-8 right-8 text-white/30 font-mono text-sm z-40">4K</div>
+          <div className="absolute top-8 left-8 text-white/40 font-mono text-sm z-40">REC ●</div>
+          <div className="absolute top-8 right-8 text-white/40 font-mono text-sm z-40">16:9</div>
+          <div className="absolute bottom-8 left-8 text-white/40 font-mono text-sm z-40">MUSE</div>
+          <div className="absolute bottom-8 right-8 text-white/40 font-mono text-sm z-40">4K</div>
           
           <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-white/20 z-40"></div>
           <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-white/20 z-40"></div>
