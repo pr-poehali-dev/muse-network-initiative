@@ -14,7 +14,6 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [videoMetadata, setVideoMetadata] = useState<any>({});
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
@@ -250,16 +249,7 @@ const MuseTV = () => {
     return typeMatch && categoryMatch;
   });
 
-  useEffect(() => {
-    contentLibrary.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = content.vkEmbed.split('/').pop();
-        if (videoId) {
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
+
 
   return (
     <PageTransition>
@@ -554,21 +544,12 @@ const MuseTV = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {filteredContent.map(item => {
-                const videoId = item.vkEmbed?.includes('rutube.ru') 
-                  ? item.vkEmbed.split('/').pop()
-                  : null;
-                const metadata = videoId ? videoMetadata[videoId] : null;
-
-                return (
+              {filteredContent.map(item => (
                   <Card 
                     key={item.id} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                    onClick={async () => {
+                    onClick={() => {
                       if (item.vkEmbed) {
-                        if (videoId && !metadata) {
-                          await fetchRutubeMetadata(videoId);
-                        }
                         setSelectedVideo(item);
                       }
                     }}
@@ -576,8 +557,8 @@ const MuseTV = () => {
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden">
                         <img 
-                          src={metadata?.thumbnail || item.thumbnail} 
-                          alt={metadata?.title || item.title}
+                          src={item.thumbnail} 
+                          alt={item.title}
                           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
@@ -587,29 +568,23 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
                         <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title}
+                          {item.title}
                         </h3>
-                        {metadata?.description && (
-                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {metadata.description}
-                          </p>
-                        )}
                         <div className="flex items-center justify-between text-white/60 text-xs">
                           <span className="flex items-center gap-1">
                             <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
+                            {item.duration}
                           </span>
                           <span className="flex items-center gap-1">
                             <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
+                            {item.views} просмотров
                           </span>
                         </div>
                         <p className="text-white/40 text-xs mt-1">{item.date}</p>
                       </div>
                     </CardContent>
                   </Card>
-                );
-              })}
+                ))}
             </div>
           )}
         </div>
