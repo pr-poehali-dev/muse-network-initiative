@@ -30,13 +30,19 @@ const VideoCard = ({ item, onClick }: VideoCardProps) => {
 
       setLoading(true);
       try {
-        const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+        const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
         if (!response.ok) throw new Error('API error');
         
         const data = await response.json();
-        setMetadata(data);
+        setMetadata({
+          title: data.title,
+          description: data.description,
+          thumbnail_url: data.thumbnail_url,
+          duration: data.duration,
+          hits: data.hits
+        });
       } catch (error) {
-        console.error('Error loading video metadata:', error);
+        console.error(`Failed to load metadata for ${videoId}:`, error);
       } finally {
         setLoading(false);
       }
