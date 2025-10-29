@@ -687,9 +687,7 @@ const MuseTV = () => {
         </div>
       </section>
 
-
-
-
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>

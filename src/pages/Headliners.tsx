@@ -417,6 +417,8 @@ const Headliners = () => {
           </div>
         </div>
       </section>
+
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
         </div>
       </Layout>
     </PageTransition>
