@@ -316,8 +316,14 @@ const MuseTV = () => {
           <img 
             src="https://cdn.poehali.dev/files/0a4d076c-a60c-4a0a-9bf1-eab254a3f261.png"
             alt="MUSE TV Background"
-            className="absolute inset-0 w-full h-full object-cover"
-            style={{ filter: 'grayscale(100%) brightness(0.4)', objectPosition: 'center 75%' }}
+            className="absolute w-full h-full object-cover"
+            style={{ 
+              filter: 'grayscale(100%) brightness(0.4)', 
+              top: '20%',
+              left: 0,
+              right: 0,
+              bottom: '-20%'
+            }}
           />
           
           <div className="absolute inset-0 bg-black/50"></div>
