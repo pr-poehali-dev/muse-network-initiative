@@ -470,7 +470,7 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div key={metadataLoaded} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const metadata = videoId ? videoMetadata[videoId] : null;
@@ -481,7 +481,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={`${item.id}-${!!metadata}`} 
+                    key={`${item.id}-${videoId}-${!!videoMetadata[videoId || '']}`} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={async () => {
                       if (item.vkEmbed) {
