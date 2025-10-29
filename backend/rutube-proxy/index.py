@@ -23,14 +23,16 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 200,
             'headers': cors_headers,
-            'body': ''
+            'body': '',
+            'isBase64Encoded': False
         }
     
     if method != 'GET':
         return {
             'statusCode': 405,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'Method not allowed'})
+            'body': json.dumps({'error': 'Method not allowed'}),
+            'isBase64Encoded': False
         }
     
     params = event.get('queryStringParameters', {})
@@ -40,7 +42,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 400,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'video_id parameter is required'})
+            'body': json.dumps({'error': 'video_id parameter is required'}),
+            'isBase64Encoded': False
         }
     
     try:
@@ -65,11 +68,13 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 200,
             'headers': cors_headers,
-            'body': json.dumps(result)
+            'body': json.dumps(result),
+            'isBase64Encoded': False
         }
     except Exception as e:
         return {
             'statusCode': 500,
             'headers': cors_headers,
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': str(e)}),
+            'isBase64Encoded': False
         }
