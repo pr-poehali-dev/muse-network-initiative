@@ -146,6 +146,7 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '28.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
       vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
     },
@@ -157,6 +158,7 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '27.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
       vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
     },
@@ -168,6 +170,7 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '26.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
       vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
     },
@@ -179,6 +182,7 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '25.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
       vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
     },
@@ -190,6 +194,7 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '24.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
       vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
     }
