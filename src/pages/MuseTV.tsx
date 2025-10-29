@@ -56,56 +56,37 @@ const MuseTV = () => {
   const featuredContent = [
     {
       id: 4,
-      title: 'MUSE Podcast - Интервью с экспертами',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
       vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
     },
     {
       id: 5,
-      title: 'Подкаст MUSE - Эпизод 1',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
       url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
       vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
     },
     {
       id: 6,
-      title: 'Подкаст MUSE - Эпизод 2',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
       url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
       vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
     },
     {
       id: 7,
-      title: 'Подкаст MUSE - Эпизод 3',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
       url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
       vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
     },
     {
       id: 8,
-      title: 'Подкаст MUSE - Эпизод 4',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
       url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
       vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
     },
     {
       id: 9,
-      title: 'Подкаст MUSE - Эпизод 5',
       type: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
       url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
       vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
     }
@@ -129,7 +110,8 @@ const MuseTV = () => {
   }, [randomPodcast]);
 
   useEffect(() => {
-    contentLibrary.forEach(item => {
+    const allContent = [...featuredContent, ...contentLibrary];
+    allContent.forEach(item => {
       if (item.vkEmbed) {
         const videoId = item.vkEmbed.split('/').pop();
         if (videoId) {
@@ -174,7 +156,10 @@ const MuseTV = () => {
           duration: data.duration,
           views: data.hits,
           description: data.description,
-          thumbnail: data.thumbnail_url
+          thumbnail: data.thumbnail_url,
+          author: data.author?.name,
+          created: data.created,
+          category: data.category?.name
         }
       }));
     } catch (error) {
@@ -185,68 +170,43 @@ const MuseTV = () => {
   const contentLibrary = [
     {
       id: 10,
-      title: 'MUSE Podcast - Интервью с экспертами',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '29.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
       vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
     },
     {
       id: 11,
-      title: 'Подкаст MUSE - Эпизод 1',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '28.10.2024',
       url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
       vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
     },
     {
       id: 12,
-      title: 'Подкаст MUSE - Эпизод 2',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '27.10.2024',
       url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
       vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
     },
     {
       id: 13,
-      title: 'Подкаст MUSE - Эпизод 3',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '26.10.2024',
       url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
       vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
     },
     {
       id: 14,
-      title: 'Подкаст MUSE - Эпизод 4',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '25.10.2024',
       url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
       vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
     },
     {
       id: 15,
-      title: 'Подкаст MUSE - Эпизод 5',
       type: 'podcast',
       category: 'Подкаст',
-      duration: '42 мин',
-      views: '5.3K',
-      date: '24.10.2024',
       url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
       vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
     }
@@ -686,21 +646,36 @@ const MuseTV = () => {
                             <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={32} className="text-[#d4af37] ml-1" />
                           </div>
                         </div>
-                        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white/90 text-xs font-medium">
-                          {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
-                        </div>
+                        {metadata?.duration && (
+                          <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white/90 text-xs font-medium">
+                            {formatDuration(metadata.duration)}
+                          </div>
+                        )}
                       </div>
                       <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
                         <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title}
+                          {metadata?.title || 'Загрузка...'}
                         </h3>
                         {metadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
                             {metadata.description}
                           </p>
                         )}
-                        <p className="text-white/40 text-xs mt-2">{item.date}</p>
+                        <div className="flex items-center justify-between text-white/40 text-xs mt-2">
+                          {metadata?.views && (
+                            <div className="flex items-center gap-1">
+                              <Icon name="Eye" size={14} />
+                              <span>{formatViews(metadata.views)}</span>
+                            </div>
+                          )}
+                          {metadata?.created && (
+                            <div className="flex items-center gap-1">
+                              <Icon name="Calendar" size={14} />
+                              <span>{new Date(metadata.created).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
