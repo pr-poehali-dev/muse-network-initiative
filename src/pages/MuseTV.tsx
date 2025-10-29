@@ -145,10 +145,15 @@ const MuseTV = () => {
     if (videoMetadata[videoId]) return;
     
     try {
-      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
-      if (!response.ok) return;
+      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+      if (!response.ok) {
+        console.error(`Failed to fetch metadata for ${videoId}: ${response.status}`);
+        return;
+      }
       
       const data = await response.json();
+      console.log(`Loaded metadata for ${videoId}:`, data.title);
+      
       setVideoMetadata(prev => ({
         ...prev,
         [videoId]: {
@@ -157,9 +162,9 @@ const MuseTV = () => {
           views: data.hits,
           description: data.description,
           thumbnail: data.thumbnail_url,
-          author: data.author?.name,
           created: data.created,
-          category: data.category?.name
+          author: data.author,
+          category: data.category
         }
       }));
     } catch (error) {

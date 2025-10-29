@@ -57,12 +57,18 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         with urllib.request.urlopen(req) as response:
             data = json.loads(response.read().decode('utf-8'))
         
+        author = data.get('author', {})
+        category = data.get('category', {})
+        
         result = {
             'title': data.get('title'),
             'description': data.get('description'),
             'thumbnail_url': data.get('thumbnail_url'),
             'duration': data.get('duration'),
-            'hits': data.get('hits')
+            'hits': data.get('hits'),
+            'created': data.get('created'),
+            'author': author.get('name') if author else None,
+            'category': category.get('name') if category else None
         }
         
         return {
