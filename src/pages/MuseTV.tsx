@@ -667,7 +667,13 @@ const MuseTV = () => {
                             {metadata.description}
                           </p>
                         )}
-                        <div className="flex items-center justify-between text-white/40 text-xs mt-2">
+                        <div className="flex items-center gap-3 text-white/40 text-xs mt-2 flex-wrap">
+                          {metadata?.duration && (
+                            <div className="flex items-center gap-1">
+                              <Icon name="Clock" size={14} />
+                              <span>{formatDuration(metadata.duration)}</span>
+                            </div>
+                          )}
                           {metadata?.views && (
                             <div className="flex items-center gap-1">
                               <Icon name="Eye" size={14} />
