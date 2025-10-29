@@ -429,14 +429,17 @@ const MuseTV = () => {
             
             <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
               <CardContent className="p-0">
-                <div className="relative aspect-video bg-black">
+                <div className="relative aspect-video bg-black overflow-hidden">
                   {randomPodcast.vkEmbed ? (
-                    <iframe
-                      src={randomPodcast.vkEmbed}
-                      allow="clipboard-write; autoplay"
-                      allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
+                    <div className="relative w-full h-full">
+                      <iframe
+                        src={randomPodcast.vkEmbed}
+                        allow="clipboard-write; autoplay"
+                        allowFullScreen
+                        className="w-full h-full"
+                      ></iframe>
+                      <div className="absolute bottom-0 left-0 right-0 h-16 bg-black pointer-events-none z-10"></div>
+                    </div>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
@@ -761,15 +764,18 @@ const MuseTV = () => {
             return (
               <div className="flex flex-col gap-6 p-6">
                 {/* Video Player */}
-                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                <div className="relative w-full overflow-hidden rounded-lg" style={{ paddingBottom: '56.25%' }}>
                   {selectedVideo?.vkEmbed && (
-                    <iframe
-                      src={selectedVideo.vkEmbed}
-                      className="absolute inset-0 w-full h-full rounded-lg"
-                      allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                      frameBorder="0"
-                      allowFullScreen
-                    ></iframe>
+                    <>
+                      <iframe
+                        src={selectedVideo.vkEmbed}
+                        className="absolute inset-0 w-full h-full"
+                        allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+                        frameBorder="0"
+                        allowFullScreen
+                      ></iframe>
+                      <div className="absolute bottom-0 left-0 right-0 h-16 bg-black pointer-events-none z-10"></div>
+                    </>
                   )}
                 </div>
 
