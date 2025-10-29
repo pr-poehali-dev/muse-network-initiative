@@ -37,22 +37,15 @@ const MuseTV = () => {
   }, []);
 
   const fetchRutubeMetadata = async (videoId: string) => {
-    console.log(`📡 fetchRutubeMetadata called for:`, videoId, 'exists:', !!videoMetadata[videoId]);
-    if (!videoId || videoMetadata[videoId]) {
-      console.log(`⏭️ Skipping ${videoId}: ${!videoId ? 'no ID' : 'already exists'}`);
-      return;
-    }
+    if (!videoId) return;
     
-    console.log(`⬇️ Fetching data for:`, videoId);
     setLoadingVideos(prev => new Set(prev).add(videoId));
     
     try {
       const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
-      console.log(`📥 Response status for ${videoId}:`, response.status);
       if (!response.ok) throw new Error('API error');
       
       const data = await response.json();
-      console.log(`✅ Got data for ${videoId}:`, data);
       
       const metadata = {
         title: data.title,
@@ -61,17 +54,11 @@ const MuseTV = () => {
         duration: data.duration,
         views: data.hits
       };
-      console.log(`💾 Saving metadata for ${videoId}:`, metadata);
       
-      setVideoMetadata((prev) => {
-        const updated = {
-          ...prev,
-          [videoId]: metadata
-        };
-        console.log(`🔄 Updated videoMetadata, total keys:`, Object.keys(updated).length);
-        return updated;
-      });
-      setUpdateTrigger(prev => prev + 1);
+      setVideoMetadata((prev) => ({
+        ...prev,
+        [videoId]: metadata
+      }));
     } catch (error) {
       console.error(`❌ Error fetching metadata for ${videoId}:`, error);
     } finally {
@@ -84,16 +71,14 @@ const MuseTV = () => {
   };
 
   useEffect(() => {
-    console.log('🚀 Loading metadata for all videos...');
+    const loadedIds = new Set<string>();
     const allContent = [...featuredContent, ...contentLibrary];
-    console.log('Total content items:', allContent.length);
     
     allContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = extractVideoId(content.vkEmbed);
-        console.log(`Processing video ${content.id}, extracted ID:`, videoId);
-        if (videoId) {
-          console.log(`Fetching metadata for:`, videoId);
+        if (videoId && !loadedIds.has(videoId)) {
+          loadedIds.add(videoId);
           fetchRutubeMetadata(videoId);
         }
       }
@@ -490,27 +475,28 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" key={Object.keys(videoMetadata).length}>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const currentMetadata = videoId ? videoMetadata[videoId] : null;
+                const displayTitle = currentMetadata?.title || (item.title && item.title.trim()) || 'Загрузка...';
 
                 return (
                   <Card 
-                    key={item.id}
+                    key={`${item.id}-${displayTitle}`}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {currentMetadata?.thumbnail && (
+                        {currentMetadata?.thumbnail ? (
                           <img 
                             src={currentMetadata.thumbnail} 
-                            alt={currentMetadata.title || 'Видео'}
+                            alt={displayTitle}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}
                           />
-                        )}
+                        ) : null}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
                           <Icon name="Play" size={50} className="text-white opacity-80" />
                         </div>
@@ -518,7 +504,7 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {currentMetadata?.title || (item.title && item.title.trim()) || 'Загрузка...'}
+                          {displayTitle}
                         </h3>
                         {currentMetadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
