@@ -16,6 +16,7 @@ const MuseTV = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
+  const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -146,6 +147,28 @@ const MuseTV = () => {
       return `${(views / 1000).toFixed(1)}K`;
     }
     return views.toString();
+  };
+
+  const fetchRutubeMetadata = async (videoId: string) => {
+    if (videoMetadata[videoId]) return;
+    
+    try {
+      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
+      if (!response.ok) return;
+      
+      const data = await response.json();
+      setVideoMetadata(prev => ({
+        ...prev,
+        [videoId]: {
+          title: data.title,
+          duration: data.duration,
+          views: data.hits,
+          description: data.description
+        }
+      }));
+    } catch (error) {
+      console.error(`Error fetching Rutube metadata for ${videoId}:`, error);
+    }
   };
 
   const contentLibrary = [
