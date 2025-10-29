@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -16,11 +16,61 @@ const MuseTV = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
+  const [videosData, setVideosData] = useState<Record<string, any>>({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const extractVideoId = (url: string): string => {
+    const match = url.match(/\/video\/([a-f0-9]+)/);
+    return match ? match[1] : '';
+  };
+
+  const formatDuration = (seconds: number): string => {
+    const mins = Math.floor(seconds / 60);
+    return `${mins} мин`;
+  };
+
+  const formatViews = (views: number): string => {
+    if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`;
+    if (views >= 1000) return `${(views / 1000).toFixed(1)}K`;
+    return views.toString();
+  };
+
+  useEffect(() => {
+    const fetchVideoData = async () => {
+      const allVideos = [...featuredContent, ...contentLibrary];
+      const videoIds = allVideos
+        .map(v => v.url ? extractVideoId(v.url) : '')
+        .filter(Boolean);
+      
+      const results: Record<string, any> = {};
+      
+      await Promise.all(
+        videoIds.map(async (videoId) => {
+          try {
+            const response = await fetch(
+              `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`
+            );
+            if (response.ok) {
+              const data = await response.json();
+              results[videoId] = data;
+            }
+          } catch (error) {
+            console.error(`Failed to fetch data for ${videoId}:`, error);
+          }
+        })
+      );
+      
+      setVideosData(results);
+      setIsLoading(false);
+    };
+    
+    fetchVideoData();
   }, []);
 
 
@@ -385,15 +435,34 @@ const MuseTV = () => {
                   )}
                 </div>
                 <div className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-2xl font-bold mb-2">{randomPodcast.title}</h3>
-                  <div className="flex items-center gap-4 text-white/70">
-                    <span className="flex items-center gap-1">
-                      <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                      {randomPodcast.duration}
-                    </span>
-                    <span>•</span>
-                    <span>{randomPodcast.type}</span>
-                  </div>
+                  {(() => {
+                    const videoId = randomPodcast.url ? extractVideoId(randomPodcast.url) : '';
+                    const rutubeData = videosData[videoId];
+                    const displayTitle = rutubeData?.title || randomPodcast.title;
+                    const displayDuration = rutubeData?.duration ? formatDuration(rutubeData.duration) : randomPodcast.duration;
+                    const displayViews = rutubeData?.hits ? formatViews(rutubeData.hits) : '';
+                    
+                    return (
+                      <>
+                        <h3 className="text-lg md:text-2xl font-bold mb-2">{displayTitle}</h3>
+                        <div className="flex items-center gap-4 text-white/70">
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
+                            {displayDuration}
+                          </span>
+                          {displayViews && (
+                            <>
+                              <span>•</span>
+                              <span className="flex items-center gap-1">
+                                <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
+                                {displayViews}
+                              </span>
+                            </>
+                          )}
+                        </div>
+                      </>
+                    );
+                  })()}
                 </div>
               </CardContent>
             </Card>
@@ -529,7 +598,16 @@ const MuseTV = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {filteredContent.map(item => (
+              {filteredContent.map(item => {
+                const videoId = item.url ? extractVideoId(item.url) : '';
+                const rutubeData = videosData[videoId];
+                
+                const displayTitle = rutubeData?.title || item.title;
+                const displayThumbnail = rutubeData?.thumbnail_url || item.thumbnail;
+                const displayDuration = rutubeData?.duration ? formatDuration(rutubeData.duration) : item.duration;
+                const displayViews = rutubeData?.hits ? formatViews(rutubeData.hits) : item.views;
+                
+                return (
                   <Card 
                     key={item.id} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
@@ -541,10 +619,10 @@ const MuseTV = () => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {item.thumbnail ? (
+                        {displayThumbnail ? (
                           <img 
-                            src={item.thumbnail} 
-                            alt={item.title}
+                            src={displayThumbnail} 
+                            alt={displayTitle}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                         ) : (
@@ -559,23 +637,24 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
                         <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {item.title}
+                          {displayTitle}
                         </h3>
                         <div className="flex items-center justify-between text-white/60 text-xs">
                           <span className="flex items-center gap-1">
                             <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                            {item.duration}
+                            {displayDuration}
                           </span>
                           <span className="flex items-center gap-1">
                             <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                            {item.views} просмотров
+                            {displayViews} просмотров
                           </span>
                         </div>
                         <p className="text-white/40 text-xs mt-1">{item.date}</p>
                       </div>
                     </CardContent>
                   </Card>
-                ))}
+                );
+              })}
             </div>
           )}
         </div>
