@@ -48,7 +48,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
         <div className="bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/30">
           <div className="container mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3">
                 <button
                   onClick={() => navigate('/')}
                   className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
