@@ -428,65 +428,21 @@ const MuseTV = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
-                const videoId = item.vkEmbed?.includes('rutube.ru') 
-                  ? item.vkEmbed.split('/').pop()
-                  : null;
+                const videoId = extractVideoId(item.vkEmbed);
                 const metadata = videoId ? videoMetadata[videoId] : null;
-                const rutubeThumbnail = videoId ? `https://pic.rutubelist.ru/video/${videoId.substring(0, 2)}/${videoId}.jpg` : null;
 
                 return (
-                  <Card 
-                    key={item.id} 
-                    className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                  <VideoCard
+                    key={item.id}
+                    item={item}
+                    metadata={metadata}
                     onClick={async () => {
-                      if (item.vkEmbed) {
-                        if (videoId && !metadata) {
-                          await fetchRutubeMetadata(videoId);
-                        }
-                        setSelectedVideo(item);
+                      if (item.vkEmbed && videoId && !metadata) {
+                        await fetchMetadata(videoId);
                       }
+                      setSelectedVideo(item);
                     }}
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {(metadata?.thumbnail || item.thumbnail || rutubeThumbnail) && (
-                          <img 
-                            src={metadata?.thumbnail || item.thumbnail || rutubeThumbnail || ''} 
-                            alt={metadata?.title || item.title}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
-                          />
-                        )}
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
-                        </div>
-                      </div>
-                      <div className="p-3 md:p-4">
-                        <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title}
-                        </h3>
-                        {metadata?.description && (
-                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {metadata.description}
-                          </p>
-                        )}
-                        <div className="flex items-center justify-between text-white/60 text-xs">
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
-                          </span>
-                        </div>
-                        <p className="text-white/40 text-xs mt-1">{item.date}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  />
                 );
               })}
             </div>
