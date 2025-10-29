@@ -44,53 +44,55 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/30">
-        <div className="container mx-auto px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <button
-                onClick={() => navigate('/')}
-                className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
-              >
-                <img 
-                  src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
-                  alt="MUSE Logo"
-                  className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
+      <header className="fixed top-0 left-0 right-0 z-50">
+        <div className="bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/30">
+          <div className="container mx-auto px-8 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-6">
+                <button
+                  onClick={() => navigate('/')}
+                  className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
+                >
+                  <img 
+                    src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
+                    alt="MUSE Logo"
+                    className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
+                    style={{
+                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.2))'
+                    }}
+                  />
+                </button>
+                
+                <div
+                  className="transition-all duration-500 overflow-hidden"
                   style={{
-                    filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.2))'
+                    maxWidth: titleInHeader ? '200px' : '0px',
+                    opacity: titleInHeader ? 1 : 0,
                   }}
-                />
-              </button>
-              
-              <div
-                className="transition-all duration-500 overflow-hidden"
-                style={{
-                  maxWidth: titleInHeader ? '200px' : '0px',
-                  opacity: titleInHeader ? 1 : 0,
-                }}
-              >
-                <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
-                  MUSE
-                </h2>
+                >
+                  <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
+                    MUSE
+                  </h2>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-bold text-[#b8953d]/90 uppercase tracking-wider">MENU</span>
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
-                aria-label="Toggle menu"
-              >
-                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-                <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
-              </button>
+              
+              <div className="flex items-center gap-3">
+                <span className="text-sm font-bold text-[#b8953d]/90 uppercase tracking-wider">MENU</span>
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
+                  aria-label="Toggle menu"
+                >
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className={`fixed left-0 right-0 bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 ${isMobileMenuOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-4 pointer-events-none'}`} style={{ top: '64px', bottom: 0, height: 'calc(100vh - 64px)' }}>
-          <div className="flex flex-col items-center justify-start pt-6 h-full gap-6 px-8 overflow-y-auto">
+        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
+          <div className="flex flex-col items-center justify-start py-6 gap-6 px-8 overflow-y-auto max-h-[calc(100vh-96px)]">
             <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
               {menuItems.map((item) => (
                 <button
