@@ -59,6 +59,7 @@ const MuseTV = () => {
         ...prev,
         [videoId]: metadata
       }));
+      setUpdateTrigger(prev => prev + 1);
     } catch (error) {
       console.error(`❌ Error fetching metadata for ${videoId}:`, error);
     } finally {
@@ -483,7 +484,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={`${item.id}-${displayTitle}`}
+                    key={`${item.id}-${updateTrigger}`}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
