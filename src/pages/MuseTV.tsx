@@ -163,7 +163,8 @@ const MuseTV = () => {
           title: data.title,
           duration: data.duration,
           views: data.hits,
-          description: data.description
+          description: data.description,
+          thumbnail: data.thumbnail_url
         }
       }));
     } catch (error) {
