@@ -329,9 +329,6 @@ const MuseTV = () => {
             backgroundSize: '100px 100px'
           }}></div>
           
-          <div className="absolute top-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-32 border-t-4 border-b-4 border-white/10 pointer-events-none z-40"></div>
-          
           <div className="absolute top-8 left-8 text-white/40 font-mono text-sm z-40">REC ●</div>
           <div className="absolute top-8 right-8 text-white/40 font-mono text-sm z-40">16:9</div>
           <div className="absolute bottom-8 left-8 text-white/40 font-mono text-sm z-40">MUSE</div>
