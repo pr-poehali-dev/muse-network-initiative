@@ -381,7 +381,7 @@ const MuseTV = () => {
 
       {/* Live Section */}
       {isLive ? (
-        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-red-600 text-white animate-pulse">
@@ -410,7 +410,7 @@ const MuseTV = () => {
           </div>
         </section>
       ) : randomPodcast ? (
-        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-[#d4af37] text-black">
@@ -479,7 +479,7 @@ const MuseTV = () => {
       </div>
 
       {/* Upcoming Streams */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <div 
             className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
@@ -533,7 +533,7 @@ const MuseTV = () => {
 
 
       {/* Main Catalog */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Каталог контента</h2>
           
@@ -668,7 +668,7 @@ const MuseTV = () => {
       </div>
 
       {/* Archive */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <div 
             className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
