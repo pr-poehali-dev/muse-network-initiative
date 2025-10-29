@@ -42,6 +42,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     body_data = json.loads(event.get('body', '{}'))
+    print(f'Received expert data: {body_data}')
     
     credentials_json = os.environ.get('GOOGLE_SERVICE_ACCOUNT')
     if not credentials_json:
@@ -93,12 +94,25 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         body_data.get('message', '')
     ]
     
-    service.spreadsheets().values().append(
-        spreadsheetId=SPREADSHEET_ID,
-        range=f'{SHEET_NAME}!A:G',
-        valueInputOption='RAW',
-        body={'values': [row_data]}
-    ).execute()
+    try:
+        result = service.spreadsheets().values().append(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f'{SHEET_NAME}!A:G',
+            valueInputOption='RAW',
+            body={'values': [row_data]}
+        ).execute()
+        print(f'Successfully added to Google Sheets: {result}')
+    except Exception as e:
+        print(f'Error writing to Google Sheets: {str(e)}')
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': f'Failed to write to Google Sheets: {str(e)}'})
+        }
     
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
