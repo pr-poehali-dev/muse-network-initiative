@@ -227,7 +227,7 @@ const Index = () => {
       image: 'https://cdn.poehali.dev/files/15652b13-1d93-40d4-b392-b4b4bdaf51cc.jpg',
     },
     {
-      name: 'Полина Юрьевна Берг',
+      name: 'Берг Полина Юрьевна',
       role: 'Мастер исторического костюма',
       description: 'Северный бренд одежды Пинега',
       image: 'https://cdn.poehali.dev/files/ac72f595-012b-4bb4-9f27-b198576f5ed4.jpg',
