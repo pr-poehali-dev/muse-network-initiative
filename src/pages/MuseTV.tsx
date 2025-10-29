@@ -352,29 +352,22 @@ const MuseTV = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-50">
-          <div className="relative inline-block mb-8 md:mb-10">
+        <div className="w-full text-center px-4 md:px-8 relative z-30">
+          <div 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
+            style={{
+              animationDelay: '0.8s',
+              opacity: 0
+            }}
+          >
             <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider relative" style={{
               background: 'linear-gradient(to bottom, #d4af37 0%, #b8953d 50%, #8b7355 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
-              WebkitFontSmoothing: 'antialiased',
-              MozOsxFontSmoothing: 'grayscale',
-              textRendering: 'optimizeLegibility'
+              filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.9))'
             }}>
-              {'MUSE TV'.split('').map((char, index) => (
-                <span
-                  key={index}
-                  className="inline-block neon-flicker"
-                  style={{
-                    animation: `letter-appear 0.3s ease-out ${index * 0.1}s forwards, neon-flicker 3s ease-in-out ${index * 0.1 + 0.3}s infinite`,
-                    opacity: 0
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
+              MUSE TV
             </h1>
           </div>
           <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-white mb-6 md:mb-10 leading-relaxed animate-text-appear max-w-3xl mx-auto font-medium" style={{animationDelay: '1.2s', opacity: 0, textShadow: '0 2px 20px rgba(212,175,55,0.3), 0 0 40px rgba(0,0,0,0.8)'}}>
