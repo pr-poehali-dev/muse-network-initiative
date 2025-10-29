@@ -470,7 +470,7 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div key={JSON.stringify(Object.keys(videoMetadata))} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
