@@ -15,7 +15,8 @@ const MuseTV = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [videoMetadata, setVideoMetadata] = useState<any>({});
-  const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -477,7 +478,57 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      {/* Upcoming Streams */}
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <div className="container mx-auto">
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsUpcomingOpen(!isUpcomingOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Предстоящие трансляции</h2>
+            <Icon 
+              name={isUpcomingOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
+          </div>
+          {isUpcomingOpen && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {upcomingStreams.map(stream => (
+              <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
+                <CardContent className="p-4 md:p-6">
+                  <Badge className="mb-3 md:mb-4 bg-[#d4af37]/20 text-[#d4af37] text-xs md:text-sm">{stream.category}</Badge>
+                  <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
+                  <div className="space-y-2 text-white/60 text-sm mb-4">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calendar" size={16} className="text-[#b8953d]/60" />
+                      {stream.date}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
+                      {stream.time}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="User" size={16} className="text-[#b8953d]/60" />
+                      {stream.speaker}
+                    </div>
+                  </div>
+                  <Button className="w-full bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
+                    Напомнить
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          )}
+        </div>
+      </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
 
 
 
@@ -616,105 +667,51 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Streams Section (Upcoming + Archive) */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture relative overflow-hidden">
-        {/* Decorative Elements */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-[#d4af37]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#b8953d]/5 rounded-full blur-3xl"></div>
-        
-        <div className="container mx-auto relative z-10">
-          {/* Header with Tabs */}
-          <div className="mb-8">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-1 h-12 bg-gradient-to-b from-[#d4af37] to-[#b8953d] rounded-full"></div>
-              <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции</h2>
-            </div>
-            
-            {/* Tabs */}
-            <div className="flex gap-2 p-1 bg-black/40 rounded-lg border border-[#d4af37]/20 backdrop-blur-sm w-fit">
-              <button
-                onClick={() => setStreamTab('upcoming')}
-                className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all ${
-                  streamTab === 'upcoming'
-                    ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black shadow-lg shadow-[#d4af37]/20'
-                    : 'text-white/60 hover:text-white/80'
-                }`}
-              >
-                Предстоящие
-              </button>
-              <button
-                onClick={() => setStreamTab('archive')}
-                className={`px-6 py-2.5 rounded-md text-sm font-medium transition-all ${
-                  streamTab === 'archive'
-                    ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black shadow-lg shadow-[#d4af37]/20'
-                    : 'text-white/60 hover:text-white/80'
-                }`}
-              >
-                Архив
-              </button>
-            </div>
+      {/* Archive */}
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <div className="container mx-auto">
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsArchiveOpen(!isArchiveOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Архив трансляций</h2>
+            <Icon 
+              name={isArchiveOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
           </div>
-
-          {/* Content */}
-          {streamTab === 'upcoming' ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              {upcomingStreams.map(stream => (
-                <Card key={stream.id} className="bg-black/40 backdrop-blur-sm border-[#d4af37]/20 hover:border-[#d4af37]/50 hover:shadow-lg hover:shadow-[#d4af37]/10 transition-all group">
-                  <CardContent className="p-4 md:p-6">
-                    <Badge className="mb-3 md:mb-4 bg-gradient-to-r from-[#d4af37]/20 to-[#b8953d]/20 text-[#d4af37] text-xs md:text-sm border border-[#d4af37]/30">{stream.category}</Badge>
-                    <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
-                    <div className="space-y-2 text-white/60 text-sm mb-4">
-                      <div className="flex items-center gap-2">
-                        <Icon name="Calendar" size={16} className="text-[#d4af37]" />
-                        {stream.date}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="Clock" size={16} className="text-[#d4af37]" />
-                        {stream.time}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="User" size={16} className="text-[#d4af37]" />
-                        {stream.speaker}
+          {isArchiveOpen && (
+          <div className="space-y-4">
+            {archiveEvents.map(event => (
+              <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
+                    <div className="flex-1">
+                      <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
+                      <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
+                        <span className="flex items-center gap-2">
+                          <Icon name="Calendar" size={14} className="text-[#b8953d]/60" />
+                          {event.date}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
+                          {event.duration}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
+                          {event.views} просмотров
+                        </span>
                       </div>
                     </div>
-                    <Button className="w-full bg-gradient-to-r from-[#d4af37]/10 to-[#b8953d]/10 border border-[#d4af37] text-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#b8953d] hover:text-black hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all">
-                      Напомнить
+                    <Button className="bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
+                      Смотреть
                     </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {archiveEvents.map(event => (
-                <Card key={event.id} className="bg-black/40 backdrop-blur-sm border-[#d4af37]/20 hover:border-[#d4af37]/50 hover:shadow-lg hover:shadow-[#d4af37]/10 transition-all group cursor-pointer">
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
-                      <div className="flex-1">
-                        <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
-                        <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
-                          <span className="flex items-center gap-2">
-                            <Icon name="Calendar" size={14} className="text-[#d4af37]" />
-                            {event.date}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Clock" size={14} className="text-[#d4af37]" />
-                            {event.duration}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Eye" size={14} className="text-[#d4af37]" />
-                            {event.views} просмотров
-                          </span>
-                        </div>
-                      </div>
-                      <Button className="bg-gradient-to-r from-[#d4af37]/10 to-[#b8953d]/10 border border-[#d4af37] text-[#d4af37] hover:bg-gradient-to-r hover:from-[#d4af37] hover:to-[#b8953d] hover:text-black hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all">
-                        Смотреть
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
           )}
         </div>
       </section>
