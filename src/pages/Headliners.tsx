@@ -164,11 +164,7 @@ const Headliners = () => {
       </section>
 
       {/* Section Separator */}
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
       {/* 2. SPEAKER - О спикере */}
       <section id="speaker" className="relative py-16 sm:py-24 md:py-32 bg-gradient-to-b from-neutral-950 via-black to-neutral-950 overflow-hidden">
@@ -267,11 +263,7 @@ const Headliners = () => {
       </section>
 
       {/* Section Separator */}
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
       {/* 3. PROGRAM - Что узнаете */}
       <section id="program" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-black to-neutral-950">
@@ -380,11 +372,7 @@ const Headliners = () => {
       </section>
 
       {/* Section Separator */}
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
       {/* 4. GALLERY - Фото галерея */}
       <section id="gallery" className="py-16 sm:py-24 md:py-32 bg-gradient-to-b from-neutral-950 to-black">
