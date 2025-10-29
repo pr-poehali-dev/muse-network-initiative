@@ -39,17 +39,20 @@ export const useRutubeMetadata = (videoIds: string[]) => {
 
   useEffect(() => {
     const loadMetadata = async () => {
-      const promises = videoIds
-        .filter(videoId => videoId && !metadata[videoId] && !loading[videoId])
-        .map(videoId => fetchMetadata(videoId));
+      const videosToLoad = videoIds.filter(
+        videoId => videoId && !metadata[videoId] && !loading[videoId]
+      );
       
-      await Promise.all(promises);
+      for (const videoId of videosToLoad) {
+        await fetchMetadata(videoId);
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
     };
     
     if (videoIds.length > 0) {
       loadMetadata();
     }
-  }, [videoIds.join(',')]);
+  }, [videoIds.length]);
 
   return { metadata, fetchMetadata, loading };
 };
