@@ -27,7 +27,6 @@ const MuseTV = () => {
   const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
   const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
-  const [, forceUpdate] = useState({});
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -56,11 +55,10 @@ const MuseTV = () => {
         views: data.hits
       };
       
-      setVideoMetadata((prev) => {
-        const updated = { ...prev, [videoId]: metadata };
-        return updated;
-      });
-      forceUpdate({});
+      setVideoMetadata((prev) => ({
+        ...prev,
+        [videoId]: metadata
+      }));
       return metadata;
     } catch (error) {
       console.error(`Error fetching Rutube metadata for ${videoId}:`, error);
