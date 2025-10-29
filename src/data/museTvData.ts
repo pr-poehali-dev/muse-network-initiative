@@ -38,32 +38,7 @@ export interface VideoMetadata {
   views: number;
 }
 
-export const upcomingStreams: UpcomingStream[] = [
-  {
-    id: 1,
-    title: 'Секреты продвижения в социальных сетях',
-    date: '15 ноября 2024',
-    time: '19:00 МСК',
-    category: 'Мастер-класс',
-    speaker: 'Анна Петрова'
-  },
-  {
-    id: 2,
-    title: 'Интервью с основателем IT-стартапа',
-    date: '18 ноября 2024',
-    time: '20:00 МСК',
-    category: 'Интервью',
-    speaker: 'Дмитрий Иванов'
-  },
-  {
-    id: 3,
-    title: 'Искусство нетворкинга: как находить нужные связи',
-    date: '22 ноября 2024',
-    time: '18:30 МСК',
-    category: 'Лекция',
-    speaker: 'Мария Соколова'
-  }
-];
+export const upcomingStreams: UpcomingStream[] = [];
 
 export const featuredContent: VideoContent[] = [
   {
@@ -203,29 +178,7 @@ export const contentLibrary: VideoContent[] = [
   }
 ];
 
-export const archiveEvents: ArchiveEvent[] = [
-  {
-    id: 1,
-    title: 'Конференция "Будущее бизнеса 2024"',
-    date: '25.10.2024',
-    duration: '2 ч 45 мин',
-    views: '22.3K'
-  },
-  {
-    id: 2,
-    title: 'Круглый стол: Цифровая трансформация',
-    date: '20.10.2024',
-    duration: '1 ч 30 мин',
-    views: '18.7K'
-  },
-  {
-    id: 3,
-    title: 'Встреча клуба MUSE: Нетворкинг сессия',
-    date: '15.10.2024',
-    duration: '3 ч 15 мин',
-    views: '15.2K'
-  }
-];
+export const archiveEvents: ArchiveEvent[] = [];
 
 export const formatDuration = (seconds: number): string => {
   const hours = Math.floor(seconds / 3600);
