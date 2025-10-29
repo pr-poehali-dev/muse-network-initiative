@@ -12,9 +12,6 @@ from typing import Dict, Any
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
     
-    print(f'[Rutube Proxy] Method: {method}')
-    print(f'[Rutube Proxy] Event: {json.dumps(event)}')
-    
     cors_headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -23,18 +20,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     }
     
     if method == 'OPTIONS':
-        print('[Rutube Proxy] Handling OPTIONS preflight')
         return {
             'statusCode': 200,
             'headers': cors_headers,
-            'body': ''
+            'body': '',
+            'isBase64Encoded': False
         }
     
     if method != 'GET':
         return {
             'statusCode': 405,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'Method not allowed'})
+            'body': json.dumps({'error': 'Method not allowed'}),
+            'isBase64Encoded': False
         }
     
     params = event.get('queryStringParameters', {})
@@ -44,7 +42,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 400,
             'headers': cors_headers,
-            'body': json.dumps({'error': 'video_id parameter is required'})
+            'body': json.dumps({'error': 'video_id parameter is required'}),
+            'isBase64Encoded': False
         }
     
     try:
@@ -69,11 +68,13 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 200,
             'headers': cors_headers,
-            'body': json.dumps(result)
+            'body': json.dumps(result),
+            'isBase64Encoded': False
         }
     except Exception as e:
         return {
             'statusCode': 500,
             'headers': cors_headers,
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': str(e)}),
+            'isBase64Encoded': False
         }
