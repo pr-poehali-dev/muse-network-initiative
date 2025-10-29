@@ -382,32 +382,12 @@ const MuseTV = () => {
                 <div className="p-4 md:p-6">
                   <h3 className="text-lg md:text-2xl font-bold mb-2">{randomPodcast.title}</h3>
                   <div className="flex items-center gap-4 text-white/70">
-                    {(() => {
-                      const videoId = randomPodcast.vkEmbed?.split('/').pop();
-                      const metadata = videoId ? videoMetadata[videoId] : null;
-                      return metadata ? (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                            {formatDuration(metadata.duration)}
-                          </span>
-                          <span>•</span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
-                            {formatViews(metadata.views)}
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                            {randomPodcast.duration}
-                          </span>
-                          <span>•</span>
-                          <span>{randomPodcast.type}</span>
-                        </>
-                      );
-                    })()}
+                    <span className="flex items-center gap-1">
+                      <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
+                      {randomPodcast.duration}
+                    </span>
+                    <span>•</span>
+                    <span>{randomPodcast.type}</span>
                   </div>
                 </div>
               </CardContent>
