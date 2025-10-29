@@ -7,17 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
-import VideoCard from '@/components/VideoCard';
-import { 
-  upcomingStreams, 
-  featuredContent, 
-  contentLibrary, 
-  archiveEvents,
-  formatDuration,
-  formatViews,
-  extractVideoId,
-  generateRutubeThumbnail
-} from '@/data/museTvData';
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -25,11 +14,9 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
-  const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
-  const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
-  const [loadingVideos, setLoadingVideos] = useState<Set<string>>(new Set());
-  const [updateTrigger, setUpdateTrigger] = useState(0);
+  const [videoMetadata, setVideoMetadata] = useState<any>({});
+  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -37,15 +24,22 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    featuredContent.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
+
   const fetchRutubeMetadata = async (videoId: string) => {
-    if (!videoId) return;
-    
-    setLoadingVideos(prev => new Set(prev).add(videoId));
+    if (videoMetadata[videoId]) return videoMetadata[videoId];
     
     try {
       const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
-      if (!response.ok) throw new Error('API error');
-      
       const data = await response.json();
       
       const metadata = {
@@ -56,39 +50,101 @@ const MuseTV = () => {
         views: data.hits
       };
       
-      setVideoMetadata((prev) => ({
-        ...prev,
-        [videoId]: metadata
-      }));
-      setUpdateTrigger(prev => prev + 1);
+      setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
+      return metadata;
     } catch (error) {
-      console.error(`❌ Error fetching metadata for ${videoId}:`, error);
-    } finally {
-      setLoadingVideos(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(videoId);
-        return newSet;
-      });
+      console.error('Error fetching Rutube metadata:', error);
+      return null;
     }
   };
 
-  useEffect(() => {
-    const loadedIds = new Set<string>();
-    const allContent = [...featuredContent, ...contentLibrary];
-    
-    allContent.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = extractVideoId(content.vkEmbed);
-        if (videoId && !loadedIds.has(videoId)) {
-          loadedIds.add(videoId);
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
-
   const isLive = false;
   const viewersCount = 234;
+
+  const upcomingStreams = [
+    {
+      id: 1,
+      title: 'Секреты продвижения в социальных сетях',
+      date: '15 ноября 2024',
+      time: '19:00 МСК',
+      category: 'Мастер-класс',
+      speaker: 'Анна Петрова'
+    },
+    {
+      id: 2,
+      title: 'Интервью с основателем IT-стартапа',
+      date: '18 ноября 2024',
+      time: '20:00 МСК',
+      category: 'Интервью',
+      speaker: 'Дмитрий Иванов'
+    },
+    {
+      id: 3,
+      title: 'Искусство нетворкинга: как находить нужные связи',
+      date: '22 ноября 2024',
+      time: '18:30 МСК',
+      category: 'Лекция',
+      speaker: 'Мария Соколова'
+    }
+  ];
+
+  const featuredContent = [
+    {
+      id: 4,
+      title: 'MUSE Podcast - Интервью с экспертами',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
+      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
+      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
+    },
+    {
+      id: 5,
+      title: 'Подкаст MUSE - Эпизод 1',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
+      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
+    },
+    {
+      id: 6,
+      title: 'Подкаст MUSE - Эпизод 2',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
+      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
+    },
+    {
+      id: 7,
+      title: 'Подкаст MUSE - Эпизод 3',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
+      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
+    },
+    {
+      id: 8,
+      title: 'Подкаст MUSE - Эпизод 4',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
+      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
+    },
+    {
+      id: 9,
+      title: 'Подкаст MUSE - Эпизод 5',
+      type: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
+      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
+    }
+  ];
 
   const podcastVideos = featuredContent.filter(item => item.vkEmbed);
   const [randomPodcast] = useState(() => {
@@ -100,24 +156,156 @@ const MuseTV = () => {
 
   useEffect(() => {
     if (randomPodcast?.vkEmbed) {
-      const videoId = extractVideoId(randomPodcast.vkEmbed);
+      const videoId = randomPodcast.vkEmbed.split('/').pop();
       if (videoId) {
         fetchRutubeMetadata(videoId);
       }
     }
   }, [randomPodcast]);
 
+  const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    if (hours > 0) {
+      return `${hours} ч ${minutes} мин`;
+    }
+    return `${minutes} мин`;
+  };
 
+  const formatViews = (views: number | undefined) => {
+    if (!views) return '0';
+    if (views >= 1000000) {
+      return `${(views / 1000000).toFixed(1)}M`;
+    }
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}K`;
+    }
+    return views.toString();
+  };
+
+  const contentLibrary = [
+    {
+      id: 10,
+      title: 'MUSE Podcast - Интервью с экспертами',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '29.10.2024',
+      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
+      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
+      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
+    },
+    {
+      id: 11,
+      title: 'Подкаст MUSE - Эпизод 1',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '28.10.2024',
+      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
+      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
+    },
+    {
+      id: 12,
+      title: 'Подкаст MUSE - Эпизод 2',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '27.10.2024',
+      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
+      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
+    },
+    {
+      id: 13,
+      title: 'Подкаст MUSE - Эпизод 3',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '26.10.2024',
+      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
+      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
+    },
+    {
+      id: 14,
+      title: 'Подкаст MUSE - Эпизод 4',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '25.10.2024',
+      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
+      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
+    },
+    {
+      id: 15,
+      title: 'Подкаст MUSE - Эпизод 5',
+      type: 'podcast',
+      category: 'Подкаст',
+      duration: '42 мин',
+      views: '5.3K',
+      date: '24.10.2024',
+      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
+      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
+    }
+  ];
+
+  const popularPodcasts = [
+    {
+      id: 1,
+      title: 'Бизнес без границ',
+      episodes: 24,
+      subscribers: '15K',
+      platforms: ['apple', 'spotify', 'yandex']
+    },
+    {
+      id: 2,
+      title: 'Истории успеха',
+      episodes: 18,
+      subscribers: '12K',
+      platforms: ['apple', 'spotify', 'yandex']
+    },
+    {
+      id: 3,
+      title: 'Технологии будущего',
+      episodes: 31,
+      subscribers: '18K',
+      platforms: ['apple', 'spotify', 'yandex']
+    }
+  ];
+
+  const archiveEvents = [
+    {
+      id: 1,
+      title: 'Конференция "Будущее бизнеса 2024"',
+      date: '25.10.2024',
+      duration: '2 ч 45 мин',
+      views: '22.3K'
+    },
+    {
+      id: 2,
+      title: 'Круглый стол: Цифровая трансформация',
+      date: '20.10.2024',
+      duration: '1 ч 30 мин',
+      views: '18.7K'
+    },
+    {
+      id: 3,
+      title: 'Встреча клуба MUSE: Нетворкинг сессия',
+      date: '15.10.2024',
+      duration: '3 ч 15 мин',
+      views: '14.2K'
+    }
+  ];
 
   const filteredContent = contentLibrary.filter(item => {
-    const typeMatch = activeFilter === 'all' || 
-      item.type?.toLowerCase() === activeFilter.toLowerCase() ||
-      item.type === 'Подкаст' && activeFilter === 'podcast';
+    const typeMatch = activeFilter === 'all' || item.type === activeFilter;
     const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
     return typeMatch && categoryMatch;
   });
-
-  console.log('filteredContent.length:', filteredContent.length, 'activeFilter:', activeFilter, 'activeCategory:', activeCategory);
 
   return (
     <PageTransition>
@@ -290,114 +478,48 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Broadcasts Section */}
+      {/* Upcoming Streams */}
       <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
           <div 
             className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
-            onClick={() => setIsBroadcastsOpen(!isBroadcastsOpen)}
+            onClick={() => setIsUpcomingOpen(!isUpcomingOpen)}
           >
-            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Предстоящие трансляции</h2>
             <Icon 
-              name={isBroadcastsOpen ? "ChevronUp" : "ChevronDown"} 
+              name={isUpcomingOpen ? "ChevronUp" : "ChevronDown"} 
               size={32} 
               className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
             />
           </div>
-          
-          {isBroadcastsOpen && (
-          <>
-          {/* Tabs */}
-          <div className="flex gap-2 mb-6 md:mb-8">
-            <Button
-              onClick={() => setStreamTab('upcoming')}
-              className={`${
-                streamTab === 'upcoming'
-                  ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
-                  : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
-              }`}
-            >
-              <Icon name="Calendar" size={16} className={streamTab === 'upcoming' ? 'mr-2 text-black' : 'mr-2 text-[#b8953d]/60'} />
-              Предстоящие
-            </Button>
-            <Button
-              onClick={() => setStreamTab('archive')}
-              className={`${
-                streamTab === 'archive'
-                  ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
-                  : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
-              }`}
-            >
-              <Icon name="Archive" size={16} className={streamTab === 'archive' ? 'mr-2 text-black' : 'mr-2 text-[#b8953d]/60'} />
-              Архив
-            </Button>
+          {isUpcomingOpen && (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+            {upcomingStreams.map(stream => (
+              <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
+                <CardContent className="p-4 md:p-6">
+                  <Badge className="mb-3 md:mb-4 bg-[#d4af37]/20 text-[#d4af37] text-xs md:text-sm">{stream.category}</Badge>
+                  <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
+                  <div className="space-y-2 text-white/60 text-sm mb-4">
+                    <div className="flex items-center gap-2">
+                      <Icon name="Calendar" size={16} className="text-[#b8953d]/60" />
+                      {stream.date}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
+                      {stream.time}
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <Icon name="User" size={16} className="text-[#b8953d]/60" />
+                      {stream.speaker}
+                    </div>
+                  </div>
+                  <Button className="w-full bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
+                    Напомнить
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-
-          {/* Upcoming Content */}
-          {streamTab === 'upcoming' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              {upcomingStreams.map(stream => (
-                <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
-                  <CardContent className="p-4 md:p-6">
-                    <Badge className="mb-3 md:mb-4 bg-[#d4af37]/20 text-[#d4af37] text-xs md:text-sm">{stream.category}</Badge>
-                    <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
-                    <div className="space-y-2 text-white/60 text-sm mb-4">
-                      <div className="flex items-center gap-2">
-                        <Icon name="Calendar" size={16} className="text-[#b8953d]/60" />
-                        {stream.date}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                        {stream.time}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="User" size={16} className="text-[#b8953d]/60" />
-                        {stream.speaker}
-                      </div>
-                    </div>
-                    <Button className="w-full bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
-                      Напомнить
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-
-          {/* Archive Content */}
-          {streamTab === 'archive' && (
-            <div className="space-y-4">
-              {archiveEvents.map(event => (
-                <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
-                      <div className="flex-1">
-                        <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
-                        <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
-                          <span className="flex items-center gap-2">
-                            <Icon name="Calendar" size={14} className="text-[#b8953d]/60" />
-                            {event.date}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
-                            {event.duration}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
-                            {event.views} просмотров
-                          </span>
-                        </div>
-                      </div>
-                      <Button className="bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
-                        Смотреть
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-          </>
           )}
         </div>
       </section>
@@ -478,13 +600,62 @@ const MuseTV = () => {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {filteredContent.map(item => (
-                <VideoCard 
-                  key={item.id} 
-                  item={item} 
-                  onClick={() => setSelectedVideo(item)} 
-                />
-              ))}
+              {filteredContent.map(item => {
+                const videoId = item.vkEmbed?.includes('rutube.ru') 
+                  ? item.vkEmbed.split('/').pop()
+                  : null;
+                const metadata = videoId ? videoMetadata[videoId] : null;
+
+                return (
+                  <Card 
+                    key={item.id} 
+                    className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+                    onClick={async () => {
+                      if (item.vkEmbed) {
+                        if (videoId && !metadata) {
+                          await fetchRutubeMetadata(videoId);
+                        }
+                        setSelectedVideo(item);
+                      }
+                    }}
+                  >
+                    <CardContent className="p-0">
+                      <div className="relative aspect-video overflow-hidden">
+                        <img 
+                          src={metadata?.thumbnail || item.thumbnail} 
+                          alt={metadata?.title || item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                        </div>
+                      </div>
+                      <div className="p-3 md:p-4">
+                        <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
+                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                          {metadata?.title || item.title}
+                        </h3>
+                        {metadata?.description && (
+                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
+                            {metadata.description}
+                          </p>
+                        )}
+                        <div className="flex items-center justify-between text-white/60 text-xs">
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
+                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
+                          </span>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
+                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
+                          </span>
+                        </div>
+                        <p className="text-white/40 text-xs mt-1">{item.date}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           )}
         </div>
@@ -496,7 +667,60 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      {/* Archive */}
+      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <div className="container mx-auto">
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsArchiveOpen(!isArchiveOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Архив трансляций</h2>
+            <Icon 
+              name={isArchiveOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
+          </div>
+          {isArchiveOpen && (
+          <div className="space-y-4">
+            {archiveEvents.map(event => (
+              <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
+                    <div className="flex-1">
+                      <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
+                      <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
+                        <span className="flex items-center gap-2">
+                          <Icon name="Calendar" size={14} className="text-[#b8953d]/60" />
+                          {event.date}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
+                          {event.duration}
+                        </span>
+                        <span className="flex items-center gap-2">
+                          <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
+                          {event.views} просмотров
+                        </span>
+                      </div>
+                    </div>
+                    <Button className="bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
+                      Смотреть
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          )}
+        </div>
+      </section>
 
+      <div className="relative h-px">
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
+      </div>
 
 
 
@@ -545,21 +769,26 @@ const MuseTV = () => {
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
                       {metadata?.title || selectedVideo.title}
                     </h2>
-                    <div className="flex items-center justify-between text-white/60 text-sm">
-                      <span className="flex items-center gap-1">
-                        <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
+                    <div className="flex items-center gap-6 text-white/60">
+                      <span className="flex items-center gap-2">
+                        <Icon name="Eye" size={18} />
+                        {metadata?.views 
+                          ? `${(metadata.views / 1000).toFixed(1)}K просмотров`
+                          : selectedVideo.views
+                        }
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Icon name="Clock" size={18} />
                         {metadata?.duration 
-                          ? formatDuration(metadata.duration)
+                          ? `${Math.floor(metadata.duration / 60)} мин`
                           : selectedVideo.duration
                         }
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
-                        {metadata?.views 
-                          ? formatViews(metadata.views)
-                          : selectedVideo.views
-                        } просмотров
-                      </span>
+                      {selectedVideo.type && (
+                        <Badge className="bg-[#d4af37]/20 text-[#d4af37]">
+                          {selectedVideo.type}
+                        </Badge>
+                      )}
                     </div>
                   </div>
 

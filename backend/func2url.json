@@ -1,3 +1,6 @@
 {
-  "rutube-proxy": "https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f"
+  "rutube-proxy": "https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f",
+  "submit-event": "https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47",
+  "submit-expert": "https://functions.poehali.dev/8ab02561-3cbe-42f7-9c3d-42f2c964f007",
+  "submit-application": "https://functions.poehali.dev/0dd49b02-038f-429e-b3a3-5fa01ff50b67"
 }
