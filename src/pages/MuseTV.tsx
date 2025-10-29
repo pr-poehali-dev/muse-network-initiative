@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,10 +14,9 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
+  const [videoMetadata, setVideoMetadata] = useState<any>({});
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
   const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
-  const [videosData, setVideosData] = useState<Record<string, any>>({});
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -25,55 +24,65 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const extractVideoId = (url: string): string => {
-    const match = url.match(/\/video\/([a-f0-9]+)/);
-    return match ? match[1] : '';
-  };
-
-  const formatDuration = (seconds: number): string => {
-    const mins = Math.floor(seconds / 60);
-    return `${mins} мин`;
-  };
-
-  const formatViews = (views: number): string => {
-    if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`;
-    if (views >= 1000) return `${(views / 1000).toFixed(1)}K`;
-    return views.toString();
-  };
-
   useEffect(() => {
-    const fetchVideoData = async () => {
-      const allVideos = [...featuredContent, ...contentLibrary];
-      const videoIds = allVideos
-        .map(v => v.url ? extractVideoId(v.url) : '')
-        .filter(Boolean);
-      
-      const results: Record<string, any> = {};
-      
-      await Promise.all(
-        videoIds.map(async (videoId) => {
-          try {
-            const response = await fetch(
-              `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`
-            );
-            if (response.ok) {
-              const data = await response.json();
-              results[videoId] = data;
-            }
-          } catch (error) {
-            console.error(`Failed to fetch data for ${videoId}:`, error);
-          }
-        })
-      );
-      
-      setVideosData(results);
-      setIsLoading(false);
-    };
-    
-    fetchVideoData();
+    featuredContent.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
   }, []);
 
-
+  const fetchRutubeMetadata = async (videoId: string) => {
+    if (videoMetadata[videoId]) {
+      console.log('[Rutube] Cache hit for:', videoId);
+      return videoMetadata[videoId];
+    }
+    
+    console.log('[Rutube] Fetching metadata for:', videoId);
+    
+    try {
+      const url = `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`;
+      console.log('[Rutube] Fetch URL:', url);
+      
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      console.log('[Rutube] Response status:', response.status);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      console.log('[Rutube] Received data:', data);
+      
+      const metadata = {
+        title: data.title,
+        description: data.description,
+        thumbnail: data.thumbnail_url,
+        duration: data.duration,
+        views: data.hits
+      };
+      
+      console.log('[Rutube] Processed metadata:', metadata);
+      setVideoMetadata((prev: any) => {
+        const updated = { ...prev, [videoId]: metadata };
+        console.log('[Rutube] Updated videoMetadata state:', updated);
+        return updated;
+      });
+      return metadata;
+    } catch (error) {
+      console.error('[Rutube] Error fetching metadata for', videoId, ':', error);
+      return null;
+    }
+  };
 
   const isLive = false;
   const viewersCount = 234;
@@ -171,9 +180,34 @@ const MuseTV = () => {
     return null;
   });
 
+  useEffect(() => {
+    if (randomPodcast?.vkEmbed) {
+      const videoId = randomPodcast.vkEmbed.split('/').pop();
+      if (videoId) {
+        fetchRutubeMetadata(videoId);
+      }
+    }
+  }, [randomPodcast]);
 
+  const formatDuration = (seconds: number) => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    if (hours > 0) {
+      return `${hours} ч ${minutes} мин`;
+    }
+    return `${minutes} мин`;
+  };
 
-
+  const formatViews = (views: number | undefined) => {
+    if (!views) return '0';
+    if (views >= 1000000) {
+      return `${(views / 1000000).toFixed(1)}M`;
+    }
+    if (views >= 1000) {
+      return `${(views / 1000).toFixed(1)}K`;
+    }
+    return views.toString();
+  };
 
   const contentLibrary = [
     {
@@ -196,7 +230,6 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '28.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
       vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
     },
@@ -208,7 +241,6 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '27.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
       vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
     },
@@ -220,7 +252,6 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '26.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
       vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
     },
@@ -232,7 +263,6 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '25.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
       vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
     },
@@ -244,7 +274,6 @@ const MuseTV = () => {
       duration: '42 мин',
       views: '5.3K',
       date: '24.10.2024',
-      thumbnail: 'https://sun9-80.userapi.com/impg/wI9W7lQh4DpATW6wj1O8E0Xj2R22nI1VDNLkXQ/vZkbY5bXc-0.jpg?size=1280x720&quality=95&sign=3b7c8e2e8e1b8f1e8c5b1c8e5f1e8c5b&type=album',
       url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
       vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
     }
@@ -304,7 +333,16 @@ const MuseTV = () => {
     return typeMatch && categoryMatch;
   });
 
-
+  useEffect(() => {
+    contentLibrary.forEach(content => {
+      if (content.vkEmbed?.includes('rutube.ru')) {
+        const videoId = content.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
 
   return (
     <PageTransition>
@@ -435,34 +473,35 @@ const MuseTV = () => {
                   )}
                 </div>
                 <div className="p-4 md:p-6">
-                  {(() => {
-                    const videoId = randomPodcast.url ? extractVideoId(randomPodcast.url) : '';
-                    const rutubeData = videosData[videoId];
-                    const displayTitle = rutubeData?.title || randomPodcast.title;
-                    const displayDuration = rutubeData?.duration ? formatDuration(rutubeData.duration) : randomPodcast.duration;
-                    const displayViews = rutubeData?.hits ? formatViews(rutubeData.hits) : '';
-                    
-                    return (
-                      <>
-                        <h3 className="text-lg md:text-2xl font-bold mb-2">{displayTitle}</h3>
-                        <div className="flex items-center gap-4 text-white/70">
+                  <h3 className="text-lg md:text-2xl font-bold mb-2">{randomPodcast.title}</h3>
+                  <div className="flex items-center gap-4 text-white/70">
+                    {(() => {
+                      const videoId = randomPodcast.vkEmbed?.split('/').pop();
+                      const metadata = videoId ? videoMetadata[videoId] : null;
+                      return metadata ? (
+                        <>
                           <span className="flex items-center gap-1">
                             <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                            {displayDuration}
+                            {formatDuration(metadata.duration)}
                           </span>
-                          {displayViews && (
-                            <>
-                              <span>•</span>
-                              <span className="flex items-center gap-1">
-                                <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
-                                {displayViews}
-                              </span>
-                            </>
-                          )}
-                        </div>
-                      </>
-                    );
-                  })()}
+                          <span>•</span>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
+                            {formatViews(metadata.views)}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="flex items-center gap-1">
+                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
+                            {randomPodcast.duration}
+                          </span>
+                          <span>•</span>
+                          <span>{randomPodcast.type}</span>
+                        </>
+                      );
+                    })()}
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -599,37 +638,31 @@ const MuseTV = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
-                const videoId = item.url ? extractVideoId(item.url) : '';
-                const rutubeData = videosData[videoId];
-                
-                const displayTitle = rutubeData?.title || item.title;
-                const displayThumbnail = rutubeData?.thumbnail_url || item.thumbnail;
-                const displayDuration = rutubeData?.duration ? formatDuration(rutubeData.duration) : item.duration;
-                const displayViews = rutubeData?.hits ? formatViews(rutubeData.hits) : item.views;
-                
+                const videoId = item.vkEmbed?.includes('rutube.ru') 
+                  ? item.vkEmbed.split('/').pop()
+                  : null;
+                const metadata = videoId ? videoMetadata[videoId] : null;
+
                 return (
                   <Card 
                     key={item.id} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                    onClick={() => {
+                    onClick={async () => {
                       if (item.vkEmbed) {
+                        if (videoId && !metadata) {
+                          await fetchRutubeMetadata(videoId);
+                        }
                         setSelectedVideo(item);
                       }
                     }}
                   >
                     <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {displayThumbnail ? (
-                          <img 
-                            src={displayThumbnail} 
-                            alt={displayTitle}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center">
-                            <Icon name="Radio" size={80} className="text-[#d4af37]/30" />
-                          </div>
-                        )}
+                      <div className="relative aspect-video overflow-hidden">
+                        <img 
+                          src={metadata?.thumbnail || item.thumbnail} 
+                          alt={metadata?.title || item.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        />
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
                           <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
                         </div>
@@ -637,16 +670,21 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
                         <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {displayTitle}
+                          {metadata?.title || item.title}
                         </h3>
+                        {metadata?.description && (
+                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
+                            {metadata.description}
+                          </p>
+                        )}
                         <div className="flex items-center justify-between text-white/60 text-xs">
                           <span className="flex items-center gap-1">
                             <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                            {displayDuration}
+                            {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
                           </span>
                           <span className="flex items-center gap-1">
                             <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                            {displayViews} просмотров
+                            {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
                           </span>
                         </div>
                         <p className="text-white/40 text-xs mt-1">{item.date}</p>
@@ -727,6 +765,11 @@ const MuseTV = () => {
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
         <DialogContent className="max-w-full w-full h-full md:max-w-[95vw] md:w-[95vw] md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
           {selectedVideo && (() => {
+            const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
+              ? selectedVideo.vkEmbed.split('/').pop()
+              : null;
+            const metadata = videoId ? videoMetadata[videoId] : null;
+
             const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
             
@@ -762,20 +805,35 @@ const MuseTV = () => {
                   <div>
                     <Badge className="mb-3 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
-                      {selectedVideo.title}
+                      {metadata?.title || selectedVideo.title}
                     </h2>
                     <div className="flex items-center gap-4 text-white/60 text-xs">
                       <span className="flex items-center gap-1">
                         <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                        {selectedVideo.duration}
+                        {metadata?.duration 
+                          ? formatDuration(metadata.duration)
+                          : selectedVideo.duration
+                        }
                       </span>
                       <span className="flex items-center gap-1">
                         <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                        {selectedVideo.views} просмотров
+                        {metadata?.views 
+                          ? formatViews(metadata.views)
+                          : selectedVideo.views
+                        } просмотров
                       </span>
                     </div>
                     <p className="text-white/40 text-xs mt-1">{selectedVideo.date}</p>
                   </div>
+
+                  {metadata?.description && (
+                    <div className="border-t border-white/10 pt-4">
+                      <h3 className="text-lg font-semibold text-white mb-2">Описание</h3>
+                      <p className="text-white/70 leading-relaxed whitespace-pre-line">
+                        {metadata.description}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             );
