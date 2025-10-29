@@ -734,8 +734,19 @@ const MuseTV = () => {
             const metadata = videoId ? videoMetadata[videoId] : null;
 
             const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
-            const autoplayParam = isRutube ? 'autoplay=true' : 'autoplay=1';
-            const videoUrl = selectedVideo.vkEmbed + (selectedVideo.vkEmbed.includes('?') ? '&' : '?') + autoplayParam;
+            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+            
+            let videoUrl = selectedVideo.vkEmbed;
+            if (isRutube) {
+              const separator = videoUrl.includes('?') ? '&' : '?';
+              videoUrl = `${videoUrl}${separator}autoplay=true&t=0`;
+              if (isMobile) {
+                videoUrl += '&bmstart=true';
+              }
+            } else {
+              const separator = videoUrl.includes('?') ? '&' : '?';
+              videoUrl = `${videoUrl}${separator}autoplay=1`;
+            }
 
             return (
               <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
@@ -755,30 +766,27 @@ const MuseTV = () => {
                 {/* Video Info */}
                 <div className="space-y-4">
                   <div>
+                    <Badge className="mb-3 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
                       {metadata?.title || selectedVideo.title}
                     </h2>
-                    <div className="flex items-center gap-6 text-white/60">
-                      <span className="flex items-center gap-2">
-                        <Icon name="Eye" size={18} />
-                        {metadata?.views 
-                          ? `${(metadata.views / 1000).toFixed(1)}K просмотров`
-                          : selectedVideo.views
-                        }
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <Icon name="Clock" size={18} />
+                    <div className="flex items-center gap-4 text-white/60 text-xs">
+                      <span className="flex items-center gap-1">
+                        <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
                         {metadata?.duration 
-                          ? `${Math.floor(metadata.duration / 60)} мин`
+                          ? formatDuration(metadata.duration)
                           : selectedVideo.duration
                         }
                       </span>
-                      {selectedVideo.type && (
-                        <Badge className="bg-[#d4af37]/20 text-[#d4af37]">
-                          {selectedVideo.type}
-                        </Badge>
-                      )}
+                      <span className="flex items-center gap-1">
+                        <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
+                        {metadata?.views 
+                          ? formatViews(metadata.views)
+                          : selectedVideo.views
+                        } просмотров
+                      </span>
                     </div>
+                    <p className="text-white/40 text-xs mt-1">{selectedVideo.date}</p>
                   </div>
 
                   {metadata?.description && (
