@@ -863,6 +863,8 @@ const Index = () => {
         </div>
       </section>
 
+      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
+
       <BecomeExpertDialog
         isOpen={isExpertDialogOpen}
         onClose={() => setIsExpertDialogOpen(false)}
