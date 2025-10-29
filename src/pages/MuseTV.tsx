@@ -733,7 +733,9 @@ const MuseTV = () => {
               : null;
             const metadata = videoId ? videoMetadata[videoId] : null;
 
-            const videoUrl = selectedVideo.vkEmbed + (selectedVideo.vkEmbed.includes('?') ? '&' : '?') + 'autoplay=1';
+            const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
+            const autoplayParam = isRutube ? 'autoplay=true' : 'autoplay=1';
+            const videoUrl = selectedVideo.vkEmbed + (selectedVideo.vkEmbed.includes('?') ? '&' : '?') + autoplayParam;
 
             return (
               <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
