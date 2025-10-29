@@ -653,47 +653,6 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Popular Podcasts */}
-      <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-        <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Популярные подкасты</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            {popularPodcasts.map(podcast => (
-              <Card key={podcast.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all">
-                <CardContent className="p-4 md:p-6">
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-16 h-16 bg-[#d4af37]/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Mic" size={32} className="text-[#b8953d]/60" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-1">{podcast.title}</h3>
-                      <p className="text-white/60 text-sm">{podcast.episodes} выпусков</p>
-                      <p className="text-white/40 text-xs">{podcast.subscribers} подписчиков</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-3 mb-4">
-                    {podcast.platforms.map(platform => (
-                      <button key={platform} className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#d4af37]/20 transition-colors">
-                        <Icon name="Radio" size={16} className="text-white/60" />
-                      </button>
-                    ))}
-                  </div>
-                  <Button className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
-                    Слушать
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
-
       {/* Archive */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
