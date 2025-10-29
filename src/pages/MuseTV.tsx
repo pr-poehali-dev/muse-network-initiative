@@ -16,6 +16,7 @@ const MuseTV = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [videoMetadata, setVideoMetadata] = useState<any>({});
   const [isArchiveOpen, setIsArchiveOpen] = useState(false);
+  const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -480,7 +481,18 @@ const MuseTV = () => {
       {/* Upcoming Streams */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Предстоящие трансляции</h2>
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsUpcomingOpen(!isUpcomingOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Предстоящие трансляции</h2>
+            <Icon 
+              name={isUpcomingOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
+          </div>
+          {isUpcomingOpen && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {upcomingStreams.map(stream => (
               <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
@@ -508,6 +520,7 @@ const MuseTV = () => {
               </Card>
             ))}
           </div>
+          )}
         </div>
       </section>
 
