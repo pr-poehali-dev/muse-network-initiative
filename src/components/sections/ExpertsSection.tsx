@@ -59,8 +59,8 @@ const ExpertsSection = ({ visibleSections, onBecomeExpert }: ExpertsSectionProps
     },
     {
       name: 'Кузнецова Екатерина Юрьевна',
-      role: 'Директор',
-      description: 'Туристско-информационный центр Архангельской области',
+      role: 'Руководитель',
+      description: 'Центр развития туризма и культуры Архангельской области',
       image: 'https://cdn.poehali.dev/files/f4f78af3-467b-4528-ac10-d085a6eeb04b.jpg',
     },
   ];
