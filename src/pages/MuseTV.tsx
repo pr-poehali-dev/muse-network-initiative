@@ -726,7 +726,7 @@ const MuseTV = () => {
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-[95vw] w-[95vw] p-0 bg-black border-0">
+        <DialogContent className="max-w-full w-full h-full md:max-w-[95vw] md:w-[95vw] md:h-auto p-0 bg-black border-0 md:rounded-lg overflow-y-auto">
           {selectedVideo && (() => {
             const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
               ? selectedVideo.vkEmbed.split('/').pop()
@@ -734,13 +734,13 @@ const MuseTV = () => {
             const metadata = videoId ? videoMetadata[videoId] : null;
 
             return (
-              <div className="flex flex-col gap-6 p-6">
+              <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
                 {/* Video Player */}
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
                   {selectedVideo?.vkEmbed && (
                     <iframe
                       src={selectedVideo.vkEmbed}
-                      className="absolute inset-0 w-full h-full rounded-lg"
+                      className="absolute inset-0 w-full h-full md:rounded-lg"
                       allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
                       frameBorder="0"
                       allowFullScreen
