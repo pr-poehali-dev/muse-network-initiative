@@ -14,8 +14,7 @@ const MuseTV = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
-  const [isArchiveOpen, setIsArchiveOpen] = useState(false);
-  const [isUpcomingOpen, setIsUpcomingOpen] = useState(false);
+  const [isEventsOpen, setIsEventsOpen] = useState(false);
   const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
 
   useEffect(() => {
@@ -481,8 +480,20 @@ const MuseTV = () => {
       {/* Events Section (Upcoming & Archive) */}
       <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции и события</h2>
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsEventsOpen(!isEventsOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции и события</h2>
+            <Icon 
+              name={isEventsOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
+          </div>
           
+          {isEventsOpen && (
+          <>
           {/* Upcoming Streams */}
           <div className="mb-8">
             <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#d4af37]/80">Предстоящие</h3>
@@ -549,6 +560,8 @@ const MuseTV = () => {
               ))}
             </div>
           </div>
+          </>
+          )}
         </div>
       </section>
 
