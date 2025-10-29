@@ -27,7 +27,7 @@ const MuseTV = () => {
   const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
   const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
-  const [metadataLoaded, setMetadataLoaded] = useState(0);
+  const [loadingVideos, setLoadingVideos] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -36,35 +36,34 @@ const MuseTV = () => {
   }, []);
 
   const fetchRutubeMetadata = async (videoId: string) => {
-    if (videoMetadata[videoId]) return videoMetadata[videoId];
+    if (!videoId || videoMetadata[videoId]) return;
+    
+    setLoadingVideos(prev => new Set(prev).add(videoId));
     
     try {
       const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
-      if (!response.ok) {
-        console.error(`API error for ${videoId}: ${response.status}`);
-        throw new Error('API error');
-      }
+      if (!response.ok) throw new Error('API error');
       
       const data = await response.json();
-      console.log(`Rutube metadata for ${videoId}:`, data);
-      
-      const metadata = {
-        title: data.title,
-        description: data.description,
-        thumbnail: data.thumbnail_url,
-        duration: data.duration,
-        views: data.hits
-      };
       
       setVideoMetadata((prev) => ({
         ...prev,
-        [videoId]: metadata
+        [videoId]: {
+          title: data.title,
+          description: data.description,
+          thumbnail: data.thumbnail_url,
+          duration: data.duration,
+          views: data.hits
+        }
       }));
-      setMetadataLoaded(prev => prev + 1);
-      return metadata;
     } catch (error) {
-      console.error(`Error fetching Rutube metadata for ${videoId}:`, error);
-      return null;
+      console.error(`Error fetching metadata for ${videoId}:`, error);
+    } finally {
+      setLoadingVideos(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(videoId);
+        return newSet;
+      });
     }
   };
 
@@ -73,7 +72,7 @@ const MuseTV = () => {
     allContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = extractVideoId(content.vkEmbed);
-        if (videoId && !videoMetadata[videoId]) {
+        if (videoId) {
           fetchRutubeMetadata(videoId);
         }
       }
@@ -470,34 +469,25 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div key={JSON.stringify(Object.keys(videoMetadata))} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
-                const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
+                const currentMetadata = videoId ? videoMetadata[videoId] : null;
 
                 return (
                   <Card 
-                    key={`${item.id}-${videoId}`} 
+                    key={item.id}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                    onClick={async () => {
-                      if (item.vkEmbed) {
-                        if (videoId && !videoMetadata[videoId]) {
-                          await fetchRutubeMetadata(videoId);
-                        }
-                        setSelectedVideo(item);
-                      }
-                    }}
+                    onClick={() => setSelectedVideo(item)}
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {((videoId && videoMetadata[videoId]?.thumbnail) || rutubeThumbnail) && (
+                        {currentMetadata?.thumbnail && (
                           <img 
-                            src={videoMetadata[videoId]?.thumbnail || rutubeThumbnail || ''} 
-                            alt={videoMetadata[videoId]?.title || 'Видео'}
+                            src={currentMetadata.thumbnail} 
+                            alt={currentMetadata.title || 'Видео'}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                            onError={(e) => {
-                              (e.target as HTMLImageElement).style.display = 'none';
-                            }}
+                            onError={(e) => (e.target as HTMLImageElement).style.display = 'none'}
                           />
                         )}
                         <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
@@ -507,22 +497,22 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {(videoId && videoMetadata[videoId]?.title) || item.title || 'Загрузка...'}
+                          {currentMetadata?.title || item.title || 'Загрузка...'}
                         </h3>
-                        {videoId && videoMetadata[videoId]?.description && (
+                        {currentMetadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {videoMetadata[videoId].description}
+                            {currentMetadata.description}
                           </p>
                         )}
-                        {videoId && videoMetadata[videoId] && (
+                        {currentMetadata && (
                           <div className="flex items-center justify-between text-white/60 text-xs">
                             <span className="flex items-center gap-1">
                               <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                              {formatDuration(videoMetadata[videoId].duration)}
+                              {formatDuration(currentMetadata.duration)}
                             </span>
                             <span className="flex items-center gap-1">
                               <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                              {formatViews(videoMetadata[videoId].views)}
+                              {formatViews(currentMetadata.views)}
                             </span>
                           </div>
                         )}
