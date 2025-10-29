@@ -12,6 +12,9 @@ from typing import Dict, Any
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
     
+    print(f'[Rutube Proxy] Method: {method}')
+    print(f'[Rutube Proxy] Event: {json.dumps(event)}')
+    
     cors_headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': 'GET, OPTIONS',
@@ -20,6 +23,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     }
     
     if method == 'OPTIONS':
+        print('[Rutube Proxy] Handling OPTIONS preflight')
         return {
             'statusCode': 200,
             'headers': cors_headers,
