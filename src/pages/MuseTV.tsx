@@ -769,26 +769,21 @@ const MuseTV = () => {
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
                       {metadata?.title || selectedVideo.title}
                     </h2>
-                    <div className="flex items-center gap-6 text-white/60">
-                      <span className="flex items-center gap-2">
-                        <Icon name="Eye" size={18} />
-                        {metadata?.views 
-                          ? `${(metadata.views / 1000).toFixed(1)}K просмотров`
-                          : selectedVideo.views
-                        }
-                      </span>
-                      <span className="flex items-center gap-2">
-                        <Icon name="Clock" size={18} />
+                    <div className="flex items-center justify-between text-white/60 text-sm">
+                      <span className="flex items-center gap-1">
+                        <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
                         {metadata?.duration 
-                          ? `${Math.floor(metadata.duration / 60)} мин`
+                          ? formatDuration(metadata.duration)
                           : selectedVideo.duration
                         }
                       </span>
-                      {selectedVideo.type && (
-                        <Badge className="bg-[#d4af37]/20 text-[#d4af37]">
-                          {selectedVideo.type}
-                        </Badge>
-                      )}
+                      <span className="flex items-center gap-1">
+                        <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
+                        {metadata?.views 
+                          ? formatViews(metadata.views)
+                          : selectedVideo.views
+                        } просмотров
+                      </span>
                     </div>
                   </div>
 
