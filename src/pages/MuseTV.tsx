@@ -16,6 +16,7 @@ const MuseTV = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [videoMetadata, setVideoMetadata] = useState<any>({});
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
+  const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -480,8 +481,20 @@ const MuseTV = () => {
       {/* Broadcasts Section */}
       <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции</h2>
+          <div 
+            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
+            onClick={() => setIsBroadcastsOpen(!isBroadcastsOpen)}
+          >
+            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции</h2>
+            <Icon 
+              name={isBroadcastsOpen ? "ChevronUp" : "ChevronDown"} 
+              size={32} 
+              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
+            />
+          </div>
           
+          {isBroadcastsOpen && (
+          <>
           {/* Tabs */}
           <div className="flex gap-2 mb-6 md:mb-8">
             <Button
@@ -571,6 +584,8 @@ const MuseTV = () => {
                 </Card>
               ))}
             </div>
+          )}
+          </>
           )}
         </div>
       </section>
