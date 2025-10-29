@@ -500,7 +500,7 @@ const MuseTV = () => {
                       {stream.speaker}
                     </div>
                   </div>
-                  <Button className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
+                  <Button className="w-full bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
                     Напомнить
                   </Button>
                 </CardContent>
@@ -534,8 +534,8 @@ const MuseTV = () => {
                     onClick={() => setActiveFilter(filter)}
                     className={`${
                       activeFilter === filter
-                        ? 'bg-[#d4af37] text-black'
-                        : 'bg-black/40 text-white border border-[#d4af37]/20 hover:border-[#d4af37]/50'
+                        ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
+                        : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
                     }`}
                   >
                     {filter === 'all' ? 'Все' : filter === 'video' ? 'Видео' : filter === 'podcast' ? 'Подкаст' : 'Трансляция'}
@@ -553,8 +553,8 @@ const MuseTV = () => {
                     onClick={() => setActiveCategory(category)}
                     className={`${
                       activeCategory === category
-                        ? 'bg-[#d4af37] text-black'
-                        : 'bg-black/40 text-white border border-[#d4af37]/20 hover:border-[#d4af37]/50'
+                        ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
+                        : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
                     }`}
                   >
                     {category === 'all' ? 'Все' : category}
@@ -579,7 +579,7 @@ const MuseTV = () => {
                   setActiveFilter('podcast');
                   setActiveCategory('Подкаст');
                 }}
-                className="bg-[#d4af37] text-black hover:bg-[#d4af37]/90"
+                className="bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black hover:opacity-90"
               >
                 Перейти к подкастам
               </Button>
@@ -720,7 +720,7 @@ const MuseTV = () => {
                         </span>
                       </div>
                     </div>
-                    <Button className="bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black">
+                    <Button className="bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
                       Смотреть
                     </Button>
                   </div>
