@@ -40,6 +40,11 @@ const MuseTV = () => {
     
     try {
       const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       
       const metadata = {
@@ -53,7 +58,7 @@ const MuseTV = () => {
       setVideoMetadata((prev: any) => ({ ...prev, [videoId]: metadata }));
       return metadata;
     } catch (error) {
-      console.error('Error fetching Rutube metadata:', error);
+      console.error('Error fetching Rutube metadata for video', videoId, ':', error);
       return null;
     }
   };
