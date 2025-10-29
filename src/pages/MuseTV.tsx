@@ -103,7 +103,9 @@ const MuseTV = () => {
 
 
   const filteredContent = contentLibrary.filter(item => {
-    const typeMatch = activeFilter === 'all' || item.type === activeFilter;
+    const typeMatch = activeFilter === 'all' || 
+      item.type?.toLowerCase() === activeFilter.toLowerCase() ||
+      item.type === 'Подкаст' && activeFilter === 'podcast';
     const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
     return typeMatch && categoryMatch;
   });
