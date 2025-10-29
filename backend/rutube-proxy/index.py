@@ -50,41 +50,30 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'isBase64Encoded': False
         }
     
-    try:
-        rutube_url = f'https://rutube.ru/api/video/{video_id}/'
-        
-        req = urllib.request.Request(
-            rutube_url,
-            headers={'User-Agent': 'Mozilla/5.0'}
-        )
-        
-        with urllib.request.urlopen(req, timeout=10) as response:
-            data = json.loads(response.read().decode('utf-8'))
-        
-        result = {
-            'title': data.get('title'),
-            'description': data.get('description'),
-            'thumbnail_url': data.get('thumbnail_url'),
-            'duration': data.get('duration'),
-            'hits': data.get('hits')
-        }
-        
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps(result),
-            'isBase64Encoded': False
-        }
-    except Exception as e:
-        return {
-            'statusCode': 500,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'body': json.dumps({'error': f'Failed to fetch video metadata: {str(e)}'}),
-            'isBase64Encoded': False
-        }
+    rutube_url = f'https://rutube.ru/api/video/{video_id}/'
+    
+    req = urllib.request.Request(
+        rutube_url,
+        headers={'User-Agent': 'Mozilla/5.0'}
+    )
+    
+    with urllib.request.urlopen(req) as response:
+        data = json.loads(response.read().decode('utf-8'))
+    
+    result = {
+        'title': data.get('title'),
+        'description': data.get('description'),
+        'thumbnail_url': data.get('thumbnail_url'),
+        'duration': data.get('duration'),
+        'hits': data.get('hits')
+    }
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'body': json.dumps(result),
+        'isBase64Encoded': False
+    }
