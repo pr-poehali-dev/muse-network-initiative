@@ -76,19 +76,19 @@ const Layout = ({
 
       {children}
 
-      <footer className="py-12 px-4 bg-black text-white relative">
+      <footer className="py-8 px-4 bg-black text-white relative">
         <div className="container mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-8">
             <img 
               src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
               alt="Muse" 
-              className="h-16 mx-auto mb-4 floating cursor-pointer hover:scale-105 transition-transform"
+              className="h-12 mx-auto mb-3 floating cursor-pointer hover:scale-105 transition-transform"
               onClick={() => navigate('/')}
             />
-            <p className="text-lg mb-8">
+            <p className="text-base mb-4">
               Вместе мы можем достичь большего
             </p>
-            <p className="text-sm opacity-75">
+            <p className="text-xs opacity-75">
               © 2025 Клуб Muse. Все права защищены.
             </p>
           </div>
@@ -98,13 +98,13 @@ const Layout = ({
               href="https://albeweb.ru/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-base text-white/50 hover:text-white/80 transition-colors group"
+              className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors group"
             >
               <span>Разработано в</span>
               <img 
                 src="https://cdn.poehali.dev/files/1dabbacb-5667-4dc2-b2bb-e600cedcabfb.png" 
                 alt="Albe" 
-                className="h-8 opacity-50 group-hover:opacity-80 transition-opacity"
+                className="h-6 opacity-50 group-hover:opacity-80 transition-opacity"
               />
             </a>
           </div>
