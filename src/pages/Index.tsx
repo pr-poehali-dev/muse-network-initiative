@@ -899,9 +899,9 @@ const Index = () => {
             >
               <span>Разработано в</span>
               <img 
-                src="https://cdn.poehali.dev/files/46b11caa-15ea-48bb-92d0-24b03075a538.png" 
+                src="https://cdn.poehali.dev/files/1dabbacb-5667-4dc2-b2bb-e600cedcabfb.png" 
                 alt="Albe" 
-                className="h-12 opacity-50 group-hover:opacity-80 transition-opacity"
+                className="h-8 opacity-50 group-hover:opacity-80 transition-opacity"
               />
             </a>
           </div>
