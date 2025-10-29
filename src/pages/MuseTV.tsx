@@ -620,14 +620,19 @@ const MuseTV = () => {
                     }}
                   >
                     <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden">
-                        <img 
-                          src={metadata?.thumbnail || item.thumbnail} 
-                          alt={metadata?.title || item.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all flex items-center justify-center">
-                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
+                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-black via-[#1a1a1a] to-black">
+                        <div className="absolute inset-0 luxury-texture opacity-30"></div>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/10 via-transparent to-transparent"></div>
+                        <div className="absolute top-4 left-4 right-4">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/30 via-[#b8953d]/20 to-[#6b5d42]/30 border border-[#d4af37]/30 flex items-center justify-center">
+                            <Icon name="Play" size={24} className="text-[#d4af37]/70" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-4 left-4 right-4">
+                          <div className="text-[#d4af37]/40 text-5xl font-bold opacity-20">MUSE</div>
+                        </div>
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all flex items-center justify-center">
+                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all" />
                         </div>
                       </div>
                       <div className="p-3 md:p-4">
