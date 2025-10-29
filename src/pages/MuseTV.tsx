@@ -35,7 +35,8 @@ const MuseTV = () => {
   }, []);
 
   useEffect(() => {
-    featuredContent.forEach(content => {
+    const allContent = [...featuredContent, ...contentLibrary];
+    allContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = extractVideoId(content.vkEmbed);
         if (videoId) {
@@ -49,7 +50,7 @@ const MuseTV = () => {
     if (videoMetadata[videoId]) return videoMetadata[videoId];
     
     try {
-      const response = await fetch(`https://rutube.ru/api/video/${videoId}/`);
+      const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
       if (!response.ok) throw new Error('API error');
       
       const data = await response.json();
