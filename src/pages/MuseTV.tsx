@@ -307,17 +307,6 @@ const MuseTV = () => {
     return typeMatch && categoryMatch;
   });
 
-  useEffect(() => {
-    contentLibrary.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = content.vkEmbed.split('/').pop();
-        if (videoId) {
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
-
   return (
     <PageTransition>
       <Layout titleInHeader={scrollY > 100}>
@@ -777,27 +766,30 @@ const MuseTV = () => {
                 {/* Video Info */}
                 <div className="space-y-4">
                   <div>
-                    <Badge className="mb-3 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
                     <h2 className="text-2xl font-bold text-[#d4af37] mb-2">
                       {metadata?.title || selectedVideo.title}
                     </h2>
-                    <div className="flex items-center gap-4 text-white/60 text-xs">
-                      <span className="flex items-center gap-1">
-                        <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
+                    <div className="flex items-center gap-6 text-white/60">
+                      <span className="flex items-center gap-2">
+                        <Icon name="Eye" size={18} />
+                        {metadata?.views 
+                          ? `${(metadata.views / 1000).toFixed(1)}K просмотров`
+                          : selectedVideo.views
+                        }
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Icon name="Clock" size={18} />
                         {metadata?.duration 
-                          ? formatDuration(metadata.duration)
+                          ? `${Math.floor(metadata.duration / 60)} мин`
                           : selectedVideo.duration
                         }
                       </span>
-                      <span className="flex items-center gap-1">
-                        <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                        {metadata?.views 
-                          ? formatViews(metadata.views)
-                          : selectedVideo.views
-                        } просмотров
-                      </span>
+                      {selectedVideo.type && (
+                        <Badge className="bg-[#d4af37]/20 text-[#d4af37]">
+                          {selectedVideo.type}
+                        </Badge>
+                      )}
                     </div>
-                    <p className="text-white/40 text-xs mt-1">{selectedVideo.date}</p>
                   </div>
 
                   {metadata?.description && (
