@@ -28,6 +28,7 @@ const MuseTV = () => {
   const [streamTab, setStreamTab] = useState<'upcoming' | 'archive'>('upcoming');
   const [isBroadcastsOpen, setIsBroadcastsOpen] = useState(false);
   const [loadingVideos, setLoadingVideos] = useState<Set<string>>(new Set());
+  const [updateTrigger, setUpdateTrigger] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -70,6 +71,7 @@ const MuseTV = () => {
         console.log(`🔄 Updated videoMetadata, total keys:`, Object.keys(updated).length);
         return updated;
       });
+      setUpdateTrigger(prev => prev + 1);
     } catch (error) {
       console.error(`❌ Error fetching metadata for ${videoId}:`, error);
     } finally {
@@ -496,7 +498,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={`${item.id}-${currentMetadata ? 'loaded' : 'loading'}`}
+                    key={`${item.id}-${updateTrigger}`}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
@@ -517,7 +519,7 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {currentMetadata?.title || item.title || 'Загрузка...'}
+                          {currentMetadata?.title || (item.title && item.title.trim()) || 'Загрузка...'}
                         </h3>
                         {currentMetadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
