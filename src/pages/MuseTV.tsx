@@ -379,7 +379,7 @@ const MuseTV = () => {
 
       {/* Live Section */}
       {isLive ? (
-        <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-red-600 text-white animate-pulse">
@@ -408,7 +408,7 @@ const MuseTV = () => {
           </div>
         </section>
       ) : randomPodcast ? (
-        <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+        <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-[#d4af37] text-black">
@@ -443,8 +443,8 @@ const MuseTV = () => {
                     </div>
                   )}
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold mb-2">{randomPodcast.title}</h3>
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-2xl font-bold mb-2">{randomPodcast.title}</h3>
                   <div className="flex items-center gap-4 text-white/70">
                     {(() => {
                       const videoId = randomPodcast.vkEmbed?.split('/').pop();
@@ -487,15 +487,15 @@ const MuseTV = () => {
       </div>
 
       {/* Upcoming Streams */}
-      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {upcomingStreams.map(stream => (
               <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
-                <CardContent className="p-6">
-                  <Badge className="mb-4 bg-[#d4af37]/20 text-[#d4af37]">{stream.category}</Badge>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
+                <CardContent className="p-4 md:p-6">
+                  <Badge className="mb-3 md:mb-4 bg-[#d4af37]/20 text-[#d4af37] text-xs md:text-sm">{stream.category}</Badge>
+                  <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
                   <div className="space-y-2 text-white/60 text-sm mb-4">
                     <div className="flex items-center gap-2">
                       <Icon name="Calendar" size={16} />
@@ -529,14 +529,14 @@ const MuseTV = () => {
 
 
       {/* Main Catalog */}
-      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Каталог контента</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Каталог контента</h2>
           
           {/* Filters */}
-          <div className="mb-8 space-y-4">
+          <div className="mb-6 md:mb-8 space-y-3 md:space-y-4">
             <div>
-              <p className="text-white/60 text-sm mb-3">Тип контента</p>
+              <p className="text-white/60 text-xs md:text-sm mb-2 md:mb-3">Тип контента</p>
               <div className="flex flex-wrap gap-2">
                 {['all', 'video', 'podcast', 'stream'].map(filter => (
                   <Button
@@ -595,7 +595,7 @@ const MuseTV = () => {
               </Button>
             </div>
           ) : (
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = item.vkEmbed?.includes('rutube.ru') 
                   ? item.vkEmbed.split('/').pop()
@@ -626,9 +626,9 @@ const MuseTV = () => {
                           <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-white opacity-80" />
                         </div>
                       </div>
-                      <div className="p-4">
+                      <div className="p-3 md:p-4">
                         <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                        <h3 className="text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
+                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
                           {metadata?.title || item.title}
                         </h3>
                         {metadata?.description && (
@@ -664,13 +664,13 @@ const MuseTV = () => {
       </div>
 
       {/* Popular Podcasts */}
-      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Популярные подкасты</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Популярные подкасты</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {popularPodcasts.map(podcast => (
               <Card key={podcast.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all">
-                <CardContent className="p-6">
+                <CardContent className="p-4 md:p-6">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-16 h-16 bg-[#d4af37]/20 rounded-lg flex items-center justify-center">
                       <Icon name="Mic" size={32} className="text-[#d4af37]" />
@@ -705,17 +705,17 @@ const MuseTV = () => {
       </div>
 
       {/* Archive */}
-      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section className="py-10 md:py-20 px-4 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-[#d4af37]">Архив трансляций</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Архив трансляций</h2>
           <div className="space-y-4">
             {archiveEvents.map(event => (
               <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
+                <CardContent className="p-4 md:p-6">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
-                      <div className="flex items-center gap-6 text-white/60 text-sm">
+                      <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
+                      <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
                         <span className="flex items-center gap-2">
                           <Icon name="Calendar" size={14} />
                           {event.date}
