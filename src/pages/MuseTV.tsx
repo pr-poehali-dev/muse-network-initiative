@@ -128,6 +128,17 @@ const MuseTV = () => {
     }
   }, [randomPodcast]);
 
+  useEffect(() => {
+    contentLibrary.forEach(item => {
+      if (item.vkEmbed) {
+        const videoId = item.vkEmbed.split('/').pop();
+        if (videoId) {
+          fetchRutubeMetadata(videoId);
+        }
+      }
+    });
+  }, []);
+
   const formatDuration = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
@@ -652,18 +663,31 @@ const MuseTV = () => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-black via-[#1a1a1a] to-black">
-                        <div className="absolute inset-0 luxury-texture opacity-30"></div>
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/10 via-transparent to-transparent"></div>
-                        <div className="absolute top-4 left-4 right-4">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#8b7355]/30 via-[#b8953d]/20 to-[#6b5d42]/30 border border-[#d4af37]/30 flex items-center justify-center">
-                            <Icon name="Play" size={24} className="text-[#d4af37]/70" />
+                        {metadata?.thumbnail || item.thumbnail ? (
+                          <>
+                            <img 
+                              src={metadata?.thumbnail || item.thumbnail} 
+                              alt={metadata?.title || item.title}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                          </>
+                        ) : (
+                          <>
+                            <div className="absolute inset-0 luxury-texture opacity-30"></div>
+                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/10 via-transparent to-transparent"></div>
+                            <div className="absolute bottom-4 left-4 right-4">
+                              <div className="text-[#d4af37]/40 text-5xl font-bold opacity-20">MUSE</div>
+                            </div>
+                          </>
+                        )}
+                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all flex items-center justify-center">
+                          <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center group-hover:scale-110 transition-all">
+                            <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={32} className="text-[#d4af37] ml-1" />
                           </div>
                         </div>
-                        <div className="absolute bottom-4 left-4 right-4">
-                          <div className="text-[#d4af37]/40 text-5xl font-bold opacity-20">MUSE</div>
-                        </div>
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all flex items-center justify-center">
-                          <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={50} className="text-[#d4af37]/80 group-hover:text-[#d4af37] group-hover:scale-110 transition-all" />
+                        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white/90 text-xs font-medium">
+                          {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
                         </div>
                       </div>
                       <div className="p-3 md:p-4">
