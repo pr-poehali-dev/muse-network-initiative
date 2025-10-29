@@ -498,7 +498,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={`${item.id}-${updateTrigger}`}
+                    key={`${item.id}-${videoId || 'no-video'}-${currentMetadata?.title || 'loading'}`}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
@@ -520,7 +520,6 @@ const MuseTV = () => {
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
                           {currentMetadata?.title || (item.title && item.title.trim()) || 'Загрузка...'}
-                          <span className="text-[10px] text-red-500 block">DEBUG: {currentMetadata ? 'HAS META' : 'NO META'} | v{updateTrigger}</span>
                         </h3>
                         {currentMetadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
