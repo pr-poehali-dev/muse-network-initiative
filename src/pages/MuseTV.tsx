@@ -473,19 +473,15 @@ const MuseTV = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
-                const metadata = videoId ? videoMetadata[videoId] : null;
                 const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
-                
-                console.log(`Render card ${item.id}, videoId: ${videoId}, has metadata:`, !!metadata, metadata);
-                console.log('videoMetadata state:', Object.keys(videoMetadata).length, videoMetadata);
 
                 return (
                   <Card 
-                    key={`${item.id}-${videoId}-${!!videoMetadata[videoId || '']}`} 
+                    key={`${item.id}-${videoId}`} 
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={async () => {
                       if (item.vkEmbed) {
-                        if (videoId && !metadata) {
+                        if (videoId && !videoMetadata[videoId]) {
                           await fetchRutubeMetadata(videoId);
                         }
                         setSelectedVideo(item);
@@ -494,10 +490,10 @@ const MuseTV = () => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black">
-                        {(metadata?.thumbnail || rutubeThumbnail) && (
+                        {((videoId && videoMetadata[videoId]?.thumbnail) || rutubeThumbnail) && (
                           <img 
-                            src={metadata?.thumbnail || rutubeThumbnail || ''} 
-                            alt={metadata?.title || 'Видео'}
+                            src={videoMetadata[videoId]?.thumbnail || rutubeThumbnail || ''} 
+                            alt={videoMetadata[videoId]?.title || 'Видео'}
                             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                             onError={(e) => {
                               (e.target as HTMLImageElement).style.display = 'none';
@@ -511,23 +507,22 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title || `Загрузка... (ID: ${item.id}, videoId: ${videoId})`}
+                          {(videoId && videoMetadata[videoId]?.title) || item.title || 'Загрузка...'}
                         </h3>
-                        {!metadata?.title && <p className="text-red-500 text-xs">DEBUG: metadata={JSON.stringify(!!metadata)}, title={JSON.stringify(metadata?.title)}</p>}
-                        {metadata?.description && (
+                        {videoId && videoMetadata[videoId]?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {metadata.description}
+                            {videoMetadata[videoId].description}
                           </p>
                         )}
-                        {metadata && (
+                        {videoId && videoMetadata[videoId] && (
                           <div className="flex items-center justify-between text-white/60 text-xs">
                             <span className="flex items-center gap-1">
                               <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                              {formatDuration(metadata.duration)}
+                              {formatDuration(videoMetadata[videoId].duration)}
                             </span>
                             <span className="flex items-center gap-1">
                               <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                              {formatViews(metadata.views)}
+                              {formatViews(videoMetadata[videoId].views)}
                             </span>
                           </div>
                         )}
