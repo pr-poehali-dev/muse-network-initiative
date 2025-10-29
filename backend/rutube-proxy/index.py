@@ -9,32 +9,28 @@ import urllib.request
 from typing import Dict, Any
 
 
-def get_cors_headers():
-    return {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'GET, OPTIONS',
-        'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
-        'Access-Control-Max-Age': '86400'
-    }
-
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
+    
+    cors_headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Content-Type': 'application/json'
+    }
     
     if method == 'OPTIONS':
         return {
             'statusCode': 200,
-            'headers': get_cors_headers(),
-            'body': '',
-            'isBase64Encoded': False
+            'headers': cors_headers,
+            'body': ''
         }
     
     if method != 'GET':
         return {
             'statusCode': 405,
-            'headers': get_cors_headers(),
-            'body': json.dumps({'error': 'Method not allowed'}),
-            'isBase64Encoded': False
+            'headers': cors_headers,
+            'body': json.dumps({'error': 'Method not allowed'})
         }
     
     params = event.get('queryStringParameters', {})
@@ -43,9 +39,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     if not video_id:
         return {
             'statusCode': 400,
-            'headers': get_cors_headers(),
-            'body': json.dumps({'error': 'video_id parameter is required'}),
-            'isBase64Encoded': False
+            'headers': cors_headers,
+            'body': json.dumps({'error': 'video_id parameter is required'})
         }
     
     try:
@@ -69,14 +64,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         return {
             'statusCode': 200,
-            'headers': get_cors_headers(),
-            'body': json.dumps(result),
-            'isBase64Encoded': False
+            'headers': cors_headers,
+            'body': json.dumps(result)
         }
     except Exception as e:
         return {
             'statusCode': 500,
-            'headers': get_cors_headers(),
-            'body': json.dumps({'error': str(e)}),
-            'isBase64Encoded': False
+            'headers': cors_headers,
+            'body': json.dumps({'error': str(e)})
         }
