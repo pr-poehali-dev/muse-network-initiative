@@ -25,7 +25,8 @@ const MuseTV = () => {
   }, []);
 
   useEffect(() => {
-    featuredContent.forEach(content => {
+    const allContent = [...featuredContent, ...contentLibrary];
+    allContent.forEach(content => {
       if (content.vkEmbed?.includes('rutube.ru')) {
         const videoId = content.vkEmbed.split('/').pop();
         if (videoId) {
