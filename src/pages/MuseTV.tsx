@@ -47,7 +47,13 @@ const MuseTV = () => {
       const url = `https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`;
       console.log('[Rutube] Fetch URL:', url);
       
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       console.log('[Rutube] Response status:', response.status);
       
       if (!response.ok) {
