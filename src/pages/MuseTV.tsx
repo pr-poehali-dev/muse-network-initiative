@@ -412,19 +412,9 @@ const MuseTV = () => {
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
               <Badge className="bg-[#d4af37] text-black">
-                <Icon name="Radio" size={14} className="mr-2" />
+                <Icon name="Radio" size={14} className="mr-2 text-black" />
                 Видео подкасты
               </Badge>
-              {(() => {
-                const videoId = randomPodcast.vkEmbed?.split('/').pop();
-                const metadata = videoId ? videoMetadata[videoId] : null;
-                return metadata ? (
-                  <span className="text-white/60 text-sm flex items-center gap-2">
-                    <Icon name="Eye" size={16} />
-                    {formatViews(metadata.views)} просмотров
-                  </span>
-                ) : null;
-              })()}
             </div>
             
             <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
