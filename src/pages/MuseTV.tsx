@@ -47,22 +47,31 @@ const MuseTV = () => {
     
     try {
       const response = await fetch(`https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f?video_id=${videoId}`);
+      console.log(`📥 Response status for ${videoId}:`, response.status);
       if (!response.ok) throw new Error('API error');
       
       const data = await response.json();
+      console.log(`✅ Got data for ${videoId}:`, data);
       
-      setVideoMetadata((prev) => ({
-        ...prev,
-        [videoId]: {
-          title: data.title,
-          description: data.description,
-          thumbnail: data.thumbnail_url,
-          duration: data.duration,
-          views: data.hits
-        }
-      }));
+      const metadata = {
+        title: data.title,
+        description: data.description,
+        thumbnail: data.thumbnail_url,
+        duration: data.duration,
+        views: data.hits
+      };
+      console.log(`💾 Saving metadata for ${videoId}:`, metadata);
+      
+      setVideoMetadata((prev) => {
+        const updated = {
+          ...prev,
+          [videoId]: metadata
+        };
+        console.log(`🔄 Updated videoMetadata, total keys:`, Object.keys(updated).length);
+        return updated;
+      });
     } catch (error) {
-      console.error(`Error fetching metadata for ${videoId}:`, error);
+      console.error(`❌ Error fetching metadata for ${videoId}:`, error);
     } finally {
       setLoadingVideos(prev => {
         const newSet = new Set(prev);
@@ -483,6 +492,7 @@ const MuseTV = () => {
               {filteredContent.map(item => {
                 const videoId = extractVideoId(item.vkEmbed);
                 const currentMetadata = videoId ? videoMetadata[videoId] : null;
+                console.log(`🎴 Render card ${item.id}, videoId: ${videoId}, metadata:`, currentMetadata ? 'EXISTS' : 'NULL', currentMetadata);
 
                 return (
                   <Card 
