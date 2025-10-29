@@ -726,7 +726,7 @@ const MuseTV = () => {
             return (
               <div className="flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto max-h-[85vh]">
                 {/* Video Player */}
-                <div className="relative w-full" style={{ paddingBottom: '40%' }}>
+                <div className="relative w-full h-[400px] md:h-auto" style={{ paddingBottom: window.innerWidth >= 768 ? '40%' : '0' }}>
                   {selectedVideo?.vkEmbed && (
                     <iframe
                       src={videoUrl}
