@@ -724,17 +724,16 @@ const MuseTV = () => {
             }
 
             return (
-              <div className="relative flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto">
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedVideo(null)}
-                  className="fixed top-4 right-4 md:absolute md:-right-12 md:top-4 z-[60] rounded-full p-2.5 bg-[#d4af37] text-black hover:bg-[#ffd700] transition-all shadow-lg"
-                >
-                  <Icon name="X" size={20} />
-                </button>
-                
+              <div className="relative flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {/* Video Player */}
                 <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedVideo(null)}
+                    className="absolute top-3 right-3 z-[60] rounded-full p-2.5 bg-[#d4af37] text-black hover:bg-[#ffd700] transition-all shadow-lg"
+                  >
+                    <Icon name="X" size={20} />
+                  </button>
                   {selectedVideo?.vkEmbed && (
                     <iframe
                       src={videoUrl}
