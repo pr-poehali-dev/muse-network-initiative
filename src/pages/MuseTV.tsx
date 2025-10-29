@@ -496,7 +496,7 @@ const MuseTV = () => {
 
                 return (
                   <Card 
-                    key={item.id}
+                    key={`${item.id}-${currentMetadata ? 'loaded' : 'loading'}`}
                     className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
                     onClick={() => setSelectedVideo(item)}
                   >
