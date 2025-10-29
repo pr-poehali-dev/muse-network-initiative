@@ -747,18 +747,7 @@ const MuseTV = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      {/* Footer CTA */}
-      <section className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-        <div className="container mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-4 text-[#d4af37]">Не пропустите новый контент</h2>
-          <p className="text-xl text-white/70 mb-8 max-w-2xl mx-auto">
-            Подпишитесь на рассылку и получайте уведомления о новых эфирах и выпусках
-          </p>
-          <Button className="bg-[#d4af37] hover:bg-[#c4a137] text-black text-lg px-12 py-6">
-            Подписаться на рассылку
-          </Button>
-        </div>
-      </section>
+
 
       {/* Video Dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
