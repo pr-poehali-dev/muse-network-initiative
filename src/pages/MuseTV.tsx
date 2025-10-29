@@ -477,6 +477,7 @@ const MuseTV = () => {
                 const rutubeThumbnail = videoId ? generateRutubeThumbnail(videoId) : null;
                 
                 console.log(`Render card ${item.id}, videoId: ${videoId}, has metadata:`, !!metadata, metadata);
+                console.log('videoMetadata state:', Object.keys(videoMetadata).length, videoMetadata);
 
                 return (
                   <Card 
@@ -510,8 +511,9 @@ const MuseTV = () => {
                       <div className="p-3 md:p-4">
                         {item.category && <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>}
                         <h3 className="text-white text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-2">
-                          {metadata?.title || item.title || 'Загрузка...'}
+                          {metadata?.title || item.title || `Загрузка... (ID: ${item.id}, videoId: ${videoId})`}
                         </h3>
+                        {!metadata?.title && <p className="text-red-500 text-xs">DEBUG: metadata={JSON.stringify(!!metadata)}, title={JSON.stringify(metadata?.title)}</p>}
                         {metadata?.description && (
                           <p className="text-white/60 text-xs mb-2 line-clamp-2">
                             {metadata.description}
