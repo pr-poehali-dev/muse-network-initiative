@@ -442,19 +442,19 @@ const MuseTV = () => {
                       return metadata ? (
                         <>
                           <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} />
+                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
                             {formatDuration(metadata.duration)}
                           </span>
                           <span>•</span>
                           <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={16} />
+                            <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
                             {formatViews(metadata.views)}
                           </span>
                         </>
                       ) : (
                         <>
                           <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} />
+                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
                             {randomPodcast.duration}
                           </span>
                           <span>•</span>
@@ -479,7 +479,7 @@ const MuseTV = () => {
       {/* Upcoming Streams */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Предстоящие трансляции</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Предстоящие трансляции</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {upcomingStreams.map(stream => (
               <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
@@ -488,15 +488,15 @@ const MuseTV = () => {
                   <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
                   <div className="space-y-2 text-white/60 text-sm mb-4">
                     <div className="flex items-center gap-2">
-                      <Icon name="Calendar" size={16} />
+                      <Icon name="Calendar" size={16} className="text-[#b8953d]/60" />
                       {stream.date}
                     </div>
                     <div className="flex items-center gap-2">
-                      <Icon name="Clock" size={16} />
+                      <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
                       {stream.time}
                     </div>
                     <div className="flex items-center gap-2">
-                      <Icon name="User" size={16} />
+                      <Icon name="User" size={16} className="text-[#b8953d]/60" />
                       {stream.speaker}
                     </div>
                   </div>
@@ -521,7 +521,7 @@ const MuseTV = () => {
       {/* Main Catalog */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Каталог контента</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Каталог контента</h2>
           
           {/* Filters */}
           <div className="mb-6 md:mb-8 space-y-3 md:space-y-4">
@@ -628,11 +628,11 @@ const MuseTV = () => {
                         )}
                         <div className="flex items-center justify-between text-white/60 text-xs">
                           <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={12} />
+                            <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
                             {metadata?.duration ? formatDuration(metadata.duration) : item.duration}
                           </span>
                           <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={12} />
+                            <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
                             {metadata?.views ? formatViews(metadata.views) : item.views} просмотров
                           </span>
                         </div>
@@ -656,14 +656,14 @@ const MuseTV = () => {
       {/* Popular Podcasts */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Популярные подкасты</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Популярные подкасты</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {popularPodcasts.map(podcast => (
               <Card key={podcast.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all">
                 <CardContent className="p-4 md:p-6">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-16 h-16 bg-[#d4af37]/20 rounded-lg flex items-center justify-center">
-                      <Icon name="Mic" size={32} className="text-[#d4af37]" />
+                      <Icon name="Mic" size={32} className="text-[#b8953d]/60" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-bold mb-1">{podcast.title}</h3>
@@ -697,7 +697,7 @@ const MuseTV = () => {
       {/* Archive */}
       <section className="py-10 md:py-20 px-0 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-[#d4af37]">Архив трансляций</h2>
+          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Архив трансляций</h2>
           <div className="space-y-4">
             {archiveEvents.map(event => (
               <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
@@ -707,15 +707,15 @@ const MuseTV = () => {
                       <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
                       <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
                         <span className="flex items-center gap-2">
-                          <Icon name="Calendar" size={14} />
+                          <Icon name="Calendar" size={14} className="text-[#b8953d]/60" />
                           {event.date}
                         </span>
                         <span className="flex items-center gap-2">
-                          <Icon name="Clock" size={14} />
+                          <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
                           {event.duration}
                         </span>
                         <span className="flex items-center gap-2">
-                          <Icon name="Eye" size={14} />
+                          <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
                           {event.views} просмотров
                         </span>
                       </div>
