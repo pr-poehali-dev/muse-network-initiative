@@ -50,30 +50,45 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'isBase64Encoded': False
         }
     
-    rutube_url = f'https://rutube.ru/api/video/{video_id}/'
-    
-    req = urllib.request.Request(
-        rutube_url,
-        headers={'User-Agent': 'Mozilla/5.0'}
-    )
-    
-    with urllib.request.urlopen(req) as response:
+    try:
+        rutube_url = f'https://rutube.ru/api/video/{video_id}/'
+        
+        req = urllib.request.Request(
+            rutube_url,
+            headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+                'Accept': 'application/json'
+            }
+        )
+        
+        response = urllib.request.urlopen(req, timeout=10)
         data = json.loads(response.read().decode('utf-8'))
-    
-    result = {
-        'title': data.get('title'),
-        'description': data.get('description'),
-        'thumbnail_url': data.get('thumbnail_url'),
-        'duration': data.get('duration'),
-        'hits': data.get('hits')
-    }
-    
-    return {
-        'statusCode': 200,
-        'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        'body': json.dumps(result),
-        'isBase64Encoded': False
-    }
+        
+        result = {
+            'title': data.get('title', ''),
+            'description': data.get('description', ''),
+            'thumbnail_url': data.get('thumbnail_url', ''),
+            'duration': data.get('duration', 0),
+            'hits': data.get('hits', 0)
+        }
+        
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Cache-Control': 'public, max-age=3600'
+            },
+            'body': json.dumps(result),
+            'isBase64Encoded': False
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'body': json.dumps({'error': str(e)}),
+            'isBase64Encoded': False
+        }
