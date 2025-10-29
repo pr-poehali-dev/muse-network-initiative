@@ -734,19 +734,8 @@ const MuseTV = () => {
             const metadata = videoId ? videoMetadata[videoId] : null;
 
             const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            let videoUrl = selectedVideo.vkEmbed;
-            if (isRutube) {
-              const separator = videoUrl.includes('?') ? '&' : '?';
-              videoUrl = `${videoUrl}${separator}autoplay=true&t=0`;
-              if (isMobile) {
-                videoUrl += '&bmstart=true';
-              }
-            } else {
-              const separator = videoUrl.includes('?') ? '&' : '?';
-              videoUrl = `${videoUrl}${separator}autoplay=1`;
-            }
+            const autoplayParam = isRutube ? 'autoplay=true' : 'autoplay=1';
+            const videoUrl = selectedVideo.vkEmbed + (selectedVideo.vkEmbed.includes('?') ? '&' : '?') + autoplayParam;
 
             return (
               <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 min-h-full md:min-h-0">
