@@ -12,6 +12,7 @@ import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
 import CounterAnimation from '@/components/CounterAnimation';
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
+import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 
 const Index = () => {
@@ -299,13 +300,8 @@ const Index = () => {
 
   return (
     <PageTransition>
-      <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
-        <Header 
-          titleInHeader={titleInHeader} 
-          onScrollToSection={scrollToSection}
-          onOpenExpertDialog={() => setIsExpertDialogOpen(true)}
-          onOpenJoinDialog={() => setIsJoinDialogOpen(true)}
-        />
+      <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)}>
+        <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
 
       <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
@@ -873,40 +869,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/15 to-transparent pointer-events-none"></div>
       </div>
 
-      <footer className="py-12 px-4 bg-black text-white relative">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <img 
-              src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
-              alt="Muse" 
-              className="h-16 mx-auto mb-4 floating cursor-pointer hover:scale-105 transition-transform"
-              onClick={() => window.location.href = '/'}
-            />
-            <p className="text-lg mb-8">
-              Вместе мы можем достичь большего
-            </p>
-            <p className="text-sm opacity-75">
-              © 2025 Клуб Muse. Все права защищены.
-            </p>
-          </div>
-          
-          <div className="flex justify-center md:justify-end">
-            <a 
-              href="https://albeweb.ru/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 text-base text-white/50 hover:text-white/80 transition-colors group"
-            >
-              <span>Разработано в</span>
-              <img 
-                src="https://cdn.poehali.dev/files/1dabbacb-5667-4dc2-b2bb-e600cedcabfb.png" 
-                alt="Albe" 
-                className="h-8 opacity-50 group-hover:opacity-80 transition-opacity"
-              />
-            </a>
-          </div>
-        </div>
-      </footer>
+
 
       <BecomeExpertDialog
         isOpen={isExpertDialogOpen}
@@ -917,7 +880,8 @@ const Index = () => {
         isSubmitted={isExpertFormSubmitted}
         isSubmitting={isExpertFormSubmitting}
       />
-      </div>
+        </div>
+      </Layout>
     </PageTransition>
   );
 };

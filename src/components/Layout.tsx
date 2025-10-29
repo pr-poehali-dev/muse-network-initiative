@@ -10,9 +10,18 @@ import Header from './Header';
 interface LayoutProps {
   children: ReactNode;
   titleInHeader?: boolean;
+  onScrollToSection?: (id: string) => void;
+  onOpenExpertDialog?: () => void;
+  onOpenJoinDialog?: () => void;
 }
 
-const Layout = ({ children, titleInHeader = false }: LayoutProps) => {
+const Layout = ({ 
+  children, 
+  titleInHeader = false, 
+  onScrollToSection: externalScrollToSection,
+  onOpenExpertDialog: externalOpenExpertDialog,
+  onOpenJoinDialog: externalOpenJoinDialog
+}: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [scrollY, setScrollY] = useState(0);
@@ -25,7 +34,7 @@ const Layout = ({ children, titleInHeader = false }: LayoutProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const defaultScrollToSection = (id: string) => {
     if (location.pathname !== '/') {
       navigate('/');
       setTimeout(() => {
@@ -60,9 +69,9 @@ const Layout = ({ children, titleInHeader = false }: LayoutProps) => {
     <>
       <Header 
         titleInHeader={titleInHeader || scrollY > 100}
-        onScrollToSection={scrollToSection}
-        onOpenExpertDialog={() => setIsExpertDialogOpen(true)}
-        onOpenJoinDialog={() => setIsJoinDialogOpen(true)}
+        onScrollToSection={externalScrollToSection || defaultScrollToSection}
+        onOpenExpertDialog={externalOpenExpertDialog || (() => setIsExpertDialogOpen(true))}
+        onOpenJoinDialog={externalOpenJoinDialog || (() => setIsJoinDialogOpen(true))}
       />
 
       {children}
