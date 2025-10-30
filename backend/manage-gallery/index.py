@@ -45,6 +45,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 SELECT id, title, description, media_url, media_type, 
                        thumbnail_url, span_class, display_order
                 FROM gallery_items
+                WHERE display_order > 0
                 ORDER BY display_order ASC, created_at DESC
             """)
             
