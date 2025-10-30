@@ -38,74 +38,39 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     webhook_url = 'https://functions.poehali.dev/86d916fc-7e24-4e3d-af36-baf40ce0c304'
     
-    if method == 'POST':
-        try:
-            url = f'https://api.telegram.org/bot{telegram_token}/setWebhook'
-            data = urllib.parse.urlencode({
-                'url': webhook_url,
-                'drop_pending_updates': True
-            }).encode()
-            
-            response = urllib.request.urlopen(url, data=data)
-            result = json.loads(response.read().decode())
-            
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'isBase64Encoded': False,
-                'body': json.dumps({
-                    'success': True,
-                    'message': 'Webhook установлен',
-                    'webhook_url': webhook_url,
-                    'telegram_response': result
-                })
-            }
-        except Exception as e:
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'isBase64Encoded': False,
-                'body': json.dumps({'error': str(e)})
-            }
-    
-    elif method == 'GET':
-        try:
-            url = f'https://api.telegram.org/bot{telegram_token}/getWebhookInfo'
-            response = urllib.request.urlopen(url)
-            result = json.loads(response.read().decode())
-            
-            return {
-                'statusCode': 200,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'isBase64Encoded': False,
-                'body': json.dumps(result)
-            }
-        except Exception as e:
-            return {
-                'statusCode': 500,
-                'headers': {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
-                },
-                'isBase64Encoded': False,
-                'body': json.dumps({'error': str(e)})
-            }
-    
-    return {
-        'statusCode': 405,
-        'headers': {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        'isBase64Encoded': False,
-        'body': json.dumps({'error': 'Method not allowed'})
-    }
+    try:
+        url = f'https://api.telegram.org/bot{telegram_token}/setWebhook'
+        data = urllib.parse.urlencode({
+            'url': webhook_url,
+            'drop_pending_updates': True
+        }).encode()
+        
+        response = urllib.request.urlopen(url, data=data)
+        result = json.loads(response.read().decode())
+        
+        print(f"✅ Webhook установлен: {result}")
+        
+        return {
+            'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({
+                'success': True,
+                'message': 'Webhook установлен',
+                'webhook_url': webhook_url,
+                'telegram_response': result
+            })
+        }
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': str(e)})
+        }
