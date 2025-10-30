@@ -61,11 +61,26 @@ const PartnersMarquee = () => {
               className="mx-8 flex items-center justify-center"
               style={{ minWidth: '200px' }}
             >
-              <img
-                src={partner.logo_url}
-                alt={partner.name}
-                className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
-              />
+              {partner.website_url ? (
+                <a
+                  href={partner.website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block cursor-pointer"
+                >
+                  <img
+                    src={partner.logo_url}
+                    alt={partner.name}
+                    className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={partner.logo_url}
+                  alt={partner.name}
+                  className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                />
+              )}
             </div>
           ))}
         </div>
@@ -76,11 +91,26 @@ const PartnersMarquee = () => {
               className="mx-8 flex items-center justify-center"
               style={{ minWidth: '200px' }}
             >
-              <img
-                src={partner.logo_url}
-                alt={partner.name}
-                className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
-              />
+              {partner.website_url ? (
+                <a
+                  href={partner.website_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block cursor-pointer"
+                >
+                  <img
+                    src={partner.logo_url}
+                    alt={partner.name}
+                    className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  />
+                </a>
+              ) : (
+                <img
+                  src={partner.logo_url}
+                  alt={partner.name}
+                  className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                />
+              )}
             </div>
           ))}
         </div>
