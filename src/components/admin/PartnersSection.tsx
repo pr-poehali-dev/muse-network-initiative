@@ -11,21 +11,21 @@ interface PartnersSectionProps {
   setIsLoading: (loading: boolean) => void;
 }
 
-const convertYandexDiskUrl = async (url: string): Promise<string> => {
-  if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
-    try {
-      console.log('Converting Yandex.Disk URL:', url);
-      const response = await fetch(`https://functions.poehali.dev/feae6b7c-94fa-43c4-a9a0-34526f6664d9?public_url=${encodeURIComponent(url)}`);
-      const data = await response.json();
-      console.log('Response from backend:', data);
-      if (data.direct_url) {
-        console.log('Direct URL received:', data.direct_url);
-        return data.direct_url;
-      }
-    } catch (error) {
-      console.error('Failed to convert Yandex.Disk URL:', error);
+const convertYandexDiskUrl = (url: string): string => {
+  if (!url) return url;
+  
+  if (url.includes('disk.yandex.ru/i/') || url.includes('disk.yandex.ru/d/')) {
+    const match = url.match(/\/([id])\/([^/?]+)/);
+    if (match) {
+      const [, type, hash] = match;
+      return `https://downloader.disk.yandex.ru/preview?public_key=${encodeURIComponent(url)}&size=L`;
     }
   }
+  
+  if (url.includes('yadi.sk/')) {
+    return `https://downloader.disk.yandex.ru/preview?public_key=${encodeURIComponent(url)}&size=L`;
+  }
+  
   return url;
 };
 
@@ -34,7 +34,6 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
   const [partners, setPartners] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingPartner, setEditingPartner] = useState<any>(null);
-  const [isConverting, setIsConverting] = useState(false);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -158,14 +157,12 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                 <Label className="text-white/80">URL логотипа</Label>
                 <Input
                   value={formData.logo_url}
-                  onChange={async (e) => {
+                  onChange={(e) => {
                     const url = e.target.value;
                     
                     if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
-                      setIsConverting(true);
-                      const directUrl = await convertYandexDiskUrl(url);
+                      const directUrl = convertYandexDiskUrl(url);
                       setFormData(prev => ({ ...prev, logo_url: directUrl }));
-                      setIsConverting(false);
                       
                       if (directUrl !== url) {
                         toast({
@@ -180,13 +177,7 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                   placeholder="https://... или ссылка с Яндекс.Диска"
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                   required
-                  disabled={isConverting}
                 />
-                {isConverting && (
-                  <p className="text-xs text-yellow-500 mt-2 animate-pulse">
-                    ⏳ Получаем прямую ссылку с Яндекс.Диска...
-                  </p>
-                )}
                 <p className="text-xs text-white/50 mt-2">
                   💡 Поддерживаются прямые ссылки и публичные ссылки с Яндекс.Диска
                 </p>
