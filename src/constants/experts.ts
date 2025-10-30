@@ -33,7 +33,7 @@ export const EXPERTS = [
     name: 'Лазарева Мария Михайловна',
     role: 'Психолог, Психотерапевт',
     description: 'Метод Символдрама, Бизнестренер',
-    image: 'https://cdn.poehali.dev/files/15652b13-1d93-40d4-b392-b4b4bdaf51cc.jpg',
+    image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/47748ccd-d98d-408e-95c6-2c0e04e96a8c.jpg',
   },
   {
     name: 'Берг Полина Юрьевна',
