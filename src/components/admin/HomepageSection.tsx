@@ -270,6 +270,93 @@ const HomepageSection = ({ isLoading, setIsLoading }: HomepageSectionProps) => {
                   rows={4}
                 />
               </div>
+              
+              <Card className="bg-[#0a0a0a] border-[#d4af37]/30 mt-6">
+                <CardHeader>
+                  <CardTitle className="text-white text-base">Цитата основательницы</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <Label className="text-white/80">Фото основательницы</Label>
+                    <Input
+                      value={content.about?.founder?.image || ''}
+                      onChange={(e) => handleImageChange(e.target.value, (url) => 
+                        setContent({
+                          ...content, 
+                          about: {
+                            ...content.about, 
+                            founder: {...content.about?.founder, image: url}
+                          }
+                        })
+                      )}
+                      className="bg-black border-[#d4af37]/20 text-white"
+                      placeholder="https://... или ImgBB"
+                    />
+                    <p className="text-xs text-white/50 mt-1">💡 ImgBB, Google Drive, Яндекс.Диск</p>
+                  </div>
+                  <div>
+                    <Label className="text-white/80">Цитата (часть 1)</Label>
+                    <Textarea
+                      value={content.about?.founder?.quote_1 || ''}
+                      onChange={(e) => setContent({
+                        ...content, 
+                        about: {
+                          ...content.about, 
+                          founder: {...content.about?.founder, quote_1: e.target.value}
+                        }
+                      })}
+                      className="bg-black border-[#d4af37]/20 text-white"
+                      rows={3}
+                    />
+                  </div>
+                  <div>
+                    <Label className="text-white/80">Цитата (часть 2)</Label>
+                    <Textarea
+                      value={content.about?.founder?.quote_2 || ''}
+                      onChange={(e) => setContent({
+                        ...content, 
+                        about: {
+                          ...content.about, 
+                          founder: {...content.about?.founder, quote_2: e.target.value}
+                        }
+                      })}
+                      className="bg-black border-[#d4af37]/20 text-white"
+                      rows={3}
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <Label className="text-white/80">Имя</Label>
+                      <Input
+                        value={content.about?.founder?.name || ''}
+                        onChange={(e) => setContent({
+                          ...content, 
+                          about: {
+                            ...content.about, 
+                            founder: {...content.about?.founder, name: e.target.value}
+                          }
+                        })}
+                        className="bg-black border-[#d4af37]/20 text-white"
+                      />
+                    </div>
+                    <div>
+                      <Label className="text-white/80">Должность</Label>
+                      <Input
+                        value={content.about?.founder?.role || ''}
+                        onChange={(e) => setContent({
+                          ...content, 
+                          about: {
+                            ...content.about, 
+                            founder: {...content.about?.founder, role: e.target.value}
+                          }
+                        })}
+                        className="bg-black border-[#d4af37]/20 text-white"
+                      />
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
               <Button
                 onClick={() => updateSection('about', content.about)}
                 disabled={isLoading}
