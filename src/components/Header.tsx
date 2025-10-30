@@ -50,7 +50,13 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <button
-                  onClick={() => navigate('/')}
+                  onClick={() => {
+                    if (location.pathname === '/') {
+                      window.location.reload();
+                    } else {
+                      navigate('/');
+                    }
+                  }}
                   className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
                 >
                   <img 
