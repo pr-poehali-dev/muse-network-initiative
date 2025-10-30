@@ -11,6 +11,20 @@ interface PartnersSectionProps {
   setIsLoading: (loading: boolean) => void;
 }
 
+const convertYandexDiskUrl = (url: string): string => {
+  if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
+    const publicKeyMatch = url.match(/\/d\/([^/?]+)/);
+    if (publicKeyMatch) {
+      return `https://disk.yandex.ru/i/${publicKeyMatch[1]}`;
+    }
+    const hashMatch = url.match(/\/i\/([^/?]+)/);
+    if (hashMatch) {
+      return url;
+    }
+  }
+  return url;
+};
+
 const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
   const { toast } = useToast();
   const [partners, setPartners] = useState<any[]>([]);
@@ -139,11 +153,20 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                 <Label className="text-white/80">URL логотипа</Label>
                 <Input
                   value={formData.logo_url}
-                  onChange={(e) => setFormData({ ...formData, logo_url: e.target.value })}
-                  placeholder="https://..."
+                  onChange={(e) => setFormData({ ...formData, logo_url: convertYandexDiskUrl(e.target.value) })}
+                  placeholder="https://... или ссылка с Яндекс.Диска"
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                   required
                 />
+                <p className="text-xs text-white/50 mt-2">
+                  💡 Поддерживаются прямые ссылки и публичные ссылки с Яндекс.Диска
+                </p>
+                <div className="mt-2 p-2 bg-blue-900/20 border border-blue-600/30 rounded">
+                  <p className="text-xs text-blue-400 mb-1">Яндекс.Диск:</p>
+                  <p className="text-xs text-white/60">1. Загрузите изображение на Яндекс.Диск</p>
+                  <p className="text-xs text-white/60">2. Нажмите "Поделиться" → "Скопировать ссылку"</p>
+                  <p className="text-xs text-white/60">3. Вставьте ссылку сюда (автоматически конвертируется)</p>
+                </div>
                 {formData.logo_url && (
                   <div className="mt-3 p-3 bg-[#0a0a0a] border border-white/10 rounded">
                     <img src={formData.logo_url} alt="Preview" className="h-16 object-contain" />
