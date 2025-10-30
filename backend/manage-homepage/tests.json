@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Get homepage content",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "content": "object"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

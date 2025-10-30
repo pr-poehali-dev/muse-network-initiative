@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import MuseTvSection from '@/components/admin/MuseTvSection';
 import MediaGallerySection from '@/components/admin/MediaGallerySection';
 import PartnersSection from '@/components/admin/PartnersSection';
+import HomepageSection from '@/components/admin/HomepageSection';
 import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface Event {
@@ -53,7 +54,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners'>('events');
+  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners'>('homepage');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -678,7 +679,23 @@ const Admin = () => {
       </header>
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <div className="mb-8 flex gap-3">
+        <div className="mb-8 flex gap-3 flex-wrap">
+          <Button
+            onClick={() => {
+              setActiveTab('homepage');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'homepage' ? 'default' : 'ghost'}
+            className={activeTab === 'homepage' 
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Главная
+          </Button>
           <Button
             onClick={() => {
               setActiveTab('events');
@@ -772,6 +789,10 @@ const Admin = () => {
             Партнеры
           </Button>
         </div>
+
+        {activeTab === 'homepage' && (
+          <HomepageSection isLoading={isLoading} setIsLoading={setIsLoading} />
+        )}
 
         {activeTab === 'events' && (
           <>
