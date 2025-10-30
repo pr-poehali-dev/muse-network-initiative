@@ -284,8 +284,12 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     database_url = os.environ.get('DATABASE_URL')
     
-    if not telegram_token or not database_url:
-        print("Telegram or database not configured")
+    if not telegram_token:
+        print("⚠️ TELEGRAM_BOT_TOKEN not configured - notifications disabled")
+        return
+    
+    if not database_url:
+        print("⚠️ DATABASE_URL not configured")
         return
     
     try:
@@ -294,6 +298,8 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         
         cur.execute("SELECT telegram_chat_id FROM subscribers WHERE is_active = true AND telegram_chat_id IS NOT NULL")
         subscribers = cur.fetchall()
+        
+        print(f"📬 Found {len(subscribers)} subscribers to notify")
         
         cur.close()
         conn.close()
@@ -330,20 +336,29 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         else:
             return
         
+        success_count = 0
+        fail_count = 0
+        
         for subscriber in subscribers:
             chat_id = subscriber[0]
             if chat_id:
                 url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
                 data = urllib.parse.urlencode({
                     'chat_id': chat_id,
-                    'text': message
+                    'text': message,
+                    'parse_mode': 'HTML'
                 }).encode()
                 
                 try:
-                    urllib.request.urlopen(url, data=data)
-                    print(f"Notification sent to {chat_id}")
+                    response = urllib.request.urlopen(url, data=data)
+                    result = response.read().decode()
+                    print(f"✅ Sent to {chat_id}")
+                    success_count += 1
                 except Exception as e:
-                    print(f"Failed to send to {chat_id}: {str(e)}")
+                    print(f"❌ Failed to send to {chat_id}: {str(e)}")
+                    fail_count += 1
+        
+        print(f"📊 Notification results: {success_count} sent, {fail_count} failed")
     
     except Exception as e:
         print(f"Notification error: {str(e)}")
