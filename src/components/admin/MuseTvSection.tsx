@@ -237,9 +237,9 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
   const generateEmbedUrl = (platform: string, videoId: string): string => {
     switch (platform) {
       case 'rutube':
-        return `https://rutube.ru/play/embed/${videoId}?autoStart=true`;
+        return `https://rutube.ru/play/embed/${videoId}?autoStart=true&muted=false`;
       case 'youtube':
-        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`;
       case 'vk':
         return videoId;
       case 'custom':
@@ -400,8 +400,15 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                     {liveFormData.platform === 'vk' && '💡 Нажмите "Поделиться" → "HTML-код" и скопируйте ссылку из src=""'}
                   </p>
                   {liveFormData.stream_url && (
-                    <div className="mt-2 p-2 bg-green-900/20 border border-green-600/30 rounded">
-                      <p className="text-xs text-green-400">✓ Готовая ссылка: {liveFormData.stream_url}</p>
+                    <div className="mt-2 space-y-2">
+                      <div className="p-2 bg-green-900/20 border border-green-600/30 rounded">
+                        <p className="text-xs text-green-400">✓ Готовая ссылка: {liveFormData.stream_url}</p>
+                      </div>
+                      <div className="p-2 bg-blue-900/20 border border-blue-600/30 rounded">
+                        <p className="text-xs text-blue-400">
+                          ℹ️ {liveFormData.platform === 'youtube' ? 'YouTube автоматически запустится с выключенным звуком (политика браузеров)' : 'Трансляция запустится автоматически при открытии страницы'}
+                        </p>
+                      </div>
                     </div>
                   )}
                 </div>

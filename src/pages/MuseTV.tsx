@@ -19,12 +19,19 @@ const MuseTV = () => {
   const [dbVideos, setDbVideos] = useState<any[]>([]);
   const [dbStreams, setDbStreams] = useState<any[]>([]);
   const [liveStream, setLiveStream] = useState<any>(null);
+  const [liveStreamKey, setLiveStreamKey] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (liveStream) {
+      setLiveStreamKey(prev => prev + 1);
+    }
+  }, [liveStream]);
 
   useEffect(() => {
     const loadMuseTvData = async () => {
@@ -396,15 +403,22 @@ const MuseTV = () => {
             
             <Card className="bg-black/40 border-red-600/50 overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative aspect-video bg-black">
+                <div className="relative aspect-video bg-black group">
                   {liveStream.stream_url ? (
-                    <iframe
-                      src={liveStream.stream_url}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="w-full h-full border-0"
-                      title="Прямая трансляция"
-                    ></iframe>
+                    <>
+                      <iframe
+                        key={liveStreamKey}
+                        src={liveStream.stream_url}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                        allowFullScreen
+                        className="w-full h-full border-0"
+                        title="Прямая трансляция"
+                      ></iframe>
+                      <div className="absolute top-4 right-4 flex items-center gap-2 bg-red-600/90 backdrop-blur-sm px-3 py-2 rounded-lg animate-pulse">
+                        <div className="w-2 h-2 bg-white rounded-full"></div>
+                        <span className="text-white text-sm font-bold">ПРЯМОЙ ЭФИР</span>
+                      </div>
+                    </>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">
                       <Icon name="Radio" size={80} className="text-red-600 opacity-50" />
