@@ -163,10 +163,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 💬 Telegram: {body_data.get('telegram', '')}
 📝 Сообщение: {body_data.get('message', '')}
 
-🕐 Время: {timestamp}
-
-💡 Отправьте пользователю ссылку для подписки на уведомления:
-{bot_link}"""
+🕐 Время: {timestamp}"""
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         data = urllib.parse.urlencode({
@@ -177,9 +174,38 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         try:
             response = urllib.request.urlopen(url, data=data)
             result = response.read().decode()
-            print(f"Telegram API response: {result}")
+            print(f"Admin notification sent: {result}")
         except Exception as e:
-            print(f"Telegram error: {str(e)}")
+            print(f"Failed to send admin notification: {str(e)}")
+        
+        if user_telegram:
+            user_message = f"""🎉 Спасибо за интерес к клубу MUSE!
+
+Ваша заявка принята. Мы скоро с вами свяжемся!
+
+📢 Чтобы получать уведомления о новых мероприятиях:
+1️⃣ Нажмите на ссылку: {bot_link}
+2️⃣ Отправьте команду /start боту
+
+Тогда вы будете автоматически получать:
+✨ Анонсы новых событий
+⚡️ Изменения в расписании
+🎁 Эксклюзивные предложения
+
+До встречи! 💫"""
+            
+            user_url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+            user_data = urllib.parse.urlencode({
+                'chat_id': f'@{user_telegram}',
+                'text': user_message
+            }).encode()
+            
+            try:
+                response = urllib.request.urlopen(user_url, data=user_data)
+                result = response.read().decode()
+                print(f"User invitation sent to @{user_telegram}: {result}")
+            except Exception as e:
+                print(f"Failed to send user invitation to @{user_telegram}: {str(e)}")
     else:
         print("Telegram credentials missing!")
     
