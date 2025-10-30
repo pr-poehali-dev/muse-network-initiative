@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import MuseTvSection from '@/components/admin/MuseTvSection';
 import MediaGallerySection from '@/components/admin/MediaGallerySection';
+import PartnersSection from '@/components/admin/PartnersSection';
 
 interface Event {
   id?: number;
@@ -51,7 +52,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery'>('events');
+  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners'>('events');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -752,6 +753,22 @@ const Admin = () => {
             }
           >
             Галерея
+          </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('partners');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'partners' ? 'default' : 'ghost'}
+            className={activeTab === 'partners'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Партнеры
           </Button>
         </div>
 
@@ -1487,6 +1504,10 @@ const Admin = () => {
 
         {activeTab === 'gallery' && (
           <MediaGallerySection />
+        )}
+
+        {activeTab === 'partners' && (
+          <PartnersSection isLoading={isLoading} setIsLoading={setIsLoading} />
         )}
       </div>
     </div>

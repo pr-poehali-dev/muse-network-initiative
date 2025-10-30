@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import Header from './Header';
+import PartnersMarquee from './PartnersMarquee';
 
 interface LayoutProps {
   children: ReactNode;
@@ -78,6 +79,8 @@ const Layout = ({
       />
 
       {children}
+
+      <PartnersMarquee />
 
       <footer className="py-8 px-4 bg-black text-white relative">
         <div className="container mx-auto">

@@ -1,0 +1,69 @@
+import { useState, useEffect } from 'react';
+
+const PartnersMarquee = () => {
+  const [partners, setPartners] = useState<any[]>([]);
+
+  useEffect(() => {
+    const loadPartners = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/88f10ed9-e5e5-4d29-a85b-c8cb3a62b921');
+        const data = await response.json();
+        setPartners(data.partners || []);
+      } catch (error) {
+        console.error('Failed to load partners:', error);
+      }
+    };
+    loadPartners();
+  }, []);
+
+  if (partners.length === 0) return null;
+
+  const duplicatedPartners = [...partners, ...partners, ...partners];
+
+  return (
+    <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] py-8 border-y border-[#d4af37]/20">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/5 via-transparent to-transparent"></div>
+      
+      <div className="container mx-auto px-4 mb-3">
+        <h3 className="text-center text-sm uppercase tracking-widest text-[#d4af37]/60 font-light">
+          Партнеры клуба
+        </h3>
+      </div>
+
+      <div className="relative flex overflow-hidden">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {duplicatedPartners.map((partner, index) => (
+            <div
+              key={`${partner.id}-${index}`}
+              className="mx-8 flex items-center justify-center"
+              style={{ minWidth: '200px' }}
+            >
+              <img
+                src={partner.logo_url}
+                alt={partner.name}
+                className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              />
+            </div>
+          ))}
+        </div>
+        <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap">
+          {duplicatedPartners.map((partner, index) => (
+            <div
+              key={`duplicate-${partner.id}-${index}`}
+              className="mx-8 flex items-center justify-center"
+              style={{ minWidth: '200px' }}
+            >
+              <img
+                src={partner.logo_url}
+                alt={partner.name}
+                className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PartnersMarquee;
