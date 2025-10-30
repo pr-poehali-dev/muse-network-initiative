@@ -280,7 +280,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 
 
 def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict = None):
-    '''Send Telegram notification to all subscribers'''
+    '''Send Telegram notification to subscribers of this event'''
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     database_url = os.environ.get('DATABASE_URL')
     
@@ -292,11 +292,24 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         print("⚠️ DATABASE_URL not configured")
         return
     
+    event_id = new_data.get('id')
+    if not event_id:
+        print("⚠️ No event_id in data")
+        return
+    
     try:
         conn = psycopg2.connect(database_url)
         cur = conn.cursor()
         
-        cur.execute("SELECT telegram_chat_id FROM subscribers WHERE is_active = true AND telegram_chat_id IS NOT NULL")
+        cur.execute("""
+            SELECT DISTINCT ON (telegram_chat_id, COALESCE(event_id, -1))
+                telegram_chat_id
+            FROM subscribers
+            WHERE is_active = true 
+            AND telegram_chat_id IS NOT NULL 
+            AND (event_id = %s OR event_id IS NULL)
+            ORDER BY telegram_chat_id, COALESCE(event_id, -1), created_at DESC
+        """, (event_id,))
         subscribers = cur.fetchall()
         
         print(f"📬 Found {len(subscribers)} subscribers to notify")

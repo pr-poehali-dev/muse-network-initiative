@@ -1,0 +1,18 @@
+{
+  "tests": [
+    {
+      "name": "Subscribe to all events",
+      "method": "POST",
+      "body": {
+        "telegram_chat_id": "564852577",
+        "event_id": null
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true,
+        "message": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
