@@ -400,9 +400,10 @@ const MuseTV = () => {
                   {liveStream.stream_url ? (
                     <iframe
                       src={liveStream.stream_url}
-                      allow="clipboard-write; autoplay"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
-                      className="w-full h-full"
+                      className="w-full h-full border-0"
+                      title="Прямая трансляция"
                     ></iframe>
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center">

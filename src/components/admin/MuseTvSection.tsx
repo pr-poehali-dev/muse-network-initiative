@@ -316,14 +316,26 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
           <CardContent>
             <form onSubmit={handleLiveSubmit} className="space-y-4">
               <div>
-                <Label className="text-white/80">Ссылка на трансляцию (RuTube embed URL)</Label>
+                <Label className="text-white/80">Ссылка на трансляцию (iframe embed URL)</Label>
                 <Input
                   value={liveFormData.stream_url}
                   onChange={(e) => setLiveFormData({ ...liveFormData, stream_url: e.target.value })}
-                  placeholder="https://rutube.ru/play/embed/..."
+                  placeholder="Вставьте embed ссылку (начинается с https://...)"
                   className="bg-[#0a0a0a] border-red-600/20 text-white"
                   required
                 />
+                <div className="mt-3 p-3 bg-[#0a0a0a] border border-white/10 rounded-lg">
+                  <p className="text-xs text-white/70 font-semibold mb-2">Поддерживаемые платформы:</p>
+                  <ul className="text-xs text-white/50 space-y-1">
+                    <li>• <span className="text-white/70">RuTube:</span> https://rutube.ru/play/embed/VIDEO_ID</li>
+                    <li>• <span className="text-white/70">YouTube:</span> https://www.youtube.com/embed/VIDEO_ID</li>
+                    <li>• <span className="text-white/70">VK Video:</span> https://vk.com/video_ext.php?oid=...</li>
+                    <li>• <span className="text-white/70">Любая платформа с iframe embed</span></li>
+                  </ul>
+                  <p className="text-xs text-yellow-500/70 mt-2">
+                    💡 Совет: Найдите кнопку "Поделиться" → "Встроить" на платформе видео
+                  </p>
+                </div>
               </div>
               <div>
                 <Label className="text-white/80">Название трансляции (опционально)</Label>
