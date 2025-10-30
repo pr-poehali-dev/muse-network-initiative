@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
 
@@ -45,7 +46,9 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
 
   const [liveFormData, setLiveFormData] = useState({
     stream_url: '',
-    title: ''
+    title: '',
+    platform: 'rutube',
+    video_id: ''
   });
 
   useEffect(() => {
@@ -60,9 +63,28 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
       setStreams(data.streams || []);
       setLiveStream(data.live_stream || null);
       if (data.live_stream) {
+        const url = data.live_stream.stream_url || '';
+        let platform = 'custom';
+        let video_id = '';
+        
+        if (url.includes('rutube.ru')) {
+          platform = 'rutube';
+          const match = url.match(/\/embed\/([^/?]+)/);
+          video_id = match ? match[1] : '';
+        } else if (url.includes('youtube.com') || url.includes('youtu.be')) {
+          platform = 'youtube';
+          const match = url.match(/\/embed\/([^/?]+)/);
+          video_id = match ? match[1] : '';
+        } else if (url.includes('vk.com')) {
+          platform = 'vk';
+          video_id = url;
+        }
+        
         setLiveFormData({
-          stream_url: data.live_stream.stream_url || '',
-          title: data.live_stream.title || ''
+          stream_url: url,
+          title: data.live_stream.title || '',
+          platform,
+          video_id
         });
       }
     } catch (error) {
@@ -212,6 +234,30 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     setShowStreamForm(true);
   };
 
+  const generateEmbedUrl = (platform: string, videoId: string): string => {
+    switch (platform) {
+      case 'rutube':
+        return `https://rutube.ru/play/embed/${videoId}?autoStart=true`;
+      case 'youtube':
+        return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=0`;
+      case 'vk':
+        return videoId;
+      case 'custom':
+        return videoId;
+      default:
+        return videoId;
+    }
+  };
+
+  const handlePlatformChange = (platform: string) => {
+    setLiveFormData({ ...liveFormData, platform, video_id: '', stream_url: '' });
+  };
+
+  const handleVideoIdChange = (videoId: string) => {
+    const embedUrl = generateEmbedUrl(liveFormData.platform, videoId);
+    setLiveFormData({ ...liveFormData, video_id: videoId, stream_url: embedUrl });
+  };
+
   const handleLiveSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -316,27 +362,65 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
           <CardContent>
             <form onSubmit={handleLiveSubmit} className="space-y-4">
               <div>
-                <Label className="text-white/80">Ссылка на трансляцию (iframe embed URL)</Label>
-                <Input
-                  value={liveFormData.stream_url}
-                  onChange={(e) => setLiveFormData({ ...liveFormData, stream_url: e.target.value })}
-                  placeholder="Вставьте embed ссылку (начинается с https://...)"
-                  className="bg-[#0a0a0a] border-red-600/20 text-white"
-                  required
-                />
-                <div className="mt-3 p-3 bg-[#0a0a0a] border border-white/10 rounded-lg">
-                  <p className="text-xs text-white/70 font-semibold mb-2">Поддерживаемые платформы:</p>
-                  <ul className="text-xs text-white/50 space-y-1">
-                    <li>• <span className="text-white/70">RuTube:</span> https://rutube.ru/play/embed/VIDEO_ID</li>
-                    <li>• <span className="text-white/70">YouTube:</span> https://www.youtube.com/embed/VIDEO_ID</li>
-                    <li>• <span className="text-white/70">VK Video:</span> https://vk.com/video_ext.php?oid=...</li>
-                    <li>• <span className="text-white/70">Любая платформа с iframe embed</span></li>
-                  </ul>
-                  <p className="text-xs text-yellow-500/70 mt-2">
-                    💡 Совет: Найдите кнопку "Поделиться" → "Встроить" на платформе видео
+                <Label className="text-white/80">Платформа трансляции</Label>
+                <Select value={liveFormData.platform} onValueChange={handlePlatformChange}>
+                  <SelectTrigger className="bg-[#0a0a0a] border-red-600/20 text-white">
+                    <SelectValue placeholder="Выберите платформу" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
+                    <SelectItem value="rutube" className="text-white hover:bg-[#d4af37]/20">RuTube</SelectItem>
+                    <SelectItem value="youtube" className="text-white hover:bg-[#d4af37]/20">YouTube</SelectItem>
+                    <SelectItem value="vk" className="text-white hover:bg-[#d4af37]/20">VK Video</SelectItem>
+                    <SelectItem value="custom" className="text-white hover:bg-[#d4af37]/20">Другая платформа (полная ссылка)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {liveFormData.platform !== 'custom' ? (
+                <div>
+                  <Label className="text-white/80">
+                    {liveFormData.platform === 'rutube' && 'ID видео RuTube'}
+                    {liveFormData.platform === 'youtube' && 'ID видео YouTube'}
+                    {liveFormData.platform === 'vk' && 'Полная embed ссылка VK'}
+                  </Label>
+                  <Input
+                    value={liveFormData.video_id}
+                    onChange={(e) => handleVideoIdChange(e.target.value)}
+                    placeholder={
+                      liveFormData.platform === 'rutube' ? 'Например: a8cb0148230a45ad50421f345c6b153f' :
+                      liveFormData.platform === 'youtube' ? 'Например: dQw4w9WgXcQ' :
+                      'https://vk.com/video_ext.php?oid=...'
+                    }
+                    className="bg-[#0a0a0a] border-red-600/20 text-white"
+                    required
+                  />
+                  <p className="text-xs text-white/50 mt-2">
+                    {liveFormData.platform === 'rutube' && '💡 Найдите ID в адресной строке: rutube.ru/video/ID/'}
+                    {liveFormData.platform === 'youtube' && '💡 Найдите ID в адресной строке: youtube.com/watch?v=ID'}
+                    {liveFormData.platform === 'vk' && '💡 Нажмите "Поделиться" → "HTML-код" и скопируйте ссылку из src=""'}
+                  </p>
+                  {liveFormData.stream_url && (
+                    <div className="mt-2 p-2 bg-green-900/20 border border-green-600/30 rounded">
+                      <p className="text-xs text-green-400">✓ Готовая ссылка: {liveFormData.stream_url}</p>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div>
+                  <Label className="text-white/80">Полная embed ссылка</Label>
+                  <Input
+                    value={liveFormData.video_id}
+                    onChange={(e) => handleVideoIdChange(e.target.value)}
+                    placeholder="https://..."
+                    className="bg-[#0a0a0a] border-red-600/20 text-white"
+                    required
+                  />
+                  <p className="text-xs text-white/50 mt-2">
+                    💡 Вставьте полную iframe embed ссылку с любой платформы
                   </p>
                 </div>
-              </div>
+              )}
+
               <div>
                 <Label className="text-white/80">Название трансляции (опционально)</Label>
                 <Input
