@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 
-const convertYandexDiskUrl = (url: string): string => {
+const convertYandexDiskUrl = async (url: string): Promise<string> => {
   if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
-    const publicKeyMatch = url.match(/\/d\/([^/?]+)/);
-    if (publicKeyMatch) {
-      return `https://disk.yandex.ru/i/${publicKeyMatch[1]}`;
-    }
-    const hashMatch = url.match(/\/i\/([^/?]+)/);
-    if (hashMatch) {
-      return url;
+    try {
+      const response = await fetch(`https://functions.poehali.dev/feae6b7c-94fa-43c4-a9a0-34526f6664d9?public_url=${encodeURIComponent(url)}`);
+      const data = await response.json();
+      if (data.direct_url) {
+        return data.direct_url;
+      }
+    } catch (error) {
+      console.error('Failed to convert Yandex.Disk URL:', error);
     }
   }
   return url;
@@ -22,10 +23,14 @@ const PartnersMarquee = () => {
       try {
         const response = await fetch('https://functions.poehali.dev/88f10ed9-e5e5-4d29-a85b-c8cb3a62b921');
         const data = await response.json();
-        const partnersWithConvertedUrls = (data.partners || []).map((partner: any) => ({
-          ...partner,
-          logo_url: convertYandexDiskUrl(partner.logo_url)
-        }));
+        
+        const partnersWithConvertedUrls = await Promise.all(
+          (data.partners || []).map(async (partner: any) => ({
+            ...partner,
+            logo_url: await convertYandexDiskUrl(partner.logo_url)
+          }))
+        );
+        
         setPartners(partnersWithConvertedUrls);
       } catch (error) {
         console.error('Failed to load partners:', error);

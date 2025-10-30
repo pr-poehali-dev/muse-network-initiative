@@ -1,0 +1,11 @@
+{
+  "tests": [
+    {
+      "name": "Get direct link from Yandex.Disk",
+      "method": "GET",
+      "path": "/?public_url=https://disk.yandex.ru/d/test",
+      "expectedStatus": 200,
+      "bodyMatcher": "partial"
+    }
+  ]
+}

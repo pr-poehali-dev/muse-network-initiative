@@ -11,15 +11,16 @@ interface PartnersSectionProps {
   setIsLoading: (loading: boolean) => void;
 }
 
-const convertYandexDiskUrl = (url: string): string => {
+const convertYandexDiskUrl = async (url: string): Promise<string> => {
   if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
-    const publicKeyMatch = url.match(/\/d\/([^/?]+)/);
-    if (publicKeyMatch) {
-      return `https://disk.yandex.ru/i/${publicKeyMatch[1]}`;
-    }
-    const hashMatch = url.match(/\/i\/([^/?]+)/);
-    if (hashMatch) {
-      return url;
+    try {
+      const response = await fetch(`https://functions.poehali.dev/feae6b7c-94fa-43c4-a9a0-34526f6664d9?public_url=${encodeURIComponent(url)}`);
+      const data = await response.json();
+      if (data.direct_url) {
+        return data.direct_url;
+      }
+    } catch (error) {
+      console.error('Failed to convert Yandex.Disk URL:', error);
     }
   }
   return url;
@@ -30,6 +31,7 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
   const [partners, setPartners] = useState<any[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingPartner, setEditingPartner] = useState<any>(null);
+  const [isConverting, setIsConverting] = useState(false);
   
   const [formData, setFormData] = useState({
     name: '',
@@ -153,11 +155,34 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                 <Label className="text-white/80">URL логотипа</Label>
                 <Input
                   value={formData.logo_url}
-                  onChange={(e) => setFormData({ ...formData, logo_url: convertYandexDiskUrl(e.target.value) })}
+                  onChange={async (e) => {
+                    const url = e.target.value;
+                    setFormData({ ...formData, logo_url: url });
+                    
+                    if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
+                      setIsConverting(true);
+                      const directUrl = await convertYandexDiskUrl(url);
+                      setFormData({ ...formData, logo_url: directUrl });
+                      setIsConverting(false);
+                      
+                      if (directUrl !== url) {
+                        toast({
+                          title: 'Ссылка конвертирована',
+                          description: 'Яндекс.Диск ссылка преобразована в прямую ссылку',
+                        });
+                      }
+                    }
+                  }}
                   placeholder="https://... или ссылка с Яндекс.Диска"
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                   required
+                  disabled={isConverting}
                 />
+                {isConverting && (
+                  <p className="text-xs text-yellow-500 mt-2 animate-pulse">
+                    ⏳ Получаем прямую ссылку с Яндекс.Диска...
+                  </p>
+                )}
                 <p className="text-xs text-white/50 mt-2">
                   💡 Поддерживаются прямые ссылки и публичные ссылки с Яндекс.Диска
                 </p>
