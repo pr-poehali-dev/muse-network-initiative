@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Parse ImgBB URL",
+      "method": "GET",
+      "path": "/?url=https://ibb.co/test",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "direct_url": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

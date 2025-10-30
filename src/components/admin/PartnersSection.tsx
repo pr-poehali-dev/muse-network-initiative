@@ -14,18 +14,13 @@ interface PartnersSectionProps {
 const convertCloudUrl = async (url: string): Promise<string> => {
   if (!url) return url;
   
-  // ImgBB - получаем прямую ссылку
+  // ImgBB - получаем прямую ссылку через бэкенд
   if (url.includes('ibb.co/')) {
     try {
-      console.log('Fetching ImgBB page:', url);
-      const response = await fetch(url);
-      const html = await response.text();
-      console.log('HTML received, length:', html.length);
-      const match = html.match(/<meta property="og:image" content="([^"]+)"/);
-      console.log('Match result:', match);
-      if (match) {
-        console.log('Direct URL found:', match[1]);
-        return match[1];
+      const response = await fetch(`https://functions.poehali.dev/09d5e02b-7cfd-4476-a38b-b2d456cca0c2?url=${encodeURIComponent(url)}`);
+      const data = await response.json();
+      if (data.direct_url) {
+        return data.direct_url;
       }
     } catch (error) {
       console.error('Failed to parse ImgBB URL:', error);
