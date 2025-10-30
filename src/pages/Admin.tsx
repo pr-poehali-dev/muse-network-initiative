@@ -45,6 +45,15 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
+  const [activeTab, setActiveTab] = useState<'events' | 'speakers'>('events');
+  const [showSpeakerForm, setShowSpeakerForm] = useState(false);
+  const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
+  const [speakerFormData, setSpeakerFormData] = useState({
+    name: '',
+    role: '',
+    image: '',
+    bio: ''
+  });
 
   const [formData, setFormData] = useState<Event>({
     title: '',
@@ -86,7 +95,7 @@ const Admin = () => {
 
   const loadSpeakers = async () => {
     try {
-      const response = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
+      const response = await fetch('https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51');
       const data = await response.json();
       setAvailableSpeakers(data.speakers || []);
     } catch (error) {
@@ -222,6 +231,106 @@ const Admin = () => {
     setShowSpeakerPicker(false);
   };
 
+  const handleSpeakerSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const url = 'https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51';
+      const method = editingSpeaker ? 'PUT' : 'POST';
+      const body = editingSpeaker ? { ...speakerFormData, id: editingSpeaker.id } : speakerFormData;
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: editingSpeaker ? 'Эксперт обновлён' : 'Эксперт добавлен',
+        });
+        
+        resetSpeakerForm();
+        loadSpeakers();
+      } else {
+        throw new Error(data.error || 'Ошибка сохранения');
+      }
+    } catch (error) {
+      console.error('Failed to save speaker:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Не удалось сохранить эксперта';
+      toast({
+        title: 'Ошибка',
+        description: errorMessage,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetSpeakerForm = () => {
+    setSpeakerFormData({
+      name: '',
+      role: '',
+      image: '',
+      bio: ''
+    });
+    setEditingSpeaker(null);
+    setShowSpeakerForm(false);
+  };
+
+  const handleEditSpeaker = (speaker: DBSpeaker) => {
+    setSpeakerFormData({
+      name: speaker.name,
+      role: speaker.role,
+      image: speaker.image,
+      bio: speaker.bio || ''
+    });
+    setEditingSpeaker(speaker);
+    setShowSpeakerForm(true);
+  };
+
+  const handleDeleteSpeaker = async (speakerId: number) => {
+    if (!confirm('Вы уверены, что хотите удалить этого эксперта?')) {
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: speakerId })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: 'Эксперт удалён',
+        });
+        loadSpeakers();
+      } else {
+        throw new Error(data.error || 'Ошибка удаления');
+      }
+    } catch (error) {
+      console.error('Failed to delete speaker:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Не удалось удалить эксперта';
+      toast({
+        title: 'Ошибка',
+        description: errorMessage,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const removeSpeaker = (index: number) => {
     const newSpeakers = formData.speakers.filter((_, i) => i !== index);
     setFormData({ ...formData, speakers: newSpeakers });
@@ -340,24 +449,213 @@ const Admin = () => {
       </header>
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <div className="mb-6 flex gap-4">
+        <div className="mb-6 flex gap-4 border-b border-[#d4af37]/20 pb-4">
           <Button
-            onClick={() => setShowForm(!showForm)}
-            className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+            onClick={() => {
+              setActiveTab('events');
+              setShowSpeakerForm(false);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'events' ? 'default' : 'outline'}
+            className={activeTab === 'events' 
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold'
+              : 'border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10'
+            }
           >
-            <Icon name={showForm ? "X" : "Plus"} className="w-5 h-5 mr-2" />
-            {showForm ? 'Отменить' : 'Создать событие'}
+            <Icon name="Calendar" className="w-5 h-5 mr-2" />
+            События
           </Button>
-          
           <Button
-            onClick={loadEvents}
-            variant="outline"
-            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+            onClick={() => {
+              setActiveTab('speakers');
+              setShowForm(false);
+              setEditingEvent(null);
+            }}
+            variant={activeTab === 'speakers' ? 'default' : 'outline'}
+            className={activeTab === 'speakers'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold'
+              : 'border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10'
+            }
           >
-            <Icon name="RefreshCw" className="w-5 h-5 mr-2" />
-            Обновить
+            <Icon name="Users" className="w-5 h-5 mr-2" />
+            Эксперты
           </Button>
         </div>
+
+        {activeTab === 'events' && (
+          <>
+            <div className="mb-6 flex gap-4">
+              <Button
+                onClick={() => setShowForm(!showForm)}
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+              >
+                <Icon name={showForm ? "X" : "Plus"} className="w-5 h-5 mr-2" />
+                {showForm ? 'Отменить' : 'Создать событие'}
+              </Button>
+              
+              <Button
+                onClick={loadEvents}
+                variant="outline"
+                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+              >
+                <Icon name="RefreshCw" className="w-5 h-5 mr-2" />
+                Обновить
+              </Button>
+            </div>
+          </>
+        )}
+
+        {activeTab === 'speakers' && (
+          <>
+            <div className="mb-6 flex gap-4">
+              <Button
+                onClick={() => setShowSpeakerForm(!showSpeakerForm)}
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+              >
+                <Icon name={showSpeakerForm ? "X" : "Plus"} className="w-5 h-5 mr-2" />
+                {showSpeakerForm ? 'Отменить' : 'Добавить эксперта'}
+              </Button>
+              
+              <Button
+                onClick={loadSpeakers}
+                variant="outline"
+                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+              >
+                <Icon name="RefreshCw" className="w-5 h-5 mr-2" />
+                Обновить
+              </Button>
+            </div>
+
+            {showSpeakerForm && (
+              <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
+                <CardHeader>
+                  <CardTitle className="text-[#d4af37]">
+                    {editingSpeaker ? 'Редактировать эксперта' : 'Новый эксперт'}
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSpeakerSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="speaker-name" className="text-white/80">Имя</Label>
+                        <Input
+                          id="speaker-name"
+                          value={speakerFormData.name}
+                          onChange={(e) => setSpeakerFormData({ ...speakerFormData, name: e.target.value })}
+                          required
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        />
+                      </div>
+
+                      <div>
+                        <Label htmlFor="speaker-role" className="text-white/80">Роль</Label>
+                        <Input
+                          id="speaker-role"
+                          value={speakerFormData.role}
+                          onChange={(e) => setSpeakerFormData({ ...speakerFormData, role: e.target.value })}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="speaker-image" className="text-white/80">URL изображения</Label>
+                      <Input
+                        id="speaker-image"
+                        value={speakerFormData.image}
+                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, image: e.target.value })}
+                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                      />
+                    </div>
+
+                    <div>
+                      <Label htmlFor="speaker-bio" className="text-white/80">Биография</Label>
+                      <Textarea
+                        id="speaker-bio"
+                        value={speakerFormData.bio}
+                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, bio: e.target.value })}
+                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
+                      />
+                    </div>
+
+                    <div className="flex gap-4">
+                      <Button
+                        type="submit"
+                        disabled={isLoading}
+                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                      >
+                        <Icon name="Save" className="w-5 h-5 mr-2" />
+                        {isLoading ? 'Сохранение...' : editingSpeaker ? 'Обновить' : 'Добавить'}
+                      </Button>
+                      
+                      <Button
+                        type="button"
+                        onClick={resetSpeakerForm}
+                        variant="outline"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                      >
+                        Отменить
+                      </Button>
+                    </div>
+                  </form>
+                </CardContent>
+              </Card>
+            )}
+
+            <div className="space-y-4">
+              <h2 className="text-xl font-bold text-[#d4af37]">Все эксперты</h2>
+              {isLoading ? (
+                <div className="text-center py-8 text-white/60">Загрузка...</div>
+              ) : availableSpeakers.length === 0 ? (
+                <div className="text-center py-8 text-white/60">Нет экспертов</div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {availableSpeakers.map((speaker) => (
+                    <Card key={speaker.id} className="bg-[#1a1a1a] border-[#d4af37]/20">
+                      <CardContent className="p-4">
+                        <div className="flex items-start gap-4">
+                          {speaker.image && (
+                            <img
+                              src={speaker.image}
+                              alt={speaker.name}
+                              className="w-16 h-16 rounded-full object-cover flex-shrink-0"
+                            />
+                          )}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-bold text-white truncate">{speaker.name}</h3>
+                            <p className="text-sm text-white/60 truncate">{speaker.role}</p>
+                            {speaker.bio && (
+                              <p className="text-xs text-white/40 mt-2 line-clamp-2">{speaker.bio}</p>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex gap-2 mt-4">
+                          <Button
+                            onClick={() => handleEditSpeaker(speaker)}
+                            variant="outline"
+                            size="sm"
+                            className="flex-1 border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                          >
+                            <Icon name="Edit" className="w-4 h-4 mr-1" />
+                            Редактировать
+                          </Button>
+                          <Button
+                            onClick={() => handleDeleteSpeaker(speaker.id)}
+                            variant="outline"
+                            size="sm"
+                            className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                          >
+                            <Icon name="Trash2" className="w-4 h-4" />
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
+            </div>
+          </>
+        )}
 
         {showForm && (
           <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">

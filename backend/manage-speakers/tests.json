@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Get all speakers",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "speakers": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Create speaker",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "name": "Test Speaker",
+        "role": "Expert",
+        "image": "https://example.com/image.jpg",
+        "bio": "Test bio"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
