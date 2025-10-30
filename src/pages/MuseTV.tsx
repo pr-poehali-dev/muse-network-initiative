@@ -268,18 +268,17 @@ const MuseTV = () => {
     }
   ];
 
-  const allContent = [
-    ...dbVideos.map((v: any) => ({
-      id: v.id,
-      type: v.type?.toLowerCase() || 'podcast',
-      category: v.type || 'Подкаст',
-      url: v.url,
-      vkEmbed: v.embed_url,
-      title: v.title,
-      thumbnail_url: v.thumbnail_url
-    })),
-    ...contentLibrary
-  ];
+  const allContent = dbVideos.length > 0 
+    ? dbVideos.map((v: any) => ({
+        id: v.id,
+        type: v.type?.toLowerCase() || 'podcast',
+        category: v.type || 'Подкаст',
+        url: v.url,
+        vkEmbed: v.embed_url,
+        title: v.title,
+        thumbnail_url: v.thumbnail_url
+      }))
+    : contentLibrary;
 
   const filteredContent = allContent.filter(item => {
     const typeMatch = activeFilter === 'all' || item.type === activeFilter;
