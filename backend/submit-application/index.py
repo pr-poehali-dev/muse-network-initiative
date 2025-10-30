@@ -150,6 +150,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     print(f"Telegram chat_id: {telegram_chat_id}")
     
     if telegram_token and telegram_chat_id:
+        user_telegram = body_data.get('telegram', '').replace('@', '').strip()
+        
+        bot_username = "Muse_Club_bot"
+        bot_link = f"https://t.me/{bot_username}?start=subscribe"
+        
         admin_message = f"""🆕 Новая заявка на вступление в клуб MUSE
 
 👤 Имя: {body_data.get('name', '')}
@@ -158,7 +163,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 💬 Telegram: {body_data.get('telegram', '')}
 📝 Сообщение: {body_data.get('message', '')}
 
-🕐 Время: {timestamp}"""
+🕐 Время: {timestamp}
+
+💡 Отправьте пользователю ссылку для подписки на уведомления:
+{bot_link}"""
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         data = urllib.parse.urlencode({
@@ -172,34 +180,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             print(f"Telegram API response: {result}")
         except Exception as e:
             print(f"Telegram error: {str(e)}")
-        
-        user_telegram = body_data.get('telegram', '').replace('@', '').strip()
-        if user_telegram:
-            welcome_message = f"""✨ Добро пожаловать в клуб MUSE, {body_data.get('name', '')}!
-
-Спасибо за вашу заявку. Мы рассмотрим её в ближайшее время.
-
-🔔 Хотите получать уведомления о новых мероприятиях и изменениях в расписании?
-
-Нажмите /start чтобы активировать уведомления."""
-            
-            welcome_data = json.dumps({
-                'chat_id': f'@{user_telegram}',
-                'text': welcome_message
-            }).encode()
-            
-            req = urllib.request.Request(
-                url,
-                data=welcome_data,
-                headers={'Content-Type': 'application/json'}
-            )
-            
-            try:
-                welcome_response = urllib.request.urlopen(req)
-                welcome_result = welcome_response.read().decode()
-                print(f"Welcome message sent: {welcome_result}")
-            except Exception as e:
-                print(f"Failed to send welcome message: {str(e)}")
     else:
         print("Telegram credentials missing!")
     

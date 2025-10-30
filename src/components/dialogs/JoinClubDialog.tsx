@@ -79,11 +79,32 @@ const JoinClubDialog = ({
             <p className="text-lg text-[#d4af37] font-semibold">Отправка...</p>
           </div>
         ) : isSubmitted ? (
-          <div className="text-center py-8">
+          <div className="text-center py-8 space-y-6">
             <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#8b7355]/20 flex items-center justify-center mb-4 mx-auto">
               <Icon name="Check" className="w-8 h-8 text-[#d4af37]" />
             </div>
-            <p className="text-lg text-white/80">Спасибо! Ваша заявка принята.</p>
+            <p className="text-lg text-white/80 mb-6">Спасибо! Ваша заявка принята.</p>
+            
+            <div className="bg-gradient-to-br from-[#d4af37]/10 to-[#8b7355]/10 border border-[#d4af37]/30 rounded-lg p-6 space-y-4">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <Icon name="Bell" className="w-5 h-5 text-[#d4af37]" />
+                <p className="text-base font-semibold text-[#d4af37]">
+                  Получайте уведомления о мероприятиях
+                </p>
+              </div>
+              <p className="text-sm text-white/70 mb-4">
+                Подпишитесь на бота, чтобы первыми узнавать о новых событиях и изменениях в расписании
+              </p>
+              <a
+                href="https://t.me/Muse_Club_bot?start=subscribe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-semibold rounded-lg transition-all transform hover:scale-105"
+              >
+                <Icon name="Send" className="w-5 h-5" />
+                Подписаться на уведомления
+              </a>
+            </div>
           </div>
         ) : (
           <form onSubmit={onSubmit} className="space-y-4">
