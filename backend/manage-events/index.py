@@ -253,6 +253,56 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'body': json.dumps({'success': True, 'message': 'Event updated and notifications sent'})
             }
         
+        elif method == 'DELETE':
+            body_data = json.loads(event.get('body', '{}'))
+            event_id = body_data.get('id')
+            
+            if not event_id:
+                return {
+                    'statusCode': 400,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'error': 'Event ID is required'})
+                }
+            
+            cur.execute("SELECT * FROM events WHERE id = %s", (event_id,))
+            event_row = cur.fetchone()
+            
+            if not event_row:
+                return {
+                    'statusCode': 404,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'error': 'Event not found'})
+                }
+            
+            cur.execute("INSERT INTO event_changes (event_id, change_type, old_data, new_data) VALUES (%s, %s, %s, %s)", 
+                       (event_id, 'deleted', json.dumps({'id': event_id, 'title': event_row[1]}), json.dumps({})))
+            
+            cur.execute("DELETE FROM event_speakers WHERE event_id = %s", (event_id,))
+            cur.execute("DELETE FROM events WHERE id = %s", (event_id,))
+            
+            conn.commit()
+            
+            cur.close()
+            conn.close()
+            
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'isBase64Encoded': False,
+                'body': json.dumps({'success': True, 'message': 'Event deleted'})
+            }
+        
         cur.close()
         conn.close()
         

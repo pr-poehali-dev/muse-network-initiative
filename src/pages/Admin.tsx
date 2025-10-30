@@ -144,6 +144,43 @@ const Admin = () => {
     setShowForm(true);
   };
 
+  const handleDelete = async (eventId: number) => {
+    if (!confirm('Вы уверены, что хотите удалить это событие?')) {
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: eventId })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: 'Событие удалено',
+        });
+        loadEvents();
+      } else {
+        throw new Error(data.error || 'Ошибка удаления');
+      }
+    } catch (error) {
+      console.error('Failed to delete event:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Не удалось удалить событие';
+      toast({
+        title: 'Ошибка',
+        description: errorMessage,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const addSpeaker = () => {
     setFormData({
       ...formData,
@@ -500,15 +537,27 @@ const Admin = () => {
                       </div>
                     </div>
                     
-                    <Button
-                      onClick={() => handleEdit(event)}
-                      variant="outline"
-                      size="sm"
-                      className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
-                    >
-                      <Icon name="Edit" className="w-4 h-4 mr-2" />
-                      Редактировать
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        onClick={() => handleEdit(event)}
+                        variant="outline"
+                        size="sm"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                      >
+                        <Icon name="Edit" className="w-4 h-4 mr-2" />
+                        Редактировать
+                      </Button>
+                      <Button
+                        onClick={() => event.id && handleDelete(event.id)}
+                        variant="outline"
+                        size="sm"
+                        className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                        disabled={isLoading}
+                      >
+                        <Icon name="Trash2" className="w-4 h-4 mr-2" />
+                        Удалить
+                      </Button>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
