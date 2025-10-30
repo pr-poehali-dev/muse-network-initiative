@@ -132,7 +132,58 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 reply = "Команды бота MUSE:\n\n/start - Подписаться на уведомления\n/stop - Отписаться\n/status - Проверить статус подписки"
                 send_message(chat_id, reply)
         
-
+        elif 'callback_query' in update:
+            callback = update['callback_query']
+            chat_id = callback['message']['chat']['id']
+            callback_data = callback['data']
+            username = callback['from'].get('username', '')
+            
+            print(f"Callback from {username} (chat_id: {chat_id}): {callback_data}")
+            
+            if callback_data == 'start_bot':
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                
+                cur.execute("""
+                    SELECT id FROM subscribers 
+                    WHERE telegram_chat_id = %s
+                """, (chat_id,))
+                existing = cur.fetchone()
+                
+                if existing:
+                    cur.execute("""
+                        UPDATE subscribers 
+                        SET is_active = true
+                        WHERE telegram_chat_id = %s
+                    """, (chat_id,))
+                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                else:
+                    first_name = callback['from'].get('first_name', '')
+                    last_name = callback['from'].get('last_name', '')
+                    full_name = f"{first_name} {last_name}".strip()
+                    
+                    cur.execute("""
+                        INSERT INTO subscribers (telegram, telegram_chat_id, name, is_active)
+                        VALUES (%s, %s, %s, %s)
+                    """, (username, chat_id, full_name, True))
+                    reply = "🎉 Добро пожаловать в клуб MUSE!\n\nВы успешно подписались на уведомления.\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                
+                conn.commit()
+                cur.close()
+                conn.close()
+                
+                send_message(chat_id, reply)
+                
+                telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+                if telegram_token:
+                    answer_url = f"https://api.telegram.org/bot{telegram_token}/answerCallbackQuery"
+                    answer_data = urllib.parse.urlencode({
+                        'callback_query_id': callback['id'],
+                        'text': '✅ Подписка оформлена!'
+                    }).encode()
+                    urllib.request.urlopen(answer_url, data=answer_data)
+                
+                print(f"Subscribed via button: chat_id {chat_id}, username @{username}")
         
         return {
             'statusCode': 200,

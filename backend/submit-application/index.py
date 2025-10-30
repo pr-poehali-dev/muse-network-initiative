@@ -174,11 +174,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 
                 if user_data.get('ok'):
                     user_chat_id = user_data['result']['id']
-                    invite_text = "Привет! Ваша заявка на вступление в клуб MUSE принята! 🎉\n\nОтправьте /start чтобы подписаться на уведомления о мероприятиях ✨"
+                    invite_text = "Привет! Ваша заявка на вступление в клуб MUSE принята! 🎉\n\nНажмите кнопку ниже, чтобы подписаться на уведомления о мероприятиях ✨"
+                    
+                    keyboard = {
+                        'inline_keyboard': [[
+                            {
+                                'text': '✨ Подписаться',
+                                'callback_data': 'start_bot'
+                            }
+                        ]]
+                    }
                     
                     user_message_data = urllib.parse.urlencode({
                         'chat_id': user_chat_id,
-                        'text': invite_text
+                        'text': invite_text,
+                        'reply_markup': json.dumps(keyboard)
                     }).encode()
                     
                     urllib.request.urlopen(url, data=user_message_data)

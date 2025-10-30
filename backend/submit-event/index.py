@@ -132,11 +132,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 
                 if user_data.get('ok'):
                     user_chat_id = user_data['result']['id']
-                    invite_text = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅\n\nОтправьте /start чтобы получать напоминания и важные изменения 📢"
+                    invite_text = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅\n\nНажмите кнопку ниже, чтобы получать напоминания и важные изменения 📢"
+                    
+                    keyboard = {
+                        'inline_keyboard': [[
+                            {
+                                'text': '📢 Подписаться',
+                                'callback_data': 'start_bot'
+                            }
+                        ]]
+                    }
                     
                     user_message_data = urllib.parse.urlencode({
                         'chat_id': user_chat_id,
-                        'text': invite_text
+                        'text': invite_text,
+                        'reply_markup': json.dumps(keyboard)
                     }).encode()
                     
                     urllib.request.urlopen(url, data=user_message_data)
