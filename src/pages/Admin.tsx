@@ -32,6 +32,7 @@ interface DBSpeaker {
   role: string;
   image: string;
   bio: string | null;
+  display_order: number;
 }
 
 const Admin = () => {
@@ -53,7 +54,8 @@ const Admin = () => {
     name: '',
     role: '',
     image: '',
-    bio: ''
+    bio: '',
+    display_order: 0
   });
 
   const [headlinersContent, setHeadlinersContent] = useState<any>(null);
@@ -479,7 +481,8 @@ const Admin = () => {
       name: '',
       role: '',
       image: '',
-      bio: ''
+      bio: '',
+      display_order: 0
     });
     setEditingSpeaker(null);
     setShowSpeakerForm(false);
@@ -490,7 +493,8 @@ const Admin = () => {
       name: speaker.name,
       role: speaker.role,
       image: speaker.image,
-      bio: speaker.bio || ''
+      bio: speaker.bio || '',
+      display_order: speaker.display_order
     });
     setEditingSpeaker(speaker);
     setShowSpeakerForm(true);
@@ -804,6 +808,19 @@ const Admin = () => {
                       />
                     </div>
 
+                    <div>
+                      <Label htmlFor="speaker-order" className="text-white/80">Порядок отображения</Label>
+                      <Input
+                        id="speaker-order"
+                        type="number"
+                        value={speakerFormData.display_order}
+                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, display_order: parseInt(e.target.value) || 0 })}
+                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        placeholder="0"
+                      />
+                      <p className="text-white/50 text-xs mt-1">Меньшее число = выше в списке</p>
+                    </div>
+
                     <div className="flex gap-4">
                       <Button
                         type="submit"
@@ -847,7 +864,10 @@ const Admin = () => {
                             />
                           )}
                           <div className="flex-1 min-w-0">
-                            <h3 className="font-bold text-white truncate">{speaker.name}</h3>
+                            <div className="flex items-center gap-2">
+                              <h3 className="font-bold text-white truncate">{speaker.name}</h3>
+                              <span className="text-xs bg-[#d4af37]/20 text-[#d4af37] px-2 py-1 rounded">#{speaker.display_order}</span>
+                            </div>
                             <p className="text-sm text-white/60 truncate">{speaker.role}</p>
                             {speaker.bio && (
                               <p className="text-xs text-white/40 mt-2 line-clamp-2">{speaker.bio}</p>
