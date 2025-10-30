@@ -204,6 +204,29 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 event_id
             ))
             
+            cur.execute("DELETE FROM event_speakers WHERE event_id = %s", (event_id,))
+            
+            cur.execute("""
+                DELETE FROM speakers 
+                WHERE id NOT IN (SELECT speaker_id FROM event_speakers)
+            """)
+            
+            speakers = body_data.get('speakers', [])
+            for speaker in speakers:
+                if speaker.get('name'):
+                    cur.execute("""
+                        INSERT INTO speakers (name, role, image)
+                        VALUES (%s, %s, %s)
+                        RETURNING id
+                    """, (speaker.get('name'), speaker.get('role'), speaker.get('image')))
+                    
+                    speaker_id = cur.fetchone()[0]
+                    
+                    cur.execute("""
+                        INSERT INTO event_speakers (event_id, speaker_id)
+                        VALUES (%s, %s)
+                    """, (event_id, speaker_id))
+            
             cur.execute("""
                 INSERT INTO event_changes (event_id, change_type, old_data, new_data)
                 VALUES (%s, %s, %s, %s)

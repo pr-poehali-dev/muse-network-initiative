@@ -82,15 +82,19 @@ const Admin = () => {
       const method = editingEvent ? 'PUT' : 'POST';
       const body = editingEvent ? { ...formData, id: editingEvent.id } : formData;
 
+      console.log('Saving event:', method, body);
+      
       const response = await fetch(url, {
         method,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
 
+      console.log('Response status:', response.status);
       const data = await response.json();
+      console.log('Response data:', data);
 
-      if (data.success) {
+      if (response.ok && data.success) {
         toast({
           title: 'Успешно!',
           description: editingEvent 
@@ -105,9 +109,10 @@ const Admin = () => {
       }
     } catch (error) {
       console.error('Failed to save event:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Не удалось сохранить событие';
       toast({
         title: 'Ошибка',
-        description: 'Не удалось сохранить событие',
+        description: errorMessage,
         variant: 'destructive'
       });
     } finally {
