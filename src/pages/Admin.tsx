@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -36,6 +36,7 @@ interface DBSpeaker {
 
 const Admin = () => {
   const { toast } = useToast();
+  const formRef = useRef<HTMLDivElement>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -172,6 +173,10 @@ const Admin = () => {
     });
     setEditingEvent(event);
     setShowForm(true);
+    
+    setTimeout(() => {
+      formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const handleDelete = async (eventId: number) => {
@@ -648,7 +653,7 @@ const Admin = () => {
         )}
 
         {showForm && (
-          <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
+          <Card ref={formRef} className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
             <CardHeader>
               <CardTitle className="text-[#d4af37]">
                 {editingEvent ? 'Редактировать событие' : 'Новое событие'}
