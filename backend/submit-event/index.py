@@ -109,13 +109,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     if telegram_token and telegram_chat_id:
         user_telegram = body_data.get('telegram', '').replace('@', '').strip()
         
-        bot_username = "Muse_Club_bot"
-        
-        invite_link = ""
-        if user_telegram:
-            invite_message = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅\n\nОтправьте /start чтобы получать напоминания и важные изменения 📢"
-            invite_link = f"\n\n📲 Пригласить в бот: https://t.me/{user_telegram}\n💬 Текст для отправки:\n{invite_message}"
-        
         admin_message = f"""🎉 Новая регистрация на событие
 
 📅 Событие: {body_data.get('event', '')}
@@ -125,13 +118,34 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 💬 Telegram: {body_data.get('telegram', '')}
 📝 Сообщение: {body_data.get('message', '')}
 
-🕐 Время: {timestamp}{invite_link}"""
+🕐 Время: {timestamp}"""
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-        data = urllib.parse.urlencode({
-            'chat_id': telegram_chat_id,
-            'text': admin_message
-        }).encode()
+        
+        if user_telegram:
+            invite_text = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅ Отправьте /start чтобы получать напоминания и важные изменения 📢"
+            
+            keyboard = {
+                'inline_keyboard': [[
+                    {
+                        'text': '📲 Пригласить в бот',
+                        'url': f'https://t.me/{user_telegram}?text={urllib.parse.quote(invite_text)}'
+                    }
+                ]]
+            }
+            
+            request_data = {
+                'chat_id': telegram_chat_id,
+                'text': admin_message,
+                'reply_markup': json.dumps(keyboard)
+            }
+        else:
+            request_data = {
+                'chat_id': telegram_chat_id,
+                'text': admin_message
+            }
+        
+        data = urllib.parse.urlencode(request_data).encode()
         
         try:
             response = urllib.request.urlopen(url, data=data)
