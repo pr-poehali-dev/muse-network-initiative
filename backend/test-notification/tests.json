@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Test event update notification",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200
+    }
+  ]
+}
