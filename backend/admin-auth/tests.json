@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "Test admin authentication",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "password": "test_password"
+      },
+      "expectedStatus": 401,
+      "expectedBody": {
+        "success": false
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

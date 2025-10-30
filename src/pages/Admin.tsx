@@ -28,6 +28,9 @@ interface Speaker {
 
 const Admin = () => {
   const { toast } = useToast();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [isAuthenticating, setIsAuthenticating] = useState(false);
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
@@ -45,7 +48,11 @@ const Admin = () => {
   });
 
   useEffect(() => {
-    loadEvents();
+    const authToken = localStorage.getItem('muse_admin_token');
+    if (authToken) {
+      setIsAuthenticated(true);
+      loadEvents();
+    }
   }, []);
 
   const loadEvents = async () => {
@@ -147,13 +154,109 @@ const Admin = () => {
     setFormData({ ...formData, speakers: newSpeakers });
   };
 
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsAuthenticating(true);
+
+    try {
+      const response = await fetch('https://functions.poehali.dev/94b2cee5-5934-403c-8546-48ae9501e585', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        localStorage.setItem('muse_admin_token', data.token);
+        setIsAuthenticated(true);
+        loadEvents();
+        toast({
+          title: 'Вход выполнен',
+          description: 'Добро пожаловать в админ-панель!',
+        });
+      } else {
+        toast({
+          title: 'Ошибка входа',
+          description: 'Неверный пароль',
+          variant: 'destructive'
+        });
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось войти',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsAuthenticating(false);
+    }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('muse_admin_token');
+    setIsAuthenticated(false);
+    setPassword('');
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <Card className="bg-[#1a1a1a] border-[#d4af37]/20 w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-center">
+              <div className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355] mb-2">
+                Админ-панель MUSE
+              </div>
+              <p className="text-sm text-white/60 font-normal">Введите пароль для доступа</p>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLogin} className="space-y-4">
+              <div>
+                <Label htmlFor="password" className="text-white/80">Пароль</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                  placeholder="Введите пароль"
+                  autoFocus
+                />
+              </div>
+              <Button
+                type="submit"
+                disabled={isAuthenticating}
+                className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+              >
+                <Icon name="Lock" className="w-5 h-5 mr-2" />
+                {isAuthenticating ? 'Вход...' : 'Войти'}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-black text-white">
       <header className="bg-black/80 backdrop-blur-md border-b border-[#d4af37]/20 sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355]">
             Админ-панель MUSE
           </h1>
+          <Button
+            onClick={handleLogout}
+            variant="outline"
+            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+          >
+            <Icon name="LogOut" className="w-5 h-5 mr-2" />
+            Выйти
+          </Button>
         </div>
       </header>
 
