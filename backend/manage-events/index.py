@@ -282,9 +282,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'Event not found'})
                 }
             
-            cur.execute("INSERT INTO event_changes (event_id, change_type, old_data, new_data) VALUES (%s, %s, %s, %s)", 
-                       (event_id, 'deleted', json.dumps({'id': event_id, 'title': event_row[1]}), json.dumps({})))
-            
+            cur.execute("DELETE FROM event_changes WHERE event_id = %s", (event_id,))
             cur.execute("DELETE FROM event_speakers WHERE event_id = %s", (event_id,))
             cur.execute("DELETE FROM events WHERE id = %s", (event_id,))
             
