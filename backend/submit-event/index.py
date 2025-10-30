@@ -156,11 +156,30 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         body={'values': [row_data]}
     ).execute()
     
-    # Сохраняем подписчика в базу данных
+    # Сохраняем подписчика в базу данных и отправляем уведомление
+    registered_user_chat_id = None
     if database_url:
         try:
             conn = psycopg2.connect(database_url)
             cur = conn.cursor()
+            
+            # Проверяем, есть ли пользователь с таким telegram уже в боте
+            user_telegram = body_data.get('telegram', '').strip()
+            if user_telegram:
+                cur.execute(
+                    """
+                    SELECT telegram_chat_id 
+                    FROM subscribers 
+                    WHERE telegram = %s AND telegram_chat_id IS NOT NULL 
+                    ORDER BY subscribed_at DESC 
+                    LIMIT 1
+                    """,
+                    (user_telegram,)
+                )
+                result = cur.fetchone()
+                if result:
+                    registered_user_chat_id = result[0]
+                    print(f"✅ Found existing user with chat_id: {registered_user_chat_id}")
             
             cur.execute(
                 """
@@ -257,6 +276,31 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             print(f"Admin notification sent: {result}")
         except Exception as e:
             print(f"Failed to send admin notification: {str(e)}")
+        
+        # Отправляем уведомление пользователю, если он уже в боте
+        if registered_user_chat_id:
+            user_message = f"""✅ Вы успешно зарегистрированы на событие!
+
+📅 Событие: {body_data.get('event', '')}
+👤 Имя: {body_data.get('name', '')}
+📧 Email: {body_data.get('email', '')}
+
+Мы отправим вам напоминание перед началом события."""
+            
+            user_request_data = {
+                'chat_id': registered_user_chat_id,
+                'text': user_message,
+                'parse_mode': 'HTML'
+            }
+            
+            data_user = urllib.parse.urlencode(user_request_data).encode()
+            
+            try:
+                response = urllib.request.urlopen(url, data=data_user)
+                result = response.read().decode()
+                print(f"✅ User notification sent to chat_id {registered_user_chat_id}: {result}")
+            except Exception as e:
+                print(f"⚠️ Failed to send user notification: {str(e)}")
     else:
         print("Telegram credentials missing!")
     
