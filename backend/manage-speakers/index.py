@@ -26,8 +26,20 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     dsn = os.environ.get('DATABASE_URL')
-    conn = psycopg2.connect(dsn)
-    cur = conn.cursor()
+    
+    try:
+        conn = psycopg2.connect(dsn)
+        cur = conn.cursor()
+    except Exception as e:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': f'Database connection failed: {str(e)}'})
+        }
     
     # GET - list all speakers
     if method == 'GET':
@@ -146,38 +158,53 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     # DELETE - remove speaker
     if method == 'DELETE':
-        body_data = json.loads(event.get('body', '{}'))
-        
-        speaker_id = body_data.get('id')
-        if not speaker_id:
+        try:
+            body_data = json.loads(event.get('body', '{}'))
+            
+            speaker_id = body_data.get('id')
+            if not speaker_id:
+                cur.close()
+                conn.close()
+                return {
+                    'statusCode': 400,
+                    'headers': {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    },
+                    'isBase64Encoded': False,
+                    'body': json.dumps({'error': 'Speaker ID is required'})
+                }
+            
+            cur.execute("DELETE FROM event_speakers WHERE speaker_id = %s", (speaker_id,))
+            cur.execute("DELETE FROM speakers WHERE id = %s", (speaker_id,))
+            conn.commit()
+            
             cur.close()
             conn.close()
+            
             return {
-                'statusCode': 400,
+                'statusCode': 200,
                 'headers': {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*'
                 },
                 'isBase64Encoded': False,
-                'body': json.dumps({'error': 'Speaker ID is required'})
+                'body': json.dumps({'success': True})
             }
-        
-        cur.execute("DELETE FROM event_speakers WHERE speaker_id = %s", (speaker_id,))
-        cur.execute("DELETE FROM speakers WHERE id = %s", (speaker_id,))
-        conn.commit()
-        
-        cur.close()
-        conn.close()
-        
-        return {
-            'statusCode': 200,
-            'headers': {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
-            },
-            'isBase64Encoded': False,
-            'body': json.dumps({'success': True})
-        }
+        except Exception as e:
+            if 'cur' in locals():
+                cur.close()
+            if 'conn' in locals():
+                conn.close()
+            return {
+                'statusCode': 500,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'isBase64Encoded': False,
+                'body': json.dumps({'error': f'Delete failed: {str(e)}'})
+            }
     
     cur.close()
     conn.close()
