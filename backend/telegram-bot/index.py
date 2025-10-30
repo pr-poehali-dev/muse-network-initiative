@@ -1,5 +1,7 @@
 import json
 import os
+import urllib.request
+import urllib.parse
 from typing import Dict, Any
 import psycopg2
 
@@ -57,51 +59,37 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 cur = conn.cursor()
                 
                 cur.execute("""
-                    UPDATE subscribers 
-                    SET telegram_chat_id = %s 
-                    WHERE telegram ILIKE %s AND is_active = true
-                """, (chat_id, f'%{username}%'))
+                    SELECT id FROM subscribers 
+                    WHERE telegram_chat_id = %s
+                """, (chat_id,))
+                existing = cur.fetchone()
                 
-                updated = cur.rowcount
-                conn.commit()
-                cur.close()
-                conn.close()
-                
-                print(f"Updated {updated} subscribers with chat_id {chat_id}")
-        
-        elif 'callback_query' in update:
-            callback = update['callback_query']
-            chat_id = callback['message']['chat']['id']
-            data = callback.get('data', '')
-            username = callback['from'].get('username', '')
-            
-            print(f"Callback from {username} (chat_id: {chat_id}): {data}")
-            
-            if data == 'subscribe':
-                conn = psycopg2.connect(database_url)
-                cur = conn.cursor()
-                
-                cur.execute("""
-                    UPDATE subscribers 
-                    SET telegram_chat_id = %s, is_active = true
-                    WHERE telegram ILIKE %s
-                """, (chat_id, f'%{username}%'))
-                
-                updated = cur.rowcount
-                
-                if updated == 0:
+                if existing:
                     cur.execute("""
-                        INSERT INTO subscribers (telegram, telegram_chat_id, is_active)
-                        VALUES (%s, %s, %s)
-                    """, (f'@{username}', chat_id, True))
+                        UPDATE subscribers 
+                        SET is_active = true
+                        WHERE telegram_chat_id = %s
+                    """, (chat_id,))
+                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                else:
+                    first_name = message['from'].get('first_name', '')
+                    last_name = message['from'].get('last_name', '')
+                    full_name = f"{first_name} {last_name}".strip()
+                    
+                    cur.execute("""
+                        INSERT INTO subscribers (telegram, telegram_chat_id, name, is_active)
+                        VALUES (%s, %s, %s, %s)
+                    """, (f'@{username}' if username else str(chat_id), chat_id, full_name, True))
+                    reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
                 
                 conn.commit()
                 cur.close()
                 conn.close()
                 
-                print(f"Subscribed user {username} with chat_id {chat_id}")
+                send_message(chat_id, reply)
+                print(f"Registered/updated chat_id {chat_id}")
             
-            elif data == 'unsubscribe':
+            elif text.startswith('/stop'):
                 conn = psycopg2.connect(database_url)
                 cur = conn.cursor()
                 
@@ -115,7 +103,36 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 cur.close()
                 conn.close()
                 
+                reply = "😔 Вы отписались от уведомлений клуба MUSE.\n\nЧтобы подписаться снова, используйте /start"
+                send_message(chat_id, reply)
                 print(f"Unsubscribed chat_id {chat_id}")
+            
+            elif text.startswith('/status'):
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                
+                cur.execute("""
+                    SELECT is_active FROM subscribers 
+                    WHERE telegram_chat_id = %s
+                """, (chat_id,))
+                
+                result = cur.fetchone()
+                cur.close()
+                conn.close()
+                
+                if result:
+                    status = "✅ активна" if result[0] else "❌ неактивна"
+                    reply = f"Ваша подписка: {status}"
+                else:
+                    reply = "Вы не подписаны. Используйте /start для подписки."
+                
+                send_message(chat_id, reply)
+            
+            else:
+                reply = "Команды бота MUSE:\n\n/start - Подписаться на уведомления\n/stop - Отписаться\n/status - Проверить статус подписки"
+                send_message(chat_id, reply)
+        
+
         
         return {
             'statusCode': 200,
@@ -132,3 +149,24 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'isBase64Encoded': False,
             'body': json.dumps({'error': str(e)})
         }
+
+
+def send_message(chat_id: int, text: str):
+    '''Send message to Telegram user'''
+    telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+    if not telegram_token:
+        print("TELEGRAM_BOT_TOKEN not configured")
+        return
+    
+    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+    data = urllib.parse.urlencode({
+        'chat_id': chat_id,
+        'text': text,
+        'parse_mode': 'HTML'
+    }).encode()
+    
+    try:
+        urllib.request.urlopen(url, data=data)
+        print(f"Sent message to {chat_id}")
+    except Exception as e:
+        print(f"Failed to send message to {chat_id}: {str(e)}")
