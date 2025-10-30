@@ -16,6 +16,8 @@ export interface Event {
   registered_count?: number;
   available_seats?: number;
   speakers: Speaker[];
+  is_paid: boolean;
+  price?: number;
 }
 
 export interface EventTypeConfig {

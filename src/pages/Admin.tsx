@@ -19,6 +19,8 @@ interface Event {
   location: string;
   seats: number;
   speakers: Speaker[];
+  is_paid: boolean;
+  price?: number;
 }
 
 interface Speaker {
@@ -116,7 +118,9 @@ const Admin = () => {
     type: 'guest',
     location: '',
     seats: 20,
-    speakers: [{ name: '', role: '', image: '' }]
+    speakers: [{ name: '', role: '', image: '' }],
+    is_paid: false,
+    price: undefined
   });
 
   useEffect(() => {
@@ -375,7 +379,9 @@ const Admin = () => {
       type: 'guest',
       location: '',
       seats: 20,
-      speakers: [{ name: '', role: '', image: '' }]
+      speakers: [{ name: '', role: '', image: '' }],
+      is_paid: false,
+      price: undefined
     });
     setEditingEvent(null);
     setShowForm(false);
@@ -1235,6 +1241,48 @@ const Admin = () => {
                     required
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
                   />
+                </div>
+
+                <div className="space-y-4">
+                  <Label className="text-white/80">Тип события</Label>
+                  <div className="flex items-center gap-4">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="is_paid"
+                        checked={!formData.is_paid}
+                        onChange={() => setFormData({ ...formData, is_paid: false, price: undefined })}
+                        className="w-4 h-4 accent-[#d4af37]"
+                      />
+                      <span className="text-white/80">Бесплатное</span>
+                    </label>
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="radio"
+                        name="is_paid"
+                        checked={formData.is_paid}
+                        onChange={() => setFormData({ ...formData, is_paid: true })}
+                        className="w-4 h-4 accent-[#d4af37]"
+                      />
+                      <span className="text-white/80">Платное</span>
+                    </label>
+                  </div>
+                  {formData.is_paid && (
+                    <div>
+                      <Label htmlFor="price" className="text-white/80">Цена (₽)</Label>
+                      <Input
+                        id="price"
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        value={formData.price || ''}
+                        onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) || undefined })}
+                        required={formData.is_paid}
+                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        placeholder="1500.00"
+                      />
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-4">

@@ -47,6 +47,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 SELECT 
                     e.id, e.title, e.date, e.time, e.description, 
                     e.type, e.location, e.seats, e.registered_count,
+                    e.is_paid, e.price,
                     json_agg(
                         json_build_object(
                             'name', s.name,
@@ -66,6 +67,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             for row in rows:
                 total_seats = row[7]
                 registered = row[8] or 0
+                is_paid = row[9]
+                price = float(row[10]) if row[10] else None
                 events_list.append({
                     'id': row[0],
                     'title': row[1],
@@ -77,7 +80,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'seats': total_seats,
                     'registered_count': registered,
                     'available_seats': total_seats - registered,
-                    'speakers': row[9] if row[9] else []
+                    'is_paid': is_paid,
+                    'price': price,
+                    'speakers': row[11] if row[11] else []
                 })
             
             cur.close()
@@ -97,8 +102,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             body_data = json.loads(event.get('body', '{}'))
             
             cur.execute("""
-                INSERT INTO events (title, date, time, description, type, location, seats)
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                INSERT INTO events (title, date, time, description, type, location, seats, is_paid, price)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
             """, (
                 body_data.get('title'),
@@ -107,7 +112,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 body_data.get('description'),
                 body_data.get('type'),
                 body_data.get('location'),
-                body_data.get('seats')
+                body_data.get('seats'),
+                body_data.get('is_paid', False),
+                body_data.get('price')
             ))
             
             event_id = cur.fetchone()[0]
@@ -194,7 +201,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             cur.execute("""
                 UPDATE events
                 SET title = %s, date = %s, time = %s, description = %s,
-                    type = %s, location = %s, seats = %s, updated_at = %s
+                    type = %s, location = %s, seats = %s, is_paid = %s, price = %s, updated_at = %s
                 WHERE id = %s
             """, (
                 body_data.get('title'),
@@ -204,6 +211,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 body_data.get('type'),
                 body_data.get('location'),
                 body_data.get('seats'),
+                body_data.get('is_paid', False),
+                body_data.get('price'),
                 datetime.now(timezone.utc),
                 event_id
             ))

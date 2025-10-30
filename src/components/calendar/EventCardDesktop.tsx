@@ -71,19 +71,32 @@ export const EventCardDesktop = ({
       {isSelected && (
         <div className="mt-4 pt-4 border-t border-[#b8953d]/20 animate-fade-in space-y-3">
           <p className="text-white/70 text-sm leading-relaxed">{event.description}</p>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-1 text-sm text-white/60">
               <Icon name="MapPin" size={14} className="text-[#b8953d]" />
               {event.location}
             </div>
-            {event.seats && (
-              <div className="flex items-center gap-1 text-sm">
-                <Icon name="Users" size={14} className={event.available_seats === 0 ? 'text-red-400' : 'text-[#d4af37]'} />
-                <span className={event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}>
-                  {event.available_seats !== undefined ? `${event.available_seats} из ${event.seats} мест` : `${event.seats} мест`}
-                </span>
-              </div>
-            )}
+            <div className="flex items-center gap-3 flex-wrap">
+              {event.seats && (
+                <div className="flex items-center gap-1 text-sm">
+                  <Icon name="Users" size={14} className={event.available_seats === 0 ? 'text-red-400' : 'text-[#d4af37]'} />
+                  <span className={event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}>
+                    {event.available_seats !== undefined ? `${event.available_seats} из ${event.seats} мест` : `${event.seats} мест`}
+                  </span>
+                </div>
+              )}
+              {event.is_paid && event.price ? (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-md">
+                  <Icon name="Ticket" size={14} className="text-[#d4af37]" />
+                  <span className="text-sm font-bold text-[#d4af37]">{event.price.toFixed(0)} ₽</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1.5 px-3 py-1.5 bg-green-500/10 border border-green-500/30 rounded-md">
+                  <Icon name="Check" size={14} className="text-green-400" />
+                  <span className="text-sm font-bold text-green-400">Бесплатно</span>
+                </div>
+              )}
+            </div>
           </div>
           <div className="flex gap-2">
             <button 

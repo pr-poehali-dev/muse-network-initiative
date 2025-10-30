@@ -68,15 +68,29 @@ export const EventCardMobile = ({
         <div className="md:hidden mt-4 pt-4 border-t border-[#d4af37]/20 animate-fade-in space-y-3">
           <p className="text-xs text-white/70 leading-relaxed">{event.description}</p>
           
-          <div className="flex items-center justify-between text-[10px] text-white/50">
-            <div className="flex items-center gap-1">
-              <Icon name="MapPin" size={12} className="text-[#d4af37]" />
-              <span>{event.location}</span>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between text-[10px] text-white/50">
+              <div className="flex items-center gap-1">
+                <Icon name="MapPin" size={12} className="text-[#d4af37]" />
+                <span>{event.location}</span>
+              </div>
+              {event.seats && (
+                <div className={`flex items-center gap-1 ${event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}`}>
+                  <Icon name="Users" size={12} />
+                  <span>{event.available_seats !== undefined ? `${event.available_seats} из ${event.seats}` : `${event.seats} мест`}</span>
+                </div>
+              )}
             </div>
-            {event.seats && (
-              <div className={`flex items-center gap-1 ${event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}`}>
-                <Icon name="Users" size={12} />
-                <span>{event.available_seats !== undefined ? `${event.available_seats} из ${event.seats}` : `${event.seats} мест`}</span>
+            {event.is_paid && event.price && (
+              <div className="flex items-center gap-1.5 px-2 py-1 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-md w-fit">
+                <Icon name="Ticket" size={12} className="text-[#d4af37]" />
+                <span className="text-xs font-bold text-[#d4af37]">{event.price.toFixed(0)} ₽</span>
+              </div>
+            )}
+            {!event.is_paid && (
+              <div className="flex items-center gap-1.5 px-2 py-1 bg-green-500/10 border border-green-500/30 rounded-md w-fit">
+                <Icon name="Check" size={12} className="text-green-400" />
+                <span className="text-xs font-bold text-green-400">Бесплатно</span>
               </div>
             )}
           </div>
