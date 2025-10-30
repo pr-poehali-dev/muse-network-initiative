@@ -1350,69 +1350,71 @@ const Admin = () => {
           </Card>
         )}
 
-        <div className="space-y-4">
-          <h2 className="text-xl font-bold text-[#d4af37]">Все события</h2>
-          
-          {isLoading && !events.length ? (
-            <div className="text-center py-12">
-              <div className="relative w-16 h-16 mx-auto mb-4">
-                <div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div>
-                <div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div>
+        {activeTab === 'events' && (
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-[#d4af37]">Все события</h2>
+            
+            {isLoading && !events.length ? (
+              <div className="text-center py-12">
+                <div className="relative w-16 h-16 mx-auto mb-4">
+                  <div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div>
+                </div>
+                <p className="text-white/60">Загрузка...</p>
               </div>
-              <p className="text-white/60">Загрузка...</p>
-            </div>
-          ) : events.length === 0 ? (
-            <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
-              <CardContent className="py-16 text-center">
-                <p className="text-white/60 text-lg">Событий пока нет</p>
-              </CardContent>
-            </Card>
-          ) : (
-            events.map((event) => (
-              <Card key={event.id} className="bg-[#1a1a1a] border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold text-[#d4af37] mb-2">{event.title}</h3>
-                      <div className="space-y-2 text-sm text-white/70">
-                        <p>
-                          {event.date} в {event.time}
-                        </p>
-                        <p>
-                          {event.location}
-                        </p>
-                        <p>
-                          {event.seats} мест
-                        </p>
-                        <p className="text-white/60 mt-2">{event.description}</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex gap-2">
-                      <Button
-                        onClick={() => handleEdit(event)}
-                        variant="outline"
-                        size="sm"
-                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
-                      >
-                        Редактировать
-                      </Button>
-                      <Button
-                        onClick={() => event.id && handleDelete(event.id)}
-                        variant="outline"
-                        size="sm"
-                        className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-6 py-5 rounded-lg"
-                        disabled={isLoading}
-                      >
-                        Удалить
-                      </Button>
-                    </div>
-                  </div>
+            ) : events.length === 0 ? (
+              <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+                <CardContent className="py-16 text-center">
+                  <p className="text-white/60 text-lg">Событий пока нет</p>
                 </CardContent>
               </Card>
-            ))
-          )}
-        </div>
+            ) : (
+              events.map((event) => (
+                <Card key={event.id} className="bg-[#1a1a1a] border-[#d4af37]/20 hover:border-[#d4af37]/40 transition-colors">
+                  <CardContent className="p-6">
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-[#d4af37] mb-2">{event.title}</h3>
+                        <div className="space-y-2 text-sm text-white/70">
+                          <p>
+                            {event.date} в {event.time}
+                          </p>
+                          <p>
+                            {event.location}
+                          </p>
+                          <p>
+                            {event.seats} мест
+                          </p>
+                          <p className="text-white/60 mt-2">{event.description}</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex gap-2">
+                        <Button
+                          onClick={() => handleEdit(event)}
+                          variant="outline"
+                          size="sm"
+                          className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
+                        >
+                          Редактировать
+                        </Button>
+                        <Button
+                          onClick={() => event.id && handleDelete(event.id)}
+                          variant="outline"
+                          size="sm"
+                          className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-6 py-5 rounded-lg"
+                          disabled={isLoading}
+                        >
+                          Удалить
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
+          </div>
+        )}
 
         {activeTab === 'musetv' && (
           <MuseTvSection isLoading={isLoading} setIsLoading={setIsLoading} />
