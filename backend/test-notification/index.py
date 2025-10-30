@@ -29,13 +29,13 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         event_data = {
             'id': 1,
-            'title': 'Test Event',
-            'date': '2025-12-01',
-            'time': '19:30',
-            'description': 'Test event description',
+            'title': 'Мастер-класс по медитации',
+            'date': '2025-12-05',
+            'time': '20:00',
+            'description': 'Приглашаем на вечерний мастер-класс по медитации и осознанности. Практика подойдет как новичкам, так и опытным практикующим.',
             'type': 'workshop',
-            'location': 'New Test Location',
-            'seats': 50,
+            'location': 'Студия MUSE, Санкт-Петербург',
+            'seats': 25,
             'speakers': []
         }
         

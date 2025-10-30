@@ -307,7 +307,7 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         if change_type == 'created':
             message = f"""🎉 Новое мероприятие в клубе MUSE!
 
-📌 {new_data.get('title', '')}
+📌 <b>{new_data.get('title', '')}</b>
 📅 Дата: {new_data.get('date', '')} в {new_data.get('time', '')}
 📍 Место: {new_data.get('location', '')}
 👥 Мест: {new_data.get('seats', '')}
@@ -318,20 +318,44 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         
         elif change_type == 'updated':
             changes = []
-            if old_data.get('date') != new_data.get('date') or old_data.get('time') != new_data.get('time'):
-                changes.append(f"⏰ Новое время: {new_data.get('date', '')} в {new_data.get('time', '')}")
+            changes_list = []
+            
+            if old_data.get('title') != new_data.get('title'):
+                changes.append(f"📝 Название изменено:\n   <s>{old_data.get('title', '')}</s>\n   → <b>{new_data.get('title', '')}</b>")
+                changes_list.append('название')
+            
+            if old_data.get('date') != new_data.get('date'):
+                changes.append(f"📅 Дата изменена:\n   <s>{old_data.get('date', '')}</s>\n   → <b>{new_data.get('date', '')}</b>")
+                changes_list.append('дата')
+            
+            if old_data.get('time') != new_data.get('time'):
+                changes.append(f"⏰ Время изменено:\n   <s>{old_data.get('time', '')}</s>\n   → <b>{new_data.get('time', '')}</b>")
+                changes_list.append('время')
+            
             if old_data.get('location') != new_data.get('location'):
-                changes.append(f"📍 Новое место: {new_data.get('location', '')}")
+                changes.append(f"📍 Место изменено:\n   <s>{old_data.get('location', '')}</s>\n   → <b>{new_data.get('location', '')}</b>")
+                changes_list.append('место')
             
-            change_text = "\n".join(changes) if changes else "Обновлена информация"
+            change_summary = ", ".join(changes_list) if changes_list else "информация"
+            change_text = "\n\n".join(changes) if changes else "Обновлена информация о мероприятии"
             
-            message = f"""⚠️ Изменения в мероприятии!
+            message = f"""⚠️ <b>ВАЖНО! Изменения в мероприятии</b>
 
-📌 {new_data.get('title', '')}
+📌 <b>{new_data.get('title', '')}</b>
+
+🔄 <b>Что изменилось:</b> {change_summary}
 
 {change_text}
 
-Проверьте актуальное расписание на сайте 🔄"""
+━━━━━━━━━━━━━━━━━━━
+📋 <b>Актуальная информация:</b>
+
+📅 Дата: <b>{new_data.get('date', '')}</b>
+⏰ Время: <b>{new_data.get('time', '')}</b>
+📍 Место: <b>{new_data.get('location', '')}</b>
+👥 Мест: <b>{new_data.get('seats', '')}</b>
+
+{new_data.get('description', '') or ''}"""
         
         else:
             return
