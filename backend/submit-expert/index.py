@@ -136,45 +136,24 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         
-        user_invited = False
-        if user_telegram:
-            try:
-                user_response = urllib.request.urlopen(
-                    f"https://api.telegram.org/bot{telegram_token}/getChat?chat_id=@{user_telegram}"
-                )
-                user_data = json.loads(user_response.read().decode())
-                
-                if user_data.get('ok'):
-                    user_chat_id = user_data['result']['id']
-                    invite_text = "Ваша заявка стать экспертом клуба MUSE принята! 🎓\n\nНажмите кнопку ниже, чтобы быть в курсе возможностей для экспертов и предстоящих мероприятий 💫"
-                    
-                    keyboard = {
-                        'inline_keyboard': [[
-                            {
-                                'text': '💫 Подписаться',
-                                'callback_data': 'start_bot'
-                            }
-                        ]]
-                    }
-                    
-                    user_message_data = urllib.parse.urlencode({
-                        'chat_id': user_chat_id,
-                        'text': invite_text,
-                        'reply_markup': json.dumps(keyboard)
-                    }).encode()
-                    
-                    urllib.request.urlopen(url, data=user_message_data)
-                    user_invited = True
-                    admin_message += "\n\n✅ Приглашение отправлено пользователю автоматически"
-                    print(f"User invitation sent to @{user_telegram}")
-            except Exception as e:
-                print(f"Failed to send user invitation: {str(e)}")
-                admin_message += f"\n\n⚠️ Не удалось отправить приглашение @{user_telegram} автоматически"
+        bot_username = os.environ.get('TELEGRAM_BOT_USERNAME', 'Muse_Club_bot')
         
         request_data = {
             'chat_id': telegram_chat_id,
             'text': admin_message
         }
+        
+        if user_telegram:
+            keyboard = {
+                'inline_keyboard': [[
+                    {
+                        'text': '📲 Пригласить в бот',
+                        'url': f'https://t.me/{bot_username}?start=expert_{user_telegram}'
+                    }
+                ]]
+            }
+            
+            request_data['reply_markup'] = json.dumps(keyboard)
         
         data = urllib.parse.urlencode(request_data).encode()
         
