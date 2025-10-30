@@ -17,10 +17,14 @@ const convertCloudUrl = async (url: string): Promise<string> => {
   // ImgBB - получаем прямую ссылку
   if (url.includes('ibb.co/')) {
     try {
+      console.log('Fetching ImgBB page:', url);
       const response = await fetch(url);
       const html = await response.text();
+      console.log('HTML received, length:', html.length);
       const match = html.match(/<meta property="og:image" content="([^"]+)"/);
+      console.log('Match result:', match);
       if (match) {
+        console.log('Direct URL found:', match[1]);
         return match[1];
       }
     } catch (error) {
