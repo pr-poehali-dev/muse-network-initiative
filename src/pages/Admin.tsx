@@ -46,7 +46,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'events' | 'speakers'>('events');
+  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners'>('events');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -54,6 +54,32 @@ const Admin = () => {
     role: '',
     image: '',
     bio: ''
+  });
+
+  const [headlinersContent, setHeadlinersContent] = useState<any>(null);
+  const [rutubeVideos, setRutubeVideos] = useState<any[]>([]);
+  const [showVideoForm, setShowVideoForm] = useState(false);
+  const [editingVideo, setEditingVideo] = useState<any>(null);
+  const [videoFormData, setVideoFormData] = useState({
+    video_id: '',
+    title: '',
+    description: '',
+    thumbnail_url: '',
+    duration: 0,
+    display_order: 0
+  });
+  const [contentFormData, setContentFormData] = useState({
+    hero_title: 'ХЕДЛАЙНЕРЫ',
+    hero_subtitle: 'Вдохновляющие истории успеха',
+    hero_description: 'Женщины, которые изменили мир бизнеса',
+    hero_mobile_image: '',
+    hero_left_image: '',
+    hero_right_image: '',
+    manifesto_title: 'МАНИФЕСТ',
+    manifesto_subtitle: 'Почему мы создали Хедлайнеры',
+    manifesto_text: '',
+    cta_title: 'Станьте частью элитного сообщества',
+    cta_description: 'Присоединяйтесь к клубу MUSE'
   });
 
   const [formData, setFormData] = useState<Event>({
@@ -73,6 +99,7 @@ const Admin = () => {
       setIsAuthenticated(true);
       loadEvents();
       loadSpeakers();
+      loadHeadlinersData();
     }
   }, []);
 
@@ -102,6 +129,153 @@ const Admin = () => {
     } catch (error) {
       console.error('Failed to load speakers:', error);
     }
+  };
+
+  const loadHeadlinersData = async () => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/fd61f513-079d-4d92-8d1a-623d0c7ef372');
+      const data = await response.json();
+      if (data.content) {
+        setHeadlinersContent(data.content);
+        setContentFormData(data.content);
+      }
+      setRutubeVideos(data.videos || []);
+    } catch (error) {
+      console.error('Failed to load headliners data:', error);
+    }
+  };
+
+  const handleVideoSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const url = 'https://functions.poehali.dev/fd61f513-079d-4d92-8d1a-623d0c7ef372';
+      const method = editingVideo ? 'PUT' : 'POST';
+      const body = editingVideo 
+        ? { resource: 'video', id: editingVideo.id, data: videoFormData }
+        : { resource: 'video', data: videoFormData };
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: editingVideo ? 'Видео обновлено' : 'Видео добавлено',
+        });
+        resetVideoForm();
+        loadHeadlinersData();
+      } else {
+        throw new Error(data.error || 'Ошибка сохранения');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось сохранить видео',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleContentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const url = 'https://functions.poehali.dev/fd61f513-079d-4d92-8d1a-623d0c7ef372';
+      const method = headlinersContent ? 'PUT' : 'POST';
+      const body = headlinersContent
+        ? { resource: 'content', id: headlinersContent.id, data: contentFormData }
+        : { resource: 'content', data: contentFormData };
+
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: 'Контент страницы обновлен',
+        });
+        loadHeadlinersData();
+      } else {
+        throw new Error(data.error || 'Ошибка сохранения');
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось сохранить контент',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeleteVideo = async (videoId: number) => {
+    if (!confirm('Вы уверены, что хотите удалить это видео?')) return;
+
+    setIsLoading(true);
+    try {
+      const response = await fetch('HEADLINERS_FUNCTION_URL', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: videoId })
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: 'Видео удалено',
+        });
+        loadHeadlinersData();
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось удалить видео',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const resetVideoForm = () => {
+    setVideoFormData({
+      video_id: '',
+      title: '',
+      description: '',
+      thumbnail_url: '',
+      duration: 0,
+      display_order: 0
+    });
+    setEditingVideo(null);
+    setShowVideoForm(false);
+  };
+
+  const handleEditVideo = (video: any) => {
+    setVideoFormData({
+      video_id: video.video_id,
+      title: video.title,
+      description: video.description || '',
+      thumbnail_url: video.thumbnail_url || '',
+      duration: video.duration || 0,
+      display_order: video.display_order || 0
+    });
+    setEditingVideo(video);
+    setShowVideoForm(true);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -481,6 +655,22 @@ const Admin = () => {
           >
             Эксперты
           </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('headliners');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'headliners' ? 'default' : 'ghost'}
+            className={activeTab === 'headliners'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Хедлайнеры
+          </Button>
         </div>
 
         {activeTab === 'events' && (
@@ -648,6 +838,232 @@ const Admin = () => {
                   ))}
                 </div>
               )}
+            </div>
+          </>
+        )}
+
+        {activeTab === 'headliners' && (
+          <>
+            <div className="space-y-8">
+              <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+                <CardHeader>
+                  <CardTitle className="text-[#d4af37]">Контент страницы Хедлайнеры</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleContentSubmit} className="space-y-6">
+                    <div className="space-y-4">
+                      <h3 className="text-white/90 font-bold text-lg">Героическая секция</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-white/80">Заголовок</Label>
+                          <Input
+                            value={contentFormData.hero_title}
+                            onChange={(e) => setContentFormData({...contentFormData, hero_title: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Подзаголовок</Label>
+                          <Input
+                            value={contentFormData.hero_subtitle}
+                            onChange={(e) => setContentFormData({...contentFormData, hero_subtitle: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <Label className="text-white/80">Описание</Label>
+                        <Input
+                          value={contentFormData.hero_description}
+                          onChange={(e) => setContentFormData({...contentFormData, hero_description: e.target.value})}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-white/90 font-bold text-lg">Манифест</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-white/80">Заголовок манифеста</Label>
+                          <Input
+                            value={contentFormData.manifesto_title}
+                            onChange={(e) => setContentFormData({...contentFormData, manifesto_title: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Подзаголовок манифеста</Label>
+                          <Input
+                            value={contentFormData.manifesto_subtitle}
+                            onChange={(e) => setContentFormData({...contentFormData, manifesto_subtitle: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <Label className="text-white/80">Текст манифеста</Label>
+                        <Textarea
+                          value={contentFormData.manifesto_text}
+                          onChange={(e) => setContentFormData({...contentFormData, manifesto_text: e.target.value})}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-white/90 font-bold text-lg">Призыв к действию</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-white/80">Заголовок CTA</Label>
+                          <Input
+                            value={contentFormData.cta_title}
+                            onChange={(e) => setContentFormData({...contentFormData, cta_title: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Описание CTA</Label>
+                          <Input
+                            value={contentFormData.cta_description}
+                            onChange={(e) => setContentFormData({...contentFormData, cta_description: e.target.value})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={isLoading}
+                      className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+                    >
+                      {isLoading ? 'Сохранение...' : 'Сохранить контент'}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold text-[#d4af37]">Видео с Rutube</h2>
+                <Button
+                  onClick={() => setShowVideoForm(!showVideoForm)}
+                  className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+                >
+                  {showVideoForm ? 'Отменить' : 'Добавить видео'}
+                </Button>
+              </div>
+
+              {showVideoForm && (
+                <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
+                  <CardHeader>
+                    <CardTitle className="text-[#d4af37]">
+                      {editingVideo ? 'Редактировать видео' : 'Новое видео'}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <form onSubmit={handleVideoSubmit} className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-white/80">ID видео Rutube</Label>
+                          <Input
+                            value={videoFormData.video_id}
+                            onChange={(e) => setVideoFormData({...videoFormData, video_id: e.target.value})}
+                            required
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                            placeholder="f5f3f8cbf35a5a5b6f84aa13c4a7df8f"
+                          />
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Название</Label>
+                          <Input
+                            value={videoFormData.title}
+                            onChange={(e) => setVideoFormData({...videoFormData, title: e.target.value})}
+                            required
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <Label className="text-white/80">Описание</Label>
+                        <Textarea
+                          value={videoFormData.description}
+                          onChange={(e) => setVideoFormData({...videoFormData, description: e.target.value})}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <Label className="text-white/80">Порядок отображения</Label>
+                          <Input
+                            type="number"
+                            value={videoFormData.display_order}
+                            onChange={(e) => setVideoFormData({...videoFormData, display_order: parseInt(e.target.value) || 0})}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex gap-3">
+                        <Button
+                          type="submit"
+                          disabled={isLoading}
+                          className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+                        >
+                          {isLoading ? 'Сохранение...' : editingVideo ? 'Обновить' : 'Добавить'}
+                        </Button>
+                        <Button
+                          type="button"
+                          onClick={resetVideoForm}
+                          variant="outline"
+                          className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
+                        >
+                          Отменить
+                        </Button>
+                      </div>
+                    </form>
+                  </CardContent>
+                </Card>
+              )}
+
+              <div className="grid gap-4">
+                {rutubeVideos.map((video) => (
+                  <Card key={video.id} className="bg-[#1a1a1a] border-[#d4af37]/20">
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h3 className="text-white/90 font-bold text-lg mb-2">{video.title}</h3>
+                          <p className="text-white/60 text-sm mb-2">ID: {video.video_id}</p>
+                          {video.description && (
+                            <p className="text-white/70 text-sm mb-3">{video.description}</p>
+                          )}
+                          <p className="text-white/50 text-xs">Порядок: {video.display_order}</p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Button
+                            onClick={() => handleEditVideo(video)}
+                            variant="outline"
+                            size="sm"
+                            className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 py-5 rounded-lg"
+                          >
+                            Редактировать
+                          </Button>
+                          <Button
+                            onClick={() => handleDeleteVideo(video.id)}
+                            variant="outline"
+                            size="sm"
+                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 py-5 px-6 rounded-lg"
+                          >
+                            Удалить
+                          </Button>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
             </div>
           </>
         )}

@@ -1,4 +1,5 @@
 {
+  "manage-headliners": "https://functions.poehali.dev/fd61f513-079d-4d92-8d1a-623d0c7ef372",
   "cleanup-speakers": "https://functions.poehali.dev/d92faf97-f989-4e26-b6ee-ac0542598fa5",
   "manage-speakers": "https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51",
   "get-speakers": "https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4",
