@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Get MUSE TV content",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "content": "object"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Update MUSE TV content",
+      "method": "PUT",
+      "path": "/",
+      "body": {
+        "id": 1,
+        "data": {
+          "hero_title": "MUSE TV",
+          "hero_subtitle": "Test subtitle",
+          "hero_description": "Test description",
+          "live_stream_enabled": false,
+          "live_stream_url": null,
+          "live_stream_title": null
+        }
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
