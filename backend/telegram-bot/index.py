@@ -69,15 +69,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 conn = psycopg2.connect(database_url)
                 cur = conn.cursor()
                 
+                first_name = message['from'].get('first_name', '')
+                
                 cur.execute("""
                     SELECT id FROM subscribers 
                     WHERE telegram_chat_id = %s
                 """, (chat_id,))
-                existing = cur.fetchone()
+                existing_by_chat_id = cur.fetchone()
                 
-                first_name = message['from'].get('first_name', '')
+                cur.execute("""
+                    SELECT id FROM subscribers 
+                    WHERE telegram = %s AND telegram_chat_id IS NULL
+                """, (f'@{username}',))
+                existing_by_username = cur.fetchone()
                 
-                if existing:
+                if existing_by_chat_id:
                     cur.execute("""
                         UPDATE subscribers 
                         SET is_active = true
@@ -87,6 +93,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         reply = f"{greeting}\n\n✅ Вы уже подписаны на уведомления!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                     else:
                         reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                elif existing_by_username:
+                    cur.execute("""
+                        UPDATE subscribers 
+                        SET telegram_chat_id = %s, is_active = true
+                        WHERE telegram = %s AND telegram_chat_id IS NULL
+                    """, (chat_id, f'@{username}'))
+                    if greeting:
+                        reply = f"{greeting}\n\n🎉 Готово, {first_name}! Вы подписались на уведомления.\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    else:
+                        reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    print(f"Updated existing subscriber by username: {username} -> chat_id: {chat_id}")
                 else:
                     last_name = message['from'].get('last_name', '')
                     full_name = f"{first_name} {last_name}".strip()
