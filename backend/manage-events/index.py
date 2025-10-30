@@ -305,12 +305,24 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         conn.close()
         
         if change_type == 'created':
+            speakers = new_data.get('speakers', [])
+            speakers_text = ""
+            if speakers:
+                speakers_list = []
+                for speaker in speakers:
+                    name = speaker.get('name', '')
+                    role = speaker.get('role', '')
+                    if name:
+                        speakers_list.append(f"   • <b>{name}</b>" + (f" — {role}" if role else ""))
+                if speakers_list:
+                    speakers_text = f"\n\n🎤 <b>Спикеры:</b>\n" + "\n".join(speakers_list)
+            
             message = f"""🎉 Новое мероприятие в клубе MUSE!
 
 📌 <b>{new_data.get('title', '')}</b>
 📅 Дата: {new_data.get('date', '')} в {new_data.get('time', '')}
 📍 Место: {new_data.get('location', '')}
-👥 Мест: {new_data.get('seats', '')}
+👥 Мест: {new_data.get('seats', '')}{speakers_text}
 
 {new_data.get('description', '')}
 
@@ -339,6 +351,21 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
             change_summary = ", ".join(changes_list) if changes_list else "информация"
             change_text = "\n\n".join(changes) if changes else "Обновлена информация о мероприятии"
             
+            speakers = new_data.get('speakers', [])
+            speakers_text = ""
+            if speakers:
+                speakers_list = []
+                for speaker in speakers:
+                    name = speaker.get('name', '')
+                    role = speaker.get('role', '')
+                    if name:
+                        speakers_list.append(f"   • <b>{name}</b>" + (f" — {role}" if role else ""))
+                if speakers_list:
+                    speakers_text = f"\n🎤 <b>Спикеры:</b>\n" + "\n".join(speakers_list)
+            
+            description = new_data.get('description', '')
+            description_text = f"\n\n📝 {description}" if description else ""
+            
             message = f"""⚠️ <b>ВАЖНО! Изменения в мероприятии</b>
 
 📌 <b>{new_data.get('title', '')}</b>
@@ -353,9 +380,7 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
 📅 Дата: <b>{new_data.get('date', '')}</b>
 ⏰ Время: <b>{new_data.get('time', '')}</b>
 📍 Место: <b>{new_data.get('location', '')}</b>
-👥 Мест: <b>{new_data.get('seats', '')}</b>
-
-{new_data.get('description', '') or ''}"""
+👥 Мест: <b>{new_data.get('seats', '')}</b>{speakers_text}{description_text}"""
         
         else:
             return
