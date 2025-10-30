@@ -1,7 +1,7 @@
 '''
-Business: Manage MUSE TV page content
-Args: event with httpMethod, body (for POST/PUT)
-Returns: HTTP response with MUSE TV content
+Business: Manage MUSE TV videos, streams and page content
+Args: event with httpMethod, body (for POST/PUT/DELETE), queryStringParameters
+Returns: HTTP response with MUSE TV data
 '''
 
 import json
@@ -17,7 +17,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, PUT, OPTIONS',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400'
             },
@@ -41,20 +41,54 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         cur = conn.cursor()
         
         if method == 'GET':
-            cur.execute("SELECT * FROM muse_tv_content ORDER BY id DESC LIMIT 1")
-            row = cur.fetchone()
+            params = event.get('queryStringParameters') or {}
+            resource = params.get('resource', 'all')
             
-            content = None
-            if row:
-                content = {
-                    'id': row[0],
-                    'hero_title': row[1],
-                    'hero_subtitle': row[2],
-                    'hero_description': row[3],
-                    'live_stream_enabled': row[4],
-                    'live_stream_url': row[5],
-                    'live_stream_title': row[6]
-                }
+            result = {}
+            
+            if resource in ['all', 'content']:
+                cur.execute("SELECT * FROM muse_tv_content ORDER BY id DESC LIMIT 1")
+                row = cur.fetchone()
+                if row:
+                    result['content'] = {
+                        'id': row[0],
+                        'hero_title': row[1],
+                        'hero_subtitle': row[2],
+                        'hero_description': row[3],
+                        'live_stream_enabled': row[4],
+                        'live_stream_url': row[5],
+                        'live_stream_title': row[6]
+                    }
+            
+            if resource in ['all', 'videos']:
+                cur.execute("SELECT * FROM muse_tv_videos ORDER BY display_order, id")
+                rows = cur.fetchall()
+                result['videos'] = []
+                for row in rows:
+                    result['videos'].append({
+                        'id': row[0],
+                        'video_id': row[1],
+                        'title': row[2],
+                        'type': row[3],
+                        'url': row[4],
+                        'embed_url': row[5],
+                        'display_order': row[6]
+                    })
+            
+            if resource in ['all', 'streams']:
+                cur.execute("SELECT * FROM muse_tv_streams ORDER BY display_order, id")
+                rows = cur.fetchall()
+                result['streams'] = []
+                for row in rows:
+                    result['streams'].append({
+                        'id': row[0],
+                        'title': row[1],
+                        'date': row[2],
+                        'time': row[3],
+                        'category': row[4],
+                        'speaker': row[5],
+                        'display_order': row[6]
+                    })
             
             cur.close()
             conn.close()
@@ -66,33 +100,163 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'Access-Control-Allow-Origin': '*'
                 },
                 'isBase64Encoded': False,
-                'body': json.dumps({'content': content})
+                'body': json.dumps(result)
+            }
+        
+        elif method == 'POST':
+            body_data = json.loads(event.get('body', '{}'))
+            resource = body_data.get('resource')
+            data = body_data.get('data', {})
+            
+            if resource == 'video':
+                cur.execute("""
+                    INSERT INTO muse_tv_videos (video_id, title, type, url, embed_url, display_order)
+                    VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
+                """, (
+                    data.get('video_id'),
+                    data.get('title'),
+                    data.get('type', 'Подкаст'),
+                    data.get('url'),
+                    data.get('embed_url'),
+                    data.get('display_order', 0)
+                ))
+                new_id = cur.fetchone()[0]
+                conn.commit()
+                
+            elif resource == 'stream':
+                cur.execute("""
+                    INSERT INTO muse_tv_streams (title, date, time, category, speaker, display_order)
+                    VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
+                """, (
+                    data.get('title'),
+                    data.get('date'),
+                    data.get('time'),
+                    data.get('category'),
+                    data.get('speaker'),
+                    data.get('display_order', 0)
+                ))
+                new_id = cur.fetchone()[0]
+                conn.commit()
+            
+            elif resource == 'content':
+                cur.execute("""
+                    INSERT INTO muse_tv_content (hero_title, hero_subtitle, hero_description, 
+                                                 live_stream_enabled, live_stream_url, live_stream_title)
+                    VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
+                """, (
+                    data.get('hero_title'),
+                    data.get('hero_subtitle'),
+                    data.get('hero_description'),
+                    data.get('live_stream_enabled'),
+                    data.get('live_stream_url'),
+                    data.get('live_stream_title')
+                ))
+                new_id = cur.fetchone()[0]
+                conn.commit()
+            
+            cur.close()
+            conn.close()
+            
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'isBase64Encoded': False,
+                'body': json.dumps({'success': True, 'id': new_id})
             }
         
         elif method == 'PUT':
             body_data = json.loads(event.get('body', '{}'))
-            content_id = body_data.get('id')
+            resource = body_data.get('resource')
+            item_id = body_data.get('id')
             data = body_data.get('data', {})
             
-            cur.execute("""
-                UPDATE muse_tv_content SET
-                    hero_title = %s,
-                    hero_subtitle = %s,
-                    hero_description = %s,
-                    live_stream_enabled = %s,
-                    live_stream_url = %s,
-                    live_stream_title = %s,
-                    updated_at = NOW()
-                WHERE id = %s
-            """, (
-                data.get('hero_title'),
-                data.get('hero_subtitle'),
-                data.get('hero_description'),
-                data.get('live_stream_enabled'),
-                data.get('live_stream_url'),
-                data.get('live_stream_title'),
-                content_id
-            ))
+            if resource == 'video':
+                cur.execute("""
+                    UPDATE muse_tv_videos SET
+                        video_id = %s,
+                        title = %s,
+                        type = %s,
+                        url = %s,
+                        embed_url = %s,
+                        display_order = %s
+                    WHERE id = %s
+                """, (
+                    data.get('video_id'),
+                    data.get('title'),
+                    data.get('type'),
+                    data.get('url'),
+                    data.get('embed_url'),
+                    data.get('display_order'),
+                    item_id
+                ))
+                
+            elif resource == 'stream':
+                cur.execute("""
+                    UPDATE muse_tv_streams SET
+                        title = %s,
+                        date = %s,
+                        time = %s,
+                        category = %s,
+                        speaker = %s,
+                        display_order = %s
+                    WHERE id = %s
+                """, (
+                    data.get('title'),
+                    data.get('date'),
+                    data.get('time'),
+                    data.get('category'),
+                    data.get('speaker'),
+                    data.get('display_order'),
+                    item_id
+                ))
+                
+            elif resource == 'content':
+                cur.execute("""
+                    UPDATE muse_tv_content SET
+                        hero_title = %s,
+                        hero_subtitle = %s,
+                        hero_description = %s,
+                        live_stream_enabled = %s,
+                        live_stream_url = %s,
+                        live_stream_title = %s,
+                        updated_at = NOW()
+                    WHERE id = %s
+                """, (
+                    data.get('hero_title'),
+                    data.get('hero_subtitle'),
+                    data.get('hero_description'),
+                    data.get('live_stream_enabled'),
+                    data.get('live_stream_url'),
+                    data.get('live_stream_title'),
+                    item_id
+                ))
+            
+            conn.commit()
+            cur.close()
+            conn.close()
+            
+            return {
+                'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*'
+                },
+                'isBase64Encoded': False,
+                'body': json.dumps({'success': True})
+            }
+        
+        elif method == 'DELETE':
+            body_data = json.loads(event.get('body', '{}'))
+            resource = body_data.get('resource')
+            item_id = body_data.get('id')
+            
+            if resource == 'video':
+                cur.execute("DELETE FROM muse_tv_videos WHERE id = %s", (item_id,))
+            elif resource == 'stream':
+                cur.execute("DELETE FROM muse_tv_streams WHERE id = %s", (item_id,))
             
             conn.commit()
             cur.close()

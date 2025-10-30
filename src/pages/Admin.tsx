@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 import { useToast } from '@/hooks/use-toast';
+import MuseTvSection from '@/components/admin/MuseTvSection';
 
 interface Event {
   id?: number;
@@ -61,13 +62,27 @@ const Admin = () => {
   const [headlinersContent, setHeadlinersContent] = useState<any>(null);
   const [rutubeVideos, setRutubeVideos] = useState<any[]>([]);
   const [museTvContent, setMuseTvContent] = useState<any>(null);
-  const [museTvFormData, setMuseTvFormData] = useState({
-    hero_title: 'MUSE TV',
-    hero_subtitle: 'Прямые эфиры и эксклюзивный контент',
-    hero_description: 'Вдохновляющие беседы с лидерами мнений',
-    live_stream_enabled: false,
-    live_stream_url: '',
-    live_stream_title: ''
+  const [museTvVideos, setMuseTvVideos] = useState<any[]>([]);
+  const [museTvStreams, setMuseTvStreams] = useState<any[]>([]);
+  const [showMuseTvVideoForm, setShowMuseTvVideoForm] = useState(false);
+  const [showMuseTvStreamForm, setShowMuseTvStreamForm] = useState(false);
+  const [editingMuseTvVideo, setEditingMuseTvVideo] = useState<any>(null);
+  const [editingMuseTvStream, setEditingMuseTvStream] = useState<any>(null);
+  const [museTvVideoFormData, setMuseTvVideoFormData] = useState({
+    video_id: '',
+    title: '',
+    type: 'Подкаст',
+    url: '',
+    embed_url: '',
+    display_order: 0
+  });
+  const [museTvStreamFormData, setMuseTvStreamFormData] = useState({
+    title: '',
+    date: '',
+    time: '',
+    category: '',
+    speaker: '',
+    display_order: 0
   });
   const [showVideoForm, setShowVideoForm] = useState(false);
   const [editingVideo, setEditingVideo] = useState<any>(null);
@@ -163,8 +178,9 @@ const Admin = () => {
       const data = await response.json();
       if (data.content) {
         setMuseTvContent(data.content);
-        setMuseTvFormData(data.content);
       }
+      setMuseTvVideos(data.videos || []);
+      setMuseTvStreams(data.streams || []);
     } catch (error) {
       console.error('Failed to load MUSE TV data:', error);
     }
@@ -1399,126 +1415,7 @@ const Admin = () => {
         </div>
 
         {activeTab === 'musetv' && (
-          <>
-            <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
-              <CardHeader>
-                <CardTitle className="text-[#d4af37]">Контент страницы MUSE TV</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={async (e) => {
-                  e.preventDefault();
-                  setIsLoading(true);
-                  try {
-                    const url = 'https://functions.poehali.dev/88de6a19-94ff-4811-a220-47e387f88968';
-                    const method = museTvContent ? 'PUT' : 'POST';
-                    const body = museTvContent
-                      ? { id: museTvContent.id, data: museTvFormData }
-                      : { data: museTvFormData };
-
-                    const response = await fetch(url, {
-                      method,
-                      headers: { 'Content-Type': 'application/json' },
-                      body: JSON.stringify(body)
-                    });
-
-                    const data = await response.json();
-                    if (response.ok && data.success) {
-                      toast({
-                        title: 'Успешно!',
-                        description: 'Контент MUSE TV обновлен',
-                      });
-                      loadMuseTvData();
-                    } else {
-                      throw new Error(data.error || 'Ошибка сохранения');
-                    }
-                  } catch (error) {
-                    toast({
-                      title: 'Ошибка',
-                      description: 'Не удалось сохранить контент',
-                      variant: 'destructive'
-                    });
-                  } finally {
-                    setIsLoading(false);
-                  }
-                }} className="space-y-6">
-                  <div>
-                    <Label htmlFor="hero_title" className="text-white/80">Заголовок</Label>
-                    <Input
-                      id="hero_title"
-                      value={museTvFormData.hero_title}
-                      onChange={(e) => setMuseTvFormData({ ...museTvFormData, hero_title: e.target.value })}
-                      className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="hero_subtitle" className="text-white/80">Подзаголовок</Label>
-                    <Input
-                      id="hero_subtitle"
-                      value={museTvFormData.hero_subtitle}
-                      onChange={(e) => setMuseTvFormData({ ...museTvFormData, hero_subtitle: e.target.value })}
-                      className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                    />
-                  </div>
-
-                  <div>
-                    <Label htmlFor="hero_description" className="text-white/80">Описание</Label>
-                    <Textarea
-                      id="hero_description"
-                      value={museTvFormData.hero_description}
-                      onChange={(e) => setMuseTvFormData({ ...museTvFormData, hero_description: e.target.value })}
-                      className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                      rows={3}
-                    />
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="live_stream_enabled"
-                      checked={museTvFormData.live_stream_enabled}
-                      onChange={(e) => setMuseTvFormData({ ...museTvFormData, live_stream_enabled: e.target.checked })}
-                      className="w-5 h-5"
-                    />
-                    <Label htmlFor="live_stream_enabled" className="text-white/80">Прямой эфир активен</Label>
-                  </div>
-
-                  {museTvFormData.live_stream_enabled && (
-                    <>
-                      <div>
-                        <Label htmlFor="live_stream_title" className="text-white/80">Название прямого эфира</Label>
-                        <Input
-                          id="live_stream_title"
-                          value={museTvFormData.live_stream_title}
-                          onChange={(e) => setMuseTvFormData({ ...museTvFormData, live_stream_title: e.target.value })}
-                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="live_stream_url" className="text-white/80">URL прямого эфира</Label>
-                        <Input
-                          id="live_stream_url"
-                          value={museTvFormData.live_stream_url}
-                          onChange={(e) => setMuseTvFormData({ ...museTvFormData, live_stream_url: e.target.value })}
-                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                          placeholder="https://..."
-                        />
-                      </div>
-                    </>
-                  )}
-
-                  <Button
-                    type="submit"
-                    disabled={isLoading}
-                    className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-                  >
-                    {isLoading ? 'Сохранение...' : 'Сохранить'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </>
+          <MuseTvSection isLoading={isLoading} setIsLoading={setIsLoading} />
         )}
       </div>
     </div>
