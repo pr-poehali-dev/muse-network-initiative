@@ -27,7 +27,8 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     url: '',
     embed_url: '',
     thumbnail_url: '',
-    display_order: 0
+    display_order: 0,
+    is_featured: false
   });
   
   const [streamFormData, setStreamFormData] = useState({
@@ -169,7 +170,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
   };
 
   const resetVideoForm = () => {
-    setVideoFormData({ video_id: '', title: '', type: 'Подкаст', url: '', embed_url: '', thumbnail_url: '', display_order: 0 });
+    setVideoFormData({ video_id: '', title: '', type: 'Подкаст', url: '', embed_url: '', thumbnail_url: '', display_order: 0, is_featured: false });
     setEditingVideo(null);
     setShowVideoForm(false);
   };
@@ -279,6 +280,18 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                   onChange={(e) => setVideoFormData({ ...videoFormData, display_order: parseInt(e.target.value) })}
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                 />
+              </div>
+              <div className="flex items-center gap-3 p-4 bg-[#d4af37]/5 rounded-lg border border-[#d4af37]/20">
+                <input
+                  type="checkbox"
+                  id="is_featured"
+                  checked={videoFormData.is_featured}
+                  onChange={(e) => setVideoFormData({ ...videoFormData, is_featured: e.target.checked })}
+                  className="w-5 h-5 rounded border-[#d4af37]/40 bg-[#0a0a0a] checked:bg-[#d4af37] cursor-pointer"
+                />
+                <Label htmlFor="is_featured" className="text-white/90 cursor-pointer">
+                  Показывать в первом блоке (главное видео)
+                </Label>
               </div>
               <Button
                 type="submit"
@@ -407,7 +420,14 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                           <img src={video.thumbnail_url} alt={video.title || 'Video thumbnail'} className="w-32 h-20 object-cover rounded" />
                         )}
                         <div className="flex-1">
-                          <h3 className="text-white font-semibold">{video.title || `Video ID: ${video.video_id}`}</h3>
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-white font-semibold">{video.title || `Video ID: ${video.video_id}`}</h3>
+                            {video.is_featured && (
+                              <span className="bg-[#d4af37] text-black text-xs px-2 py-0.5 rounded font-bold">
+                                ГЛАВНОЕ
+                              </span>
+                            )}
+                          </div>
                           <p className="text-white/60 text-sm mt-1">ID: {video.video_id}</p>
                           <p className="text-white/60 text-sm">Порядок: {video.display_order}</p>
                           <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-[#d4af37] text-sm hover:underline">

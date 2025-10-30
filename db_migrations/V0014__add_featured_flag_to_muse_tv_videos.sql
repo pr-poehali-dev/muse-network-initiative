@@ -1,0 +1,1 @@
+ALTER TABLE muse_tv_videos ADD COLUMN is_featured BOOLEAN DEFAULT FALSE;

@@ -61,7 +61,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     }
             
             if resource in ['all', 'videos']:
-                cur.execute("SELECT id, video_id, title, type, url, embed_url, display_order, thumbnail_url FROM muse_tv_videos ORDER BY display_order, id")
+                cur.execute("SELECT id, video_id, title, type, url, embed_url, display_order, thumbnail_url, is_featured FROM muse_tv_videos ORDER BY display_order, id")
                 rows = cur.fetchall()
                 result['videos'] = []
                 for row in rows:
@@ -73,7 +73,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         'url': row[4],
                         'embed_url': row[5],
                         'display_order': row[6],
-                        'thumbnail_url': row[7]
+                        'thumbnail_url': row[7],
+                        'is_featured': row[8]
                     })
             
             if resource in ['all', 'streams']:
@@ -110,9 +111,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             data = body_data.get('data', {})
             
             if resource == 'video':
+                if data.get('is_featured'):
+                    cur.execute("UPDATE muse_tv_videos SET is_featured = FALSE")
+                
                 cur.execute("""
-                    INSERT INTO muse_tv_videos (video_id, title, type, url, embed_url, display_order, thumbnail_url)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id
+                    INSERT INTO muse_tv_videos (video_id, title, type, url, embed_url, display_order, thumbnail_url, is_featured)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s) RETURNING id
                 """, (
                     data.get('video_id'),
                     data.get('title'),
@@ -120,7 +124,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     data.get('url'),
                     data.get('embed_url'),
                     data.get('display_order', 0),
-                    data.get('thumbnail_url')
+                    data.get('thumbnail_url'),
+                    data.get('is_featured', False)
                 ))
                 new_id = cur.fetchone()[0]
                 conn.commit()
@@ -176,6 +181,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             data = body_data.get('data', {})
             
             if resource == 'video':
+                if data.get('is_featured'):
+                    cur.execute("UPDATE muse_tv_videos SET is_featured = FALSE")
+                
                 cur.execute("""
                     UPDATE muse_tv_videos SET
                         video_id = %s,
@@ -184,7 +192,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         url = %s,
                         embed_url = %s,
                         display_order = %s,
-                        thumbnail_url = %s
+                        thumbnail_url = %s,
+                        is_featured = %s
                     WHERE id = %s
                 """, (
                     data.get('video_id'),
@@ -194,6 +203,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     data.get('embed_url'),
                     data.get('display_order'),
                     data.get('thumbnail_url'),
+                    data.get('is_featured', False),
                     item_id
                 ))
                 

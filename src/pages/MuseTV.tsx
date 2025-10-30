@@ -96,12 +96,23 @@ const MuseTV = () => {
   ];
 
   const podcastVideos = featuredContent.filter(item => item.vkEmbed);
-  const [randomPodcast] = useState(() => {
-    if (podcastVideos.length > 0) {
-      return podcastVideos[Math.floor(Math.random() * podcastVideos.length)];
+  const [randomPodcast, setRandomPodcast] = useState<any>(null);
+
+  useEffect(() => {
+    const featuredVideo = dbVideos.find((v: any) => v.is_featured);
+    if (featuredVideo) {
+      setRandomPodcast({
+        id: featuredVideo.id,
+        type: featuredVideo.type || 'Подкаст',
+        url: featuredVideo.url,
+        vkEmbed: featuredVideo.embed_url,
+        title: featuredVideo.title,
+        thumbnail: featuredVideo.thumbnail_url
+      });
+    } else if (podcastVideos.length > 0) {
+      setRandomPodcast(podcastVideos[Math.floor(Math.random() * podcastVideos.length)]);
     }
-    return null;
-  });
+  }, [dbVideos]);
 
   useEffect(() => {
     if (randomPodcast?.vkEmbed) {
