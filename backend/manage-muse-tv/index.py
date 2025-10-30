@@ -47,7 +47,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             result = {}
             
             if resource in ['all', 'content']:
-                cur.execute("SELECT * FROM muse_tv_content ORDER BY id DESC LIMIT 1")
+                cur.execute("SELECT id, hero_title, hero_subtitle, hero_description, live_stream_enabled, live_stream_url, live_stream_title FROM muse_tv_content ORDER BY id DESC LIMIT 1")
                 row = cur.fetchone()
                 if row:
                     result['content'] = {
@@ -61,7 +61,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     }
             
             if resource in ['all', 'videos']:
-                cur.execute("SELECT * FROM muse_tv_videos ORDER BY display_order, id")
+                cur.execute("SELECT id, video_id, title, type, url, embed_url, display_order, thumbnail_url FROM muse_tv_videos ORDER BY display_order, id")
                 rows = cur.fetchall()
                 result['videos'] = []
                 for row in rows:
@@ -72,11 +72,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         'type': row[3],
                         'url': row[4],
                         'embed_url': row[5],
-                        'display_order': row[6]
+                        'display_order': row[6],
+                        'thumbnail_url': row[7]
                     })
             
             if resource in ['all', 'streams']:
-                cur.execute("SELECT * FROM muse_tv_streams ORDER BY display_order, id")
+                cur.execute("SELECT id, title, date, time, category, speaker, display_order FROM muse_tv_streams ORDER BY display_order, id")
                 rows = cur.fetchall()
                 result['streams'] = []
                 for row in rows:
@@ -110,15 +111,16 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             
             if resource == 'video':
                 cur.execute("""
-                    INSERT INTO muse_tv_videos (video_id, title, type, url, embed_url, display_order)
-                    VALUES (%s, %s, %s, %s, %s, %s) RETURNING id
+                    INSERT INTO muse_tv_videos (video_id, title, type, url, embed_url, display_order, thumbnail_url)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id
                 """, (
                     data.get('video_id'),
                     data.get('title'),
                     data.get('type', 'Подкаст'),
                     data.get('url'),
                     data.get('embed_url'),
-                    data.get('display_order', 0)
+                    data.get('display_order', 0),
+                    data.get('thumbnail_url')
                 ))
                 new_id = cur.fetchone()[0]
                 conn.commit()
@@ -181,7 +183,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         type = %s,
                         url = %s,
                         embed_url = %s,
-                        display_order = %s
+                        display_order = %s,
+                        thumbnail_url = %s
                     WHERE id = %s
                 """, (
                     data.get('video_id'),
@@ -190,6 +193,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     data.get('url'),
                     data.get('embed_url'),
                     data.get('display_order'),
+                    data.get('thumbnail_url'),
                     item_id
                 ))
                 

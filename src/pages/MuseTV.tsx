@@ -16,6 +16,8 @@ const MuseTV = () => {
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
   const [isEventsOpen, setIsEventsOpen] = useState(false);
   const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
+  const [dbVideos, setDbVideos] = useState<any[]>([]);
+  const [dbStreams, setDbStreams] = useState<any[]>([]);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -23,35 +25,36 @@ const MuseTV = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const loadMuseTvData = async () => {
+      try {
+        const response = await fetch('https://functions.poehali.dev/88de6a19-94ff-4811-a220-47e387f88968');
+        const data = await response.json();
+        setDbVideos(data.videos || []);
+        setDbStreams(data.streams || []);
+      } catch (error) {
+        console.error('Failed to load MUSE TV data:', error);
+      }
+    };
+    loadMuseTvData();
+  }, []);
+
   const isLive = false;
   const viewersCount = 234;
 
-  const upcomingStreams = [
-    {
-      id: 1,
-      title: 'Секреты продвижения в социальных сетях',
-      date: '15 ноября 2024',
-      time: '19:00 МСК',
-      category: 'Мастер-класс',
-      speaker: 'Анна Петрова'
-    },
-    {
-      id: 2,
-      title: 'Интервью с основателем IT-стартапа',
-      date: '18 ноября 2024',
-      time: '20:00 МСК',
-      category: 'Интервью',
-      speaker: 'Дмитрий Иванов'
-    },
-    {
-      id: 3,
-      title: 'Искусство нетворкинга: как находить нужные связи',
-      date: '22 ноября 2024',
-      time: '18:30 МСК',
-      category: 'Лекция',
-      speaker: 'Мария Соколова'
-    }
-  ];
+  const formatStreamDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+  };
+
+  const upcomingStreams = dbStreams.length > 0 ? dbStreams.map((s: any) => ({
+    id: s.id,
+    title: s.title,
+    date: formatStreamDate(s.date),
+    time: s.time,
+    category: s.category,
+    speaker: s.speaker
+  })) : [];
 
   const featuredContent = [
     {
@@ -265,7 +268,20 @@ const MuseTV = () => {
     }
   ];
 
-  const filteredContent = contentLibrary.filter(item => {
+  const allContent = [
+    ...dbVideos.map((v: any) => ({
+      id: v.id,
+      type: v.type?.toLowerCase() || 'podcast',
+      category: v.type || 'Подкаст',
+      url: v.url,
+      vkEmbed: v.embed_url,
+      title: v.title,
+      thumbnail_url: v.thumbnail_url
+    })),
+    ...contentLibrary
+  ];
+
+  const filteredContent = allContent.filter(item => {
     const typeMatch = activeFilter === 'all' || item.type === activeFilter;
     const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
     return typeMatch && categoryMatch;
@@ -612,6 +628,7 @@ const MuseTV = () => {
                   ? item.vkEmbed.split('/').pop()
                   : null;
                 const metadata = videoId ? videoMetadata[videoId] : null;
+                const thumbnailUrl = item.thumbnail_url || metadata?.thumbnail || item.thumbnail;
 
                 return (
                   <Card 
@@ -628,10 +645,10 @@ const MuseTV = () => {
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-black via-[#1a1a1a] to-black">
-                        {metadata?.thumbnail || item.thumbnail ? (
+                        {thumbnailUrl ? (
                           <>
                             <img 
-                              src={metadata?.thumbnail || item.thumbnail} 
+                              src={thumbnailUrl} 
                               alt={metadata?.title || item.title}
                               className="w-full h-full object-cover"
                             />
