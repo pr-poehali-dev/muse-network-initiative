@@ -153,7 +153,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         user_telegram = body_data.get('telegram', '').replace('@', '').strip()
         
         bot_username = "Muse_Club_bot"
-        bot_link = f"https://t.me/{bot_username}?start=subscribe"
+        
+        invite_link = ""
+        if user_telegram:
+            invite_message = f"Привет! Ваша заявка на вступление в клуб MUSE принята! 🎉\n\nОтправьте /start чтобы подписаться на уведомления о мероприятиях ✨"
+            invite_link = f"\n\n📲 Пригласить в бот: https://t.me/{user_telegram}\n💬 Текст для отправки:\n{invite_message}"
         
         admin_message = f"""🆕 Новая заявка на вступление в клуб MUSE
 
@@ -163,7 +167,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 💬 Telegram: {body_data.get('telegram', '')}
 📝 Сообщение: {body_data.get('message', '')}
 
-🕐 Время: {timestamp}"""
+🕐 Время: {timestamp}{invite_link}"""
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         data = urllib.parse.urlencode({
@@ -177,35 +181,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             print(f"Admin notification sent: {result}")
         except Exception as e:
             print(f"Failed to send admin notification: {str(e)}")
-        
-        if user_telegram:
-            user_message = f"""🎉 Спасибо за интерес к клубу MUSE!
-
-Ваша заявка принята. Мы скоро с вами свяжемся!
-
-📢 Чтобы получать уведомления о новых мероприятиях:
-1️⃣ Нажмите на ссылку: {bot_link}
-2️⃣ Отправьте команду /start боту
-
-Тогда вы будете автоматически получать:
-✨ Анонсы новых событий
-⚡️ Изменения в расписании
-🎁 Эксклюзивные предложения
-
-До встречи! 💫"""
-            
-            user_url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-            user_data = urllib.parse.urlencode({
-                'chat_id': f'@{user_telegram}',
-                'text': user_message
-            }).encode()
-            
-            try:
-                response = urllib.request.urlopen(user_url, data=user_data)
-                result = response.read().decode()
-                print(f"User invitation sent to @{user_telegram}: {result}")
-            except Exception as e:
-                print(f"Failed to send user invitation to @{user_telegram}: {str(e)}")
     else:
         print("Telegram credentials missing!")
     
