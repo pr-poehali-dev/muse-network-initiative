@@ -165,6 +165,25 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     if telegram_token and telegram_chat_id:
         user_telegram = body_data.get('telegram', '').replace('@', '').strip()
         
+        user_in_bot = False
+        if database_url and user_telegram:
+            try:
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                
+                cur.execute(
+                    "SELECT COUNT(*) FROM subscribers WHERE telegram = %s AND telegram_chat_id IS NOT NULL AND is_active = true",
+                    (body_data.get('telegram', ''),)
+                )
+                count = cur.fetchone()[0]
+                user_in_bot = count > 0
+                
+                cur.close()
+                conn.close()
+                print(f"User {user_telegram} in bot: {user_in_bot}")
+            except Exception as e:
+                print(f"Error checking user in bot: {str(e)}")
+        
         admin_message = f"""🎉 Новая регистрация на событие
 
 📅 Событие: {body_data.get('event', '')}
@@ -186,7 +205,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'text': admin_message
         }
         
-        if user_telegram:
+        if user_telegram and not user_in_bot:
             invite_message = f"Вы зарегистрированы на событие в клубе MUSE! ✅\n\nПодпишитесь на бота для напоминаний:\n{bot_link}"
             
             keyboard = {
