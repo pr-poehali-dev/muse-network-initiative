@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,6 +13,7 @@ interface MuseTvSectionProps {
 
 const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
   const { toast } = useToast();
+  const videoFormRef = useRef<HTMLDivElement>(null);
   const [videos, setVideos] = useState<any[]>([]);
   const [streams, setStreams] = useState<any[]>([]);
   const [showVideoForm, setShowVideoForm] = useState(false);
@@ -185,6 +186,10 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     setVideoFormData(video);
     setEditingVideo(video);
     setShowVideoForm(true);
+    
+    setTimeout(() => {
+      videoFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 100);
   };
 
   const handleEditStream = (stream: any) => {
@@ -217,7 +222,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
       </div>
 
       {showVideoForm && (
-        <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
+        <Card ref={videoFormRef} className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
           <CardHeader>
             <CardTitle className="text-[#d4af37]">{editingVideo ? 'Редактировать видео' : 'Новое видео'}</CardTitle>
           </CardHeader>
