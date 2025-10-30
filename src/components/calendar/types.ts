@@ -13,6 +13,8 @@ export interface Event {
   type: 'offline' | 'online' | 'workshop' | 'guest';
   location: string;
   seats?: number;
+  registered_count?: number;
+  available_seats?: number;
   speakers: Speaker[];
 }
 

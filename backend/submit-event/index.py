@@ -6,6 +6,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 import urllib.request
 import urllib.parse
+import psycopg2
 
 SPREADSHEET_ID = '1kJpQ3gNX5Ls47gLsd75lFH9MtxSiaigilkzYR_xBVuk'
 SHEET_NAME = 'Events'
@@ -42,6 +43,61 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     body_data = json.loads(event.get('body', '{}'))
+    
+    # Проверяем доступность мест в базе данных
+    database_url = os.environ.get('DATABASE_URL')
+    if database_url:
+        try:
+            conn = psycopg2.connect(database_url)
+            cur = conn.cursor()
+            
+            # Находим событие по названию и проверяем места
+            event_title = body_data.get('event', '')
+            cur.execute("""
+                SELECT id, seats, registered_count 
+                FROM events 
+                WHERE title = %s
+            """, (event_title,))
+            
+            result = cur.fetchone()
+            if result:
+                event_id, total_seats, registered = result
+                available_seats = total_seats - (registered or 0)
+                
+                # Если мест не осталось - отклоняем регистрацию
+                if available_seats <= 0:
+                    cur.close()
+                    conn.close()
+                    return {
+                        'statusCode': 400,
+                        'headers': {
+                            'Content-Type': 'application/json',
+                            'Access-Control-Allow-Origin': '*'
+                        },
+                        'isBase64Encoded': False,
+                        'body': json.dumps({
+                            'error': 'Мест не осталось',
+                            'message': 'К сожалению, все места на это событие уже заняты'
+                        })
+                    }
+                
+                # Увеличиваем счетчик зарегистрированных
+                cur.execute("""
+                    UPDATE events 
+                    SET registered_count = COALESCE(registered_count, 0) + 1
+                    WHERE id = %s
+                    RETURNING registered_count
+                """, (event_id,))
+                
+                new_count = cur.fetchone()[0]
+                conn.commit()
+                print(f"✅ Registered count updated: {new_count}/{total_seats}")
+            
+            cur.close()
+            conn.close()
+        except Exception as e:
+            print(f"⚠️ Database check failed: {str(e)}")
+            # Продолжаем регистрацию даже если проверка БД не удалась
     
     credentials_json = os.environ.get('GOOGLE_SERVICE_ACCOUNT')
     if not credentials_json:

@@ -46,7 +46,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             cur.execute("""
                 SELECT 
                     e.id, e.title, e.date, e.time, e.description, 
-                    e.type, e.location, e.seats,
+                    e.type, e.location, e.seats, e.registered_count,
                     json_agg(
                         json_build_object(
                             'name', s.name,
@@ -64,6 +64,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             rows = cur.fetchall()
             events_list = []
             for row in rows:
+                total_seats = row[7]
+                registered = row[8] or 0
                 events_list.append({
                     'id': row[0],
                     'title': row[1],
@@ -72,8 +74,10 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'description': row[4],
                     'type': row[5],
                     'location': row[6],
-                    'seats': row[7],
-                    'speakers': row[8] if row[8] else []
+                    'seats': total_seats,
+                    'registered_count': registered,
+                    'available_seats': total_seats - registered,
+                    'speakers': row[9] if row[9] else []
                 })
             
             cur.close()

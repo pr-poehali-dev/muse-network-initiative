@@ -69,6 +69,7 @@ const Index = () => {
   const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
   const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
   const [isViewingMedia, setIsViewingMedia] = useState(false);
+  const [eventsRefreshTrigger, setEventsRefreshTrigger] = useState(0);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -112,13 +113,16 @@ const Index = () => {
       if (response.ok) {
         setIsEventFormSubmitting(false);
         setIsEventFormSubmitted(true);
+        setEventsRefreshTrigger(prev => prev + 1);
         setTimeout(() => {
           setIsEventFormSubmitted(false);
           setIsEventDialogOpen(false);
           setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
         }, 2000);
       } else {
+        const errorData = await response.json();
         setIsEventFormSubmitting(false);
+        alert(errorData.message || 'Ошибка регистрации');
         console.error('Failed to submit event registration');
       }
     } catch (error) {
@@ -638,7 +642,11 @@ const Index = () => {
           </div>
 
           <div id="calendar">
-            <EventsCalendar onEventRegister={handleEventRegister} autoExpand={calendarAutoExpand} />
+            <EventsCalendar 
+              onEventRegister={handleEventRegister} 
+              autoExpand={calendarAutoExpand}
+              refreshTrigger={eventsRefreshTrigger}
+            />
           </div>
         </div>
       </section>

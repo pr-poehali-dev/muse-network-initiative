@@ -77,9 +77,11 @@ export const EventCardDesktop = ({
               {event.location}
             </div>
             {event.seats && (
-              <div className="flex items-center gap-1 text-sm text-[#d4af37]">
-                <Icon name="Users" size={14} />
-                {event.seats} мест
+              <div className="flex items-center gap-1 text-sm">
+                <Icon name="Users" size={14} className={event.available_seats === 0 ? 'text-red-400' : 'text-[#d4af37]'} />
+                <span className={event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}>
+                  {event.available_seats !== undefined ? `${event.available_seats} из ${event.seats} мест` : `${event.seats} мест`}
+                </span>
               </div>
             )}
           </div>
@@ -87,12 +89,21 @@ export const EventCardDesktop = ({
             <button 
               onClick={(e) => {
                 e.stopPropagation();
-                onRegister?.(event.title);
+                if (event.available_seats !== 0) {
+                  onRegister?.(event.title);
+                }
               }}
-              className="flex-1 bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-sm py-2 rounded-lg hover:shadow-lg hover:shadow-[#d4af37]/30 transition-all font-bold flex items-center justify-center gap-2 group"
+              disabled={event.available_seats === 0}
+              className={`flex-1 text-sm py-2 rounded-lg transition-all font-bold flex items-center justify-center gap-2 group ${
+                event.available_seats === 0 
+                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+                  : 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black hover:shadow-lg hover:shadow-[#d4af37]/30'
+              }`}
             >
-              <span>Записаться на событие</span>
-              <Icon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform" />
+              <span>{event.available_seats === 0 ? 'Мест нет' : 'Записаться на событие'}</span>
+              {event.available_seats !== 0 && (
+                <Icon name="ArrowRight" size={14} className="group-hover:translate-x-1 transition-transform" />
+              )}
             </button>
             <button
               onClick={(e) => {

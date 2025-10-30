@@ -9,9 +9,10 @@ import { EventCardDesktop } from './calendar/EventCardDesktop';
 interface EventsCalendarProps {
   onEventRegister?: (eventTitle: string) => void;
   autoExpand?: boolean;
+  refreshTrigger?: number;
 }
 
-const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarProps) => {
+const EventsCalendar = ({ onEventRegister, autoExpand = false, refreshTrigger }: EventsCalendarProps) => {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
   const [currentMonth, setCurrentMonth] = useState(new Date(2025, 10));
   const [isExpanded, setIsExpanded] = useState(autoExpand);
@@ -36,6 +37,12 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
     const interval = setInterval(loadEvents, 30000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (refreshTrigger) {
+      loadEvents();
+    }
+  }, [refreshTrigger]);
 
   const loadEvents = async () => {
     try {
