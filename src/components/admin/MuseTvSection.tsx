@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import Icon from '@/components/ui/icon';
 
 interface MuseTvSectionProps {
   isLoading: boolean;
@@ -194,14 +195,20 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     <>
       <div className="mb-8 flex gap-3">
         <Button
-          onClick={() => setShowVideoForm(!showVideoForm)}
-          className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl"
+          onClick={() => {
+            setShowVideoForm(!showVideoForm);
+            setShowStreamForm(false);
+          }}
+          className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
         >
           {showVideoForm ? 'Отменить' : 'Добавить видео'}
         </Button>
         <Button
-          onClick={() => setShowStreamForm(!showStreamForm)}
-          className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl"
+          onClick={() => {
+            setShowStreamForm(!showStreamForm);
+            setShowVideoForm(false);
+          }}
+          className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
         >
           {showStreamForm ? 'Отменить' : 'Добавить эфир'}
         </Button>
@@ -250,7 +257,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                 />
               </div>
               <div>
-                <Label className="text-white/80">Порядок</Label>
+                <Label className="text-white/80">Порядок отображения</Label>
                 <Input
                   type="number"
                   value={videoFormData.display_order}
@@ -258,14 +265,23 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                 />
               </div>
-              <div className="flex gap-3">
-                <Button type="submit" disabled={isLoading} className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 rounded-xl">
-                  {isLoading ? 'Сохранение...' : 'Сохранить'}
-                </Button>
-                <Button type="button" onClick={resetVideoForm} variant="outline" className="border-[#d4af37] text-[#d4af37] px-8 py-6 rounded-xl">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+              >
+                {isLoading ? 'Сохранение...' : (editingVideo ? 'Обновить' : 'Добавить')}
+              </Button>
+              {editingVideo && (
+                <Button
+                  type="button"
+                  onClick={resetVideoForm}
+                  variant="outline"
+                  className="ml-2"
+                >
                   Отменить
                 </Button>
-              </div>
+              )}
             </form>
           </CardContent>
         </Card>
@@ -279,7 +295,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
           <CardContent>
             <form onSubmit={handleStreamSubmit} className="space-y-4">
               <div>
-                <Label className="text-white/80">Название</Label>
+                <Label className="text-white/80">Название эфира</Label>
                 <Input
                   value={streamFormData.title}
                   onChange={(e) => setStreamFormData({ ...streamFormData, title: e.target.value })}
@@ -291,6 +307,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                 <div>
                   <Label className="text-white/80">Дата</Label>
                   <Input
+                    type="date"
                     value={streamFormData.date}
                     onChange={(e) => setStreamFormData({ ...streamFormData, date: e.target.value })}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
@@ -300,6 +317,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                 <div>
                   <Label className="text-white/80">Время</Label>
                   <Input
+                    type="time"
                     value={streamFormData.time}
                     onChange={(e) => setStreamFormData({ ...streamFormData, time: e.target.value })}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
@@ -313,6 +331,7 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                   value={streamFormData.category}
                   onChange={(e) => setStreamFormData({ ...streamFormData, category: e.target.value })}
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                  required
                 />
               </div>
               <div>
@@ -321,10 +340,11 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                   value={streamFormData.speaker}
                   onChange={(e) => setStreamFormData({ ...streamFormData, speaker: e.target.value })}
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                  required
                 />
               </div>
               <div>
-                <Label className="text-white/80">Порядок</Label>
+                <Label className="text-white/80">Порядок отображения</Label>
                 <Input
                   type="number"
                   value={streamFormData.display_order}
@@ -332,72 +352,122 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                 />
               </div>
-              <div className="flex gap-3">
-                <Button type="submit" disabled={isLoading} className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 rounded-xl">
-                  {isLoading ? 'Сохранение...' : 'Сохранить'}
-                </Button>
-                <Button type="button" onClick={resetStreamForm} variant="outline" className="border-[#d4af37] text-[#d4af37] px-8 py-6 rounded-xl">
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+              >
+                {isLoading ? 'Сохранение...' : (editingStream ? 'Обновить' : 'Добавить')}
+              </Button>
+              {editingStream && (
+                <Button
+                  type="button"
+                  onClick={resetStreamForm}
+                  variant="outline"
+                  className="ml-2"
+                >
                   Отменить
                 </Button>
-              </div>
+              )}
             </form>
           </CardContent>
         </Card>
       )}
 
-      <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
-        <CardHeader>
-          <CardTitle className="text-[#d4af37]">Видео ({videos.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {videos.map((video) => (
-              <div key={video.id} className="bg-[#0a0a0a] p-4 rounded-lg flex items-center justify-between">
-                <div>
-                  <p className="text-white font-bold">{video.title || video.video_id}</p>
-                  <p className="text-white/60 text-sm">{video.url}</p>
-                  <p className="text-white/40 text-xs">Порядок: {video.display_order}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Button size="sm" onClick={() => handleEditVideo(video)} variant="outline" className="border-[#d4af37] text-[#d4af37]">
-                    Редактировать
-                  </Button>
-                  <Button size="sm" onClick={() => handleDeleteVideo(video.id)} variant="outline" className="border-red-500 text-red-500">
-                    Удалить
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <div className="grid gap-6">
+        <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+          <CardHeader>
+            <CardTitle className="text-[#d4af37]">Видео MUSE TV</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {videos.length === 0 ? (
+                <p className="text-white/60 text-center py-8">Нет добавленных видео</p>
+              ) : (
+                videos.map((video) => (
+                  <div key={video.id} className="bg-[#0a0a0a] border border-[#d4af37]/20 rounded-lg p-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold">{video.title || `Video ID: ${video.video_id}`}</h3>
+                        <p className="text-white/60 text-sm mt-1">ID: {video.video_id}</p>
+                        <p className="text-white/60 text-sm">Порядок: {video.display_order}</p>
+                        <a href={video.url} target="_blank" rel="noopener noreferrer" className="text-[#d4af37] text-sm hover:underline">
+                          Смотреть на Rutube
+                        </a>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEditVideo(video)}
+                          className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        >
+                          <Icon name="Edit" size={16} />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDeleteVideo(video.id)}
+                          className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                        >
+                          <Icon name="Trash2" size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </CardContent>
+        </Card>
 
-      <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
-        <CardHeader>
-          <CardTitle className="text-[#d4af37]">Предстоящие эфиры ({streams.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="space-y-4">
-            {streams.map((stream) => (
-              <div key={stream.id} className="bg-[#0a0a0a] p-4 rounded-lg flex items-center justify-between">
-                <div>
-                  <p className="text-white font-bold">{stream.title}</p>
-                  <p className="text-white/60 text-sm">{stream.date} в {stream.time}</p>
-                  <p className="text-white/40 text-xs">{stream.category} • {stream.speaker} • Порядок: {stream.display_order}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Button size="sm" onClick={() => handleEditStream(stream)} variant="outline" className="border-[#d4af37] text-[#d4af37]">
-                    Редактировать
-                  </Button>
-                  <Button size="sm" onClick={() => handleDeleteStream(stream.id)} variant="outline" className="border-red-500 text-red-500">
-                    Удалить
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+        <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+          <CardHeader>
+            <CardTitle className="text-[#d4af37]">Предстоящие эфиры</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-4">
+              {streams.length === 0 ? (
+                <p className="text-white/60 text-center py-8">Нет запланированных эфиров</p>
+              ) : (
+                streams.map((stream) => (
+                  <div key={stream.id} className="bg-[#0a0a0a] border border-[#d4af37]/20 rounded-lg p-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="text-white font-semibold">{stream.title}</h3>
+                        <p className="text-white/80 text-sm mt-1">{stream.category}</p>
+                        <p className="text-white/60 text-sm">
+                          {new Date(stream.date).toLocaleDateString('ru-RU')} в {stream.time}
+                        </p>
+                        <p className="text-white/60 text-sm">Спикер: {stream.speaker}</p>
+                        <p className="text-white/60 text-sm">Порядок: {stream.display_order}</p>
+                      </div>
+                      <div className="flex gap-2">
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleEditStream(stream)}
+                          className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        >
+                          <Icon name="Edit" size={16} />
+                        </Button>
+                        <Button
+                          size="sm"
+                          variant="outline"
+                          onClick={() => handleDeleteStream(stream.id)}
+                          className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                        >
+                          <Icon name="Trash2" size={16} />
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 };
