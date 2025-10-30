@@ -11,6 +11,7 @@ import MuseTV from "./pages/MuseTV";
 import TestForms from "./pages/TestForms";
 import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
+import WebhookSetup from "./pages/WebhookSetup";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +28,7 @@ const AnimatedRoutes = () => {
         <Route path="/test-forms" element={<TestForms />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<Admin />} />
+        <Route path="/webhook-setup" element={<WebhookSetup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
