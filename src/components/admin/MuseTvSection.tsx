@@ -16,8 +16,10 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
   const videoFormRef = useRef<HTMLDivElement>(null);
   const [videos, setVideos] = useState<any[]>([]);
   const [streams, setStreams] = useState<any[]>([]);
+  const [liveStream, setLiveStream] = useState<any>(null);
   const [showVideoForm, setShowVideoForm] = useState(false);
   const [showStreamForm, setShowStreamForm] = useState(false);
+  const [showLiveForm, setShowLiveForm] = useState(false);
   const [editingVideo, setEditingVideo] = useState<any>(null);
   const [editingStream, setEditingStream] = useState<any>(null);
   
@@ -41,6 +43,11 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     display_order: 0
   });
 
+  const [liveFormData, setLiveFormData] = useState({
+    stream_url: '',
+    title: ''
+  });
+
   useEffect(() => {
     loadData();
   }, []);
@@ -51,6 +58,13 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
       const data = await response.json();
       setVideos(data.videos || []);
       setStreams(data.streams || []);
+      setLiveStream(data.live_stream || null);
+      if (data.live_stream) {
+        setLiveFormData({
+          stream_url: data.live_stream.stream_url || '',
+          title: data.live_stream.title || ''
+        });
+      }
     } catch (error) {
       console.error('Failed to load MUSE TV data:', error);
     }
@@ -198,13 +212,82 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
     setShowStreamForm(true);
   };
 
+  const handleLiveSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    try {
+      const method = liveStream ? 'PUT' : 'POST';
+      const body = liveStream
+        ? { resource: 'live', id: liveStream.id, data: liveFormData }
+        : { resource: 'live', data: liveFormData };
+
+      const response = await fetch('https://functions.poehali.dev/88de6a19-94ff-4811-a220-47e387f88968', {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: liveStream ? 'Прямая трансляция обновлена' : 'Прямая трансляция добавлена',
+        });
+        loadData();
+      }
+    } catch (error) {
+      toast({
+        title: 'Ошибка',
+        description: 'Не удалось сохранить трансляцию',
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleDeleteLive = async () => {
+    if (!liveStream || !confirm('Отключить прямую трансляцию?')) return;
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/88de6a19-94ff-4811-a220-47e387f88968', {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resource: 'live', id: liveStream.id })
+      });
+
+      if (response.ok) {
+        toast({ title: 'Успешно!', description: 'Трансляция отключена' });
+        setLiveFormData({ stream_url: '', title: '' });
+        loadData();
+      }
+    } catch (error) {
+      toast({ title: 'Ошибка', description: 'Не удалось отключить трансляцию', variant: 'destructive' });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <>
-      <div className="mb-8 flex gap-3">
+      <div className="mb-8 flex gap-3 flex-wrap">
+        <Button
+          onClick={() => {
+            setShowLiveForm(!showLiveForm);
+            setShowVideoForm(false);
+            setShowStreamForm(false);
+          }}
+          className="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+        >
+          <Icon name="Radio" size={20} />
+          {liveStream ? 'Управление трансляцией' : 'Добавить прямой эфир'}
+        </Button>
         <Button
           onClick={() => {
             setShowVideoForm(!showVideoForm);
             setShowStreamForm(false);
+            setShowLiveForm(false);
           }}
           className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
         >
@@ -214,12 +297,67 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
           onClick={() => {
             setShowStreamForm(!showStreamForm);
             setShowVideoForm(false);
+            setShowLiveForm(false);
           }}
           className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
         >
           {showStreamForm ? 'Отменить' : 'Добавить эфир'}
         </Button>
       </div>
+
+      {showLiveForm && (
+        <Card className="bg-[#1a1a1a] border-red-600/30 mb-8">
+          <CardHeader>
+            <CardTitle className="text-red-500 flex items-center gap-2">
+              <Icon name="Radio" size={24} />
+              {liveStream ? 'Редактировать прямую трансляцию' : 'Новая прямая трансляция'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleLiveSubmit} className="space-y-4">
+              <div>
+                <Label className="text-white/80">Ссылка на трансляцию (RuTube embed URL)</Label>
+                <Input
+                  value={liveFormData.stream_url}
+                  onChange={(e) => setLiveFormData({ ...liveFormData, stream_url: e.target.value })}
+                  placeholder="https://rutube.ru/play/embed/..."
+                  className="bg-[#0a0a0a] border-red-600/20 text-white"
+                  required
+                />
+              </div>
+              <div>
+                <Label className="text-white/80">Название трансляции (опционально)</Label>
+                <Input
+                  value={liveFormData.title}
+                  onChange={(e) => setLiveFormData({ ...liveFormData, title: e.target.value })}
+                  placeholder="Прямой эфир"
+                  className="bg-[#0a0a0a] border-red-600/20 text-white"
+                />
+              </div>
+              <div className="flex gap-3">
+                <Button
+                  type="submit"
+                  disabled={isLoading}
+                  className="bg-red-600 hover:bg-red-700 text-white font-bold"
+                >
+                  {liveStream ? 'Обновить' : 'Включить трансляцию'}
+                </Button>
+                {liveStream && (
+                  <Button
+                    type="button"
+                    onClick={handleDeleteLive}
+                    disabled={isLoading}
+                    variant="destructive"
+                    className="font-bold"
+                  >
+                    Отключить трансляцию
+                  </Button>
+                )}
+              </div>
+            </form>
+          </CardContent>
+        </Card>
+      )}
 
       {showVideoForm && (
         <Card ref={videoFormRef} className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">

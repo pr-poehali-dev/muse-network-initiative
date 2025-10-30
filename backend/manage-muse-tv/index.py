@@ -92,6 +92,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         'display_order': row[6]
                     })
             
+            if resource in ['all', 'live']:
+                cur.execute("SELECT id, stream_url, title, is_active FROM live_stream WHERE is_active = true LIMIT 1")
+                row = cur.fetchone()
+                if row:
+                    result['live_stream'] = {
+                        'id': row[0],
+                        'stream_url': row[1],
+                        'title': row[2],
+                        'is_active': row[3]
+                    }
+                else:
+                    result['live_stream'] = None
+            
             cur.close()
             conn.close()
             
@@ -158,6 +171,15 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     data.get('live_stream_url'),
                     data.get('live_stream_title')
                 ))
+                new_id = cur.fetchone()[0]
+                conn.commit()
+            
+            elif resource == 'live':
+                cur.execute("UPDATE live_stream SET is_active = false")
+                cur.execute("""
+                    INSERT INTO live_stream (stream_url, title, is_active)
+                    VALUES (%s, %s, true) RETURNING id
+                """, (data.get('stream_url'), data.get('title')))
                 new_id = cur.fetchone()[0]
                 conn.commit()
             
@@ -248,6 +270,15 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     item_id
                 ))
             
+            elif resource == 'live':
+                cur.execute("""
+                    UPDATE live_stream SET
+                        stream_url = %s,
+                        title = %s,
+                        updated_at = NOW()
+                    WHERE id = %s
+                """, (data.get('stream_url'), data.get('title'), item_id))
+            
             conn.commit()
             cur.close()
             conn.close()
@@ -271,6 +302,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 cur.execute("DELETE FROM muse_tv_videos WHERE id = %s", (item_id,))
             elif resource == 'stream':
                 cur.execute("DELETE FROM muse_tv_streams WHERE id = %s", (item_id,))
+            elif resource == 'live':
+                cur.execute("UPDATE live_stream SET is_active = false WHERE id = %s", (item_id,))
             
             conn.commit()
             cur.close()

@@ -18,6 +18,7 @@ const MuseTV = () => {
   const [videoMetadata, setVideoMetadata] = useState<Record<string, any>>({});
   const [dbVideos, setDbVideos] = useState<any[]>([]);
   const [dbStreams, setDbStreams] = useState<any[]>([]);
+  const [liveStream, setLiveStream] = useState<any>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -32,6 +33,7 @@ const MuseTV = () => {
         const data = await response.json();
         setDbVideos(data.videos || []);
         setDbStreams(data.streams || []);
+        setLiveStream(data.live_stream || null);
       } catch (error) {
         console.error('Failed to load MUSE TV data:', error);
       }
@@ -39,7 +41,7 @@ const MuseTV = () => {
     loadMuseTvData();
   }, []);
 
-  const isLive = false;
+  const isLive = !!liveStream;
   const viewersCount = 234;
 
   const formatStreamDate = (dateStr: string) => {
@@ -381,7 +383,7 @@ const MuseTV = () => {
       </div>
 
       {/* Live Section */}
-      {isLive ? (
+      {isLive && liveStream ? (
         <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
           <div className="container mx-auto">
             <div className="flex items-center gap-3 mb-6">
@@ -389,23 +391,30 @@ const MuseTV = () => {
                 <div className="w-2 h-2 bg-white rounded-full mr-2"></div>
                 LIVE
               </Badge>
-              <span className="text-white/60 text-sm flex items-center gap-2">
-                <Icon name="Users" size={16} />
-                {viewersCount.toLocaleString()} зрителей
-              </span>
+              <span className="text-white/60 text-sm">Прямой эфир</span>
             </div>
             
-            <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden">
+            <Card className="bg-black/40 border-red-600/50 overflow-hidden">
               <CardContent className="p-0">
-                <div className="relative aspect-video bg-gradient-to-br from-[#d4af37]/20 to-black">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-6">
-                    <h3 className="text-2xl font-bold mb-2">Секреты успешного нетворкинга</h3>
-                    <p className="text-white/70">Прямой эфир с экспертами клуба MUSE</p>
-                  </div>
+                <div className="relative aspect-video bg-black">
+                  {liveStream.stream_url ? (
+                    <iframe
+                      src={liveStream.stream_url}
+                      allow="clipboard-write; autoplay"
+                      allowFullScreen
+                      className="w-full h-full"
+                    ></iframe>
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Icon name="Radio" size={80} className="text-red-600 opacity-50" />
+                    </div>
+                  )}
                 </div>
+                {liveStream.title && (
+                  <div className="p-4 md:p-6">
+                    <h3 className="text-lg md:text-2xl font-bold">{liveStream.title}</h3>
+                  </div>
+                )}
               </CardContent>
             </Card>
           </div>
