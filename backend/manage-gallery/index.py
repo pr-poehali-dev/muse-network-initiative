@@ -43,9 +43,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         if method == 'GET':
             cur.execute("""
                 SELECT id, title, description, media_url, media_type, 
-                       thumbnail_url, span_class, display_order, is_active
-                FROM gallery
-                WHERE is_active = true
+                       thumbnail_url, span_class, display_order
+                FROM gallery_items
                 ORDER BY display_order ASC, created_at DESC
             """)
             
@@ -60,8 +59,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'media_type': row[4],
                     'thumbnail_url': row[5],
                     'span_class': row[6],
-                    'display_order': row[7],
-                    'is_active': row[8]
+                    'display_order': row[7]
                 })
             
             return {
@@ -78,7 +76,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             body_data = json.loads(event.get('body', '{}'))
             
             cur.execute("""
-                INSERT INTO gallery 
+                INSERT INTO gallery_items 
                 (title, description, media_url, media_type, thumbnail_url, span_class, display_order)
                 VALUES (%s, %s, %s, %s, %s, %s, %s)
                 RETURNING id
@@ -121,7 +119,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 }
             
             cur.execute("""
-                UPDATE gallery
+                UPDATE gallery_items
                 SET title = %s, description = %s, media_url = %s, media_type = %s,
                     thumbnail_url = %s, span_class = %s, display_order = %s,
                     updated_at = CURRENT_TIMESTAMP
@@ -164,7 +162,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'id is required'})
                 }
             
-            cur.execute("UPDATE gallery SET is_active = false WHERE id = %s", (item_id,))
+            cur.execute("DELETE FROM gallery_items WHERE id = %s", (item_id,))
             conn.commit()
             
             return {
