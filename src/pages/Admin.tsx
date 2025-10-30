@@ -136,7 +136,10 @@ const Admin = () => {
   };
 
   const handleEdit = (event: Event) => {
-    setFormData(event);
+    setFormData({
+      ...event,
+      speakers: event.speakers.map(s => ({ ...s }))
+    });
     setEditingEvent(event);
     setShowForm(true);
   };
