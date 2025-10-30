@@ -123,6 +123,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         
         bot_username = os.environ.get('TELEGRAM_BOT_USERNAME', 'Muse_Club_bot')
+        bot_link = f'https://t.me/{bot_username}?start=event'
         
         request_data = {
             'chat_id': telegram_chat_id,
@@ -130,15 +131,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
         
         if user_telegram:
+            invite_message = f"Вы зарегистрированы на событие в клубе MUSE! ✅\n\nПодпишитесь на бота для напоминаний:\n{bot_link}"
+            
             keyboard = {
                 'inline_keyboard': [[
                     {
-                        'text': '📲 Пригласить в бот',
-                        'url': f'https://t.me/{bot_username}?start=event_{user_telegram}'
+                        'text': '💬 Написать пользователю',
+                        'url': f'https://t.me/{user_telegram}'
                     }
                 ]]
             }
             
+            admin_message += f"\n\n📋 Отправьте пользователю:\n{invite_message}"
+            request_data['text'] = admin_message
             request_data['reply_markup'] = json.dumps(keyboard)
         
         data = urllib.parse.urlencode(request_data).encode()
