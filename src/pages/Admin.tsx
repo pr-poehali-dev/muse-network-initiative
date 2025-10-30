@@ -10,6 +10,7 @@ import { useToast } from '@/hooks/use-toast';
 import MuseTvSection from '@/components/admin/MuseTvSection';
 import MediaGallerySection from '@/components/admin/MediaGallerySection';
 import PartnersSection from '@/components/admin/PartnersSection';
+import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface Event {
   id?: number;
@@ -849,9 +850,25 @@ const Admin = () => {
                       <Input
                         id="speaker-image"
                         value={speakerFormData.image}
-                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, image: e.target.value })}
+                        onChange={async (e) => {
+                          const url = e.target.value;
+                          if (isCloudUrl(url)) {
+                            const directUrl = await convertCloudUrl(url);
+                            setSpeakerFormData({ ...speakerFormData, image: directUrl });
+                            if (directUrl !== url) {
+                              toast({
+                                title: 'Ссылка конвертирована',
+                                description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                              });
+                            }
+                          } else {
+                            setSpeakerFormData({ ...speakerFormData, image: url });
+                          }
+                        }}
                         className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        placeholder="https://... или ссылка с ImgBB"
                       />
+                      <p className="text-xs text-white/50 mt-1">💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск</p>
                     </div>
 
                     <div>
@@ -993,6 +1010,80 @@ const Admin = () => {
                           onChange={(e) => setContentFormData({...contentFormData, hero_description: e.target.value})}
                           className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                         />
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                          <Label className="text-white/80">Мобильное изображение</Label>
+                          <Input
+                            value={contentFormData.hero_mobile_image}
+                            onChange={async (e) => {
+                              const url = e.target.value;
+                              if (isCloudUrl(url)) {
+                                const directUrl = await convertCloudUrl(url);
+                                setContentFormData({...contentFormData, hero_mobile_image: directUrl});
+                                if (directUrl !== url) {
+                                  toast({
+                                    title: 'Ссылка конвертирована',
+                                    description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                                  });
+                                }
+                              } else {
+                                setContentFormData({...contentFormData, hero_mobile_image: url});
+                              }
+                            }}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                            placeholder="https://... или ссылка с ImgBB"
+                          />
+                          <p className="text-xs text-white/50 mt-1">💡 ImgBB, Google Drive, Яндекс.Диск</p>
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Левое изображение</Label>
+                          <Input
+                            value={contentFormData.hero_left_image}
+                            onChange={async (e) => {
+                              const url = e.target.value;
+                              if (isCloudUrl(url)) {
+                                const directUrl = await convertCloudUrl(url);
+                                setContentFormData({...contentFormData, hero_left_image: directUrl});
+                                if (directUrl !== url) {
+                                  toast({
+                                    title: 'Ссылка конвертирована',
+                                    description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                                  });
+                                }
+                              } else {
+                                setContentFormData({...contentFormData, hero_left_image: url});
+                              }
+                            }}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                            placeholder="https://... или ссылка с ImgBB"
+                          />
+                          <p className="text-xs text-white/50 mt-1">💡 ImgBB, Google Drive, Яндекс.Диск</p>
+                        </div>
+                        <div>
+                          <Label className="text-white/80">Правое изображение</Label>
+                          <Input
+                            value={contentFormData.hero_right_image}
+                            onChange={async (e) => {
+                              const url = e.target.value;
+                              if (isCloudUrl(url)) {
+                                const directUrl = await convertCloudUrl(url);
+                                setContentFormData({...contentFormData, hero_right_image: directUrl});
+                                if (directUrl !== url) {
+                                  toast({
+                                    title: 'Ссылка конвертирована',
+                                    description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                                  });
+                                }
+                              } else {
+                                setContentFormData({...contentFormData, hero_right_image: url});
+                              }
+                            }}
+                            className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                            placeholder="https://... или ссылка с ImgBB"
+                          />
+                          <p className="text-xs text-white/50 mt-1">💡 ImgBB, Google Drive, Яндекс.Диск</p>
+                        </div>
                       </div>
                     </div>
 

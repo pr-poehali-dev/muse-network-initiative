@@ -5,51 +5,12 @@ import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
+import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface PartnersSectionProps {
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
 }
-
-const convertCloudUrl = async (url: string): Promise<string> => {
-  if (!url) return url;
-  
-  // ImgBB - получаем прямую ссылку через бэкенд
-  if (url.includes('ibb.co/')) {
-    try {
-      const response = await fetch(`https://functions.poehali.dev/09d5e02b-7cfd-4476-a38b-b2d456cca0c2?url=${encodeURIComponent(url)}`);
-      const data = await response.json();
-      if (data.direct_url) {
-        return data.direct_url;
-      }
-    } catch (error) {
-      console.error('Failed to parse ImgBB URL:', error);
-    }
-  }
-  
-  // Google Drive
-  if (url.includes('drive.google.com')) {
-    const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
-    if (fileIdMatch) {
-      const fileId = fileIdMatch[1];
-      return `https://drive.google.com/uc?export=view&id=${fileId}`;
-    }
-  }
-  
-  // Yandex.Disk
-  if (url.includes('disk.yandex.ru/i/') || url.includes('disk.yandex.ru/d/')) {
-    const match = url.match(/\/([id])\/([^/?]+)/);
-    if (match) {
-      return `https://downloader.disk.yandex.ru/preview?public_key=${encodeURIComponent(url)}&size=L`;
-    }
-  }
-  
-  if (url.includes('yadi.sk/')) {
-    return `https://downloader.disk.yandex.ru/preview?public_key=${encodeURIComponent(url)}&size=L`;
-  }
-  
-  return url;
-};
 
 const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
   const { toast } = useToast();
@@ -182,19 +143,14 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                   onChange={async (e) => {
                     const url = e.target.value;
                     
-                    if (url.includes('ibb.co/') || url.includes('disk.yandex.ru') || url.includes('yadi.sk') || url.includes('drive.google.com')) {
+                    if (isCloudUrl(url)) {
                       const directUrl = await convertCloudUrl(url);
                       setFormData(prev => ({ ...prev, logo_url: directUrl }));
                       
                       if (directUrl !== url) {
-                        let service = 'Облачный сервис';
-                        if (url.includes('drive.google.com')) service = 'Google Drive';
-                        else if (url.includes('ibb.co')) service = 'ImgBB';
-                        else service = 'Яндекс.Диск';
-                        
                         toast({
                           title: 'Ссылка конвертирована',
-                          description: `${service} ссылка преобразована в прямую ссылку`,
+                          description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
                         });
                       }
                     } else {

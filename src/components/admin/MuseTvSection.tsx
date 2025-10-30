@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
+import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface MuseTvSectionProps {
   isLoading: boolean;
@@ -509,12 +510,26 @@ const MuseTvSection = ({ isLoading, setIsLoading }: MuseTvSectionProps) => {
                 <div className="space-y-2">
                   <Input
                     value={videoFormData.thumbnail_url}
-                    onChange={(e) => setVideoFormData({ ...videoFormData, thumbnail_url: e.target.value })}
+                    onChange={async (e) => {
+                      const url = e.target.value;
+                      if (isCloudUrl(url)) {
+                        const directUrl = await convertCloudUrl(url);
+                        setVideoFormData({ ...videoFormData, thumbnail_url: directUrl });
+                        if (directUrl !== url) {
+                          toast({
+                            title: 'Ссылка конвертирована',
+                            description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                          });
+                        }
+                      } else {
+                        setVideoFormData({ ...videoFormData, thumbnail_url: url });
+                      }
+                    }}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                    placeholder="https://example.com/image.jpg"
+                    placeholder="https://... или ссылка с ImgBB"
                   />
                   <p className="text-white/40 text-xs">
-                    Вставьте URL изображения или используйте загруженное изображение с CDN
+                    💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск
                   </p>
                 </div>
               </div>

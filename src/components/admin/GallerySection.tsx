@@ -7,6 +7,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
 import Icon from '@/components/ui/icon';
+import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface GalleryItem {
   id: number;
@@ -226,10 +227,25 @@ const GallerySection = ({ onDataChange }: GallerySectionProps) => {
                 <Input
                   id="media_url"
                   value={formData.media_url}
-                  onChange={(e) => setFormData({ ...formData, media_url: e.target.value })}
-                  placeholder="https://..."
+                  onChange={async (e) => {
+                    const url = e.target.value;
+                    if (isCloudUrl(url)) {
+                      const directUrl = await convertCloudUrl(url);
+                      setFormData({ ...formData, media_url: directUrl });
+                      if (directUrl !== url) {
+                        toast({
+                          title: 'Ссылка конвертирована',
+                          description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                        });
+                      }
+                    } else {
+                      setFormData({ ...formData, media_url: url });
+                    }
+                  }}
+                  placeholder="https://... или ссылка с ImgBB"
                   required
                 />
+                <p className="text-xs text-white/50 mt-1">💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск</p>
               </div>
 
               {formData.media_type === 'video' && (
@@ -238,9 +254,24 @@ const GallerySection = ({ onDataChange }: GallerySectionProps) => {
                   <Input
                     id="thumbnail_url"
                     value={formData.thumbnail_url}
-                    onChange={(e) => setFormData({ ...formData, thumbnail_url: e.target.value })}
-                    placeholder="https://..."
+                    onChange={async (e) => {
+                      const url = e.target.value;
+                      if (isCloudUrl(url)) {
+                        const directUrl = await convertCloudUrl(url);
+                        setFormData({ ...formData, thumbnail_url: directUrl });
+                        if (directUrl !== url) {
+                          toast({
+                            title: 'Ссылка конвертирована',
+                            description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                          });
+                        }
+                      } else {
+                        setFormData({ ...formData, thumbnail_url: url });
+                      }
+                    }}
+                    placeholder="https://... или ссылка с ImgBB"
                   />
+                  <p className="text-xs text-white/50 mt-1">💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск</p>
                 </div>
               )}
 
