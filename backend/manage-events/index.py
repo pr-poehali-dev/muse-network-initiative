@@ -175,7 +175,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'Event ID required'})
                 }
             
-            cur.execute("SELECT * FROM events WHERE id = %s", (event_id,))
+            cur.execute("""
+                SELECT id, title, date, time, description, type, location, seats, 
+                       created_at, updated_at, registered_count, is_paid, price
+                FROM events WHERE id = %s
+            """, (event_id,))
             old_event = cur.fetchone()
             
             if not old_event:
@@ -196,8 +200,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'date': old_event[2].isoformat() if old_event[2] else None,
                 'time': old_event[3],
                 'location': old_event[6],
-                'is_paid': old_event[9] if len(old_event) > 9 else False,
-                'price': float(old_event[10]) if len(old_event) > 10 and old_event[10] else None
+                'is_paid': old_event[11],
+                'price': float(old_event[12]) if old_event[12] else None
             }
             
             cur.execute("""
