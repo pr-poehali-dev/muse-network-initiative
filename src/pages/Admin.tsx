@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import Icon from '@/components/ui/icon';
+
 import { useToast } from '@/hooks/use-toast';
 
 interface Event {
@@ -418,9 +418,8 @@ const Admin = () => {
               <Button
                 type="submit"
                 disabled={isAuthenticating}
-                className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold py-6 text-lg"
               >
-                <Icon name="Lock" className="w-5 h-5 mr-2" />
                 {isAuthenticating ? 'Вход...' : 'Войти'}
               </Button>
             </form>
@@ -440,29 +439,27 @@ const Admin = () => {
           <Button
             onClick={handleLogout}
             variant="outline"
-            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8"
           >
-            <Icon name="LogOut" className="w-5 h-5 mr-2" />
             Выйти
           </Button>
         </div>
       </header>
 
       <div className="container mx-auto px-4 py-8 max-w-6xl">
-        <div className="mb-6 flex gap-4 border-b border-[#d4af37]/20 pb-4">
+        <div className="mb-8 flex gap-3">
           <Button
             onClick={() => {
               setActiveTab('events');
               setShowSpeakerForm(false);
               setEditingSpeaker(null);
             }}
-            variant={activeTab === 'events' ? 'default' : 'outline'}
+            variant={activeTab === 'events' ? 'default' : 'ghost'}
             className={activeTab === 'events' 
-              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold'
-              : 'border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
             }
           >
-            <Icon name="Calendar" className="w-5 h-5 mr-2" />
             События
           </Button>
           <Button
@@ -471,34 +468,31 @@ const Admin = () => {
               setShowForm(false);
               setEditingEvent(null);
             }}
-            variant={activeTab === 'speakers' ? 'default' : 'outline'}
+            variant={activeTab === 'speakers' ? 'default' : 'ghost'}
             className={activeTab === 'speakers'
-              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold'
-              : 'border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
             }
           >
-            <Icon name="Users" className="w-5 h-5 mr-2" />
             Эксперты
           </Button>
         </div>
 
         {activeTab === 'events' && (
           <>
-            <div className="mb-6 flex gap-4">
+            <div className="mb-8 flex gap-3">
               <Button
                 onClick={() => setShowForm(!showForm)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
               >
-                <Icon name={showForm ? "X" : "Plus"} className="w-5 h-5 mr-2" />
                 {showForm ? 'Отменить' : 'Создать событие'}
               </Button>
               
               <Button
                 onClick={loadEvents}
                 variant="outline"
-                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
               >
-                <Icon name="RefreshCw" className="w-5 h-5 mr-2" />
                 Обновить
               </Button>
             </div>
@@ -507,21 +501,19 @@ const Admin = () => {
 
         {activeTab === 'speakers' && (
           <>
-            <div className="mb-6 flex gap-4">
+            <div className="mb-8 flex gap-3">
               <Button
                 onClick={() => setShowSpeakerForm(!showSpeakerForm)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
               >
-                <Icon name={showSpeakerForm ? "X" : "Plus"} className="w-5 h-5 mr-2" />
                 {showSpeakerForm ? 'Отменить' : 'Добавить эксперта'}
               </Button>
               
               <Button
                 onClick={loadSpeakers}
                 variant="outline"
-                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
               >
-                <Icon name="RefreshCw" className="w-5 h-5 mr-2" />
                 Обновить
               </Button>
             </div>
@@ -582,9 +574,8 @@ const Admin = () => {
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
                       >
-                        <Icon name="Save" className="w-5 h-5 mr-2" />
                         {isLoading ? 'Сохранение...' : editingSpeaker ? 'Обновить' : 'Добавить'}
                       </Button>
                       
@@ -592,7 +583,7 @@ const Admin = () => {
                         type="button"
                         onClick={resetSpeakerForm}
                         variant="outline"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
                       >
                         Отменить
                       </Button>
@@ -634,18 +625,17 @@ const Admin = () => {
                             onClick={() => handleEditSpeaker(speaker)}
                             variant="outline"
                             size="sm"
-                            className="flex-1 border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                            className="flex-1 border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 py-5"
                           >
-                            <Icon name="Edit" className="w-4 h-4 mr-1" />
                             Редактировать
                           </Button>
                           <Button
                             onClick={() => handleDeleteSpeaker(speaker.id)}
                             variant="outline"
                             size="sm"
-                            className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                            className="border-red-500/30 text-red-500 hover:bg-red-500/10 py-5 px-6"
                           >
-                            <Icon name="Trash2" className="w-4 h-4" />
+                            Удалить
                           </Button>
                         </div>
                       </CardContent>
@@ -760,9 +750,8 @@ const Admin = () => {
                         onClick={() => setShowSpeakerPicker(!showSpeakerPicker)}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
                       >
-                        <Icon name="Users" className="w-4 h-4 mr-1" />
                         Выбрать эксперта
                       </Button>
                       <Button
@@ -770,9 +759,8 @@ const Admin = () => {
                         onClick={addSpeaker}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
                       >
-                        <Icon name="Plus" className="w-4 h-4 mr-1" />
                         Добавить вручную
                       </Button>
                     </div>
@@ -799,7 +787,7 @@ const Admin = () => {
                               <div className="text-white font-medium truncate">{speaker.name}</div>
                               <div className="text-white/60 text-sm truncate">{speaker.role}</div>
                             </div>
-                            <Icon name="Plus" className="w-5 h-5 text-[#d4af37] flex-shrink-0" />
+                            <span className="text-[#d4af37] text-xl flex-shrink-0">+</span>
                           </button>
                         ))}
                       </div>
@@ -831,11 +819,11 @@ const Admin = () => {
                           <Button
                             type="button"
                             onClick={() => removeSpeaker(index)}
-                            variant="ghost"
-                            size="icon"
-                            className="text-red-500 hover:bg-red-500/10"
+                            variant="outline"
+                            size="sm"
+                            className="border-red-500/30 text-red-500 hover:bg-red-500/10 px-4"
                           >
-                            <Icon name="Trash2" className="w-4 h-4" />
+                            Удалить
                           </Button>
                         )}
                       </div>
@@ -847,9 +835,8 @@ const Admin = () => {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold"
+                    className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
                   >
-                    <Icon name="Save" className="w-5 h-5 mr-2" />
                     {isLoading ? 'Сохранение...' : editingEvent ? 'Обновить и отправить уведомления' : 'Создать и отправить уведомления'}
                   </Button>
                   
@@ -857,7 +844,7 @@ const Admin = () => {
                     type="button"
                     onClick={resetForm}
                     variant="outline"
-                    className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                    className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
                   >
                     Отменить
                   </Button>
@@ -880,9 +867,8 @@ const Admin = () => {
             </div>
           ) : events.length === 0 ? (
             <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
-              <CardContent className="py-12 text-center">
-                <Icon name="Calendar" className="w-16 h-16 text-[#d4af37]/50 mx-auto mb-4" />
-                <p className="text-white/60">Событий пока нет</p>
+              <CardContent className="py-16 text-center">
+                <p className="text-white/60 text-lg">Событий пока нет</p>
               </CardContent>
             </Card>
           ) : (
@@ -893,16 +879,13 @@ const Admin = () => {
                     <div className="flex-1">
                       <h3 className="text-xl font-bold text-[#d4af37] mb-2">{event.title}</h3>
                       <div className="space-y-2 text-sm text-white/70">
-                        <p className="flex items-center gap-2">
-                          <Icon name="Calendar" className="w-4 h-4" />
+                        <p>
                           {event.date} в {event.time}
                         </p>
-                        <p className="flex items-center gap-2">
-                          <Icon name="MapPin" className="w-4 h-4" />
+                        <p>
                           {event.location}
                         </p>
-                        <p className="flex items-center gap-2">
-                          <Icon name="Users" className="w-4 h-4" />
+                        <p>
                           {event.seats} мест
                         </p>
                         <p className="text-white/60 mt-2">{event.description}</p>
@@ -914,19 +897,17 @@ const Admin = () => {
                         onClick={() => handleEdit(event)}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
                       >
-                        <Icon name="Edit" className="w-4 h-4 mr-2" />
                         Редактировать
                       </Button>
                       <Button
                         onClick={() => event.id && handleDelete(event.id)}
                         variant="outline"
                         size="sm"
-                        className="border-red-500/30 text-red-500 hover:bg-red-500/10"
+                        className="border-red-500/30 text-red-500 hover:bg-red-500/10 px-6 py-5"
                         disabled={isLoading}
                       >
-                        <Icon name="Trash2" className="w-4 h-4 mr-2" />
                         Удалить
                       </Button>
                     </div>
