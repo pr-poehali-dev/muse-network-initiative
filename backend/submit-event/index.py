@@ -156,6 +156,36 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         body={'values': [row_data]}
     ).execute()
     
+    # Сохраняем подписчика в базу данных
+    if database_url:
+        try:
+            conn = psycopg2.connect(database_url)
+            cur = conn.cursor()
+            
+            cur.execute(
+                """
+                INSERT INTO subscribers (name, email, phone, telegram, subscribed_at, is_active, event_id)
+                VALUES (%s, %s, %s, %s, %s, %s, (SELECT id FROM events WHERE title = %s LIMIT 1))
+                ON CONFLICT DO NOTHING
+                """,
+                (
+                    body_data.get('name', ''),
+                    body_data.get('email', ''),
+                    body_data.get('phone', ''),
+                    body_data.get('telegram', ''),
+                    datetime.now(timezone(timedelta(hours=3))),
+                    True,
+                    body_data.get('event', '')
+                )
+            )
+            
+            conn.commit()
+            cur.close()
+            conn.close()
+            print("✅ Subscriber saved to database")
+        except Exception as e:
+            print(f"⚠️ Database save error: {str(e)}")
+    
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     
