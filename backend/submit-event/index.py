@@ -156,36 +156,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         body={'values': [row_data]}
     ).execute()
     
-    # Сохраняем подписчика в базу данных
-    if database_url:
-        try:
-            conn = psycopg2.connect(database_url)
-            cur = conn.cursor()
-            
-            cur.execute(
-                """
-                INSERT INTO subscribers (name, email, phone, telegram, subscribed_at, is_active, event_id)
-                VALUES (%s, %s, %s, %s, %s, %s, (SELECT id FROM events WHERE title = %s LIMIT 1))
-                ON CONFLICT DO NOTHING
-                """,
-                (
-                    body_data.get('name', ''),
-                    body_data.get('email', ''),
-                    body_data.get('phone', ''),
-                    body_data.get('telegram', ''),
-                    datetime.now(timezone(timedelta(hours=3))),
-                    True,
-                    body_data.get('event', '')
-                )
-            )
-            
-            conn.commit()
-            cur.close()
-            conn.close()
-            print("✅ Subscriber saved to database")
-        except Exception as e:
-            print(f"⚠️ Database save error: {str(e)}")
-    
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
     
@@ -194,25 +164,6 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     if telegram_token and telegram_chat_id:
         user_telegram = body_data.get('telegram', '').replace('@', '').strip()
-        
-        user_in_bot = False
-        if database_url and user_telegram:
-            try:
-                conn = psycopg2.connect(database_url)
-                cur = conn.cursor()
-                
-                cur.execute(
-                    "SELECT COUNT(*) FROM subscribers WHERE telegram = %s AND telegram_chat_id IS NOT NULL AND is_active = true",
-                    (body_data.get('telegram', ''),)
-                )
-                count = cur.fetchone()[0]
-                user_in_bot = count > 0
-                
-                cur.close()
-                conn.close()
-                print(f"User {user_telegram} in bot: {user_in_bot}")
-            except Exception as e:
-                print(f"Error checking user in bot: {str(e)}")
         
         admin_message = f"""🎉 Новая регистрация на событие
 
@@ -235,7 +186,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'text': admin_message
         }
         
-        if user_telegram and not user_in_bot:
+        if user_telegram:
             invite_message = f"Вы зарегистрированы на событие в клубе MUSE! ✅\n\nПодпишитесь на бота для напоминаний:\n{bot_link}"
             
             keyboard = {
