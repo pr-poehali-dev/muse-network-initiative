@@ -141,9 +141,15 @@ const HomepageSection = ({ isLoading, setIsLoading }: HomepageSectionProps) => {
                   <Label className="text-white/80">Левое изображение</Label>
                   <Input
                     value={content.hero?.image_left || ''}
-                    onChange={(e) => handleImageChange(e.target.value, (url) => 
-                      setContent({...content, hero: {...content.hero, image_left: url}})
-                    )}
+                    onChange={(e) => {
+                      const newValue = e.target.value;
+                      setContent({...content, hero: {...content.hero, image_left: newValue}});
+                      handleImageChange(newValue, (url) => {
+                        if (url !== newValue) {
+                          setContent({...content, hero: {...content.hero, image_left: url}});
+                        }
+                      });
+                    }}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                     placeholder="https://... или ImgBB"
                   />
@@ -153,9 +159,15 @@ const HomepageSection = ({ isLoading, setIsLoading }: HomepageSectionProps) => {
                   <Label className="text-white/80">Центральное изображение</Label>
                   <Input
                     value={content.hero?.image_center || ''}
-                    onChange={(e) => handleImageChange(e.target.value, (url) => 
-                      setContent({...content, hero: {...content.hero, image_center: url}})
-                    )}
+                    onChange={(e) => {
+                      const newValue = e.target.value;
+                      setContent({...content, hero: {...content.hero, image_center: newValue}});
+                      handleImageChange(newValue, (url) => {
+                        if (url !== newValue) {
+                          setContent({...content, hero: {...content.hero, image_center: url}});
+                        }
+                      });
+                    }}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                     placeholder="https://... или ImgBB"
                   />
@@ -165,9 +177,15 @@ const HomepageSection = ({ isLoading, setIsLoading }: HomepageSectionProps) => {
                   <Label className="text-white/80">Правое изображение</Label>
                   <Input
                     value={content.hero?.image_right || ''}
-                    onChange={(e) => handleImageChange(e.target.value, (url) => 
-                      setContent({...content, hero: {...content.hero, image_right: url}})
-                    )}
+                    onChange={(e) => {
+                      const newValue = e.target.value;
+                      setContent({...content, hero: {...content.hero, image_right: newValue}});
+                      handleImageChange(newValue, (url) => {
+                        if (url !== newValue) {
+                          setContent({...content, hero: {...content.hero, image_right: url}});
+                        }
+                      });
+                    }}
                     className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                     placeholder="https://... или ImgBB"
                   />
