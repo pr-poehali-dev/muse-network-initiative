@@ -136,14 +136,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             keyboard = {
                 'inline_keyboard': [[
                     {
-                        'text': '💬 Написать пользователю',
-                        'url': f'https://t.me/{user_telegram}'
+                        'text': '📲 Пригласить в бот',
+                        'url': f'https://t.me/{user_telegram}?text={urllib.parse.quote(invite_message)}'
                     }
                 ]]
             }
             
-            admin_message += f"\n\n📋 Отправьте пользователю:\n{invite_message}"
-            request_data['text'] = admin_message
             request_data['reply_markup'] = json.dumps(keyboard)
         
         data = urllib.parse.urlencode(request_data).encode()
