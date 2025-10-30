@@ -14,9 +14,12 @@ interface PartnersSectionProps {
 const convertYandexDiskUrl = async (url: string): Promise<string> => {
   if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
     try {
+      console.log('Converting Yandex.Disk URL:', url);
       const response = await fetch(`https://functions.poehali.dev/feae6b7c-94fa-43c4-a9a0-34526f6664d9?public_url=${encodeURIComponent(url)}`);
       const data = await response.json();
+      console.log('Response from backend:', data);
       if (data.direct_url) {
+        console.log('Direct URL received:', data.direct_url);
         return data.direct_url;
       }
     } catch (error) {
