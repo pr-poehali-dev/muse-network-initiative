@@ -11,13 +11,22 @@ interface PartnersSectionProps {
   setIsLoading: (loading: boolean) => void;
 }
 
-const convertYandexDiskUrl = (url: string): string => {
+const convertCloudUrl = (url: string): string => {
   if (!url) return url;
   
+  // Google Drive
+  if (url.includes('drive.google.com')) {
+    const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    if (fileIdMatch) {
+      const fileId = fileIdMatch[1];
+      return `https://drive.google.com/uc?export=view&id=${fileId}`;
+    }
+  }
+  
+  // Yandex.Disk
   if (url.includes('disk.yandex.ru/i/') || url.includes('disk.yandex.ru/d/')) {
     const match = url.match(/\/([id])\/([^/?]+)/);
     if (match) {
-      const [, type, hash] = match;
       return `https://downloader.disk.yandex.ru/preview?public_key=${encodeURIComponent(url)}&size=L`;
     }
   }
@@ -160,32 +169,40 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                   onChange={(e) => {
                     const url = e.target.value;
                     
-                    if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
-                      const directUrl = convertYandexDiskUrl(url);
+                    if (url.includes('disk.yandex.ru') || url.includes('yadi.sk') || url.includes('drive.google.com')) {
+                      const directUrl = convertCloudUrl(url);
                       setFormData(prev => ({ ...prev, logo_url: directUrl }));
                       
                       if (directUrl !== url) {
+                        const service = url.includes('drive.google.com') ? 'Google Drive' : 'Яндекс.Диск';
                         toast({
                           title: 'Ссылка конвертирована',
-                          description: 'Яндекс.Диск ссылка преобразована в прямую ссылку',
+                          description: `${service} ссылка преобразована в прямую ссылку`,
                         });
                       }
                     } else {
                       setFormData(prev => ({ ...prev, logo_url: url }));
                     }
                   }}
-                  placeholder="https://... или ссылка с Яндекс.Диска"
+                  placeholder="https://... или ссылка с Google Drive / Яндекс.Диска"
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                   required
                 />
                 <p className="text-xs text-white/50 mt-2">
-                  💡 Поддерживаются прямые ссылки и публичные ссылки с Яндекс.Диска
+                  💡 Поддерживаются прямые ссылки, Google Drive и Яндекс.Диск
                 </p>
-                <div className="mt-2 p-2 bg-blue-900/20 border border-blue-600/30 rounded">
-                  <p className="text-xs text-blue-400 mb-1">Яндекс.Диск:</p>
-                  <p className="text-xs text-white/60">1. Загрузите изображение на Яндекс.Диск</p>
-                  <p className="text-xs text-white/60">2. Нажмите "Поделиться" → "Скопировать ссылку"</p>
-                  <p className="text-xs text-white/60">3. Вставьте ссылку сюда (автоматически конвертируется)</p>
+                <div className="mt-2 p-2 bg-blue-900/20 border border-blue-600/30 rounded space-y-2">
+                  <div>
+                    <p className="text-xs text-blue-400 mb-1">Google Drive:</p>
+                    <p className="text-xs text-white/60">1. Загрузите изображение на Google Drive</p>
+                    <p className="text-xs text-white/60">2. Нажмите ПКМ → "Открыть доступ" → "Всем у кого есть ссылка"</p>
+                    <p className="text-xs text-white/60">3. Скопируйте ссылку и вставьте сюда</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-blue-400 mb-1">Яндекс.Диск:</p>
+                    <p className="text-xs text-white/60">1. Загрузите изображение</p>
+                    <p className="text-xs text-white/60">2. "Поделиться" → "Скопировать ссылку"</p>
+                  </div>
                 </div>
                 {formData.logo_url && (
                   <div className="mt-3 p-3 bg-[#0a0a0a] border border-white/10 rounded">
