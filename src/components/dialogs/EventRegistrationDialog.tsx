@@ -1,9 +1,12 @@
-import { FormEvent } from 'react';
+import { FormEvent, useState } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
 import Icon from '@/components/ui/icon';
+import { useNavigate } from 'react-router-dom';
 
 interface EventRegistrationDialogProps {
   isOpen: boolean;
@@ -31,6 +34,9 @@ const EventRegistrationDialog = ({
   isSubmitted,
   isSubmitting
 }: EventRegistrationDialogProps) => {
+  const navigate = useNavigate();
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
     
@@ -116,9 +122,30 @@ const EventRegistrationDialog = ({
               onChange={(e) => onFormDataChange({...formData, message: e.target.value})}
               className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
             />
+            <div className="flex items-start gap-3 pt-2">
+              <Checkbox 
+                id="terms-event"
+                checked={agreedToTerms}
+                onCheckedChange={(checked) => setAgreedToTerms(checked as boolean)}
+                className="mt-1 border-[#d4af37]/30 data-[state=checked]:bg-[#d4af37] data-[state=checked]:border-[#d4af37]"
+              />
+              <Label 
+                htmlFor="terms-event" 
+                className="text-sm text-white/70 leading-relaxed cursor-pointer"
+              >
+                Я соглашаюсь с{' '}
+                <button
+                  type="button"
+                  onClick={() => navigate('/terms')}
+                  className="text-[#d4af37] hover:text-[#b8953d] underline"
+                >
+                  Пользовательским соглашением
+                </button>
+              </Label>
+            </div>
             <Button 
               type="submit"
-              disabled={isSubmitting}
+              disabled={isSubmitting || !agreedToTerms}
               className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isSubmitting ? 'Отправка...' : 'Отправить заявку'}

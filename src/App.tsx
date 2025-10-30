@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import Headliners from "./pages/Headliners";
 import MuseTV from "./pages/MuseTV";
 import TestForms from "./pages/TestForms";
+import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
         <Route path="/headliners" element={<Headliners />} />
         <Route path="/muse-tv" element={<MuseTV />} />
         <Route path="/test-forms" element={<TestForms />} />
+        <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>

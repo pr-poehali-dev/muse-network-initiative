@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import Header from './Header';
 
 interface LayoutProps {
@@ -27,6 +28,8 @@ const Layout = ({
   const [scrollY, setScrollY] = useState(0);
   const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
+  const [agreedToTermsExpert, setAgreedToTermsExpert] = useState(false);
+  const [agreedToTermsJoin, setAgreedToTermsJoin] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -88,6 +91,14 @@ const Layout = ({
             <p className="text-base mb-4">
               Вместе мы можем достичь большего
             </p>
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <button
+                onClick={() => navigate('/terms')}
+                className="text-sm text-white/60 hover:text-[#d4af37] transition-colors underline"
+              >
+                Пользовательское соглашение
+              </button>
+            </div>
             <p className="text-xs opacity-75">
               © 2025 Клуб Muse. Все права защищены.
             </p>
@@ -157,9 +168,31 @@ const Layout = ({
                 required
               />
             </div>
+            <div className="flex items-start gap-3 pt-2">
+              <Checkbox 
+                id="terms-expert-layout"
+                checked={agreedToTermsExpert}
+                onCheckedChange={(checked) => setAgreedToTermsExpert(checked as boolean)}
+                className="mt-1 border-[#d4af37]/30 data-[state=checked]:bg-[#d4af37] data-[state=checked]:border-[#d4af37]"
+              />
+              <Label 
+                htmlFor="terms-expert-layout" 
+                className="text-sm text-gray-400 leading-relaxed cursor-pointer"
+              >
+                Я соглашаюсь с{' '}
+                <button
+                  type="button"
+                  onClick={() => navigate('/terms')}
+                  className="text-[#d4af37] hover:text-[#b8953d] underline"
+                >
+                  Пользовательским соглашением
+                </button>
+              </Label>
+            </div>
             <Button 
               type="submit"
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold"
+              disabled={!agreedToTermsExpert}
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Отправить заявку
             </Button>
@@ -213,11 +246,33 @@ const Layout = ({
                 className="bg-black/50 border-[#d4af37]/30 text-white placeholder:text-gray-500 min-h-[100px]"
               />
             </div>
+            <div className="flex items-start gap-3 pt-2">
+              <Checkbox 
+                id="terms-join-layout"
+                checked={agreedToTermsJoin}
+                onCheckedChange={(checked) => setAgreedToTermsJoin(checked as boolean)}
+                className="mt-1 border-[#d4af37]/30 data-[state=checked]:bg-[#d4af37] data-[state=checked]:border-[#d4af37]"
+              />
+              <Label 
+                htmlFor="terms-join-layout" 
+                className="text-sm text-gray-400 leading-relaxed cursor-pointer"
+              >
+                Я соглашаюсь с{' '}
+                <button
+                  type="button"
+                  onClick={() => navigate('/terms')}
+                  className="text-[#d4af37] hover:text-[#b8953d] underline"
+                >
+                  Пользовательским соглашением
+                </button>
+              </Label>
+            </div>
             <Button 
               type="submit"
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold"
+              disabled={!agreedToTermsJoin}
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Отправить заявку
+              Вступить в клуб
             </Button>
           </form>
         </DialogContent>
