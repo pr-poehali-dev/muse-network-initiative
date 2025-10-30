@@ -195,7 +195,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'title': old_event[1],
                 'date': old_event[2].isoformat() if old_event[2] else None,
                 'time': old_event[3],
-                'location': old_event[6]
+                'location': old_event[6],
+                'is_paid': old_event[9] if len(old_event) > 9 else False,
+                'price': float(old_event[10]) if len(old_event) > 10 and old_event[10] else None
             }
             
             cur.execute("""
@@ -378,12 +380,18 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
                 if speakers_list:
                     speakers_text = f"\n\n🎤 <b>Спикеры:</b>\n" + "\n".join(speakers_list)
             
+            price_text = ""
+            if new_data.get('is_paid') and new_data.get('price'):
+                price_text = f"\n💰 Стоимость: <b>{new_data.get('price'):.0f} ₽</b>"
+            elif not new_data.get('is_paid', False):
+                price_text = "\n🎁 <b>Бесплатно</b>"
+            
             message = f"""🎉 Новое мероприятие в клубе MUSE!
 
 📌 <b>{new_data.get('title', '')}</b>
 📅 Дата: {new_data.get('date', '')} в {new_data.get('time', '')}
 📍 Место: {new_data.get('location', '')}
-👥 Мест: {new_data.get('seats', '')}{speakers_text}
+👥 Мест: {new_data.get('seats', '')}{price_text}{speakers_text}
 
 {new_data.get('description', '')}
 
@@ -409,6 +417,22 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
                 changes.append(f"📍 Место изменено:\n   <s>{old_data.get('location', '')}</s>\n   → <b>{new_data.get('location', '')}</b>")
                 changes_list.append('место')
             
+            old_is_paid = old_data.get('is_paid', False)
+            new_is_paid = new_data.get('is_paid', False)
+            old_price = old_data.get('price')
+            new_price = new_data.get('price')
+            
+            if old_is_paid != new_is_paid or old_price != new_price:
+                if not old_is_paid and new_is_paid:
+                    changes.append(f"💰 Событие стало платным: <b>{new_price:.0f} ₽</b>")
+                    changes_list.append('цена')
+                elif old_is_paid and not new_is_paid:
+                    changes.append(f"🎁 Событие теперь бесплатное!")
+                    changes_list.append('цена')
+                elif old_is_paid and new_is_paid and old_price != new_price:
+                    changes.append(f"💰 Цена изменена:\n   <s>{old_price:.0f} ₽</s>\n   → <b>{new_price:.0f} ₽</b>")
+                    changes_list.append('цена')
+            
             change_summary = ", ".join(changes_list) if changes_list else "информация"
             change_text = "\n\n".join(changes) if changes else "Обновлена информация о мероприятии"
             
@@ -427,6 +451,12 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
             description = new_data.get('description', '')
             description_text = f"\n\n📝 {description}" if description else ""
             
+            price_info = ""
+            if new_data.get('is_paid') and new_data.get('price'):
+                price_info = f"\n💰 Стоимость: <b>{new_data.get('price'):.0f} ₽</b>"
+            elif not new_data.get('is_paid', False):
+                price_info = "\n🎁 <b>Бесплатно</b>"
+            
             message = f"""⚠️ <b>ВАЖНО! Изменения в мероприятии</b>
 
 📌 <b>{new_data.get('title', '')}</b>
@@ -441,7 +471,7 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
 📅 Дата: <b>{new_data.get('date', '')}</b>
 ⏰ Время: <b>{new_data.get('time', '')}</b>
 📍 Место: <b>{new_data.get('location', '')}</b>
-👥 Мест: <b>{new_data.get('seats', '')}</b>{speakers_text}{description_text}"""
+👥 Мест: <b>{new_data.get('seats', '')}</b>{price_info}{speakers_text}{description_text}"""
         
         else:
             return
