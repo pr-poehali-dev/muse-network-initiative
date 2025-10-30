@@ -157,12 +157,11 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                   value={formData.logo_url}
                   onChange={async (e) => {
                     const url = e.target.value;
-                    setFormData({ ...formData, logo_url: url });
                     
                     if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
                       setIsConverting(true);
                       const directUrl = await convertYandexDiskUrl(url);
-                      setFormData({ ...formData, logo_url: directUrl });
+                      setFormData(prev => ({ ...prev, logo_url: directUrl }));
                       setIsConverting(false);
                       
                       if (directUrl !== url) {
@@ -171,6 +170,8 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                           description: 'Яндекс.Диск ссылка преобразована в прямую ссылку',
                         });
                       }
+                    } else {
+                      setFormData(prev => ({ ...prev, logo_url: url }));
                     }
                   }}
                   placeholder="https://... или ссылка с Яндекс.Диска"
