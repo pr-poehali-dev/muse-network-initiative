@@ -439,7 +439,7 @@ const Admin = () => {
           <Button
             onClick={handleLogout}
             variant="outline"
-            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8"
+            className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
           >
             Выйти
           </Button>
@@ -483,7 +483,7 @@ const Admin = () => {
             <div className="mb-8 flex gap-3">
               <Button
                 onClick={() => setShowForm(!showForm)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
               >
                 {showForm ? 'Отменить' : 'Создать событие'}
               </Button>
@@ -491,7 +491,7 @@ const Admin = () => {
               <Button
                 onClick={loadEvents}
                 variant="outline"
-                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
+                className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
               >
                 Обновить
               </Button>
@@ -504,7 +504,7 @@ const Admin = () => {
             <div className="mb-8 flex gap-3">
               <Button
                 onClick={() => setShowSpeakerForm(!showSpeakerForm)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
+                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
               >
                 {showSpeakerForm ? 'Отменить' : 'Добавить эксперта'}
               </Button>
@@ -512,7 +512,7 @@ const Admin = () => {
               <Button
                 onClick={loadSpeakers}
                 variant="outline"
-                className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
+                className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
               >
                 Обновить
               </Button>
@@ -574,7 +574,7 @@ const Admin = () => {
                       <Button
                         type="submit"
                         disabled={isLoading}
-                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
+                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
                       >
                         {isLoading ? 'Сохранение...' : editingSpeaker ? 'Обновить' : 'Добавить'}
                       </Button>
@@ -583,7 +583,7 @@ const Admin = () => {
                         type="button"
                         onClick={resetSpeakerForm}
                         variant="outline"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
+                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
                       >
                         Отменить
                       </Button>
@@ -625,7 +625,7 @@ const Admin = () => {
                             onClick={() => handleEditSpeaker(speaker)}
                             variant="outline"
                             size="sm"
-                            className="flex-1 border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 py-5"
+                            className="flex-1 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 py-5 rounded-lg"
                           >
                             Редактировать
                           </Button>
@@ -633,7 +633,7 @@ const Admin = () => {
                             onClick={() => handleDeleteSpeaker(speaker.id)}
                             variant="outline"
                             size="sm"
-                            className="border-red-500/30 text-red-500 hover:bg-red-500/10 py-5 px-6"
+                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 py-5 px-6 rounded-lg"
                           >
                             Удалить
                           </Button>
@@ -750,7 +750,7 @@ const Admin = () => {
                         onClick={() => setShowSpeakerPicker(!showSpeakerPicker)}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
+                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
                       >
                         Выбрать эксперта
                       </Button>
@@ -759,7 +759,7 @@ const Admin = () => {
                         onClick={addSpeaker}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
+                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
                       >
                         Добавить вручную
                       </Button>
@@ -821,7 +821,7 @@ const Admin = () => {
                             onClick={() => removeSpeaker(index)}
                             variant="outline"
                             size="sm"
-                            className="border-red-500/30 text-red-500 hover:bg-red-500/10 px-4"
+                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-4 rounded-lg"
                           >
                             Удалить
                           </Button>
@@ -835,7 +835,7 @@ const Admin = () => {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6"
+                    className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
                   >
                     {isLoading ? 'Сохранение...' : editingEvent ? 'Обновить и отправить уведомления' : 'Создать и отправить уведомления'}
                   </Button>
@@ -844,7 +844,7 @@ const Admin = () => {
                     type="button"
                     onClick={resetForm}
                     variant="outline"
-                    className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-8 py-6"
+                    className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
                   >
                     Отменить
                   </Button>
@@ -897,7 +897,7 @@ const Admin = () => {
                         onClick={() => handleEdit(event)}
                         variant="outline"
                         size="sm"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10 px-6 py-5"
+                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
                       >
                         Редактировать
                       </Button>
@@ -905,7 +905,7 @@ const Admin = () => {
                         onClick={() => event.id && handleDelete(event.id)}
                         variant="outline"
                         size="sm"
-                        className="border-red-500/30 text-red-500 hover:bg-red-500/10 px-6 py-5"
+                        className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-6 py-5 rounded-lg"
                         disabled={isLoading}
                       >
                         Удалить
