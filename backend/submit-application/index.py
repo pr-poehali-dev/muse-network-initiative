@@ -6,6 +6,7 @@ from google.oauth2 import service_account
 from googleapiclient.discovery import build
 import urllib.request
 import urllib.parse
+import psycopg2
 
 SPREADSHEET_ID = '1kJpQ3gNX5Ls47gLsd75lFH9MtxSiaigilkzYR_xBVuk'
 SHEET_NAME = 'Invite'
@@ -112,6 +113,35 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'isBase64Encoded': False,
             'body': json.dumps({'error': f'Failed to write to Google Sheets: {str(e)}'})
         }
+    
+    database_url = os.environ.get('DATABASE_URL')
+    if database_url:
+        try:
+            conn = psycopg2.connect(database_url)
+            cur = conn.cursor()
+            
+            cur.execute(
+                """
+                INSERT INTO subscribers (name, email, phone, telegram, subscribed_at, is_active)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                ON CONFLICT DO NOTHING
+                """,
+                (
+                    body_data.get('name', ''),
+                    body_data.get('email', ''),
+                    body_data.get('phone', ''),
+                    body_data.get('telegram', ''),
+                    datetime.now(timezone(timedelta(hours=3))),
+                    True
+                )
+            )
+            
+            conn.commit()
+            cur.close()
+            conn.close()
+            print("Subscriber saved to database")
+        except Exception as e:
+            print(f"Database error: {str(e)}")
     
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')

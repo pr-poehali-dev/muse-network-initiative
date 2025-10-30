@@ -1,0 +1,41 @@
+{
+  "tests": [
+    {
+      "name": "Get all events",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "events": "array"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Create new event",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "title": "Test Event",
+        "date": "2025-12-01",
+        "time": "18:00",
+        "description": "Test description",
+        "type": "workshop",
+        "location": "Test Location",
+        "seats": 20,
+        "speakers": [
+          {
+            "name": "Test Speaker",
+            "role": "Expert",
+            "image": "https://example.com/image.jpg"
+          }
+        ]
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "event_id": "number"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
