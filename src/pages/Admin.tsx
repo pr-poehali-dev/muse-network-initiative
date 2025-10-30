@@ -26,6 +26,14 @@ interface Speaker {
   image: string;
 }
 
+interface DBSpeaker {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  bio: string | null;
+}
+
 const Admin = () => {
   const { toast } = useToast();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,6 +43,8 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
+  const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
 
   const [formData, setFormData] = useState<Event>({
     title: '',
@@ -52,6 +62,7 @@ const Admin = () => {
     if (authToken) {
       setIsAuthenticated(true);
       loadEvents();
+      loadSpeakers();
     }
   }, []);
 
@@ -70,6 +81,16 @@ const Admin = () => {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const loadSpeakers = async () => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
+      const data = await response.json();
+      setAvailableSpeakers(data.speakers || []);
+    } catch (error) {
+      console.error('Failed to load speakers:', error);
     }
   };
 
@@ -186,6 +207,19 @@ const Admin = () => {
       ...formData,
       speakers: [...formData.speakers, { name: '', role: '', image: '' }]
     });
+  };
+
+  const addSpeakerFromDB = (dbSpeaker: DBSpeaker) => {
+    const newSpeaker: Speaker = {
+      name: dbSpeaker.name,
+      role: dbSpeaker.role,
+      image: dbSpeaker.image
+    };
+    setFormData({
+      ...formData,
+      speakers: [...formData.speakers, newSpeaker]
+    });
+    setShowSpeakerPicker(false);
   };
 
   const removeSpeaker = (index: number) => {
@@ -422,17 +456,57 @@ const Admin = () => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <Label className="text-white/80">Спикеры</Label>
-                    <Button
-                      type="button"
-                      onClick={addSpeaker}
-                      variant="outline"
-                      size="sm"
-                      className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
-                    >
-                      <Icon name="Plus" className="w-4 h-4 mr-1" />
-                      Добавить спикера
-                    </Button>
+                    <div className="flex gap-2">
+                      <Button
+                        type="button"
+                        onClick={() => setShowSpeakerPicker(!showSpeakerPicker)}
+                        variant="outline"
+                        size="sm"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                      >
+                        <Icon name="Users" className="w-4 h-4 mr-1" />
+                        Выбрать эксперта
+                      </Button>
+                      <Button
+                        type="button"
+                        onClick={addSpeaker}
+                        variant="outline"
+                        size="sm"
+                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                      >
+                        <Icon name="Plus" className="w-4 h-4 mr-1" />
+                        Добавить вручную
+                      </Button>
+                    </div>
                   </div>
+
+                  {showSpeakerPicker && (
+                    <div className="bg-[#0a0a0a] rounded-lg border border-[#d4af37]/20 p-4 max-h-96 overflow-y-auto">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        {availableSpeakers.map((speaker) => (
+                          <button
+                            key={speaker.id}
+                            type="button"
+                            onClick={() => addSpeakerFromDB(speaker)}
+                            className="flex items-center gap-3 p-3 bg-black rounded-lg border border-[#d4af37]/10 hover:border-[#d4af37]/30 transition-colors text-left"
+                          >
+                            {speaker.image && (
+                              <img
+                                src={speaker.image}
+                                alt={speaker.name}
+                                className="w-12 h-12 rounded-full object-cover"
+                              />
+                            )}
+                            <div className="flex-1 min-w-0">
+                              <div className="text-white font-medium truncate">{speaker.name}</div>
+                              <div className="text-white/60 text-sm truncate">{speaker.role}</div>
+                            </div>
+                            <Icon name="Plus" className="w-5 h-5 text-[#d4af37] flex-shrink-0" />
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
 
                   {formData.speakers.map((speaker, index) => (
                     <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-[#0a0a0a] rounded-lg border border-[#d4af37]/10">
