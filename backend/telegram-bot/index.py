@@ -55,6 +55,17 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             print(f"Message from {username} (chat_id: {chat_id}): {text}")
             
             if text.startswith('/start'):
+                start_param = text.split(' ')[1] if len(text.split(' ')) > 1 else None
+                
+                greeting = None
+                if start_param:
+                    if start_param.startswith('invite_'):
+                        greeting = "🎉 Привет! Ваша заявка на вступление в клуб MUSE принята!\n\nПодпишитесь на бота, чтобы получать уведомления о мероприятиях ✨"
+                    elif start_param.startswith('event_'):
+                        greeting = "✅ Отлично! Вы зарегистрированы на событие в клубе MUSE!\n\nПодпишитесь на бота, чтобы получать напоминания и важные изменения 📢"
+                    elif start_param.startswith('expert_'):
+                        greeting = "🎓 Здравствуйте! Ваша заявка стать экспертом клуба MUSE принята!\n\nПодпишитесь на бота, чтобы быть в курсе возможностей для экспертов 💫"
+                
                 conn = psycopg2.connect(database_url)
                 cur = conn.cursor()
                 
@@ -64,15 +75,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 """, (chat_id,))
                 existing = cur.fetchone()
                 
+                first_name = message['from'].get('first_name', '')
+                
                 if existing:
                     cur.execute("""
                         UPDATE subscribers 
                         SET is_active = true
                         WHERE telegram_chat_id = %s
                     """, (chat_id,))
-                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    if greeting:
+                        reply = f"{greeting}\n\n✅ Вы уже подписаны на уведомления!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    else:
+                        reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 else:
-                    first_name = message['from'].get('first_name', '')
                     last_name = message['from'].get('last_name', '')
                     full_name = f"{first_name} {last_name}".strip()
                     
@@ -80,7 +95,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         INSERT INTO subscribers (telegram, telegram_chat_id, name, is_active)
                         VALUES (%s, %s, %s, %s)
                     """, (f'@{username}' if username else str(chat_id), chat_id, full_name, True))
-                    reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    
+                    if greeting:
+                        reply = f"{greeting}\n\n🎉 Готово, {first_name}! Вы подписались на уведомления.\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
+                    else:
+                        reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 
                 conn.commit()
                 cur.close()
@@ -95,7 +114,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     ]]
                 }
                 send_message(chat_id, reply, keyboard)
-                print(f"Registered/updated chat_id {chat_id}")
+                print(f"Registered/updated chat_id {chat_id} with param: {start_param}")
             
             elif text.startswith('/stop'):
                 conn = psycopg2.connect(database_url)
