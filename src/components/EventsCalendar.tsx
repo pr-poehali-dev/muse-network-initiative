@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './calendar/types';
-import { events } from './calendar/eventsData';
 import { EventCardMobile } from './calendar/EventCardMobile';
 import { CalendarGrid } from './calendar/CalendarGrid';
 import { EventCardDesktop } from './calendar/EventCardDesktop';
@@ -21,6 +20,8 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
   const mobileEventsRef = useRef<HTMLDivElement>(null);
+  const [events, setEvents] = useState<Event[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const minSwipeDistance = 50;
 
@@ -29,6 +30,24 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false }: EventsCalendarP
       setIsExpanded(true);
     }
   }, [autoExpand]);
+
+  useEffect(() => {
+    loadEvents();
+    const interval = setInterval(loadEvents, 30000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const loadEvents = async () => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2');
+      const data = await response.json();
+      setEvents(data.events || []);
+    } catch (error) {
+      console.error('Failed to load events:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const getEventTypeConfig = (type: Event['type']): EventTypeConfig => {
     switch(type) {
