@@ -122,28 +122,35 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         
         url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
         
+        user_invited = False
         if user_telegram:
-            invite_text = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅ Отправьте /start чтобы получать напоминания и важные изменения 📢"
-            
-            keyboard = {
-                'inline_keyboard': [[
-                    {
-                        'text': '📲 Пригласить в бот',
-                        'url': f'https://t.me/{user_telegram}?text={urllib.parse.quote(invite_text)}'
-                    }
-                ]]
-            }
-            
-            request_data = {
-                'chat_id': telegram_chat_id,
-                'text': admin_message,
-                'reply_markup': json.dumps(keyboard)
-            }
-        else:
-            request_data = {
-                'chat_id': telegram_chat_id,
-                'text': admin_message
-            }
+            try:
+                user_response = urllib.request.urlopen(
+                    f"https://api.telegram.org/bot{telegram_token}/getChat?chat_id=@{user_telegram}"
+                )
+                user_data = json.loads(user_response.read().decode())
+                
+                if user_data.get('ok'):
+                    user_chat_id = user_data['result']['id']
+                    invite_text = f"Вы зарегистрированы на событие '{body_data.get('event', '')}' в клубе MUSE! ✅\n\nОтправьте /start чтобы получать напоминания и важные изменения 📢"
+                    
+                    user_message_data = urllib.parse.urlencode({
+                        'chat_id': user_chat_id,
+                        'text': invite_text
+                    }).encode()
+                    
+                    urllib.request.urlopen(url, data=user_message_data)
+                    user_invited = True
+                    admin_message += "\n\n✅ Приглашение отправлено пользователю автоматически"
+                    print(f"User invitation sent to @{user_telegram}")
+            except Exception as e:
+                print(f"Failed to send user invitation: {str(e)}")
+                admin_message += f"\n\n⚠️ Не удалось отправить приглашение @{user_telegram} автоматически"
+        
+        request_data = {
+            'chat_id': telegram_chat_id,
+            'text': admin_message
+        }
         
         data = urllib.parse.urlencode(request_data).encode()
         
