@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useToast } from '@/hooks/use-toast';
 import MuseTvSection from '@/components/admin/MuseTvSection';
 import GallerySection from '@/components/admin/GallerySection';
+import VideoGallerySection from '@/components/admin/VideoGallerySection';
 
 interface Event {
   id?: number;
@@ -51,7 +52,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery'>('events');
+  const [activeTab, setActiveTab] = useState<'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'video-gallery'>('events');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -752,6 +753,22 @@ const Admin = () => {
             }
           >
             Галерея
+          </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('video-gallery');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'video-gallery' ? 'default' : 'ghost'}
+            className={activeTab === 'video-gallery'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Видео
           </Button>
         </div>
 
@@ -1487,6 +1504,10 @@ const Admin = () => {
 
         {activeTab === 'gallery' && (
           <GallerySection />
+        )}
+
+        {activeTab === 'video-gallery' && (
+          <VideoGallerySection />
         )}
       </div>
     </div>

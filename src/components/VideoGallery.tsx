@@ -1,38 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 
-const videos = [
-  {
-    id: '6DNFMoaf85akazKot4D3v7',
-    title: 'Событие клуба Muse',
-  },
-  {
-    id: 'kVW5XjxAQRqsgRUjebtttm',
-    title: 'Событие клуба Muse',
-  },
-  {
-    id: '134BF5vbsSb5pdMUgRumai',
-    title: 'Событие клуба Muse',
-  },
-  {
-    id: 'mstH2xzCyPCbhxySejbT2G',
-    title: 'Событие клуба Muse',
-  },
-  {
-    id: '4bAKvqDzot9eEM2U579bkF',
-    title: 'Событие клуба Muse',
-  },
-  {
-    id: 'cRMvVQzRQAeTjSS9WQnQdX',
-    title: 'Событие клуба Muse',
-  },
-];
+interface Video {
+  id: string;
+  title: string;
+}
 
 interface VideoGalleryProps {
   onViewingChange?: (isViewing: boolean) => void;
 }
 
 const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
+  const [videos, setVideos] = useState<Video[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
@@ -43,11 +23,33 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
+    loadVideos();
+  }, []);
+
+  const loadVideos = async () => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/5025e5fe-44cb-42e7-808c-9a1f6a53de0c');
+      const data = await response.json();
+      
+      const videoList = data.items.map((item: any) => ({
+        id: item.kinescope_id,
+        title: item.title
+      }));
+      
+      setVideos(videoList);
+    } catch (error) {
+      console.error('Failed to load videos:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
     if (selectedVideo) {
       const index = videos.findIndex(v => v.id === selectedVideo);
       if (index !== -1) setCurrentIndex(index);
     }
-  }, [selectedVideo]);
+  }, [selectedVideo, videos]);
 
   useEffect(() => {
     onViewingChange?.(selectedVideo !== null);
@@ -106,6 +108,22 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
     }
     setDragOffset(0);
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="text-[#d4af37] text-lg">Загрузка видео...</div>
+      </div>
+    );
+  }
+
+  if (videos.length === 0) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="text-white/60 text-lg">Видеогалерея пуста</div>
+      </div>
+    );
+  }
 
   return (
     <>
