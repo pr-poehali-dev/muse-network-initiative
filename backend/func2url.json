@@ -1,4 +1,6 @@
 {
+  "migrate-events": "https://functions.poehali.dev/3efec0c4-6048-4eba-9f55-53ab99b8c495",
+  "telegram-bot": "https://functions.poehali.dev/86d916fc-7e24-4e3d-af36-baf40ce0c304",
   "manage-events": "https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2",
   "test-forms": "https://functions.poehali.dev/09643959-b383-4936-b05d-ff50dee69d64",
   "rutube-proxy": "https://functions.poehali.dev/2f9b4509-3a9d-47f2-9703-b8ec8b1aa68f",
