@@ -11,8 +11,22 @@ interface PartnersSectionProps {
   setIsLoading: (loading: boolean) => void;
 }
 
-const convertCloudUrl = (url: string): string => {
+const convertCloudUrl = async (url: string): Promise<string> => {
   if (!url) return url;
+  
+  // ImgBB - получаем прямую ссылку
+  if (url.includes('ibb.co/')) {
+    try {
+      const response = await fetch(url);
+      const html = await response.text();
+      const match = html.match(/<meta property="og:image" content="([^"]+)"/);
+      if (match) {
+        return match[1];
+      }
+    } catch (error) {
+      console.error('Failed to parse ImgBB URL:', error);
+    }
+  }
   
   // Google Drive
   if (url.includes('drive.google.com')) {
@@ -166,15 +180,19 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                 <Label className="text-white/80">URL логотипа</Label>
                 <Input
                   value={formData.logo_url}
-                  onChange={(e) => {
+                  onChange={async (e) => {
                     const url = e.target.value;
                     
-                    if (url.includes('disk.yandex.ru') || url.includes('yadi.sk') || url.includes('drive.google.com')) {
-                      const directUrl = convertCloudUrl(url);
+                    if (url.includes('ibb.co/') || url.includes('disk.yandex.ru') || url.includes('yadi.sk') || url.includes('drive.google.com')) {
+                      const directUrl = await convertCloudUrl(url);
                       setFormData(prev => ({ ...prev, logo_url: directUrl }));
                       
                       if (directUrl !== url) {
-                        const service = url.includes('drive.google.com') ? 'Google Drive' : 'Яндекс.Диск';
+                        let service = 'Облачный сервис';
+                        if (url.includes('drive.google.com')) service = 'Google Drive';
+                        else if (url.includes('ibb.co')) service = 'ImgBB';
+                        else service = 'Яндекс.Диск';
+                        
                         toast({
                           title: 'Ссылка конвертирована',
                           description: `${service} ссылка преобразована в прямую ссылку`,
@@ -184,25 +202,19 @@ const PartnersSection = ({ isLoading, setIsLoading }: PartnersSectionProps) => {
                       setFormData(prev => ({ ...prev, logo_url: url }));
                     }
                   }}
-                  placeholder="https://... или ссылка с Google Drive / Яндекс.Диска"
+                  placeholder="https://... или ссылка с ImgBB / Google Drive / Яндекс.Диска"
                   className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                   required
                 />
                 <p className="text-xs text-white/50 mt-2">
-                  💡 Поддерживаются прямые ссылки, Google Drive и Яндекс.Диск
+                  💡 Поддерживаются прямые ссылки и ImgBB (рекомендуется)
                 </p>
-                <div className="mt-2 p-2 bg-blue-900/20 border border-blue-600/30 rounded space-y-2">
-                  <div>
-                    <p className="text-xs text-blue-400 mb-1">Google Drive:</p>
-                    <p className="text-xs text-white/60">1. Загрузите изображение на Google Drive</p>
-                    <p className="text-xs text-white/60">2. Нажмите ПКМ → "Открыть доступ" → "Всем у кого есть ссылка"</p>
-                    <p className="text-xs text-white/60">3. Скопируйте ссылку и вставьте сюда</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-blue-400 mb-1">Яндекс.Диск:</p>
-                    <p className="text-xs text-white/60">1. Загрузите изображение</p>
-                    <p className="text-xs text-white/60">2. "Поделиться" → "Скопировать ссылку"</p>
-                  </div>
+                <div className="mt-2 p-2 bg-green-900/20 border border-green-600/30 rounded">
+                  <p className="text-xs text-green-400 mb-1">✅ ImgBB (рекомендуется):</p>
+                  <p className="text-xs text-white/60">1. Откройте imgbb.com</p>
+                  <p className="text-xs text-white/60">2. Загрузите изображение</p>
+                  <p className="text-xs text-white/60">3. Скопируйте любую ссылку (https://ibb.co/...)</p>
+                  <p className="text-xs text-white/60">4. Вставьте сюда - автоматически конвертируется в прямую</p>
                 </div>
                 {formData.logo_url && (
                   <div className="mt-3 p-3 bg-[#0a0a0a] border border-white/10 rounded">
