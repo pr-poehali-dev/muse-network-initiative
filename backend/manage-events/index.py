@@ -363,7 +363,7 @@ def send_telegram_notification(change_type: str, new_data: Dict, old_data: Dict 
         conn = psycopg2.connect(database_url)
         cur = conn.cursor()
         
-        cur.execute("SELECT telegram_chat_id FROM subscribers WHERE is_active = true AND telegram_chat_id IS NOT NULL")
+        cur.execute("SELECT DISTINCT telegram_chat_id FROM subscribers WHERE is_active = true AND telegram_chat_id IS NOT NULL")
         subscribers = cur.fetchall()
         
         print(f"📬 Found {len(subscribers)} subscribers to notify")
