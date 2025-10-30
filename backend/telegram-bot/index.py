@@ -70,7 +70,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         SET is_active = true
                         WHERE telegram_chat_id = %s
                     """, (chat_id,))
-                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 else:
                     first_name = message['from'].get('first_name', '')
                     last_name = message['from'].get('last_name', '')
@@ -80,13 +80,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         INSERT INTO subscribers (telegram, telegram_chat_id, name, is_active)
                         VALUES (%s, %s, %s, %s)
                     """, (f'@{username}' if username else str(chat_id), chat_id, full_name, True))
-                    reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                    reply = f"🎉 Добро пожаловать в клуб MUSE, {first_name}!\n\nВы успешно подписались на уведомления.\n\nТеперь вы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 
                 conn.commit()
                 cur.close()
                 conn.close()
                 
-                send_message(chat_id, reply)
+                keyboard = {
+                    'inline_keyboard': [[
+                        {
+                            'text': '🔕 Отписаться',
+                            'callback_data': 'unsubscribe'
+                        }
+                    ]]
+                }
+                send_message(chat_id, reply, keyboard)
                 print(f"Registered/updated chat_id {chat_id}")
             
             elif text.startswith('/stop'):
@@ -103,8 +111,16 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 cur.close()
                 conn.close()
                 
-                reply = "😔 Вы отписались от уведомлений клуба MUSE.\n\nЧтобы подписаться снова, используйте /start"
-                send_message(chat_id, reply)
+                reply = "😔 Вы отписались от уведомлений клуба MUSE.\n\nЧтобы подписаться снова, нажмите кнопку ниже:"
+                keyboard = {
+                    'inline_keyboard': [[
+                        {
+                            'text': '✅ Подписаться снова',
+                            'callback_data': 'start_bot'
+                        }
+                    ]]
+                }
+                send_message(chat_id, reply, keyboard)
                 print(f"Unsubscribed chat_id {chat_id}")
             
             elif text.startswith('/status'):
@@ -156,7 +172,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         SET is_active = true
                         WHERE telegram_chat_id = %s
                     """, (chat_id,))
-                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                    reply = "✅ Вы уже подписаны на уведомления клуба MUSE!\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 else:
                     first_name = callback['from'].get('first_name', '')
                     last_name = callback['from'].get('last_name', '')
@@ -166,13 +182,21 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                         INSERT INTO subscribers (telegram, telegram_chat_id, name, is_active)
                         VALUES (%s, %s, %s, %s)
                     """, (username, chat_id, full_name, True))
-                    reply = "🎉 Добро пожаловать в клуб MUSE!\n\nВы успешно подписались на уведомления.\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения\n\nДля отписки используйте /stop"
+                    reply = "🎉 Добро пожаловать в клуб MUSE!\n\nВы успешно подписались на уведомления.\n\nВы будете получать:\n📢 Анонсы новых мероприятий\n⚡️ Уведомления об изменениях\n✨ Эксклюзивные предложения"
                 
                 conn.commit()
                 cur.close()
                 conn.close()
                 
-                send_message(chat_id, reply)
+                keyboard = {
+                    'inline_keyboard': [[
+                        {
+                            'text': '🔕 Отписаться',
+                            'callback_data': 'unsubscribe'
+                        }
+                    ]]
+                }
+                send_message(chat_id, reply, keyboard)
                 
                 telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
                 if telegram_token:
@@ -184,6 +208,42 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     urllib.request.urlopen(answer_url, data=answer_data)
                 
                 print(f"Subscribed via button: chat_id {chat_id}, username @{username}")
+            
+            elif callback_data == 'unsubscribe':
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                
+                cur.execute("""
+                    UPDATE subscribers 
+                    SET is_active = false
+                    WHERE telegram_chat_id = %s
+                """, (chat_id,))
+                
+                conn.commit()
+                cur.close()
+                conn.close()
+                
+                reply = "😔 Вы отписались от уведомлений клуба MUSE.\n\nЧтобы подписаться снова, нажмите кнопку ниже:"
+                keyboard = {
+                    'inline_keyboard': [[
+                        {
+                            'text': '✅ Подписаться снова',
+                            'callback_data': 'start_bot'
+                        }
+                    ]]
+                }
+                send_message(chat_id, reply, keyboard)
+                
+                telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+                if telegram_token:
+                    answer_url = f"https://api.telegram.org/bot{telegram_token}/answerCallbackQuery"
+                    answer_data = urllib.parse.urlencode({
+                        'callback_query_id': callback['id'],
+                        'text': '🔕 Вы отписались'
+                    }).encode()
+                    urllib.request.urlopen(answer_url, data=answer_data)
+                
+                print(f"Unsubscribed via button: chat_id {chat_id}")
         
         return {
             'statusCode': 200,
@@ -202,7 +262,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
 
 
-def send_message(chat_id: int, text: str):
+def send_message(chat_id: int, text: str, keyboard: dict = None):
     '''Send message to Telegram user'''
     telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
     if not telegram_token:
@@ -210,11 +270,17 @@ def send_message(chat_id: int, text: str):
         return
     
     url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-    data = urllib.parse.urlencode({
+    
+    params = {
         'chat_id': chat_id,
         'text': text,
         'parse_mode': 'HTML'
-    }).encode()
+    }
+    
+    if keyboard:
+        params['reply_markup'] = json.dumps(keyboard)
+    
+    data = urllib.parse.urlencode(params).encode()
     
     try:
         urllib.request.urlopen(url, data=data)
