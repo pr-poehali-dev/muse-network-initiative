@@ -49,8 +49,8 @@ const PartnersMarquee = () => {
       
 
 
-      <div className="relative flex gap-12 md:gap-16">
-        <div className="flex animate-marquee whitespace-nowrap gap-12 md:gap-16">
+      <div className="relative flex gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+        <div className="flex animate-marquee whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
@@ -61,12 +61,12 @@ const PartnersMarquee = () => {
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer w-full"
+                  className="block cursor-pointer"
                 >
                   <img
                     src={partner.logo_url}
                     alt={partner.name}
-                    className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                   />
                 </a>
               ) : (
@@ -79,7 +79,7 @@ const PartnersMarquee = () => {
             </div>
           ))}
         </div>
-        <div className="flex animate-marquee2 whitespace-nowrap gap-12 md:gap-16" aria-hidden="true">
+        <div className="flex animate-marquee2 whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
@@ -90,12 +90,12 @@ const PartnersMarquee = () => {
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer w-full"
+                  className="block cursor-pointer"
                 >
                   <img
                     src={partner.logo_url}
                     alt={partner.name}
-                    className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                   />
                 </a>
               ) : (
