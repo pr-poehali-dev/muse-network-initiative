@@ -43,7 +43,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     # GET - list all speakers
     if method == 'GET':
-        cur.execute("SELECT id, name, role, image, bio, display_order FROM speakers ORDER BY display_order, name")
+        cur.execute("SELECT id, name, role, image, bio, display_order, video_url FROM speakers ORDER BY display_order, name")
         rows = cur.fetchall()
         
         speakers = []
@@ -54,7 +54,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'role': row[2],
                 'image': row[3],
                 'bio': row[4],
-                'display_order': row[5]
+                'display_order': row[5],
+                'video_url': row[6]
             })
         
         cur.close()
@@ -79,6 +80,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         image = body_data.get('image', '')
         bio = body_data.get('bio', '')
         display_order = body_data.get('display_order', 0)
+        video_url = body_data.get('video_url', '')
         
         if not name:
             cur.close()
@@ -94,8 +96,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         
         cur.execute(
-            "INSERT INTO speakers (name, role, image, bio, display_order) VALUES (%s, %s, %s, %s, %s) RETURNING id",
-            (name, role, image, bio, display_order)
+            "INSERT INTO speakers (name, role, image, bio, display_order, video_url) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
+            (name, role, image, bio, display_order, video_url)
         )
         speaker_id = cur.fetchone()[0]
         conn.commit()
@@ -136,10 +138,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         image = body_data.get('image', '')
         bio = body_data.get('bio', '')
         display_order = body_data.get('display_order', 0)
+        video_url = body_data.get('video_url', '')
         
         cur.execute(
-            "UPDATE speakers SET name = %s, role = %s, image = %s, bio = %s, display_order = %s WHERE id = %s",
-            (name, role, image, bio, display_order, speaker_id)
+            "UPDATE speakers SET name = %s, role = %s, image = %s, bio = %s, display_order = %s, video_url = %s WHERE id = %s",
+            (name, role, image, bio, display_order, video_url, speaker_id)
         )
         conn.commit()
         
