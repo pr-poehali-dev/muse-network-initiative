@@ -13,6 +13,7 @@ import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
 import WebhookSetup from "./pages/WebhookSetup";
 import NotFound from "./pages/NotFound";
+import CursorTrail from "./components/CursorTrail";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ const AnimatedRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CursorTrail />
       <Toaster />
       <Sonner />
       <BrowserRouter>

@@ -414,6 +414,21 @@ body::-webkit-scrollbar {
     }
   }
 
+  .animate-trail-fade {
+    animation: trail-fade 0.8s ease-out forwards;
+  }
+
+  @keyframes trail-fade {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+  }
+
   .animate-vip-glow {
     animation: vip-glow 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
