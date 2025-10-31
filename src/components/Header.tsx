@@ -62,9 +62,9 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   <img 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                     alt="MUSE Logo"
-                    className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
+                    className="w-16 h-16 object-contain transition-transform duration-300 ease-out group-hover:scale-105"
                     style={{
-                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 0 12px rgba(212, 175, 55, 0.2))'
+                      filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.2))'
                     }}
                   />
                 </button>
@@ -89,15 +89,15 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
                   aria-label="Toggle menu"
                 >
-                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-200 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-200 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
+        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-300 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
           <div className="flex flex-col items-center justify-start py-6 gap-6 px-8 overflow-y-auto max-h-[calc(100vh-96px)]">
             <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
               {menuItems.map((item) => (
