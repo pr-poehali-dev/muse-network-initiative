@@ -478,6 +478,7 @@ const Index = () => {
             <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
               {heroContent.title}
             </div>
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
           </div>
           <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
             {heroContent.tagline}
