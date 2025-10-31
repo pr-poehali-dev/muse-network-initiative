@@ -449,7 +449,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none'}}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none', filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(184,149,61,0.4)) drop-shadow(0 0 90px rgba(212,175,55,0.2))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
@@ -459,10 +459,11 @@ const Index = () => {
                 heroContent.title.split('').map((char, index) => (
                   <span 
                     key={index} 
-                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
                       transformStyle: 'preserve-3d',
-                      cursor: 'none'
+                      cursor: 'none',
+                      filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(184,149,61,0.4)) drop-shadow(0 0 90px rgba(212,175,55,0.2))'
                     }}
                     onMouseEnter={() => {
                       setIsEntering(true);
@@ -475,7 +476,10 @@ const Index = () => {
                 ))
               )}
             </h1>
-            <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
+            <div className="absolute inset-0 font-black text-[#d4af37]/10 blur-2xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
+              {heroContent.title}
+            </div>
+            <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-3xl px-4 pointer-events-none animate-pulse" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)', animationDuration: '3s'}}>
               {heroContent.title}
             </div>
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
