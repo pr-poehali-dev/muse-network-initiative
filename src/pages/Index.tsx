@@ -20,6 +20,7 @@ const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
+  const [hoveredLetterIndex, setHoveredLetterIndex] = useState<number | null>(null);
   const [heroContent, setHeroContent] = useState({
     title: 'MUSE',
     tagline: 'Женский клуб с особенным характером',
@@ -438,10 +439,12 @@ const Index = () => {
               {heroContent.title.split('').map((char, index) => (
                 <span 
                   key={index} 
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:animate-letter-flip transition-transform"
+                  className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] transition-transform ${hoveredLetterIndex === index ? 'animate-letter-flip' : ''}`}
                   style={{
                     transformStyle: 'preserve-3d'
                   }}
+                  onMouseEnter={() => setHoveredLetterIndex(index)}
+                  onMouseLeave={() => setHoveredLetterIndex(null)}
                 >
                   {char === ' ' ? '\u00A0' : char}
                 </span>
