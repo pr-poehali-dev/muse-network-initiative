@@ -132,7 +132,7 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
           <div
             key={video.id}
             onClick={() => setSelectedVideo(video.id)}
-            className="relative overflow-hidden rounded-xl cursor-pointer group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
+            className="relative overflow-hidden rounded-xl group hover:scale-105 transition-all duration-500 aspect-[9/16] bg-black/50"
           >
             <div className="relative w-full h-full">
               <iframe

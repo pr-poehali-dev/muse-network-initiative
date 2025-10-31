@@ -21,7 +21,7 @@ export const EventCardDesktop = ({
 
   return (
     <div
-      className={`bg-gradient-to-br from-[#0a0a0a]/60 to-[#1a1a1a]/60 backdrop-blur-md border-2 rounded-xl p-5 transition-all duration-300 cursor-pointer ${
+      className={`bg-gradient-to-br from-[#0a0a0a]/60 to-[#1a1a1a]/60 backdrop-blur-md border-2 rounded-xl p-5 transition-all duration-300 ${
         isSelected 
           ? 'border-[#d4af37] shadow-xl shadow-[#d4af37]/30' 
           : 'border-[#b8953d]/20 hover:border-[#d4af37]/60 hover:shadow-lg hover:shadow-[#d4af37]/10'
@@ -109,7 +109,7 @@ export const EventCardDesktop = ({
               disabled={event.available_seats === 0}
               className={`flex-1 text-sm py-2 rounded-lg transition-all font-bold flex items-center justify-center gap-2 group ${
                 event.available_seats === 0 
-                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+                  ? 'bg-gray-600 text-gray-400' 
                   : 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black hover:shadow-lg hover:shadow-[#d4af37]/30'
               }`}
             >

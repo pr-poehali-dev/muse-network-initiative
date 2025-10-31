@@ -442,13 +442,12 @@ const Index = () => {
             className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
               animationDelay: '0.8s',
-              opacity: 0,
-              cursor: 'none'
+              opacity: 0
             }}
           >
             <h1 
               className="font-black px-4 tracking-wider" 
-              style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', cursor: 'none'}}
+              style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
               onMouseLeave={() => {
                 setIsTransitioning(true);
                 setHoveredLetter(null);
@@ -458,7 +457,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
@@ -471,7 +470,6 @@ const Index = () => {
                     className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
                       transformStyle: 'preserve-3d',
-                      cursor: 'none',
                       filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
                     }}
                     onMouseEnter={() => {

@@ -88,7 +88,7 @@ const Layout = ({
             <img 
               src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
               alt="Muse" 
-              className="h-12 mx-auto mb-3 floating cursor-pointer hover:scale-105 transition-transform"
+              className="h-12 mx-auto mb-3 floating hover:scale-105 transition-transform"
               onClick={() => navigate('/')}
             />
             <p className="text-base mb-4">
@@ -180,7 +180,7 @@ const Layout = ({
               />
               <Label 
                 htmlFor="terms-expert-layout" 
-                className="text-sm text-gray-400 leading-relaxed cursor-pointer"
+                className="text-sm text-gray-400 leading-relaxed"
               >
                 Я соглашаюсь с{' '}
                 <button
@@ -195,7 +195,7 @@ const Layout = ({
             <Button 
               type="submit"
               disabled={!agreedToTermsExpert}
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50"
             >
               Отправить заявку
             </Button>
@@ -258,7 +258,7 @@ const Layout = ({
               />
               <Label 
                 htmlFor="terms-join-layout" 
-                className="text-sm text-gray-400 leading-relaxed cursor-pointer"
+                className="text-sm text-gray-400 leading-relaxed"
               >
                 Я соглашаюсь с{' '}
                 <button
@@ -273,7 +273,7 @@ const Layout = ({
             <Button 
               type="submit"
               disabled={!agreedToTermsJoin}
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold disabled:opacity-50"
             >
               Вступить в клуб
             </Button>

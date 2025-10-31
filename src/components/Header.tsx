@@ -57,7 +57,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                       navigate('/');
                     }
                   }}
-                  className="w-16 h-16 flex items-center justify-center cursor-pointer group relative"
+                  className="w-16 h-16 flex items-center justify-center group relative"
                 >
                   <img 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
@@ -72,7 +72,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                 
                 <div className="overflow-hidden">
                   <h2 
-                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer transition-all duration-500 ease-out"
+                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap transition-all duration-500 ease-out"
                     style={{
                       transform: titleInHeader ? 'translateX(0) translateZ(0)' : 'translateX(-100%) translateZ(0)',
                       opacity: titleInHeader ? 1 : 0,

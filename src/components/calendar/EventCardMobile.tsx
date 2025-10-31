@@ -21,7 +21,7 @@ export const EventCardMobile = ({
 
   return (
     <div
-      className={`md:flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 rounded-2xl p-4 transition-all cursor-pointer ${
+      className={`md:flex-shrink-0 md:w-64 bg-gradient-to-br from-[#1a1a1a]/90 to-[#0a0a0a]/80 border-2 rounded-2xl p-4 transition-all ${
         isSelected ? 'border-[#d4af37] shadow-xl shadow-[#d4af37]/30' : 'border-[#b8953d]/40 hover:border-[#d4af37] hover:shadow-xl hover:shadow-[#d4af37]/30'
       }`}
       onClick={onSelect}
@@ -106,7 +106,7 @@ export const EventCardMobile = ({
               disabled={event.available_seats === 0}
               className={`flex-1 text-xs font-bold py-2.5 px-4 rounded-lg transition-all flex items-center justify-center gap-2 group ${
                 event.available_seats === 0 
-                  ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
+                  ? 'bg-gray-600 text-gray-400' 
                   : 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black hover:shadow-lg hover:shadow-[#d4af37]/50'
               }`}
             >

@@ -553,7 +553,7 @@ const MuseTV = () => {
             <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#d4af37]/80">Архив</h3>
             <div className="space-y-4">
               {archiveEvents.map(event => (
-                <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group cursor-pointer">
+                <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
                   <CardContent className="p-4 md:p-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
                       <div className="flex-1">

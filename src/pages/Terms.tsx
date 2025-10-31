@@ -14,7 +14,7 @@ const Terms = () => {
             <img 
               src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
               alt="Muse" 
-              className="h-10 cursor-pointer hover:scale-105 transition-transform"
+              className="h-10 hover:scale-105 transition-transform"
               onClick={() => navigate('/')}
             />
             <Button

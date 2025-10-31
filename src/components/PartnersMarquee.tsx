@@ -61,7 +61,7 @@ const PartnersMarquee = () => {
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer"
+                  className="block"
                 >
                   <img
                     src={partner.logo_url}
@@ -90,7 +90,7 @@ const PartnersMarquee = () => {
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer"
+                  className="block"
                 >
                   <img
                     src={partner.logo_url}

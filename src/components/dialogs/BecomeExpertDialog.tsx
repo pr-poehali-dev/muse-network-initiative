@@ -138,7 +138,7 @@ const BecomeExpertDialog = ({
               />
               <Label 
                 htmlFor="terms-expert" 
-                className="text-sm text-white/70 leading-relaxed cursor-pointer"
+                className="text-sm text-white/70 leading-relaxed"
               >
                 Я соглашаюсь с{' '}
                 <button
@@ -153,7 +153,7 @@ const BecomeExpertDialog = ({
             <Button 
               type="submit"
               disabled={isSubmitting || !agreedToTerms}
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50"
             >
               {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
             </Button>

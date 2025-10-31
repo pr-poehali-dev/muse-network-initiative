@@ -33,7 +33,7 @@ export const VideoCard = ({ item, metadata, onClick }: VideoCardProps) => {
 
   return (
     <Card 
-      className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all h-full flex flex-col"
+      className="bg-black/40 border-[#d4af37]/20 overflow-hidden group hover:border-[#d4af37]/50 transition-all h-full flex flex-col"
       onClick={onClick}
     >
       <CardContent className="p-0 flex flex-col h-full">

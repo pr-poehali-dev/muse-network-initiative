@@ -67,7 +67,7 @@ const VideoCard = ({ item, onClick }: VideoCardProps) => {
 
   return (
     <Card 
-      className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
+      className="bg-black/40 border-[#d4af37]/20 overflow-hidden group hover:border-[#d4af37]/50 transition-all"
       onClick={onClick}
     >
       <CardContent className="p-0">
