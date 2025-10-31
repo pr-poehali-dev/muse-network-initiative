@@ -1,4 +1,5 @@
 {
+  "admin-cleanup": "https://functions.poehali.dev/5ad37c65-b74a-49dd-a1ac-e89b033e56c9",
   "manage-homepage": "https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95",
   "imgbb-parser": "https://functions.poehali.dev/09d5e02b-7cfd-4476-a38b-b2d456cca0c2",
   "yandex-disk-proxy": "https://functions.poehali.dev/feae6b7c-94fa-43c4-a9a0-34526f6664d9",

@@ -57,7 +57,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners'>('homepage');
+  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'settings'>('homepage');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -659,6 +659,46 @@ const Admin = () => {
     setPassword('');
   };
 
+  const handleCleanupSubscribers = async () => {
+    if (!confirm('Вы уверены, что хотите удалить ВСЕ регистрации? Это действие необратимо!')) {
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const token = localStorage.getItem('muse_admin_token');
+      const response = await fetch('https://functions.poehali.dev/5ad37c65-b74a-49dd-a1ac-e89b033e56c9', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'X-Admin-Token': token || ''
+        },
+        body: JSON.stringify({ table: 'subscribers' })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast({
+          title: 'Успешно!',
+          description: `Удалено ${data.deleted} записей из таблицы регистраций`,
+        });
+      } else {
+        throw new Error(data.error || 'Ошибка очистки');
+      }
+    } catch (error) {
+      console.error('Failed to cleanup:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Не удалось очистить данные';
+      toast({
+        title: 'Ошибка',
+        description: errorMessage,
+        variant: 'destructive'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
@@ -826,6 +866,22 @@ const Admin = () => {
             }
           >
             Партнеры
+          </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('settings');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'settings' ? 'default' : 'ghost'}
+            className={activeTab === 'settings'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Настройки
           </Button>
         </div>
 
@@ -1792,6 +1848,35 @@ const Admin = () => {
 
         {activeTab === 'partners' && (
           <PartnersSection isLoading={isLoading} setIsLoading={setIsLoading} />
+        )}
+
+        {activeTab === 'settings' && (
+          <div className="space-y-6">
+            <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+              <CardHeader>
+                <CardTitle className="text-xl text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355]">
+                  Опасные операции
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="p-4 bg-red-950/20 border border-red-500/30 rounded-lg">
+                  <h3 className="text-white font-semibold mb-2">Очистка регистраций</h3>
+                  <p className="text-white/60 text-sm mb-4">
+                    Удаляет все записи из таблиц: регистрации на события, заявки на вступление в клуб и заявки на экспертизу.
+                    Это действие необратимо!
+                  </p>
+                  <Button
+                    onClick={handleCleanupSubscribers}
+                    disabled={isLoading}
+                    variant="destructive"
+                    className="bg-red-600 hover:bg-red-700"
+                  >
+                    {isLoading ? 'Очистка...' : 'Очистить все регистрации'}
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
       </div>
     </div>
