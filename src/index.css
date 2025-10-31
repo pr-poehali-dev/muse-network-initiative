@@ -415,21 +415,17 @@ body::-webkit-scrollbar {
   }
 
   .animate-trail-fade {
-    animation: trail-fade 1.4s ease-out forwards;
+    animation: trail-fade 0.8s ease-out forwards;
   }
 
   @keyframes trail-fade {
     0% {
-      opacity: 0.9;
-      transform: scale(1.1);
-    }
-    20% {
-      opacity: 0.8;
+      opacity: 1;
       transform: scale(1);
     }
     100% {
       opacity: 0;
-      transform: scale(0.5);
+      transform: scale(0.3);
     }
   }
 

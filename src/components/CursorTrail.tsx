@@ -12,18 +12,8 @@ const CursorTrail = () => {
 
   useEffect(() => {
     let animationFrame: number;
-    let lastTime = 0;
-    const throttleDelay = 5;
     
     const handleMouseMove = (e: MouseEvent) => {
-      const currentTime = Date.now();
-      
-      if (currentTime - lastTime < throttleDelay) {
-        return;
-      }
-      
-      lastTime = currentTime;
-      
       const newTrail: Trail = {
         x: e.clientX,
         y: e.clientY,
@@ -35,7 +25,7 @@ const CursorTrail = () => {
       
       setTimeout(() => {
         setTrails(prev => prev.filter(t => t.id !== newTrail.id));
-      }, 1400);
+      }, 800);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -53,37 +43,14 @@ const CursorTrail = () => {
       {trails.map((trail) => (
         <div
           key={trail.id}
-          className="absolute animate-trail-fade"
+          className="absolute w-6 h-6 rounded-full animate-trail-fade"
           style={{
-            left: trail.x,
-            top: trail.y,
+            left: trail.x - 12,
+            top: trail.y - 12,
+            background: 'radial-gradient(circle, rgba(184,149,61,0.6) 0%, rgba(139,115,85,0.3) 50%, transparent 100%)',
+            boxShadow: '0 0 20px rgba(212,175,55,0.5)',
           }}
-        >
-          <div 
-            className="absolute"
-            style={{
-              width: '16px',
-              height: '24px',
-              left: '-8px',
-              top: '-12px',
-              background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(212,175,55,0.9) 0%, rgba(184,149,61,0.6) 40%, transparent 100%)',
-              borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-              boxShadow: '0 0 20px rgba(212,175,55,0.8), 0 0 10px rgba(212,175,55,0.6)',
-            }}
-          />
-          <div 
-            className="absolute"
-            style={{
-              width: '10px',
-              height: '18px',
-              left: '-5px',
-              top: '8px',
-              background: 'linear-gradient(to bottom, rgba(212,175,55,0.7) 0%, rgba(184,149,61,0.4) 50%, transparent 100%)',
-              borderRadius: '50% 50% 80% 80% / 30% 30% 70% 70%',
-              filter: 'blur(1px)',
-            }}
-          />
-        </div>
+        />
       ))}
     </div>
   );
