@@ -430,20 +430,11 @@ body::-webkit-scrollbar {
   }
 
   .letter-spin {
-    transition: transform 0.1s ease;
+    transition: transform 0.3s ease;
   }
 
   .letter-spin:hover {
-    animation: letter-flip 1.2s linear;
-  }
-
-  @keyframes letter-flip {
-    0% {
-      transform: rotateY(0deg);
-    }
-    100% {
-      transform: rotateY(360deg);
-    }
+    transform: translateY(-8px) rotate(3deg);
   }
 
   .animate-vip-glow {
