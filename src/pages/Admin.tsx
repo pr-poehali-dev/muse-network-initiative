@@ -119,7 +119,7 @@ const Admin = () => {
     date: '',
     time: '18:00',
     description: '',
-    type: 'guest',
+    type: 'online',
     location: '',
     seats: 20,
     speakers: [{ name: '', role: '', image: '' }],
@@ -1323,9 +1323,10 @@ const Admin = () => {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                        <SelectItem value="offline">Оффлайн встреча</SelectItem>
-                        <SelectItem value="guest">Гостевая встреча</SelectItem>
+                        <SelectItem value="offline">Офлайн</SelectItem>
+                        <SelectItem value="online">Онлайн</SelectItem>
                         <SelectItem value="workshop">Мастер-класс</SelectItem>
+                        <SelectItem value="guest">Онлайн (гость)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
