@@ -571,10 +571,23 @@ const Admin = () => {
     setFormData({ ...formData, speakers: newSpeakers });
   };
 
-  const updateSpeaker = (index: number, field: keyof Speaker, value: string) => {
-    const newSpeakers = [...formData.speakers];
-    newSpeakers[index] = { ...newSpeakers[index], [field]: value };
-    setFormData({ ...formData, speakers: newSpeakers });
+  const updateSpeaker = async (index: number, field: keyof Speaker, value: string) => {
+    if (field === 'image' && isCloudUrl(value)) {
+      const directUrl = await convertCloudUrl(value);
+      const newSpeakers = [...formData.speakers];
+      newSpeakers[index] = { ...newSpeakers[index], [field]: directUrl };
+      setFormData({ ...formData, speakers: newSpeakers });
+      if (directUrl !== value) {
+        toast({
+          title: 'Ссылка конвертирована',
+          description: `${getServiceName(value)} ссылка преобразована в прямую ссылку`,
+        });
+      }
+    } else {
+      const newSpeakers = [...formData.speakers];
+      newSpeakers[index] = { ...newSpeakers[index], [field]: value };
+      setFormData({ ...formData, speakers: newSpeakers });
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -1523,20 +1536,23 @@ const Admin = () => {
                         onChange={(e) => updateSpeaker(index, 'role', e.target.value)}
                         className="bg-black border-[#d4af37]/20 text-white"
                       />
-                      <div className="flex gap-2">
+                      <div className="flex-1">
                         <Input
-                          placeholder="URL изображения"
+                          placeholder="URL изображения или ссылка с ImgBB"
                           value={speaker.image}
                           onChange={(e) => updateSpeaker(index, 'image', e.target.value)}
                           className="bg-black border-[#d4af37]/20 text-white"
                         />
+                        <p className="text-xs text-white/50 mt-1">💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск</p>
+                      </div>
+                      <div className="flex gap-2">
                         {formData.speakers.length > 1 && (
                           <Button
                             type="button"
                             onClick={() => removeSpeaker(index)}
                             variant="outline"
                             size="sm"
-                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-4 rounded-lg"
+                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 px-4 rounded-lg flex-shrink-0"
                           >
                             Удалить
                           </Button>
