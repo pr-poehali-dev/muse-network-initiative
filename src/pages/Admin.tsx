@@ -660,10 +660,14 @@ const Admin = () => {
   };
 
   const handleCleanupSubscribers = async () => {
-    const adminToken = prompt('Введите секретный токен для подтверждения очистки данных:');
+    let adminToken = localStorage.getItem('muse_cleanup_token');
     
     if (!adminToken) {
-      return;
+      adminToken = prompt('Введите секретный токен для подтверждения очистки данных:');
+      
+      if (!adminToken) {
+        return;
+      }
     }
 
     if (!confirm('Вы уверены, что хотите удалить ВСЕ регистрации? Это действие необратимо!')) {
@@ -684,11 +688,14 @@ const Admin = () => {
       const data = await response.json();
 
       if (response.ok && data.success) {
+        localStorage.setItem('muse_cleanup_token', adminToken);
+        
         toast({
           title: 'Успешно!',
           description: `Удалено ${data.deleted} записей. ${data.sheets_cleaned?.length > 0 ? 'Очищены таблицы: ' + data.sheets_cleaned.join(', ') : ''}`,
         });
       } else {
+        localStorage.removeItem('muse_cleanup_token');
         throw new Error(data.error || 'Ошибка очистки');
       }
     } catch (error) {
