@@ -69,14 +69,14 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   />
                 </button>
                 
-                <div
-                  className="transition-all duration-500 overflow-hidden"
-                  style={{
-                    maxWidth: titleInHeader ? '200px' : '0px',
-                    opacity: titleInHeader ? 1 : 0,
-                  }}
-                >
-                  <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer">
+                <div className="overflow-hidden">
+                  <h2 
+                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer transition-transform duration-300 ease-out"
+                    style={{
+                      transform: titleInHeader ? 'translateX(0)' : 'translateX(-100%)',
+                      opacity: titleInHeader ? 1 : 0,
+                    }}
+                  >
                     MUSE
                   </h2>
                 </div>
