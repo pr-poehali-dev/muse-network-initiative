@@ -77,12 +77,17 @@ export const EventCardDesktop = ({
               {event.location}
             </div>
             <div className="flex items-center gap-3 flex-wrap">
-              {event.seats && (
+              {event.seats ? (
                 <div className="flex items-center gap-1 text-sm">
                   <Icon name="Users" size={14} className={event.available_seats === 0 ? 'text-red-400' : 'text-[#d4af37]'} />
                   <span className={event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}>
                     {event.available_seats !== undefined ? `${event.available_seats} из ${event.seats} мест` : `${event.seats} мест`}
                   </span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1 text-sm">
+                  <Icon name="Users" size={14} className="text-[#d4af37]" />
+                  <span className="text-[#d4af37]">Без ограничений</span>
                 </div>
               )}
               {event.is_paid && event.price ? (
@@ -102,7 +107,8 @@ export const EventCardDesktop = ({
             <button 
               onClick={(e) => {
                 e.stopPropagation();
-                if (event.available_seats !== 0) {
+                const canRegister = event.available_seats === null || event.available_seats > 0;
+                if (canRegister) {
                   onRegister?.(event.title);
                 }
               }}

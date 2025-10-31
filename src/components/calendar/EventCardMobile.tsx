@@ -74,10 +74,15 @@ export const EventCardMobile = ({
                 <Icon name="MapPin" size={12} className="text-[#d4af37]" />
                 <span>{event.location}</span>
               </div>
-              {event.seats && (
+              {event.seats ? (
                 <div className={`flex items-center gap-1 ${event.available_seats === 0 ? 'text-red-400 font-bold' : 'text-[#d4af37]'}`}>
                   <Icon name="Users" size={12} />
                   <span>{event.available_seats !== undefined ? `${event.available_seats} из ${event.seats}` : `${event.seats} мест`}</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-1 text-[#d4af37]">
+                  <Icon name="Users" size={12} />
+                  <span>Без ограничений</span>
                 </div>
               )}
             </div>
@@ -99,7 +104,8 @@ export const EventCardMobile = ({
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                if (event.available_seats !== 0) {
+                const canRegister = event.available_seats === null || event.available_seats > 0;
+                if (canRegister) {
                   onRegister?.(event.title);
                 }
               }}

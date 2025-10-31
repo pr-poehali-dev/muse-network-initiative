@@ -65,10 +65,16 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             rows = cur.fetchall()
             events_list = []
             for row in rows:
-                total_seats = row[7] or 0
+                total_seats = row[7]
                 registered = row[8] or 0
                 is_paid = row[9]
                 price = float(row[10]) if row[10] else None
+                
+                if total_seats is None or total_seats == 0:
+                    available_seats = None
+                else:
+                    available_seats = total_seats - registered
+                
                 events_list.append({
                     'id': row[0],
                     'title': row[1],
@@ -79,7 +85,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'location': row[6],
                     'seats': total_seats,
                     'registered_count': registered,
-                    'available_seats': total_seats - registered,
+                    'available_seats': available_seats,
                     'is_paid': is_paid,
                     'price': price,
                     'speakers': row[11] if row[11] else []

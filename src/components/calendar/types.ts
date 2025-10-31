@@ -12,9 +12,9 @@ export interface Event {
   description: string;
   type: 'offline' | 'online' | 'workshop' | 'guest';
   location: string;
-  seats?: number;
+  seats?: number | null;
   registered_count?: number;
-  available_seats?: number;
+  available_seats?: number | null;
   speakers: Speaker[];
   is_paid: boolean;
   price?: number;

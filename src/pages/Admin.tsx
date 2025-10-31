@@ -343,7 +343,15 @@ const Admin = () => {
     try {
       const url = 'https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2';
       const method = editingEvent ? 'PUT' : 'POST';
-      const body = editingEvent ? { ...formData, id: editingEvent.id, silent: silentMode } : formData;
+      
+      const eventToSave = {
+        ...formData,
+        seats: unlimitedSeats ? null : formData.seats
+      };
+      
+      const body = editingEvent 
+        ? { ...eventToSave, id: editingEvent.id, silent: silentMode } 
+        : eventToSave;
 
       console.log('Saving event:', method, body);
       
