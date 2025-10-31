@@ -36,7 +36,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
       try {
         const response = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
         const data = await response.json();
+        console.log('Hero section loaded data:', data);
         if (data.content?.hero) {
+          console.log('Setting hero content:', data.content.hero);
           setContent(data.content.hero);
         }
       } catch (error) {
