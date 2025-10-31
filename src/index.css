@@ -35,23 +35,24 @@ body {
 
 .custom-cursor {
   position: fixed;
-  width: 20px;
-  height: 20px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(184, 149, 61, 0.8) 0%,
-    rgba(139, 115, 85, 0.6) 50%,
-    rgba(107, 93, 66, 0.3) 100%
+    rgba(212, 175, 55, 1) 0%,
+    rgba(184, 149, 61, 0.9) 40%,
+    rgba(139, 115, 85, 0.6) 100%
   );
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
   animation: blob-pulse 2s ease-in-out infinite;
-  filter: blur(2px);
+  filter: blur(1px);
   box-shadow:
-    0 0 15px rgba(212, 175, 55, 0.5),
-    0 0 30px rgba(184, 149, 61, 0.3);
+    0 0 25px rgba(212, 175, 55, 0.8),
+    0 0 50px rgba(184, 149, 61, 0.5),
+    0 0 80px rgba(212, 175, 55, 0.3);
 }
 
 @keyframes blob-pulse {
