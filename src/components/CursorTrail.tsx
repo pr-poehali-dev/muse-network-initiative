@@ -4,20 +4,33 @@ interface Trail {
   x: number;
   y: number;
   id: number;
+  letter: string;
 }
 
 const CursorTrail = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [nextId, setNextId] = useState(0);
+  const letters = ['M', 'U', 'S', 'E'];
 
   useEffect(() => {
     let animationFrame: number;
+    let lastTime = 0;
+    const throttleDelay = 30;
     
     const handleMouseMove = (e: MouseEvent) => {
+      const currentTime = Date.now();
+      
+      if (currentTime - lastTime < throttleDelay) {
+        return;
+      }
+      
+      lastTime = currentTime;
+      
       const newTrail: Trail = {
         x: e.clientX,
         y: e.clientY,
-        id: nextId
+        id: nextId,
+        letter: letters[nextId % letters.length]
       };
       
       setTrails(prev => [...prev, newTrail]);
@@ -25,7 +38,7 @@ const CursorTrail = () => {
       
       setTimeout(() => {
         setTrails(prev => prev.filter(t => t.id !== newTrail.id));
-      }, 800);
+      }, 1200);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -43,14 +56,20 @@ const CursorTrail = () => {
       {trails.map((trail) => (
         <div
           key={trail.id}
-          className="absolute w-6 h-6 rounded-full animate-trail-fade"
+          className="absolute animate-trail-fade text-2xl font-black"
           style={{
             left: trail.x - 12,
             top: trail.y - 12,
-            background: 'radial-gradient(circle, rgba(184,149,61,0.6) 0%, rgba(139,115,85,0.3) 50%, transparent 100%)',
-            boxShadow: '0 0 20px rgba(212,175,55,0.5)',
+            color: 'transparent',
+            backgroundImage: 'linear-gradient(135deg, #d4af37 0%, #b8953d 50%, #8b7355 100%)',
+            backgroundClip: 'text',
+            WebkitBackgroundClip: 'text',
+            textShadow: '0 0 20px rgba(212,175,55,0.6), 0 0 10px rgba(212,175,55,0.4)',
+            filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.5))',
           }}
-        />
+        >
+          {trail.letter}
+        </div>
       ))}
     </div>
   );
