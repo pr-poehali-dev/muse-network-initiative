@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+
 import Index from "./pages/Index";
 import Headliners from "./pages/Headliners";
 import MuseTV from "./pages/MuseTV";
@@ -13,7 +13,7 @@ import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
 import WebhookSetup from "./pages/WebhookSetup";
 import NotFound from "./pages/NotFound";
-import CursorTrail from "./components/CursorTrail";
+
 
 const queryClient = new QueryClient();
 
@@ -36,32 +36,9 @@ const AnimatedRoutes = () => {
   );
 };
 
-const CustomCursor = () => {
-  const cursorRef = useState<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const cursor = document.querySelector('.custom-cursor') as HTMLDivElement;
-    if (!cursor) return;
-
-    const updatePosition = (e: MouseEvent) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    };
-
-    window.addEventListener('mousemove', updatePosition, { passive: true });
-    return () => window.removeEventListener('mousemove', updatePosition);
-  }, []);
-
-  return (
-    <div className="custom-cursor" />
-  );
-};
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <CustomCursor />
-      <CursorTrail />
       <Toaster />
       <Sonner />
       <BrowserRouter>
