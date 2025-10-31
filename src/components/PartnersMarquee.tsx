@@ -49,62 +49,62 @@ const PartnersMarquee = () => {
       
 
 
-      <div className="relative flex overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap">
+      <div className="relative flex overflow-hidden gap-6 md:gap-12">
+        <div className="flex animate-marquee gap-6 md:gap-12">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
-              className="mx-4 md:mx-8 flex items-center justify-center flex-shrink-0"
-              style={{ minWidth: '120px', width: '150px' }}
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ width: '140px' }}
             >
               {partner.website_url ? (
                 <a
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer"
+                  className="block cursor-pointer w-full"
                 >
                   <img
                     src={partner.logo_url}
                     alt={partner.name}
-                    className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                   />
                 </a>
               ) : (
                 <img
                   src={partner.logo_url}
                   alt={partner.name}
-                  className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                 />
               )}
             </div>
           ))}
         </div>
-        <div className="absolute top-0 flex animate-marquee2 whitespace-nowrap">
+        <div className="flex animate-marquee gap-6 md:gap-12" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
-              className="mx-4 md:mx-8 flex items-center justify-center flex-shrink-0"
-              style={{ minWidth: '120px', width: '150px' }}
+              className="flex items-center justify-center flex-shrink-0"
+              style={{ width: '140px' }}
             >
               {partner.website_url ? (
                 <a
                   href={partner.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block cursor-pointer"
+                  className="block cursor-pointer w-full"
                 >
                   <img
                     src={partner.logo_url}
                     alt={partner.name}
-                    className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                   />
                 </a>
               ) : (
                 <img
                   src={partner.logo_url}
                   alt={partner.name}
-                  className="h-16 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
                 />
               )}
             </div>
