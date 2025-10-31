@@ -430,15 +430,16 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear group cursor-default" 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
               animationDelay: '0.8s',
-              opacity: 0
+              opacity: 0,
+              cursor: 'none'
             }}
           >
             <h1 
               className="font-black px-4 tracking-wider" 
-              style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
+              style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', cursor: 'none'}}
               onMouseLeave={() => {
                 setIsTransitioning(true);
                 setHoveredLetter(null);
@@ -448,7 +449,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
