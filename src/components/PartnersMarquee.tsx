@@ -49,12 +49,12 @@ const PartnersMarquee = () => {
       
 
 
-      <div className="relative flex">
-        <div className="flex animate-marquee whitespace-nowrap">
+      <div className="relative flex gap-12 md:gap-16">
+        <div className="flex animate-marquee whitespace-nowrap gap-12 md:gap-16">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
-              className="inline-flex items-center justify-center flex-shrink-0 px-6 md:px-8"
+              className="inline-flex items-center justify-center flex-shrink-0"
             >
               {partner.website_url ? (
                 <a
@@ -79,11 +79,11 @@ const PartnersMarquee = () => {
             </div>
           ))}
         </div>
-        <div className="flex animate-marquee2 whitespace-nowrap" aria-hidden="true">
+        <div className="flex animate-marquee2 whitespace-nowrap gap-12 md:gap-16" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
-              className="inline-flex items-center justify-center flex-shrink-0 px-6 md:px-8"
+              className="inline-flex items-center justify-center flex-shrink-0"
             >
               {partner.website_url ? (
                 <a
