@@ -12,8 +12,18 @@ const CursorTrail = () => {
 
   useEffect(() => {
     let animationFrame: number;
+    let lastTime = 0;
+    const throttleDelay = 8;
     
     const handleMouseMove = (e: MouseEvent) => {
+      const currentTime = Date.now();
+      
+      if (currentTime - lastTime < throttleDelay) {
+        return;
+      }
+      
+      lastTime = currentTime;
+      
       const newTrail: Trail = {
         x: e.clientX,
         y: e.clientY,
@@ -25,7 +35,7 @@ const CursorTrail = () => {
       
       setTimeout(() => {
         setTrails(prev => prev.filter(t => t.id !== newTrail.id));
-      }, 800);
+      }, 1000);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
