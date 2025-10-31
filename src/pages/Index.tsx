@@ -434,7 +434,11 @@ const Index = () => {
               opacity: 0
             }}
           >
-            <h1 className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" style={{perspective: '1000px'}}>
+            <h1 
+              className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" 
+              style={{perspective: '1000px'}}
+              onMouseLeave={() => setHoveredLetter(null)}
+            >
               {hoveredLetter ? (
                 <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] animate-in fade-in duration-300">
                   {hoveredLetter === 'M' && 'Mindset'}
@@ -451,7 +455,6 @@ const Index = () => {
                       transformStyle: 'preserve-3d'
                     }}
                     onMouseEnter={() => setHoveredLetter(char)}
-                    onMouseLeave={() => setHoveredLetter(null)}
                   >
                     {char === ' ' ? '\u00A0' : char}
                   </span>
