@@ -441,12 +441,10 @@ const Index = () => {
               style={{perspective: '1000px'}}
               onMouseLeave={() => {
                 setIsTransitioning(true);
-                setTimeout(() => {
-                  setHoveredLetter(null);
-                }, 700);
+                setHoveredLetter(null);
                 setTimeout(() => {
                   setIsTransitioning(false);
-                }, 750);
+                }, 50);
               }}
             >
               {hoveredLetter ? (
