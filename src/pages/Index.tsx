@@ -435,7 +435,7 @@ const Index = () => {
             }}
           >
             <h1 
-              className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" 
+              className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" 
               style={{perspective: '1000px'}}
               onMouseLeave={() => setHoveredLetter(null)}
             >
@@ -461,7 +461,7 @@ const Index = () => {
                 ))
               )}
             </h1>
-            <div className="absolute inset-0 text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 pointer-events-none">
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 pointer-events-none">
               {heroContent.title}
             </div>
           </div>
