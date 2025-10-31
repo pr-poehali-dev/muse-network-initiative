@@ -30,6 +30,48 @@ body {
   width: 100%;
   max-width: 100vw;
   position: relative;
+  cursor: none;
+}
+
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(184, 149, 61, 0.8) 0%,
+    rgba(139, 115, 85, 0.6) 50%,
+    rgba(107, 93, 66, 0.3) 100%
+  );
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  animation: blob-pulse 2s ease-in-out infinite;
+  filter: blur(2px);
+  box-shadow:
+    0 0 15px rgba(212, 175, 55, 0.5),
+    0 0 30px rgba(184, 149, 61, 0.3);
+}
+
+@keyframes blob-pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50% 45% 55% 50%;
+  }
+  25% {
+    transform: translate(-50%, -50%) scale(1.1);
+    border-radius: 45% 55% 50% 50%;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(0.95);
+    border-radius: 55% 50% 45% 55%;
+  }
+  75% {
+    transform: translate(-50%, -50%) scale(1.05);
+    border-radius: 50% 55% 50% 45%;
+  }
 }
 
 body::-webkit-scrollbar {
