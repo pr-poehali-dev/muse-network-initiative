@@ -47,19 +47,15 @@ const PartnersMarquee = () => {
     <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] py-8 border-y border-[#d4af37]/20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/5 via-transparent to-transparent"></div>
       
-      <div className="container mx-auto px-4 mb-3">
-        <h3 className="text-center text-sm uppercase tracking-widest text-[#d4af37]/60 font-light">
-          Партнеры клуба
-        </h3>
-      </div>
+
 
       <div className="relative flex overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
-              className="mx-8 flex items-center justify-center"
-              style={{ minWidth: '200px' }}
+              className="mx-4 md:mx-8 flex items-center justify-center flex-shrink-0"
+              style={{ minWidth: '120px', width: '150px' }}
             >
               {partner.website_url ? (
                 <a
@@ -88,8 +84,8 @@ const PartnersMarquee = () => {
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
-              className="mx-8 flex items-center justify-center"
-              style={{ minWidth: '200px' }}
+              className="mx-4 md:mx-8 flex items-center justify-center flex-shrink-0"
+              style={{ minWidth: '120px', width: '150px' }}
             >
               {partner.website_url ? (
                 <a
