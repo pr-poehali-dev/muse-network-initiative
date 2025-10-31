@@ -39,6 +39,7 @@ interface DBSpeaker {
   role: string;
   image: string;
   bio: string | null;
+  video_url: string | null;
   display_order: number;
 }
 
@@ -62,6 +63,7 @@ const Admin = () => {
     role: '',
     image: '',
     bio: '',
+    video_url: '',
     display_order: 0
   });
   const [isUploadingSpeakerImage, setIsUploadingSpeakerImage] = useState(false);
@@ -517,6 +519,7 @@ const Admin = () => {
       role: '',
       image: '',
       bio: '',
+      video_url: '',
       display_order: 0
     });
     setEditingSpeaker(null);
@@ -529,6 +532,7 @@ const Admin = () => {
       role: speaker.role,
       image: speaker.image,
       bio: speaker.bio || '',
+      video_url: speaker.video_url || '',
       display_order: speaker.display_order
     });
     setEditingSpeaker(speaker);
@@ -992,6 +996,18 @@ const Admin = () => {
                     </div>
 
                     <div>
+                      <Label htmlFor="speaker-video" className="text-white/80">Видео из Кинескоп (для главной страницы)</Label>
+                      <Input
+                        id="speaker-video"
+                        value={speakerFormData.video_url}
+                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, video_url: e.target.value })}
+                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                        placeholder="https://kinescope.io/..."
+                      />
+                      <p className="text-xs text-white/50 mt-1">💡 Вставьте ссылку на видео из Кинескоп. Видео будет показываться только в блоке "Наши эксперты" на главной странице</p>
+                    </div>
+
+                    <div>
                       <Label htmlFor="speaker-order" className="text-white/80">Порядок отображения</Label>
                       <Input
                         id="speaker-order"
@@ -1054,6 +1070,9 @@ const Admin = () => {
                             <p className="text-sm text-white/60 truncate">{speaker.role}</p>
                             {speaker.bio && (
                               <p className="text-xs text-white/40 mt-2 line-clamp-2">{speaker.bio}</p>
+                            )}
+                            {speaker.video_url && (
+                              <p className="text-xs text-green-400 mt-1">🎥 Видео добавлено</p>
                             )}
                           </div>
                         </div>

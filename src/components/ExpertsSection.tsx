@@ -7,6 +7,7 @@ interface Expert {
   role: string;
   description: string;
   image: string;
+  video_url?: string;
 }
 
 interface ExpertsSectionProps {
@@ -34,12 +35,22 @@ const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionPro
               className="bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group"
             >
               <div className="aspect-square overflow-hidden">
-                <img
-                  src={expert.image}
-                  alt={expert.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
+                {expert.video_url ? (
+                  <iframe
+                    src={expert.video_url}
+                    className="w-full h-full"
+                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+                    frameBorder="0"
+                    allowFullScreen
+                  />
+                ) : (
+                  <img
+                    src={expert.image}
+                    alt={expert.name}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                )}
               </div>
               <CardContent className="p-6">
                 <h3 className="text-2xl font-semibold mb-2 text-gold">
