@@ -353,7 +353,7 @@ const Index = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.15}px)`}}>
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.05}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -373,7 +373,7 @@ const Index = () => {
             <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[42%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[42%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
               src={heroContent.image_center} 
@@ -390,7 +390,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
-          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', transform: `translateY(${scrollY * 0.12}px)`}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', transform: `translateY(${scrollY * 0.06}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
