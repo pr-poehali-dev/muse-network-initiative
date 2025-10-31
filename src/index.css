@@ -434,7 +434,7 @@ body::-webkit-scrollbar {
   }
 
   .letter-spin:hover {
-    animation: letter-flip 1.2s linear infinite;
+    animation: letter-flip 1.2s linear;
   }
 
   @keyframes letter-flip {
