@@ -434,10 +434,10 @@ const Index = () => {
               opacity: 0
             }}
           >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            <h1 className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
               {heroContent.title}
             </h1>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
+            <div className="absolute inset-0 text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
               {heroContent.title}
             </div>
           </div>
