@@ -100,8 +100,9 @@ const Index = () => {
   useEffect(() => {
     const loadExperts = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51');
+        const response = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
         const data = await response.json();
+        console.log('Loaded experts data:', data);
         if (data.speakers) {
           const formattedExperts = data.speakers.map((speaker: any) => ({
             name: speaker.name,
@@ -110,6 +111,7 @@ const Index = () => {
             image: speaker.image,
             video_url: speaker.video_url || null
           }));
+          console.log('Formatted experts:', formattedExperts);
           setExperts(formattedExperts);
         }
       } catch (error) {
