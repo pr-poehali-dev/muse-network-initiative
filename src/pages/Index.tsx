@@ -21,6 +21,7 @@ const Index = () => {
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const [heroContent, setHeroContent] = useState({
     title: 'MUSE',
     tagline: 'Женский клуб с особенным характером',
@@ -437,10 +438,16 @@ const Index = () => {
             <h1 
               className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" 
               style={{perspective: '1000px'}}
-              onMouseLeave={() => setHoveredLetter(null)}
+              onMouseLeave={() => {
+                setIsTransitioning(true);
+                setTimeout(() => {
+                  setHoveredLetter(null);
+                  setIsTransitioning(false);
+                }, 500);
+              }}
             >
               {hoveredLetter ? (
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase animate-[smooth-fade-in_0.8s_cubic-bezier(0.4,0,0.2,1)]">
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-500 ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
