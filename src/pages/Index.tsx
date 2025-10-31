@@ -20,6 +20,7 @@ const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
+  const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [heroContent, setHeroContent] = useState({
     title: 'MUSE',
     tagline: 'Женский клуб с особенным характером',
@@ -434,17 +435,28 @@ const Index = () => {
             }}
           >
             <h1 className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" style={{perspective: '1000px'}}>
-              {heroContent.title.split('').map((char, index) => (
-                <span 
-                  key={index} 
-                  className="letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]"
-                  style={{
-                    transformStyle: 'preserve-3d'
-                  }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
+              {hoveredLetter ? (
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] animate-in fade-in duration-300">
+                  {hoveredLetter === 'M' && 'Mindset'}
+                  {hoveredLetter === 'U' && 'Uniqueness'}
+                  {hoveredLetter === 'S' && 'Synergy'}
+                  {hoveredLetter === 'E' && 'Excellence'}
                 </span>
-              ))}
+              ) : (
+                heroContent.title.split('').map((char, index) => (
+                  <span 
+                    key={index} 
+                    className="letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] cursor-pointer"
+                    style={{
+                      transformStyle: 'preserve-3d'
+                    }}
+                    onMouseEnter={() => setHoveredLetter(char)}
+                    onMouseLeave={() => setHoveredLetter(null)}
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </span>
+                ))
+              )}
             </h1>
             <div className="absolute inset-0 text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 pointer-events-none">
               {heroContent.title}
