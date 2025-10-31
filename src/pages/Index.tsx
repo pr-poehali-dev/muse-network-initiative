@@ -438,9 +438,8 @@ const Index = () => {
               {heroContent.title.split('').map((char, index) => (
                 <span 
                   key={index} 
-                  className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] group-hover:animate-letter-flip"
+                  className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:animate-letter-flip transition-transform"
                   style={{
-                    animationDelay: `${index * 0.05}s`,
                     transformStyle: 'preserve-3d'
                   }}
                 >
