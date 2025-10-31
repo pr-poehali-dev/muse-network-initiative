@@ -44,7 +44,7 @@ const PartnersMarquee = () => {
   const duplicatedPartners = [...partners, ...partners, ...partners];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] py-8 border-y border-[#d4af37]/20">
+    <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] py-4 md:py-6 border-y border-[#d4af37]/20">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/5 via-transparent to-transparent"></div>
       
 
