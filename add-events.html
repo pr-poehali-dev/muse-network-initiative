@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Добавление событий</title>
+</head>
+<body>
+    <h1>Добавление событий...</h1>
+    <div id="status"></div>
+
+    <script>
+        const events = [
+            {
+                title: "Off-line завтрак в Малых Корелах",
+                date: "2025-11-03",
+                time: "10:00",
+                description: "Уютный завтрак на свежем воздухе в музее деревянного зодчества",
+                type: "offline",
+                location: "Малые Корелы",
+                seats: 20,
+                is_paid: false,
+                speakers: []
+            },
+            {
+                title: "Подведение итогов — сессия с психологом",
+                date: "2025-12-12",
+                time: "18:00",
+                description: "Рефлексия и подведение итогов года вместе с психологом",
+                type: "offline",
+                location: "Клуб MUSE",
+                seats: 15,
+                is_paid: false,
+                speakers: [
+                    {
+                        name: "Лазарева Мария",
+                        role: "Психолог",
+                        image: ""
+                    }
+                ]
+            },
+            {
+                title: "Как найти свой стиль и вписать его в повседневный гардероб",
+                date: "2025-11-28",
+                time: "18:00",
+                description: "Практические советы по созданию гармоничного и стильного образа",
+                type: "offline",
+                location: "Клуб MUSE",
+                seats: 20,
+                is_paid: false,
+                speakers: [
+                    {
+                        name: "Юлия Самсонова",
+                        role: "Стилист",
+                        image: ""
+                    }
+                ]
+            },
+            {
+                title: "Off-line творческий урок рисования",
+                date: "2025-11-15",
+                time: "18:00",
+                description: "Раскройте свой творческий потенциал на мастер-классе по рисованию",
+                type: "offline",
+                location: "Клуб MUSE",
+                seats: 15,
+                is_paid: false,
+                speakers: [
+                    {
+                        name: "Людмила Мерзлая",
+                        role: "Художник",
+                        image: ""
+                    }
+                ]
+            },
+            {
+                title: "Встреча с Екатериной Кузнецовой",
+                date: "2025-12-26",
+                time: "18:00",
+                description: "Вечер общения и обмена опытом",
+                type: "offline",
+                location: "Клуб MUSE",
+                seats: 20,
+                is_paid: false,
+                speakers: [
+                    {
+                        name: "Кузнецова Екатерина",
+                        role: "Спикер",
+                        image: ""
+                    }
+                ]
+            }
+        ];
+
+        const statusDiv = document.getElementById('status');
+        let completed = 0;
+
+        async function addEvent(eventData) {
+            try {
+                const response = await fetch('https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(eventData)
+                });
+
+                const result = await response.json();
+                
+                if (response.ok) {
+                    completed++;
+                    statusDiv.innerHTML += `<p style="color: green;">✅ ${eventData.title} - добавлено (${completed}/${events.length})</p>`;
+                } else {
+                    statusDiv.innerHTML += `<p style="color: red;">❌ ${eventData.title} - ошибка: ${result.error}</p>`;
+                }
+            } catch (error) {
+                statusDiv.innerHTML += `<p style="color: red;">❌ ${eventData.title} - ошибка: ${error.message}</p>`;
+            }
+        }
+
+        async function addAllEvents() {
+            statusDiv.innerHTML = '<p>Начинаю добавление событий...</p>';
+            
+            for (const event of events) {
+                await addEvent(event);
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+
+            if (completed === events.length) {
+                statusDiv.innerHTML += '<h2 style="color: green;">🎉 Все события успешно добавлены!</h2>';
+            } else {
+                statusDiv.innerHTML += `<h2 style="color: orange;">⚠️ Добавлено ${completed} из ${events.length} событий</h2>`;
+            }
+        }
+
+        addAllEvents();
+    </script>
+</body>
+</html>
