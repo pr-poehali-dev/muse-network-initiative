@@ -368,11 +368,11 @@ body::-webkit-scrollbar {
   }
 
   .animate-marquee {
-    animation: marquee 40s linear infinite;
+    animation: marquee 30s linear infinite;
   }
 
   .animate-marquee2 {
-    animation: marquee2 40s linear infinite;
+    animation: marquee2 30s linear infinite;
   }
 
   .animate-card-appear {

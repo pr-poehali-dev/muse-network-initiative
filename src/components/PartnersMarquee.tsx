@@ -41,7 +41,7 @@ const PartnersMarquee = () => {
 
   if (partners.length === 0) return null;
 
-  const duplicatedPartners = [...partners, ...partners, ...partners];
+  const duplicatedPartners = [...partners, ...partners];
 
   return (
     <div className="relative overflow-hidden bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] py-4 md:py-6 border-y border-[#d4af37]/20">
@@ -49,13 +49,12 @@ const PartnersMarquee = () => {
       
 
 
-      <div className="relative flex overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap pr-6 md:pr-12">
+      <div className="relative flex">
+        <div className="flex animate-marquee whitespace-nowrap">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
-              className="inline-flex items-center justify-center flex-shrink-0 px-3 md:px-6"
-              style={{ width: '140px' }}
+              className="inline-flex items-center justify-center flex-shrink-0 px-6 md:px-8"
             >
               {partner.website_url ? (
                 <a
@@ -80,12 +79,11 @@ const PartnersMarquee = () => {
             </div>
           ))}
         </div>
-        <div className="flex animate-marquee2 whitespace-nowrap pr-6 md:pr-12" aria-hidden="true">
+        <div className="flex animate-marquee2 whitespace-nowrap" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
-              className="inline-flex items-center justify-center flex-shrink-0 px-3 md:px-6"
-              style={{ width: '140px' }}
+              className="inline-flex items-center justify-center flex-shrink-0 px-6 md:px-8"
             >
               {partner.website_url ? (
                 <a
