@@ -428,7 +428,7 @@ const Index = () => {
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+        <div className="container mx-auto max-w-screen-xl text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear group cursor-default" 
             style={{
