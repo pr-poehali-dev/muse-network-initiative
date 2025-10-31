@@ -429,8 +429,13 @@ body::-webkit-scrollbar {
     }
   }
 
-  .animate-letter-flip {
+  .letter-spin {
+    animation-play-state: paused;
     animation: letter-flip 1.2s linear infinite;
+  }
+
+  .letter-spin:hover {
+    animation-play-state: running;
   }
 
   @keyframes letter-flip {
