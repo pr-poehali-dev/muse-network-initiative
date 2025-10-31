@@ -62,16 +62,16 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   <img 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                     alt="MUSE Logo"
-                    className="w-16 h-16 object-contain transition-transform duration-300 ease-out group-hover:scale-105"
+                    className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
                     style={{
-                      filter: 'drop-shadow(0 0 6px rgba(212, 175, 55, 0.2))'
+                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))'
                     }}
                   />
                 </button>
                 
                 <div className="overflow-hidden">
                   <h2 
-                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer transition-transform duration-300 ease-out"
+                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer transition-all duration-500 ease-out"
                     style={{
                       transform: titleInHeader ? 'translateX(0)' : 'translateX(-100%)',
                       opacity: titleInHeader ? 1 : 0,
@@ -89,25 +89,25 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   className="flex flex-col gap-2 w-8 h-8 justify-center items-center z-50 relative"
                   aria-label="Toggle menu"
                 >
-                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-200 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
-                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-200 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1' : ''}`}></span>
+                  <span className={`w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] transition-transform duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1' : ''}`}></span>
                 </button>
               </div>
             </div>
           </div>
         </div>
 
-        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-300 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
+        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
           <div className="flex flex-col items-center justify-start py-6 gap-6 px-8 overflow-y-auto max-h-[calc(100vh-96px)]">
             <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => handleNavigation(item.id)}
-                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-300 uppercase tracking-wider relative group"
+                  className="text-sm font-semibold text-[#b8953d]/80 hover:text-[#d4af37] transition-all duration-400 uppercase tracking-wider relative group"
                 >
                   {item.label}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#b8953d] group-hover:w-full transition-all duration-400"></span>
                 </button>
               ))}
               {pageLinks.map((link) => {
@@ -169,7 +169,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     onOpenExpertDialog();
                   }
                 }}
-                className="w-full bg-transparent border border-[#d4af37]/50 text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-300 rounded-md"
+                className="w-full bg-transparent border border-[#d4af37]/50 text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-400 rounded-md"
               >
                 Стать экспертом
               </Button>
@@ -181,7 +181,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     onOpenJoinDialog();
                   }
                 }}
-                className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-300 rounded-md"
+                className="w-full bg-transparent border border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 text-sm font-normal py-4 transition-all duration-400 rounded-md"
               >
                 Вступить в клуб →
               </Button>
