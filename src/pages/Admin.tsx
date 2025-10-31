@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Checkbox } from '@/components/ui/checkbox';
 
 import { useToast } from '@/hooks/use-toast';
 import MuseTvSection from '@/components/admin/MuseTvSection';
@@ -41,6 +42,7 @@ interface DBSpeaker {
   bio: string | null;
   video_url: string | null;
   display_order: number;
+  is_guest: boolean;
 }
 
 const Admin = () => {
@@ -64,7 +66,8 @@ const Admin = () => {
     image: '',
     bio: '',
     video_url: '',
-    display_order: 0
+    display_order: 0,
+    is_guest: false
   });
   const [isUploadingSpeakerImage, setIsUploadingSpeakerImage] = useState(false);
   const speakerImageInputRef = useRef<HTMLInputElement>(null);
@@ -520,7 +523,8 @@ const Admin = () => {
       image: '',
       bio: '',
       video_url: '',
-      display_order: 0
+      display_order: 0,
+      is_guest: false
     });
     setEditingSpeaker(null);
     setShowSpeakerForm(false);
@@ -533,7 +537,8 @@ const Admin = () => {
       image: speaker.image,
       bio: speaker.bio || '',
       video_url: speaker.video_url || '',
-      display_order: speaker.display_order
+      display_order: speaker.display_order,
+      is_guest: speaker.is_guest || false
     });
     setEditingSpeaker(speaker);
     setShowSpeakerForm(true);
@@ -1018,6 +1023,18 @@ const Admin = () => {
                         placeholder="0"
                       />
                       <p className="text-white/50 text-xs mt-1">Меньшее число = выше в списке</p>
+                    </div>
+
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id="speaker-guest"
+                        checked={speakerFormData.is_guest}
+                        onCheckedChange={(checked) => setSpeakerFormData({ ...speakerFormData, is_guest: checked as boolean })}
+                        className="border-[#d4af37]/20 data-[state=checked]:bg-[#d4af37] data-[state=checked]:text-black"
+                      />
+                      <Label htmlFor="speaker-guest" className="text-white/80 cursor-pointer">
+                        Гостевой эксперт (не отображать на главной странице)
+                      </Label>
                     </div>
 
                     <div className="flex gap-4">

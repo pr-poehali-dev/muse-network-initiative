@@ -43,7 +43,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     
     # GET - list all speakers
     if method == 'GET':
-        cur.execute("SELECT id, name, role, image, bio, display_order, video_url FROM speakers ORDER BY display_order, name")
+        cur.execute("SELECT id, name, role, image, bio, display_order, video_url, is_guest FROM t_p41592697_muse_network_initiat.speakers ORDER BY display_order, name")
         rows = cur.fetchall()
         
         speakers = []
@@ -55,7 +55,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'image': row[3],
                 'bio': row[4],
                 'display_order': row[5],
-                'video_url': row[6]
+                'video_url': row[6],
+                'is_guest': row[7]
             })
         
         cur.close()
@@ -81,6 +82,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         bio = body_data.get('bio', '')
         display_order = body_data.get('display_order', 0)
         video_url = body_data.get('video_url', '')
+        is_guest = body_data.get('is_guest', False)
         
         if not name:
             cur.close()
@@ -96,8 +98,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             }
         
         cur.execute(
-            "INSERT INTO speakers (name, role, image, bio, display_order, video_url) VALUES (%s, %s, %s, %s, %s, %s) RETURNING id",
-            (name, role, image, bio, display_order, video_url)
+            "INSERT INTO t_p41592697_muse_network_initiat.speakers (name, role, image, bio, display_order, video_url, is_guest) VALUES (%s, %s, %s, %s, %s, %s, %s) RETURNING id",
+            (name, role, image, bio, display_order, video_url, is_guest)
         )
         speaker_id = cur.fetchone()[0]
         conn.commit()
@@ -139,10 +141,11 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         bio = body_data.get('bio', '')
         display_order = body_data.get('display_order', 0)
         video_url = body_data.get('video_url', '')
+        is_guest = body_data.get('is_guest', False)
         
         cur.execute(
-            "UPDATE speakers SET name = %s, role = %s, image = %s, bio = %s, display_order = %s, video_url = %s WHERE id = %s",
-            (name, role, image, bio, display_order, video_url, speaker_id)
+            "UPDATE t_p41592697_muse_network_initiat.speakers SET name = %s, role = %s, image = %s, bio = %s, display_order = %s, video_url = %s, is_guest = %s WHERE id = %s",
+            (name, role, image, bio, display_order, video_url, is_guest, speaker_id)
         )
         conn.commit()
         
@@ -178,8 +181,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'body': json.dumps({'error': 'Speaker ID is required'})
                 }
             
-            cur.execute("DELETE FROM event_speakers WHERE speaker_id = %s", (speaker_id,))
-            cur.execute("DELETE FROM speakers WHERE id = %s", (speaker_id,))
+            cur.execute("DELETE FROM t_p41592697_muse_network_initiat.event_speakers WHERE speaker_id = %s", (speaker_id,))
+            cur.execute("DELETE FROM t_p41592697_muse_network_initiat.speakers WHERE id = %s", (speaker_id,))
             conn.commit()
             
             cur.close()

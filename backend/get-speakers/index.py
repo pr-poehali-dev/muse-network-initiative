@@ -41,7 +41,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
     
-    cur.execute("SELECT id, name, role, image, bio, display_order, video_url FROM t_p41592697_muse_network_initiat.speakers ORDER BY display_order, name")
+    cur.execute("SELECT id, name, role, image, bio, display_order, video_url, is_guest FROM t_p41592697_muse_network_initiat.speakers WHERE is_guest = FALSE ORDER BY display_order, name")
     rows = cur.fetchall()
     
     speakers = []
@@ -53,7 +53,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'image': row[3],
             'bio': row[4],
             'display_order': row[5],
-            'video_url': row[6]
+            'video_url': row[6],
+            'is_guest': row[7]
         })
     
     cur.close()
