@@ -21,7 +21,7 @@ interface Event {
   description: string;
   type: string;
   location: string;
-  seats: number;
+  seats: number | null;
   speakers: Speaker[];
   is_paid: boolean;
   price?: number;
@@ -126,6 +126,7 @@ const Admin = () => {
     is_paid: false,
     price: undefined
   });
+  const [unlimitedSeats, setUnlimitedSeats] = useState(false);
 
   useEffect(() => {
     const authToken = localStorage.getItem('muse_admin_token');
@@ -387,6 +388,7 @@ const Admin = () => {
       is_paid: false,
       price: undefined
     });
+    setUnlimitedSeats(false);
     setEditingEvent(null);
     setShowForm(false);
   };
@@ -396,6 +398,7 @@ const Admin = () => {
       ...event,
       speakers: event.speakers.map(s => ({ ...s }))
     });
+    setUnlimitedSeats(event.seats === null);
     setEditingEvent(event);
     setShowForm(true);
     
@@ -1320,13 +1323,13 @@ const Admin = () => {
                     <Label htmlFor="type" className="text-white/80">Тип</Label>
                     <Select value={formData.type} onValueChange={(value) => setFormData({ ...formData, type: value })}>
                       <SelectTrigger className="bg-[#0a0a0a] border-[#d4af37]/20 text-white">
-                        <SelectValue />
+                        <SelectValue placeholder="Выберите тип события" />
                       </SelectTrigger>
                       <SelectContent className="bg-[#1a1a1a] border-[#d4af37]/20">
-                        <SelectItem value="offline">Офлайн</SelectItem>
-                        <SelectItem value="online">Онлайн</SelectItem>
-                        <SelectItem value="workshop">Мастер-класс</SelectItem>
-                        <SelectItem value="guest">Онлайн (гость)</SelectItem>
+                        <SelectItem value="offline" className="text-white hover:bg-[#d4af37]/20">Офлайн</SelectItem>
+                        <SelectItem value="online" className="text-white hover:bg-[#d4af37]/20">Онлайн</SelectItem>
+                        <SelectItem value="workshop" className="text-white hover:bg-[#d4af37]/20">Мастер-класс</SelectItem>
+                        <SelectItem value="guest" className="text-white hover:bg-[#d4af37]/20">Онлайн (гость)</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
@@ -1366,16 +1369,37 @@ const Admin = () => {
                     />
                   </div>
 
-                  <div>
-                    <Label htmlFor="seats" className="text-white/80">Мест</Label>
-                    <Input
-                      id="seats"
-                      type="number"
-                      value={formData.seats}
-                      onChange={(e) => setFormData({ ...formData, seats: parseInt(e.target.value) })}
-                      required
-                      className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                    />
+                  <div className="space-y-2">
+                    <Label htmlFor="seats" className="text-white/80">Количество мест</Label>
+                    <div className="space-y-3">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          checked={unlimitedSeats}
+                          onChange={(e) => {
+                            setUnlimitedSeats(e.target.checked);
+                            if (e.target.checked) {
+                              setFormData({ ...formData, seats: null });
+                            } else {
+                              setFormData({ ...formData, seats: 20 });
+                            }
+                          }}
+                          className="w-4 h-4 rounded border-[#d4af37]/20 bg-[#0a0a0a] text-[#d4af37] focus:ring-[#d4af37]"
+                        />
+                        <span className="text-white/80 text-sm">Без ограничений</span>
+                      </label>
+                      {!unlimitedSeats && (
+                        <Input
+                          id="seats"
+                          type="number"
+                          value={formData.seats || ''}
+                          onChange={(e) => setFormData({ ...formData, seats: parseInt(e.target.value) || 0 })}
+                          required={!unlimitedSeats}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
+                          placeholder="Укажите количество мест"
+                        />
+                      )}
+                    </div>
                   </div>
                 </div>
 
