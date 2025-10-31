@@ -64,7 +64,8 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     alt="MUSE Logo"
                     className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
                     style={{
-                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))'
+                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
+                      transform: 'translateZ(0)'
                     }}
                   />
                 </button>
@@ -73,7 +74,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   <h2 
                     className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap cursor-pointer transition-all duration-500 ease-out"
                     style={{
-                      transform: titleInHeader ? 'translateX(0)' : 'translateX(-100%)',
+                      transform: titleInHeader ? 'translateX(0) translateZ(0)' : 'translateX(-100%) translateZ(0)',
                       opacity: titleInHeader ? 1 : 0,
                     }}
                   >
