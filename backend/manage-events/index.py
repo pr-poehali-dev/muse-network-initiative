@@ -65,7 +65,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             rows = cur.fetchall()
             events_list = []
             for row in rows:
-                total_seats = row[7]
+                total_seats = row[7] or 0
                 registered = row[8] or 0
                 is_paid = row[9]
                 price = float(row[10]) if row[10] else None
