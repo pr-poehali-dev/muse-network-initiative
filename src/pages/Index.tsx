@@ -426,6 +426,28 @@ const Index = () => {
           
           <div className="absolute top-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/40 to-transparent opacity-50"></div>
           <div className="absolute top-2/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent opacity-40"></div>
+          
+          {/* VIP Side Decorations - Left */}
+          <div className="absolute left-0 top-0 h-full w-32 pointer-events-none z-40">
+            <div className="absolute left-8 top-1/4 w-px h-40 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-0 animate-fade-in" style={{animationDelay: '1s'}}></div>
+            <div className="absolute left-4 top-1/3 w-8 h-px bg-gradient-to-r from-transparent to-[#d4af37]/60 opacity-0 animate-fade-in" style={{animationDelay: '1.2s'}}></div>
+            <div className="absolute left-4 top-1/2 w-12 h-px bg-gradient-to-r from-transparent to-[#d4af37]/60 opacity-0 animate-fade-in" style={{animationDelay: '1.4s'}}></div>
+            <div className="absolute left-12 top-[60%] w-px h-32 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-0 animate-fade-in" style={{animationDelay: '1.6s'}}></div>
+            <div className="absolute left-6 top-[45%] w-3 h-3 border border-[#d4af37]/40 rotate-45 opacity-0 animate-fade-in" style={{animationDelay: '1.8s'}}></div>
+            <div className="absolute left-10 top-[35%] w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute left-5 top-[55%] w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '2.2s'}}></div>
+          </div>
+          
+          {/* VIP Side Decorations - Right */}
+          <div className="absolute right-0 top-0 h-full w-32 pointer-events-none z-40">
+            <div className="absolute right-8 top-1/4 w-px h-40 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-0 animate-fade-in" style={{animationDelay: '1s'}}></div>
+            <div className="absolute right-4 top-1/3 w-8 h-px bg-gradient-to-l from-transparent to-[#d4af37]/60 opacity-0 animate-fade-in" style={{animationDelay: '1.2s'}}></div>
+            <div className="absolute right-4 top-1/2 w-12 h-px bg-gradient-to-l from-transparent to-[#d4af37]/60 opacity-0 animate-fade-in" style={{animationDelay: '1.4s'}}></div>
+            <div className="absolute right-12 top-[60%] w-px h-32 bg-gradient-to-b from-transparent via-[#d4af37] to-transparent opacity-0 animate-fade-in" style={{animationDelay: '1.6s'}}></div>
+            <div className="absolute right-6 top-[45%] w-3 h-3 border border-[#d4af37]/40 rotate-45 opacity-0 animate-fade-in" style={{animationDelay: '1.8s'}}></div>
+            <div className="absolute right-10 top-[35%] w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '2s'}}></div>
+            <div className="absolute right-5 top-[55%] w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '2.2s'}}></div>
+          </div>
         </div>
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
