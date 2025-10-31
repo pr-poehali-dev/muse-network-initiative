@@ -42,14 +42,26 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         }
     
     try:
-        req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with urlopen(req, timeout=10) as response:
+        req = Request(url, headers={
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'
+        })
+        with urlopen(req, timeout=15) as response:
             html = response.read().decode('utf-8')
         
-        match = re.search(r'<meta property="og:image" content="([^"]+)"', html)
+        og_match = re.search(r'<meta property="og:image" content="([^"]+)"', html)
+        if og_match:
+            direct_url = og_match.group(1)
+            return {
+                'statusCode': 200,
+                'headers': {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
+                'isBase64Encoded': False,
+                'body': json.dumps({'direct_url': direct_url})
+            }
         
-        if match:
-            direct_url = match.group(1)
+        img_match = re.search(r'<img[^>]+id="image-viewer-container"[^>]+src="([^"]+)"', html)
+        if img_match:
+            direct_url = img_match.group(1)
             return {
                 'statusCode': 200,
                 'headers': {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
@@ -60,12 +72,12 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         return {
             'statusCode': 404,
             'headers': {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            'body': json.dumps({'error': 'Could not find direct image URL'})
+            'body': json.dumps({'error': 'Could not find direct image URL in HTML'})
         }
     
     except Exception as e:
         return {
             'statusCode': 500,
             'headers': {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'},
-            'body': json.dumps({'error': str(e)})
+            'body': json.dumps({'error': f'Parser error: {str(e)}'})
         }
