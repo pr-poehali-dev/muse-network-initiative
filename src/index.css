@@ -430,18 +430,22 @@ body::-webkit-scrollbar {
   }
 
   .animate-letter-rotate {
-    animation: letter-rotate 0.7s ease-in-out forwards;
+    animation: letter-rotate 0.8s ease-in-out;
+    transform-style: preserve-3d;
   }
 
   @keyframes letter-rotate {
     0% {
-      transform: rotateY(0deg);
+      transform: rotateX(0deg);
+      opacity: 1;
     }
     50% {
-      transform: rotateY(180deg);
+      transform: rotateX(180deg);
+      opacity: 0.8;
     }
     100% {
-      transform: rotateY(360deg);
+      transform: rotateX(360deg);
+      opacity: 1;
     }
   }
 

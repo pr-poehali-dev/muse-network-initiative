@@ -434,13 +434,15 @@ const Index = () => {
               opacity: 0
             }}
           >
-            <h1 className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
+            <h1 className="text-7xl sm:text-8xl md:text-[10rem] lg:text-[14rem] xl:text-[18rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]" style={{perspective: '1000px'}}>
               {heroContent.title.split('').map((char, index) => (
                 <span 
                   key={index} 
-                  className="inline-block transition-transform duration-700 ease-in-out group-hover:animate-letter-rotate"
+                  className="inline-block group-hover:animate-letter-rotate"
                   style={{
-                    animationDelay: `${index * 0.1}s`
+                    animationDelay: `${index * 0.1}s`,
+                    transformStyle: 'preserve-3d',
+                    backfaceVisibility: 'visible'
                   }}
                 >
                   {char}
