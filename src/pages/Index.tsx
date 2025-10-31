@@ -449,7 +449,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-black uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none', filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(184,149,61,0.4)) drop-shadow(0 0 90px rgba(212,175,55,0.2))'}}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#b8953d] to-black uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{cursor: 'none', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
@@ -463,7 +463,7 @@ const Index = () => {
                     style={{
                       transformStyle: 'preserve-3d',
                       cursor: 'none',
-                      filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(184,149,61,0.4)) drop-shadow(0 0 90px rgba(212,175,55,0.2))'
+                      filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2))'
                     }}
                     onMouseEnter={() => {
                       setIsEntering(true);
