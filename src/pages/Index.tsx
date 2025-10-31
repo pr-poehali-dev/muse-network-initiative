@@ -107,7 +107,8 @@ const Index = () => {
             name: speaker.name,
             role: speaker.role,
             description: speaker.bio || '',
-            image: speaker.image
+            image: speaker.image,
+            video_url: speaker.video_url || null
           }));
           setExperts(formattedExperts);
         }
