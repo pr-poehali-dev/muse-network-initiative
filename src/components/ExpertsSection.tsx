@@ -18,46 +18,25 @@ interface ExpertsSectionProps {
 
 const ExpertCard = ({ expert }: { expert: Expert }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [iframeKey, setIframeKey] = useState(0);
-  const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  const getKinescopeEmbedUrl = (url: string | undefined): string | null => {
-    if (!url) return null;
-    
-    const videoIdMatch = url.match(/kinescope\.io\/([a-zA-Z0-9]+)/);
-    if (videoIdMatch) {
-      return `https://kinescope.io/embed/${videoIdMatch[1]}`;
-    }
-    
-    if (url.includes('/embed/')) {
-      return url;
-    }
-    
-    return null;
-  };
-
-  const videoUrl = getKinescopeEmbedUrl(expert.video_url);
-
-  useEffect(() => {
-    if (isHovered && iframeRef.current) {
-      setIframeKey(prev => prev + 1);
-    }
-  }, [isHovered]);
-
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (expert.video_url) {
-      window.open(expert.video_url, '_blank');
+      console.log('Opening video:', expert.video_url, 'for expert:', expert.name);
+      window.open(expert.video_url, '_blank', 'noopener,noreferrer');
+    } else {
+      console.log('No video URL for expert:', expert.name);
     }
   };
 
   return (
     <Card 
       className={`bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group ${
-        videoUrl ? 'cursor-pointer' : ''
+        expert.video_url ? 'cursor-pointer' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      onClick={videoUrl ? handleCardClick : undefined}
+      onClick={expert.video_url ? handleCardClick : undefined}
     >
       <div className="aspect-square overflow-hidden relative">
         <img
@@ -66,7 +45,7 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
-        {videoUrl && (
+        {expert.video_url && (
           <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
             <div className="bg-gold/20 backdrop-blur-sm rounded-full p-6">
               <Icon name="Play" size={48} className="text-gold" />
