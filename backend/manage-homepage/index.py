@@ -56,6 +56,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             section = body_data.get('section')
             content = body_data.get('content')
             
+            print(f'PUT request - section: {section}, content: {content}')
+            
             if not section or not content:
                 return {
                     'statusCode': 400,
@@ -71,6 +73,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     DO UPDATE SET content = EXCLUDED.content, updated_at = CURRENT_TIMESTAMP
                 ''', (section, json.dumps(content)))
                 conn.commit()
+            
+            print(f'Successfully updated section: {section}')
             
             return {
                 'statusCode': 200,
