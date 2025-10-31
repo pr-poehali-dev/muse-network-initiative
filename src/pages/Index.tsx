@@ -22,6 +22,7 @@ const Index = () => {
   const [experts, setExperts] = useState<any[]>([]);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
   const [heroContent, setHeroContent] = useState({
     title: 'MUSE',
     tagline: 'Женский клуб с особенным характером',
@@ -447,7 +448,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-500 ease-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
@@ -461,7 +462,11 @@ const Index = () => {
                     style={{
                       transformStyle: 'preserve-3d'
                     }}
-                    onMouseEnter={() => setHoveredLetter(char)}
+                    onMouseEnter={() => {
+                      setIsEntering(true);
+                      setHoveredLetter(char);
+                      setTimeout(() => setIsEntering(false), 50);
+                    }}
                   >
                     {char === ' ' ? '\u00A0' : char}
                   </span>
