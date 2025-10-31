@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 interface Trail {
   x: number;
@@ -9,11 +9,15 @@ interface Trail {
 const CursorTrail = () => {
   const [trails, setTrails] = useState<Trail[]>([]);
   const [nextId, setNextId] = useState(0);
+  const lastTimeRef = useRef(0);
 
   useEffect(() => {
-    let animationFrame: number;
-    
     const handleMouseMove = (e: MouseEvent) => {
+      const now = Date.now();
+      
+      if (now - lastTimeRef.current < 16) return;
+      lastTimeRef.current = now;
+      
       const newTrail: Trail = {
         x: e.clientX,
         y: e.clientY,
@@ -25,30 +29,29 @@ const CursorTrail = () => {
       
       setTimeout(() => {
         setTrails(prev => prev.filter(t => t.id !== newTrail.id));
-      }, 800);
+      }, 1200);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
     
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
     };
   }, [nextId]);
 
   return (
     <div className="pointer-events-none fixed inset-0 z-50">
-      {trails.map((trail) => (
+      {trails.map((trail, index) => (
         <div
           key={trail.id}
-          className="absolute w-6 h-6 rounded-full animate-trail-fade"
+          className="absolute w-8 h-8 rounded-full animate-trail-fade"
           style={{
-            left: trail.x - 12,
-            top: trail.y - 12,
-            background: 'radial-gradient(circle, rgba(184,149,61,0.6) 0%, rgba(139,115,85,0.3) 50%, transparent 100%)',
-            boxShadow: '0 0 20px rgba(212,175,55,0.5)',
+            left: trail.x - 16,
+            top: trail.y - 16,
+            background: 'radial-gradient(circle, rgba(184,149,61,0.5) 0%, rgba(139,115,85,0.25) 50%, transparent 100%)',
+            boxShadow: '0 0 30px rgba(212,175,55,0.4)',
+            filter: 'blur(4px)',
+            animationDelay: `${index * 10}ms`
           }}
         />
       ))}
