@@ -437,8 +437,8 @@ const Index = () => {
             }}
           >
             <h1 
-              className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider" 
-              style={{perspective: '1000px'}}
+              className="font-black px-4 tracking-wider" 
+              style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
               onMouseLeave={() => {
                 setIsTransitioning(true);
                 setHoveredLetter(null);
@@ -473,14 +473,14 @@ const Index = () => {
                 ))
               )}
             </h1>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4 pointer-events-none">
+            <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
               {heroContent.title}
             </div>
           </div>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
+          <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
             {heroContent.tagline}
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.6s', opacity: 0}}>
+          <p className="text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.6s', opacity: 0, fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)'}}>
             {heroContent.description}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 w-full mx-auto">
