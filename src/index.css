@@ -429,6 +429,22 @@ body::-webkit-scrollbar {
     }
   }
 
+  .animate-letter-rotate {
+    animation: letter-rotate 0.7s ease-in-out forwards;
+  }
+
+  @keyframes letter-rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
   .animate-vip-glow {
     animation: vip-glow 2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
