@@ -20,14 +20,6 @@ const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
-  const [heroContent, setHeroContent] = useState({
-    title: 'MUSE',
-    tagline: 'Женский клуб с особенным характером',
-    description: 'Частное закрытое сообщество для успешных женщин из Грузии, СНГ и со всего мира',
-    image_left: 'https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg',
-    image_center: 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg',
-    image_right: 'https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg'
-  });
   
   useEffect(() => {
     const handleScroll = () => {
@@ -37,23 +29,6 @@ const Index = () => {
     
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const loadHeroContent = async () => {
-      try {
-        const response = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
-        const data = await response.json();
-        console.log('Loaded homepage content:', data);
-        if (data.content?.hero) {
-          console.log('Setting hero content:', data.content.hero);
-          setHeroContent(data.content.hero);
-        }
-      } catch (error) {
-        console.error('Failed to load hero content:', error);
-      }
-    };
-    loadHeroContent();
   }, []);
 
   useEffect(() => {
@@ -328,7 +303,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src={heroContent.image_left} 
+              src="https://cdn.poehali.dev/files/2bbb5db3-5964-4964-b03f-e631646d9bf8.jpg" 
               alt="" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
@@ -347,7 +322,7 @@ const Index = () => {
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[42%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px) translateX(-50%)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
             <img 
-              src={heroContent.image_center} 
+              src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
               alt="" 
               className="w-full h-full object-cover object-center"
               style={{
@@ -365,7 +340,7 @@ const Index = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src={heroContent.image_right} 
+              src="https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg" 
               alt="" 
               className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
@@ -406,17 +381,17 @@ const Index = () => {
             }}
           >
             <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-              {heroContent.title}
+              MUSE
             </h1>
             <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/5 blur-xl px-2 md:px-4">
-              {heroContent.title}
+              MUSE
             </div>
           </div>
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/80 mb-6 md:mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0}}>
-            {heroContent.tagline}
+            Сообщество женщин из сферы бизнеса, культуры, науки и искусства
           </p>
           <p className="text-sm sm:text-base md:text-lg text-white/70 mb-8 md:mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.6s', opacity: 0}}>
-            {heroContent.description}
+            Укрепляем баланс жизни через уникальные события. Объединяем и укрепляем позиции сильных и талантливых женщин для общего роста.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 w-full mx-auto">
             <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '2s', opacity: 0}}>
