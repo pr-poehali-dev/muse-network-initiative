@@ -29,6 +29,31 @@ const Index = () => {
     image_right: 'https://cdn.poehali.dev/files/0ef57856-8a60-44b6-9b31-c22b2555e6fb.jpg'
   });
   
+  const [aboutContent, setAboutContent] = useState({
+    title: 'О клубе Muse',
+    subtitle: 'Клуб Muse — это больше, чем просто встречи',
+    description: 'Это пространство для роста, вдохновения и нетворкинга.',
+    founder: {
+      name: 'Карина Ляшева',
+      role: 'Основательница клуба Muse',
+      image: 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg',
+      quote_1: 'Объединить и укрепить позиции сильных и талантливых женщин для общего роста.',
+      quote_2: 'Сохранение и развитие культурного кода, ценностей и традиций.'
+    },
+    goals: [
+      { title: 'Создать сообщество', description: 'Объединить женщин из разных сфер' },
+      { title: 'Поощрять развитие', description: 'Мастер-классы и семинары' },
+      { title: 'Вдохновлять', description: 'Платформа для обмена идеями' },
+      { title: 'Продвигать женское лидерство', description: 'Помогаем менять мир' }
+    ],
+    offerings: [
+      'Статусное окружение единомышленников',
+      'Коллаборации и партнерства',
+      'Яркие события и впечатления',
+      'Сохранение культурного кода'
+    ]
+  });
+  
   useEffect(() => {
     const handleScroll = () => {
       setScrollY(window.scrollY);
@@ -40,7 +65,7 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const loadHeroContent = async () => {
+    const loadHomepageContent = async () => {
       try {
         const response = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
         const data = await response.json();
@@ -49,11 +74,15 @@ const Index = () => {
           console.log('Setting hero content:', data.content.hero);
           setHeroContent(data.content.hero);
         }
+        if (data.content?.about) {
+          console.log('Setting about content:', data.content.about);
+          setAboutContent(data.content.about);
+        }
       } catch (error) {
-        console.error('Failed to load hero content:', error);
+        console.error('Failed to load homepage content:', error);
       }
     };
-    loadHeroContent();
+    loadHomepageContent();
   }, []);
 
   useEffect(() => {
@@ -482,7 +511,7 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
               <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              О клубе Muse
+              {aboutContent.title}
               <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h2>
           </div>
@@ -491,8 +520,8 @@ const Index = () => {
             <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
-                  src="https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg" 
-                  alt="Карина Ляшева" 
+                  src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
+                  alt={aboutContent.founder?.name || 'Основательница'} 
                   className="w-full h-full object-cover opacity-20"
                 />
               </div>
@@ -500,18 +529,16 @@ const Index = () => {
                 <div>
                   <div className="text-[#b8953d]/40 text-6xl mb-4">“</div>
                   <p className="text-xl text-white/90 leading-relaxed mb-4 italic">
-                    Объединить и укрепить позиции сильных и талантливых женщин для общего роста. 
-                    Обеспечить статусное окружение, создать коллаборации и партнерства, сделать жизнь ярче!
+                    {aboutContent.founder?.quote_1}
                   </p>
                   <p className="text-lg text-white/80 leading-relaxed italic">
-                    Сохранение и развитие культурного кода, ценностей и традиций через встречи, которые объединяют не только бизнес, 
-                    но и искусство, спорт, путешествия.
+                    {aboutContent.founder?.quote_2}
                   </p>
                   <div className="text-[#b8953d]/40 text-6xl text-right">”</div>
                 </div>
                 <div className="mt-8 pt-8 border-t border-[#d4af37]/30">
-                  <p className="text-[#b8953d] font-semibold">Карина Ляшева</p>
-                  <p className="text-white/60 text-sm">Основательница клуба Muse</p>
+                  <p className="text-[#b8953d] font-semibold">{aboutContent.founder?.name}</p>
+                  <p className="text-white/60 text-sm">{aboutContent.founder?.role}</p>
                 </div>
               </div>
             </div>
