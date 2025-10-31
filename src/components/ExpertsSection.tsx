@@ -1,6 +1,7 @@
-import { memo, useState } from 'react';
+import { memo, useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import Icon from '@/components/ui/icon';
 
 interface Expert {
   name: string;
@@ -17,17 +18,19 @@ interface ExpertsSectionProps {
 
 const ExpertCard = ({ expert }: { expert: Expert }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [iframeKey, setIframeKey] = useState(0);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const getKinescopeEmbedUrl = (url: string | undefined): string | null => {
     if (!url) return null;
     
     const videoIdMatch = url.match(/kinescope\.io\/([a-zA-Z0-9]+)/);
     if (videoIdMatch) {
-      return `https://kinescope.io/embed/${videoIdMatch[1]}?autoplay=1&muted=1&loop=1`;
+      return `https://kinescope.io/embed/${videoIdMatch[1]}`;
     }
     
     if (url.includes('/embed/')) {
-      return `${url}?autoplay=1&muted=1&loop=1`;
+      return url;
     }
     
     return null;
@@ -35,34 +38,39 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
 
   const videoUrl = getKinescopeEmbedUrl(expert.video_url);
 
+  useEffect(() => {
+    if (isHovered && iframeRef.current) {
+      setIframeKey(prev => prev + 1);
+    }
+  }, [isHovered]);
+
+  const handleCardClick = () => {
+    if (expert.video_url) {
+      window.open(expert.video_url, '_blank');
+    }
+  };
+
   return (
     <Card 
-      className="bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group"
+      className={`bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group ${
+        videoUrl ? 'cursor-pointer' : ''
+      }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={videoUrl ? handleCardClick : undefined}
     >
       <div className="aspect-square overflow-hidden relative">
         <img
           src={expert.image}
           alt={expert.name}
-          className={`w-full h-full object-cover transition-all duration-500 ${
-            isHovered && videoUrl ? 'opacity-0' : 'opacity-100 group-hover:scale-105'
-          }`}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
         {videoUrl && (
-          <div className={`absolute inset-0 transition-opacity duration-500 ${
-            isHovered ? 'opacity-100' : 'opacity-0'
-          }`}>
-            {isHovered && (
-              <iframe
-                src={videoUrl}
-                className="w-full h-full"
-                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
-                frameBorder="0"
-                allowFullScreen
-              />
-            )}
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+            <div className="bg-gold/20 backdrop-blur-sm rounded-full p-6">
+              <Icon name="Play" size={48} className="text-gold" />
+            </div>
           </div>
         )}
       </div>

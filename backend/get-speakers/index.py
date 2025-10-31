@@ -41,7 +41,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
     
-    cur.execute("SELECT id, name, role, image, bio, display_order, video_url FROM speakers ORDER BY display_order, name")
+    cur.execute("SELECT id, name, role, image, bio, display_order, video_url FROM t_p41592697_muse_network_initiat.speakers ORDER BY display_order, name")
     rows = cur.fetchall()
     
     speakers = []
