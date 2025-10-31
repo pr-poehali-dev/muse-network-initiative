@@ -62,26 +62,25 @@ const CursorTrail = () => {
           <div 
             className="absolute"
             style={{
-              width: '20px',
-              height: '30px',
-              left: '-10px',
-              top: '-15px',
-              background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(184,149,61,0.7) 0%, rgba(139,115,85,0.4) 40%, transparent 100%)',
+              width: '16px',
+              height: '24px',
+              left: '-8px',
+              top: '-12px',
+              background: 'radial-gradient(ellipse 50% 40% at 50% 60%, rgba(212,175,55,0.9) 0%, rgba(184,149,61,0.6) 40%, transparent 100%)',
               borderRadius: '50% 50% 50% 50% / 60% 60% 40% 40%',
-              boxShadow: '0 0 15px rgba(212,175,55,0.6)',
-              filter: 'blur(1px)',
+              boxShadow: '0 0 20px rgba(212,175,55,0.8), 0 0 10px rgba(212,175,55,0.6)',
             }}
           />
           <div 
             className="absolute"
             style={{
-              width: '8px',
-              height: '20px',
-              left: '-4px',
-              top: '10px',
-              background: 'linear-gradient(to bottom, rgba(184,149,61,0.5) 0%, rgba(139,115,85,0.2) 50%, transparent 100%)',
+              width: '10px',
+              height: '18px',
+              left: '-5px',
+              top: '8px',
+              background: 'linear-gradient(to bottom, rgba(212,175,55,0.7) 0%, rgba(184,149,61,0.4) 50%, transparent 100%)',
               borderRadius: '50% 50% 80% 80% / 30% 30% 70% 70%',
-              filter: 'blur(2px)',
+              filter: 'blur(1px)',
             }}
           />
         </div>
