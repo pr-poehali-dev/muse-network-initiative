@@ -18,6 +18,21 @@ interface ExpertsSectionProps {
 const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionProps) => {
   if (experts.length === 0) return null;
 
+  const getKinescopeEmbedUrl = (url: string | undefined): string | null => {
+    if (!url) return null;
+    
+    const videoIdMatch = url.match(/kinescope\.io\/([a-zA-Z0-9]+)/);
+    if (videoIdMatch) {
+      return `https://kinescope.io/embed/${videoIdMatch[1]}`;
+    }
+    
+    if (url.includes('/embed/')) {
+      return url;
+    }
+    
+    return null;
+  };
+
   return (
     <section id="experts" className="py-24 bg-black">
       <div className="container mx-auto px-4">
@@ -35,9 +50,9 @@ const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionPro
               className="bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group"
             >
               <div className="aspect-square overflow-hidden">
-                {expert.video_url ? (
+                {getKinescopeEmbedUrl(expert.video_url) ? (
                   <iframe
-                    src={expert.video_url}
+                    src={getKinescopeEmbedUrl(expert.video_url)!}
                     className="w-full h-full"
                     allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
                     frameBorder="0"
