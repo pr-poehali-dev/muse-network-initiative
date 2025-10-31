@@ -53,6 +53,8 @@ body {
     0 0 25px rgba(212, 175, 55, 0.8),
     0 0 50px rgba(184, 149, 61, 0.5),
     0 0 80px rgba(212, 175, 55, 0.3);
+  transition: none;
+  will-change: transform;
 }
 
 @keyframes blob-pulse {

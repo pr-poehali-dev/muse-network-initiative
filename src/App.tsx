@@ -37,25 +37,23 @@ const AnimatedRoutes = () => {
 };
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const cursorRef = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
+    const cursor = document.querySelector('.custom-cursor') as HTMLDivElement;
+    if (!cursor) return;
+
     const updatePosition = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      cursor.style.left = `${e.clientX}px`;
+      cursor.style.top = `${e.clientY}px`;
     };
 
-    window.addEventListener('mousemove', updatePosition);
+    window.addEventListener('mousemove', updatePosition, { passive: true });
     return () => window.removeEventListener('mousemove', updatePosition);
   }, []);
 
   return (
-    <div
-      className="custom-cursor"
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`,
-      }}
-    />
+    <div className="custom-cursor" />
   );
 };
 
