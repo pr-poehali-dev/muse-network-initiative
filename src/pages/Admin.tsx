@@ -64,6 +64,8 @@ const Admin = () => {
     bio: '',
     display_order: 0
   });
+  const [isUploadingSpeakerImage, setIsUploadingSpeakerImage] = useState(false);
+  const speakerImageInputRef = useRef<HTMLInputElement>(null);
 
   const [headlinersContent, setHeadlinersContent] = useState<any>(null);
   const [rutubeVideos, setRutubeVideos] = useState<any[]>([]);
@@ -883,29 +885,96 @@ const Admin = () => {
                     </div>
 
                     <div>
-                      <Label htmlFor="speaker-image" className="text-white/80">URL изображения</Label>
-                      <Input
-                        id="speaker-image"
-                        value={speakerFormData.image}
-                        onChange={async (e) => {
-                          const url = e.target.value;
-                          if (isCloudUrl(url)) {
-                            const directUrl = await convertCloudUrl(url);
-                            setSpeakerFormData({ ...speakerFormData, image: directUrl });
-                            if (directUrl !== url) {
-                              toast({
-                                title: 'Ссылка конвертирована',
-                                description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
-                              });
+                      <Label htmlFor="speaker-image" className="text-white/80">Изображение эксперта</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="speaker-image"
+                          value={speakerFormData.image}
+                          onChange={async (e) => {
+                            const url = e.target.value;
+                            if (isCloudUrl(url)) {
+                              const directUrl = await convertCloudUrl(url);
+                              setSpeakerFormData({ ...speakerFormData, image: directUrl });
+                              if (directUrl !== url) {
+                                toast({
+                                  title: 'Ссылка конвертирована',
+                                  description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
+                                });
+                              }
+                            } else {
+                              setSpeakerFormData({ ...speakerFormData, image: url });
                             }
-                          } else {
-                            setSpeakerFormData({ ...speakerFormData, image: url });
-                          }
-                        }}
-                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        placeholder="https://... или ссылка с ImgBB"
-                      />
-                      <p className="text-xs text-white/50 mt-1">💡 Поддерживаются ImgBB, Google Drive, Яндекс.Диск</p>
+                          }}
+                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white flex-1"
+                          placeholder="URL изображения или выберите файл"
+                        />
+                        <input
+                          ref={speakerImageInputRef}
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={async (e) => {
+                            const file = e.target.files?.[0];
+                            if (!file) return;
+
+                            if (file.size > 5 * 1024 * 1024) {
+                              toast({
+                                title: 'Ошибка',
+                                description: 'Размер файла не должен превышать 5 МБ',
+                                variant: 'destructive'
+                              });
+                              return;
+                            }
+
+                            setIsUploadingSpeakerImage(true);
+                            const formData = new FormData();
+                            formData.append('image', file);
+
+                            try {
+                              const response = await fetch('https://api.imgbb.com/1/upload?key=4d755673c26a0c615eaedc63bd1fcc2a', {
+                                method: 'POST',
+                                body: formData
+                              });
+
+                              const data = await response.json();
+                              if (data.success) {
+                                setSpeakerFormData({ ...speakerFormData, image: data.data.url });
+                                toast({
+                                  title: 'Фото загружено',
+                                  description: 'Изображение успешно загружено на ImgBB'
+                                });
+                              } else {
+                                throw new Error('Ошибка загрузки');
+                              }
+                            } catch (error) {
+                              toast({
+                                title: 'Ошибка загрузки',
+                                description: 'Не удалось загрузить изображение',
+                                variant: 'destructive'
+                              });
+                            } finally {
+                              setIsUploadingSpeakerImage(false);
+                              if (speakerImageInputRef.current) {
+                                speakerImageInputRef.current.value = '';
+                              }
+                            }
+                          }}
+                        />
+                        <Button
+                          type="button"
+                          onClick={() => speakerImageInputRef.current?.click()}
+                          disabled={isUploadingSpeakerImage}
+                          className="bg-[#d4af37] hover:bg-[#8b7355] text-black px-4 whitespace-nowrap"
+                        >
+                          {isUploadingSpeakerImage ? 'Загрузка...' : 'Выбрать файл'}
+                        </Button>
+                      </div>
+                      <p className="text-xs text-white/50 mt-1">💡 Загрузите файл или вставьте ссылку (ImgBB, Google Drive, Яндекс.Диск)</p>
+                      {speakerFormData.image && (
+                        <div className="mt-2">
+                          <img src={speakerFormData.image} alt="Предпросмотр" className="w-32 h-32 object-cover rounded-lg" />
+                        </div>
+                      )}
                     </div>
 
                     <div>
