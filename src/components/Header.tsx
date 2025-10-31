@@ -52,7 +52,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                 <button
                   onClick={() => {
                     if (location.pathname === '/') {
-                      window.location.reload();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
                     } else {
                       navigate('/');
                     }
