@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -15,23 +15,72 @@ interface ExpertsSectionProps {
   onBecomeExpertClick: () => void;
 }
 
-const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionProps) => {
-  if (experts.length === 0) return null;
+const ExpertCard = ({ expert }: { expert: Expert }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   const getKinescopeEmbedUrl = (url: string | undefined): string | null => {
     if (!url) return null;
     
     const videoIdMatch = url.match(/kinescope\.io\/([a-zA-Z0-9]+)/);
     if (videoIdMatch) {
-      return `https://kinescope.io/embed/${videoIdMatch[1]}`;
+      return `https://kinescope.io/embed/${videoIdMatch[1]}?autoplay=1&muted=1&loop=1`;
     }
     
     if (url.includes('/embed/')) {
-      return url;
+      return `${url}?autoplay=1&muted=1&loop=1`;
     }
     
     return null;
   };
+
+  const videoUrl = getKinescopeEmbedUrl(expert.video_url);
+
+  return (
+    <Card 
+      className="bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="aspect-square overflow-hidden relative">
+        <img
+          src={expert.image}
+          alt={expert.name}
+          className={`w-full h-full object-cover transition-all duration-500 ${
+            isHovered && videoUrl ? 'opacity-0' : 'opacity-100 group-hover:scale-105'
+          }`}
+          loading="lazy"
+        />
+        {videoUrl && (
+          <div className={`absolute inset-0 transition-opacity duration-500 ${
+            isHovered ? 'opacity-100' : 'opacity-0'
+          }`}>
+            {isHovered && (
+              <iframe
+                src={videoUrl}
+                className="w-full h-full"
+                allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
+                frameBorder="0"
+                allowFullScreen
+              />
+            )}
+          </div>
+        )}
+      </div>
+      <CardContent className="p-6">
+        <h3 className="text-2xl font-semibold mb-2 text-gold">
+          {expert.name}
+        </h3>
+        <p className="text-white/60 mb-4">{expert.role}</p>
+        {expert.description && (
+          <p className="text-white/70 text-sm">{expert.description}</p>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionProps) => {
+  if (experts.length === 0) return null;
 
   return (
     <section id="experts" className="py-24 bg-black">
@@ -45,38 +94,7 @@ const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionPro
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {experts.map((expert, index) => (
-            <Card 
-              key={index}
-              className="bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group"
-            >
-              <div className="aspect-square overflow-hidden">
-                {getKinescopeEmbedUrl(expert.video_url) ? (
-                  <iframe
-                    src={getKinescopeEmbedUrl(expert.video_url)!}
-                    className="w-full h-full"
-                    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write;"
-                    frameBorder="0"
-                    allowFullScreen
-                  />
-                ) : (
-                  <img
-                    src={expert.image}
-                    alt={expert.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    loading="lazy"
-                  />
-                )}
-              </div>
-              <CardContent className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 text-gold">
-                  {expert.name}
-                </h3>
-                <p className="text-white/60 mb-4">{expert.role}</p>
-                {expert.description && (
-                  <p className="text-white/70 text-sm">{expert.description}</p>
-                )}
-              </CardContent>
-            </Card>
+            <ExpertCard key={index} expert={expert} />
           ))}
         </div>
 
