@@ -49,8 +49,8 @@ const PartnersMarquee = () => {
       
 
 
-      <div className="relative flex gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-        <div className="flex animate-marquee whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16">
+      <div className="relative flex gap-8 sm:gap-10 md:gap-12 lg:gap-16 group">
+        <div className="flex animate-marquee group-hover:[animation-play-state:paused] whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`${partner.id}-${index}`}
@@ -79,7 +79,7 @@ const PartnersMarquee = () => {
             </div>
           ))}
         </div>
-        <div className="flex animate-marquee2 whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16" aria-hidden="true">
+        <div className="flex animate-marquee2 group-hover:[animation-play-state:paused] whitespace-nowrap gap-8 sm:gap-10 md:gap-12 lg:gap-16" aria-hidden="true">
           {duplicatedPartners.map((partner, index) => (
             <div
               key={`duplicate-${partner.id}-${index}`}
