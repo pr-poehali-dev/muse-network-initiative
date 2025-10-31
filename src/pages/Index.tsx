@@ -440,7 +440,7 @@ const Index = () => {
               onMouseLeave={() => setHoveredLetter(null)}
             >
               {hoveredLetter ? (
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase transition-all duration-700 ease-out">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] uppercase animate-[smooth-fade-in_0.8s_cubic-bezier(0.4,0,0.2,1)]">
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
