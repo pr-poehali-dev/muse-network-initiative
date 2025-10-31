@@ -277,14 +277,19 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             
             conn.commit()
             
-            send_telegram_notification(
-                'updated',
-                body_data,
-                old_data
-            )
+            silent_mode = body_data.get('silent', False)
+            
+            if not silent_mode:
+                send_telegram_notification(
+                    'updated',
+                    body_data,
+                    old_data
+                )
             
             cur.close()
             conn.close()
+            
+            message = 'Event updated silently' if silent_mode else 'Event updated and notifications sent'
             
             return {
                 'statusCode': 200,
@@ -293,7 +298,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     'Access-Control-Allow-Origin': '*'
                 },
                 'isBase64Encoded': False,
-                'body': json.dumps({'success': True, 'message': 'Event updated and notifications sent'})
+                'body': json.dumps({'success': True, 'message': message})
             }
         
         elif method == 'DELETE':

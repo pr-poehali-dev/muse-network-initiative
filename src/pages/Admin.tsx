@@ -129,6 +129,7 @@ const Admin = () => {
     price: undefined
   });
   const [unlimitedSeats, setUnlimitedSeats] = useState(false);
+  const [silentMode, setSilentMode] = useState(false);
 
   useEffect(() => {
     const authToken = localStorage.getItem('muse_admin_token');
@@ -337,7 +338,7 @@ const Admin = () => {
     try {
       const url = 'https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2';
       const method = editingEvent ? 'PUT' : 'POST';
-      const body = editingEvent ? { ...formData, id: editingEvent.id } : formData;
+      const body = editingEvent ? { ...formData, id: editingEvent.id, silent: silentMode } : formData;
 
       console.log('Saving event:', method, body);
       
@@ -352,11 +353,13 @@ const Admin = () => {
       console.log('Response data:', data);
 
       if (response.ok && data.success) {
+        const notificationMsg = silentMode 
+          ? 'Событие обновлено без уведомлений'
+          : (editingEvent ? 'Событие обновлено и уведомления отправлены' : 'Событие создано и уведомления отправлены');
+
         toast({
           title: 'Успешно!',
-          description: editingEvent 
-            ? 'Событие обновлено и уведомления отправлены' 
-            : 'Событие создано и уведомления отправлены',
+          description: notificationMsg,
         });
         
         resetForm();
@@ -391,6 +394,7 @@ const Admin = () => {
       price: undefined
     });
     setUnlimitedSeats(false);
+    setSilentMode(false);
     setEditingEvent(null);
     setShowForm(false);
   };
@@ -1631,13 +1635,27 @@ const Admin = () => {
                   ))}
                 </div>
 
+                {editingEvent && (
+                  <div className="space-y-2 mb-4 mt-6">
+                    <label className="flex items-center gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={silentMode}
+                        onChange={(e) => setSilentMode(e.target.checked)}
+                        className="w-4 h-4 rounded border-[#d4af37]/20 bg-[#0a0a0a] text-[#d4af37] focus:ring-[#d4af37]"
+                      />
+                      <span className="text-white/80 text-sm">🔕 Тихий режим (обновить без уведомлений в Telegram)</span>
+                    </label>
+                  </div>
+                )}
+
                 <div className="flex gap-4">
                   <Button
                     type="submit"
                     disabled={isLoading}
                     className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
                   >
-                    {isLoading ? 'Сохранение...' : editingEvent ? 'Обновить и отправить уведомления' : 'Создать и отправить уведомления'}
+                    {isLoading ? 'Сохранение...' : editingEvent ? (silentMode ? 'Обновить без уведомлений' : 'Обновить и отправить уведомления') : 'Создать и отправить уведомления'}
                   </Button>
                   
                   <Button
