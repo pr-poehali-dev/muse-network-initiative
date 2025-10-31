@@ -660,18 +660,23 @@ const Admin = () => {
   };
 
   const handleCleanupSubscribers = async () => {
+    const adminToken = prompt('Введите секретный токен для подтверждения очистки данных:');
+    
+    if (!adminToken) {
+      return;
+    }
+
     if (!confirm('Вы уверены, что хотите удалить ВСЕ регистрации? Это действие необратимо!')) {
       return;
     }
 
     setIsLoading(true);
     try {
-      const token = localStorage.getItem('muse_admin_token');
       const response = await fetch('https://functions.poehali.dev/5ad37c65-b74a-49dd-a1ac-e89b033e56c9', {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
-          'X-Admin-Token': token || ''
+          'X-Admin-Token': adminToken
         },
         body: JSON.stringify({ table: 'subscribers' })
       });
@@ -681,7 +686,7 @@ const Admin = () => {
       if (response.ok && data.success) {
         toast({
           title: 'Успешно!',
-          description: `Удалено ${data.deleted} записей из таблицы регистраций`,
+          description: `Удалено ${data.deleted} записей. ${data.sheets_cleaned?.length > 0 ? 'Очищены таблицы: ' + data.sheets_cleaned.join(', ') : ''}`,
         });
       } else {
         throw new Error(data.error || 'Ошибка очистки');
