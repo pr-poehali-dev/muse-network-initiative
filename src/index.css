@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@400;600;700&family=Montserrat:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap&text=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя0123456789.,!?-—:;()\"'");
 
 @tailwind base;
 @tailwind components;
@@ -219,8 +219,9 @@ body::-webkit-scrollbar {
   }
 
   .animate-slide-in-from-left {
-    animation: slide-in-from-left 0.5s ease-out forwards;
-    will-change: auto;
+    animation: slide-in-from-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      forwards;
+    will-change: opacity, transform;
   }
 
   @keyframes slide-in-from-left {
@@ -235,8 +236,9 @@ body::-webkit-scrollbar {
   }
 
   .animate-slide-in-from-right {
-    animation: slide-in-from-right 0.5s ease-out forwards;
-    will-change: auto;
+    animation: slide-in-from-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      forwards;
+    will-change: opacity, transform;
   }
 
   @keyframes slide-in-from-right {
@@ -251,7 +253,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-zoom-in {
-    animation: zoom-in 0.5s ease-out forwards;
+    animation: zoom-in 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
   }
 
   @keyframes zoom-in {
@@ -279,7 +281,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-title-appear {
-    animation: title-appear 0.6s ease-out forwards;
+    animation: title-appear 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes title-appear {
@@ -312,7 +314,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-text-appear {
-    animation: text-appear 0.5s ease-out forwards;
+    animation: text-appear 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes text-appear {
@@ -371,7 +373,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-card-appear {
-    animation: card-appear 0.5s ease-out forwards;
+    animation: card-appear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 
   @keyframes card-appear {
@@ -400,16 +402,14 @@ body::-webkit-scrollbar {
   }
 
   .hover-scale {
-    transition:
-      transform 0.3s ease-out,
-      box-shadow 0.3s ease-out;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .hover-scale:hover {
-    transform: translateY(-4px) scale(1.01);
+    transform: translateY(-8px) scale(1.02);
     box-shadow:
-      0 10px 20px rgba(212, 175, 55, 0.3),
-      0 0 0 1px rgba(212, 175, 55, 0.15);
+      0 20px 40px rgba(212, 175, 55, 0.4),
+      0 0 0 2px rgba(212, 175, 55, 0.2);
   }
 
   @media (max-width: 768px), (prefers-reduced-motion: reduce) {
@@ -424,7 +424,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-slide-in-left {
-    animation: slide-in-left 0.5s ease-out;
+    animation: slide-in-left 0.8s ease-out;
   }
 
   @keyframes slide-in-left {
@@ -445,7 +445,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-slide-in-right {
-    animation: slide-in-right 0.5s ease-out;
+    animation: slide-in-right 0.8s ease-out;
   }
 
   @keyframes slide-in-right {
@@ -466,7 +466,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-scale-in {
-    animation: scale-in 0.4s ease-out;
+    animation: scale-in 0.6s ease-out;
   }
 
   @keyframes scale-in {
@@ -487,7 +487,7 @@ body::-webkit-scrollbar {
   }
 
   .animate-fade-in-gentle {
-    animation: fade-in-gentle 1s ease-out forwards;
+    animation: fade-in-gentle 2s ease-out forwards;
   }
 
   @keyframes fade-in-gentle {
@@ -573,26 +573,24 @@ body::-webkit-scrollbar {
     overflow: hidden;
   }
 
-  @media (hover: hover) {
-    .glow-effect::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.15),
-        transparent
-      );
-      transition: left 0.4s ease-out;
-    }
+  .glow-effect::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
+    transition: left 0.5s;
+  }
 
-    .glow-effect:hover::before {
-      left: 100%;
-    }
+  .glow-effect:hover::before {
+    left: 100%;
   }
 
   .pulse-glow {
