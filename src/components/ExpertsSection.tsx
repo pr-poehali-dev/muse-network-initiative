@@ -38,12 +38,14 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={expert.video_url ? handleCardClick : undefined}
     >
-      <div className="aspect-square overflow-hidden relative bg-black/50">
+      <div className="aspect-square overflow-hidden relative bg-gradient-to-br from-gold/10 to-black/50 flex items-center justify-center">
         <img
           src={expert.image}
           alt={expert.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
+          loading="eager"
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
           onError={(e) => {
             console.error('Failed to load image for:', expert.name, expert.image);
             e.currentTarget.style.display = 'none';
