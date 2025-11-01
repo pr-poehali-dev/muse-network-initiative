@@ -60,6 +60,14 @@ const EventRegistrationDialog = ({
     
     onFormDataChange({...formData, phone: formatted});
   };
+  
+  const handleTelegramChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value;
+    if (!value.startsWith('@')) {
+      value = '@' + value.replace(/^@+/, '');
+    }
+    onFormDataChange({...formData, telegram: value});
+  };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
@@ -112,8 +120,9 @@ const EventRegistrationDialog = ({
             />
             <Input
               placeholder="Telegram"
-              value={formData.telegram}
-              onChange={(e) => onFormDataChange({...formData, telegram: e.target.value})}
+              value={formData.telegram || '@'}
+              onChange={handleTelegramChange}
+              required
               className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
             />
             <Textarea
