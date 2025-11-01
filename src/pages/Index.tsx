@@ -1,9 +1,9 @@
-import { useState, FormEvent, useEffect, useRef } from 'react';
+import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
-import MosaicGallery from '@/components/MosaicGallery';
-import VideoGallery from '@/components/VideoGallery';
+const MosaicGallery = lazy(() => import('@/components/MosaicGallery'));
+const VideoGallery = lazy(() => import('@/components/VideoGallery'));
 import EventsCalendar from '@/components/EventsCalendar';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
@@ -162,10 +162,10 @@ const Index = () => {
   const [isViewingMedia, setIsViewingMedia] = useState(false);
   const [eventsRefreshTrigger, setEventsRefreshTrigger] = useState(0);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      const navHeight = 100; // высота фиксированной навигации
+      const navHeight = 100;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const offsetPosition = elementPosition - navHeight;
       
@@ -180,12 +180,12 @@ const Index = () => {
         setTimeout(() => setCalendarAutoExpand(false), 100);
       }
     }
-  };
+  }, []);
 
-  const handleEventRegister = (eventTitle: string) => {
-    setEventFormData({...eventFormData, event: eventTitle});
+  const handleEventRegister = useCallback((eventTitle: string) => {
+    setEventFormData(prev => ({...prev, event: eventTitle}));
     setIsEventDialogOpen(true);
-  };
+  }, []);
 
   const handleEventFormSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -285,7 +285,7 @@ const Index = () => {
 
 
 
-  const values = [
+  const values = useMemo(() => [
     {
       title: 'Солидарность',
       description: 'Поддерживаем друг друга, отмечая достижения каждой участницы',
@@ -310,9 +310,9 @@ const Index = () => {
       icon: 'Globe',
       emoji: '🌍'
     },
-  ];
+  ], []);
 
-  const events = [
+  const events = useMemo(() => [
     {
       title: 'Ежемесячные встречи ОЧНО',
       description: 'Тема каждой встречи варьируется от панельных дискуссий до творческих воркшопов',
@@ -341,7 +341,7 @@ const Index = () => {
       icon: 'Palette',
       emoji: '🎨'
     },
-  ];
+  ], []);
 
   return (
     <PageTransition>
@@ -373,12 +373,14 @@ const Index = () => {
             <img 
               src={heroContent.image_left} 
               alt="" 
+              loading="lazy"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)'
+                filter: 'grayscale(40%) contrast(1.1)',
+                willChange: 'transform'
               }}
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
@@ -392,6 +394,8 @@ const Index = () => {
             <img 
               src={heroContent.image_center} 
               alt="" 
+              loading="eager"
+              fetchpriority="high"
               className="w-full h-full object-cover object-center"
               style={{
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
@@ -410,11 +414,13 @@ const Index = () => {
             <img 
               src={heroContent.image_right} 
               alt="" 
+              loading="lazy"
               className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)'
+                filter: 'grayscale(40%) contrast(1.1)',
+                willChange: 'transform'
               }}
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
@@ -857,11 +863,13 @@ const Index = () => {
             </div>
           </DialogHeader>
           <div className="overflow-y-auto flex-1 scrollbar-hide overflow-x-hidden px-0">
-            {galleryTab === 'photos' ? (
-              <MosaicGallery onViewingChange={setIsViewingMedia} />
-            ) : (
-              <VideoGallery onViewingChange={setIsViewingMedia} />
-            )}
+            <Suspense fallback={<div className="flex items-center justify-center h-full"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+              {galleryTab === 'photos' ? (
+                <MosaicGallery onViewingChange={setIsViewingMedia} />
+              ) : (
+                <VideoGallery onViewingChange={setIsViewingMedia} />
+              )}
+            </Suspense>
           </div>
         </DialogContent>
       </Dialog>
@@ -892,7 +900,7 @@ const Index = () => {
                   <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
                       <>
-                        <img src={expert.image} alt={expert.name} className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
+                        <img src={expert.image} alt={expert.name} loading="lazy" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
                       </>
                     ) : (
