@@ -4,12 +4,12 @@ import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 const MosaicGallery = lazy(() => import('@/components/MosaicGallery'));
 const VideoGallery = lazy(() => import('@/components/VideoGallery'));
-import EventsCalendar from '@/components/EventsCalendar';
+const EventsCalendar = lazy(() => import('@/components/EventsCalendar'));
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
-import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
-import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
-import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
-import CounterAnimation from '@/components/CounterAnimation';
+const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
+const JoinClubDialog = lazy(() => import('@/components/dialogs/JoinClubDialog'));
+const BecomeExpertDialog = lazy(() => import('@/components/dialogs/BecomeExpertDialog'));
+const CounterAnimation = lazy(() => import('@/components/CounterAnimation'));
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
@@ -355,8 +355,8 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse" style={{willChange: 'opacity'}}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s', willChange: 'opacity'}}></div>
           
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
@@ -512,13 +512,15 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <CounterAnimation 
-                  end={250} 
-                  suffix="+" 
-                  duration={2500}
-                  delay={0}
-                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                />
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>}>
+                  <CounterAnimation 
+                    end={250} 
+                    suffix="+" 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -528,13 +530,15 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <CounterAnimation 
-                  end={150} 
-                  suffix="+" 
-                  duration={2500}
-                  delay={0}
-                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                />
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>}>
+                  <CounterAnimation 
+                    end={150} 
+                    suffix="+" 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -544,12 +548,14 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <CounterAnimation 
-                  end={24} 
-                  duration={2500}
-                  delay={0}
-                  className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                />
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>}>
+                  <CounterAnimation 
+                    end={24} 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Доступ из любой точки мира</p>
               </div>
@@ -726,34 +732,44 @@ const Index = () => {
           </div>
 
           <div id="calendar">
-            <EventsCalendar 
-              onEventRegister={handleEventRegister} 
-              autoExpand={calendarAutoExpand}
-              refreshTrigger={eventsRefreshTrigger}
-            />
+            <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+              <EventsCalendar 
+                onEventRegister={handleEventRegister} 
+                autoExpand={calendarAutoExpand}
+                refreshTrigger={eventsRefreshTrigger}
+              />
+            </Suspense>
           </div>
         </div>
       </section>
 
-      <EventRegistrationDialog
-        isOpen={isEventDialogOpen}
-        onClose={() => setIsEventDialogOpen(false)}
-        formData={eventFormData}
-        onFormDataChange={setEventFormData}
-        onSubmit={handleEventFormSubmit}
-        isSubmitted={isEventFormSubmitted}
-        isSubmitting={isEventFormSubmitting}
-      />
+      {isEventDialogOpen && (
+        <Suspense fallback={null}>
+          <EventRegistrationDialog
+            isOpen={isEventDialogOpen}
+            onClose={() => setIsEventDialogOpen(false)}
+            formData={eventFormData}
+            onFormDataChange={setEventFormData}
+            onSubmit={handleEventFormSubmit}
+            isSubmitted={isEventFormSubmitted}
+            isSubmitting={isEventFormSubmitting}
+          />
+        </Suspense>
+      )}
 
-      <JoinClubDialog
-        isOpen={isJoinDialogOpen}
-        onClose={() => setIsJoinDialogOpen(false)}
-        formData={joinFormData}
-        onFormDataChange={setJoinFormData}
-        onSubmit={handleJoinFormSubmit}
-        isSubmitted={isJoinFormSubmitted}
-        isSubmitting={isJoinFormSubmitting}
-      />
+      {isJoinDialogOpen && (
+        <Suspense fallback={null}>
+          <JoinClubDialog
+            isOpen={isJoinDialogOpen}
+            onClose={() => setIsJoinDialogOpen(false)}
+            formData={joinFormData}
+            onFormDataChange={setJoinFormData}
+            onSubmit={handleJoinFormSubmit}
+            isSubmitted={isJoinFormSubmitted}
+            isSubmitting={isJoinFormSubmitting}
+          />
+        </Suspense>
+      )}
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
@@ -959,15 +975,19 @@ const Index = () => {
 
       <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
-      <BecomeExpertDialog
-        isOpen={isExpertDialogOpen}
-        onClose={() => setIsExpertDialogOpen(false)}
-        formData={expertFormData}
-        onFormDataChange={setExpertFormData}
-        onSubmit={handleExpertFormSubmit}
-        isSubmitted={isExpertFormSubmitted}
-        isSubmitting={isExpertFormSubmitting}
-      />
+      {isExpertDialogOpen && (
+        <Suspense fallback={null}>
+          <BecomeExpertDialog
+            isOpen={isExpertDialogOpen}
+            onClose={() => setIsExpertDialogOpen(false)}
+            formData={expertFormData}
+            onFormDataChange={setExpertFormData}
+            onSubmit={handleExpertFormSubmit}
+            isSubmitted={isExpertFormSubmitted}
+            isSubmitting={isExpertFormSubmitting}
+          />
+        </Suspense>
+      )}
         </div>
       </Layout>
     </PageTransition>
