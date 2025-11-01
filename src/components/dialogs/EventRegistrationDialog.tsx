@@ -36,6 +36,8 @@ const EventRegistrationDialog = ({
 }: EventRegistrationDialogProps) => {
   const navigate = useNavigate();
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [noTelegram, setNoTelegram] = useState(false);
+  const [showTelegramWarning, setShowTelegramWarning] = useState(false);
   
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value.replace(/\D/g, '');
@@ -67,6 +69,17 @@ const EventRegistrationDialog = ({
       value = '@' + value.replace(/^@+/, '');
     }
     onFormDataChange({...formData, telegram: value});
+  };
+  
+  const handleNoTelegramChange = (checked: boolean) => {
+    setNoTelegram(checked);
+    if (checked) {
+      setShowTelegramWarning(true);
+      onFormDataChange({...formData, telegram: ''});
+      setTimeout(() => setShowTelegramWarning(false), 5000);
+    } else {
+      onFormDataChange({...formData, telegram: '@'});
+    }
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -118,13 +131,35 @@ const EventRegistrationDialog = ({
               onChange={handlePhoneChange}
               className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
             />
-            <Input
-              placeholder="Telegram"
-              value={formData.telegram || '@'}
-              onChange={handleTelegramChange}
-              required
-              className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-            />
+            <div className="space-y-2">
+              <Input
+                placeholder="Telegram"
+                value={formData.telegram || '@'}
+                onChange={handleTelegramChange}
+                required={!noTelegram}
+                disabled={noTelegram}
+                className="bg-[#0a0a0a] border-[#d4af37]/20 text-white disabled:opacity-50"
+              />
+              <div className="flex items-center gap-2">
+                <Checkbox
+                  id="no-telegram-event"
+                  checked={noTelegram}
+                  onCheckedChange={handleNoTelegramChange}
+                  className="border-[#d4af37]/30 data-[state=checked]:bg-[#d4af37] data-[state=checked]:border-[#d4af37]"
+                />
+                <Label htmlFor="no-telegram-event" className="text-sm text-white/60">
+                  У меня нет Telegram
+                </Label>
+              </div>
+              {showTelegramWarning && (
+                <div className="flex items-start gap-2 p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg">
+                  <Icon name="AlertCircle" className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
+                  <p className="text-sm text-amber-200">
+                    Без Telegram вы не будете получать уведомления о событиях клуба
+                  </p>
+                </div>
+              )}
+            </div>
             <Textarea
               placeholder="Дополнительная информация"
               value={formData.message}
