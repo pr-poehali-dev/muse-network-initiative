@@ -350,13 +350,13 @@ const Index = () => {
 
       <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20 animate-pulse" style={{backgroundSize: '50px 50px'}}></div>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20" style={{backgroundSize: '50px 50px'}}></div>
           
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse" style={{willChange: 'opacity'}}></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s', willChange: 'opacity'}}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px]" style={{willChange: 'auto'}}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px]" style={{willChange: 'auto'}}></div>
           
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
@@ -374,7 +374,7 @@ const Index = () => {
               src={heroContent.image_left} 
               alt="" 
               loading="lazy"
-              className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
@@ -383,10 +383,9 @@ const Index = () => {
                 willChange: 'transform'
               }}
             />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
+            <div className="absolute inset-0 opacity-25 mix-blend-overlay pointer-events-none" style={{
               background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
-            <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
           <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
@@ -415,7 +414,7 @@ const Index = () => {
               src={heroContent.image_right} 
               alt="" 
               loading="lazy"
-              className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
+              className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
@@ -423,10 +422,9 @@ const Index = () => {
                 willChange: 'transform'
               }}
             />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
+            <div className="absolute inset-0 opacity-25 mix-blend-overlay pointer-events-none" style={{
               background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
-            <div className="absolute inset-0 border-2 border-[#d4af37]/0 group-hover:border-[#d4af37]/30 transition-all duration-700 pointer-events-none"></div>
           </div>
 
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-20"></div>
@@ -435,10 +433,7 @@ const Index = () => {
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-transparent via-[#d4af37]/30 to-transparent blur-sm"></div>
           <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#d4af37]/20 to-transparent blur-sm"></div>
           
-          <div className="absolute top-20 left-20 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse"></div>
-          <div className="absolute top-40 right-32 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '0.5s'}}></div>
-          <div className="absolute bottom-40 left-40 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1s'}}></div>
-          <div className="absolute bottom-32 right-20 w-2 h-2 bg-[#d4af37] rounded-full blur-sm animate-pulse" style={{animationDelay: '1.5s'}}></div>
+
           
           <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
           
@@ -466,7 +461,7 @@ const Index = () => {
               }}
             >
               {hoveredLetter ? (
-                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+                <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-300 ease-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.25)) drop-shadow(2px 4px 6px rgba(0,0,0,0.3))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
                   {hoveredLetter === 'S' && 'Synergy'}
@@ -476,10 +471,10 @@ const Index = () => {
                 heroContent.title.split('').map((char, index) => (
                   <span 
                     key={index} 
-                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-300 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
                       transformStyle: 'preserve-3d',
-                      filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                      filter: 'drop-shadow(0 0 15px rgba(212,175,55,0.25)) drop-shadow(2px 4px 6px rgba(0,0,0,0.3))'
                     }}
                     onMouseEnter={() => {
                       setIsEntering(true);
@@ -492,13 +487,10 @@ const Index = () => {
                 ))
               )}
             </h1>
-            <div className="absolute inset-0 font-black text-[#d4af37]/10 blur-2xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
+            <div className="absolute inset-0 font-black text-[#d4af37]/8 blur-xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
               {heroContent.title}
             </div>
-            <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-3xl px-4 pointer-events-none animate-pulse" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)', animationDuration: '3s'}}>
-              {heroContent.title}
-            </div>
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent to-transparent pointer-events-none"></div>
           </div>
           <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
             {heroContent.tagline}
@@ -675,7 +667,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <Card key={index} className="hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md" style={{animationDelay: `${index * 0.1}s`}}>
+              <Card key={index} className="hover-scale border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md" style={{animationDelay: `${index * 0.08}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                     <Icon name={value.icon} className="text-[#b8953d]/60" size={24} />
@@ -714,7 +706,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {events.map((event, index) => (
-              <Card key={index} className={`hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md`} style={{animationDelay: `${index * 0.15}s`}}>
+              <Card key={index} className={`hover-scale border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md`} style={{animationDelay: `${index * 0.1}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 flex-shrink-0">
@@ -911,7 +903,7 @@ const Index = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
             {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
+              <Card key={index} className="hover-scale overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.06}s`}}>
                 <CardContent className="p-0">
                   <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
