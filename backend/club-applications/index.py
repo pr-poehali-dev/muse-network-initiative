@@ -8,8 +8,10 @@ Returns: HTTP response dict with application data
 import json
 import os
 import psycopg2
+import urllib.request
+import urllib.parse
 from typing import Dict, Any, Optional
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 
 def get_db_connection():
     dsn = os.environ.get('DATABASE_URL')
@@ -75,6 +77,38 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         conn.commit()
         cursor.close()
         conn.close()
+        
+        # Send Telegram notification
+        telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+        telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+        
+        if telegram_token and telegram_chat_id:
+            moscow_tz = timezone(timedelta(hours=3))
+            timestamp = datetime.now(moscow_tz).strftime('%Y-%m-%d %H:%M:%S')
+            
+            admin_message = f"""🆕 Новая заявка на вступление в клуб MUSE
+
+👤 Имя: {name}
+📧 Email: {email}
+📱 Телефон: {phone}
+💬 Telegram: {telegram}
+📝 Сообщение: {message}
+
+🕐 Время: {timestamp}"""
+            
+            url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+            request_data = {
+                'chat_id': telegram_chat_id,
+                'text': admin_message
+            }
+            
+            data = urllib.parse.urlencode(request_data).encode()
+            
+            try:
+                response = urllib.request.urlopen(url, data=data)
+                print(f"Admin notification sent: {response.read().decode()}")
+            except Exception as e:
+                print(f"Failed to send admin notification: {str(e)}")
         
         return {
             'statusCode': 200,
