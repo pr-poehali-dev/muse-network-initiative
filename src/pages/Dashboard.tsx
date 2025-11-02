@@ -6,6 +6,7 @@ import Icon from '@/components/ui/icon';
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import EventsCalendar from '@/components/EventsCalendar';
 
 interface Application {
   id: number;
@@ -143,6 +144,8 @@ const Dashboard = () => {
 
               {application && !loading && (
                 <div className="space-y-6">
+                  <EventsCalendar autoExpand={true} />
+
                   <Card className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border-[#d4af37]/20">
                     <CardHeader>
                       <CardTitle className="text-2xl text-[#d4af37] flex items-center gap-2">
