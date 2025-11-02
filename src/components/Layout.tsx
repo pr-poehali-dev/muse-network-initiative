@@ -15,6 +15,7 @@ interface LayoutProps {
   onScrollToSection?: (id: string) => void;
   onOpenExpertDialog?: () => void;
   onOpenJoinDialog?: () => void;
+  onOpenLoginDialog?: () => void;
 }
 
 const Layout = ({ 
@@ -22,7 +23,8 @@ const Layout = ({
   titleInHeader = false, 
   onScrollToSection: externalScrollToSection,
   onOpenExpertDialog: externalOpenExpertDialog,
-  onOpenJoinDialog: externalOpenJoinDialog
+  onOpenJoinDialog: externalOpenJoinDialog,
+  onOpenLoginDialog: externalOpenLoginDialog
 }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -76,6 +78,7 @@ const Layout = ({
         onScrollToSection={externalScrollToSection || defaultScrollToSection}
         onOpenExpertDialog={externalOpenExpertDialog || (() => setIsExpertDialogOpen(true))}
         onOpenJoinDialog={externalOpenJoinDialog || (() => setIsJoinDialogOpen(true))}
+        onOpenLoginDialog={externalOpenLoginDialog}
       />
 
       {children}

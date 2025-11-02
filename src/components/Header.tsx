@@ -7,9 +7,10 @@ interface HeaderProps {
   onScrollToSection?: (section: string) => void;
   onOpenExpertDialog?: () => void;
   onOpenJoinDialog?: () => void;
+  onOpenLoginDialog?: () => void;
 }
 
-const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, onOpenJoinDialog }: HeaderProps) => {
+const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, onOpenJoinDialog, onOpenLoginDialog }: HeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -40,6 +41,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
   const pageLinks = [
     { label: 'Хедлайнеры', path: '/headliners' },
     { label: 'MUSE TV', path: '/muse-tv' },
+    { label: 'Личный кабинет', path: '/dashboard' },
   ];
 
   return (
@@ -163,6 +165,22 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
             </div>
 
             <div className="w-full max-w-md space-y-3 mt-8">
+              <Button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  if (location.pathname === '/') {
+                    if (onOpenLoginDialog) {
+                      onOpenLoginDialog();
+                    }
+                  } else {
+                    navigate('/dashboard');
+                  }
+                }}
+                className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-semibold text-sm py-4 transition-all duration-400 rounded-md"
+              >
+                Личный кабинет
+              </Button>
+
               <Button
                 onClick={() => {
                   setIsMobileMenuOpen(false);

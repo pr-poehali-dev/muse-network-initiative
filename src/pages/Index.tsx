@@ -9,6 +9,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
 const JoinClubDialog = lazy(() => import('@/components/dialogs/JoinClubDialog'));
 const BecomeExpertDialog = lazy(() => import('@/components/dialogs/BecomeExpertDialog'));
+const LoginDialog = lazy(() => import('@/components/dialogs/LoginDialog'));
 const CounterAnimation = lazy(() => import('@/components/CounterAnimation'));
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -124,6 +125,7 @@ const Index = () => {
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
+  const [isLoginDialogOpen, setIsLoginDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
     email: '',
@@ -226,7 +228,7 @@ const Index = () => {
     setIsJoinFormSubmitting(true);
     
     try {
-      const response = await fetch('https://functions.poehali.dev/0dd49b02-038f-429e-b3a3-5fa01ff50b67', {
+      const response = await fetch('https://functions.poehali.dev/1abad196-7520-4a04-9c6e-25ad758e03a6', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -235,6 +237,8 @@ const Index = () => {
       });
       
       if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('userEmail', joinFormData.email);
         setIsJoinFormSubmitting(false);
         setIsJoinFormSubmitted(true);
         setTimeout(() => {
@@ -345,7 +349,7 @@ const Index = () => {
 
   return (
     <PageTransition>
-      <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)}>
+      <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)} onOpenLoginDialog={() => setIsLoginDialogOpen(true)}>
         <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
 
       <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
@@ -985,6 +989,15 @@ const Index = () => {
             onSubmit={handleExpertFormSubmit}
             isSubmitted={isExpertFormSubmitted}
             isSubmitting={isExpertFormSubmitting}
+          />
+        </Suspense>
+      )}
+
+      {isLoginDialogOpen && (
+        <Suspense fallback={null}>
+          <LoginDialog
+            isOpen={isLoginDialogOpen}
+            onClose={() => setIsLoginDialogOpen(false)}
           />
         </Suspense>
       )}

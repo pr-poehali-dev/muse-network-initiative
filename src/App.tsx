@@ -12,6 +12,7 @@ import TestForms from "./pages/TestForms";
 import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
 import WebhookSetup from "./pages/WebhookSetup";
+import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 
 
@@ -30,6 +31,7 @@ const AnimatedRoutes = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/webhook-setup" element={<WebhookSetup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
