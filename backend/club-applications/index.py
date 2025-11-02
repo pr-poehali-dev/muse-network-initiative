@@ -238,21 +238,105 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         cursor = conn.cursor()
         
         cursor.execute(
-            "UPDATE club_applications SET status = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s RETURNING name, email",
+            "UPDATE club_applications SET status = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s RETURNING name, email, telegram, phone",
             (new_status, application_id)
         )
         
         result = cursor.fetchone()
         conn.commit()
-        cursor.close()
-        conn.close()
         
         if not result:
+            cursor.close()
+            conn.close()
             return {
                 'statusCode': 404,
                 'headers': headers,
                 'body': json.dumps({'error': 'Application not found'})
             }
+        
+        name, email, user_telegram, phone = result
+        
+        # Send welcome message if approved
+        if new_status == 'approved':
+            telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+            bot_username = os.environ.get('TELEGRAM_BOT_USERNAME', 'Muse_Club_bot')
+            
+            if telegram_token and user_telegram:
+                # Check if user is subscribed to bot
+                cursor.execute(
+                    "SELECT telegram_chat_id FROM subscribers WHERE telegram = %s AND is_active = true",
+                    (user_telegram,)
+                )
+                subscriber = cursor.fetchone()
+                
+                if subscriber and subscriber[0]:
+                    # User is subscribed - send direct message
+                    chat_id = subscriber[0]
+                    welcome_text = f"""🎉 Поздравляем, {name}!
+
+Ваша заявка на вступление в клуб MUSE одобрена! 
+
+Добро пожаловать в наше сообщество женщин из сферы бизнеса, культуры, науки и искусства.
+
+Что дальше?
+✨ Вы будете получать уведомления о всех мероприятиях
+🎫 Регистрируйтесь на события первыми
+💫 Общайтесь с единомышленницами
+
+До встречи на наших мероприятиях! 🌟"""
+                    
+                    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+                    request_data = {
+                        'chat_id': chat_id,
+                        'text': welcome_text
+                    }
+                    
+                    data = urllib.parse.urlencode(request_data).encode()
+                    
+                    try:
+                        response = urllib.request.urlopen(url, data=data)
+                        print(f"Welcome message sent to {name} ({user_telegram}): {response.read().decode()}")
+                    except Exception as e:
+                        print(f"Failed to send welcome message: {str(e)}")
+                else:
+                    # User not subscribed - send notification to admin with invite link
+                    telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+                    if telegram_chat_id:
+                        bot_link = f'https://t.me/{bot_username}?start=approved'
+                        invite_message = f"🎉 Ваша заявка в клуб MUSE одобрена! Добро пожаловать!\n\nПодпишитесь на бота для уведомлений о мероприятиях:\n{bot_link}"
+                        
+                        admin_notification = f"""✅ Заявка одобрена: {name}
+
+Участница не подписана на бота. Пригласите её:"""
+                        
+                        url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+                        
+                        username_clean = user_telegram.replace('@', '').strip()
+                        keyboard = {
+                            'inline_keyboard': [[
+                                {
+                                    'text': '📲 Пригласить в бот',
+                                    'url': f'https://t.me/{username_clean}?text={urllib.parse.quote(invite_message)}'
+                                }
+                            ]]
+                        }
+                        
+                        request_data = {
+                            'chat_id': telegram_chat_id,
+                            'text': admin_notification,
+                            'reply_markup': json.dumps(keyboard)
+                        }
+                        
+                        data = urllib.parse.urlencode(request_data).encode()
+                        
+                        try:
+                            urllib.request.urlopen(url, data=data)
+                            print(f"Invite link sent to admin for {name} ({user_telegram})")
+                        except Exception as e:
+                            print(f"Failed to send invite link: {str(e)}")
+        
+        cursor.close()
+        conn.close()
         
         return {
             'statusCode': 200,
@@ -260,8 +344,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': json.dumps({
                 'success': True,
                 'status': new_status,
-                'name': result[0],
-                'email': result[1]
+                'name': name,
+                'email': email
             })
         }
     
