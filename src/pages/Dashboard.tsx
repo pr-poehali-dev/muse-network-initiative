@@ -250,27 +250,6 @@ const Dashboard = () => {
                       )}
                     </CardContent>
                   </Card>
-
-                  <Card className="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border-[#d4af37]/20">
-                    <CardHeader>
-                      <CardTitle className="text-2xl text-[#d4af37] flex items-center gap-2">
-                        <Icon name="Calendar" className="h-6 w-6" />
-                        События и мероприятия
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                      <p className="text-white/70 mb-4">
-                        После одобрения заявки здесь появится информация о доступных мероприятиях клуба.
-                      </p>
-                      <Button
-                        onClick={() => navigate('/#events')}
-                        variant="outline"
-                        className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
-                      >
-                        Посмотреть расписание событий
-                      </Button>
-                    </CardContent>
-                  </Card>
                 </div>
               )}
             </div>
