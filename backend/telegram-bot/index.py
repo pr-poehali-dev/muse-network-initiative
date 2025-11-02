@@ -280,6 +280,63 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     urllib.request.urlopen(answer_url, data=answer_data)
                 
                 print(f"Unsubscribed via button: chat_id {chat_id}")
+            
+            elif callback_data.startswith('approve_app_') or callback_data.startswith('reject_app_'):
+                action = 'approved' if callback_data.startswith('approve_app_') else 'rejected'
+                app_id = callback_data.split('_')[-1]
+                
+                conn = psycopg2.connect(database_url)
+                cur = conn.cursor()
+                
+                cur.execute("""
+                    UPDATE club_applications 
+                    SET status = %s, updated_at = CURRENT_TIMESTAMP
+                    WHERE id = %s
+                    RETURNING name, email, telegram
+                """, (action, app_id))
+                
+                result = cur.fetchone()
+                conn.commit()
+                cur.close()
+                conn.close()
+                
+                if result:
+                    name, email, user_telegram = result
+                    status_emoji = '✅' if action == 'approved' else '❌'
+                    status_text = 'одобрена' if action == 'approved' else 'отклонена'
+                    
+                    telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+                    if telegram_token:
+                        message_id = callback['message']['message_id']
+                        edit_url = f"https://api.telegram.org/bot{telegram_token}/editMessageText"
+                        
+                        updated_text = f"{callback['message']['text']}\n\n{status_emoji} Статус: {status_text.upper()}"
+                        
+                        edit_data = urllib.parse.urlencode({
+                            'chat_id': chat_id,
+                            'message_id': message_id,
+                            'text': updated_text
+                        }).encode()
+                        
+                        urllib.request.urlopen(edit_url, data=edit_data)
+                        
+                        answer_url = f"https://api.telegram.org/bot{telegram_token}/answerCallbackQuery"
+                        answer_data = urllib.parse.urlencode({
+                            'callback_query_id': callback['id'],
+                            'text': f'{status_emoji} Заявка {status_text}!'
+                        }).encode()
+                        urllib.request.urlopen(answer_url, data=answer_data)
+                    
+                    print(f"Application {app_id} {action} by admin")
+                else:
+                    telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
+                    if telegram_token:
+                        answer_url = f"https://api.telegram.org/bot{telegram_token}/answerCallbackQuery"
+                        answer_data = urllib.parse.urlencode({
+                            'callback_query_id': callback['id'],
+                            'text': '❌ Заявка не найдена'
+                        }).encode()
+                        urllib.request.urlopen(answer_url, data=answer_data)
         
         return {
             'statusCode': 200,

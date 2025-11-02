@@ -12,6 +12,7 @@ import MuseTvSection from '@/components/admin/MuseTvSection';
 import MediaGallerySection from '@/components/admin/MediaGallerySection';
 import PartnersSection from '@/components/admin/PartnersSection';
 import HomepageSection from '@/components/admin/HomepageSection';
+import ApplicationsSection from '@/components/admin/ApplicationsSection';
 import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface Event {
@@ -57,7 +58,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'settings'>('homepage');
+  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'applications' | 'settings'>('homepage');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -878,6 +879,22 @@ const Admin = () => {
             }
           >
             Партнеры
+          </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('applications');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'applications' ? 'default' : 'ghost'}
+            className={activeTab === 'applications'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Заявки
           </Button>
           <Button
             onClick={() => {
@@ -1860,6 +1877,10 @@ const Admin = () => {
 
         {activeTab === 'partners' && (
           <PartnersSection isLoading={isLoading} setIsLoading={setIsLoading} />
+        )}
+
+        {activeTab === 'applications' && (
+          <ApplicationsSection />
         )}
 
         {activeTab === 'settings' && (

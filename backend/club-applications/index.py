@@ -25,7 +25,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, X-User-Email',
                 'Access-Control-Max-Age': '86400'
             },
@@ -97,9 +97,25 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
 🕐 Время: {timestamp}"""
             
             url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+            
+            # Add approve/reject buttons
+            keyboard = {
+                'inline_keyboard': [[
+                    {
+                        'text': '✅ Одобрить',
+                        'callback_data': f'approve_app_{result[0]}'
+                    },
+                    {
+                        'text': '❌ Отклонить',
+                        'callback_data': f'reject_app_{result[0]}'
+                    }
+                ]]
+            }
+            
             request_data = {
                 'chat_id': telegram_chat_id,
-                'text': admin_message
+                'text': admin_message,
+                'reply_markup': json.dumps(keyboard)
             }
             
             data = urllib.parse.urlencode(request_data).encode()
@@ -124,16 +140,48 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     if method == 'GET':
         params = event.get('queryStringParameters') or {}
         email = params.get('email')
+        list_all = params.get('all')
         
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Return all applications for admin
+        if list_all == 'true':
+            cursor.execute(
+                "SELECT id, name, email, phone, telegram, message, status, created_at, updated_at FROM club_applications ORDER BY created_at DESC"
+            )
+            
+            rows = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            
+            applications = []
+            for row in rows:
+                applications.append({
+                    'id': row[0],
+                    'name': row[1],
+                    'email': row[2],
+                    'phone': row[3],
+                    'telegram': row[4],
+                    'message': row[5],
+                    'status': row[6],
+                    'created_at': row[7].isoformat(),
+                    'updated_at': row[8].isoformat() if row[8] else None
+                })
+            
+            return {
+                'statusCode': 200,
+                'headers': headers,
+                'body': json.dumps({'applications': applications})
+            }
+        
+        # Get single application by email
         if not email:
             return {
                 'statusCode': 400,
                 'headers': headers,
                 'body': json.dumps({'error': 'Email parameter is required'})
             }
-        
-        conn = get_db_connection()
-        cursor = conn.cursor()
         
         cursor.execute(
             "SELECT id, name, email, phone, telegram, message, status, created_at, updated_at FROM club_applications WHERE email = %s",
@@ -163,7 +211,57 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 'message': row[5],
                 'status': row[6],
                 'created_at': row[7].isoformat(),
-                'updated_at': row[8].isoformat()
+                'updated_at': row[8].isoformat() if row[8] else None
+            })
+        }
+    
+    if method == 'PATCH':
+        body_data = json.loads(event.get('body', '{}'))
+        application_id = body_data.get('id')
+        new_status = body_data.get('status')
+        
+        if not application_id or not new_status:
+            return {
+                'statusCode': 400,
+                'headers': headers,
+                'body': json.dumps({'error': 'ID and status are required'})
+            }
+        
+        if new_status not in ['pending', 'approved', 'rejected']:
+            return {
+                'statusCode': 400,
+                'headers': headers,
+                'body': json.dumps({'error': 'Invalid status'})
+            }
+        
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        cursor.execute(
+            "UPDATE club_applications SET status = %s, updated_at = CURRENT_TIMESTAMP WHERE id = %s RETURNING name, email",
+            (new_status, application_id)
+        )
+        
+        result = cursor.fetchone()
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        if not result:
+            return {
+                'statusCode': 404,
+                'headers': headers,
+                'body': json.dumps({'error': 'Application not found'})
+            }
+        
+        return {
+            'statusCode': 200,
+            'headers': headers,
+            'body': json.dumps({
+                'success': True,
+                'status': new_status,
+                'name': result[0],
+                'email': result[1]
             })
         }
     
