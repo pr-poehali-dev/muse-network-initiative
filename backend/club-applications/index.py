@@ -269,6 +269,8 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 )
                 subscriber = cursor.fetchone()
                 
+                username_clean = user_telegram.replace('@', '').strip()
+                
                 if subscriber and subscriber[0]:
                     # User is subscribed - send direct message
                     chat_id = subscriber[0]
@@ -299,41 +301,76 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     except Exception as e:
                         print(f"Failed to send welcome message: {str(e)}")
                 else:
-                    # User not subscribed - send notification to admin with invite link
-                    telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-                    if telegram_chat_id:
-                        bot_link = f'https://t.me/{bot_username}?start=approved'
-                        invite_message = f"🎉 Ваша заявка в клуб MUSE одобрена! Добро пожаловать!\n\nПодпишитесь на бота для уведомлений о мероприятиях:\n{bot_link}"
-                        
-                        admin_notification = f"""✅ Заявка одобрена: {name}
+                    # User not subscribed - send message to user via username with subscribe button
+                    bot_link = f'https://t.me/{bot_username}?start=approved'
+                    
+                    welcome_text = f"""🎉 Поздравляем, {name}!
 
-Участница не подписана на бота. Пригласите её:"""
+Ваша заявка на вступление в клуб MUSE одобрена! 
+
+Добро пожаловать в наше сообщество женщин из сферы бизнеса, культуры, науки и искусства.
+
+Подпишитесь на бота, чтобы получать уведомления о мероприятиях и не пропустить важные события! 🔔"""
+                    
+                    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+                    
+                    keyboard = {
+                        'inline_keyboard': [[
+                            {
+                                'text': '🔔 Подписаться на уведомления',
+                                'url': bot_link
+                            }
+                        ]]
+                    }
+                    
+                    request_data = {
+                        'chat_id': f'@{username_clean}',
+                        'text': welcome_text,
+                        'reply_markup': json.dumps(keyboard)
+                    }
+                    
+                    data = urllib.parse.urlencode(request_data).encode()
+                    
+                    try:
+                        response = urllib.request.urlopen(url, data=data)
+                        print(f"Welcome message with subscribe button sent to {name} (@{username_clean}): {response.read().decode()}")
+                    except Exception as e:
+                        print(f"Failed to send welcome message to @{username_clean}: {str(e)}")
                         
-                        url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-                        
-                        username_clean = user_telegram.replace('@', '').strip()
-                        keyboard = {
-                            'inline_keyboard': [[
-                                {
-                                    'text': '📲 Пригласить в бот',
-                                    'url': f'https://t.me/{username_clean}?text={urllib.parse.quote(invite_message)}'
-                                }
-                            ]]
-                        }
-                        
-                        request_data = {
-                            'chat_id': telegram_chat_id,
-                            'text': admin_notification,
-                            'reply_markup': json.dumps(keyboard)
-                        }
-                        
-                        data = urllib.parse.urlencode(request_data).encode()
-                        
-                        try:
-                            urllib.request.urlopen(url, data=data)
-                            print(f"Invite link sent to admin for {name} ({user_telegram})")
-                        except Exception as e:
-                            print(f"Failed to send invite link: {str(e)}")
+                        # If failed to send via username, notify admin
+                        telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+                        if telegram_chat_id:
+                            invite_message = f"🎉 Ваша заявка в клуб MUSE одобрена! Добро пожаловать!\n\nПодпишитесь на бота для уведомлений о мероприятиях:\n{bot_link}"
+                            
+                            admin_notification = f"""✅ Заявка одобрена: {name}
+
+⚠️ Не удалось отправить приветственное сообщение через @{username_clean}
+Возможно, username неверный или пользователь ограничил сообщения.
+
+Пригласите участницу вручную:"""
+                            
+                            keyboard = {
+                                'inline_keyboard': [[
+                                    {
+                                        'text': '📲 Открыть чат',
+                                        'url': f'https://t.me/{username_clean}'
+                                    }
+                                ]]
+                            }
+                            
+                            request_data = {
+                                'chat_id': telegram_chat_id,
+                                'text': admin_notification,
+                                'reply_markup': json.dumps(keyboard)
+                            }
+                            
+                            data = urllib.parse.urlencode(request_data).encode()
+                            
+                            try:
+                                urllib.request.urlopen(url, data=data)
+                                print(f"Admin notification sent about failed message to @{username_clean}")
+                            except Exception as e2:
+                                print(f"Failed to send admin notification: {str(e2)}")
         
         cursor.close()
         conn.close()
