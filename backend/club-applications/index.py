@@ -10,12 +10,40 @@ import os
 import psycopg2
 import urllib.request
 import urllib.parse
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 from typing import Dict, Any, Optional
 from datetime import datetime, timezone, timedelta
 
 def get_db_connection():
     dsn = os.environ.get('DATABASE_URL')
     return psycopg2.connect(dsn)
+
+def save_to_google_sheets(name: str, email: str, phone: str, telegram: str, message: str, status: str = 'pending'):
+    try:
+        google_creds_json = os.environ.get('GOOGLE_SERVICE_ACCOUNT')
+        if not google_creds_json:
+            print("Google Service Account not configured")
+            return False
+        
+        scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+        creds_dict = json.loads(google_creds_json)
+        creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
+        client = gspread.authorize(creds)
+        
+        sheet = client.open('Заявки клуб MUSE').sheet1
+        
+        moscow_tz = timezone(timedelta(hours=3))
+        timestamp = datetime.now(moscow_tz).strftime('%Y-%m-%d %H:%M:%S')
+        
+        row = [timestamp, name, email, phone, telegram, message, status]
+        sheet.append_row(row)
+        
+        print(f"Application saved to Google Sheets: {name} ({email})")
+        return True
+    except Exception as e:
+        print(f"Failed to save to Google Sheets: {str(e)}")
+        return False
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     method: str = event.get('httpMethod', 'GET')
@@ -77,6 +105,9 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
         conn.commit()
         cursor.close()
         conn.close()
+        
+        # Save to Google Sheets
+        save_to_google_sheets(name, email, phone, telegram, message, result[1])
         
         # Send Telegram notification
         telegram_token = os.environ.get('TELEGRAM_BOT_TOKEN')
@@ -301,76 +332,69 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                     except Exception as e:
                         print(f"Failed to send welcome message: {str(e)}")
                 else:
-                    # User not subscribed - send message to user via username with subscribe button
-                    bot_link = f'https://t.me/{bot_username}?start=approved'
-                    
-                    welcome_text = f"""🎉 Поздравляем, {name}!
+                    # User not subscribed - notify admin to invite them manually
+                    telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+                    if telegram_chat_id:
+                        bot_link = f'https://t.me/{bot_username}?start=approved'
+                        
+                        contact_info = []
+                        if user_telegram:
+                            contact_info.append(f"Telegram: {user_telegram}")
+                        if phone:
+                            contact_info.append(f"Телефон: {phone}")
+                        if email:
+                            contact_info.append(f"Email: {email}")
+                        
+                        contact_text = '\n'.join(contact_info) if contact_info else 'Контактная информация не указана'
+                        
+                        invite_message = f"""🎉 Поздравляем!
 
 Ваша заявка на вступление в клуб MUSE одобрена! 
 
 Добро пожаловать в наше сообщество женщин из сферы бизнеса, культуры, науки и искусства.
 
-Подпишитесь на бота, чтобы получать уведомления о мероприятиях и не пропустить важные события! 🔔"""
-                    
-                    url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-                    
-                    keyboard = {
-                        'inline_keyboard': [[
-                            {
-                                'text': '🔔 Подписаться на уведомления',
-                                'url': bot_link
-                            }
-                        ]]
-                    }
-                    
-                    request_data = {
-                        'chat_id': f'@{username_clean}',
-                        'text': welcome_text,
-                        'reply_markup': json.dumps(keyboard)
-                    }
-                    
-                    data = urllib.parse.urlencode(request_data).encode()
-                    
-                    try:
-                        response = urllib.request.urlopen(url, data=data)
-                        print(f"Welcome message with subscribe button sent to {name} (@{username_clean}): {response.read().decode()}")
-                    except Exception as e:
-                        print(f"Failed to send welcome message to @{username_clean}: {str(e)}")
+Подпишитесь на бота для уведомлений о мероприятиях:
+{bot_link}"""
                         
-                        # If failed to send via username, notify admin
-                        telegram_chat_id = os.environ.get('TELEGRAM_CHAT_ID')
-                        if telegram_chat_id:
-                            invite_message = f"🎉 Ваша заявка в клуб MUSE одобрена! Добро пожаловать!\n\nПодпишитесь на бота для уведомлений о мероприятиях:\n{bot_link}"
-                            
-                            admin_notification = f"""✅ Заявка одобрена: {name}
+                        admin_notification = f"""✅ Заявка одобрена: {name}
 
-⚠️ Не удалось отправить приветственное сообщение через @{username_clean}
-Возможно, username неверный или пользователь ограничил сообщения.
+👤 Участница не подписана на бота
+📋 Контакты:
+{contact_text}
 
-Пригласите участницу вручную:"""
-                            
-                            keyboard = {
-                                'inline_keyboard': [[
-                                    {
-                                        'text': '📲 Открыть чат',
-                                        'url': f'https://t.me/{username_clean}'
-                                    }
-                                ]]
-                            }
-                            
-                            request_data = {
-                                'chat_id': telegram_chat_id,
-                                'text': admin_notification,
-                                'reply_markup': json.dumps(keyboard)
-                            }
-                            
-                            data = urllib.parse.urlencode(request_data).encode()
-                            
-                            try:
-                                urllib.request.urlopen(url, data=data)
-                                print(f"Admin notification sent about failed message to @{username_clean}")
-                            except Exception as e2:
-                                print(f"Failed to send admin notification: {str(e2)}")
+Отправьте ей приглашение для подписки на бота:"""
+                        
+                        keyboard_buttons = []
+                        
+                        if user_telegram:
+                            keyboard_buttons.append([{
+                                'text': '💬 Написать в Telegram',
+                                'url': f'https://t.me/{username_clean}?text={urllib.parse.quote(invite_message)}'
+                            }])
+                        
+                        keyboard_buttons.append([{
+                            'text': '📋 Скопировать приглашение',
+                            'callback_data': f'copy_invite_{application_id}'
+                        }])
+                        
+                        keyboard = {
+                            'inline_keyboard': keyboard_buttons
+                        }
+                        
+                        url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
+                        request_data = {
+                            'chat_id': telegram_chat_id,
+                            'text': admin_notification,
+                            'reply_markup': json.dumps(keyboard)
+                        }
+                        
+                        data = urllib.parse.urlencode(request_data).encode()
+                        
+                        try:
+                            response = urllib.request.urlopen(url, data=data)
+                            print(f"Admin notification sent to invite {name} to subscribe to bot: {response.read().decode()}")
+                        except Exception as e:
+                            print(f"Failed to send admin notification: {str(e)}")
         
         cursor.close()
         conn.close()
