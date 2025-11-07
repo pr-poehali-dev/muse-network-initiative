@@ -58,6 +58,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
                 FROM events e
                 LEFT JOIN event_speakers es ON e.id = es.event_id
                 LEFT JOIN speakers s ON es.speaker_id = s.id
+                WHERE e.date >= CURRENT_DATE
                 GROUP BY e.id
                 ORDER BY e.date ASC
             """)
