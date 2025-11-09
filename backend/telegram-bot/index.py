@@ -2,13 +2,26 @@ import json
 import os
 import urllib.request
 import urllib.parse
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 import psycopg2
+from pydantic import BaseModel, Field, validator
+
+class ProfileUpdate(BaseModel):
+    email: str = Field(..., min_length=1)
+    name: Optional[str] = None
+    phone: Optional[str] = None
+    telegram: Optional[str] = None
+    
+    @validator('telegram')
+    def validate_telegram(cls, v):
+        if v and not v.startswith('@'):
+            return f'@{v}'
+        return v
 
 def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
     '''
-    Business: Telegram bot webhook to handle user subscriptions
-    Args: event with httpMethod, body containing Telegram update
+    Business: Telegram bot webhook to handle user subscriptions AND profile updates
+    Args: event with httpMethod, body containing Telegram update OR profile update data
     Returns: HTTP response confirming message processing
     '''
     method: str = event.get('httpMethod', 'POST')
@@ -18,12 +31,15 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'statusCode': 200,
             'headers': {
                 'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, OPTIONS',
+                'Access-Control-Allow-Methods': 'POST, PUT, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Max-Age': '86400'
             },
             'body': ''
         }
+    
+    if method == 'PUT':
+        return handle_profile_update(event)
     
     if method != 'POST':
         return {
@@ -354,6 +370,103 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             'body': json.dumps({'error': str(e)})
         }
 
+
+def handle_profile_update(event: Dict[str, Any]) -> Dict[str, Any]:
+    '''Update user profile in subscribers table'''
+    database_url = os.environ.get('DATABASE_URL')
+    if not database_url:
+        return {
+            'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': 'Database not configured'})
+        }
+    
+    body_data = json.loads(event.get('body', '{}'))
+    profile = ProfileUpdate(**body_data)
+    
+    conn = psycopg2.connect(database_url)
+    cur = conn.cursor()
+    
+    cur.execute("""
+        SELECT id, telegram_chat_id, is_active FROM subscribers 
+        WHERE email = %s
+    """, (profile.email,))
+    existing = cur.fetchone()
+    
+    if not existing:
+        cur.close()
+        conn.close()
+        return {
+            'statusCode': 404,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            'isBase64Encoded': False,
+            'body': json.dumps({'error': 'Profile not found'})
+        }
+    
+    subscriber_id = existing[0]
+    telegram_chat_id = existing[1]
+    is_active = existing[2]
+    
+    update_fields = []
+    params = []
+    
+    if profile.name is not None:
+        update_fields.append('name = %s')
+        params.append(profile.name)
+    
+    if profile.phone is not None:
+        update_fields.append('phone = %s')
+        params.append(profile.phone)
+    
+    if profile.telegram is not None:
+        update_fields.append('telegram = %s')
+        params.append(profile.telegram)
+    
+    if update_fields:
+        params.append(subscriber_id)
+        query = f"UPDATE subscribers SET {', '.join(update_fields)} WHERE id = %s"
+        cur.execute(query, params)
+        conn.commit()
+    
+    cur.execute("""
+        SELECT id, name, email, phone, telegram, telegram_chat_id, is_active
+        FROM subscribers
+        WHERE id = %s
+    """, (subscriber_id,))
+    
+    result = cur.fetchone()
+    
+    cur.close()
+    conn.close()
+    
+    profile_data = {
+        'id': result[0],
+        'name': result[1],
+        'email': result[2],
+        'phone': result[3],
+        'telegram': result[4],
+        'has_telegram_notifications': result[5] is not None and result[6]
+    }
+    
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        'isBase64Encoded': False,
+        'body': json.dumps({
+            'success': True,
+            'profile': profile_data
+        })
+    }
 
 def send_message(chat_id: int, text: str, keyboard: dict = None):
     '''Send message to Telegram user'''

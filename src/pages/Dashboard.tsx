@@ -26,6 +26,13 @@ const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [userEmail, setUserEmail] = useState<string | null>(null);
+  const [isEditingProfile, setIsEditingProfile] = useState(false);
+  const [profileData, setProfileData] = useState({
+    name: '',
+    phone: '',
+    telegram: ''
+  });
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     const email = localStorage.getItem('userEmail');
@@ -54,6 +61,11 @@ const Dashboard = () => {
       
       const data = await response.json();
       setApplication(data);
+      setProfileData({
+        name: data.name || '',
+        phone: data.phone || '',
+        telegram: data.telegram || ''
+      });
     } catch (err) {
       setError('Не удалось загрузить данные. Попробуйте позже.');
       console.error('Error fetching application:', err);
@@ -65,6 +77,51 @@ const Dashboard = () => {
   const handleLogout = () => {
     localStorage.removeItem('userEmail');
     navigate('/');
+  };
+
+  const handleEditProfile = () => {
+    setIsEditingProfile(true);
+  };
+
+  const handleCancelEdit = () => {
+    setIsEditingProfile(false);
+    if (application) {
+      setProfileData({
+        name: application.name || '',
+        phone: application.phone || '',
+        telegram: application.telegram || ''
+      });
+    }
+  };
+
+  const handleSaveProfile = async () => {
+    if (!userEmail) return;
+    
+    setIsSaving(true);
+    try {
+      const response = await fetch('https://functions.poehali.dev/86d916fc-7e24-4e3d-af36-baf40ce0c304', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: userEmail,
+          ...profileData
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Ошибка сохранения данных');
+      }
+
+      await fetchApplication(userEmail);
+      setIsEditingProfile(false);
+    } catch (err) {
+      console.error('Error saving profile:', err);
+      alert('Не удалось сохранить данные. Попробуйте позже.');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -154,27 +211,93 @@ const Dashboard = () => {
                       </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
+                      <div className="flex justify-end mb-2">
+                        {!isEditingProfile ? (
+                          <Button
+                            onClick={handleEditProfile}
+                            variant="outline"
+                            className="border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
+                          >
+                            <Icon name="Edit" className="mr-2 h-4 w-4" />
+                            Редактировать
+                          </Button>
+                        ) : (
+                          <div className="flex gap-2">
+                            <Button
+                              onClick={handleCancelEdit}
+                              variant="outline"
+                              className="border-white/20 text-white/70 hover:bg-white/10"
+                              disabled={isSaving}
+                            >
+                              Отмена
+                            </Button>
+                            <Button
+                              onClick={handleSaveProfile}
+                              className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42]"
+                              disabled={isSaving}
+                            >
+                              {isSaving ? (
+                                <>
+                                  <Icon name="Loader2" className="mr-2 h-4 w-4 animate-spin" />
+                                  Сохранение...
+                                </>
+                              ) : (
+                                <>
+                                  <Icon name="Save" className="mr-2 h-4 w-4" />
+                                  Сохранить
+                                </>
+                              )}
+                            </Button>
+                          </div>
+                        )}
+                      </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                           <p className="text-sm text-white/50 mb-1">Имя</p>
-                          <p className="text-white font-medium">{application.name}</p>
+                          {isEditingProfile ? (
+                            <input
+                              type="text"
+                              value={profileData.name}
+                              onChange={(e) => setProfileData({ ...profileData, name: e.target.value })}
+                              className="w-full bg-[#0a0a0a] border border-[#d4af37]/20 rounded px-3 py-2 text-white focus:outline-none focus:border-[#d4af37]/50"
+                              placeholder="Ваше имя"
+                            />
+                          ) : (
+                            <p className="text-white font-medium">{application.name}</p>
+                          )}
                         </div>
                         <div>
                           <p className="text-sm text-white/50 mb-1">Email</p>
                           <p className="text-white font-medium">{application.email}</p>
                         </div>
-                        {application.phone && (
-                          <div>
-                            <p className="text-sm text-white/50 mb-1">Телефон</p>
-                            <p className="text-white font-medium">{application.phone}</p>
-                          </div>
-                        )}
-                        {application.telegram && (
-                          <div>
-                            <p className="text-sm text-white/50 mb-1">Telegram</p>
-                            <p className="text-white font-medium">{application.telegram}</p>
-                          </div>
-                        )}
+                        <div>
+                          <p className="text-sm text-white/50 mb-1">Телефон</p>
+                          {isEditingProfile ? (
+                            <input
+                              type="tel"
+                              value={profileData.phone}
+                              onChange={(e) => setProfileData({ ...profileData, phone: e.target.value })}
+                              className="w-full bg-[#0a0a0a] border border-[#d4af37]/20 rounded px-3 py-2 text-white focus:outline-none focus:border-[#d4af37]/50"
+                              placeholder="+7 (999) 123-45-67"
+                            />
+                          ) : (
+                            <p className="text-white font-medium">{application.phone || '—'}</p>
+                          )}
+                        </div>
+                        <div>
+                          <p className="text-sm text-white/50 mb-1">Telegram</p>
+                          {isEditingProfile ? (
+                            <input
+                              type="text"
+                              value={profileData.telegram}
+                              onChange={(e) => setProfileData({ ...profileData, telegram: e.target.value })}
+                              className="w-full bg-[#0a0a0a] border border-[#d4af37]/20 rounded px-3 py-2 text-white focus:outline-none focus:border-[#d4af37]/50"
+                              placeholder="@username"
+                            />
+                          ) : (
+                            <p className="text-white font-medium">{application.telegram || '—'}</p>
+                          )}
+                        </div>
                       </div>
                       {application.message && (
                         <div>
