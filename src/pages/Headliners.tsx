@@ -281,56 +281,78 @@ const Headliners = () => {
               </p>
             </div>
             
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 max-w-5xl mx-auto">
+              <div className="group relative bg-gradient-to-br from-neutral-900/80 to-black/90 rounded-3xl p-10 lg:p-14 border-2 border-[#d4af37]/30 hover:border-[#d4af37]/70 transition-all duration-700 hover:scale-[1.02] backdrop-blur-lg overflow-hidden shadow-[0_0_60px_rgba(212,175,55,0.15)] hover:shadow-[0_0_80px_rgba(212,175,55,0.3)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/8 group-hover:to-[#8b7355]/8 transition-all duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute -top-20 -left-20 w-64 h-64 bg-gradient-to-br from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="AlertTriangle" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/40 to-[#8b7355]/40 flex items-center justify-center flex-shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] transition-all duration-700 border border-[#d4af37]/20">
+                      <Icon name="AlertTriangle" className="w-10 h-10 lg:w-12 lg:h-12 text-[#d4af37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-2xl lg:text-3xl xl:text-4xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Основные ошибки</h4>
+                      <p className="text-base lg:text-lg text-white/80 leading-relaxed">Из-за которых сайт не дает Лиды</p>
+                    </div>
                   </div>
-                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Основные ошибки</h4>
-                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Из-за которых сайт не дает Лиды</p>
+                  <div className="h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent"></div>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative bg-gradient-to-br from-neutral-900/80 to-black/90 rounded-3xl p-10 lg:p-14 border-2 border-[#d4af37]/30 hover:border-[#d4af37]/70 transition-all duration-700 hover:scale-[1.02] backdrop-blur-lg overflow-hidden shadow-[0_0_60px_rgba(212,175,55,0.15)] hover:shadow-[0_0_80px_rgba(212,175,55,0.3)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/8 group-hover:to-[#8b7355]/8 transition-all duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-bl from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="MapPin" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/40 to-[#8b7355]/40 flex items-center justify-center flex-shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] transition-all duration-700 border border-[#d4af37]/20">
+                      <Icon name="MapPin" className="w-10 h-10 lg:w-12 lg:h-12 text-[#d4af37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-2xl lg:text-3xl xl:text-4xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Гео-сервисы</h4>
+                      <p className="text-base lg:text-lg text-white/80 leading-relaxed">Ключевой инструмент для локального бизнеса</p>
+                    </div>
                   </div>
-                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Гео-сервисы</h4>
-                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Ключевой инструмент для локального бизнеса</p>
+                  <div className="h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent"></div>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative bg-gradient-to-br from-neutral-900/80 to-black/90 rounded-3xl p-10 lg:p-14 border-2 border-[#d4af37]/30 hover:border-[#d4af37]/70 transition-all duration-700 hover:scale-[1.02] backdrop-blur-lg overflow-hidden shadow-[0_0_60px_rgba(212,175,55,0.15)] hover:shadow-[0_0_80px_rgba(212,175,55,0.3)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/8 group-hover:to-[#8b7355]/8 transition-all duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-gradient-to-tr from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="Wallet" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/40 to-[#8b7355]/40 flex items-center justify-center flex-shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] transition-all duration-700 border border-[#d4af37]/20">
+                      <Icon name="Wallet" className="w-10 h-10 lg:w-12 lg:h-12 text-[#d4af37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-2xl lg:text-3xl xl:text-4xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Экономия бюджета</h4>
+                      <p className="text-base lg:text-lg text-white/80 leading-relaxed">Как не платить в Яндекс сотни тысяч за Лиды</p>
+                    </div>
                   </div>
-                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Экономия бюджета</h4>
-                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Как не платить в Яндекс сотни тысяч за Лиды</p>
+                  <div className="h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent"></div>
                 </div>
               </div>
 
-              <div className="group relative bg-gradient-to-br from-neutral-900/60 to-black/80 rounded-2xl sm:rounded-3xl p-6 sm:p-10 lg:p-12 border-2 border-[#d4af37]/20 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105 backdrop-blur-sm overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/5 group-hover:to-[#8b7355]/5 transition-all duration-500"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[#d4af37]/10 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="group relative bg-gradient-to-br from-neutral-900/80 to-black/90 rounded-3xl p-10 lg:p-14 border-2 border-[#d4af37]/30 hover:border-[#d4af37]/70 transition-all duration-700 hover:scale-[1.02] backdrop-blur-lg overflow-hidden shadow-[0_0_60px_rgba(212,175,55,0.15)] hover:shadow-[0_0_80px_rgba(212,175,55,0.3)]">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/8 group-hover:to-[#8b7355]/8 transition-all duration-700"></div>
+                <div className="absolute top-0 right-0 w-48 h-48 bg-[#d4af37]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-gradient-to-tl from-[#d4af37]/5 to-transparent rounded-full blur-3xl"></div>
                 <div className="relative">
-                  <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#d4af37]/30 to-[#8b7355]/30 flex items-center justify-center mb-6 sm:mb-8 mx-auto shadow-[0_0_40px_rgba(212,175,55,0.3)] group-hover:shadow-[0_0_60px_rgba(212,175,55,0.5)] transition-all duration-500">
-                    <Icon name="Rocket" className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#d4af37]" />
+                  <div className="flex items-start gap-6 mb-6">
+                    <div className="w-20 h-20 lg:w-24 lg:h-24 rounded-2xl bg-gradient-to-br from-[#d4af37]/40 to-[#8b7355]/40 flex items-center justify-center flex-shrink-0 shadow-[0_0_50px_rgba(212,175,55,0.4)] group-hover:shadow-[0_0_70px_rgba(212,175,55,0.6)] transition-all duration-700 border border-[#d4af37]/20">
+                      <Icon name="Rocket" className="w-10 h-10 lg:w-12 lg:h-12 text-[#d4af37] drop-shadow-[0_0_10px_rgba(212,175,55,0.5)]" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-2xl lg:text-3xl xl:text-4xl font-black mb-3 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Авито</h4>
+                      <p className="text-base lg:text-lg text-white/80 leading-relaxed">Идеальный старт для бизнеса</p>
+                    </div>
                   </div>
-                  <h4 className="text-xl sm:text-2xl lg:text-3xl font-black text-center mb-3 sm:mb-4 text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] leading-tight">Авито</h4>
-                  <p className="text-sm sm:text-base text-white/70 text-center leading-relaxed">Идеальный старт для бизнеса</p>
+                  <div className="h-px bg-gradient-to-r from-transparent via-[#d4af37]/30 to-transparent"></div>
                 </div>
               </div>
-
-
             </div>
 
             <div className="mt-16 text-center">
