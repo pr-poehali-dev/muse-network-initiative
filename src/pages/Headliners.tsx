@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 
-const Events = () => {
+const Headliners = () => {
   const [scrollY, setScrollY] = useState(0);
   const navigate = useNavigate();
 
@@ -125,39 +125,39 @@ const Events = () => {
               opacity: 0
             }}
           >
-            <h1 className="text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] [text-shadow:0_0_40px_rgba(212,175,55,0.3),0_0_60px_rgba(212,175,55,0.2)]">
-              СОБЫТИЯ
+            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] [text-shadow:0_0_40px_rgba(212,175,55,0.3),0_0_60px_rgba(212,175,55,0.2)]">
+              MUSE
             </h1>
-            <div className="absolute inset-0 text-5xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[12rem] font-black text-[#d4af37]/8 blur-2xl px-2 md:px-4">
-              СОБЫТИЯ
+            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/8 blur-2xl px-2 md:px-4">
+              MUSE
             </div>
           </div>
           
           <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-white mb-6 md:mb-10 leading-relaxed animate-text-appear max-w-3xl mx-auto font-medium" style={{animationDelay: '1.2s', opacity: 0, textShadow: '0 2px 20px rgba(212,175,55,0.3), 0 0 40px rgba(0,0,0,0.8)'}}>
-            Живые встречи, мастер-классы и экспертные сессии для развития и нетворкинга
+            <span className="text-[#d4af37] font-semibold">Юлия Викторова</span><br className="sm:hidden" /> — Директор по цифровому маркетингу,<br className="sm:hidden" /> Санкт-Петербург
           </p>
+          
+          <div className="flex items-center justify-center gap-4 mb-6 md:mb-10 animate-text-appear bg-black/40 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl border border-[#d4af37]/30 inline-block mx-auto" style={{animationDelay: '1.4s', opacity: 0}}>
+            <img 
+              src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
+              alt="Digital Agency albe" 
+              className="h-16 sm:h-20 md:h-28 lg:h-32 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
+            />
+          </div>
           
           <div className="max-w-4xl mx-auto mb-8 md:mb-16 animate-text-appear" style={{animationDelay: '1.8s', opacity: 0}}>
             <div className="text-center">
               <div className="inline-block mb-6 px-6 py-2 bg-[#d4af37]/10 border border-[#d4af37]/20 rounded-full backdrop-blur-sm">
-                <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Ближайшее событие</span>
+                <span className="text-xs sm:text-sm font-medium text-[#d4af37] uppercase tracking-wider">Тема выступления</span>
               </div>
               
               <h3 className="text-2xl sm:text-3xl md:text-5xl font-black mb-4 sm:mb-6 leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f4d683] to-[#d4af37] px-6">
-                Встреча с Юлией Викторовой
+                Как мы помогаем бизнесу находить лиды
               </h3>
               
-              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6 mb-6">
-                Как мы помогаем бизнесу находить лиды — эффективные стратегии привлечения клиентов
+              <p className="text-base sm:text-lg md:text-xl text-white/60 leading-relaxed max-w-3xl mx-auto px-6">
+                Эффективные стратегии привлечения клиентов и построение системы постоянного потока заявок
               </p>
-              
-              <div className="flex items-center justify-center gap-4 mt-8">
-                <img 
-                  src="https://cdn.poehali.dev/files/01b8cac2-aa16-4408-9e55-d492ab618bb7.png" 
-                  alt="Digital Agency albe" 
-                  className="h-16 sm:h-20 md:h-24 object-contain drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"
-                />
-              </div>
             </div>
           </div>
         </div>
@@ -425,4 +425,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default Headliners;
