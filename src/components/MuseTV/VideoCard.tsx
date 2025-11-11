@@ -65,7 +65,7 @@ export const VideoCard = ({ item, metadata, onClick }: VideoCardProps) => {
           
           {/* Описание - фиксированная высота */}
           <p className="text-white/60 text-xs mb-3 h-8 overflow-hidden">
-            {displayDescription || 'Подкаст MUSE о женском бизнесе и предпринимательстве'}
+            {displayDescription || 'Подкаст MUSE о женском бизнесе и предприимчивости'}
           </p>
           
           {/* Метаданные внизу */}
