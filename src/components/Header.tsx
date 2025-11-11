@@ -39,7 +39,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
   ];
 
   const pageLinks = [
-    { label: 'Хедлайнеры', path: '/headliners' },
+    { label: 'События', path: '/headliners' },
     { label: 'MUSE TV', path: '/muse-tv' },
     { label: 'Личный кабинет', path: '/dashboard' },
   ];
