@@ -114,7 +114,7 @@ const Events = () => {
           <div className="flex justify-center mb-6 md:mb-8 animate-text-appear" style={{animationDelay: '0.5s', opacity: 0}}>
             <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
-              <span className="text-sm sm:text-base text-white/90 font-medium whitespace-nowrap">Живая встреча · Loft Hall</span>
+              <span className="text-sm sm:text-base text-white/90 font-medium whitespace-nowrap">Живая встреча</span>
             </div>
           </div>
           
