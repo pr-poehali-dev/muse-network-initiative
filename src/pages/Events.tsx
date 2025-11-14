@@ -110,43 +110,45 @@ const Events = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full h-full flex flex-col items-center justify-center text-center px-4 md:px-8 relative z-30">
-          <div className="flex justify-center mb-6 md:mb-8 animate-text-appear" style={{animationDelay: '0.5s', opacity: 0}}>
-            <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
-              <span className="text-sm sm:text-base text-white/90 font-medium whitespace-nowrap">Живая встреча</span>
+        <div className="w-full h-full flex items-center justify-center text-center px-4 md:px-8 relative z-30">
+          <div className="flex flex-col items-center">
+            <div className="flex justify-center mb-6 md:mb-8 animate-text-appear" style={{animationDelay: '0.5s', opacity: 0}}>
+              <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
+                <span className="text-sm sm:text-base text-white/90 font-medium whitespace-nowrap">Живая встреча</span>
+              </div>
             </div>
-          </div>
-          
-          <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
-            style={{
-              animationDelay: '0.8s',
-              opacity: 0
-            }}
-          >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] [text-shadow:0_0_40px_rgba(212,175,55,0.3),0_0_60px_rgba(212,175,55,0.2)]">
-              MUSE
-            </h1>
-            <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/8 blur-2xl px-2 md:px-4">
-              MUSE
-            </div>
-          </div>
-          
-          <div className="space-y-4 md:space-y-6 animate-text-appear" style={{animationDelay: '1.1s', opacity: 0}}>
-            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#d4af37] font-light max-w-xs sm:max-w-md md:max-w-3xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
-              От идеи до результата
-            </p>
             
-            <div className="pt-4 md:pt-8">
-              <Button
-                size="lg"
-                onClick={() => navigate('/')}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs sm:text-sm md:text-base font-bold px-6 sm:px-8 md:px-12 py-2 sm:py-3 md:py-6 rounded-sm sm:rounded-md transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] backdrop-blur-sm"
-              >
-                <Icon name="Sparkles" className="mr-1.5 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                Записаться на мероприятие
-              </Button>
+            <div 
+              className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
+              style={{
+                animationDelay: '0.8s',
+                opacity: 0
+              }}
+            >
+              <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] [text-shadow:0_0_40px_rgba(212,175,55,0.3),0_0_60px_rgba(212,175,55,0.2)]">
+                MUSE
+              </h1>
+              <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/8 blur-2xl px-2 md:px-4">
+                MUSE
+              </div>
+            </div>
+            
+            <div className="space-y-4 md:space-y-6 animate-text-appear" style={{animationDelay: '1.1s', opacity: 0}}>
+              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#d4af37] font-light max-w-xs sm:max-w-md md:max-w-3xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
+                От идеи до результата
+              </p>
+              
+              <div className="pt-4 md:pt-8">
+                <Button
+                  size="lg"
+                  onClick={() => navigate('/')}
+                  className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs sm:text-sm md:text-base font-bold px-6 sm:px-8 md:px-12 py-2 sm:py-3 md:py-6 rounded-sm sm:rounded-md transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] backdrop-blur-sm"
+                >
+                  <Icon name="Sparkles" className="mr-1.5 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+                  Записаться на мероприятие
+                </Button>
+              </div>
             </div>
           </div>
         </div>
