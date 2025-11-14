@@ -33,7 +33,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
     { id: 'hero', label: 'Главная', path: '/' },
     { id: 'about', label: 'О клубе', path: '/' },
     { id: 'experts', label: 'Эксперты', path: '/' },
-    { id: 'events', label: 'События', path: '/' },
+    { id: 'events', label: 'Форматы', path: '/' },
     { id: 'gallery', label: 'Галерея', path: '/' },
     { id: 'calendar', label: 'Календарь', path: '/' },
   ];
