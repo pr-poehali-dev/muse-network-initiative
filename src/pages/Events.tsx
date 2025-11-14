@@ -134,18 +134,8 @@ const Events = () => {
           </div>
           
           <div className="space-y-4 md:space-y-6 animate-text-appear" style={{animationDelay: '1.1s', opacity: 0}}>
-            <p className="text-sm sm:text-base md:text-xl lg:text-3xl text-white/95 font-light max-w-xs sm:max-w-md md:max-w-3xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
-              с <span className="font-semibold text-[#b8953d]">Ириной Хакамада</span>
-              <br className="hidden md:block" />
-              <span className="md:hidden"> · </span>
-              <span className="font-semibold text-[#b8953d]">Людмилой Мерзлой</span>
-              <br className="hidden md:block" />
-              <span className="md:hidden"> · </span>
-              <span className="font-semibold text-[#b8953d]">Юлией Викторовой</span>
-            </p>
-            
-            <p className="text-xs sm:text-sm md:text-lg lg:text-2xl text-white/80 font-light italic max-w-xs sm:max-w-md md:max-w-2xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
-              Встреча с лидерами мнений, которые меняют мир
+            <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#d4af37] font-light max-w-xs sm:max-w-md md:max-w-3xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
+              От идеи до результата
             </p>
             
             <div className="pt-4 md:pt-8">
