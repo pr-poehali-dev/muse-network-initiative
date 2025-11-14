@@ -172,7 +172,8 @@ const Index = () => {
       const offsetPosition = elementPosition - navHeight;
       
       window.scrollTo({
-        top: offsetPosition
+        top: offsetPosition,
+        behavior: 'smooth'
       });
       
       setIsMobileMenuOpen(false);
