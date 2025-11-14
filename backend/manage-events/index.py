@@ -339,6 +339,7 @@ def handler(event: Dict[str, Any], context: Any) -> Dict[str, Any]:
             
             cur.execute("DELETE FROM event_changes WHERE event_id = %s", (event_id,))
             cur.execute("DELETE FROM event_speakers WHERE event_id = %s", (event_id,))
+            cur.execute("DELETE FROM subscribers WHERE event_id = %s", (event_id,))
             cur.execute("DELETE FROM events WHERE id = %s", (event_id,))
             
             conn.commit()
