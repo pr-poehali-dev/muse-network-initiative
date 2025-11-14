@@ -35,14 +35,16 @@ const AboutSection = memo(({ content }: AboutSectionProps) => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <img
-              src={content.founder.image}
-              alt={content.founder.name}
-              className="w-full rounded-lg shadow-2xl"
-              loading="lazy"
-            />
-          </div>
+          {content.founder.image && (
+            <div>
+              <img
+                src={content.founder.image}
+                alt={content.founder.name}
+                className="w-full rounded-lg shadow-2xl"
+                loading="lazy"
+              />
+            </div>
+          )}
           <div>
             <h3 className="text-3xl font-bold mb-2 text-gold">
               {content.founder.name}
