@@ -110,7 +110,7 @@ const Events = () => {
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30 animate-pulse" style={{animationDuration: '5s', animationDelay: '1s'}}></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+        <div className="w-full h-full flex flex-col items-center justify-center text-center px-4 md:px-8 relative z-30">
           <div className="flex justify-center mb-6 md:mb-8 animate-text-appear" style={{animationDelay: '0.5s', opacity: 0}}>
             <div className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2.5 sm:py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse flex-shrink-0"></div>
