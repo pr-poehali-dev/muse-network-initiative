@@ -90,15 +90,6 @@ const Index = () => {
         if (data.content?.hero) {
           console.log('Setting hero content:', data.content.hero);
           setHeroContent(data.content.hero);
-          
-          if (data.content.hero.image_center) {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.as = 'image';
-            link.href = data.content.hero.image_center;
-            link.fetchPriority = 'high';
-            document.head.appendChild(link);
-          }
         }
         if (data.content?.about) {
           console.log('Setting about content:', data.content.about);
@@ -370,28 +361,27 @@ const Index = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black z-10"></div>
           
-          {heroContent.image_center && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-40 md:opacity-75 z-5">
-              <img 
-                src={heroContent.image_center} 
-                alt="" 
-                fetchpriority="high"
-                decoding="async"
-                className="w-full h-full object-cover object-center"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-            </div>
-          )}
-
           {heroContent.image_left && (
             <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-40">
               <img 
                 src={heroContent.image_left} 
                 alt="" 
-                loading="lazy"
-                decoding="async"
+                loading="eager"
                 className="w-full h-full object-cover"
               />
+            </div>
+          )}
+
+          {heroContent.image_center && (
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-40 md:opacity-75 z-5">
+              <img 
+                src={heroContent.image_center} 
+                alt="" 
+                loading="eager"
+                fetchpriority="high"
+                className="w-full h-full object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
             </div>
           )}
 
@@ -400,8 +390,7 @@ const Index = () => {
               <img 
                 src={heroContent.image_right} 
                 alt="" 
-                loading="lazy"
-                decoding="async"
+                loading="eager"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -412,9 +401,10 @@ const Index = () => {
 
         <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
-            className="relative inline-block mb-8 md:mb-10 md:animate-title-appear group" 
+            className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
-              animationDelay: '0.8s'
+              animationDelay: '0.8s',
+              opacity: 0
             }}
           >
             <h1 
@@ -734,7 +724,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="gallery" className="py-20 px-8 bg-black overflow-hidden">
+      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
