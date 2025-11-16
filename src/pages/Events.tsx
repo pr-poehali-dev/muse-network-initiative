@@ -4,6 +4,7 @@ import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import { getLocalImagePath } from '@/utils/imageLoader';
 
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -61,7 +62,7 @@ const Events = () => {
           {/* Mobile background photo */}
           <div className="md:hidden absolute inset-0 z-0 opacity-70">
             <img 
-              src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
+              src={getLocalImagePath("https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg")} 
               alt="" 
               loading="lazy"
               decoding="async"
@@ -80,7 +81,7 @@ const Events = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
+              src={getLocalImagePath("https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg")} 
               alt="" 
               loading="lazy"
               decoding="async"
@@ -103,7 +104,7 @@ const Events = () => {
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
-              src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
+              src={getLocalImagePath("https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg")} 
               alt="" 
               loading="lazy"
               decoding="async"
