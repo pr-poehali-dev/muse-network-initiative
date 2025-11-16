@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@400;700&family=Montserrat:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -21,19 +21,6 @@ html {
 
 img {
   content-visibility: auto;
-  contain: layout style paint;
-}
-
-section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-}
-
-@media (max-width: 768px) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

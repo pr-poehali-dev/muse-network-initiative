@@ -369,7 +369,7 @@ const Index = () => {
       <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)} onOpenLoginDialog={() => setIsLoginDialogOpen(true)}>
         <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide">
 
-      <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[80vh] md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
+      <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black z-10"></div>
           
@@ -416,7 +416,7 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-20"></div>
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[20vh] md:pt-0">
+        <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
           <div 
             className="relative inline-block mb-8 md:mb-10 md:animate-title-appear group" 
             style={{
