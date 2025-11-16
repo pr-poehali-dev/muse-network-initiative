@@ -2,7 +2,6 @@ import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, laz
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
-import { getLocalImagePath } from '@/utils/imageLoader';
 const MosaicGallery = lazy(() => import('@/components/MosaicGallery'));
 const VideoGallery = lazy(() => import('@/components/VideoGallery'));
 const EventsCalendar = lazy(() => import('@/components/EventsCalendar'));
@@ -378,7 +377,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
               <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <img 
-                src={getLocalImagePath(heroContent.image_left)} 
+                src={heroContent.image_left} 
                 alt="" 
                 loading="eager"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
@@ -402,7 +401,7 @@ const Index = () => {
             <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/10 to-transparent"></div>
               <img 
-                src={getLocalImagePath(heroContent.image_center)} 
+                src={heroContent.image_center} 
                 alt="" 
                 loading="eager"
                 fetchpriority="high"
@@ -424,7 +423,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
               <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <img 
-                src={getLocalImagePath(heroContent.image_right)} 
+                src={heroContent.image_right} 
                 alt="" 
                 loading="eager"
                 className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
@@ -576,7 +575,7 @@ const Index = () => {
             <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
-                  src={getLocalImagePath(aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg')} 
+                  src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
                   alt={aboutContent.founder?.name || 'Основательница'} 
                   className="w-full h-full object-cover opacity-20"
                 />

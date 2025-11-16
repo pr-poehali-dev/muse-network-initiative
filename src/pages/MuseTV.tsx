@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
-import { getLocalImagePath } from '@/utils/imageLoader';
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -345,7 +344,7 @@ const MuseTV = () => {
       <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
         <div className="absolute inset-0 overflow-hidden">
           <img 
-            src={getLocalImagePath("https://cdn.poehali.dev/files/0a4d076c-a60c-4a0a-9bf1-eab254a3f261.png")}
+            src="https://cdn.poehali.dev/files/0a4d076c-a60c-4a0a-9bf1-eab254a3f261.png"
             alt="MUSE TV Background"
             className="absolute w-full object-cover"
             style={{ 
