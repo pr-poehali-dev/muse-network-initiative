@@ -21,19 +21,6 @@ html {
 
 img {
   content-visibility: auto;
-  contain: layout style paint;
-}
-
-section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 500px;
-}
-
-@media (max-width: 768px) {
-  * {
-    animation: none !important;
-    transition: none !important;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
