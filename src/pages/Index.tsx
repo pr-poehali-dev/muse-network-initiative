@@ -63,16 +63,13 @@ const Index = () => {
   });
   
   useEffect(() => {
-    const isMobile = window.innerWidth <= 768;
     let ticking = false;
     
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollPosition = window.scrollY;
-          if (!isMobile) {
-            setScrollY(scrollPosition);
-          }
+          setScrollY(scrollPosition);
           setTitleInHeader(scrollPosition > 400);
           ticking = false;
         });
@@ -373,21 +370,18 @@ const Index = () => {
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-black via-black/80 to-black z-10"></div>
           
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-40 md:opacity-75 z-5">
-            {heroContent.image_center ? (
+          {heroContent.image_center && (
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-40 md:opacity-75 z-5">
               <img 
                 src={heroContent.image_center} 
                 alt="" 
                 fetchpriority="high"
                 decoding="async"
-                sizes="(max-width: 768px) 100vw, 36vw"
                 className="w-full h-full object-cover object-center"
               />
-            ) : (
-              <div className="w-full h-full bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a]" />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            </div>
+          )}
 
           {heroContent.image_left && (
             <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-40">
@@ -434,7 +428,7 @@ const Index = () => {
                 }, 50);
               }}
             >
-              {typeof window !== 'undefined' && window.innerWidth > 768 && hoveredLetter ? (
+              {hoveredLetter ? (
                 <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -445,18 +439,16 @@ const Index = () => {
                 heroContent.title.split('').map((char, index) => (
                   <span 
                     key={index} 
-                    className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 ${typeof window !== 'undefined' && window.innerWidth > 768 ? 'letter-spin transition-all duration-700 ease-in-out' : ''} ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
-                    style={typeof window !== 'undefined' && window.innerWidth > 768 ? {
+                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    style={{
                       transformStyle: 'preserve-3d',
                       filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
-                    } : {
-                      filter: 'drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
                     }}
-                    onMouseEnter={typeof window !== 'undefined' && window.innerWidth > 768 ? () => {
+                    onMouseEnter={() => {
                       setIsEntering(true);
                       setHoveredLetter(char);
                       setTimeout(() => setIsEntering(false), 50);
-                    } : undefined}
+                    }}
                   >
                     {char === ' ' ? '\u00A0' : char}
                   </span>
@@ -477,19 +469,15 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-{typeof window !== 'undefined' && window.innerWidth > 768 ? (
-                  <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>}>
-                    <CounterAnimation 
-                      end={250} 
-                      suffix="+" 
-                      duration={2500}
-                      delay={0}
-                      className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                    />
-                  </Suspense>
-                ) : (
-                  <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
-                )}
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>}>
+                  <CounterAnimation 
+                    end={250} 
+                    suffix="+" 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -499,19 +487,15 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-{typeof window !== 'undefined' && window.innerWidth > 768 ? (
-                  <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>}>
-                    <CounterAnimation 
-                      end={150} 
-                      suffix="+" 
-                      duration={2500}
-                      delay={0}
-                      className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                    />
-                  </Suspense>
-                ) : (
-                  <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
-                )}
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>}>
+                  <CounterAnimation 
+                    end={150} 
+                    suffix="+" 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -521,18 +505,14 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-{typeof window !== 'undefined' && window.innerWidth > 768 ? (
-                  <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>}>
-                    <CounterAnimation 
-                      end={24} 
-                      duration={2500}
-                      delay={0}
-                      className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                    />
-                  </Suspense>
-                ) : (
-                  <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
-                )}
+                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>}>
+                  <CounterAnimation 
+                    end={24} 
+                    duration={2500}
+                    delay={0}
+                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
+                  />
+                </Suspense>
                 <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Доступ из любой точки мира</p>
               </div>
