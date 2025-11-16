@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import Icon from '@/components/ui/icon';
 
 interface GalleryImage {
@@ -209,4 +209,4 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
   );
 };
 
-export default MosaicGallery;
+export default memo(MosaicGallery);

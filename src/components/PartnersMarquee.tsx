@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 
 const convertYandexDiskUrl = async (url: string): Promise<string> => {
   if (url.includes('disk.yandex.ru') || url.includes('yadi.sk')) {
@@ -67,6 +67,8 @@ const PartnersMarquee = () => {
                     src={partner.logo_url}
                     alt={partner.name}
                     className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </a>
               ) : (
@@ -74,6 +76,8 @@ const PartnersMarquee = () => {
                   src={partner.logo_url}
                   alt={partner.name}
                   className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
             </div>
@@ -96,6 +100,8 @@ const PartnersMarquee = () => {
                     src={partner.logo_url}
                     alt={partner.name}
                     className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-[100px] sm:max-w-[120px] md:max-w-[140px] lg:max-w-[160px] object-contain filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </a>
               ) : (
@@ -103,6 +109,8 @@ const PartnersMarquee = () => {
                   src={partner.logo_url}
                   alt={partner.name}
                   className="h-12 md:h-16 w-auto object-contain mx-auto filter grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100"
+                  loading="lazy"
+                  decoding="async"
                 />
               )}
             </div>
@@ -113,4 +121,4 @@ const PartnersMarquee = () => {
   );
 };
 
-export default PartnersMarquee;
+export default memo(PartnersMarquee);

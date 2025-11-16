@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './calendar/types';
@@ -273,4 +273,4 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false, refreshTrigger }:
   );
 };
 
-export default EventsCalendar;
+export default memo(EventsCalendar);

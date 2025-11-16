@@ -57,6 +57,7 @@ const Events = () => {
               src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
               alt="" 
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
               style={{
                 objectPosition: '50% 20%',
@@ -75,6 +76,7 @@ const Events = () => {
               src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
               alt="" 
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
@@ -97,6 +99,7 @@ const Events = () => {
               src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
               alt="" 
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',

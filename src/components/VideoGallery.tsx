@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, memo } from 'react';
 import Icon from '@/components/ui/icon';
 
 interface Video {
@@ -238,4 +238,4 @@ const VideoGallery = ({ onViewingChange }: VideoGalleryProps) => {
   );
 };
 
-export default VideoGallery;
+export default memo(VideoGallery);

@@ -1,6 +1,6 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
 
 const images = [
   {
@@ -56,6 +56,8 @@ const InfiniteCarousel = () => {
                 src={image.url}
                 alt={image.alt}
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
@@ -66,4 +68,4 @@ const InfiniteCarousel = () => {
   );
 };
 
-export default InfiniteCarousel;
+export default memo(InfiniteCarousel);

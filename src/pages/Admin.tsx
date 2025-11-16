@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -8,11 +8,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Checkbox } from '@/components/ui/checkbox';
 
 import { useToast } from '@/hooks/use-toast';
-import MuseTvSection from '@/components/admin/MuseTvSection';
-import MediaGallerySection from '@/components/admin/MediaGallerySection';
-import PartnersSection from '@/components/admin/PartnersSection';
-import HomepageSection from '@/components/admin/HomepageSection';
-import ApplicationsSection from '@/components/admin/ApplicationsSection';
+const MuseTvSection = lazy(() => import('@/components/admin/MuseTvSection'));
+const MediaGallerySection = lazy(() => import('@/components/admin/MediaGallerySection'));
+const PartnersSection = lazy(() => import('@/components/admin/PartnersSection'));
+const HomepageSection = lazy(() => import('@/components/admin/HomepageSection'));
+const ApplicationsSection = lazy(() => import('@/components/admin/ApplicationsSection'));
 import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface Event {
@@ -915,7 +915,9 @@ const Admin = () => {
         </div>
 
         {activeTab === 'homepage' && (
-          <HomepageSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
+            <HomepageSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          </Suspense>
         )}
 
         {activeTab === 'events' && (
@@ -1868,19 +1870,27 @@ const Admin = () => {
         )}
 
         {activeTab === 'musetv' && (
-          <MuseTvSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
+            <MuseTvSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          </Suspense>
         )}
 
         {activeTab === 'gallery' && (
-          <MediaGallerySection />
+          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
+            <MediaGallerySection />
+          </Suspense>
         )}
 
         {activeTab === 'partners' && (
-          <PartnersSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
+            <PartnersSection isLoading={isLoading} setIsLoading={setIsLoading} />
+          </Suspense>
         )}
 
         {activeTab === 'applications' && (
-          <ApplicationsSection />
+          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
+            <ApplicationsSection />
+          </Suspense>
         )}
 
         {activeTab === 'settings' && (
