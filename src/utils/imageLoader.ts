@@ -54,11 +54,36 @@ export function getImageSrcSet(url: string | undefined | null): string {
   const localPath = getLocalImagePath(url);
   if (!localPath || localPath.startsWith('http')) return '';
   
-  // Для локальных изображений можно создать варианты (если они есть)
+  // Для локальных изображений создаем варианты @1x и @2x
   const basePath = localPath.replace(/\.(jpg|jpeg|png|webp)$/i, '');
   const ext = localPath.match(/\.(jpg|jpeg|png|webp)$/i)?.[0] || '.jpg';
   
-  return `${basePath}${ext} 1x, ${basePath}@2x${ext} 2x`;
+  return `${basePath}@1x${ext} 1x, ${basePath}@2x${ext} 2x`;
+}
+
+/**
+ * Получает WebP путь для изображения
+ * @param url - URL базового изображения
+ * @returns WebP путь или пустую строку
+ */
+export function getWebPPath(url: string | undefined | null): string {
+  const localPath = getLocalImagePath(url);
+  if (!localPath || localPath.startsWith('http') || localPath.endsWith('.svg')) return '';
+  
+  return localPath.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+}
+
+/**
+ * Получает WebP srcSet для изображения
+ * @param url - URL базового изображения
+ * @returns WebP srcSet string или пустую строку
+ */
+export function getWebPSrcSet(url: string | undefined | null): string {
+  const localPath = getLocalImagePath(url);
+  if (!localPath || localPath.startsWith('http') || localPath.endsWith('.svg')) return '';
+  
+  const basePath = localPath.replace(/\.(jpg|jpeg|png|webp)$/i, '');
+  return `${basePath}@1x.webp 1x, ${basePath}@2x.webp 2x`;
 }
 
 /**
