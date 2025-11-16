@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import CounterAnimation from '@/components/CounterAnimation';
 
 const stats = [
   { number: 300, suffix: '+', label: 'Участниц клуба' },
@@ -16,8 +15,7 @@ const StatsSection = memo(() => {
           {stats.map((stat, index) => (
             <div key={index} className="text-center">
               <div className="text-4xl md:text-5xl font-bold text-gold mb-2">
-                <CounterAnimation end={stat.number} duration={2000} />
-                {stat.suffix}
+                {stat.number}{stat.suffix}
               </div>
               <p className="text-white/70">{stat.label}</p>
             </div>
