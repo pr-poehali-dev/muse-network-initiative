@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import StatsCard from '@/components/StatsCard';
 import { stats } from '@/constants/stats';
-import { useCounterAnimation } from '@/hooks/useCounterAnimation';
 
 interface HeroSectionProps {
   visibleSections: Set<string>;
@@ -17,7 +16,6 @@ interface HeroContent {
 }
 
 const HeroSection = ({ visibleSections }: HeroSectionProps) => {
-  const isVisible = visibleSections.has('hero');
   const [content, setContent] = useState<HeroContent>({
     title: 'MUSE',
     tagline: 'Женский клуб с особенным характером',
@@ -26,10 +24,6 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
     image_center: '',
     image_right: ''
   });
-  
-  const count1 = useCounterAnimation({ target: stats[0].value, delay: 200, enabled: isVisible });
-  const count2 = useCounterAnimation({ target: stats[1].value, delay: 400, enabled: isVisible, duration: 1800 });
-  const count3 = useCounterAnimation({ target: stats[2].value, delay: 600, enabled: isVisible, duration: 1600 });
 
   useEffect(() => {
     const loadContent = async () => {
@@ -92,9 +86,9 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
           {content.description}
         </p>
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <StatsCard {...stats[0]} value={count1} />
-          <StatsCard {...stats[1]} value={count2} />
-          <StatsCard {...stats[2]} value={count3} />
+          <StatsCard {...stats[0]} value={stats[0].value} />
+          <StatsCard {...stats[1]} value={stats[1].value} />
+          <StatsCard {...stats[2]} value={stats[2].value} />
         </div>
       </div>
     </section>
