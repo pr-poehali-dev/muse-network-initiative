@@ -56,7 +56,7 @@ export const EventCardDesktop = ({
         {event.speakers.map((speaker, idx) => (
           <div key={idx} className="flex items-center gap-2 bg-[#0a0a0a]/60 rounded-lg px-3 py-2 border border-[#b8953d]/10">
             <img 
-              src={speaker.image} 
+              src={speaker.image || 'https://cdn.poehali.dev/files/f08207c0-6901-4e3d-af16-6fcbf2c0b9ab.png'} 
               alt={speaker.name}
               className="w-8 h-8 rounded-full object-cover border-2 border-[#d4af37]/30"
             />

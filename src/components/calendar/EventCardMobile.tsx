@@ -51,7 +51,7 @@ export const EventCardMobile = ({
           {event.speakers.map((speaker, idx) => (
             <div key={idx} className="flex items-center gap-2">
               <img 
-                src={speaker.image} 
+                src={speaker.image || 'https://cdn.poehali.dev/files/f08207c0-6901-4e3d-af16-6fcbf2c0b9ab.png'} 
                 alt={speaker.name}
                 className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30 flex-shrink-0"
               />
