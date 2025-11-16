@@ -13,6 +13,7 @@ const MediaGallerySection = lazy(() => import('@/components/admin/MediaGallerySe
 const PartnersSection = lazy(() => import('@/components/admin/PartnersSection'));
 const HomepageSection = lazy(() => import('@/components/admin/HomepageSection'));
 const ApplicationsSection = lazy(() => import('@/components/admin/ApplicationsSection'));
+import ImageUploader from '@/components/admin/ImageUploader';
 import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
 
 interface Event {
@@ -58,7 +59,7 @@ const Admin = () => {
   const [showForm, setShowForm] = useState(false);
   const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
   const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'applications' | 'settings'>('homepage');
+  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'applications' | 'images' | 'settings'>('homepage');
   const [showSpeakerForm, setShowSpeakerForm] = useState(false);
   const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -895,6 +896,22 @@ const Admin = () => {
             }
           >
             Заявки
+          </Button>
+          <Button
+            onClick={() => {
+              setActiveTab('images');
+              setShowForm(false);
+              setShowSpeakerForm(false);
+              setEditingEvent(null);
+              setEditingSpeaker(null);
+            }}
+            variant={activeTab === 'images' ? 'default' : 'ghost'}
+            className={activeTab === 'images'
+              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
+              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
+            }
+          >
+            Изображения
           </Button>
           <Button
             onClick={() => {
@@ -1891,6 +1908,89 @@ const Admin = () => {
           <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
             <ApplicationsSection />
           </Suspense>
+        )}
+
+        {activeTab === 'images' && (
+          <div className="space-y-6">
+            <Card className="bg-[#1a1a1a] border-[#d4af37]/20">
+              <CardHeader>
+                <CardTitle className="text-2xl text-transparent bg-clip-text bg-gradient-to-br from-[#ffd700] via-[#d4af37] to-[#8b7355]">
+                  Управление изображениями
+                </CardTitle>
+                <p className="text-white/60 mt-2">
+                  Загружайте изображения напрямую в проект без сторонних сервисов
+                </p>
+              </CardHeader>
+              <CardContent className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#d4af37] mb-4">Hero изображение (главная)</h3>
+                    <ImageUploader
+                      onImageUploaded={(url) => {
+                        toast({
+                          title: 'Успешно!',
+                          description: `Hero изображение загружено: ${url}`,
+                        });
+                      }}
+                      label="Загрузить Hero изображение"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#d4af37] mb-4">Фото события</h3>
+                    <ImageUploader
+                      onImageUploaded={(url) => {
+                        toast({
+                          title: 'Успешно!',
+                          description: `Фото события загружено: ${url}`,
+                        });
+                      }}
+                      label="Загрузить фото события"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#d4af37] mb-4">Фото эксперта</h3>
+                    <ImageUploader
+                      onImageUploaded={(url) => {
+                        toast({
+                          title: 'Успешно!',
+                          description: `Фото эксперта загружено: ${url}`,
+                        });
+                      }}
+                      label="Загрузить фото эксперта"
+                    />
+                  </div>
+
+                  <div>
+                    <h3 className="text-lg font-semibold text-[#d4af37] mb-4">Другое изображение</h3>
+                    <ImageUploader
+                      onImageUploaded={(url) => {
+                        toast({
+                          title: 'Успешно!',
+                          description: `Изображение загружено: ${url}`,
+                        });
+                      }}
+                      label="Загрузить изображение"
+                    />
+                  </div>
+                </div>
+
+                <div className="mt-8 p-6 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-lg">
+                  <h3 className="text-lg font-semibold text-[#d4af37] mb-3 flex items-center gap-2">
+                    <span>💡</span> Инструкция
+                  </h3>
+                  <ol className="text-white/70 space-y-2 text-sm list-decimal list-inside">
+                    <li>Выберите категорию изображения (Hero, Событие, Эксперт или Другое)</li>
+                    <li>Нажмите на зону загрузки или перетащите файл</li>
+                    <li>Изображение автоматически скачается в браузере</li>
+                    <li>Переместите скачанный файл в папку <code className="bg-black/30 px-2 py-1 rounded">public/images/uploads/</code></li>
+                    <li>URL изображения будет доступен как <code className="bg-black/30 px-2 py-1 rounded">/images/uploads/имя-файла.jpg</code></li>
+                  </ol>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         )}
 
         {activeTab === 'settings' && (
