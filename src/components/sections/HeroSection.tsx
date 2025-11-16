@@ -52,21 +52,30 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
     <section id="hero" className="relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center">
       <div className="absolute inset-0 grid grid-cols-3 opacity-20">
         {content.image_left && (
-          <div 
-            className="bg-cover bg-center" 
-            style={{ backgroundImage: `url(${content.image_left})` }}
+          <img 
+            src={content.image_left}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
           />
         )}
         {content.image_center && (
-          <div 
-            className="bg-cover bg-center" 
-            style={{ backgroundImage: `url(${content.image_center})` }}
+          <img 
+            src={content.image_center}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
           />
         )}
         {content.image_right && (
-          <div 
-            className="bg-cover bg-center" 
-            style={{ backgroundImage: `url(${content.image_right})` }}
+          <img 
+            src={content.image_right}
+            alt=""
+            className="w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
           />
         )}
       </div>

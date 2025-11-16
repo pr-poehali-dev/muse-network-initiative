@@ -16,6 +16,10 @@ import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 
+const ExpertsSection = lazy(() => import('@/components/ExpertsSection'));
+const AboutSection = lazy(() => import('@/components/AboutSection'));
+const StatsSection = lazy(() => import('@/components/StatsSection'));
+
 const Index = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
@@ -929,7 +933,7 @@ const Index = () => {
                   <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
                     {expert.image ? (
                       <>
-                        <img src={expert.image} alt={expert.name} loading="lazy" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
+                        <img src={expert.image} alt={expert.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
                       </>
                     ) : (

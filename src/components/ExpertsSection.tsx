@@ -43,7 +43,8 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
           src={expert.image}
           alt={expert.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
           onError={(e) => {
