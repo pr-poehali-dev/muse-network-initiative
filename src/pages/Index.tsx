@@ -360,8 +360,8 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] animate-pulse" style={{willChange: 'opacity'}}></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] animate-pulse" style={{animationDelay: '1s', willChange: 'opacity'}}></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px]" style={{willChange: 'opacity'}}></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]" style={{willChange: 'opacity'}}></div>
           
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
@@ -379,14 +379,15 @@ const Index = () => {
               <img 
                 src={heroContent.image_left} 
                 alt="" 
-                loading="lazy"
+                loading="eager"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                 style={{
                   objectPosition: '50% 20%',
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   filter: 'grayscale(40%) contrast(1.1)',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
               <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
@@ -424,13 +425,14 @@ const Index = () => {
               <img 
                 src={heroContent.image_right} 
                 alt="" 
-                loading="lazy"
+                loading="eager"
                 className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                 style={{
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   filter: 'grayscale(40%) contrast(1.1)',
-                  willChange: 'transform'
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
               <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
