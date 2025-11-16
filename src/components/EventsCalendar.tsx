@@ -34,7 +34,7 @@ const EventsCalendar = ({ onEventRegister, autoExpand = false, refreshTrigger }:
 
   useEffect(() => {
     loadEvents();
-    const interval = setInterval(loadEvents, 300000);
+    const interval = setInterval(loadEvents, 30000);
     return () => clearInterval(interval);
   }, []);
 

@@ -42,7 +42,6 @@ const AboutSection = memo(({ content }: AboutSectionProps) => {
                 alt={content.founder.name}
                 className="w-full rounded-lg shadow-2xl"
                 loading="lazy"
-                decoding="async"
               />
             </div>
           )}
