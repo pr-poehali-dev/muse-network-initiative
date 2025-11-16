@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import StatsCard from '@/components/StatsCard';
 import { stats } from '@/constants/stats';
 
@@ -25,22 +25,7 @@ const HeroSection = ({ visibleSections }: HeroSectionProps) => {
     image_right: ''
   });
 
-  useEffect(() => {
-    const loadContent = async () => {
-      try {
-        const response = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
-        const data = await response.json();
-        console.log('Hero section loaded data:', data);
-        if (data.content?.hero) {
-          console.log('Setting hero content:', data.content.hero);
-          setContent(data.content.hero);
-        }
-      } catch (error) {
-        console.error('Failed to load hero content:', error);
-      }
-    };
-    loadContent();
-  }, []);
+
 
   return (
     <section id="hero" className="relative pt-0 pb-0 overflow-hidden bg-black h-screen flex items-center">

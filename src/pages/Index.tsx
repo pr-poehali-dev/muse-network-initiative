@@ -10,7 +10,6 @@ const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventReg
 const JoinClubDialog = lazy(() => import('@/components/dialogs/JoinClubDialog'));
 const BecomeExpertDialog = lazy(() => import('@/components/dialogs/BecomeExpertDialog'));
 const LoginDialog = lazy(() => import('@/components/dialogs/LoginDialog'));
-const CounterAnimation = lazy(() => import('@/components/CounterAnimation'));
 import { useNavigate } from 'react-router-dom';
 import Header from '@/components/Header';
 import Layout from '@/components/Layout';
@@ -82,48 +81,39 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const loadHomepageContent = async () => {
+    const loadData = async () => {
       try {
-        const response = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
-        const data = await response.json();
-        console.log('Loaded homepage content:', data);
-        if (data.content?.hero) {
-          console.log('Setting hero content:', data.content.hero);
-          setHeroContent(data.content.hero);
+        const [homepageRes, expertsRes] = await Promise.all([
+          fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95'),
+          fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
+        ]);
+        
+        const [homepageData, expertsData] = await Promise.all([
+          homepageRes.json(),
+          expertsRes.json()
+        ]);
+        
+        if (homepageData.content?.hero) {
+          setHeroContent(homepageData.content.hero);
         }
-        if (data.content?.about) {
-          console.log('Setting about content:', data.content.about);
-          setAboutContent(data.content.about);
+        if (homepageData.content?.about) {
+          setAboutContent(homepageData.content.about);
         }
-      } catch (error) {
-        console.error('Failed to load homepage content:', error);
-      }
-    };
-    loadHomepageContent();
-  }, []);
-
-  useEffect(() => {
-    const loadExperts = async () => {
-      try {
-        const response = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
-        const data = await response.json();
-        console.log('Loaded experts data:', data);
-        if (data.speakers) {
-          const formattedExperts = data.speakers.map((speaker: any) => ({
+        if (expertsData.speakers) {
+          const formattedExperts = expertsData.speakers.map((speaker: any) => ({
             name: speaker.name,
             role: speaker.role,
             description: speaker.bio || '',
             image: speaker.image,
             video_url: speaker.video_url || null
           }));
-          console.log('Formatted experts:', formattedExperts);
           setExperts(formattedExperts);
         }
       } catch (error) {
-        console.error('Failed to load experts:', error);
+        console.error('Failed to load data:', error);
       }
     };
-    loadExperts();
+    loadData();
   }, []);
   
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
@@ -529,15 +519,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>}>
-                  <CounterAnimation 
-                    end={250} 
-                    suffix="+" 
-                    duration={2500}
-                    delay={0}
-                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                  />
-                </Suspense>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">250+</div>
                 <p className="text-sm md:text-base text-white/90 font-medium">Участниц</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
@@ -547,15 +529,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>}>
-                  <CounterAnimation 
-                    end={150} 
-                    suffix="+" 
-                    duration={2500}
-                    delay={0}
-                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                  />
-                </Suspense>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">150+</div>
                 <p className="text-sm md:text-base text-white/90 font-medium">Проведённых встреч</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
@@ -565,14 +539,7 @@ const Index = () => {
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />
                 </div>
-                <Suspense fallback={<div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>}>
-                  <CounterAnimation 
-                    end={24} 
-                    duration={2500}
-                    delay={0}
-                    className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2"
-                  />
-                </Suspense>
+                <div className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#b8953d]/80 via-[#8b7355]/70 to-black/60 mb-2">24</div>
                 <p className="text-sm md:text-base text-white/90 font-medium">Онлайн-трансляций в год</p>
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Доступ из любой точки мира</p>
               </div>
