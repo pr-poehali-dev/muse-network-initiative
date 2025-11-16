@@ -63,13 +63,16 @@ const Index = () => {
   });
   
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
     let ticking = false;
     
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const scrollPosition = window.scrollY;
-          setScrollY(scrollPosition);
+          if (!isMobile) {
+            setScrollY(scrollPosition);
+          }
           setTitleInHeader(scrollPosition > 400);
           ticking = false;
         });
@@ -377,6 +380,7 @@ const Index = () => {
                 alt="" 
                 fetchpriority="high"
                 decoding="async"
+                sizes="(max-width: 768px) 100vw, 36vw"
                 className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
@@ -428,7 +432,7 @@ const Index = () => {
                 }, 50);
               }}
             >
-              {hoveredLetter ? (
+              {typeof window !== 'undefined' && window.innerWidth > 768 && hoveredLetter ? (
                 <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -439,16 +443,18 @@ const Index = () => {
                 heroContent.title.split('').map((char, index) => (
                   <span 
                     key={index} 
-                    className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
-                    style={{
+                    className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 ${typeof window !== 'undefined' && window.innerWidth > 768 ? 'letter-spin transition-all duration-700 ease-in-out' : ''} ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    style={typeof window !== 'undefined' && window.innerWidth > 768 ? {
                       transformStyle: 'preserve-3d',
                       filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                    } : {
+                      filter: 'drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
                     }}
-                    onMouseEnter={() => {
+                    onMouseEnter={typeof window !== 'undefined' && window.innerWidth > 768 ? () => {
                       setIsEntering(true);
                       setHoveredLetter(char);
                       setTimeout(() => setIsEntering(false), 50);
-                    }}
+                    } : undefined}
                   >
                     {char === ' ' ? '\u00A0' : char}
                   </span>
