@@ -63,13 +63,19 @@ const Index = () => {
   
   useEffect(() => {
     let ticking = false;
+    let lastScrollY = 0;
     
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Обновляем только если изменение > 10px (снижаем частоту перерендеров)
+      if (Math.abs(currentScrollY - lastScrollY) < 10) return;
+      
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          const scrollPosition = window.scrollY;
-          setScrollY(scrollPosition);
-          setTitleInHeader(scrollPosition > 400);
+          setScrollY(currentScrollY);
+          setTitleInHeader(currentScrollY > 400);
+          lastScrollY = currentScrollY;
           ticking = false;
         });
         ticking = true;

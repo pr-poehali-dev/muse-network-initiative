@@ -11,11 +11,18 @@ const Events = () => {
 
   useEffect(() => {
     let ticking = false;
+    let lastScrollY = 0;
     
     const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      // Обновляем только если изменение > 5px (уменьшаем частоту)
+      if (Math.abs(currentScrollY - lastScrollY) < 5) return;
+      
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          setScrollY(currentScrollY);
+          lastScrollY = currentScrollY;
           ticking = false;
         });
         ticking = true;
@@ -69,7 +76,7 @@ const Events = () => {
           </div>
           
           {/* Left photo */}
-          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`, willChange: 'transform'}}>
+          <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
@@ -92,7 +99,7 @@ const Events = () => {
           </div>
           
           {/* Right photo */}
-          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`, willChange: 'transform'}}>
+          <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <img 
