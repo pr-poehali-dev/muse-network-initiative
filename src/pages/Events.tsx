@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
@@ -6,8 +6,21 @@ import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import OptimizedImage from '@/components/OptimizedImage';
 
+const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
+
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
+  const [eventFormData, setEventFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    telegram: '',
+    event: 'MUSE-ФОРУМ: От идеи до результата (13.12.2025)',
+    message: ''
+  });
+  const [isEventFormSubmitted, setIsEventFormSubmitted] = useState(false);
+  const [isEventFormSubmitting, setIsEventFormSubmitting] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,6 +50,46 @@ const Events = () => {
     }
   };
 
+  const handleEventFormSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsEventFormSubmitting(true);
+    
+    try {
+      const response = await fetch('https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(eventFormData)
+      });
+      
+      if (response.ok) {
+        setIsEventFormSubmitting(false);
+        setIsEventFormSubmitted(true);
+        setTimeout(() => {
+          setIsEventFormSubmitted(false);
+          setIsEventDialogOpen(false);
+          setEventFormData({ 
+            name: '', 
+            email: '', 
+            phone: '', 
+            telegram: '', 
+            event: 'MUSE-ФОРУМ: От идеи до результата (13.12.2025)', 
+            message: '' 
+          });
+        }, 2000);
+      } else {
+        const errorData = await response.json();
+        setIsEventFormSubmitting(false);
+        alert(errorData.message || 'Ошибка регистрации');
+        console.error('Failed to submit event registration');
+      }
+    } catch (error) {
+      setIsEventFormSubmitting(false);
+      console.error('Error submitting event registration:', error);
+    }
+  };
+
   return (
     <PageTransition>
       <Layout titleInHeader={scrollY > 100}>
@@ -52,6 +105,16 @@ const Events = () => {
                 fetchpriority="high"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black"></div>
+            </div>
+
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
+              <Button
+                size="lg"
+                onClick={() => setIsEventDialogOpen(true)}
+                className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-[#d4af37]/50"
+              >
+                Записаться на мероприятие
+              </Button>
             </div>
 
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
@@ -233,19 +296,42 @@ const Events = () => {
 
               </div>
 
-              <div className="mt-16 text-center">
+              <div className="mt-16 text-center space-y-4">
                 <Button 
                   size="lg"
-                  onClick={() => navigate('/')}
+                  onClick={() => setIsEventDialogOpen(true)}
                   className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-[#d4af37]/50"
                 >
-                  Вернуться на главную
+                  Записаться на мероприятие
                 </Button>
+                
+                <div>
+                  <Button 
+                    size="lg"
+                    variant="outline"
+                    onClick={() => navigate('/')}
+                    className="border-2 border-[#d4af37]/50 text-white hover:bg-[#d4af37]/10 hover:border-[#d4af37] font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 backdrop-blur-sm"
+                  >
+                    Вернуться на главную
+                  </Button>
+                </div>
               </div>
             </div>
           </section>
 
         </div>
+        
+        <Suspense fallback={null}>
+          <EventRegistrationDialog
+            isOpen={isEventDialogOpen}
+            onClose={() => setIsEventDialogOpen(false)}
+            formData={eventFormData}
+            onFormDataChange={setEventFormData}
+            onSubmit={handleEventFormSubmit}
+            isSubmitted={isEventFormSubmitted}
+            isSubmitting={isEventFormSubmitting}
+          />
+        </Suspense>
       </Layout>
     </PageTransition>
   );
