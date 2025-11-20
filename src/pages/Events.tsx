@@ -44,62 +44,24 @@ const Events = () => {
           
           <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_70%)] opacity-10"></div>
-              <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black"></div>
-              
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[120px] will-change-transform"></div>
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[120px] will-change-transform"></div>
+              <OptimizedImage
+                src="https://cdn.poehali.dev/files/68543f51-3eb0-44b6-922f-0fd677adb363.png"
+                alt="MUSE Форум"
+                className="w-full h-full object-cover"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black"></div>
             </div>
 
-            <div className="container mx-auto px-4 relative z-10 text-center">
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#d4af37]/10 border border-[#d4af37]/30 rounded-full mb-8 animate-fade-in">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-white/90 font-medium">13 декабря 2025</span>
-              </div>
-
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black mb-6 animate-fade-in" style={{animationDelay: '0.2s'}}>
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#f5d77e] to-[#b8953d] leading-tight">
-                  MUSE-ФОРУМ
-                </span>
-              </h1>
-
-              <p className="text-xl md:text-3xl text-white/90 font-light mb-4 animate-fade-in" style={{animationDelay: '0.4s'}}>
-                От идеи до результата
-              </p>
-
-              <div className="flex flex-wrap items-center justify-center gap-6 text-white/80 mb-12 animate-fade-in" style={{animationDelay: '0.6s'}}>
-                <div className="flex items-center gap-2">
-                  <Icon name="MapPin" className="w-5 h-5 text-[#d4af37]" />
-                  <span>АРР</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                  <span>Начало: 12:00</span>
-                </div>
-              </div>
-
-              <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{animationDelay: '0.8s'}}>
-                <Button 
-                  size="lg"
-                  onClick={scrollToDetails}
-                  className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-[#d4af37]/50"
-                >
-                  Программа форума
-                </Button>
-                
-                <Button 
-                  size="lg"
-                  variant="outline"
-                  onClick={() => navigate('/')}
-                  className="border-2 border-[#d4af37]/50 text-white hover:bg-[#d4af37]/10 hover:border-[#d4af37] font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 backdrop-blur-sm"
-                >
-                  На главную
-                </Button>
-              </div>
-            </div>
-
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-              <Icon name="ChevronDown" className="w-8 h-8 text-[#d4af37]/50" />
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+              <button
+                onClick={scrollToDetails}
+                className="text-white/70 hover:text-[#d4af37] transition-colors duration-300"
+                aria-label="Прокрутить вниз"
+              >
+                <Icon name="ChevronDown" className="w-8 h-8" />
+              </button>
             </div>
           </section>
 
