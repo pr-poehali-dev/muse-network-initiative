@@ -95,38 +95,45 @@ const Events = () => {
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-black luxury-texture overflow-x-hidden">
           
-          <section id="program" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 px-4">
+          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
               <OptimizedImage
-                src="https://cdn.poehali.dev/files/fa6dfa96-52fe-4a5e-9094-b77368af991e.png"
-                alt="MUSE"
-                className="w-full h-full object-cover object-center"
+                src="https://cdn.poehali.dev/files/68543f51-3eb0-44b6-922f-0fd677adb363.png"
+                alt="MUSE Форум"
+                className="w-full h-full object-cover"
                 loading="eager"
                 fetchpriority="high"
               />
-              <div className="absolute inset-0 bg-black/50"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black"></div>
             </div>
 
-            <div className="relative z-10 w-full max-w-7xl mx-auto">
-              <div className="flex flex-col items-center mb-16">
-                <p className="text-white mb-8 leading-relaxed animate-text-appear font-bold text-center" style={{animationDelay: '0.3s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)'}}>
-                  ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
-                </p>
-                
-                <button
-                  onClick={() => setIsEventDialogOpen(true)}
-                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30 animate-card-appear mb-12"
-                  style={{animationDelay: '0.6s', opacity: 0}}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-                  <span className="relative flex items-center gap-3">
-                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
-                    Записаться на мероприятие
-                  </span>
-                </button>
-              </div>
+            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
+              <button
+                onClick={() => setIsEventDialogOpen(true)}
+                className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
+                <span className="relative flex items-center gap-3">
+                  <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+                  Записаться на мероприятие
+                </span>
+              </button>
+            </div>
 
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-12 text-center animate-title-appear" style={{animationDelay: '0.9s', opacity: 0}}>
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+              <button
+                onClick={scrollToDetails}
+                className="text-white/70 hover:text-[#d4af37] transition-colors duration-300"
+                aria-label="Прокрутить вниз"
+              >
+                <Icon name="ChevronDown" className="w-8 h-8" />
+              </button>
+            </div>
+          </section>
+
+          <section id="program" className="relative py-24 px-4">
+            <div className="container mx-auto max-w-5xl">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-16 text-center">
                 ПРОГРАММА ФОРУМА
               </h2>
 
