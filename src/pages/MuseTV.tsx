@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import LiveStreamSection from '@/components/MuseTV/LiveStreamSection';
+import FeaturedVideoSection from '@/components/MuseTV/FeaturedVideoSection';
+import VideoLibrarySection from '@/components/MuseTV/VideoLibrarySection';
+import UpcomingStreamsSection from '@/components/MuseTV/UpcomingStreamsSection';
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -28,7 +28,6 @@ const MuseTV = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Обновляем только если изменение > 10px
       if (Math.abs(currentScrollY - lastScrollY) < 10) return;
       
       if (!ticking) {
@@ -258,603 +257,86 @@ const MuseTV = () => {
     }
   ];
 
-  const popularPodcasts = [
-    {
-      id: 1,
-      title: 'Бизнес без границ',
-      episodes: 24,
-      subscribers: '15K',
-      platforms: ['apple', 'spotify', 'yandex']
-    },
-    {
-      id: 2,
-      title: 'Истории успеха',
-      episodes: 18,
-      subscribers: '12K',
-      platforms: ['apple', 'spotify', 'yandex']
-    },
-    {
-      id: 3,
-      title: 'Технологии будущего',
-      episodes: 31,
-      subscribers: '18K',
-      platforms: ['apple', 'spotify', 'yandex']
-    }
-  ];
+  const handleVideoClick = (video: any) => {
+    setSelectedVideo(video);
+  };
 
-  const archiveEvents = [
-    {
-      id: 1,
-      title: 'Конференция "Будущее бизнеса 2024"',
-      date: '25.10.2024',
-      duration: '2 ч 45 мин',
-      views: '22.3K'
-    },
-    {
-      id: 2,
-      title: 'Круглый стол: Цифровая трансформация',
-      date: '20.10.2024',
-      duration: '1 ч 30 мин',
-      views: '18.7K'
-    },
-    {
-      id: 3,
-      title: 'Встреча клуба MUSE: Нетворкинг сессия',
-      date: '15.10.2024',
-      duration: '3 ч 15 мин',
-      views: '14.2K'
-    }
-  ];
-
-  const allContent = dbVideos.length > 0 
-    ? dbVideos.map((v: any) => ({
-        id: v.id,
-        type: v.type?.toLowerCase() || 'podcast',
-        category: v.type || 'Подкаст',
-        url: v.url,
-        vkEmbed: v.embed_url,
-        title: v.title,
-        thumbnail_url: v.thumbnail_url
-      }))
-    : contentLibrary;
-
-  const filteredContent = allContent.filter(item => {
-    const typeMatch = activeFilter === 'all' || item.type === activeFilter;
-    const categoryMatch = activeCategory === 'all' || item.category === activeCategory;
-    return typeMatch && categoryMatch;
-  });
-
-  useEffect(() => {
-    contentLibrary.forEach(content => {
-      if (content.vkEmbed?.includes('rutube.ru')) {
-        const videoId = content.vkEmbed.split('/').pop();
-        if (videoId) {
-          fetchRutubeMetadata(videoId);
-        }
-      }
-    });
-  }, []);
+  const handleEventsOpen = () => {
+    setIsEventsOpen(true);
+  };
 
   return (
     <PageTransition>
       <Layout titleInHeader={scrollY > 100}>
-        <div className="min-h-screen bg-[#0a0a0a] text-white relative overflow-hidden">
-
-      {/* Hero */}
-      <section className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-[100vh] flex items-center justify-center">
-        <div className="absolute inset-0 overflow-hidden">
-          <img 
-            src="https://cdn.poehali.dev/files/0a4d076c-a60c-4a0a-9bf1-eab254a3f261.png"
-            alt="MUSE TV Background"
-            className="absolute w-full object-cover"
-            style={{ 
-              filter: 'grayscale(100%) brightness(0.4)', 
-              top: 0,
-              left: 0,
-              right: 0,
-              height: '120%',
-              objectPosition: 'center bottom'
-            }}
+        <div className="min-h-screen bg-black luxury-texture">
+          <LiveStreamSection
+            isLive={isLive}
+            liveStream={liveStream}
+            liveStreamKey={liveStreamKey}
+            viewersCount={viewersCount}
           />
-          
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/80"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black/70"></div>
-          
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'linear-gradient(rgba(212,175,55,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.05) 1px, transparent 1px)',
-            backgroundSize: '100px 100px'
-          }}></div>
-          
-          <div className="absolute top-8 left-8 text-white/40 font-mono text-sm z-40">REC ●</div>
-          <div className="absolute top-8 right-8 text-white/40 font-mono text-sm z-40">16:9</div>
-          <div className="absolute bottom-8 left-8 text-white/40 font-mono text-sm z-40">MUSE</div>
-          <div className="absolute bottom-8 right-8 text-white/40 font-mono text-sm z-40">4K</div>
-          
-          <div className="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-white/20 z-40"></div>
-          <div className="absolute top-0 right-0 w-24 h-24 border-t-2 border-r-2 border-white/20 z-40"></div>
-          <div className="absolute bottom-0 left-0 w-24 h-24 border-b-2 border-l-2 border-white/20 z-40"></div>
-          <div className="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-white/20 z-40"></div>
+
+          <FeaturedVideoSection
+            randomPodcast={randomPodcast}
+            videoMetadata={videoMetadata}
+            formatViews={formatViews}
+            formatDuration={formatDuration}
+            onVideoClick={handleVideoClick}
+          />
+
+          <VideoLibrarySection
+            dbVideos={dbVideos}
+            activeFilter={activeFilter}
+            activeCategory={activeCategory}
+            videoMetadata={videoMetadata}
+            formatViews={formatViews}
+            formatDuration={formatDuration}
+            onFilterChange={setActiveFilter}
+            onCategoryChange={setActiveCategory}
+            onVideoClick={handleVideoClick}
+          />
+
+          <UpcomingStreamsSection
+            upcomingStreams={upcomingStreams}
+            onEventsOpen={handleEventsOpen}
+          />
         </div>
 
-        <div className="w-full text-center px-4 md:px-8 relative z-30">
-          <div 
-            className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
-            style={{
-              animationDelay: '0.8s',
-              opacity: 0
-            }}
-          >
-            <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black px-2 md:px-4 tracking-wide md:tracking-wider relative" style={{
-              background: 'linear-gradient(to bottom, #d4af37 0%, #b8953d 50%, #8b7355 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 20px 60px rgba(0,0,0,0.9))'
-            }}>
-              MUSE TV
-            </h1>
-          </div>
-          <p className="text-base sm:text-lg md:text-2xl lg:text-3xl text-white mb-6 md:mb-10 leading-relaxed animate-text-appear max-w-3xl mx-auto font-medium" style={{animationDelay: '1.2s', opacity: 0, textShadow: '0 2px 20px rgba(212,175,55,0.3), 0 0 40px rgba(0,0,0,0.8)'}}>
-            Эксклюзивный контент, прямые эфиры и архив событий клуба
-          </p>
-        </div>
-      </section>
-
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
-
-      {/* Live Section */}
-      {isLive && liveStream ? (
-        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-          <div className="container mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <Badge className="bg-red-600 text-white animate-pulse">
-                <div className="w-2 h-2 bg-white rounded-full mr-2"></div>
-                LIVE
-              </Badge>
-              <span className="text-white/60 text-sm">Прямой эфир</span>
+        <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
+          <DialogContent className="max-w-5xl w-full p-0 bg-black border-[#d4af37]/30">
+            <div className="aspect-video">
+              {selectedVideo?.vkEmbed && (
+                <iframe
+                  src={selectedVideo.vkEmbed}
+                  className="w-full h-full rounded-lg"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                />
+              )}
             </div>
-            
-            <Card className="bg-black/40 border-red-600/50 overflow-hidden">
-              <CardContent className="p-0">
-                <div className="relative aspect-video bg-black group">
-                  {liveStream.stream_url ? (
-                    <>
-                      <iframe
-                        key={liveStreamKey}
-                        src={liveStream.stream_url}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-                        allowFullScreen
-                        className="w-full h-full border-0"
-                        title="Прямая трансляция"
-                      ></iframe>
-                      <div className="absolute top-4 right-4 flex items-center gap-2 bg-red-600/90 backdrop-blur-sm px-3 py-2 rounded-lg animate-pulse">
-                        <div className="w-2 h-2 bg-white rounded-full"></div>
-                        <span className="text-white text-sm font-bold">ПРЯМОЙ ЭФИР</span>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon name="Radio" size={80} className="text-red-600 opacity-50" />
-                    </div>
-                  )}
-                </div>
-                {liveStream.title && (
-                  <div className="p-4 md:p-6">
-                    <h3 className="text-lg md:text-2xl font-bold">{liveStream.title}</h3>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      ) : randomPodcast ? (
-        <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-          <div className="container mx-auto">
-            <div className="flex items-center gap-3 mb-6">
-              <Badge className="bg-[#d4af37] text-black">
-                <Icon name="Radio" size={14} className="mr-2 text-black" />
-                Видео подкасты
-              </Badge>
-            </div>
-            
-            <Card className="bg-black/40 border-[#d4af37]/30 overflow-hidden cursor-pointer transition-all hover:border-[#d4af37]/60" onClick={() => setSelectedVideo(randomPodcast)}>
-              <CardContent className="p-0">
-                <div className="relative aspect-video bg-black">
-                  {randomPodcast.vkEmbed ? (
-                    <iframe
-                      src={randomPodcast.vkEmbed}
-                      allow="clipboard-write; autoplay"
-                      allowFullScreen
-                      className="w-full h-full"
-                    ></iframe>
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon name="Play" size={80} className="text-[#d4af37] opacity-50" />
-                    </div>
-                  )}
-                </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="text-lg md:text-2xl font-bold mb-2">{randomPodcast.title}</h3>
-                  <div className="flex items-center gap-4 text-white/70">
-                    {(() => {
-                      const videoId = randomPodcast.vkEmbed?.split('/').pop();
-                      const metadata = videoId ? videoMetadata[videoId] : null;
-                      return metadata ? (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                            {formatDuration(metadata.duration)}
-                          </span>
-                          <span>•</span>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Eye" size={16} className="text-[#b8953d]/60" />
-                            {formatViews(metadata.views)}
-                          </span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="flex items-center gap-1">
-                            <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                            {randomPodcast.duration}
-                          </span>
-                          <span>•</span>
-                          <span>{randomPodcast.type}</span>
-                        </>
-                      );
-                    })()}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      ) : null}
+          </DialogContent>
+        </Dialog>
 
-      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-
-      {/* Events Section (Upcoming & Archive) */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-        <div className="container mx-auto">
-          <div 
-            className="flex items-center justify-between cursor-pointer mb-6 md:mb-8 group"
-            onClick={() => setIsEventsOpen(!isEventsOpen)}
-          >
-            <h2 className="text-2xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Трансляции и события</h2>
-            <Icon 
-              name={isEventsOpen ? "ChevronUp" : "ChevronDown"} 
-              size={32} 
-              className="text-[#b8953d]/60 group-hover:text-[#b8953d] transition-colors" 
-            />
-          </div>
-          
-          {isEventsOpen && (
-          <>
-          {/* Upcoming Streams */}
-          <div className="mb-8">
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#d4af37]/80">Предстоящие</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-              {upcomingStreams.map(stream => (
-                <Card key={stream.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
-                  <CardContent className="p-4 md:p-6">
-                    <Badge className="mb-3 md:mb-4 bg-[#d4af37]/20 text-[#d4af37] text-xs md:text-sm">{stream.category}</Badge>
-                    <h3 className="text-base md:text-xl font-bold mb-2 md:mb-3 group-hover:text-[#d4af37] transition-colors">{stream.title}</h3>
-                    <div className="space-y-2 text-white/60 text-sm mb-4">
-                      <div className="flex items-center gap-2">
-                        <Icon name="Calendar" size={16} className="text-[#b8953d]/60" />
-                        {stream.date}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="Clock" size={16} className="text-[#b8953d]/60" />
-                        {stream.time}
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Icon name="User" size={16} className="text-[#b8953d]/60" />
-                        {stream.speaker}
-                      </div>
-                    </div>
-                    <Button className="w-full bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
-                      Напомнить
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Archive */}
-          <div>
-            <h3 className="text-xl md:text-2xl font-bold mb-4 text-[#d4af37]/80">Архив</h3>
-            <div className="space-y-4">
-              {archiveEvents.map(event => (
-                <Card key={event.id} className="bg-black/40 border-[#d4af37]/20 hover:border-[#d4af37]/50 transition-all group">
-                  <CardContent className="p-4 md:p-6">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 md:gap-0">
-                      <div className="flex-1">
-                        <h3 className="text-base md:text-xl font-bold mb-2 group-hover:text-[#d4af37] transition-colors">{event.title}</h3>
-                        <div className="flex flex-wrap items-center gap-3 md:gap-6 text-white/60 text-xs md:text-sm">
-                          <span className="flex items-center gap-2">
-                            <Icon name="Calendar" size={14} className="text-[#b8953d]/60" />
-                            {event.date}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Clock" size={14} className="text-[#b8953d]/60" />
-                            {event.duration}
-                          </span>
-                          <span className="flex items-center gap-2">
-                            <Icon name="Eye" size={14} className="text-[#b8953d]/60" />
-                            {event.views} просмотров
-                          </span>
-                        </div>
-                      </div>
-                      <Button className="bg-transparent border border-[#b8953d] text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 hover:bg-gradient-to-br hover:from-[#8b7355] hover:via-[#b8953d] hover:to-[#6b5d42] hover:text-black">
-                        Смотреть
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-          </>
-          )}
-        </div>
-      </section>
-
-      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-
-      {/* Main Catalog */}
-      <section className="py-10 md:py-20 px-2 md:px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
-        <div className="container mx-auto">
-          <h2 className="text-2xl md:text-4xl font-bold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">Каталог контента</h2>
-          
-          {/* Filters */}
-          <div className="mb-6 md:mb-8 space-y-3 md:space-y-4">
-            <div>
-              <p className="text-white/60 text-xs md:text-sm mb-2 md:mb-3">Тип контента</p>
-              <div className="flex flex-wrap gap-2">
-                {['all', 'video', 'podcast', 'stream'].map(filter => (
-                  <Button
-                    key={filter}
-                    onClick={() => setActiveFilter(filter)}
-                    className={`${
-                      activeFilter === filter
-                        ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
-                        : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
-                    }`}
-                  >
-                    {filter === 'all' ? 'Все' : filter === 'video' ? 'Видео' : filter === 'podcast' ? 'Подкаст' : 'Трансляция'}
-                  </Button>
-                ))}
-              </div>
-            </div>
-            
-            <div>
-              <p className="text-white/60 text-sm mb-3">Категория</p>
-              <div className="flex flex-wrap gap-2">
-                {['all', 'Интервью', 'Лекции', 'Разборы', 'Новости', 'Мастер-классы', 'Подкаст'].map(category => (
-                  <Button
-                    key={category}
-                    onClick={() => setActiveCategory(category)}
-                    className={`${
-                      activeCategory === category
-                        ? 'bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black'
-                        : 'bg-black/40 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/70 via-[#b8953d]/70 to-[#6b5d42]/70 border border-[#b8953d]/20 hover:border-[#b8953d]/50'
-                    }`}
-                  >
-                    {category === 'all' ? 'Все' : category}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Content Grid */}
-          {filteredContent.length === 0 ? (
-            <div className="text-center py-16">
-              <div className="w-24 h-24 bg-[#d4af37]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <Icon name="Search" size={48} className="text-[#d4af37]/50" />
-              </div>
-              <h3 className="text-2xl font-bold mb-3 text-white/80">Контент еще не загружен</h3>
-              <p className="text-white/60 mb-6 max-w-md mx-auto">
-                В этом разделе пока нет материалов. Посмотрите или послушайте наши доступные подкасты!
+        <Dialog open={isEventsOpen} onOpenChange={setIsEventsOpen}>
+          <DialogContent className="max-w-2xl bg-gradient-to-br from-[#0a0a0a] to-black border-[#d4af37]/30">
+            <div className="text-center py-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Все мероприятия</h3>
+              <p className="text-white/60 mb-6">
+                Перейти на страницу мероприятий для просмотра полного календаря
               </p>
-              <Button 
+              <button
                 onClick={() => {
-                  setActiveFilter('all');
-                  setActiveCategory('all');
+                  setIsEventsOpen(false);
+                  navigate('/events');
                 }}
-                className="bg-gradient-to-br from-[#8b7355] via-[#b8953d] to-[#6b5d42] text-black hover:opacity-90"
+                className="px-8 py-3 bg-[#d4af37] text-black font-bold rounded-lg hover:bg-[#d4af37]/90 transition-colors duration-300"
               >
-                Сбросить фильтры
-              </Button>
+                Открыть календарь
+              </button>
             </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-              {filteredContent.map(item => {
-                const videoId = item.vkEmbed?.includes('rutube.ru') 
-                  ? item.vkEmbed.split('/').pop()
-                  : null;
-                const metadata = videoId ? videoMetadata[videoId] : null;
-                const thumbnailUrl = item.thumbnail_url || metadata?.thumbnail || item.thumbnail;
-
-                return (
-                  <Card 
-                    key={item.id} 
-                    className="bg-black/40 border-[#d4af37]/20 overflow-hidden group cursor-pointer hover:border-[#d4af37]/50 transition-all"
-                    onClick={async () => {
-                      if (item.vkEmbed) {
-                        if (videoId && !metadata) {
-                          await fetchRutubeMetadata(videoId);
-                        }
-                        setSelectedVideo(item);
-                      }
-                    }}
-                  >
-                    <CardContent className="p-0">
-                      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-black via-[#1a1a1a] to-black">
-                        {thumbnailUrl ? (
-                          <>
-                            <img 
-                              src={thumbnailUrl} 
-                              alt={metadata?.title || item.title}
-                              className="w-full h-full object-cover"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                          </>
-                        ) : (
-                          <>
-                            <div className="absolute inset-0 luxury-texture opacity-30"></div>
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#d4af37]/10 via-transparent to-transparent"></div>
-                            <div className="absolute bottom-4 left-4 right-4">
-                              <div className="text-[#d4af37]/40 text-5xl font-bold opacity-20">MUSE</div>
-                            </div>
-                          </>
-                        )}
-                        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all flex items-center justify-center">
-                          <div className="w-16 h-16 rounded-full bg-black/60 backdrop-blur-sm border border-[#d4af37]/30 flex items-center justify-center group-hover:scale-110 transition-all">
-                            <Icon name={item.type === 'video' ? 'Play' : item.vkEmbed ? 'Play' : 'Headphones'} size={32} className="text-[#d4af37] ml-1" />
-                          </div>
-                        </div>
-                        {metadata?.duration && (
-                          <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white/90 text-xs font-medium">
-                            {formatDuration(metadata.duration)}
-                          </div>
-                        )}
-                      </div>
-                      <div className="p-3 md:p-4">
-                        <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{item.category}</Badge>
-                        <h3 className="text-base md:text-lg font-bold mb-2 group-hover:text-[#d4af37] transition-colors line-clamp-1">
-                          {metadata?.title || 'Загрузка...'}
-                        </h3>
-                        {metadata?.description && (
-                          <p className="text-white/60 text-xs mb-2 line-clamp-2">
-                            {metadata.description}
-                          </p>
-                        )}
-                        <div className="flex items-center gap-3 text-white/40 text-xs mt-2 flex-wrap">
-                          {metadata?.duration && (
-                            <div className="flex items-center gap-1">
-                              <Icon name="Clock" size={14} />
-                              <span>{formatDuration(metadata.duration)}</span>
-                            </div>
-                          )}
-                          {metadata?.views && (
-                            <div className="flex items-center gap-1">
-                              <Icon name="Eye" size={14} />
-                              <span>{formatViews(metadata.views)}</span>
-                            </div>
-                          )}
-                          {metadata?.created && (
-                            <div className="flex items-center gap-1">
-                              <Icon name="Calendar" size={14} />
-                              <span>{new Date(metadata.created).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </section>
-
-      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-
-      {/* Video Dialog */}
-      <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
-        <DialogContent className="max-w-full w-full h-full md:max-w-4xl md:w-full md:max-h-[70vh] p-0 bg-black border-0 md:rounded-lg overflow-hidden" hideClose>
-          {selectedVideo && (() => {
-            const videoId = selectedVideo.vkEmbed?.includes('rutube.ru') 
-              ? selectedVideo.vkEmbed.split('/').pop()
-              : null;
-            const metadata = videoId ? videoMetadata[videoId] : null;
-
-            const isRutube = selectedVideo.vkEmbed?.includes('rutube.ru');
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            
-            let videoUrl = selectedVideo.vkEmbed;
-            if (isRutube) {
-              const separator = videoUrl.includes('?') ? '&' : '?';
-              videoUrl = `${videoUrl}${separator}autoplay=true&t=0`;
-              if (isMobile) {
-                videoUrl += '&bmstart=true';
-              }
-            } else {
-              const separator = videoUrl.includes('?') ? '&' : '?';
-              videoUrl = `${videoUrl}${separator}autoplay=1`;
-            }
-
-            return (
-              <div className="relative flex flex-col gap-3 md:gap-4 p-3 md:p-4 overflow-y-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-                {/* Video Player */}
-                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
-                  {/* Close Button */}
-                  <button
-                    onClick={() => setSelectedVideo(null)}
-                    className="absolute top-3 right-3 z-[60] rounded-full p-2 bg-black/60 backdrop-blur-sm text-white/90 hover:bg-[#d4af37]/90 hover:text-black transition-all duration-300 border border-white/20 hover:border-[#d4af37] shadow-xl hover:shadow-[#d4af37]/50 hover:scale-110"
-                  >
-                    <Icon name="X" size={18} />
-                  </button>
-                  {selectedVideo?.vkEmbed && (
-                    <iframe
-                      src={videoUrl}
-                      className="absolute inset-0 w-full h-full md:rounded-lg"
-                      allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
-                      frameBorder="0"
-                      allowFullScreen
-                    ></iframe>
-                  )}
-                </div>
-
-                {/* Video Info */}
-                <div className="space-y-3">
-                  <div>
-                    <Badge className="mb-2 bg-[#d4af37]/20 text-[#d4af37] text-xs">{selectedVideo.category}</Badge>
-                    <h2 className="text-xl font-bold text-[#d4af37] mb-2">
-                      {metadata?.title || selectedVideo.title}
-                    </h2>
-                    <div className="flex items-center gap-4 text-white/60 text-xs">
-                      <span className="flex items-center gap-1">
-                        <Icon name="Clock" size={12} className="text-[#b8953d]/60" />
-                        {metadata?.duration 
-                          ? formatDuration(metadata.duration)
-                          : selectedVideo.duration
-                        }
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Icon name="Eye" size={12} className="text-[#b8953d]/60" />
-                        {metadata?.views 
-                          ? formatViews(metadata.views)
-                          : selectedVideo.views
-                        } просмотров
-                      </span>
-                    </div>
-                    <p className="text-white/40 text-xs mt-1">{selectedVideo.date}</p>
-                  </div>
-
-                  {metadata?.description && (
-                    <div className="border-t border-white/10 pt-3">
-                      <h3 className="text-base font-semibold text-white mb-2">Описание</h3>
-                      <p className="text-white/70 text-sm leading-relaxed whitespace-pre-line">
-                        {metadata.description}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            );
-          })()}
-        </DialogContent>
-      </Dialog>
-        </div>
+          </DialogContent>
+        </Dialog>
       </Layout>
     </PageTransition>
   );

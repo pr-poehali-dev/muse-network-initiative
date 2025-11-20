@@ -136,9 +136,13 @@ const Events = () => {
 
           <section id="program" className="relative py-24 px-4 bg-black">
             <div className="container mx-auto max-w-5xl">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-16 text-center">
-                ПРОГРАММА ФОРУМА
-              </h2>
+              <div className="flex items-center gap-4 md:gap-8 mb-16">
+                <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
+                <h2 className="text-4xl md:text-5xl font-playfair text-center whitespace-nowrap text-[#d4af37]">
+                  Программа форума
+                </h2>
+                <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
+              </div>
 
               <div className="space-y-12">
                 
