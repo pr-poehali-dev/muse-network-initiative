@@ -1,9 +1,16 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import OptimizedImage from '@/components/OptimizedImage';
+
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen bg-black">
+    <div className="w-16 h-16 border-4 border-[#d4af37]/20 border-t-[#d4af37] rounded-full animate-spin"></div>
+  </div>
+);
 
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -16,7 +23,6 @@ const Events = () => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       
-      // Обновляем только если изменение > 5px (уменьшаем частоту)
       if (Math.abs(currentScrollY - lastScrollY) < 5) return;
       
       if (!ticking) {
@@ -38,7 +44,6 @@ const Events = () => {
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide scroll-smooth">
 
-      {/* 1. HERO - Героический баннер */}
       <section id="hero" className="relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-20" style={{backgroundSize: '50px 50px'}}></div>
@@ -46,8 +51,8 @@ const Events = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px]"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px] will-change-transform"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px] will-change-transform"></div>
           
           <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(212,175,55,0.1)_49%,rgba(212,175,55,0.1)_51%,transparent_52%)] opacity-30" style={{backgroundSize: '30px 30px'}}></div>
           
@@ -58,70 +63,60 @@ const Events = () => {
             mixBlendMode: 'screen'
           }}></div>
           
-          {/* Mobile background photo */}
           <div className="md:hidden absolute inset-0 z-0 opacity-70">
-            <img 
+            <OptimizedImage 
               src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
               alt="" 
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-cover"
               style={{
                 objectPosition: '50% 20%',
                 filter: 'grayscale(10%) brightness(0.9) contrast(1.1)',
-                contentVisibility: 'auto'
               }}
+              loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
           </div>
           
-          {/* Left photo */}
           <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <img 
+            <OptimizedImage 
               src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
               alt="" 
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)',
-                contentVisibility: 'auto'
               }}
+              loading="eager"
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
           </div>
           
-          {/* Right photo */}
           <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-95 group animate-slide-in-from-right" style={{animationDelay: '0.4s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.08}px)`}}>
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#d4af37]/5 to-transparent"></div>
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-            <img 
+            <OptimizedImage 
               src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
               alt="" 
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%)',
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)',
-                contentVisibility: 'auto'
               }}
+              loading="eager"
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
             }}></div>
           </div>
           
-          {/* Cinematic overlays */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_0%,_transparent_40%,_rgba(0,0,0,0.4)_70%,_rgba(0,0,0,0.8)_100%)] z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-60 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent z-10"></div>
@@ -129,7 +124,6 @@ const Events = () => {
           <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black via-black/70 to-transparent z-20"></div>
           <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-[#8b7355]/5 mix-blend-overlay z-30"></div>
           
-          {/* Light effects */}
           <div className="absolute top-0 left-1/4 w-[2px] h-[80%] bg-gradient-to-b from-[#d4af37]/30 via-[#d4af37]/10 to-transparent rotate-12 blur-sm opacity-40"></div>
           <div className="absolute top-0 right-1/3 w-[2px] h-[70%] bg-gradient-to-b from-[#d4af37]/25 via-[#d4af37]/8 to-transparent -rotate-6 blur-sm opacity-30"></div>
         </div>
@@ -144,246 +138,223 @@ const Events = () => {
             </div>
             
             <div 
-              className="relative inline-block mb-8 md:mb-10 animate-title-appear" 
-              style={{
-                animationDelay: '0.8s',
-                opacity: 0
-              }}
+              className="relative inline-block mb-8 md:mb-10 animate-text-appear" 
+              style={{animationDelay: '0.7s', opacity: 0}}
             >
-              <h1 className="text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 px-2 md:px-4 tracking-wide md:tracking-wider drop-shadow-[0_0_30px_rgba(212,175,55,0.5)] [text-shadow:0_0_40px_rgba(212,175,55,0.3),0_0_60px_rgba(212,175,55,0.2)]">
-                MUSE
+              <h1 className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-br from-[#d4af37] via-[#f5d77e] to-[#b8953d] leading-tight tracking-tight px-4 md:px-0 drop-shadow-2xl">
+                <span className="block mb-2 sm:mb-3">КЛУБ</span>
+                <span className="block text-5xl xs:text-6xl sm:text-7xl md:text-8xl lg:text-9xl">MUSE</span>
               </h1>
-              <div className="absolute inset-0 text-6xl sm:text-7xl md:text-9xl lg:text-[12rem] xl:text-[15rem] font-black text-[#d4af37]/8 blur-2xl px-2 md:px-4">
-                MUSE
-              </div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-[#d4af37]/20 via-[#f5d77e]/20 to-[#b8953d]/20 blur-3xl -z-10 opacity-70"></div>
             </div>
-            
-            <div className="space-y-4 md:space-y-6 animate-text-appear" style={{animationDelay: '1.1s', opacity: 0}}>
-              <p className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#d4af37] font-light max-w-xs sm:max-w-md md:max-w-3xl mx-auto tracking-wide px-2 sm:px-4 leading-relaxed [text-shadow:0_2px_20px_rgba(0,0,0,0.8)]">
-                От идеи до результата
-              </p>
+
+            <p 
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 max-w-2xl lg:max-w-4xl mb-8 md:mb-12 leading-relaxed font-light px-4 md:px-0 animate-text-appear" 
+              style={{animationDelay: '0.9s', opacity: 0}}
+            >
+              Сила, Вдохновение, Развитие
+            </p>
+
+            <div 
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 px-4 md:px-0 animate-text-appear" 
+              style={{animationDelay: '1.1s', opacity: 0}}
+            >
+              <Button 
+                size="lg"
+                onClick={() => {
+                  const element = document.getElementById('details');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-base sm:text-lg px-8 sm:px-12 py-6 sm:py-8 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-[#d4af37]/50 hover:scale-105 w-full sm:w-auto"
+              >
+                Детали события
+              </Button>
               
-              <div className="pt-4 md:pt-8">
-                <Button
-                  size="lg"
-                  onClick={() => navigate('/')}
-                  className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black text-xs sm:text-sm md:text-base font-bold px-6 sm:px-8 md:px-12 py-2 sm:py-3 md:py-6 rounded-sm sm:rounded-md transition-all duration-300 shadow-[0_0_30px_rgba(212,175,55,0.4)] hover:shadow-[0_0_50px_rgba(212,175,55,0.6)] backdrop-blur-sm"
-                >
-                  <Icon name="Sparkles" className="mr-1.5 sm:mr-2 h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
-                  Записаться на мероприятие
-                </Button>
-              </div>
+              <Button 
+                size="lg"
+                variant="outline"
+                onClick={() => navigate('/')}
+                className="border-2 border-[#d4af37]/50 text-white hover:bg-[#d4af37]/10 hover:border-[#d4af37] font-bold text-base sm:text-lg px-8 sm:px-12 py-6 sm:py-8 rounded-lg transition-all duration-300 backdrop-blur-sm w-full sm:w-auto"
+              >
+                На главную
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-
-      {/* 2. ПРОГРАММА ФОРУМА 13.12.2025 */}
-      <section className="relative py-20 sm:py-24 md:py-32 bg-black overflow-hidden" style={{contentVisibility: 'auto'}}>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-10" style={{backgroundSize: '40px 40px'}}></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/30 to-black"></div>
-        
-        <div className="container mx-auto px-6 sm:px-8 md:px-12 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-12 sm:mb-16 md:mb-20">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355] via-[#b8953d] to-[#6b5d42] mb-4 sm:mb-6 tracking-tight drop-shadow-[0_0_20px_rgba(212,175,55,0.3)]">
-                MUSE-ФОРУМ
+          <section id="details" className="relative py-16 md:py-24 px-4 sm:px-6 md:px-8 bg-black">
+            <div className="container mx-auto max-w-5xl">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-8 md:mb-12 text-center">
+                О ВСТРЕЧЕ
               </h2>
-              <p className="text-xl sm:text-2xl md:text-3xl text-[#d4af37] font-light mb-6 sm:mb-8">
-                От идеи до результата
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 text-white/80 text-sm sm:text-base">
-                <div className="flex items-center gap-2">
+
+              <div className="bg-gradient-to-br from-[#0a0a0a] to-black rounded-2xl border border-[#d4af37]/30 p-6 sm:p-8 md:p-10 mb-8">
+                <h3 className="text-2xl md:text-3xl font-bold text-[#d4af37] mb-4">От идеи до результата</h3>
+                <p className="text-white/80 text-base md:text-lg leading-relaxed mb-4">
+                  Деловая встреча для предпринимателей, руководителей бизнеса и общественных лидеров.
+                </p>
+                <p className="text-white/80 text-base md:text-lg leading-relaxed">
+                  <strong className="text-[#d4af37]">Что вас ждёт:</strong> Обмен опытом, вдохновляющие истории успеха, нетворкинг и новые контакты для развития вашего бизнеса.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12 text-white/90">
+                <div className="flex items-center gap-2 bg-[#0a0a0a]/50 rounded-lg p-4 border border-[#d4af37]/20">
                   <Icon name="Calendar" className="w-5 h-5 text-[#d4af37]" />
                   <span>13.12.2025</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-[#0a0a0a]/50 rounded-lg p-4 border border-[#d4af37]/20">
                   <Icon name="MapPin" className="w-5 h-5 text-[#d4af37]" />
                   <span>АРР</span>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 bg-[#0a0a0a]/50 rounded-lg p-4 border border-[#d4af37]/20">
                   <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
                   <span>Начало: 12:00</span>
                 </div>
               </div>
-            </div>
 
-            <div className="space-y-6">
-              {/* Вступительное слово */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                    <span className="text-[#d4af37] font-bold text-lg">12:00 – 12:05</span>
-                  </div>
-                  <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                  <h3 className="text-white text-xl sm:text-2xl font-bold">Вступительное слово</h3>
-                </div>
-                <p className="text-white/70 text-sm sm:text-base italic">От идеи до результата</p>
-              </div>
-
-              {/* Наталья Мальцева-Корельская */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <div className="relative">
+              <div className="space-y-6">
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
                   <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
                     <div className="flex items-center gap-3">
                       <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">12:05 – 12:35</span>
+                      <span className="text-[#d4af37] font-bold text-lg">12:00 – 12:05</span>
                     </div>
                     <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <div>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Наталья Мальцева-Корельская</h3>
-                      <p className="text-[#b8953d] text-sm">Региональный лидер сообщества Pro Женщин</p>
-                    </div>
+                    <h3 className="text-white text-xl sm:text-2xl font-bold">Вступительное слово</h3>
                   </div>
-                  <p className="text-white/70 text-sm sm:text-base">Развитие женского лидерства и силы сообщества</p>
+                  <p className="text-white/70 text-sm sm:text-base italic">От идеи до результата</p>
                 </div>
-              </div>
 
-              {/* Наталья Сорокина */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <div className="relative">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <div className="relative">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-lg">12:05 – 12:35</span>
+                      </div>
+                      <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
+                      <div>
+                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Наталья Мальцева-Корельская</h3>
+                        <p className="text-[#b8953d] text-sm">Региональный лидер сообщества Pro Женщин</p>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm sm:text-base">Развитие женского лидерства и силы сообщества</p>
+                  </div>
+                </div>
+
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <div className="relative">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-lg">12:35 – 13:05</span>
+                      </div>
+                      <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
+                      <div>
+                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Наталья Сорокина</h3>
+                        <p className="text-[#b8953d] text-sm">Руководитель Центра поддержки предпринимательства</p>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm sm:text-base">Развитие территорий и новые возможности для инициатив</p>
+                  </div>
+                </div>
+
+                <div className="relative bg-gradient-to-br from-[#d4af37]/10 to-black rounded-xl border border-[#d4af37]/40 p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     <div className="flex items-center gap-3">
-                      <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">12:35 – 13:05</span>
+                      <Icon name="Coffee" className="w-6 h-6 text-[#d4af37]" />
+                      <span className="text-[#d4af37] font-bold text-lg">13:05 – 13:30</span>
                     </div>
                     <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <div>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Наталья Сорокина</h3>
-                      <p className="text-[#b8953d] text-sm">Руководитель Центра поддержки предпринимательства</p>
+                    <h3 className="text-white text-xl sm:text-2xl font-bold">КОФЕ-БРЕЙК</h3>
+                  </div>
+                  <p className="text-white/70 text-sm sm:text-base mt-3">Перерыв на кофе и неформальное общение</p>
+                </div>
+
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <div className="relative">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-lg">13:30 – 14:15</span>
+                      </div>
+                      <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
+                      <div>
+                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Юлия Викторова</h3>
+                        <p className="text-[#b8953d] text-sm">Директор по цифровому маркетингу Albe Digital, г. Санкт-Петербург</p>
+                      </div>
                     </div>
+                    <p className="text-white/70 text-sm sm:text-base">Цифровой маркетинг: инструменты роста и продвижения</p>
                   </div>
-                  <p className="text-white/70 text-sm sm:text-base">Развитие территорий и новые возможности для инициатив</p>
                 </div>
-              </div>
 
-              {/* Кофе-брейк */}
-              <div className="relative bg-gradient-to-br from-[#d4af37]/10 to-black rounded-xl border border-[#d4af37]/40 p-6 sm:p-8">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                  <div className="flex items-center gap-3">
-                    <Icon name="Coffee" className="w-6 h-6 text-[#d4af37]" />
-                    <span className="text-[#d4af37] font-bold text-lg">13:05 – 13:30</span>
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <div className="relative">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-lg">14:15 – 14:45</span>
+                      </div>
+                      <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
+                      <div>
+                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Татьяна Ваганова</h3>
+                        <p className="text-[#b8953d] text-sm">Руководитель Вокальной студии и продюсерского центра «New voice»</p>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm sm:text-base">Как презентовать личный бренд</p>
                   </div>
-                  <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                  <h3 className="text-white text-xl sm:text-2xl font-bold">КОФЕ-БРЕЙК</h3>
                 </div>
-                <p className="text-white/70 text-sm sm:text-base mt-3">Перерыв на кофе и неформальное общение</p>
-              </div>
 
-              {/* Юлия Викторова */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <div className="relative">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                  <div className="relative">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-lg">14:45 – 15:15</span>
+                      </div>
+                      <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
+                      <div>
+                        <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Евгения Шелюк</h3>
+                        <p className="text-[#b8953d] text-sm">Министр экономического развития и промышленности Архангельской области</p>
+                      </div>
+                    </div>
+                    <p className="text-white/70 text-sm sm:text-base">Выступление по теме развития региона</p>
+                  </div>
+                </div>
+
+                <div className="relative bg-gradient-to-br from-[#d4af37]/10 to-black rounded-xl border border-[#d4af37]/40 p-6 sm:p-8">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                     <div className="flex items-center gap-3">
-                      <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">13:30 – 14:15</span>
+                      <Icon name="Users" className="w-6 h-6 text-[#d4af37]" />
+                      <span className="text-[#d4af37] font-bold text-lg">15:15 – 16:00</span>
                     </div>
                     <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <div>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Юлия Викторова</h3>
-                      <p className="text-[#b8953d] text-sm">Директор по цифровому маркетингу Albe Digital, г. Санкт-Петербург</p>
-                    </div>
+                    <h3 className="text-white text-xl sm:text-2xl font-bold">Завершение и общение</h3>
                   </div>
-                  <p className="text-white/70 text-sm sm:text-base">Цифровой маркетинг: инструменты роста и продвижения</p>
+                  <p className="text-white/70 text-sm sm:text-base mt-3">Нетворкинг, обмен контактами</p>
                 </div>
               </div>
 
-              {/* Татьяна Ваганова */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <div className="relative">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">14:15 – 14:45</span>
-                    </div>
-                    <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <div>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Татьяна Ваганова</h3>
-                      <p className="text-[#b8953d] text-sm">Руководитель Вокальной студии и продюсерского центра «New voice»</p>
-                    </div>
-                  </div>
-                  <p className="text-white/70 text-sm sm:text-base">Как презентовать личный бренд</p>
-                </div>
-              </div>
-
-              {/* Евгения Шелюк */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                <div className="relative">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">14:45 – 15:15</span>
-                    </div>
-                    <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <div>
-                      <h3 className="text-white text-xl sm:text-2xl font-bold mb-1">Евгения Шелюк</h3>
-                      <p className="text-[#b8953d] text-sm">Министр экономического развития и промышленности Архангельской области</p>
-                    </div>
-                  </div>
-                  <p className="text-white/70 text-sm sm:text-base">Выступление по теме развития экономики региона и поддержки инициатив</p>
-                </div>
-              </div>
-
-              {/* Пленарная сессия */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                    <span className="text-[#d4af37] font-bold text-lg">15:15 – 15:45</span>
-                  </div>
-                  <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                  <h3 className="text-white text-xl sm:text-2xl font-bold">Пленарная сессия</h3>
-                </div>
-                <p className="text-white/70 text-sm sm:text-base mb-2">От идеи до результата — путь женского успеха</p>
-                <p className="text-white/50 text-xs sm:text-sm italic">(Обсуждение, вопросы, обмен опытом)</p>
-              </div>
-
-              {/* Заключительное слово */}
-              <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 sm:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                  <div className="flex items-center gap-3">
-                    <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                    <span className="text-[#d4af37] font-bold text-lg">15:45 – 15:55</span>
-                  </div>
-                  <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                  <h3 className="text-white text-xl sm:text-2xl font-bold">Заключительное слово</h3>
-                </div>
-                <p className="text-white/70 text-sm sm:text-base">Фото, общение, обмен контактами</p>
-              </div>
-
-              {/* Фильм */}
-              <div className="relative bg-gradient-to-br from-[#d4af37]/10 to-black rounded-xl border border-[#d4af37]/40 p-6 sm:p-8 overflow-hidden">
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#d4af37_0%,_transparent_1%)] opacity-5" style={{backgroundSize: '30px 30px'}}></div>
-                <div className="relative">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-4">
-                    <div className="flex items-center gap-3">
-                      <Icon name="Film" className="w-6 h-6 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-lg">15:55 – 16:55</span>
-                    </div>
-                    <div className="h-px sm:h-6 sm:w-px bg-[#d4af37]/30"></div>
-                    <h3 className="text-white text-xl sm:text-2xl font-bold">Закрытый показ фильма «Всё из любви»</h3>
-                  </div>
-                  <div className="bg-black/40 rounded-lg p-4 sm:p-6 border border-[#d4af37]/20">
-                    <p className="text-[#d4af37] font-semibold text-sm sm:text-base mb-2">MUSE-герой: Анастасия Кочеткова</p>
-                    <p className="text-white/70 text-sm sm:text-base leading-relaxed">
-                      История женщины, в которой живёт ветер перемен. Фильм о пути, свободе, вдохновении и силе любви к жизни.
-                    </p>
-                  </div>
-                </div>
+              <div className="mt-12 text-center">
+                <Button 
+                  size="lg"
+                  onClick={() => navigate('/')}
+                  className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 shadow-2xl hover:shadow-[#d4af37]/50 hover:scale-105"
+                >
+                  Вернуться на главную
+                </Button>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
+          </section>
         </div>
       </Layout>
     </PageTransition>
