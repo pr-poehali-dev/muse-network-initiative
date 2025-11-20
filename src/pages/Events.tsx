@@ -148,12 +148,12 @@ const Events = () => {
             <div className="container mx-auto max-w-6xl relative z-10">
               <div className="text-center mb-20">
                 <div className="inline-block mb-6">
-                  <div className="h-px w-20 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent"></div>
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6"></div>
                 </div>
                 <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-6 tracking-tight">
                   ПРОГРАММА ФОРУМА
                 </h2>
-                <p className="text-white/50 text-lg md:text-xl">13 декабря 2025 • Бизнес-форум MUSE</p>
+                <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">13 декабря 2025 • Бизнес-форум MUSE</p>
               </div>
 
               <div className="space-y-6">
@@ -186,7 +186,7 @@ const Events = () => {
                           <OptimizedImage
                             src="https://cdn.poehali.dev/files/33fa4a19-fe51-42bd-983a-a334cfdca5bd.jpg"
                             alt="Наталья Мальцева-Корельская"
-                            className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                            className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
