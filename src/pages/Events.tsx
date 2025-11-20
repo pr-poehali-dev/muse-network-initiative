@@ -66,13 +66,14 @@ const Events = () => {
           <div className="md:hidden absolute inset-0 z-0 opacity-70">
             <OptimizedImage 
               src="https://cdn.poehali.dev/files/16b2656a-d7ad-4d09-996c-22fdd08827b8.jpg" 
-              alt="" 
+              alt="Клуб MUSE событие" 
               className="w-full h-full object-cover"
               style={{
                 objectPosition: '50% 20%',
                 filter: 'grayscale(10%) brightness(0.9) contrast(1.1)',
               }}
               loading="eager"
+              fetchpriority="high"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-transparent to-black/70"></div>
           </div>
@@ -82,7 +83,7 @@ const Events = () => {
             <div className="absolute inset-0 bg-gradient-to-tr from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <OptimizedImage 
               src="https://cdn.poehali.dev/files/f730e14d-c58a-4ac4-9b0a-d2d7c2378616.jpg" 
-              alt="" 
+              alt="Мероприятие MUSE" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
@@ -91,6 +92,7 @@ const Events = () => {
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)',
               }}
               loading="eager"
+              fetchpriority="high"
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 30% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'
@@ -102,7 +104,7 @@ const Events = () => {
             <div className="absolute inset-0 bg-gradient-to-tl from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
             <OptimizedImage 
               src="https://cdn.poehali.dev/files/4a9523f3-5fc0-400f-b4c7-6dd69bdbd217.jpg" 
-              alt="" 
+              alt="Встреча MUSE" 
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
               style={{
                 objectPosition: '50% 20%',
@@ -111,6 +113,7 @@ const Events = () => {
                 filter: 'grayscale(10%) contrast(1.0) brightness(1.2)',
               }}
               loading="eager"
+              fetchpriority="high"
             />
             <div className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none transition-opacity duration-700 group-hover:opacity-50" style={{
               background: 'radial-gradient(circle at 70% 40%, rgba(212,175,55,0.3) 0%, transparent 60%)'

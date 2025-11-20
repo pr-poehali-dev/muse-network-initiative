@@ -14,6 +14,8 @@ interface OptimizedImageProps extends Omit<ImgHTMLAttributes<HTMLImageElement>, 
   useWebP?: boolean;
   /** Использовать ли responsive варианты @1x/@2x (по умолчанию true) */
   useResponsive?: boolean;
+  /** Приоритет загрузки (для критичных изображений) */
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 /**
@@ -43,6 +45,7 @@ export default function OptimizedImage({
   useResponsive = true,
   loading = 'lazy',
   decoding = 'async',
+  fetchpriority = 'auto',
   ...props 
 }: OptimizedImageProps) {
   const localPath = getLocalImagePath(src);
@@ -55,6 +58,7 @@ export default function OptimizedImage({
         alt={alt} 
         loading={loading}
         decoding={decoding}
+        fetchPriority={fetchpriority}
         {...props} 
       />
     );
@@ -68,6 +72,7 @@ export default function OptimizedImage({
         alt={alt} 
         loading={loading}
         decoding={decoding}
+        fetchPriority={fetchpriority}
         {...props} 
       />
     );
@@ -105,6 +110,7 @@ export default function OptimizedImage({
           alt={alt}
           loading={loading}
           decoding={decoding}
+          fetchPriority={fetchpriority}
           {...props}
         />
       </picture>
@@ -119,6 +125,7 @@ export default function OptimizedImage({
       alt={alt}
       loading={loading}
       decoding={decoding}
+      fetchPriority={fetchpriority}
       {...props}
     />
   );
