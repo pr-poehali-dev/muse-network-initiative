@@ -108,13 +108,16 @@ const Events = () => {
             </div>
 
             <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
-              <Button
-                size="lg"
+              <button
                 onClick={() => setIsEventDialogOpen(true)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-[#d4af37]/50"
+                className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
               >
-                Записаться на мероприятие
-              </Button>
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
+                <span className="relative flex items-center gap-3">
+                  <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+                  Записаться на мероприятие
+                </span>
+              </button>
             </div>
 
             <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
@@ -296,25 +299,17 @@ const Events = () => {
 
               </div>
 
-              <div className="mt-16 text-center space-y-4">
-                <Button 
-                  size="lg"
+              <div className="mt-16 text-center">
+                <button
                   onClick={() => setIsEventDialogOpen(true)}
-                  className="bg-gradient-to-r from-[#d4af37] to-[#b8953d] hover:from-[#c4a137] hover:to-[#a8853d] text-black font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-[#d4af37]/50"
+                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-16 py-8 rounded-xl font-bold text-xl transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
                 >
-                  Записаться на мероприятие
-                </Button>
-                
-                <div>
-                  <Button 
-                    size="lg"
-                    variant="outline"
-                    onClick={() => navigate('/')}
-                    className="border-2 border-[#d4af37]/50 text-white hover:bg-[#d4af37]/10 hover:border-[#d4af37] font-bold text-lg px-12 py-8 rounded-lg transition-all duration-300 backdrop-blur-sm"
-                  >
-                    Вернуться на главную
-                  </Button>
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <span className="relative flex items-center gap-3">
+                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+                    Записаться на мероприятие
+                  </span>
+                </button>
               </div>
             </div>
           </section>
