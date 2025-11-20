@@ -95,51 +95,38 @@ const Events = () => {
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-black luxury-texture overflow-x-hidden">
           
-          <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 bg-black"></div>
+          <section id="program" className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden py-24 px-4">
+            <div className="absolute inset-0">
+              <OptimizedImage
+                src="https://cdn.poehali.dev/files/fa6dfa96-52fe-4a5e-9094-b77368af991e.png"
+                alt="MUSE"
+                className="w-full h-full object-cover object-center"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <div className="absolute inset-0 bg-black/50"></div>
+            </div>
 
-            <div className="relative z-10 w-full px-4 md:px-8 flex flex-col items-center">
-              <div className="relative mb-12 animate-title-appear" style={{animationDelay: '0.3s', opacity: 0}}>
-                <OptimizedImage
-                  src="https://cdn.poehali.dev/files/12ca8e59-1dad-4ad6-8b6c-591b1141fb1c.png"
-                  alt="MUSE"
-                  className="w-full max-w-6xl h-auto"
-                  loading="eager"
-                  fetchpriority="high"
-                />
+            <div className="relative z-10 w-full max-w-7xl mx-auto">
+              <div className="flex flex-col items-center mb-16">
+                <p className="text-white mb-8 leading-relaxed animate-text-appear font-bold text-center" style={{animationDelay: '0.3s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)'}}>
+                  ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
+                </p>
+                
+                <button
+                  onClick={() => setIsEventDialogOpen(true)}
+                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30 animate-card-appear mb-12"
+                  style={{animationDelay: '0.6s', opacity: 0}}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <span className="relative flex items-center gap-3">
+                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+                    Записаться на мероприятие
+                  </span>
+                </button>
               </div>
-              
-              <p className="text-white mb-8 leading-relaxed animate-text-appear font-bold text-center" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)'}}>
-                ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
-              </p>
-              
-              <button
-                onClick={() => setIsEventDialogOpen(true)}
-                className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30 animate-card-appear"
-                style={{animationDelay: '1s', opacity: 0}}
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-                <span className="relative flex items-center gap-3">
-                  <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
-                  Записаться на мероприятие
-                </span>
-              </button>
-            </div>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-30">
-              <button
-                onClick={scrollToDetails}
-                className="text-white/70 hover:text-[#d4af37] transition-colors duration-300 animate-bounce"
-                aria-label="Прокрутить вниз"
-              >
-                <Icon name="ChevronDown" className="w-8 h-8" />
-              </button>
-            </div>
-          </section>
-
-          <section id="program" className="relative py-24 px-4">
-            <div className="container mx-auto max-w-5xl">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-16 text-center">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-12 text-center animate-title-appear" style={{animationDelay: '0.9s', opacity: 0}}>
                 ПРОГРАММА ФОРУМА
               </h2>
 
