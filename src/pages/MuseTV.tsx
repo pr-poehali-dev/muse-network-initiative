@@ -281,6 +281,24 @@ const MuseTV = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black"></div>
             </div>
+
+            <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 md:mb-6 drop-shadow-2xl">
+                ФОРУМ
+              </h1>
+              <p className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#d4af37] mb-6 md:mb-8 drop-shadow-xl">
+                От идеи до результата
+              </p>
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 text-xl md:text-3xl text-white/90">
+                <div className="flex items-center gap-2 md:gap-3 bg-black/40 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-xl border border-[#d4af37]/30">
+                  <span className="font-bold">📅</span>
+                  <span className="font-semibold">13.12.2025</span>
+                </div>
+                <div className="bg-[#d4af37]/20 backdrop-blur-sm px-4 md:px-6 py-2 md:py-3 rounded-xl border border-[#d4af37]/50">
+                  <span className="font-bold text-[#d4af37]">Живая встреча</span>
+                </div>
+              </div>
+            </div>
           </section>
 
           <LiveStreamSection
