@@ -134,31 +134,31 @@ const Events = () => {
 
           <SectionDivider opacity={30} />
 
-          <section id="program" className="relative py-24 px-4 bg-black">
+          <section id="program" className="relative py-16 md:py-24 px-4 bg-black">
             <div className="container mx-auto max-w-5xl">
-              <div className="flex items-center gap-4 md:gap-8 mb-16">
+              <div className="flex items-center gap-4 md:gap-8 mb-12 md:mb-16">
                 <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
-                <h2 className="text-4xl md:text-5xl font-playfair text-center whitespace-nowrap text-[#d4af37]">
+                <h2 className="text-3xl md:text-5xl font-playfair text-center text-[#d4af37]">
                   Программа форума
                 </h2>
                 <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
               </div>
 
-              <div className="space-y-12">
+              <div className="space-y-8 md:space-y-12">
                 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/30">
-                        <Icon name="Clock" className="w-7 h-7 text-[#d4af37]" />
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-5 md:p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
+                    <div className="flex items-start md:items-center gap-3 md:gap-4 mb-3 md:mb-4">
+                      <div className="flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/30 flex-shrink-0">
+                        <Icon name="Clock" className="w-5 h-5 md:w-7 md:h-7 text-[#d4af37]" />
                       </div>
                       <div>
-                        <span className="text-[#d4af37] font-bold text-xl">12:00 – 12:05</span>
-                        <h3 className="text-white text-2xl md:text-3xl font-black mt-1">Вступительное слово</h3>
+                        <span className="text-[#d4af37] font-bold text-base md:text-xl">12:00 – 12:05</span>
+                        <h3 className="text-white text-xl md:text-3xl font-black mt-0.5 md:mt-1">Вступительное слово</h3>
                       </div>
                     </div>
-                    <p className="text-white/60 text-base md:text-lg italic ml-20">От идеи до результата</p>
+                    <p className="text-white/60 text-sm md:text-lg italic ml-0 md:ml-20 mt-2">От идеи до результата</p>
                   </div>
                 </div>
 
@@ -166,10 +166,10 @@ const Events = () => {
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
-                    <div className="flex flex-col md:flex-row gap-6">
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-5 md:p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-6">
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-all duration-500">
+                        <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-all duration-500">
                           <OptimizedImage
                             src="https://cdn.poehali.dev/files/33fa4a19-fe51-42bd-983a-a334cfdca5bd.jpg"
                             alt="Наталья Мальцева-Корельская"
@@ -178,13 +178,13 @@ const Events = () => {
                         </div>
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                          <span className="text-[#d4af37] font-bold text-lg">12:05 – 12:35</span>
+                        <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                          <Icon name="Clock" className="w-4 h-4 md:w-5 md:h-5 text-[#d4af37]" />
+                          <span className="text-[#d4af37] font-bold text-sm md:text-lg">12:05 – 12:35</span>
                         </div>
-                        <h3 className="text-white text-2xl md:text-3xl font-black mb-2">Наталья Мальцева-Корельская</h3>
-                        <p className="text-[#d4af37]/80 text-sm md:text-base mb-3">Региональный лидер сообщества Pro Женщин</p>
-                        <p className="text-white/70 text-base md:text-lg">Развитие женского лидерства и силы сообщества</p>
+                        <h3 className="text-white text-xl md:text-3xl font-black mb-2">Наталья Мальцева-Корельская</h3>
+                        <p className="text-[#d4af37]/80 text-xs md:text-base mb-2 md:mb-3">Региональный лидер сообщества Pro Женщин</p>
+                        <p className="text-white/70 text-sm md:text-lg">Развитие женского лидерства и силы сообщества</p>
                       </div>
                     </div>
                   </div>
@@ -221,16 +221,16 @@ const Events = () => {
                 <SectionDivider opacity={20} />
 
                 <div className="relative">
-                  <div className="bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/10 to-transparent rounded-xl border border-[#d4af37]/40 p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row md:items-center gap-4">
-                      <div className="flex items-center gap-3">
-                        <Icon name="Coffee" className="w-6 h-6 text-[#d4af37]" />
-                        <span className="text-[#d4af37] font-bold text-lg">13:05 – 13:30</span>
+                  <div className="bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/10 to-transparent rounded-xl border border-[#d4af37]/40 p-4 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+                      <div className="flex items-center gap-2 md:gap-3">
+                        <Icon name="Coffee" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-sm md:text-lg">13:05 – 13:30</span>
                       </div>
                       <div className="hidden md:block h-6 w-px bg-[#d4af37]/40"></div>
-                      <h3 className="text-white text-xl md:text-2xl font-bold">КОФЕ-БРЕЙК</h3>
+                      <h3 className="text-white text-lg md:text-2xl font-bold">КОФЕ-БРЕЙК</h3>
                     </div>
-                    <p className="text-white/70 text-sm md:text-base mt-3">Перерыв на кофе и неформальное общение</p>
+                    <p className="text-white/70 text-xs md:text-base mt-2 md:mt-3">Перерыв на кофе и неформальное общение</p>
                   </div>
                 </div>
 
@@ -292,17 +292,17 @@ const Events = () => {
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 md:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-start gap-4 mb-3">
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                        <span className="text-[#d4af37] font-bold text-lg">14:45 – 15:15</span>
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-4 md:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
+                    <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-4 mb-2 md:mb-3">
+                      <div className="flex items-center gap-2 md:gap-3 flex-shrink-0">
+                        <Icon name="Clock" className="w-4 h-4 md:w-5 md:h-5 text-[#d4af37]" />
+                        <span className="text-[#d4af37] font-bold text-sm md:text-lg">14:45 – 15:15</span>
                       </div>
                       <div className="hidden md:block h-6 w-px bg-[#d4af37]/30 flex-shrink-0 mt-1"></div>
                       <div className="flex-1">
-                        <h3 className="text-white text-xl md:text-2xl font-bold mb-2">Пленарная сессия</h3>
-                        <p className="text-white/80 text-base md:text-lg mb-2">От идеи до результата — путь женского успеха</p>
-                        <p className="text-white/70 text-sm md:text-base italic">Обсуждение, вопросы, обмен опытом</p>
+                        <h3 className="text-white text-lg md:text-2xl font-bold mb-2">Пленарная сессия</h3>
+                        <p className="text-white/80 text-sm md:text-lg mb-2">От идеи до результата — путь женского успеха</p>
+                        <p className="text-white/70 text-xs md:text-base italic">Обсуждение, вопросы, обмен опытом</p>
                       </div>
                     </div>
                   </div>
@@ -326,24 +326,24 @@ const Events = () => {
                 <SectionDivider opacity={20} />
 
                 <div className="relative">
-                  <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#8b7355]/10 to-black rounded-xl border border-[#d4af37]/50 p-6 md:p-10 shadow-2xl">
-                    <div className="flex items-center gap-3 mb-6">
-                      <Icon name="Film" className="w-8 h-8 text-[#d4af37]" />
-                      <span className="text-[#d4af37] font-bold text-xl">15:25 – 16:35</span>
+                  <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#8b7355]/10 to-black rounded-xl border border-[#d4af37]/50 p-5 md:p-10 shadow-2xl">
+                    <div className="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
+                      <Icon name="Film" className="w-6 h-6 md:w-8 md:h-8 text-[#d4af37]" />
+                      <span className="text-[#d4af37] font-bold text-base md:text-xl">15:25 – 16:35</span>
                     </div>
                     
-                    <h3 className="text-white text-2xl md:text-3xl font-black mb-4">
+                    <h3 className="text-white text-xl md:text-3xl font-black mb-3 md:mb-4">
                       Закрытый показ фильма «Всё из любви»
                     </h3>
                     
-                    <div className="bg-black/40 rounded-lg p-4 md:p-6 mb-4 border border-[#d4af37]/20">
-                      <p className="text-[#d4af37] font-bold text-lg mb-2">MUSE-герой: Анастасия Кочеткова</p>
-                      <p className="text-white/80 text-base md:text-lg leading-relaxed">
+                    <div className="bg-black/40 rounded-lg p-3 md:p-6 mb-3 md:mb-4 border border-[#d4af37]/20">
+                      <p className="text-[#d4af37] font-bold text-base md:text-lg mb-2">MUSE-герой: Анастасия Кочеткова</p>
+                      <p className="text-white/80 text-sm md:text-lg leading-relaxed">
                         История женщины, в которой живёт ветер перемен.
                       </p>
                     </div>
                     
-                    <p className="text-white/70 text-sm md:text-base italic">
+                    <p className="text-white/70 text-xs md:text-base italic">
                       Фильм о пути, свободе, вдохновении и силе любви к жизни.
                     </p>
                   </div>
@@ -353,15 +353,15 @@ const Events = () => {
 
               <SectionDivider opacity={30} />
 
-              <div className="mt-16 text-center">
+              <div className="mt-12 md:mt-16 text-center">
                 <button
                   onClick={() => setIsEventDialogOpen(true)}
-                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-16 py-8 rounded-xl font-bold text-xl transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
+                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-8 md:px-16 py-5 md:py-8 rounded-xl font-bold text-base md:text-xl transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-                  <span className="relative flex items-center gap-3">
-                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
-                    Записаться на мероприятие
+                  <span className="relative flex items-center justify-center gap-2 md:gap-3">
+                    <Icon name="Calendar" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                    <span>Записаться на мероприятие</span>
                   </span>
                 </button>
               </div>
