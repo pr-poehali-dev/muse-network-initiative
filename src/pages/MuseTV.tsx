@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
+import OptimizedImage from '@/components/OptimizedImage';
 import LiveStreamSection from '@/components/MuseTV/LiveStreamSection';
 import FeaturedVideoSection from '@/components/MuseTV/FeaturedVideoSection';
 import VideoLibrarySection from '@/components/MuseTV/VideoLibrarySection';
@@ -269,6 +270,19 @@ const MuseTV = () => {
     <PageTransition>
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-black luxury-texture">
+          <section className="relative min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden">
+            <div className="absolute inset-0 bg-black">
+              <OptimizedImage
+                src="https://cdn.poehali.dev/files/1b548ff3-8b53-4696-b346-6e7ab16001ce.png"
+                alt="MUSE TV"
+                className="w-full h-full object-cover object-center"
+                loading="eager"
+                fetchpriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black"></div>
+            </div>
+          </section>
+
           <LiveStreamSection
             isLive={isLive}
             liveStream={liveStream}
