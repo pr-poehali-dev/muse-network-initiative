@@ -137,20 +137,21 @@ const Events = () => {
                 ПРОГРАММА ФОРУМА
               </h2>
 
-              <div className="space-y-6">
+              <div className="space-y-8">
                 
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 md:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-center gap-4 mb-3">
-                      <div className="flex items-center gap-3">
-                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                        <span className="text-[#d4af37] font-bold text-lg">12:00 – 12:05</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/30">
+                        <Icon name="Clock" className="w-7 h-7 text-[#d4af37]" />
                       </div>
-                      <div className="hidden md:block h-6 w-px bg-[#d4af37]/30"></div>
-                      <h3 className="text-white text-xl md:text-2xl font-bold">Вступительное слово</h3>
+                      <div>
+                        <span className="text-[#d4af37] font-bold text-xl">12:00 – 12:05</span>
+                        <h3 className="text-white text-2xl md:text-3xl font-black mt-1">Вступительное слово</h3>
+                      </div>
                     </div>
-                    <p className="text-white/70 text-sm md:text-base italic">От идеи до результата</p>
+                    <p className="text-white/60 text-base md:text-lg italic ml-20">От идеи до результата</p>
                   </div>
                 </div>
 
@@ -223,18 +224,26 @@ const Events = () => {
                 </div>
 
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 md:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-start gap-4 mb-3">
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                        <span className="text-[#d4af37] font-bold text-lg">14:15 – 14:45</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
+                    <div className="flex flex-col md:flex-row gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-all duration-500">
+                          <OptimizedImage
+                            src="https://cdn.poehali.dev/files/c8cb30dc-e3ba-4d9c-b322-ba8ecaf6d32d.PNG"
+                            alt="Татьяна Ваганова"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
-                      <div className="hidden md:block h-6 w-px bg-[#d4af37]/30 flex-shrink-0 mt-1"></div>
                       <div className="flex-1">
-                        <h3 className="text-white text-xl md:text-2xl font-bold mb-1">Татьяна Ваганова</h3>
-                        <p className="text-[#b8953d] text-sm mb-2">Руководитель Вокальной студии и продюсерского центра «New voice»</p>
-                        <p className="text-white/70 text-sm md:text-base">Как презентовать личный бренд</p>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                          <span className="text-[#d4af37] font-bold text-lg">14:15 – 14:45</span>
+                        </div>
+                        <h3 className="text-white text-2xl md:text-3xl font-black mb-2">Татьяна Ваганова</h3>
+                        <p className="text-[#d4af37]/80 text-sm md:text-base mb-3">Руководитель Вокальной студии и продюсерского центра «New voice»</p>
+                        <p className="text-white/70 text-base md:text-lg">Как презентовать личный бренд</p>
                       </div>
                     </div>
                   </div>
