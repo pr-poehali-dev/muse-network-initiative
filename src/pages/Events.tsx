@@ -130,18 +130,11 @@ const Events = () => {
               </button>
             </div>
 
-            <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-              <button
-                onClick={scrollToDetails}
-                className="text-white/70 hover:text-[#d4af37] transition-colors duration-300"
-                aria-label="Прокрутить вниз"
-              >
-                <Icon name="ChevronDown" className="w-7 h-7 md:w-8 md:h-8" />
-              </button>
-            </div>
           </section>
 
-          <section id="program" className="relative py-24 px-4">
+          <SectionDivider opacity={30} />
+
+          <section id="program" className="relative py-24 px-4 bg-black">
             <div className="container mx-auto max-w-5xl">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-16 text-center">
                 ПРОГРАММА ФОРУМА
@@ -353,6 +346,8 @@ const Events = () => {
                 </div>
 
               </div>
+
+              <SectionDivider opacity={30} />
 
               <div className="mt-16 text-center">
                 <button
