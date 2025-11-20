@@ -22,7 +22,7 @@ const FeaturedVideoSection = ({
   const metadata = videoId ? videoMetadata[videoId] : null;
 
   return (
-    <section className="relative py-16 md:py-24 px-4">
+    <section className="relative pt-32 pb-16 md:py-24 px-4">
       <div className="container mx-auto max-w-7xl">
         <div className="flex items-center gap-4 md:gap-8 mb-8 md:mb-12">
           <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
