@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
 import Index from "./pages/Index";
+import Events from "./pages/Events";
 import MuseTV from "./pages/MuseTV";
 import TestForms from "./pages/TestForms";
 import Terms from "./pages/Terms";
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Index />} />
+        <Route path="/events" element={<Events />} />
         <Route path="/muse-tv" element={<MuseTV />} />
         <Route path="/test-forms" element={<TestForms />} />
         <Route path="/terms" element={<Terms />} />
