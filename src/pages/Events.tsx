@@ -10,6 +10,9 @@ const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventReg
 
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
+  const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
@@ -95,7 +98,7 @@ const Events = () => {
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-black luxury-texture overflow-x-hidden">
           
-          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+          <section className="relative min-h-screen flex items-end pb-12 overflow-hidden">
             <div className="absolute inset-0">
               <OptimizedImage
                 src="https://cdn.poehali.dev/files/e3ad67e3-9425-40ae-acdc-82ce1f3fa8df.png"
@@ -104,30 +107,89 @@ const Events = () => {
                 loading="eager"
                 fetchpriority="high"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black"></div>
             </div>
 
-            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
-              <button
-                onClick={() => setIsEventDialogOpen(true)}
-                className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
+            <div className="w-full text-center px-4 md:px-8 relative z-30">
+              <div 
+                className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
+                style={{
+                  animationDelay: '0.3s',
+                  opacity: 0
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-                <span className="relative flex items-center gap-3">
-                  <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
-                  Записаться на мероприятие
-                </span>
-              </button>
-            </div>
+                <h1 
+                  className="font-black px-4 tracking-wider" 
+                  style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
+                  onMouseLeave={() => {
+                    setIsTransitioning(true);
+                    setHoveredLetter(null);
+                    setTimeout(() => {
+                      setIsTransitioning(false);
+                    }, 50);
+                  }}
+                >
+                  {hoveredLetter ? (
+                    <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+                      {hoveredLetter === 'M' && 'Mindset'}
+                      {hoveredLetter === 'U' && 'Uniqueness'}
+                      {hoveredLetter === 'S' && 'Synergy'}
+                      {hoveredLetter === 'E' && 'Excellence'}
+                    </span>
+                  ) : (
+                    'MUSE'.split('').map((char, index) => (
+                      <span 
+                        key={index} 
+                        className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                        style={{
+                          transformStyle: 'preserve-3d',
+                          filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                        }}
+                        onMouseEnter={() => {
+                          setIsEntering(true);
+                          setHoveredLetter(char);
+                          setTimeout(() => setIsEntering(false), 50);
+                        }}
+                      >
+                        {char === ' ' ? '\u00A0' : char}
+                      </span>
+                    ))
+                  )}
+                </h1>
+                <div className="absolute inset-0 font-black text-[#d4af37]/10 blur-2xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
+                  MUSE
+                </div>
+                <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-3xl px-4 pointer-events-none animate-pulse" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)', animationDuration: '3s'}}>
+                  MUSE
+                </div>
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+              </div>
+              
+              <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
+                ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
+              </p>
+              
+              <div className="flex flex-col items-center gap-4">
+                <button
+                  onClick={() => setIsEventDialogOpen(true)}
+                  className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30 animate-card-appear"
+                  style={{animationDelay: '1s', opacity: 0}}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
+                  <span className="relative flex items-center gap-3">
+                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+                    Записаться на мероприятие
+                  </span>
+                </button>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-              <button
-                onClick={scrollToDetails}
-                className="text-white/70 hover:text-[#d4af37] transition-colors duration-300"
-                aria-label="Прокрутить вниз"
-              >
-                <Icon name="ChevronDown" className="w-8 h-8" />
-              </button>
+                <button
+                  onClick={scrollToDetails}
+                  className="text-white/70 hover:text-[#d4af37] transition-colors duration-300 animate-bounce mt-4"
+                  aria-label="Прокрутить вниз"
+                >
+                  <Icon name="ChevronDown" className="w-8 h-8" />
+                </button>
+              </div>
             </div>
           </section>
 
