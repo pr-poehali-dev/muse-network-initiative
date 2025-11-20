@@ -174,18 +174,26 @@ const Events = () => {
                 </div>
 
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a] to-black rounded-xl border border-[#d4af37]/30 p-6 md:p-8 hover:border-[#d4af37]/50 transition-all duration-300">
-                    <div className="flex flex-col md:flex-row md:items-start gap-4 mb-3">
-                      <div className="flex items-center gap-3 flex-shrink-0">
-                        <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                        <span className="text-[#d4af37] font-bold text-lg">12:35 – 13:05</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
+                    <div className="flex flex-col md:flex-row gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-all duration-500">
+                          <OptimizedImage
+                            src="https://cdn.poehali.dev/files/b1c16eff-2bf4-4b71-b3a2-a1e78267b118.jpg"
+                            alt="Наталья Сорокина"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       </div>
-                      <div className="hidden md:block h-6 w-px bg-[#d4af37]/30 flex-shrink-0 mt-1"></div>
                       <div className="flex-1">
-                        <h3 className="text-white text-xl md:text-2xl font-bold mb-1">Наталья Сорокина</h3>
-                        <p className="text-[#b8953d] text-sm mb-2">Руководитель Центра поддержки предпринимательства</p>
-                        <p className="text-white/70 text-sm md:text-base">Развитие территорий и новые возможности для инициатив</p>
+                        <div className="flex items-center gap-3 mb-3">
+                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
+                          <span className="text-[#d4af37] font-bold text-lg">12:35 – 13:05</span>
+                        </div>
+                        <h3 className="text-white text-2xl md:text-3xl font-black mb-2">Наталья Сорокина</h3>
+                        <p className="text-[#d4af37]/80 text-sm md:text-base mb-3">Руководитель Центра поддержки предпринимательства</p>
+                        <p className="text-white/70 text-base md:text-lg">Развитие территорий и новые возможности для инициатив</p>
                       </div>
                     </div>
                   </div>
