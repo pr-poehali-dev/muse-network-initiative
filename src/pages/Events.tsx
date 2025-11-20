@@ -100,33 +100,33 @@ const Events = () => {
               <OptimizedImage
                 src="https://cdn.poehali.dev/files/00af8c5b-3674-42d7-af40-3281fde05225.png"
                 alt="MUSE Форум"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 loading="eager"
                 fetchpriority="high"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black md:from-black/60 md:via-black/30"></div>
             </div>
 
-            <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-10">
+            <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-md">
               <button
                 onClick={() => setIsEventDialogOpen(true)}
-                className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-12 py-6 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
+                className="w-full group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-8 md:px-12 py-5 md:py-6 rounded-xl font-bold text-base md:text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-                <span className="relative flex items-center gap-3">
-                  <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
-                  Записаться на мероприятие
+                <span className="relative flex items-center justify-center gap-3">
+                  <Icon name="Calendar" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                  <span className="whitespace-nowrap">Записаться на мероприятие</span>
                 </span>
               </button>
             </div>
 
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+            <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
               <button
                 onClick={scrollToDetails}
                 className="text-white/70 hover:text-[#d4af37] transition-colors duration-300"
                 aria-label="Прокрутить вниз"
               >
-                <Icon name="ChevronDown" className="w-8 h-8" />
+                <Icon name="ChevronDown" className="w-7 h-7 md:w-8 md:h-8" />
               </button>
             </div>
           </section>
