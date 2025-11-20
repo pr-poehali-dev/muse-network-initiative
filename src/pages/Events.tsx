@@ -101,9 +101,9 @@ const Events = () => {
             <div className="relative z-10 w-full px-4 md:px-8 flex flex-col items-center">
               <div className="relative mb-12 animate-title-appear" style={{animationDelay: '0.3s', opacity: 0}}>
                 <OptimizedImage
-                  src="https://cdn.poehali.dev/files/af9e5da6-0580-4307-934f-4f6287898d3d.png"
+                  src="https://cdn.poehali.dev/files/12ca8e59-1dad-4ad6-8b6c-591b1141fb1c.png"
                   alt="MUSE"
-                  className="w-full max-w-6xl"
+                  className="w-full max-w-6xl h-auto"
                   loading="eager"
                   fetchpriority="high"
                 />
