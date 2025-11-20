@@ -117,7 +117,7 @@ const Events = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black md:from-black/60 md:via-black/30"></div>
             </div>
 
-            <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-6xl">
+            <div className="absolute bottom-20 md:bottom-32 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-6xl">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
                 <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -141,7 +141,7 @@ const Events = () => {
                       </div>
                       <h3 className="text-2xl md:text-4xl font-black text-[#d4af37]">13.12.2025</h3>
                     </div>
-                    <p className="text-sm md:text-base text-white/80 font-medium">Пятница, 12:00</p>
+                    <p className="text-sm md:text-base text-white/80 font-medium">Суббота, 12:00</p>
                   </div>
                 </div>
 
@@ -154,7 +154,7 @@ const Events = () => {
                       </div>
                       <h3 className="text-xl md:text-3xl font-black text-[#d4af37]">Живая встреча</h3>
                     </div>
-                    <p className="text-sm md:text-base text-white/90 font-medium">Очный формат</p>
+                    <p className="text-sm md:text-base text-white/90 font-medium">Агентство регионального развития</p>
                   </div>
                 </div>
               </div>
