@@ -2,6 +2,7 @@ import { memo, useState, useRef, useEffect } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface Expert {
   name: string;
@@ -39,12 +40,10 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
       onClick={expert.video_url ? handleCardClick : undefined}
     >
       <div className="aspect-square overflow-hidden relative bg-gradient-to-br from-gold/10 to-black/50 flex items-center justify-center">
-        <img
+        <OptimizedImage
           src={expert.image}
           alt={expert.name}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-          decoding="async"
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
           onError={(e) => {

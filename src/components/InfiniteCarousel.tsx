@@ -1,6 +1,7 @@
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { useEffect, memo } from 'react';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const images = [
   {
@@ -52,12 +53,10 @@ const InfiniteCarousel = () => {
             className="embla__slide flex-[0_0_80%] md:flex-[0_0_45%] lg:flex-[0_0_30%] min-w-0"
           >
             <div className="relative overflow-hidden rounded-2xl shadow-2xl hover-scale group">
-              <img
+              <OptimizedImage
                 src={image.url}
                 alt={image.alt}
                 className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-110"
-                loading="lazy"
-                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>

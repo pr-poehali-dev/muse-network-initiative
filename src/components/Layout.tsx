@@ -8,6 +8,7 @@ import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
 import Header from './Header';
 import PartnersMarquee from './PartnersMarquee';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface LayoutProps {
   children: ReactNode;
@@ -88,10 +89,10 @@ const Layout = ({
       <footer className="py-8 px-4 bg-black text-white relative">
         <div className="container mx-auto">
           <div className="text-center mb-8">
-            <img 
+            <OptimizedImage 
               src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
               alt="Muse" 
-              className="h-12 mx-auto mb-3 floating hover:scale-105 transition-transform"
+              className="h-12 mx-auto mb-3 floating hover:scale-105 transition-transform cursor-pointer"
               onClick={() => navigate('/')}
             />
             <p className="text-base mb-4">
@@ -118,7 +119,7 @@ const Layout = ({
               className="flex items-center gap-2 text-sm text-white/50 hover:text-white/80 transition-colors group"
             >
               <span>Разработано в</span>
-              <img 
+              <OptimizedImage 
                 src="https://cdn.poehali.dev/files/1dabbacb-5667-4dc2-b2bb-e600cedcabfb.png" 
                 alt="Albe" 
                 className="h-6 opacity-50 group-hover:opacity-80 transition-opacity"

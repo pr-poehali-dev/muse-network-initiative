@@ -1,6 +1,7 @@
 import Icon from '@/components/ui/icon';
 import { Event, EventTypeConfig } from './types';
 import { downloadICS } from '@/utils/icsGenerator';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface EventCardMobileProps {
   event: Event;
@@ -50,7 +51,7 @@ export const EventCardMobile = ({
         <div className="mt-3 space-y-2">
           {event.speakers.map((speaker, idx) => (
             <div key={idx} className="flex items-center gap-2">
-              <img 
+              <OptimizedImage 
                 src={speaker.image || 'https://cdn.poehali.dev/files/f08207c0-6901-4e3d-af16-6fcbf2c0b9ab.png'} 
                 alt={speaker.name}
                 className="w-8 h-8 rounded-full object-cover border border-[#d4af37]/30 flex-shrink-0"

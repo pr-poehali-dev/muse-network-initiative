@@ -1,5 +1,6 @@
 import { useState, useEffect, memo } from 'react';
 import Icon from '@/components/ui/icon';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface GalleryImage {
   url: string;
@@ -119,11 +120,9 @@ const MosaicGallery = ({ onViewingChange }: MosaicGalleryProps) => {
             onClick={() => openImage(image.url)}
             className={`relative overflow-hidden transition-all duration-500 group hover:scale-105 hover:z-10 hover:shadow-2xl hover:shadow-[#b8953d]/20 ${image.span}`}
           >
-            <img
+            <OptimizedImage
               src={image.url}
               alt={image.alt}
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface HeaderProps {
   titleInHeader?: boolean;
@@ -61,7 +62,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   }}
                   className="w-16 h-16 flex items-center justify-center group relative"
                 >
-                  <img 
+                  <OptimizedImage 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                     alt="MUSE Logo"
                     className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
