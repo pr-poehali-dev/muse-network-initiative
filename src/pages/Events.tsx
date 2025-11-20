@@ -96,14 +96,23 @@ const Events = () => {
         <div className="min-h-screen bg-black luxury-texture overflow-x-hidden">
           
           <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-            <div className="absolute inset-0">
-              <OptimizedImage
-                src="https://cdn.poehali.dev/files/00af8c5b-3674-42d7-af40-3281fde05225.png"
-                alt="MUSE Форум"
-                className="w-full h-full object-contain md:object-cover object-center"
-                loading="eager"
-                fetchpriority="high"
-              />
+            <div className="absolute inset-0 bg-black">
+              <picture>
+                <source
+                  media="(max-width: 768px)"
+                  srcSet="https://cdn.poehali.dev/files/00af8c5b-3674-42d7-af40-3281fde05225.png"
+                  type="image/png"
+                />
+                <OptimizedImage
+                  src="https://cdn.poehali.dev/files/00af8c5b-3674-42d7-af40-3281fde05225.png"
+                  alt="MUSE Форум"
+                  className="w-full h-full object-contain md:object-cover object-center"
+                  loading="eager"
+                  fetchpriority="high"
+                  width={1920}
+                  height={1080}
+                />
+              </picture>
               <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black md:from-black/60 md:via-black/30"></div>
             </div>
 
