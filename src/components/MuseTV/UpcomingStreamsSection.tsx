@@ -11,17 +11,17 @@ const UpcomingStreamsSection = ({ upcomingStreams, onEventsOpen }: UpcomingStrea
   if (upcomingStreams.length === 0) return null;
 
   return (
-    <section className="relative py-24 px-4">
+    <section className="relative py-16 md:py-24 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex items-center gap-4 md:gap-8 mb-12">
+        <div className="flex items-center gap-4 md:gap-8 mb-8 md:mb-12">
           <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
-          <h2 className="text-4xl md:text-5xl font-playfair text-center whitespace-nowrap text-[#d4af37]">
+          <h2 className="text-3xl md:text-5xl font-playfair text-center text-[#d4af37]">
             Предстоящие трансляции
           </h2>
           <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
           {upcomingStreams.map((stream: any) => (
             <Card
               key={stream.id}
@@ -29,43 +29,43 @@ const UpcomingStreamsSection = ({ upcomingStreams, onEventsOpen }: UpcomingStrea
             >
               <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#d4af37]/50 via-[#d4af37] to-[#d4af37]/50"></div>
               
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 rounded-xl flex items-center justify-center border border-[#d4af37]/30">
-                    <Icon name="Calendar" className="w-6 h-6 text-[#d4af37]" />
+              <CardContent className="p-4 md:p-6">
+                <div className="flex items-start gap-3 md:gap-4 mb-3 md:mb-4">
+                  <div className="flex-shrink-0 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 rounded-xl flex items-center justify-center border border-[#d4af37]/30">
+                    <Icon name="Calendar" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
                   </div>
                   <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="outline" className="border-[#d4af37]/40 text-[#d4af37] bg-[#d4af37]/10 text-xs">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-2">
+                      <Badge variant="outline" className="border-[#d4af37]/40 text-[#d4af37] bg-[#d4af37]/10 text-[10px] md:text-xs px-2 py-0.5">
                         {stream.category}
                       </Badge>
                     </div>
-                    <h3 className="text-white font-bold text-lg mb-2 group-hover:text-[#d4af37] transition-colors duration-300">
+                    <h3 className="text-white font-bold text-base md:text-lg mb-2 group-hover:text-[#d4af37] transition-colors duration-300">
                       {stream.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="space-y-2 text-white/60 text-sm">
-                  <div className="flex items-center gap-2">
-                    <Icon name="Calendar" className="w-4 h-4 text-[#d4af37]" />
+                <div className="space-y-1.5 md:space-y-2 text-white/60 text-xs md:text-sm">
+                  <div className="flex items-center gap-1.5 md:gap-2">
+                    <Icon name="Calendar" className="w-3 h-3 md:w-4 md:h-4 text-[#d4af37]" />
                     <span>{stream.date}</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Icon name="Clock" className="w-4 h-4 text-[#d4af37]" />
+                  <div className="flex items-center gap-1.5 md:gap-2">
+                    <Icon name="Clock" className="w-3 h-3 md:w-4 md:h-4 text-[#d4af37]" />
                     <span>{stream.time}</span>
                   </div>
                   {stream.speaker && (
-                    <div className="flex items-center gap-2">
-                      <Icon name="Mic" className="w-4 h-4 text-[#d4af37]" />
+                    <div className="flex items-center gap-1.5 md:gap-2">
+                      <Icon name="Mic" className="w-3 h-3 md:w-4 md:h-4 text-[#d4af37]" />
                       <span>{stream.speaker}</span>
                     </div>
                   )}
                 </div>
 
-                <div className="mt-4 pt-4 border-t border-[#d4af37]/10">
-                  <div className="flex items-center gap-2 text-[#d4af37]/70 text-xs">
-                    <Icon name="Bell" className="w-3 h-3" />
+                <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#d4af37]/10">
+                  <div className="flex items-center gap-1.5 md:gap-2 text-[#d4af37]/70 text-[10px] md:text-xs">
+                    <Icon name="Bell" className="w-2.5 h-2.5 md:w-3 md:h-3" />
                     <span>Напомним о начале</span>
                   </div>
                 </div>
@@ -77,12 +77,12 @@ const UpcomingStreamsSection = ({ upcomingStreams, onEventsOpen }: UpcomingStrea
         <div className="text-center">
           <button
             onClick={onEventsOpen}
-            className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
+            className="group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-6 md:px-8 py-3 md:py-4 rounded-xl font-bold text-base md:text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/20 group-hover:via-[#d4af37]/10 group-hover:to-transparent transition-all duration-500"></div>
-            <span className="relative flex items-center gap-3">
-              <Icon name="Calendar" className="w-5 h-5" />
-              Посмотреть все мероприятия
+            <span className="relative flex items-center justify-center gap-2 md:gap-3">
+              <Icon name="Calendar" className="w-4 h-4 md:w-5 md:h-5" />
+              <span>Посмотреть все мероприятия</span>
             </span>
           </button>
         </div>

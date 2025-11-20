@@ -45,39 +45,40 @@ const VideoLibrarySection = ({
   }
 
   return (
-    <section className="relative py-24 px-4">
+    <section className="relative py-16 md:py-24 px-4">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex items-center gap-4 md:gap-8 mb-12">
+        <div className="flex items-center gap-4 md:gap-8 mb-8 md:mb-12">
           <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
-          <h2 className="text-4xl md:text-5xl font-playfair text-center whitespace-nowrap text-[#d4af37]">
+          <h2 className="text-3xl md:text-5xl font-playfair text-center text-[#d4af37]">
             Библиотека контента
           </h2>
           <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
         </div>
 
-        <div className="flex flex-wrap gap-3 mb-8 justify-center">
+        <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8 justify-center">
           {filters.map(filter => (
             <button
               key={filter.id}
               onClick={() => onFilterChange(filter.id)}
-              className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+              className={`flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2 md:py-3 rounded-xl font-medium text-sm md:text-base transition-all duration-300 ${
                 activeFilter === filter.id
                   ? 'bg-[#d4af37] text-black shadow-lg shadow-[#d4af37]/30'
                   : 'bg-[#0a0a0a] text-white/70 border border-[#d4af37]/20 hover:border-[#d4af37]/40 hover:text-white'
               }`}
             >
-              <Icon name={filter.icon as any} className="w-5 h-5" />
-              <span>{filter.label}</span>
+              <Icon name={filter.icon as any} className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="hidden sm:inline">{filter.label}</span>
+              <span className="sm:hidden">{filter.label === 'Все' ? 'Все' : filter.label === 'Подкасты' ? 'Подкасты' : filter.label === 'Интервью' ? 'Интервью' : 'МК'}</span>
             </button>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2 mb-12 justify-center">
+        <div className="flex flex-wrap gap-2 mb-8 md:mb-12 justify-center">
           {categories.map(category => (
             <button
               key={category}
               onClick={() => onCategoryChange(category)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`px-3 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all duration-300 ${
                 activeCategory === category
                   ? 'bg-[#d4af37]/20 text-[#d4af37] border border-[#d4af37]/50'
                   : 'bg-black/30 text-white/60 border border-white/10 hover:border-[#d4af37]/30 hover:text-white/80'
@@ -119,38 +120,38 @@ const VideoLibrarySection = ({
                       </div>
                     </div>
                     {metadata?.duration && (
-                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 backdrop-blur-sm rounded text-white text-xs font-medium">
+                      <div className="absolute bottom-1.5 right-1.5 md:bottom-2 md:right-2 px-1.5 md:px-2 py-0.5 md:py-1 bg-black/80 backdrop-blur-sm rounded text-white text-[10px] md:text-xs font-medium">
                         {formatDuration(metadata.duration)}
                       </div>
                     )}
                   </div>
 
-                  <div className="p-4">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Badge variant="outline" className="border-[#d4af37]/40 text-[#d4af37] bg-[#d4af37]/10 text-xs">
+                  <div className="p-3 md:p-4">
+                    <div className="flex items-center gap-1.5 md:gap-2 mb-2">
+                      <Badge variant="outline" className="border-[#d4af37]/40 text-[#d4af37] bg-[#d4af37]/10 text-[10px] md:text-xs px-2 py-0.5">
                         {video.type || 'Видео'}
                       </Badge>
                       {video.category && (
-                        <Badge variant="outline" className="border-white/20 text-white/60 text-xs">
+                        <Badge variant="outline" className="border-white/20 text-white/60 text-[10px] md:text-xs px-2 py-0.5">
                           {video.category}
                         </Badge>
                       )}
                     </div>
 
-                    <h3 className="text-white font-bold text-lg mb-2 line-clamp-2 group-hover:text-[#d4af37] transition-colors duration-300">
+                    <h3 className="text-white font-bold text-base md:text-lg mb-2 line-clamp-2 group-hover:text-[#d4af37] transition-colors duration-300">
                       {metadata?.title || video.title || 'MUSE видео'}
                     </h3>
 
                     {metadata?.description && (
-                      <p className="text-white/50 text-sm mb-3 line-clamp-2">
+                      <p className="text-white/50 text-xs md:text-sm mb-2 md:mb-3 line-clamp-2">
                         {metadata.description}
                       </p>
                     )}
 
-                    <div className="flex items-center justify-between text-white/40 text-xs">
+                    <div className="flex items-center justify-between text-white/40 text-[10px] md:text-xs">
                       {metadata?.views && (
                         <div className="flex items-center gap-1">
-                          <Icon name="Eye" className="w-3 h-3" />
+                          <Icon name="Eye" className="w-2.5 h-2.5 md:w-3 md:h-3" />
                           <span>{formatViews(metadata.views)}</span>
                         </div>
                       )}
@@ -166,9 +167,9 @@ const VideoLibrarySection = ({
         </div>
 
         {filteredVideos.length === 0 && (
-          <div className="text-center py-16">
-            <Icon name="Video" className="w-16 h-16 text-[#d4af37]/30 mx-auto mb-4" />
-            <p className="text-white/50 text-lg">Видео не найдено</p>
+          <div className="text-center py-12 md:py-16">
+            <Icon name="Video" className="w-12 h-12 md:w-16 md:h-16 text-[#d4af37]/30 mx-auto mb-3 md:mb-4" />
+            <p className="text-white/50 text-base md:text-lg">Видео не найдено</p>
           </div>
         )}
       </div>
