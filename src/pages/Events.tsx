@@ -100,27 +100,27 @@ const Events = () => {
               <OptimizedImage
                 src="https://cdn.poehali.dev/files/e3ad67e3-9425-40ae-acdc-82ce1f3fa8df.png"
                 alt="MUSE Форум"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 loading="eager"
                 fetchpriority="high"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black"></div>
+              <div className="absolute inset-0 bg-black/30"></div>
             </div>
 
-            <div className="absolute inset-0 flex items-center justify-center z-30">
-              <div className="flex flex-col items-center justify-center px-4 md:px-8">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 w-full px-4 md:px-8">
+              <div className="flex flex-col items-center justify-center">
                 <div className="relative mb-8 animate-title-appear" style={{animationDelay: '0.3s', opacity: 0}}>
                   <OptimizedImage
                     src="https://cdn.poehali.dev/files/0ebb66af-025d-4311-a51d-a75abefc4c14.png"
                     alt="MUSE"
                     className="w-full max-w-4xl"
                     style={{
-                      filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.4)) drop-shadow(0 10px 40px rgba(0,0,0,0.6))'
+                      filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.5)) drop-shadow(0 10px 40px rgba(0,0,0,0.8))'
                     }}
                   />
                 </div>
                 
-                <p className="text-white/90 mb-8 leading-relaxed animate-text-appear font-bold text-center" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)'}}>
+                <p className="text-white mb-8 leading-relaxed animate-text-appear font-bold text-center" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)', textShadow: '0 2px 20px rgba(0,0,0,0.9)'}}>
                   ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
                 </p>
                 
