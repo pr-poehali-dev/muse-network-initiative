@@ -10,9 +10,6 @@ const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventReg
 
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
-  const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
-  const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isEntering, setIsEntering] = useState(false);
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
@@ -98,7 +95,7 @@ const Events = () => {
       <Layout titleInHeader={scrollY > 100}>
         <div className="min-h-screen bg-black luxury-texture overflow-x-hidden">
           
-          <section className="relative min-h-screen flex items-end pb-12 overflow-hidden">
+          <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
               <OptimizedImage
                 src="https://cdn.poehali.dev/files/e3ad67e3-9425-40ae-acdc-82ce1f3fa8df.png"
@@ -111,61 +108,18 @@ const Events = () => {
             </div>
 
             <div className="w-full text-center px-4 md:px-8 relative z-30">
-              <div 
-                className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
-                style={{
-                  animationDelay: '0.3s',
-                  opacity: 0
-                }}
-              >
-                <h1 
-                  className="font-black px-4 tracking-wider" 
-                  style={{perspective: '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
-                  onMouseLeave={() => {
-                    setIsTransitioning(true);
-                    setHoveredLetter(null);
-                    setTimeout(() => {
-                      setIsTransitioning(false);
-                    }, 50);
+              <div className="relative inline-block mb-12 animate-title-appear" style={{animationDelay: '0.3s', opacity: 0}}>
+                <OptimizedImage
+                  src="https://cdn.poehali.dev/files/0ebb66af-025d-4311-a51d-a75abefc4c14.png"
+                  alt="MUSE"
+                  className="w-full max-w-4xl mx-auto"
+                  style={{
+                    filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.4)) drop-shadow(0 10px 40px rgba(0,0,0,0.6))'
                   }}
-                >
-                  {hoveredLetter ? (
-                    <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
-                      {hoveredLetter === 'M' && 'Mindset'}
-                      {hoveredLetter === 'U' && 'Uniqueness'}
-                      {hoveredLetter === 'S' && 'Synergy'}
-                      {hoveredLetter === 'E' && 'Excellence'}
-                    </span>
-                  ) : (
-                    'MUSE'.split('').map((char, index) => (
-                      <span 
-                        key={index} 
-                        className={`letter-spin inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-700 ease-in-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
-                        style={{
-                          transformStyle: 'preserve-3d',
-                          filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
-                        }}
-                        onMouseEnter={() => {
-                          setIsEntering(true);
-                          setHoveredLetter(char);
-                          setTimeout(() => setIsEntering(false), 50);
-                        }}
-                      >
-                        {char === ' ' ? '\u00A0' : char}
-                      </span>
-                    ))
-                  )}
-                </h1>
-                <div className="absolute inset-0 font-black text-[#d4af37]/10 blur-2xl px-4 pointer-events-none" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}>
-                  MUSE
-                </div>
-                <div className="absolute inset-0 font-black text-[#d4af37]/5 blur-3xl px-4 pointer-events-none animate-pulse" style={{fontSize: 'clamp(3.5rem, 12vw, 15rem)', animationDuration: '3s'}}>
-                  MUSE
-                </div>
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+                />
               </div>
               
-              <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
+              <p className="text-white/90 mb-12 leading-relaxed animate-text-appear font-bold" style={{animationDelay: '0.7s', opacity: 0, fontSize: 'clamp(1.25rem, 2.5vw, 2rem)'}}>
                 ФОРУМ "ОТ ИДЕИ ДО РЕЗУЛЬТАТА"
               </p>
               
