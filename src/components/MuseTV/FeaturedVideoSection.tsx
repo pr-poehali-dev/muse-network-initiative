@@ -26,7 +26,7 @@ const FeaturedVideoSection = ({
       <div className="container mx-auto max-w-7xl">
         <div className="flex items-center gap-4 md:gap-8 mb-8 md:mb-12">
           <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
-          <h2 className="text-3xl md:text-5xl font-playfair text-center text-[#d4af37]">
+          <h2 className="text-2xl md:text-5xl font-playfair text-center text-[#d4af37] px-2">
             Рекомендуем посмотреть
           </h2>
           <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
