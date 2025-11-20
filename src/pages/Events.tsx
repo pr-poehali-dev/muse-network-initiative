@@ -140,51 +140,65 @@ const Events = () => {
             </div>
           </section>
 
-          <section id="program" className="relative py-24 px-4">
-            <div className="container mx-auto max-w-5xl">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-16 text-center">
-                ПРОГРАММА ФОРУМА
-              </h2>
+          <section id="program" className="relative py-32 px-4 bg-gradient-to-b from-black via-[#0a0a0a] to-black">
+            <div className="absolute inset-0 opacity-5">
+              <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 2px 2px, #d4af37 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
+            </div>
+            
+            <div className="container mx-auto max-w-6xl relative z-10">
+              <div className="text-center mb-20">
+                <div className="inline-block mb-6">
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-[#d4af37] to-transparent mb-6"></div>
+                </div>
+                <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#f5d77e] to-[#b8953d] mb-6 tracking-tight">
+                  ПРОГРАММА ФОРУМА
+                </h2>
+                <p className="text-white/50 text-lg md:text-xl max-w-2xl mx-auto">13 декабря 2025 • Бизнес-форум MUSE</p>
+              </div>
 
-              <div className="space-y-8">
+              <div className="space-y-6">
                 
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-br from-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/30">
-                        <Icon name="Clock" className="w-7 h-7 text-[#d4af37]" />
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm"></div>
+                  <div className="relative bg-gradient-to-br from-[#1a1a1a]/90 via-[#0a0a0a]/90 to-black/90 backdrop-blur-xl rounded-3xl border border-[#d4af37]/30 p-10 hover:border-[#d4af37]/60 transition-all duration-700 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] hover:translate-y-[-2px]">
+                    <div className="flex items-start gap-6">
+                      <div className="flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-[#d4af37]/30 via-[#d4af37]/20 to-[#b8953d]/10 border border-[#d4af37]/40 shadow-lg shadow-[#d4af37]/20">
+                        <Icon name="Sparkles" className="w-9 h-9 text-[#d4af37]" />
                       </div>
-                      <div>
-                        <span className="text-[#d4af37] font-bold text-xl">12:00 – 12:05</span>
-                        <h3 className="text-white text-2xl md:text-3xl font-black mt-1">Вступительное слово</h3>
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-2">
+                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]/70" />
+                          <span className="text-[#d4af37] font-bold text-lg tracking-wide">12:00 – 12:05</span>
+                        </div>
+                        <h3 className="text-white text-3xl md:text-4xl font-black mb-3 tracking-tight">Вступительное слово</h3>
+                        <p className="text-white/50 text-lg italic">От идеи до результата</p>
                       </div>
                     </div>
-                    <p className="text-white/60 text-base md:text-lg italic ml-20">От идеи до результата</p>
                   </div>
                 </div>
 
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
-                    <div className="flex flex-col md:flex-row gap-6">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/5 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-sm"></div>
+                  <div className="relative bg-gradient-to-br from-[#1a1a1a]/90 via-[#0a0a0a]/90 to-black/90 backdrop-blur-xl rounded-3xl border border-[#d4af37]/30 p-10 hover:border-[#d4af37]/60 transition-all duration-700 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)] hover:translate-y-[-2px]">
+                    <div className="flex flex-col md:flex-row gap-8">
                       <div className="flex-shrink-0">
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-2xl overflow-hidden border-2 border-[#d4af37]/30 group-hover:border-[#d4af37]/60 transition-all duration-500">
+                        <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden border-3 border-[#d4af37]/40 group-hover:border-[#d4af37]/70 transition-all duration-700 shadow-xl shadow-[#d4af37]/10 group-hover:shadow-2xl group-hover:shadow-[#d4af37]/20">
                           <OptimizedImage
                             src="https://cdn.poehali.dev/files/33fa4a19-fe51-42bd-983a-a334cfdca5bd.jpg"
                             alt="Наталья Мальцева-Корельская"
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
                       </div>
                       <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-3">
-                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]" />
-                          <span className="text-[#d4af37] font-bold text-lg">12:05 – 12:35</span>
+                        <div className="flex items-center gap-3 mb-4">
+                          <Icon name="Clock" className="w-5 h-5 text-[#d4af37]/70" />
+                          <span className="text-[#d4af37] font-bold text-lg tracking-wide">12:05 – 12:35</span>
                         </div>
-                        <h3 className="text-white text-2xl md:text-3xl font-black mb-2">Наталья Мальцева-Корельская</h3>
-                        <p className="text-[#d4af37]/80 text-sm md:text-base mb-3">Региональный лидер сообщества Pro Женщин</p>
-                        <p className="text-white/70 text-base md:text-lg">Развитие женского лидерства и силы сообщества</p>
+                        <h3 className="text-white text-3xl md:text-4xl font-black mb-3 tracking-tight">Наталья Мальцева-Корельская</h3>
+                        <p className="text-[#d4af37]/90 text-base md:text-lg mb-4 font-medium">Региональный лидер сообщества Pro Женщин</p>
+                        <p className="text-white/60 text-lg leading-relaxed">Развитие женского лидерства и силы сообщества</p>
                       </div>
                     </div>
                   </div>
