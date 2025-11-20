@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import OptimizedImage from '@/components/OptimizedImage';
+import SectionDivider from '@/components/ui/SectionDivider';
 
 const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
 
@@ -146,7 +147,7 @@ const Events = () => {
                 ПРОГРАММА ФОРУМА
               </h2>
 
-              <div className="space-y-8">
+              <div className="space-y-12">
                 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -163,6 +164,8 @@ const Events = () => {
                     <p className="text-white/60 text-base md:text-lg italic ml-20">От идеи до результата</p>
                   </div>
                 </div>
+
+                <SectionDivider opacity={20} />
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -190,6 +193,8 @@ const Events = () => {
                   </div>
                 </div>
 
+                <SectionDivider opacity={20} />
+
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative bg-gradient-to-br from-[#0a0a0a]/80 to-black/80 backdrop-blur-sm rounded-2xl border border-[#d4af37]/20 p-8 hover:border-[#d4af37]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/10">
@@ -216,6 +221,8 @@ const Events = () => {
                   </div>
                 </div>
 
+                <SectionDivider opacity={20} />
+
                 <div className="relative">
                   <div className="bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/10 to-transparent rounded-xl border border-[#d4af37]/40 p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-center gap-4">
@@ -229,6 +236,8 @@ const Events = () => {
                     <p className="text-white/70 text-sm md:text-base mt-3">Перерыв на кофе и неформальное общение</p>
                   </div>
                 </div>
+
+                <SectionDivider opacity={20} />
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -255,6 +264,8 @@ const Events = () => {
                     </div>
                   </div>
                 </div>
+
+                <SectionDivider opacity={20} />
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -314,6 +325,8 @@ const Events = () => {
                     <p className="text-white/70 text-sm md:text-base">Фото, общение, обмен контактами</p>
                   </div>
                 </div>
+
+                <SectionDivider opacity={20} />
 
                 <div className="relative">
                   <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#8b7355]/10 to-black rounded-xl border border-[#d4af37]/50 p-6 md:p-10 shadow-2xl">
