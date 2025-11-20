@@ -98,7 +98,7 @@ const Events = () => {
           <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0">
               <OptimizedImage
-                src="https://cdn.poehali.dev/files/68543f51-3eb0-44b6-922f-0fd677adb363.png"
+                src="https://cdn.poehali.dev/files/0cff0256-ec39-49a9-9028-152bc54321cc.png"
                 alt="MUSE Форум"
                 className="w-full h-full object-cover"
                 loading="eager"
