@@ -117,7 +117,48 @@ const Events = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black md:from-black/60 md:via-black/30"></div>
             </div>
 
-            <div className="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-md">
+            <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-6xl">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                        <Icon name="Trophy" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                      </div>
+                      <h3 className="text-2xl md:text-4xl font-black text-white">ФОРУМ</h3>
+                    </div>
+                    <p className="text-sm md:text-base text-white/80 font-medium">От идеи до результата</p>
+                  </div>
+                </div>
+
+                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                        <Icon name="Calendar" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                      </div>
+                      <h3 className="text-2xl md:text-4xl font-black text-[#d4af37]">13.12.2025</h3>
+                    </div>
+                    <p className="text-sm md:text-base text-white/80 font-medium">Пятница, 12:00</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#d4af37]/10 to-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/50 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37] transition-all duration-500 shadow-xl shadow-[#d4af37]/20">
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/30 flex items-center justify-center">
+                        <Icon name="Users" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
+                      </div>
+                      <h3 className="text-xl md:text-3xl font-black text-[#d4af37]">Живая встреча</h3>
+                    </div>
+                    <p className="text-sm md:text-base text-white/90 font-medium">Очный формат</p>
+                  </div>
+                </div>
+              </div>
+
               <button
                 onClick={() => setIsEventDialogOpen(true)}
                 className="w-full group relative overflow-hidden bg-gradient-to-br from-[#1a1a1a] to-black border-2 border-[#d4af37]/40 text-white px-8 md:px-12 py-5 md:py-6 rounded-xl font-bold text-base md:text-lg transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-2xl hover:shadow-[#d4af37]/30"
