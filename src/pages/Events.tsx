@@ -108,7 +108,7 @@ const Events = () => {
                   src="https://cdn.poehali.dev/files/00af8c5b-3674-42d7-af40-3281fde05225.png"
                   alt="MUSE Форум"
                   className="w-full h-full object-contain md:object-cover object-center md:object-center"
-                  style={{ objectPosition: 'center 30%' }}
+                  style={{ objectPosition: 'center 20%' }}
                   loading="eager"
                   fetchpriority="high"
                   width={1920}
