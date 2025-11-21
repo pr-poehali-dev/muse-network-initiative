@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Founder Image</title>
+</head>
+<body>
+    <h1>Updating founder image...</h1>
+    <div id="result"></div>
+    
+    <script>
+        async function updateImage() {
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                // First, get current content
+                const getResponse = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
+                const data = await getResponse.json();
+                
+                // Update founder image
+                const aboutContent = data.content.about;
+                aboutContent.founder.image = 'https://cdn.poehali.dev/files/6fd0058e-d166-4132-b3fe-cdd3d7096957.JPG';
+                
+                // Send PUT request
+                const putResponse = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        section: 'about',
+                        content: aboutContent
+                    })
+                });
+                
+                const result = await putResponse.json();
+                resultDiv.innerHTML = `<p style="color: green;">✅ Success! ${JSON.stringify(result)}</p>`;
+                
+                // Verify update
+                setTimeout(async () => {
+                    const verifyResponse = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
+                    const verifyData = await verifyResponse.json();
+                    resultDiv.innerHTML += `<p>New image URL: ${verifyData.content.about.founder.image}</p>`;
+                }, 1000);
+                
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">❌ Error: ${error.message}</p>`;
+            }
+        }
+        
+        updateImage();
+    </script>
+</body>
+</html>
