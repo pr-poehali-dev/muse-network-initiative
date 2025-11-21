@@ -69,46 +69,12 @@ const MuseTV = () => {
     speaker: s.speaker
   })) : [];
 
-  const featuredContent = [
-    {
-      id: 4,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
-      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
-    },
-    {
-      id: 5,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
-      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
-    },
-    {
-      id: 6,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
-      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
-    },
-    {
-      id: 7,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
-      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
-    },
-    {
-      id: 8,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
-      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
-    },
-    {
-      id: 9,
-      type: 'Подкаст',
-      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
-      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
-    }
-  ];
-
-  const podcastVideos = featuredContent.filter(item => item.vkEmbed);
+  const podcastVideos = dbVideos.map((v: any) => ({
+    id: v.id,
+    type: v.type || 'Подкаст',
+    url: v.url,
+    vkEmbed: v.embed_url
+  }));
   const [randomPodcast, setRandomPodcast] = useState<any>(null);
 
   useEffect(() => {
@@ -137,16 +103,15 @@ const MuseTV = () => {
   }, [randomPodcast]);
 
   useEffect(() => {
-    const allContent = [...featuredContent, ...contentLibrary];
-    allContent.forEach(item => {
-      if (item.vkEmbed) {
-        const videoId = item.vkEmbed.split('/').pop();
+    dbVideos.forEach((item: any) => {
+      if (item.embed_url) {
+        const videoId = item.embed_url.split('/').pop();
         if (videoId) {
           fetchRutubeMetadata(videoId);
         }
       }
     });
-  }, []);
+  }, [dbVideos]);
 
   const formatDuration = (seconds: number) => {
     const hours = Math.floor(seconds / 3600);
@@ -199,50 +164,13 @@ const MuseTV = () => {
     }
   };
 
-  const contentLibrary = [
-    {
-      id: 10,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/a8cb0148230a45ad50421f345c6b153f/',
-      vkEmbed: 'https://rutube.ru/play/embed/a8cb0148230a45ad50421f345c6b153f'
-    },
-    {
-      id: 11,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/67327ef4e3b1c1508f7a36e6a7b5dc35/',
-      vkEmbed: 'https://rutube.ru/play/embed/67327ef4e3b1c1508f7a36e6a7b5dc35'
-    },
-    {
-      id: 12,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/f1409f3d58f69eb900f5dfe9b705276f/',
-      vkEmbed: 'https://rutube.ru/play/embed/f1409f3d58f69eb900f5dfe9b705276f'
-    },
-    {
-      id: 13,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/6f1a227c600cea92192642b41af8b403/',
-      vkEmbed: 'https://rutube.ru/play/embed/6f1a227c600cea92192642b41af8b403'
-    },
-    {
-      id: 14,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/83775aecaa6ef874975d9d421c587d88/',
-      vkEmbed: 'https://rutube.ru/play/embed/83775aecaa6ef874975d9d421c587d88'
-    },
-    {
-      id: 15,
-      type: 'podcast',
-      category: 'Подкаст',
-      url: 'https://rutube.ru/video/32bd0b77ce3b68dc1b6ecdc962c62b95/',
-      vkEmbed: 'https://rutube.ru/play/embed/32bd0b77ce3b68dc1b6ecdc962c62b95'
-    }
-  ];
+  const contentLibrary = dbVideos.map((v: any) => ({
+    id: v.id,
+    type: 'podcast',
+    category: v.type || 'Подкаст',
+    url: v.url,
+    vkEmbed: v.embed_url
+  }));
 
   const handleVideoClick = (video: any) => {
     setSelectedVideo(video);

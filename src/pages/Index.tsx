@@ -17,7 +17,6 @@ import PageTransition from '@/components/PageTransition';
 
 const ExpertsSection = lazy(() => import('@/components/ExpertsSection'));
 const AboutSection = lazy(() => import('@/components/AboutSection'));
-const StatsSection = lazy(() => import('@/components/StatsSection'));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -50,6 +49,18 @@ const Index = () => {
     goals: [],
     offerings: []
   });
+
+  const [valuesContent, setValuesContent] = useState({
+    title: '',
+    values: []
+  });
+
+  const [eventsContent, setEventsContent] = useState({
+    title: '',
+    subtitle: '',
+    formats_title: '',
+    formats: []
+  });
   
   useEffect(() => {
     const handleScroll = () => {
@@ -80,6 +91,12 @@ const Index = () => {
         }
         if (homepageData.content?.about) {
           setAboutContent(homepageData.content.about);
+        }
+        if (homepageData.content?.values) {
+          setValuesContent(homepageData.content.values);
+        }
+        if (homepageData.content?.events) {
+          setEventsContent(homepageData.content.events);
         }
         if (expertsData.speakers) {
           const formattedExperts = expertsData.speakers.map((speaker: any) => ({
@@ -266,63 +283,7 @@ const Index = () => {
 
 
 
-  const values = useMemo(() => [
-    {
-      title: 'Солидарность',
-      description: 'Поддерживаем друг друга, отмечая достижения каждой участницы',
-      icon: 'Heart',
-      emoji: '🤝'
-    },
-    {
-      title: 'Инновации',
-      description: 'Поощряем креативность и привнесение свежих идей',
-      icon: 'Lightbulb',
-      emoji: '💡'
-    },
-    {
-      title: 'Равноправие',
-      description: 'Стремимся к равным возможностям и уважению для всех женщин',
-      icon: 'Scale',
-      emoji: '⚖️'
-    },
-    {
-      title: 'Открытость',
-      description: 'Приветствуем разнообразие мнений и культурный обмен',
-      icon: 'Globe',
-      emoji: '🌍'
-    },
-  ], []);
 
-  const events = useMemo(() => [
-    {
-      title: 'Ежемесячные встречи ОЧНО',
-      description: 'Тема каждой встречи варьируется от панельных дискуссий до творческих воркшопов',
-      details: 'Живое общение, нетворкинг, обмен опытом. Каждая встреча — это возможность найти партнеров, получить ценные советы и завести новые знакомства в кругу единомышленников.',
-      icon: 'Users',
-      emoji: '👥'
-    },
-    {
-      title: 'Онлайн-трансляции',
-      description: 'От двух раз в месяц: обмен знаниями, обратная связь и заряд положительной энергии',
-      details: 'Удобный формат для тех, кто в разъездах или не может присутствовать очно. Записи всех трансляций доступны участницам клуба.',
-      icon: 'MonitorPlay',
-      emoji: '📡'
-    },
-    {
-      title: 'Гостевые спикеры',
-      description: 'Приглашенные эксперты делятся опытом и знаниями, посещаем экскурсии',
-      details: 'Встречи с успешными женщинами-лидерами, экскурсии в арт-пространства, музеи, закрытые события. Расширяем горизонты вместе!',
-      icon: 'Mic',
-      emoji: '🎤'
-    },
-    {
-      title: 'Творческие события',
-      description: 'Развивайте себя в новых форматах: творчество, музыка, искусство',
-      details: 'Раскрываем таланты: арт-терапия, музыкальные вечера, мастер-классы по живописи, танцам, кулинарии. Баланс между работой и вдохновением.',
-      icon: 'Palette',
-      emoji: '🎨'
-    },
-  ], []);
 
   return (
     <PageTransition>
@@ -634,13 +595,13 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
               <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              Наши ценности
+              {valuesContent.title || 'Наши ценности'}
               <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
+            {valuesContent.values.map((value: any, index: number) => (
               <Card key={index} className="hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
@@ -666,20 +627,20 @@ const Index = () => {
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
               <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
-              События и встречи
+              {eventsContent.title || 'События и встречи'}
               <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
             </h2>
             <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              Разнообразные форматы для вашего роста и вдохновения
+              {eventsContent.subtitle || 'Разнообразные форматы для вашего роста и вдохновения'}
             </p>
           </div>
 
           <div className="text-center mb-10">
-            <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Форматы событий</h3>
+            <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">{eventsContent.formats_title || 'Форматы событий'}</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
-            {events.map((event, index) => (
+            {eventsContent.formats.map((event: any, index: number) => (
               <Card key={index} className={`hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md`} style={{animationDelay: `${index * 0.15}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start gap-4 mb-4">
@@ -689,9 +650,6 @@ const Index = () => {
                     <h4 className="text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 pt-2">{event.title}</h4>
                   </div>
                   <p className="text-white/80 leading-relaxed mb-4 font-medium">{event.description}</p>
-                  <div className="pt-4 border-t border-[#d4af37]/10">
-                    <p className="text-sm text-white/60 leading-relaxed">{event.details}</p>
-                  </div>
                 </CardContent>
               </Card>
             ))}
