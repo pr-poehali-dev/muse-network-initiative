@@ -23,22 +23,8 @@ const MuseTV = () => {
   const [liveStreamKey, setLiveStreamKey] = useState(0);
 
   useEffect(() => {
-    let ticking = false;
-    let lastScrollY = 0;
-    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (Math.abs(currentScrollY - lastScrollY) < 10) return;
-      
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setScrollY(currentScrollY);
-          lastScrollY = currentScrollY;
-          ticking = false;
-        });
-        ticking = true;
-      }
+      setScrollY(window.scrollY);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
