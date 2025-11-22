@@ -112,7 +112,7 @@ const HeroSection = ({
         >
           <h1 
             className="font-black px-4 tracking-wider" 
-            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
+            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit'}}
             onMouseLeave={() => {
               if (isMobile) return;
               setIsTransitioning(true);
