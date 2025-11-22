@@ -34,8 +34,8 @@ const HeroSection = ({
   return (
     <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-[15]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-[15]"></div>
         
         {!isMobile && (
           <>
@@ -45,7 +45,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_center && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full z-5 animate-zoom-in" style={{animationDelay: '0.3s', animationFillMode: 'both'}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full z-[12] animate-zoom-in" style={{animationDelay: '0.3s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_center} 
               alt="" 
@@ -66,7 +66,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_left && (
-          <div className="absolute left-[8%] top-0 w-[26%] h-full group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
+          <div className="absolute left-[8%] top-0 w-[26%] h-full z-[11] group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_left} 
               alt="" 
@@ -84,7 +84,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_right && (
-          <div className="absolute right-[8%] top-0 w-[26%] h-full group animate-slide-in-from-right" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
+          <div className="absolute right-[8%] top-0 w-[26%] h-full z-[11] group animate-slide-in-from-right" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_right} 
               alt="" 
@@ -100,8 +100,8 @@ const HeroSection = ({
           </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-20"></div>
-        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-25"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/60 z-[20]"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-[25]"></div>
       </div>
 
       <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
