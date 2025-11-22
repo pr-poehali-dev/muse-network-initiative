@@ -104,16 +104,17 @@ const HeroSection = ({
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-[25]"></div>
       </div>
 
-      <div className="w-full text-center px-4 md:px-8 relative z-[100] pt-[35vh] md:pt-0">
+      <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
         <div 
-          className="relative inline-block mb-8 md:mb-10 animate-title-appear group z-[100]" 
+          className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
           style={{
-            animationDelay: isMobile ? '0s' : '0.8s'
+            animationDelay: isMobile ? '0s' : '0.8s',
+            opacity: 0
           }}
         >
           <h1 
-            className="font-black px-4 tracking-wider hero-gradient relative z-[100]" 
-            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
+            className="font-black px-4 tracking-wider" 
+            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit'}}
             onMouseLeave={() => {
               if (isMobile) return;
               setIsTransitioning(true);
@@ -123,41 +124,58 @@ const HeroSection = ({
               }, 50);
             }}
           >
-            {isMobile ? (
-              heroContent.title
-            ) : hoveredLetter ? (
-              <span 
-                className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
-                style={{
-                  filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
-                }}>
-                {hoveredLetter === 'M' && 'Mindset'}
-                {hoveredLetter === 'U' && 'Uniqueness'}
-                {hoveredLetter === 'S' && 'Synergy'}
-                {hoveredLetter === 'E' && 'Excellence'}
-              </span>
-            ) : (
-              heroContent.title.split('').map((letter, i) => (
+            <span style={{
+              background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              display: 'inline-block',
+              color: 'transparent'
+            }}>
+              {isMobile ? (
+                heroContent.title
+              ) : hoveredLetter ? (
                 <span 
-                  key={i} 
-                  className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                  className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
                   style={{
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    transitionDelay: `${i * 30}ms`
-                  }}
-                  onMouseEnter={() => {
-                    setIsEntering(true);
-                    setTimeout(() => {
-                      setHoveredLetter(letter);
-                      setIsEntering(false);
-                    }, 200);
-                  }}
-                >
-                  {letter}
+                    background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text',
+                    filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                  }}>
+                  {hoveredLetter === 'M' && 'Mindset'}
+                  {hoveredLetter === 'U' && 'Uniqueness'}
+                  {hoveredLetter === 'S' && 'Synergy'}
+                  {hoveredLetter === 'E' && 'Excellence'}
                 </span>
-              ))
-            )}
+              ) : (
+                heroContent.title.split('').map((letter, i) => (
+                  <span 
+                    key={i} 
+                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    style={{
+                      background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      transitionDelay: `${i * 30}ms`
+                    }}
+                    onMouseEnter={() => {
+                      setIsEntering(true);
+                      setTimeout(() => {
+                        setHoveredLetter(letter);
+                        setIsEntering(false);
+                      }, 200);
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))
+              )}
+            </span>
           </h1>
           {!isMobile && (
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
