@@ -134,12 +134,17 @@ const HeroSection = ({
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent'}} className="inline-block">
+              <span className="inline-block">
                 {heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
+                      background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                      color: 'transparent',
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
                       transitionDelay: `${i * 30}ms`
