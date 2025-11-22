@@ -138,11 +138,11 @@ const HeroSection = ({
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              <span className="hero-gradient inline-block">
+              <span className="inline-block">
                 {heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
-                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    className={`hero-gradient inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
