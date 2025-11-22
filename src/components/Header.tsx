@@ -71,9 +71,10 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   className="w-16 h-16 flex items-center justify-center group relative"
                 >
                   <OptimizedImage 
-                    src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
+                    src="https://cdn.poehali.dev/files/d576ffcc-717b-4c35-95f2-f13b12200dec.jpg"
                     alt="MUSE Logo"
-                    loading="lazy"
+                    loading="eager"
+                    fetchpriority="high"
                     className={`w-16 h-16 object-contain ${isMobile ? '' : 'transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3'}`}
                     style={{
                       filter: isMobile ? 'none' : 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',

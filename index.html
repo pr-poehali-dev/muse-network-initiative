@@ -9,12 +9,19 @@
     <meta name="author" content="Клуб Muse"/>
 
     <link rel="icon" type="image/png" href="https://cdn.poehali.dev/files/a955ef2e-00bf-45e5-8f24-187b9d90bcfd.png" fetchpriority="low">
+    
+    <!-- Preconnect для критичных доменов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.poehali.dev">
-    <link rel="preconnect" href="https://functions.poehali.dev">
-    <link rel="dns-prefetch" href="https://cdn.poehali.dev">
     <link rel="dns-prefetch" href="https://functions.poehali.dev">
+    
+    <!-- Preload критичных шрифтов -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/cormorant/v21/H4c2BXOCl9bbnla_nHIA47NMUjsNbCVrFk8.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Preload критичного лого (оптимизирован до 40 КБ) -->
+    <link rel="preload" href="https://cdn.poehali.dev/files/d576ffcc-717b-4c35-95f2-f13b12200dec.jpg" as="image" fetchpriority="high">
     <meta property="og:title" content="Муза — Клуб предприимчивых женщин">
     <meta property="og:description" content="Клуб Muse объединяет предприимчивых женщин для обмена опытом, нетворкинга и развития.">
     <meta property="og:image:width" content="1200">
@@ -85,13 +92,17 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->
 
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->
-    <script src="https://cdn.poehali.dev/intertnal/js/pp-min-2.js"></script>
-    <script src="https://cdn.poehali.dev/intertnal/js/route-min.js"></script>
-    <script src="https://cdn.poehali.dev/intertnal/js/telemetry-min.js"></script>
+    <script src="https://cdn.poehali.dev/intertnal/js/pp-min-2.js" defer></script>
+    <script src="https://cdn.poehali.dev/intertnal/js/route-min.js" defer></script>
+    <script src="https://cdn.poehali.dev/intertnal/js/telemetry-min.js" defer></script>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->
 
     <meta name="pp-name" value="muse-network-initiative">
+      <script src="https://cdn.poehali.dev/intertnal/js/inspector-min.js" defer></script>
+      <script src="https://cdn.poehali.dev/intertnal/js/pp-min-2.js"></script>
+      <script src="https://cdn.poehali.dev/intertnal/js/route-min.js"></script>
       <script src="https://cdn.poehali.dev/intertnal/js/inspector-min.js"></script>
+      <script src="https://cdn.poehali.dev/intertnal/js/telemetry-min.js"></script>
   </head>
 
 <body>
