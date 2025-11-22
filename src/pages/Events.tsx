@@ -6,6 +6,7 @@ import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import OptimizedImage from '@/components/OptimizedImage';
 import SectionDivider from '@/components/ui/SectionDivider';
+import EventPartners from '@/components/EventPartners';
 
 const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
 
@@ -401,6 +402,9 @@ const Events = () => {
               </div>
             </div>
           </section>
+
+          <SectionDivider opacity={20} />
+          <EventPartners />
 
         </div>
         
