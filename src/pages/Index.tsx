@@ -305,6 +305,7 @@ const Index = () => {
                 alt="" 
                 loading="eager"
                 fetchpriority="high"
+                decoding="async"
                 className="w-full h-full object-cover object-center"
                 style={{
                   maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
@@ -325,14 +326,13 @@ const Index = () => {
               <img 
                 src={heroContent.image_left} 
                 alt="" 
-                loading="eager"
+                loading="lazy"
                 className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                 style={{
                   objectPosition: '50% 20%',
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   filter: 'grayscale(40%) contrast(1.1)',
-                  willChange: 'transform',
                   contentVisibility: 'auto'
                 }}
               />
@@ -344,13 +344,12 @@ const Index = () => {
               <img 
                 src={heroContent.image_right} 
                 alt="" 
-                loading="eager"
+                loading="lazy"
                 className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
                 style={{
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   filter: 'grayscale(40%) contrast(1.1)',
-                  willChange: 'transform',
                   contentVisibility: 'auto'
                 }}
               />
