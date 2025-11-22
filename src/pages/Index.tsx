@@ -75,13 +75,15 @@ const Index = () => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
+      if (!isMobile) {
+        setScrollY(currentScrollY);
+      }
       setTitleInHeader(currentScrollY > 400);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isMobile]);
 
   useEffect(() => {
     const loadData = async () => {
@@ -305,8 +307,12 @@ const Index = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-10"></div>
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-10"></div>
           
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px]"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]"></div>
+          {!isMobile && (
+            <>
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px]"></div>
+              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]"></div>
+            </>
+          )}
 
           {!isMobile && heroContent.image_center && (
             <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
@@ -374,7 +380,7 @@ const Index = () => {
           <div 
             className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
             style={{
-              animationDelay: '0.8s',
+              animationDelay: isMobile ? '0s' : '0.8s',
               opacity: 0
             }}
           >
@@ -391,7 +397,7 @@ const Index = () => {
               }}
             >
               {isMobile ? (
-                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
+                <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90" style={{willChange: 'auto'}}>
                   {heroContent.title}
                 </span>
               ) : hoveredLetter ? (
@@ -431,16 +437,18 @@ const Index = () => {
                 </div>
               </>
             )}
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+            {!isMobile && (
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+            )}
           </div>
-          <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
+          <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: isMobile ? '0s' : '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
             {heroContent.tagline}
           </p>
-          <p className="text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: '1.6s', opacity: 0, fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)'}}>
+          <p className="text-white/70 mb-16 max-w-3xl mx-auto leading-relaxed animate-text-appear" style={{animationDelay: isMobile ? '0s' : '1.6s', opacity: 0, fontSize: 'clamp(0.875rem, 1.5vw, 1.125rem)'}}>
             {heroContent.description}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12 w-full mx-auto">
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '2s', opacity: 0}}>
+            <div className={`bg-[#1a1a1a]/60 ${isMobile ? '' : 'backdrop-blur-md glow-effect hover-scale'} border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl relative overflow-hidden group animate-card-appear`} style={{animationDelay: isMobile ? '0s' : '2s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Users" className="text-[#b8953d]/60" size={24} />
@@ -450,7 +458,7 @@ const Index = () => {
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Успешные женщины из разных сфер</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '2.2s', opacity: 0}}>
+            <div className={`bg-[#1a1a1a]/60 ${isMobile ? '' : 'backdrop-blur-md glow-effect hover-scale'} border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl relative overflow-hidden group animate-card-appear`} style={{animationDelay: isMobile ? '0s' : '2.2s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Calendar" className="text-[#b8953d]/60" size={24} />
@@ -460,7 +468,7 @@ const Index = () => {
                 <p className="text-xs md:text-sm text-white/60 mt-1 md:mt-2">Нетворкинг и обмен опытом</p>
               </div>
             </div>
-            <div className="bg-[#1a1a1a]/60 backdrop-blur-md border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl hover-scale glow-effect relative overflow-hidden group animate-card-appear" style={{animationDelay: '2.4s', opacity: 0}}>
+            <div className={`bg-[#1a1a1a]/60 ${isMobile ? '' : 'backdrop-blur-md glow-effect hover-scale'} border border-[#d4af37]/20 p-4 md:p-8 rounded-xl md:rounded-2xl relative overflow-hidden group animate-card-appear`} style={{animationDelay: isMobile ? '0s' : '2.4s', opacity: 0}}>
               <div className="relative z-10">
                 <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-3 md:mb-4">
                   <Icon name="Radio" className="text-[#b8953d]/60" size={24} />

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import OptimizedImage from '@/components/OptimizedImage';
@@ -15,6 +15,14 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const handleNavigation = (section: string) => {
     if (location.pathname !== '/') {
@@ -48,7 +56,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-50">
-        <div className="bg-black/80 backdrop-blur-xl border-b border-[#d4af37]/30">
+        <div className={`bg-black/80 ${isMobile ? '' : 'backdrop-blur-xl'} border-b border-[#d4af37]/30`}>
           <div className="container mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
@@ -66,9 +74,9 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                     alt="MUSE Logo"
                     loading="lazy"
-                    className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
+                    className={`w-16 h-16 object-contain ${isMobile ? '' : 'transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3'}`}
                     style={{
-                      filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
+                      filter: isMobile ? 'none' : 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
                       transform: 'translateZ(0)'
                     }}
                   />
@@ -111,7 +119,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
           </div>
         </div>
 
-        <div className={`bg-black/95 backdrop-blur-xl border-t border-[#d4af37]/30 transition-all duration-500 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
+        <div className={`bg-black/95 ${isMobile ? '' : 'backdrop-blur-xl'} border-t border-[#d4af37]/30 transition-all duration-500 z-40 overflow-hidden ${isMobileMenuOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
           <div className="flex flex-col items-center justify-start py-6 gap-6 px-8 overflow-y-auto max-h-[calc(100vh-96px)]">
             <div className="hidden md:flex flex-wrap items-center justify-center gap-6 pb-4 border-b border-[#d4af37]/20">
               {menuItems.map((item) => (
