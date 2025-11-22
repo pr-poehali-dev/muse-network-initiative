@@ -65,6 +65,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   <OptimizedImage 
                     src="https://cdn.poehali.dev/files/ad929cbb-521a-420f-be3a-433d40c71cfe.png"
                     alt="MUSE Logo"
+                    loading="lazy"
                     className="w-16 h-16 object-contain transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3"
                     style={{
                       filter: 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
