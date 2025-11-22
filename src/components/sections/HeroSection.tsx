@@ -134,7 +134,7 @@ const HeroSection = ({
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))', textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)'}} className="inline-block">
+              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}} className="inline-block">
                 {heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
