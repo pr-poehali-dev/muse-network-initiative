@@ -738,6 +738,18 @@ body::-webkit-scrollbar {
     background: linear-gradient(90deg, transparent, #d4af37, transparent);
   }
 
+  .hero-gradient {
+    background: linear-gradient(
+      90deg,
+      #a9892f 0%,
+      #8a7840 50%,
+      #6d5d3f 100%
+    ) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+  }
+
   .premium-title {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
