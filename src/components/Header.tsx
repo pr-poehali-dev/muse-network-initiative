@@ -91,7 +91,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   onClick={() => navigate('/events')}
                   className="px-8 py-2.5 bg-black/40 backdrop-blur-sm border border-[#d4af37]/60 rounded text-[#d4af37] text-sm font-semibold uppercase tracking-wider hover:bg-[#d4af37]/10 hover:border-[#d4af37] transition-all duration-300"
                 >
-                  Форум 13.12
+                  Форум 13.12.2025
                 </button>
               </div>
               
