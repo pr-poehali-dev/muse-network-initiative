@@ -23,6 +23,7 @@ const Index = () => {
   const [scrollY, setScrollY] = useState(0);
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
@@ -62,6 +63,15 @@ const Index = () => {
     formats: []
   });
   
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -321,8 +331,8 @@ const Index = () => {
             </div>
           )}
 
-          {heroContent.image_left && (
-            <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.05}px)`}}>
+          {!isMobile && heroContent.image_left && (
+            <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.05}px)`}}>
               <img 
                 src={heroContent.image_left} 
                 alt="" 
@@ -339,8 +349,8 @@ const Index = () => {
             </div>
           )}
 
-          {heroContent.image_right && (
-            <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', willChange: 'transform', transform: `translateY(${scrollY * 0.06}px)`}}>
+          {!isMobile && heroContent.image_right && (
+            <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', willChange: 'transform', transform: `translateY(${scrollY * 0.06}px)`}}>
               <img 
                 src={heroContent.image_right} 
                 alt="" 
