@@ -122,25 +122,29 @@ const HeroSection = ({
               }, 50);
             }}
           >
-            {isMobile ? (
-              <span className="inline-block" style={{color: '#a9892f'}}>
-                {heroContent.title}
-              </span>
-            ) : hoveredLetter ? (
-              <span 
-                className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
-                style={{
-                  color: '#a9892f',
-                  filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
-                }}>
-                {hoveredLetter === 'M' && 'Mindset'}
-                {hoveredLetter === 'U' && 'Unity'}
-                {hoveredLetter === 'S' && 'Style'}
-                {hoveredLetter === 'E' && 'Empowerment'}
-              </span>
-            ) : (
-              <span className="inline-block" style={{color: '#a9892f'}}>
-                {heroContent.title.split('').map((letter, i) => (
+            <span style={{
+              background: 'linear-gradient(90deg, #a9892f 0%, #8a7840 50%, #6d5d3f 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              display: 'inline-block',
+              color: 'transparent'
+            }}>
+              {isMobile ? (
+                heroContent.title
+              ) : hoveredLetter ? (
+                <span 
+                  className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
+                  style={{
+                    filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                  }}>
+                  {hoveredLetter === 'M' && 'Mindset'}
+                  {hoveredLetter === 'U' && 'Unity'}
+                  {hoveredLetter === 'S' && 'Style'}
+                  {hoveredLetter === 'E' && 'Empowerment'}
+                </span>
+              ) : (
+                heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
@@ -159,9 +163,9 @@ const HeroSection = ({
                   >
                     {letter}
                   </span>
-                ))}
-              </span>
-            )}
+                ))
+              )}
+            </span>
           </h1>
           {!isMobile && (
             <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
