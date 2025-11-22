@@ -123,11 +123,11 @@ const HeroSection = ({
             }}
           >
             {isMobile ? (
-              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
+              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#8b7355] to-[#6b5d42]">
                 {heroContent.title}
               </span>
             ) : hoveredLetter ? (
-              <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+              <span className={`inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#8b7355] to-[#6b5d42] uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
                 {hoveredLetter === 'M' && 'Mindset'}
                 {hoveredLetter === 'U' && 'Unity'}
                 {hoveredLetter === 'S' && 'Style'}
@@ -137,7 +137,7 @@ const HeroSection = ({
               heroContent.title.split('').map((letter, i) => (
                 <span 
                   key={i} 
-                  className={`inline-block transition-all duration-500 ease-out text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                  className={`inline-block transition-all duration-500 ease-out text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#8b7355] to-[#6b5d42] ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                   style={{
                     transform: 'translateZ(0)',
                     backfaceVisibility: 'hidden',
