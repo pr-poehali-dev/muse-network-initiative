@@ -71,19 +71,15 @@ const EventPartners = memo(() => {
                 href={partner.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative z-10 flex flex-col items-center justify-center h-full min-h-[200px]"
+                className="relative z-10 flex items-center justify-center h-full min-h-[200px]"
               >
-                <div className="w-full h-32 flex items-center justify-center mb-6 relative">
+                <div className="w-full h-32 flex items-center justify-center relative">
                   <img
                     src={partner.logo}
                     alt={partner.name}
                     className="max-w-full max-h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-500 group-hover:scale-110"
                   />
                 </div>
-                
-                <h3 className="text-white/80 text-center text-sm md:text-base font-medium group-hover:text-[#d4af37] transition-colors duration-300">
-                  {partner.name}
-                </h3>
               </a>
             </div>
           ))}
