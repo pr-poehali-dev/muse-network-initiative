@@ -71,7 +71,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                   className="w-16 h-16 flex items-center justify-center group relative"
                 >
                   <OptimizedImage 
-                    src="https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/6e210d73-12dc-4f1f-a3ed-d0b7d611527d.jpg"
+                    src="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png"
                     alt="MUSE Logo"
                     loading="eager"
                     fetchpriority="high"
