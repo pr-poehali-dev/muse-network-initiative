@@ -34,9 +34,7 @@ const EventPartners = memo(() => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="font-cormorant text-4xl md:text-6xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-[#d4af37] via-[#f0d98e] to-[#d4af37] bg-clip-text text-transparent">
-              Организаторы
-            </span>
+            <span className="text-[#d4af37]">Организаторы</span>
             {' '}
             <span className="text-white">и партнёры</span>
           </h2>
