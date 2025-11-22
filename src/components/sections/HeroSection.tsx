@@ -115,8 +115,8 @@ const HeroSection = ({
           }}
         >
           <h1 
-            className="font-black px-4 tracking-wider" 
-            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit'}}
+            className="font-black px-4" 
+            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit', letterSpacing: isMobile ? '0.05em' : '0.15em'}}
             onMouseLeave={() => {
               if (isMobile) return;
               setIsTransitioning(true);
@@ -127,12 +127,13 @@ const HeroSection = ({
             }}
           >
             <span style={{
-              background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+              background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               display: 'inline-block',
-              color: 'transparent'
+              color: 'transparent',
+              textShadow: '0 4px 12px rgba(212,175,55,0.4), 0 8px 24px rgba(212,175,55,0.2)'
             }}>
               {isMobile ? (
                 heroContent.title
@@ -140,11 +141,12 @@ const HeroSection = ({
                 <span 
                   className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
                   style={{
-                    background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+                    background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                    filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(244,208,63,0.4)) drop-shadow(0 8px 32px rgba(0,0,0,0.6))',
+                    textShadow: '0 4px 12px rgba(212,175,55,0.4)'
                   }}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -155,15 +157,17 @@ const HeroSection = ({
                 heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
-                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'} hover:scale-110`}
                     style={{
-                      background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
+                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
-                      transitionDelay: `${i * 30}ms`
+                      transitionDelay: `${i * 30}ms`,
+                      filter: 'drop-shadow(0 4px 8px rgba(212,175,55,0.4)) drop-shadow(0 0 20px rgba(212,175,55,0.3))',
+                      textShadow: '0 2px 8px rgba(212,175,55,0.3)'
                     }}
                     onMouseEnter={() => {
                       setIsEntering(true);
@@ -180,7 +184,10 @@ const HeroSection = ({
             </span>
           </h1>
           {!isMobile && (
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/30 transition-all duration-700 blur-3xl pointer-events-none"></div>
+            <>
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/40 transition-all duration-700 blur-3xl pointer-events-none"></div>
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-full h-40 bg-gradient-to-b from-transparent via-[#f4d03f]/0 to-transparent opacity-60 group-hover:opacity-100 group-hover:via-[#f4d03f]/20 transition-all duration-1000 blur-[100px] pointer-events-none"></div>
+            </>
           )}
         </div>
         <p className="text-white/80 mb-10 leading-relaxed animate-text-appear" style={{animationDelay: isMobile ? '0s' : '1.2s', opacity: 0, fontSize: 'clamp(1rem, 2vw, 1.5rem)'}}>
