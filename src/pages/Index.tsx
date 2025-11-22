@@ -299,7 +299,7 @@ const Index = () => {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]"></div>
 
           {heroContent.image_center && (
-            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
+            <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
               <img 
                 src={heroContent.image_center} 
                 alt="" 
@@ -311,7 +311,9 @@ const Index = () => {
                   WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
                   maskComposite: 'intersect',
                   WebkitMaskComposite: 'source-in',
-                  filter: 'grayscale(20%) contrast(1.15)'
+                  filter: 'grayscale(20%) contrast(1.15)',
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -319,7 +321,7 @@ const Index = () => {
           )}
 
           {heroContent.image_left && (
-            <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', transform: `translateY(${scrollY * 0.05}px)`}}>
+            <div className="hidden md:block absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.05}px)`}}>
               <img 
                 src={heroContent.image_left} 
                 alt="" 
@@ -329,14 +331,16 @@ const Index = () => {
                   objectPosition: '50% 20%',
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                  filter: 'grayscale(40%) contrast(1.1)'
+                  filter: 'grayscale(40%) contrast(1.1)',
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
             </div>
           )}
 
           {heroContent.image_right && (
-            <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', transform: `translateY(${scrollY * 0.06}px)`}}>
+            <div className="hidden md:block absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', willChange: 'transform', transform: `translateY(${scrollY * 0.06}px)`}}>
               <img 
                 src={heroContent.image_right} 
                 alt="" 
@@ -345,7 +349,9 @@ const Index = () => {
                 style={{
                   maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                   WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                  filter: 'grayscale(40%) contrast(1.1)'
+                  filter: 'grayscale(40%) contrast(1.1)',
+                  willChange: 'transform',
+                  contentVisibility: 'auto'
                 }}
               />
             </div>
