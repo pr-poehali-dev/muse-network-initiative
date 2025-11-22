@@ -45,7 +45,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_center && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
             <img 
               src={heroContent.image_center} 
               alt="" 
@@ -58,9 +58,7 @@ const HeroSection = ({
                 WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
                 maskComposite: 'intersect',
                 WebkitMaskComposite: 'source-in',
-                filter: 'grayscale(20%) contrast(1.15)',
-                willChange: 'transform',
-                contentVisibility: 'auto'
+                filter: 'grayscale(20%) contrast(1.15)'
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -68,7 +66,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_left && (
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.05}px)`}}>
+          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
             <img 
               src={heroContent.image_left} 
               alt="" 
@@ -78,15 +76,14 @@ const HeroSection = ({
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)',
-                contentVisibility: 'auto'
+                filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
           </div>
         )}
 
         {!isMobile && heroContent.image_right && (
-          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both', willChange: 'transform', transform: `translateY(${scrollY * 0.06}px)`}}>
+          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_right} 
               alt="" 
@@ -95,8 +92,7 @@ const HeroSection = ({
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)',
-                contentVisibility: 'auto'
+                filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
           </div>
@@ -127,7 +123,7 @@ const HeroSection = ({
             }}
           >
             {isMobile ? (
-              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90" style={{willChange: 'auto'}}>
+              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
                 {heroContent.title}
               </span>
             ) : hoveredLetter ? (
@@ -147,8 +143,7 @@ const HeroSection = ({
                     backfaceVisibility: 'hidden',
                     filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))',
                     textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)',
-                    transitionDelay: `${i * 30}ms`,
-                    willChange: 'transform'
+                    transitionDelay: `${i * 30}ms`
                   }}
                   onMouseEnter={() => {
                     setIsEntering(true);
