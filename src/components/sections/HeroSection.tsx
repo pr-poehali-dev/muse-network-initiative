@@ -134,28 +134,28 @@ const HeroSection = ({
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              heroContent.title.split('').map((letter, i) => (
-                <span 
-                  key={i} 
-                  className={`inline-block transition-all duration-500 ease-out text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#8b7355] to-[#6b5d42] ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
-                  style={{
-                    transform: 'translateZ(0)',
-                    backfaceVisibility: 'hidden',
-                    filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))',
-                    textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)',
-                    transitionDelay: `${i * 30}ms`
-                  }}
-                  onMouseEnter={() => {
-                    setIsEntering(true);
-                    setTimeout(() => {
-                      setHoveredLetter(letter);
-                      setIsEntering(false);
-                    }, 200);
-                  }}
-                >
-                  {letter}
-                </span>
-              ))
+              <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-[#b8953d] via-[#8b7355] to-[#6b5d42]" style={{filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))', textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)'}}>
+                {heroContent.title.split('').map((letter, i) => (
+                  <span 
+                    key={i} 
+                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                    style={{
+                      transform: 'translateZ(0)',
+                      backfaceVisibility: 'hidden',
+                      transitionDelay: `${i * 30}ms`
+                    }}
+                    onMouseEnter={() => {
+                      setIsEntering(true);
+                      setTimeout(() => {
+                        setHoveredLetter(letter);
+                        setIsEntering(false);
+                      }, 200);
+                    }}
+                  >
+                    {letter}
+                  </span>
+                ))}
+              </span>
             )}
           </h1>
           {!isMobile && (
