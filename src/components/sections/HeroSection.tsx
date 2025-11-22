@@ -45,13 +45,13 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_center && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards'}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-0 z-5 animate-zoom-in" style={{animationDelay: '0.3s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_center} 
               alt="" 
               loading="eager"
-              fetchpriority="high"
-              decoding="async"
+              fetchPriority="high"
+              decoding="sync"
               className="w-full h-full object-cover object-center"
               style={{
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
@@ -66,11 +66,12 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_left && (
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-left" style={{animationDelay: '0.2s', animationFillMode: 'backwards'}}>
+          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-0 group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_left} 
               alt="" 
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               style={{
                 objectPosition: '50% 20%',
@@ -83,11 +84,12 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_right && (
-          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-60 group animate-slide-in-from-right" style={{animationDelay: '0.2s', animationFillMode: 'both'}}>
+          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-0 group animate-slide-in-from-right" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_right} 
               alt="" 
-              loading="lazy"
+              loading="eager"
+              fetchPriority="high"
               className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
