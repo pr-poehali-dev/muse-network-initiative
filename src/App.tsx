@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Index from "./pages/Index";
 import Events from "./pages/Events";
+import Gallery from "./pages/Gallery";
 import MuseTV from "./pages/MuseTV";
 import TestForms from "./pages/TestForms";
 import Terms from "./pages/Terms";
@@ -24,6 +25,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/events" element={<Events />} />
+          <Route path="/gallery" element={<Gallery />} />
           <Route path="/muse-tv" element={<MuseTV />} />
           <Route path="/test-forms" element={<TestForms />} />
           <Route path="/terms" element={<Terms />} />
