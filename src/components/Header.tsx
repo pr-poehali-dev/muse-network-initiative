@@ -43,12 +43,12 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
     { id: 'about', label: 'О клубе', path: '/' },
     { id: 'experts', label: 'Эксперты', path: '/' },
     { id: 'events', label: 'Форматы', path: '/' },
-    { id: 'gallery', label: 'Галерея', path: '/' },
     { id: 'calendar', label: 'Календарь', path: '/' },
   ];
 
   const pageLinks = [
     { label: 'События', path: '/events' },
+    { label: 'Галерея', path: '/gallery' },
     { label: 'MUSE TV', path: '/muse-tv' },
     { label: 'Личный кабинет', path: '/dashboard' },
   ];
