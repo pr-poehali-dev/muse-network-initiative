@@ -33,62 +33,47 @@ const EventPartners = memo(() => {
     <section className="relative py-16 md:py-24 px-4 bg-black">
       <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12 md:mb-16">
-          <div className="inline-flex items-center gap-3 mb-4 bg-[#d4af37]/10 px-6 py-2 rounded-full border border-[#d4af37]/30">
-            <div className="w-2 h-2 rounded-full bg-[#d4af37] animate-pulse"></div>
-            <span className="text-[#d4af37] text-sm font-medium tracking-wider uppercase">Партнеры</span>
-          </div>
-          <h2 className="font-cormorant text-4xl md:text-5xl font-bold text-white mb-4">
-            Организаторы и партнёры
+          <h2 className="font-cormorant text-4xl md:text-6xl font-bold mb-6">
+            <span className="bg-gradient-to-r from-[#d4af37] via-[#f0d98e] to-[#d4af37] bg-clip-text text-transparent">
+              Организаторы
+            </span>
+            {' '}
+            <span className="text-white">и партнёры</span>
           </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
+          <p className="text-white/70 text-lg max-w-2xl mx-auto font-light">
             Событие проходит при поддержке ведущих организаций региона
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {partners.map((partner, index) => (
-            <div
+            <a
               key={partner.id}
-              className="group relative bg-gradient-to-br from-[#1a1a1a] to-black border border-[#d4af37]/20 rounded-2xl p-8 md:p-10 hover:border-[#d4af37]/60 transition-all duration-500 hover:scale-105"
+              href={partner.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-300"
               style={{
                 animationDelay: `${index * 100}ms`,
                 animation: 'fadeInUp 0.6s ease-out forwards',
                 opacity: 0
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
-              
-              <div className="absolute inset-0 rounded-2xl overflow-hidden">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37]/50 to-transparent"></div>
-                  <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-[#d4af37]/50 to-transparent"></div>
-                  <div className="absolute top-0 right-0 w-px h-full bg-gradient-to-b from-transparent via-[#d4af37]/50 to-transparent"></div>
-                </div>
+              <div className="flex items-center justify-center h-32">
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="max-w-full max-h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
+                />
               </div>
-
-              <a
-                href={partner.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-10 flex items-center justify-center h-full min-h-[200px]"
-              >
-                <div className="w-full h-32 flex items-center justify-center relative">
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="max-w-full max-h-full object-contain filter brightness-90 group-hover:brightness-110 transition-all duration-500 group-hover:scale-110"
-                  />
-                </div>
-              </a>
-            </div>
+            </a>
           ))}
         </div>
 
         <div className="mt-12 text-center">
-          <p className="text-white/40 text-sm">
+          <p className="text-white/50 text-sm font-light">
             Хотите стать партнером мероприятия?{' '}
-            <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] hover:text-[#d4af37]/80 transition-colors underline">
+            <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] hover:text-[#f0d98e] transition-colors underline">
               Свяжитесь с нами
             </a>
           </p>
