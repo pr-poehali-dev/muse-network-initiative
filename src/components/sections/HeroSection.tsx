@@ -45,7 +45,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_center && (
-          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-0 z-5 animate-zoom-in" style={{animationDelay: '0.3s', animationFillMode: 'both'}}>
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full z-5 animate-zoom-in" style={{animationDelay: '0.3s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_center} 
               alt="" 
@@ -66,7 +66,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_left && (
-          <div className="absolute left-[8%] top-0 w-[26%] h-full opacity-0 group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
+          <div className="absolute left-[8%] top-0 w-[26%] h-full group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_left} 
               alt="" 
@@ -84,7 +84,7 @@ const HeroSection = ({
         )}
 
         {!isMobile && heroContent.image_right && (
-          <div className="absolute right-[8%] top-0 w-[26%] h-full opacity-0 group animate-slide-in-from-right" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
+          <div className="absolute right-[8%] top-0 w-[26%] h-full group animate-slide-in-from-right" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_right} 
               alt="" 
