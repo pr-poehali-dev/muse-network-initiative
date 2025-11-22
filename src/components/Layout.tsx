@@ -87,9 +87,9 @@ const Layout = ({
         <div className="container mx-auto">
           <div className="text-center mb-8">
             <OptimizedImage 
-              src="https://cdn.poehali.dev/files/79b6351f-8026-4707-98d8-23fd1cba8968.png" 
+              src="https://cdn.poehali.dev/files/6c57de74-9c24-44a9-8c8b-e416c8c71480.png" 
               alt="Muse" 
-              className="h-12 mx-auto mb-3 floating hover:scale-105 transition-transform cursor-pointer"
+              className="h-16 mx-auto mb-3 hover:scale-105 transition-transform cursor-pointer"
               onClick={() => navigate('/')}
             />
             <p className="text-base mb-4">
