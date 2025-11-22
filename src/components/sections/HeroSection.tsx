@@ -123,28 +123,43 @@ const HeroSection = ({
             }}
           >
             {isMobile ? (
-              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'}} className="inline-block">
+              <span style={{
+                background: 'linear-gradient(90deg, #a9892f 0%, #8a7840 50%, #6d5d3f 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                display: 'inline-block'
+              }}>
                 {heroContent.title}
               </span>
             ) : hoveredLetter ? (
-              <span className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+              <span 
+                className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
+                style={{
+                  background: 'linear-gradient(90deg, #a9892f 0%, #8a7840 50%, #6d5d3f 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                  filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
+                }}>
                 {hoveredLetter === 'M' && 'Mindset'}
                 {hoveredLetter === 'U' && 'Unity'}
                 {hoveredLetter === 'S' && 'Style'}
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              <span className="inline-block">
+              <span style={{
+                background: 'linear-gradient(90deg, #a9892f 0%, #8a7840 50%, #6d5d3f 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                display: 'inline-block'
+              }}>
                 {heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
-                      background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      color: 'transparent',
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
                       transitionDelay: `${i * 30}ms`
