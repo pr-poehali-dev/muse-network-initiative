@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant:wght@400;700&family=Montserrat:wght@400;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -258,31 +260,31 @@ body::-webkit-scrollbar {
 
   .animate-title-appear {
     animation: title-appear 0.3s ease-out forwards;
-    will-change: opacity, transform;
   }
 
   @keyframes title-appear {
     0% {
       opacity: 0;
-      transform: translateY(10px) translateZ(0);
+      transform: translateY(10px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0) translateZ(0);
+      transform: translateY(0);
     }
   }
 
   @media (max-width: 768px), (prefers-reduced-motion: reduce) {
     .animate-title-appear {
-      animation: title-appear-simple 0.2s ease-out forwards;
-      will-change: auto;
+      animation: title-appear-simple 0.4s ease-out forwards;
     }
     @keyframes title-appear-simple {
       0% {
         opacity: 0;
+        transform: translateY(10px);
       }
       100% {
         opacity: 1;
+        transform: translateY(0);
       }
     }
   }

@@ -58,7 +58,7 @@ export default function OptimizedImage({
         alt={alt} 
         loading={loading}
         decoding={decoding}
-        fetchPriority={fetchpriority}
+        {...(fetchpriority !== 'auto' && { fetchpriority })}
         {...props} 
       />
     );
@@ -72,7 +72,7 @@ export default function OptimizedImage({
         alt={alt} 
         loading={loading}
         decoding={decoding}
-        fetchPriority={fetchpriority}
+        {...(fetchpriority !== 'auto' && { fetchpriority })}
         {...props} 
       />
     );
@@ -110,7 +110,7 @@ export default function OptimizedImage({
           alt={alt}
           loading={loading}
           decoding={decoding}
-          fetchPriority={fetchpriority}
+          {...(fetchpriority !== 'auto' && { fetchpriority })}
           {...props}
         />
       </picture>
@@ -125,7 +125,7 @@ export default function OptimizedImage({
       alt={alt}
       loading={loading}
       decoding={decoding}
-      fetchPriority={fetchpriority}
+      {...(fetchpriority !== 'auto' && { fetchpriority })}
       {...props}
     />
   );

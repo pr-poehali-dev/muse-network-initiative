@@ -73,27 +73,17 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    let ticking = false;
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          if (!isMobile) {
-            setScrollY(currentScrollY);
-          }
-          ticking = false;
-        });
-        ticking = true;
+      const currentScrollY = window.scrollY;
+      if (!isMobile) {
+        setScrollY(currentScrollY);
       }
-      const newTitleState = window.scrollY > 400;
-      if (newTitleState !== titleInHeader) {
-        setTitleInHeader(newTitleState);
-      }
+      setTitleInHeader(currentScrollY > 400);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile, titleInHeader]);
+  }, [isMobile]);
 
   useEffect(() => {
     const loadData = async () => {
