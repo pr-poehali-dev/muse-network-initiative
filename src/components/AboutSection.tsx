@@ -34,32 +34,32 @@ const AboutSection = memo(({ content }: AboutSectionProps) => {
           {content.subtitle}
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start md:items-center mb-16">
           {content.founder.image && (
-            <div>
+            <div className="w-full">
               <img
                 src={content.founder.image}
                 alt={content.founder.name}
-                className="w-full rounded-lg shadow-2xl"
+                className="w-full h-auto rounded-lg shadow-2xl object-cover"
                 loading="lazy"
                 decoding="async"
               />
             </div>
           )}
-          <div>
-            <h3 className="text-3xl font-bold mb-2 text-gold">
+          <div className="w-full">
+            <h3 className="text-2xl md:text-3xl font-bold mb-2 text-gold">
               {content.founder.name}
             </h3>
-            <p className="text-lg text-white/60 mb-6">
+            <p className="text-base md:text-lg text-white/60 mb-6">
               {content.founder.role}
             </p>
-            <blockquote className="border-l-4 border-gold pl-6 mb-4">
-              <p className="text-lg text-white/80 italic">
+            <blockquote className="border-l-4 border-gold pl-4 md:pl-6 mb-4">
+              <p className="text-base md:text-lg text-white/80 italic leading-relaxed">
                 "{content.founder.quote_1}"
               </p>
             </blockquote>
-            <blockquote className="border-l-4 border-gold pl-6">
-              <p className="text-lg text-white/80 italic">
+            <blockquote className="border-l-4 border-gold pl-4 md:pl-6">
+              <p className="text-base md:text-lg text-white/80 italic leading-relaxed">
                 "{content.founder.quote_2}"
               </p>
             </blockquote>
