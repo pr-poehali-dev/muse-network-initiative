@@ -108,13 +108,12 @@ const HeroSection = ({
         <div 
           className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
           style={{
-            animationDelay: isMobile ? '0s' : '0.8s',
-            opacity: 0
+            animationDelay: isMobile ? '0s' : '0.8s'
           }}
         >
           <h1 
-            className="font-black px-4 tracking-wider" 
-            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit'}}
+            className="font-black px-4 tracking-wider hero-gradient" 
+            style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
             onMouseLeave={() => {
               if (isMobile) return;
               setIsTransitioning(true);
@@ -125,23 +124,11 @@ const HeroSection = ({
             }}
           >
             {isMobile ? (
-              <span style={{
-                background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-                display: 'inline-block'
-              }}>
-                {heroContent.title}
-              </span>
+              heroContent.title
             ) : hoveredLetter ? (
               <span 
                 className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
                 style={{
-                  background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
                   filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
                 }}>
                 {hoveredLetter === 'M' && 'Mindset'}
@@ -150,32 +137,26 @@ const HeroSection = ({
                 {hoveredLetter === 'E' && 'Excellence'}
               </span>
             ) : (
-              <span 
-                className="hero-gradient"
-                style={{
-                  display: 'inline-block'
-                }}>
-                {heroContent.title.split('').map((letter, i) => (
-                  <span 
-                    key={i} 
-                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
-                    style={{
-                      transform: 'translateZ(0)',
-                      backfaceVisibility: 'hidden',
-                      transitionDelay: `${i * 30}ms`
-                    }}
-                    onMouseEnter={() => {
-                      setIsEntering(true);
-                      setTimeout(() => {
-                        setHoveredLetter(letter);
-                        setIsEntering(false);
-                      }, 200);
-                    }}
-                  >
-                    {letter}
-                  </span>
-                ))}
-              </span>
+              heroContent.title.split('').map((letter, i) => (
+                <span 
+                  key={i} 
+                  className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
+                  style={{
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    transitionDelay: `${i * 30}ms`
+                  }}
+                  onMouseEnter={() => {
+                    setIsEntering(true);
+                    setTimeout(() => {
+                      setHoveredLetter(letter);
+                      setIsEntering(false);
+                    }, 200);
+                  }}
+                >
+                  {letter}
+                </span>
+              ))
             )}
           </h1>
           {!isMobile && (
