@@ -155,10 +155,6 @@ const HeroSection = ({
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`}
                     style={{
-                      background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
                       transitionDelay: `${i * 30}ms`
