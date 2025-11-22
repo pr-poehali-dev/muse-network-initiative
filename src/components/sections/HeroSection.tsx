@@ -127,13 +127,13 @@ const HeroSection = ({
             }}
           >
             <span style={{
-              background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
+              background: 'linear-gradient(135deg, #b8953d 0%, #c9a961 25%, #b8953d 50%, #9a8349 75%, #7d6a35 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
               display: 'inline-block',
               color: 'transparent',
-              textShadow: '0 4px 12px rgba(212,175,55,0.4), 0 8px 24px rgba(212,175,55,0.2)'
+              textShadow: '0 2px 8px rgba(184,149,61,0.25)'
             }}>
               {isMobile ? (
                 heroContent.title
@@ -141,12 +141,12 @@ const HeroSection = ({
                 <span 
                   className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
                   style={{
-                    background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
+                    background: 'linear-gradient(135deg, #b8953d 0%, #c9a961 25%, #b8953d 50%, #9a8349 75%, #7d6a35 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 30px rgba(212,175,55,0.6)) drop-shadow(0 0 60px rgba(244,208,63,0.4)) drop-shadow(0 8px 32px rgba(0,0,0,0.6))',
-                    textShadow: '0 4px 12px rgba(212,175,55,0.4)'
+                    filter: 'drop-shadow(0 0 20px rgba(184,149,61,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(0 8px 24px rgba(0,0,0,0.5))',
+                    textShadow: '0 2px 8px rgba(184,149,61,0.3)'
                   }}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -159,15 +159,15 @@ const HeroSection = ({
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'} hover:scale-110`}
                     style={{
-                      background: 'linear-gradient(135deg, #d4af37 0%, #f4d03f 20%, #d4af37 40%, #b8953d 60%, #8b7355 80%, #6b5d42 100%)',
+                      background: 'linear-gradient(135deg, #b8953d 0%, #c9a961 25%, #b8953d 50%, #9a8349 75%, #7d6a35 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
                       transform: 'translateZ(0)',
                       backfaceVisibility: 'hidden',
                       transitionDelay: `${i * 30}ms`,
-                      filter: 'drop-shadow(0 4px 8px rgba(212,175,55,0.4)) drop-shadow(0 0 20px rgba(212,175,55,0.3))',
-                      textShadow: '0 2px 8px rgba(212,175,55,0.3)'
+                      filter: 'drop-shadow(0 2px 6px rgba(184,149,61,0.25)) drop-shadow(0 0 15px rgba(184,149,61,0.2))',
+                      textShadow: '0 1px 4px rgba(184,149,61,0.2)'
                     }}
                     onMouseEnter={() => {
                       setIsEntering(true);
@@ -185,8 +185,8 @@ const HeroSection = ({
           </h1>
           {!isMobile && (
             <>
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#d4af37]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#d4af37]/40 transition-all duration-700 blur-3xl pointer-events-none"></div>
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-full h-40 bg-gradient-to-b from-transparent via-[#f4d03f]/0 to-transparent opacity-60 group-hover:opacity-100 group-hover:via-[#f4d03f]/20 transition-all duration-1000 blur-[100px] pointer-events-none"></div>
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-gradient-to-t from-transparent via-[#b8953d]/0 to-transparent opacity-0 group-hover:opacity-100 group-hover:via-[#b8953d]/25 transition-all duration-700 blur-3xl pointer-events-none"></div>
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-full h-40 bg-gradient-to-b from-transparent via-[#c9a961]/0 to-transparent opacity-40 group-hover:opacity-80 group-hover:via-[#c9a961]/15 transition-all duration-1000 blur-[100px] pointer-events-none"></div>
             </>
           )}
         </div>
