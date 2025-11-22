@@ -145,9 +145,9 @@ const HeroSection = ({
                     filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'
                   }}>
                   {hoveredLetter === 'M' && 'Mindset'}
-                  {hoveredLetter === 'U' && 'Unity'}
-                  {hoveredLetter === 'S' && 'Style'}
-                  {hoveredLetter === 'E' && 'Empowerment'}
+                  {hoveredLetter === 'U' && 'Uniqueness'}
+                  {hoveredLetter === 'S' && 'Synergy'}
+                  {hoveredLetter === 'E' && 'Excellence'}
                 </span>
               ) : (
                 heroContent.title.split('').map((letter, i) => (
