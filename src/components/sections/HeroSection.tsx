@@ -123,18 +123,18 @@ const HeroSection = ({
             }}
           >
             {isMobile ? (
-              <span style={{color: '#c9a961'}} className="inline-block">
+              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text'}} className="inline-block">
                 {heroContent.title}
               </span>
             ) : hoveredLetter ? (
-              <span className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{color: '#c9a961', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
+              <span className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))'}}>
                 {hoveredLetter === 'M' && 'Mindset'}
                 {hoveredLetter === 'U' && 'Unity'}
                 {hoveredLetter === 'S' && 'Style'}
                 {hoveredLetter === 'E' && 'Empowerment'}
               </span>
             ) : (
-              <span style={{color: '#c9a961', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))', textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)'}} className="inline-block">
+              <span style={{background: 'linear-gradient(to right, #a9892f, #8a7840, #6d5d3f)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', filter: 'drop-shadow(0 0 20px rgba(212,175,55,0.3)) drop-shadow(0 0 40px rgba(184,149,61,0.2)) drop-shadow(2px 4px 8px rgba(0,0,0,0.4))', textShadow: '0 0 60px rgba(212,175,55,0.15), 0 0 30px rgba(184,149,61,0.1)'}} className="inline-block">
                 {heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
