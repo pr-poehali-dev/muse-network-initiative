@@ -88,7 +88,7 @@ const EventPartners = memo(() => {
         <div className="mt-12 text-center">
           <p className="text-white/40 text-sm">
             Хотите стать партнером мероприятия?{' '}
-            <a href="mailto:info@muse.ru" className="text-[#d4af37] hover:text-[#d4af37]/80 transition-colors underline">
+            <a href="https://t.me/albe_spb" target="_blank" rel="noopener noreferrer" className="text-[#d4af37] hover:text-[#d4af37]/80 transition-colors underline">
               Свяжитесь с нами
             </a>
           </p>
