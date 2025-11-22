@@ -89,15 +89,9 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
               <div className="absolute left-1/2 -translate-x-1/2 hidden lg:block">
                 <button
                   onClick={() => navigate('/events')}
-                  className="group relative flex items-center gap-3"
+                  className="px-8 py-2.5 bg-black/40 backdrop-blur-sm border border-[#d4af37]/60 rounded text-[#d4af37] text-sm font-semibold uppercase tracking-wider hover:bg-[#d4af37]/10 hover:border-[#d4af37] transition-all duration-300"
                 >
-                  <span className="text-sm font-bold text-[#b8953d]/90 group-hover:text-[#d4af37] uppercase tracking-wider transition-all duration-300">
-                    ФОРУМ 13.12
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <span className="w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] group-hover:w-8 transition-all duration-300"></span>
-                    <span className="w-6 h-0.5 bg-gradient-to-r from-[#d4af37] to-[#8b7355] group-hover:w-8 transition-all duration-300"></span>
-                  </div>
+                  Форум 13.12
                 </button>
               </div>
               
