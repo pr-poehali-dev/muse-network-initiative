@@ -308,7 +308,7 @@ const Index = () => {
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-[80px]"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#8b7355]/20 rounded-full blur-[80px]"></div>
 
-          {heroContent.image_center && (
+          {!isMobile && heroContent.image_center && (
             <div className="absolute left-1/2 -translate-x-1/2 top-0 w-full md:w-[36%] h-full opacity-60 md:opacity-75 z-5 animate-zoom-in" style={{animationDelay: '0s', animationFillMode: 'backwards', willChange: 'transform', transform: `translateY(${scrollY * 0.03}px) translateX(-50%)`}}>
               <img 
                 src={heroContent.image_center} 
