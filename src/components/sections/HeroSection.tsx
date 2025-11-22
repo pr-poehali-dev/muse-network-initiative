@@ -125,7 +125,7 @@ const HeroSection = ({
             }}
           >
             <span style={{
-              background: 'linear-gradient(90deg, #a9892f 0%, #8a7840 50%, #6d5d3f 100%)',
+              background: 'linear-gradient(90deg, #9a7d0f 0%, #8b7528 25%, #7d6a35 50%, #6f5e3f 75%, #5e5240 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
