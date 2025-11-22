@@ -89,12 +89,10 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
               <div className="absolute left-1/2 -translate-x-1/2 hidden lg:block">
                 <button
                   onClick={() => navigate('/events')}
-                  className="group relative overflow-hidden bg-gradient-to-br from-[#d4af37]/20 to-[#d4af37]/10 backdrop-blur-sm border-2 border-[#d4af37]/40 text-white px-6 py-2.5 rounded-lg font-bold text-sm transition-all duration-500 hover:border-[#d4af37] hover:scale-105 hover:shadow-lg hover:shadow-[#d4af37]/30"
+                  className="relative overflow-hidden bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold text-sm px-8 py-3 rounded-md transition-all duration-400 hover:scale-105 shadow-lg shadow-[#d4af37]/20"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/0 via-[#d4af37]/0 to-[#d4af37]/0 group-hover:from-[#d4af37]/30 group-hover:via-[#d4af37]/20 group-hover:to-transparent transition-all duration-500"></div>
-                  <span className="relative flex items-center gap-2 whitespace-nowrap">
-                    <span className="text-[#d4af37] text-lg">🎉</span>
-                    <span>ФОРУМ 13.12</span>
+                  <span className="relative whitespace-nowrap">
+                    ФОРУМ 13.12
                   </span>
                 </button>
               </div>
