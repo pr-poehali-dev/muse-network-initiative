@@ -104,15 +104,15 @@ const HeroSection = ({
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-[25]"></div>
       </div>
 
-      <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+      <div className="w-full text-center px-4 md:px-8 relative z-[100] pt-[35vh] md:pt-0">
         <div 
-          className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
+          className="relative inline-block mb-8 md:mb-10 animate-title-appear group z-[100]" 
           style={{
             animationDelay: isMobile ? '0s' : '0.8s'
           }}
         >
           <h1 
-            className="font-black px-4 tracking-wider hero-gradient" 
+            className="font-black px-4 tracking-wider hero-gradient relative z-[100]" 
             style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)'}}
             onMouseLeave={() => {
               if (isMobile) return;
