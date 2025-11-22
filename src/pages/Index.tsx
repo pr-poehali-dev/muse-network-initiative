@@ -314,7 +314,7 @@ const Index = () => {
           </div>
 
           <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
-            <AboutSection aboutContent={aboutContent} />
+            <AboutSection content={aboutContent} />
           </Suspense>
 
           <div className="relative h-px">
