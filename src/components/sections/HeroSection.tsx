@@ -52,9 +52,8 @@ const HeroSection = ({
             <img 
               src={heroContent.image_center} 
               alt="" 
-              loading="eager"
-              decoding="sync"
-              fetchPriority="high"
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover object-center"
               style={{
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
@@ -74,7 +73,7 @@ const HeroSection = ({
             <img 
               src={heroContent.image_left} 
               alt="" 
-              loading="eager"
+              loading="lazy"
               decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               style={{
@@ -93,7 +92,7 @@ const HeroSection = ({
             <img 
               src={heroContent.image_right} 
               alt="" 
-              loading="eager"
+              loading="lazy"
               decoding="async"
               className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
               style={{
