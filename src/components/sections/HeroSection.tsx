@@ -52,16 +52,16 @@ const HeroSection = ({
             <img 
               src={heroContent.image_center} 
               alt="" 
-              loading="lazy"
-              decoding="async"
+              loading="eager"
+              decoding="sync"
+              fetchpriority="high"
               className="w-full h-full object-cover object-center"
               style={{
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
                 maskComposite: 'intersect',
                 WebkitMaskComposite: 'source-in',
-                filter: 'grayscale(20%) contrast(1.15)',
-                contentVisibility: 'auto'
+                filter: 'grayscale(20%) contrast(1.15)'
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -73,15 +73,14 @@ const HeroSection = ({
             <img 
               src={heroContent.image_left} 
               alt="" 
-              loading="lazy"
+              loading="eager"
               decoding="async"
               className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
               style={{
                 objectPosition: '50% 20%',
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)',
-                contentVisibility: 'auto'
+                filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
           </div>
@@ -92,14 +91,13 @@ const HeroSection = ({
             <img 
               src={heroContent.image_right} 
               alt="" 
-              loading="lazy"
+              loading="eager"
               decoding="async"
               className="w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105"
               style={{
                 maskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
                 WebkitMaskImage: 'linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,0.85) 20%, rgba(0,0,0,0.85) 80%, rgba(0,0,0,0) 100%)',
-                filter: 'grayscale(40%) contrast(1.1)',
-                contentVisibility: 'auto'
+                filter: 'grayscale(40%) contrast(1.1)'
               }}
             />
           </div>
@@ -151,13 +149,13 @@ const HeroSection = ({
                 heroContent.title
               ) : hoveredLetter ? (
                 <span 
-                  className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
+                  className={`inline-block uppercase transition-opacity duration-500 ${isTransitioning || isEntering ? 'opacity-0' : 'opacity-100'}`} 
                   style={{
                     background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
-                    filter: 'drop-shadow(0 0 15px rgba(139,115,85,0.2)) drop-shadow(0 0 30px rgba(139,115,85,0.15)) drop-shadow(0 6px 20px rgba(0,0,0,0.4))'
+                    willChange: 'opacity'
                   }}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -168,23 +166,22 @@ const HeroSection = ({
                 heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
-                    className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'} hover:scale-105`}
+                    className={`inline-block transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
                     style={{
                       background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
-                      transform: 'translateZ(0)',
-                      backfaceVisibility: 'hidden',
-                      transitionDelay: `${i * 30}ms`,
-                      filter: 'drop-shadow(0 1px 4px rgba(139,115,85,0.15)) drop-shadow(0 0 10px rgba(139,115,85,0.12))'
+                      willChange: 'opacity'
                     }}
                     onMouseEnter={() => {
-                      setIsEntering(true);
-                      setTimeout(() => {
-                        setHoveredLetter(letter);
-                        setIsEntering(false);
-                      }, 200);
+                      requestAnimationFrame(() => {
+                        setIsEntering(true);
+                        setTimeout(() => {
+                          setHoveredLetter(letter);
+                          setIsEntering(false);
+                        }, 150);
+                      });
                     }}
                   >
                     {letter}

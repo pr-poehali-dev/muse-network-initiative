@@ -10,11 +10,19 @@
 
     <link rel="icon" type="image/png" href="https://cdn.poehali.dev/files/6c57de74-9c24-44a9-8c8b-e416c8c71480.png" fetchpriority="low">
     
+    <!-- Критический инлайн CSS для первой отрисовки -->
+    <style>
+        html,body{margin:0;padding:0;overflow-x:hidden;background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+        #root{min-height:100vh;width:100%;overflow-x:hidden}
+        .hero-skeleton{position:relative;min-height:100vh;background:#000;display:flex;align-items:center;justify-content:center}
+    </style>
+    
     <!-- Preconnect для критичных доменов -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.poehali.dev">
     <link rel="preconnect" href="https://functions.poehali.dev" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.poehali.dev">
+    <link rel="dns-prefetch" href="https://lbc.core.corecdn.net">
     <link rel="dns-prefetch" href="https://mc.yandex.ru">
     
     <!-- Оптимизированная загрузка шрифтов -->
@@ -25,9 +33,15 @@
     <!-- Preload критичного лого -->
     <link rel="preload" href="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png" as="image" fetchpriority="high" imagesizes="64px" imagesrcset="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png 64w">
     
-    <!-- Prefetch API данных для главной страницы -->
-    <link rel="prefetch" href="https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95" as="fetch" crossorigin>
-    <link rel="prefetch" href="https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4" as="fetch" crossorigin>
+    <!-- Preload центрального изображения героя (LCP элемент) -->
+    <link rel="preload" href="https://lbc.core.corecdn.net/storage/v1/b/poehali-dev-landing-pages/o/img-2025-10-25-14-43-21-50-1.jpg" as="image" fetchpriority="high" imagesizes="(max-width: 768px) 0px, 36vw" imagesrcset="https://lbc.core.corecdn.net/storage/v1/b/poehali-dev-landing-pages/o/img-2025-10-25-14-43-21-50-1.jpg 800w">
+    
+    <!-- Preload критического JavaScript модуля -->
+    <link rel="modulepreload" href="/src/main.tsx" fetchpriority="high">
+    
+    <!-- Preload критичных API данных для главной страницы -->
+    <link rel="preload" href="https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95" as="fetch" crossorigin>
+    <link rel="preload" href="https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4" as="fetch" crossorigin>
     <meta property="og:title" content="Муза — Клуб предприимчивых женщин">
     <meta property="og:description" content="Клуб Muse объединяет предприимчивых женщин для обмена опытом, нетворкинга и развития.">
     <meta property="og:image:width" content="1200">
