@@ -35,7 +35,7 @@ const HeroSection = ({
   const navigate = useNavigate();
   
   return (
-    <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-center md:items-end pb-8 md:pb-12`}>
+    <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-black via-[#1a0a00]/50 to-black z-[15]"></div>
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_20%,_black_100%)] z-[15]"></div>
@@ -109,9 +109,9 @@ const HeroSection = ({
         <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black to-transparent z-[25]"></div>
       </div>
 
-      <div className="w-full text-center px-4 md:px-8 relative z-30 pt-30 md:pt-0">
+      <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
         {isMobile && (
-          <div className="mb-6">
+          <div className="mb-8">
             <button
               onClick={() => navigate('/events')}
               className="px-6 py-2.5 bg-black/40 backdrop-blur-sm border border-[#d4af37]/60 rounded text-[#d4af37] text-sm font-semibold uppercase tracking-wider"
@@ -121,7 +121,7 @@ const HeroSection = ({
           </div>
         )}
         <div 
-          className="relative inline-block mb-6 md:mb-10 animate-title-appear group" 
+          className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
           style={{
             animationDelay: isMobile ? '0s' : '0.8s',
             opacity: 0
