@@ -71,8 +71,8 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-[#d4af37]/20' : ''}`}>
-        <div className={`bg-black/80 ${isMobile ? '' : 'backdrop-blur-xl'} border-b border-[#d4af37]/30 transition-all duration-300 ${isScrolled ? 'py-2' : ''}`}>
+      <header className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'shadow-lg shadow-[#d4af37]/20' : ''}`}>
+        <div className={`bg-black/90 ${isMobile ? '' : 'backdrop-blur-xl'} border-b border-[#d4af37]/30 transition-all duration-300`}>
           <div className="container mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
