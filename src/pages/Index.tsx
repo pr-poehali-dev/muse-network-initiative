@@ -1,4 +1,20 @@
 import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, lazy, Suspense, startTransition } from 'react';
+
+declare global {
+  interface Window {
+    requestIdleCallback: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+  }
+  interface IdleRequestCallback {
+    (deadline: IdleDeadline): void;
+  }
+  interface IdleDeadline {
+    didTimeout: boolean;
+    timeRemaining(): number;
+  }
+  interface IdleRequestOptions {
+    timeout?: number;
+  }
+}
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -100,17 +116,12 @@ const Index = () => {
   }, [isMobile]);
 
   useEffect(() => {
+    const requestIdleCallbackPolyfill = window.requestIdleCallback || ((cb: any) => setTimeout(cb, 1));
+    
     const loadData = async () => {
       try {
-        const [homepageRes, expertsRes] = await Promise.all([
-          fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95'),
-          fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
-        ]);
-        
-        const [homepageData, expertsData] = await Promise.all([
-          homepageRes.json(),
-          expertsRes.json()
-        ]);
+        const homepageRes = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
+        const homepageData = await homepageRes.json();
         
         if (homepageData.content?.hero) {
           setHeroContent(homepageData.content.hero);
@@ -128,17 +139,27 @@ const Index = () => {
           }
         });
         
-        startTransition(() => {
-          if (expertsData.speakers) {
-            setExperts(expertsData.speakers.map((speaker: any) => ({
-              name: speaker.name,
-              role: speaker.role,
-              description: speaker.bio || '',
-              image: speaker.image,
-              video_url: speaker.video_url || null
-            })));
-          }
-        });
+        requestIdleCallbackPolyfill(
+          () => {
+            fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
+              .then(res => res.json())
+              .then(expertsData => {
+                if (expertsData.speakers) {
+                  startTransition(() => {
+                    setExperts(expertsData.speakers.map((speaker: any) => ({
+                      name: speaker.name,
+                      role: speaker.role,
+                      description: speaker.bio || '',
+                      image: speaker.image,
+                      video_url: speaker.video_url || null
+                    })));
+                  });
+                }
+              })
+              .catch(() => {});
+          },
+          { timeout: 2000 }
+        );
       } catch (error) {
         console.error('Failed to load data:', error);
       }
@@ -183,14 +204,23 @@ const Index = () => {
   const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
   const [eventsRefreshTrigger, setEventsRefreshTrigger] = useState(0);
 
-  const expertCards = useMemo(() => 
-    experts.map((expert, index) => (
-      <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
+  const expertCards = useMemo(() => {
+    if (experts.length === 0) return null;
+    
+    return experts.map((expert, index) => (
+      <Card key={`${expert.name}-${index}`} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
         <CardContent className="p-0">
           <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
             {expert.image ? (
               <>
-                <img src={expert.image} alt={expert.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
+                <img 
+                  src={expert.image} 
+                  alt={expert.name} 
+                  loading="lazy" 
+                  decoding="async"
+                  fetchpriority="low"
+                  className="w-full h-full object-cover object-top md:object-top absolute inset-0" 
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
               </>
             ) : (
@@ -209,8 +239,8 @@ const Index = () => {
           </div>
         </CardContent>
       </Card>
-    ))
-  , [experts]);
+    ));
+  }, [experts]);
 
   const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
@@ -238,9 +268,12 @@ const Index = () => {
     setIsEventDialogOpen(true);
   }, []);
 
-  const handleEventFormSubmit = async (e: FormEvent) => {
+  const handleEventFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    setIsEventFormSubmitting(true);
+    
+    startTransition(() => {
+      setIsEventFormSubmitting(true);
+    });
     
     try {
       const response = await fetch('https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47', {
@@ -252,29 +285,38 @@ const Index = () => {
       });
       
       if (response.ok) {
-        setIsEventFormSubmitting(false);
-        setIsEventFormSubmitted(true);
-        setEventsRefreshTrigger(prev => prev + 1);
+        startTransition(() => {
+          setIsEventFormSubmitting(false);
+          setIsEventFormSubmitted(true);
+          setEventsRefreshTrigger(prev => prev + 1);
+        });
         setTimeout(() => {
-          setIsEventFormSubmitted(false);
-          setIsEventDialogOpen(false);
-          setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
+          startTransition(() => {
+            setIsEventFormSubmitted(false);
+            setIsEventDialogOpen(false);
+            setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
+          });
         }, 2000);
       } else {
         const errorData = await response.json();
-        setIsEventFormSubmitting(false);
+        startTransition(() => {
+          setIsEventFormSubmitting(false);
+        });
         alert(errorData.message || 'Ошибка регистрации');
-        console.error('Failed to submit event registration');
       }
     } catch (error) {
-      setIsEventFormSubmitting(false);
-      console.error('Error submitting event registration:', error);
+      startTransition(() => {
+        setIsEventFormSubmitting(false);
+      });
     }
-  };
+  }, [eventFormData]);
 
-  const handleJoinFormSubmit = async (e: FormEvent) => {
+  const handleJoinFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    setIsJoinFormSubmitting(true);
+    
+    startTransition(() => {
+      setIsJoinFormSubmitting(true);
+    });
     
     try {
       const response = await fetch('https://functions.poehali.dev/1abad196-7520-4a04-9c6e-25ad758e03a6', {
@@ -286,28 +328,37 @@ const Index = () => {
       });
       
       if (response.ok) {
-        const data = await response.json();
+        await response.json();
         localStorage.setItem('userEmail', joinFormData.email);
-        setIsJoinFormSubmitting(false);
-        setIsJoinFormSubmitted(true);
+        startTransition(() => {
+          setIsJoinFormSubmitting(false);
+          setIsJoinFormSubmitted(true);
+        });
         setTimeout(() => {
-          setIsJoinFormSubmitted(false);
-          setIsJoinDialogOpen(false);
-          setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
+          startTransition(() => {
+            setIsJoinFormSubmitted(false);
+            setIsJoinDialogOpen(false);
+            setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
+          });
         }, 2000);
       } else {
-        setIsJoinFormSubmitting(false);
-        console.error('Failed to submit application');
+        startTransition(() => {
+          setIsJoinFormSubmitting(false);
+        });
       }
     } catch (error) {
-      setIsJoinFormSubmitting(false);
-      console.error('Error submitting application:', error);
+      startTransition(() => {
+        setIsJoinFormSubmitting(false);
+      });
     }
-  };
+  }, [joinFormData]);
 
-  const handleExpertFormSubmit = async (e: FormEvent) => {
+  const handleExpertFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    setIsExpertFormSubmitting(true);
+    
+    startTransition(() => {
+      setIsExpertFormSubmitting(true);
+    });
     
     try {
       const response = await fetch('https://functions.poehali.dev/8ab02561-3cbe-42f7-9c3d-42f2c964f007', {
@@ -319,22 +370,28 @@ const Index = () => {
       });
       
       if (response.ok) {
-        setIsExpertFormSubmitting(false);
-        setIsExpertFormSubmitted(true);
+        startTransition(() => {
+          setIsExpertFormSubmitting(false);
+          setIsExpertFormSubmitted(true);
+        });
         setTimeout(() => {
-          setIsExpertFormSubmitted(false);
-          setIsExpertDialogOpen(false);
-          setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
+          startTransition(() => {
+            setIsExpertFormSubmitted(false);
+            setIsExpertDialogOpen(false);
+            setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
+          });
         }, 2000);
       } else {
-        setIsExpertFormSubmitting(false);
-        console.error('Failed to submit expert application');
+        startTransition(() => {
+          setIsExpertFormSubmitting(false);
+        });
       }
     } catch (error) {
-      setIsExpertFormSubmitting(false);
-      console.error('Error submitting expert application:', error);
+      startTransition(() => {
+        setIsExpertFormSubmitting(false);
+      });
     }
-  };
+  }, [expertFormData]);
 
 
 
