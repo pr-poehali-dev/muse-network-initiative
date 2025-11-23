@@ -63,21 +63,36 @@ const Index = () => {
   });
   
   useEffect(() => {
+    let resizeTimer: NodeJS.Timeout;
     const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        setIsMobile(window.innerWidth < 768);
+      }, 150);
     };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', checkMobile, { passive: true });
+    return () => {
+      clearTimeout(resizeTimer);
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (!isMobile) {
-        setScrollY(currentScrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (!isMobile) {
+            setScrollY(currentScrollY);
+          }
+          setTitleInHeader(currentScrollY > 400);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setTitleInHeader(currentScrollY > 400);
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -100,12 +115,18 @@ const Index = () => {
         if (homepageData.content?.hero) {
           setHeroContent(homepageData.content.hero);
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 0));
+        
         if (homepageData.content?.about) {
           setAboutContent(homepageData.content.about);
         }
         if (homepageData.content?.values) {
           setValuesContent(homepageData.content.values);
         }
+        
+        await new Promise(resolve => setTimeout(resolve, 0));
+        
         if (homepageData.content?.events) {
           setEventsContent(homepageData.content.events);
         }
@@ -314,7 +335,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{contentVisibility: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -406,7 +427,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="mission" className="py-20 px-8 bg-black noise-texture">
+      <section id="mission" className="py-20 px-8 bg-black noise-texture" style={{contentVisibility: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -438,7 +459,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{contentVisibility: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -517,7 +538,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
+      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden" style={{contentVisibility: 'auto'}}>
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -546,7 +567,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{contentVisibility: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -596,7 +617,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="contact" className="py-20 px-8 bg-black luxury-texture">
+      <section id="contact" className="py-20 px-8 bg-black luxury-texture" style={{contentVisibility: 'auto'}}>
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">

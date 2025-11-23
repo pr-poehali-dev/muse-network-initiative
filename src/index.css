@@ -371,17 +371,16 @@ body::-webkit-scrollbar {
 
   .hover-scale {
     transition:
-      transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-      box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    backface-visibility: hidden;
-    transform: translateZ(0);
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
   }
 
   .hover-scale:hover {
-    transform: translateY(-8px) scale(1.02) translateZ(0);
+    transform: translateY(-6px);
     box-shadow:
-      0 20px 40px rgba(212, 175, 55, 0.4),
-      0 0 0 2px rgba(212, 175, 55, 0.2);
+      0 12px 24px rgba(212, 175, 55, 0.3),
+      0 0 0 1px rgba(212, 175, 55, 0.15);
   }
 
   @media (max-width: 768px), (prefers-reduced-motion: reduce) {
