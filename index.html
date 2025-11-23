@@ -14,7 +14,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.poehali.dev">
-    <link rel="dns-prefetch" href="https://functions.poehali.dev">
+    <link rel="preconnect" href="https://functions.poehali.dev" crossorigin>
+    <link rel="dns-prefetch" href="https://mc.yandex.ru">
     
     <!-- Оптимизированная загрузка шрифтов -->
     <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v26/JTUSjIg1_i6t8kCHKm459Wlhyw.woff2" as="font" type="font/woff2" crossorigin>
@@ -23,6 +24,10 @@
     
     <!-- Preload критичного лого -->
     <link rel="preload" href="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png" as="image" fetchpriority="high">
+    
+    <!-- Prefetch API данных для главной страницы -->
+    <link rel="prefetch" href="https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95" as="fetch" crossorigin>
+    <link rel="prefetch" href="https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4" as="fetch" crossorigin>
     <meta property="og:title" content="Муза — Клуб предприимчивых женщин">
     <meta property="og:description" content="Клуб Muse объединяет предприимчивых женщин для обмена опытом, нетворкинга и развития.">
     <meta property="og:image:width" content="1200">
@@ -107,29 +112,34 @@
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>
 
-<!-- Yandex.Metrika counter -->
+<!-- Yandex.Metrika counter (отложенная загрузка) -->
 <script type="text/javascript">
-    (function (m, e, t, r, i, k, a) {
-        m[i] = m[i] || function () {
-            (m[i].a = m[i].a || []).push(arguments)
-        };
-        m[i].l = 1 * new Date();
-        for (var j = 0; j < document.scripts.length; j++) {
-            if (document.scripts[j].src === r) {
-                return;
-            }
-        }
-        k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-    })
-    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    // Откладываем загрузку метрики до события load
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            (function (m, e, t, r, i, k, a) {
+                m[i] = m[i] || function () {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+                m[i].l = 1 * new Date();
+                for (var j = 0; j < document.scripts.length; j++) {
+                    if (document.scripts[j].src === r) {
+                        return;
+                    }
+                }
+                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+            })
+            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-    ym(101026698, "init", {
-        trustedDomains: ["poehali.dev"],
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-        trackHash: true
+            ym(101026698, "init", {
+                trustedDomains: ["poehali.dev"],
+                clickmap: true,
+                trackLinks: true,
+                accurateTrackBounce: true,
+                webvisor: true,
+                trackHash: true
+            });
+        }, 2000);
     });
 </script>
 <noscript>
