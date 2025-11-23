@@ -25,6 +25,12 @@ const partners: Partner[] = [
     name: 'Медиа партнер',
     logo: 'https://cdn.poehali.dev/files/5e1c24fd-874d-4186-ab57-9c7a1d21c78c.png',
     url: '#'
+  },
+  {
+    id: '4',
+    name: 'New Voice',
+    logo: 'https://cdn.poehali.dev/files/3ce8716a-6474-40f2-9764-7d2ffc27ee7a.png',
+    url: '#'
   }
 ];
 
@@ -43,7 +49,7 @@ const EventPartners = memo(() => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {partners.map((partner, index) => (
             <a
               key={partner.id}

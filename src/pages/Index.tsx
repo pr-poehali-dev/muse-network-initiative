@@ -187,7 +187,7 @@ const Index = () => {
     if (experts.length === 0) return null;
     
     return experts.map((expert, index) => (
-      <Card key={`${expert.name}-${index}`} className="overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a] animate-scale-in" style={{animationDelay: `${index * 0.08}s`, transform: 'translateZ(0)'}}>
+      <Card key={`${expert.name}-${index}`} className="overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a] animate-scale-in hover-scale" style={{animationDelay: `${index * 0.08}s`, transform: 'translateZ(0)'}}>
         <CardContent className="p-0">
           <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
             {expert.image ? (
@@ -402,7 +402,7 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col gap-8">
-            <Card className="rounded-2xl animate-slide-in-right bg-[#1a1a1a] border-[#d4af37]/30" style={{transform: 'translateZ(0)'}}>
+            <Card className="rounded-2xl animate-slide-in-right bg-[#1a1a1a] border-[#d4af37]/30 hover-scale" style={{transform: 'translateZ(0)'}}>
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Наши цели</h3>
                 <ul className="space-y-4 text-white/80">
@@ -426,7 +426,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="rounded-2xl bg-[#1a1a1a] border-[#d4af37]/30" style={{transform: 'translateZ(0)'}}>
+            <Card className="rounded-2xl bg-[#1a1a1a] border-[#d4af37]/30 hover-scale" style={{transform: 'translateZ(0)'}}>
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Что мы предлагаем</h3>
                 <ul className="space-y-3 text-white/80">
@@ -464,7 +464,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {valuesContent.values.map((value: any, index: number) => (
-              <Card key={index} className="border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]" style={{animationDelay: `${index * 0.1}s`, transform: 'translateZ(0)'}}>
+              <Card key={index} className="border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a] hover-scale" style={{animationDelay: `${index * 0.1}s`, transform: 'translateZ(0)'}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                     <Icon name={value.icon} className="text-[#b8953d]/60" size={24} />
@@ -499,7 +499,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {eventsContent.formats.map((event: any, index: number) => (
-              <Card key={index} className={`border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]`} style={{animationDelay: `${index * 0.15}s`, transform: 'translateZ(0)'}}>
+              <Card key={index} className={`border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a] hover-scale`} style={{animationDelay: `${index * 0.15}s`, transform: 'translateZ(0)'}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 flex-shrink-0">
