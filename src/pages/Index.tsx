@@ -361,7 +361,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{contentVisibility: 'auto', containIntrinsicSize: '0 800px'}}>
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
