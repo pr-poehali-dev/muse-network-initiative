@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, lazy, Suspense, startTransition } from 'react';
+import { useState, FormEvent, useEffect, useMemo, useCallback, lazy, Suspense, startTransition } from 'react';
 
 declare global {
   interface Window {
@@ -18,20 +18,17 @@ declare global {
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
-const EventsCalendar = lazy(() => import('@/components/EventsCalendar'));
-
-const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventRegistrationDialog'));
-const JoinClubDialog = lazy(() => import('@/components/dialogs/JoinClubDialog'));
-const BecomeExpertDialog = lazy(() => import('@/components/dialogs/BecomeExpertDialog'));
-const LoginDialog = lazy(() => import('@/components/dialogs/LoginDialog'));
 import { useNavigate } from 'react-router-dom';
-import Header from '@/components/Header';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
-
-const ExpertsSection = lazy(() => import('@/components/ExpertsSection'));
-const AboutSection = lazy(() => import('@/components/AboutSection'));
 import HeroSection from '@/components/sections/HeroSection';
+import LazySection from '@/components/LazySection';
+
+const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
+const EventRegistrationDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/EventRegistrationDialog'));
+const JoinClubDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/JoinClubDialog'));
+const BecomeExpertDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/BecomeExpertDialog'));
+const LoginDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/LoginDialog'));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -420,6 +417,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      <LazySection>
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -505,6 +503,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </LazySection>
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
@@ -512,6 +511,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      <LazySection>
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -537,6 +537,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </LazySection>
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
@@ -544,6 +545,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      <LazySection>
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -588,6 +590,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </LazySection>
 
       {isEventDialogOpen && (
         <Suspense fallback={null}>
@@ -652,6 +655,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
+      <LazySection>
       <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -670,6 +674,7 @@ const Index = () => {
           </div>
         </div>
       </section>
+      </LazySection>
 
       <div className="relative h-px">
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
