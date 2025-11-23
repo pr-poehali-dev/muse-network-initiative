@@ -5,9 +5,9 @@ import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
-import HeroSection from '@/components/sections/HeroSection';
 import SectionDivider from '@/components/ui/SectionDivider';
 
+const HeroSection = lazy(() => import(/* webpackChunkName: "hero" */ '@/components/sections/HeroSection'));
 const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
 const EventRegistrationDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/EventRegistrationDialog'));
 const JoinClubDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/JoinClubDialog'));
@@ -348,16 +348,18 @@ const Index = () => {
       <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)} onOpenLoginDialog={() => setIsLoginDialogOpen(true)}>
         <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide" style={{isolation: 'isolate'}}>
 
-      <HeroSection 
-        heroContent={heroContent}
-        isMobile={isMobile}
-        hoveredLetter={hoveredLetter}
-        setHoveredLetter={setHoveredLetter}
-        isTransitioning={isTransitioning}
-        setIsTransitioning={setIsTransitioning}
-        isEntering={isEntering}
-        setIsEntering={setIsEntering}
-      />
+      <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
+        <HeroSection 
+          heroContent={heroContent}
+          isMobile={isMobile}
+          hoveredLetter={hoveredLetter}
+          setHoveredLetter={setHoveredLetter}
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          isEntering={isEntering}
+          setIsEntering={setIsEntering}
+        />
+      </Suspense>
 
       <SectionDivider />
 

@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import OptimizedImage from '@/components/OptimizedImage';
-import LiveStreamSection from '@/components/MuseTV/LiveStreamSection';
-import FeaturedVideoSection from '@/components/MuseTV/FeaturedVideoSection';
-import VideoLibrarySection from '@/components/MuseTV/VideoLibrarySection';
-import UpcomingStreamsSection from '@/components/MuseTV/UpcomingStreamsSection';
+
+const LiveStreamSection = lazy(() => import('@/components/MuseTV/LiveStreamSection'));
+const FeaturedVideoSection = lazy(() => import('@/components/MuseTV/FeaturedVideoSection'));
+const VideoLibrarySection = lazy(() => import('@/components/MuseTV/VideoLibrarySection'));
+const UpcomingStreamsSection = lazy(() => import('@/components/MuseTV/UpcomingStreamsSection'));
 
 const MuseTV = () => {
   const navigate = useNavigate();
@@ -210,37 +211,45 @@ const MuseTV = () => {
             </div>
           </section>
 
-          <LiveStreamSection
-            isLive={isLive}
-            liveStream={liveStream}
-            liveStreamKey={liveStreamKey}
-            viewersCount={viewersCount}
-          />
+          <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+            <LiveStreamSection
+              isLive={isLive}
+              liveStream={liveStream}
+              liveStreamKey={liveStreamKey}
+              viewersCount={viewersCount}
+            />
+          </Suspense>
 
-          <FeaturedVideoSection
-            randomPodcast={randomPodcast}
-            videoMetadata={videoMetadata}
-            formatViews={formatViews}
-            formatDuration={formatDuration}
-            onVideoClick={handleVideoClick}
-          />
+          <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+            <FeaturedVideoSection
+              randomPodcast={randomPodcast}
+              videoMetadata={videoMetadata}
+              formatViews={formatViews}
+              formatDuration={formatDuration}
+              onVideoClick={handleVideoClick}
+            />
+          </Suspense>
 
-          <VideoLibrarySection
-            dbVideos={dbVideos}
-            activeFilter={activeFilter}
-            activeCategory={activeCategory}
-            videoMetadata={videoMetadata}
-            formatViews={formatViews}
-            formatDuration={formatDuration}
-            onFilterChange={setActiveFilter}
-            onCategoryChange={setActiveCategory}
-            onVideoClick={handleVideoClick}
-          />
+          <Suspense fallback={<div className="h-96 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+            <VideoLibrarySection
+              dbVideos={dbVideos}
+              activeFilter={activeFilter}
+              activeCategory={activeCategory}
+              videoMetadata={videoMetadata}
+              formatViews={formatViews}
+              formatDuration={formatDuration}
+              onFilterChange={setActiveFilter}
+              onCategoryChange={setActiveCategory}
+              onVideoClick={handleVideoClick}
+            />
+          </Suspense>
 
-          <UpcomingStreamsSection
-            upcomingStreams={upcomingStreams}
-            onEventsOpen={handleEventsOpen}
-          />
+          <Suspense fallback={<div className="h-48 flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+            <UpcomingStreamsSection
+              upcomingStreams={upcomingStreams}
+              onEventsOpen={handleEventsOpen}
+            />
+          </Suspense>
         </div>
 
         <Dialog open={!!selectedVideo} onOpenChange={() => setSelectedVideo(null)}>
