@@ -7,7 +7,7 @@ interface LazySectionProps {
   rootMargin?: string;
 }
 
-const LazySection = ({ children, className = '', threshold = 0.1, rootMargin = '50px' }: LazySectionProps) => {
+const LazySection = ({ children, className = '', threshold = 0.1, rootMargin = '200px' }: LazySectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,7 +31,7 @@ const LazySection = ({ children, className = '', threshold = 0.1, rootMargin = '
 
   return (
     <div ref={ref} className={className}>
-      {isVisible ? children : <div style={{ minHeight: '400px' }} />}
+      {isVisible && children}
     </div>
   );
 };

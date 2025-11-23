@@ -1,20 +1,4 @@
-import { useState, FormEvent, useEffect, useMemo, useCallback, lazy, Suspense, startTransition } from 'react';
-
-declare global {
-  interface Window {
-    requestIdleCallback: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
-  }
-  interface IdleRequestCallback {
-    (deadline: IdleDeadline): void;
-  }
-  interface IdleDeadline {
-    didTimeout: boolean;
-    timeRemaining(): number;
-  }
-  interface IdleRequestOptions {
-    timeout?: number;
-  }
-}
+import { useState, FormEvent, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -117,8 +101,6 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
-    const requestIdleCallbackPolyfill = window.requestIdleCallback || ((cb: any) => setTimeout(cb, 1));
-    
     const loadData = async () => {
       try {
         const homepageRes = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
@@ -127,40 +109,27 @@ const Index = () => {
         if (homepageData.content?.hero) {
           setHeroContent(homepageData.content.hero);
         }
+        if (homepageData.content?.about) {
+          setAboutContent(homepageData.content.about);
+        }
+        if (homepageData.content?.values) {
+          setValuesContent(homepageData.content.values);
+        }
+        if (homepageData.content?.events) {
+          setEventsContent(homepageData.content.events);
+        }
         
-        startTransition(() => {
-          if (homepageData.content?.about) {
-            setAboutContent(homepageData.content.about);
-          }
-          if (homepageData.content?.values) {
-            setValuesContent(homepageData.content.values);
-          }
-          if (homepageData.content?.events) {
-            setEventsContent(homepageData.content.events);
-          }
-        });
-        
-        requestIdleCallbackPolyfill(
-          () => {
-            fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
-              .then(res => res.json())
-              .then(expertsData => {
-                if (expertsData.speakers) {
-                  startTransition(() => {
-                    setExperts(expertsData.speakers.map((speaker: any) => ({
-                      name: speaker.name,
-                      role: speaker.role,
-                      description: speaker.bio || '',
-                      image: speaker.image,
-                      video_url: speaker.video_url || null
-                    })));
-                  });
-                }
-              })
-              .catch(() => {});
-          },
-          { timeout: 2000 }
-        );
+        const expertsRes = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
+        const expertsData = await expertsRes.json();
+        if (expertsData.speakers) {
+          setExperts(expertsData.speakers.map((speaker: any) => ({
+            name: speaker.name,
+            role: speaker.role,
+            description: speaker.bio || '',
+            image: speaker.image,
+            video_url: speaker.video_url || null
+          })));
+        }
       } catch (error) {
         console.error('Failed to load data:', error);
       }
@@ -271,10 +240,7 @@ const Index = () => {
 
   const handleEventFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    
-    startTransition(() => {
-      setIsEventFormSubmitting(true);
-    });
+    setIsEventFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/facbc5c4-5036-4fe8-921d-4ed1fd70fb47', {
@@ -286,38 +252,27 @@ const Index = () => {
       });
       
       if (response.ok) {
-        startTransition(() => {
-          setIsEventFormSubmitting(false);
-          setIsEventFormSubmitted(true);
-          setEventsRefreshTrigger(prev => prev + 1);
-        });
+        setIsEventFormSubmitting(false);
+        setIsEventFormSubmitted(true);
+        setEventsRefreshTrigger(prev => prev + 1);
         setTimeout(() => {
-          startTransition(() => {
-            setIsEventFormSubmitted(false);
-            setIsEventDialogOpen(false);
-            setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
-          });
+          setIsEventFormSubmitted(false);
+          setIsEventDialogOpen(false);
+          setEventFormData({ name: '', email: '', phone: '', telegram: '', event: '', message: '' });
         }, 2000);
       } else {
         const errorData = await response.json();
-        startTransition(() => {
-          setIsEventFormSubmitting(false);
-        });
+        setIsEventFormSubmitting(false);
         alert(errorData.message || 'Ошибка регистрации');
       }
     } catch (error) {
-      startTransition(() => {
-        setIsEventFormSubmitting(false);
-      });
+      setIsEventFormSubmitting(false);
     }
   }, [eventFormData]);
 
   const handleJoinFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    
-    startTransition(() => {
-      setIsJoinFormSubmitting(true);
-    });
+    setIsJoinFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/1abad196-7520-4a04-9c6e-25ad758e03a6', {
@@ -331,35 +286,24 @@ const Index = () => {
       if (response.ok) {
         await response.json();
         localStorage.setItem('userEmail', joinFormData.email);
-        startTransition(() => {
-          setIsJoinFormSubmitting(false);
-          setIsJoinFormSubmitted(true);
-        });
+        setIsJoinFormSubmitting(false);
+        setIsJoinFormSubmitted(true);
         setTimeout(() => {
-          startTransition(() => {
-            setIsJoinFormSubmitted(false);
-            setIsJoinDialogOpen(false);
-            setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
-          });
+          setIsJoinFormSubmitted(false);
+          setIsJoinDialogOpen(false);
+          setJoinFormData({ name: '', email: '', phone: '', telegram: '', message: '' });
         }, 2000);
       } else {
-        startTransition(() => {
-          setIsJoinFormSubmitting(false);
-        });
+        setIsJoinFormSubmitting(false);
       }
     } catch (error) {
-      startTransition(() => {
-        setIsJoinFormSubmitting(false);
-      });
+      setIsJoinFormSubmitting(false);
     }
   }, [joinFormData]);
 
   const handleExpertFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
-    
-    startTransition(() => {
-      setIsExpertFormSubmitting(true);
-    });
+    setIsExpertFormSubmitting(true);
     
     try {
       const response = await fetch('https://functions.poehali.dev/8ab02561-3cbe-42f7-9c3d-42f2c964f007', {
@@ -371,26 +315,18 @@ const Index = () => {
       });
       
       if (response.ok) {
-        startTransition(() => {
-          setIsExpertFormSubmitting(false);
-          setIsExpertFormSubmitted(true);
-        });
+        setIsExpertFormSubmitting(false);
+        setIsExpertFormSubmitted(true);
         setTimeout(() => {
-          startTransition(() => {
-            setIsExpertFormSubmitted(false);
-            setIsExpertDialogOpen(false);
-            setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
-          });
+          setIsExpertFormSubmitted(false);
+          setIsExpertDialogOpen(false);
+          setExpertFormData({ name: '', email: '', phone: '', telegram: '', expertise: '', message: '' });
         }, 2000);
       } else {
-        startTransition(() => {
-          setIsExpertFormSubmitting(false);
-        });
+        setIsExpertFormSubmitting(false);
       }
     } catch (error) {
-      startTransition(() => {
-        setIsExpertFormSubmitting(false);
-      });
+      setIsExpertFormSubmitting(false);
     }
   }, [expertFormData]);
 
