@@ -16,8 +16,6 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -25,29 +23,6 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          if (currentScrollY < 100) {
-            setIsVisible(true);
-          } else if (currentScrollY > lastScrollY) {
-            setIsVisible(false);
-          } else {
-            setIsVisible(true);
-          }
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY]);
 
   const handleNavigation = (section: string) => {
     if (location.pathname !== '/') {
@@ -80,7 +55,7 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
 
   return (
     <>
-      <header className={`fixed left-0 right-0 z-[100] transition-transform duration-300 ${isVisible ? 'top-0' : '-top-24'}`}>
+      <header className="fixed top-0 left-0 right-0 z-[100]">
         <div className={`bg-black/90 ${isMobile ? '' : 'backdrop-blur-xl'} border-b border-[#d4af37]/30`}>
           <div className="container mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
