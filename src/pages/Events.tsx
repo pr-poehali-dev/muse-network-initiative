@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, lazy, Suspense } from 'react';
+import { useState, useEffect, useRef, FormEvent, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
@@ -12,6 +12,7 @@ const EventRegistrationDialog = lazy(() => import('@/components/dialogs/EventReg
 
 const Events = () => {
   const [scrollY, setScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [eventFormData, setEventFormData] = useState({
     name: '',
@@ -26,8 +27,20 @@ const Events = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    let ticking = false;
+    const threshold = 50;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (Math.abs(currentScrollY - lastScrollY.current) > threshold) {
+            setScrollY(currentScrollY);
+            lastScrollY.current = currentScrollY;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });

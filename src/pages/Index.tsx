@@ -93,15 +93,26 @@ const Index = () => {
 
   useEffect(() => {
     let ticking = false;
+    let lastY = 0;
+    let lastTitleState = false;
+    const threshold = 50;
     
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
-          if (!isMobile) {
-            setScrollY(currentScrollY);
+          const newTitleState = currentScrollY > 400;
+          
+          if (Math.abs(currentScrollY - lastY) > threshold || newTitleState !== lastTitleState) {
+            if (!isMobile) {
+              setScrollY(currentScrollY);
+            }
+            if (newTitleState !== lastTitleState) {
+              setTitleInHeader(newTitleState);
+              lastTitleState = newTitleState;
+            }
+            lastY = currentScrollY;
           }
-          setTitleInHeader(currentScrollY > 400);
           ticking = false;
         });
         ticking = true;

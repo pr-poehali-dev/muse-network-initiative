@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import Layout from '@/components/Layout';
@@ -12,6 +12,7 @@ import UpcomingStreamsSection from '@/components/MuseTV/UpcomingStreamsSection';
 const MuseTV = () => {
   const navigate = useNavigate();
   const [scrollY, setScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeCategory, setActiveCategory] = useState('all');
   const [selectedVideo, setSelectedVideo] = useState<any>(null);
@@ -23,8 +24,20 @@ const MuseTV = () => {
   const [liveStreamKey, setLiveStreamKey] = useState(0);
 
   useEffect(() => {
+    let ticking = false;
+    const threshold = 50;
     const handleScroll = () => {
-      setScrollY(window.scrollY);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          if (Math.abs(currentScrollY - lastScrollY.current) > threshold) {
+            setScrollY(currentScrollY);
+            lastScrollY.current = currentScrollY;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
