@@ -12,7 +12,6 @@ interface HeroSectionProps {
     image_right: string;
   };
   isMobile: boolean;
-  scrollY: number;
   hoveredLetter: string | null;
   setHoveredLetter: (letter: string | null) => void;
   isTransitioning: boolean;
@@ -24,7 +23,6 @@ interface HeroSectionProps {
 const HeroSection = ({
   heroContent,
   isMobile,
-  scrollY,
   hoveredLetter,
   setHoveredLetter,
   isTransitioning,

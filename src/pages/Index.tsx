@@ -32,7 +32,7 @@ const LoginDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/compo
 
 const Index = () => {
   const navigate = useNavigate();
-  const [scrollY, setScrollY] = useState(0);
+
   const [titleInHeader, setTitleInHeader] = useState(false);
   const [experts, setExperts] = useState<any[]>([]);
   const [isMobile, setIsMobile] = useState(false);
@@ -93,9 +93,7 @@ const Index = () => {
 
   useEffect(() => {
     let ticking = false;
-    let lastY = 0;
     let lastTitleState = false;
-    const threshold = 50;
     
     const handleScroll = () => {
       if (!ticking) {
@@ -103,15 +101,9 @@ const Index = () => {
           const currentScrollY = window.scrollY;
           const newTitleState = currentScrollY > 400;
           
-          if (Math.abs(currentScrollY - lastY) > threshold || newTitleState !== lastTitleState) {
-            if (!isMobile) {
-              setScrollY(currentScrollY);
-            }
-            if (newTitleState !== lastTitleState) {
-              setTitleInHeader(newTitleState);
-              lastTitleState = newTitleState;
-            }
-            lastY = currentScrollY;
+          if (newTitleState !== lastTitleState) {
+            setTitleInHeader(newTitleState);
+            lastTitleState = newTitleState;
           }
           ticking = false;
         });
@@ -121,7 +113,7 @@ const Index = () => {
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMobile]);
+  }, []);
 
   useEffect(() => {
     const requestIdleCallbackPolyfill = window.requestIdleCallback || ((cb: any) => setTimeout(cb, 1));
@@ -413,7 +405,6 @@ const Index = () => {
       <HeroSection 
         heroContent={heroContent}
         isMobile={isMobile}
-        scrollY={scrollY}
         hoveredLetter={hoveredLetter}
         setHoveredLetter={setHoveredLetter}
         isTransitioning={isTransitioning}
