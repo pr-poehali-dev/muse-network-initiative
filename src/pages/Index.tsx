@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, lazy, Suspense } from 'react';
+import { useState, FormEvent, useEffect, useRef, useMemo, useCallback, memo, lazy, Suspense, startTransition } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -116,30 +116,29 @@ const Index = () => {
           setHeroContent(homepageData.content.hero);
         }
         
-        await new Promise(resolve => setTimeout(resolve, 0));
+        startTransition(() => {
+          if (homepageData.content?.about) {
+            setAboutContent(homepageData.content.about);
+          }
+          if (homepageData.content?.values) {
+            setValuesContent(homepageData.content.values);
+          }
+          if (homepageData.content?.events) {
+            setEventsContent(homepageData.content.events);
+          }
+        });
         
-        if (homepageData.content?.about) {
-          setAboutContent(homepageData.content.about);
-        }
-        if (homepageData.content?.values) {
-          setValuesContent(homepageData.content.values);
-        }
-        
-        await new Promise(resolve => setTimeout(resolve, 0));
-        
-        if (homepageData.content?.events) {
-          setEventsContent(homepageData.content.events);
-        }
-        if (expertsData.speakers) {
-          const formattedExperts = expertsData.speakers.map((speaker: any) => ({
-            name: speaker.name,
-            role: speaker.role,
-            description: speaker.bio || '',
-            image: speaker.image,
-            video_url: speaker.video_url || null
-          }));
-          setExperts(formattedExperts);
-        }
+        startTransition(() => {
+          if (expertsData.speakers) {
+            setExperts(expertsData.speakers.map((speaker: any) => ({
+              name: speaker.name,
+              role: speaker.role,
+              description: speaker.bio || '',
+              image: speaker.image,
+              video_url: speaker.video_url || null
+            })));
+          }
+        });
       } catch (error) {
         console.error('Failed to load data:', error);
       }
@@ -183,6 +182,35 @@ const Index = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [calendarAutoExpand, setCalendarAutoExpand] = useState(false);
   const [eventsRefreshTrigger, setEventsRefreshTrigger] = useState(0);
+
+  const expertCards = useMemo(() => 
+    experts.map((expert, index) => (
+      <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
+        <CardContent className="p-0">
+          <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
+            {expert.image ? (
+              <>
+                <img src={expert.image} alt={expert.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
+              </>
+            ) : (
+              <>
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
+                <div className="text-6xl text-primary/20 absolute floating">M</div>
+              </>
+            )}
+          </div>
+          <div className="p-4 md:p-4 bg-[#1a1a1a]">
+            <h4 className="text-base md:text-sm font-semibold text-left md:text-center mb-1 leading-tight text-white">{expert.name}</h4>
+            <p className="text-sm md:text-xs text-[#b8953d] text-left md:text-center font-medium mb-1">{expert.role}</p>
+            <p className="text-sm md:text-xs text-white/60 text-left md:text-center leading-relaxed">
+              {expert.description}
+            </p>
+          </div>
+        </CardContent>
+      </Card>
+    ))
+  , [experts]);
 
   const scrollToSection = useCallback((id: string) => {
     const element = document.getElementById(id);
@@ -335,7 +363,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{contentVisibility: 'auto'}}>
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -427,7 +455,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="mission" className="py-20 px-8 bg-black noise-texture" style={{contentVisibility: 'auto'}}>
+      <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -459,7 +487,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{contentVisibility: 'auto'}}>
+      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -538,7 +566,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden" style={{contentVisibility: 'auto'}}>
+      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -567,7 +595,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{contentVisibility: 'auto'}}>
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -581,32 +609,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
-            {experts.map((expert, index) => (
-              <Card key={index} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
-                <CardContent className="p-0">
-                  <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
-                    {expert.image ? (
-                      <>
-                        <img src={expert.image} alt={expert.name} loading="lazy" decoding="async" className="w-full h-full object-cover object-top md:object-top absolute inset-0" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
-                      </>
-                    ) : (
-                      <>
-                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent shimmer" />
-                        <div className="text-6xl text-primary/20 absolute floating">M</div>
-                      </>
-                    )}
-                  </div>
-                  <div className="p-4 md:p-4 bg-[#1a1a1a]">
-                    <h4 className="text-base md:text-sm font-semibold text-left md:text-center mb-1 leading-tight text-white">{expert.name}</h4>
-                    <p className="text-sm md:text-xs text-[#b8953d] text-left md:text-center font-medium mb-1">{expert.role}</p>
-                    <p className="text-sm md:text-xs text-white/60 text-left md:text-center leading-relaxed">
-                      {expert.description}
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+            {expertCards}
           </div>
         </div>
       </section>
@@ -617,7 +620,7 @@ const Index = () => {
         <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
       </div>
 
-      <section id="contact" className="py-20 px-8 bg-black luxury-texture" style={{contentVisibility: 'auto'}}>
+      <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
