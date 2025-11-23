@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import HeroSection from '@/components/sections/HeroSection';
-import LazySection from '@/components/LazySection';
 import SectionDivider from '@/components/ui/SectionDivider';
 
 const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
@@ -352,7 +351,6 @@ const Index = () => {
 
       <SectionDivider />
 
-      <LazySection>
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -438,11 +436,9 @@ const Index = () => {
           </div>
         </div>
       </section>
-      </LazySection>
 
       <SectionDivider />
 
-      <LazySection>
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -468,11 +464,9 @@ const Index = () => {
           </div>
         </div>
       </section>
-      </LazySection>
 
       <SectionDivider />
 
-      <LazySection>
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -517,7 +511,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-      </LazySection>
 
       {isEventDialogOpen && (
         <Suspense fallback={null}>
@@ -574,7 +567,6 @@ const Index = () => {
 
       <SectionDivider />
 
-      <LazySection>
       <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
         <div className="w-full">
           <div className="text-center mb-16">
@@ -593,7 +585,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-      </LazySection>
 
       <SectionDivider />
 
