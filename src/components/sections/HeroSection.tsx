@@ -127,7 +127,7 @@ const HeroSection = ({
             }}
           >
             <span style={{
-              background: 'linear-gradient(135deg, #8b7355 0%, #9a8349 30%, #8b7355 60%, #7d6a35 100%)',
+              background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
@@ -140,7 +140,7 @@ const HeroSection = ({
                 <span 
                   className={`inline-block uppercase transition-all duration-700 ease-in-out ${isTransitioning || isEntering ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'}`} 
                   style={{
-                    background: 'linear-gradient(135deg, #8b7355 0%, #9a8349 30%, #8b7355 60%, #7d6a35 100%)',
+                    background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -157,7 +157,7 @@ const HeroSection = ({
                     key={i} 
                     className={`inline-block transition-all duration-500 ease-out ${isTransitioning ? 'opacity-0 scale-95 translate-y-2' : 'opacity-100 scale-100 translate-y-0'} hover:scale-105`}
                     style={{
-                      background: 'linear-gradient(135deg, #8b7355 0%, #9a8349 30%, #8b7355 60%, #7d6a35 100%)',
+                      background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
