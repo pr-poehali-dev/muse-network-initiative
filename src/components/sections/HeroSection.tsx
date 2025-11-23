@@ -128,11 +128,7 @@ const HeroSection = ({
             style={{perspective: isMobile ? 'none' : '1000px', fontSize: 'clamp(3.5rem, 12vw, 15rem)', color: 'inherit'}}
             onMouseLeave={() => {
               if (isMobile) return;
-              setIsTransitioning(true);
               setHoveredLetter(null);
-              setTimeout(() => {
-                setIsTransitioning(false);
-              }, 50);
             }}
           >
             <span style={{
@@ -147,13 +143,12 @@ const HeroSection = ({
                 heroContent.title
               ) : hoveredLetter ? (
                 <span 
-                  className={`inline-block uppercase transition-opacity duration-500 ${isTransitioning || isEntering ? 'opacity-0' : 'opacity-100'}`} 
+                  className="inline-block uppercase transition-opacity duration-300"
                   style={{
                     background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    willChange: 'opacity'
+                    backgroundClip: 'text'
                   }}>
                   {hoveredLetter === 'M' && 'Mindset'}
                   {hoveredLetter === 'U' && 'Uniqueness'}
@@ -164,23 +159,14 @@ const HeroSection = ({
                 heroContent.title.split('').map((letter, i) => (
                   <span 
                     key={i} 
-                    className={`inline-block transition-opacity duration-300 ${isTransitioning ? 'opacity-0' : 'opacity-100'}`}
+                    className="inline-block transition-opacity duration-200"
                     style={{
                       background: 'linear-gradient(90deg, #a88f3a 0%, #9a8349 25%, #7d6a35 50%, #6b5d42 75%, #5a4d32 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                      willChange: 'opacity'
+                      backgroundClip: 'text'
                     }}
-                    onMouseEnter={() => {
-                      requestAnimationFrame(() => {
-                        setIsEntering(true);
-                        setTimeout(() => {
-                          setHoveredLetter(letter);
-                          setIsEntering(false);
-                        }, 150);
-                      });
-                    }}
+                    onMouseEnter={() => setHoveredLetter(letter)}
                   >
                     {letter}
                   </span>

@@ -28,32 +28,10 @@ const Layout = ({
 }: LayoutProps) => {
   const navigate = useNavigate();
   const location = useLocation();
-  const [scrollY, setScrollY] = useState(0);
-  const lastScrollY = useRef(0);
   const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [agreedToTermsExpert, setAgreedToTermsExpert] = useState(false);
   const [agreedToTermsJoin, setAgreedToTermsJoin] = useState(false);
-
-  useEffect(() => {
-    let ticking = false;
-    const threshold = 50;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          if (Math.abs(currentScrollY - lastScrollY.current) > threshold) {
-            setScrollY(currentScrollY);
-            lastScrollY.current = currentScrollY;
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const defaultScrollToSection = (id: string) => {
     if (location.pathname !== '/') {
@@ -89,7 +67,7 @@ const Layout = ({
   return (
     <>
       <Header 
-        titleInHeader={titleInHeader || scrollY > 100}
+        titleInHeader={titleInHeader}
         onScrollToSection={externalScrollToSection || defaultScrollToSection}
         onOpenExpertDialog={externalOpenExpertDialog || (() => setIsExpertDialogOpen(true))}
         onOpenJoinDialog={externalOpenJoinDialog || (() => setIsJoinDialogOpen(true))}
