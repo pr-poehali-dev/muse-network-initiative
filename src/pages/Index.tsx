@@ -78,20 +78,21 @@ const Index = () => {
   useEffect(() => {
     let ticking = false;
     let lastTitleState = false;
+    const threshold = 100;
     
     const handleScroll = () => {
       if (!ticking) {
+        ticking = true;
         window.requestAnimationFrame(() => {
           const currentScrollY = window.scrollY;
           const newTitleState = currentScrollY > 400;
           
-          if (newTitleState !== lastTitleState) {
+          if (Math.abs(currentScrollY - threshold) > 100 && newTitleState !== lastTitleState) {
             setTitleInHeader(newTitleState);
             lastTitleState = newTitleState;
           }
           ticking = false;
         });
-        ticking = true;
       }
     };
     
@@ -100,10 +101,20 @@ const Index = () => {
   }, []);
 
   useEffect(() => {
+    let mounted = true;
     const loadData = async () => {
       try {
-        const homepageRes = await fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95');
+        const [homepageRes, expertsRes] = await Promise.all([
+          fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95'),
+          fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
+        ]);
+        
+        if (!mounted) return;
+        
         const homepageData = await homepageRes.json();
+        const expertsData = await expertsRes.json();
+        
+        if (!mounted) return;
         
         if (homepageData.content?.hero) {
           setHeroContent(homepageData.content.hero);
@@ -118,8 +129,6 @@ const Index = () => {
           setEventsContent(homepageData.content.events);
         }
         
-        const expertsRes = await fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4');
-        const expertsData = await expertsRes.json();
         if (expertsData.speakers) {
           setExperts(expertsData.speakers.map((speaker: any) => ({
             name: speaker.name,
@@ -134,6 +143,7 @@ const Index = () => {
       }
     };
     loadData();
+    return () => { mounted = false; };
   }, []);
   
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
@@ -362,7 +372,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/80 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left backdrop-blur-md">
+            <div className="relative bg-[#1a1a1a]/95 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left">
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
                   src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
@@ -392,7 +402,7 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col gap-8">
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/95 border-[#d4af37]/30">
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Наши цели</h3>
                 <ul className="space-y-4 text-white/80">
@@ -416,7 +426,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/80 border-[#d4af37]/30 backdrop-blur-md">
+            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/95 border-[#d4af37]/30">
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Что мы предлагаем</h3>
                 <ul className="space-y-3 text-white/80">
