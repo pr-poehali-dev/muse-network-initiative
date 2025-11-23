@@ -372,7 +372,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a] border border-[#d4af37]/30 rounded-2xl overflow-hidden animate-slide-in-left" style={{transform: 'translateZ(0)'}}>
+            <div className="relative bg-[#1a1a1a] border border-[#d4af37]/30 rounded-2xl overflow-hidden animate-slide-in-left hover-scale" style={{transform: 'translateZ(0)'}}>
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
                   src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
