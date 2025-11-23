@@ -1,5 +1,6 @@
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
+import { useNavigate } from 'react-router-dom';
 
 interface HeroSectionProps {
   heroContent: {
@@ -31,6 +32,8 @@ const HeroSection = ({
   isEntering,
   setIsEntering
 }: HeroSectionProps) => {
+  const navigate = useNavigate();
+  
   return (
     <section id="hero" className={`relative pt-0 md:pt-0 pb-0 overflow-hidden bg-black min-h-screen md:min-h-[140vh] flex items-start md:items-end pb-8 md:pb-12`}>
       <div className="absolute inset-0 overflow-hidden">
@@ -107,6 +110,16 @@ const HeroSection = ({
       </div>
 
       <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
+        {isMobile && (
+          <div className="mb-8">
+            <button
+              onClick={() => navigate('/events')}
+              className="px-6 py-2.5 bg-black/40 backdrop-blur-sm border border-[#d4af37]/60 rounded text-[#d4af37] text-sm font-semibold uppercase tracking-wider"
+            >
+              Форум 13.12.2025
+            </button>
+          </div>
+        )}
         <div 
           className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
           style={{
