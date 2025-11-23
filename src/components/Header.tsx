@@ -74,11 +74,13 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     src="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png"
                     alt="MUSE Logo"
                     loading="eager"
+                    decoding="sync"
                     fetchpriority="high"
                     className={`w-16 h-16 object-contain ${isMobile ? '' : 'transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3'}`}
                     style={{
                       filter: isMobile ? 'none' : 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
-                      transform: 'translateZ(0)'
+                      transform: 'translateZ(0)',
+                      contentVisibility: 'auto'
                     }}
                   />
                 </button>
