@@ -20,18 +20,10 @@ const Gallery = () => {
         <div className="min-h-screen bg-black luxury-texture noise-texture">
           <div className="pt-32 pb-20 px-4 md:px-8">
             <div className="w-full max-w-[98vw] mx-auto">
-              <div className="flex items-center justify-between mb-8 md:mb-12">
-                <button
-                  onClick={() => navigate('/')}
-                  className="flex items-center gap-2 text-[#d4af37]/60 hover:text-[#d4af37] transition-all group"
-                >
-                  <Icon name="ArrowLeft" size={24} className="group-hover:-translate-x-1 transition-transform" />
-                  <span className="text-lg">Назад</span>
-                </button>
+              <div className="text-center mb-8 md:mb-12">
                 <h1 className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title whitespace-nowrap">
                   Галерея событий
                 </h1>
-                <div className="w-20"></div>
               </div>
 
               <div className="relative flex gap-0 mb-6 md:mb-8 bg-[#1a1a1a]/60 rounded-lg p-1 backdrop-blur-sm max-w-md mx-auto">
