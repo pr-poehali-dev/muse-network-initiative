@@ -54,7 +54,7 @@ const HeroSection = ({
               alt="" 
               loading="eager"
               decoding="sync"
-              fetchPriority="high"
+              fetchpriority="high"
               className="w-full h-full object-cover object-center"
               style={{
                 maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 15%, rgba(0,0,0,0.8) 70%, rgba(0,0,0,0) 100%), linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 88%, rgba(0,0,0,0) 100%)',
