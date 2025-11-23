@@ -28,7 +28,7 @@ const Gallery = () => {
                   <Icon name="ArrowLeft" size={24} className="group-hover:-translate-x-1 transition-transform" />
                   <span className="text-lg">Назад</span>
                 </button>
-                <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title">
+                <h1 className="text-2xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title whitespace-nowrap">
                   Галерея событий
                 </h1>
                 <div className="w-20"></div>
