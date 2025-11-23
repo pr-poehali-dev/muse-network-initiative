@@ -187,7 +187,7 @@ const Index = () => {
     if (experts.length === 0) return null;
     
     return experts.map((expert, index) => (
-      <Card key={`${expert.name}-${index}`} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/95 animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
+      <Card key={`${expert.name}-${index}`} className="overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a] animate-scale-in" style={{animationDelay: `${index * 0.08}s`, transform: 'translateZ(0)'}}>
         <CardContent className="p-0">
           <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
             {expert.image ? (
@@ -361,7 +361,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', contain: 'layout style paint'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -372,7 +372,7 @@ const Index = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="relative bg-[#1a1a1a]/95 border border-[#d4af37]/30 rounded-2xl overflow-hidden hover-scale glow-effect animate-slide-in-left">
+            <div className="relative bg-[#1a1a1a] border border-[#d4af37]/30 rounded-2xl overflow-hidden animate-slide-in-left" style={{transform: 'translateZ(0)'}}>
               <div className="absolute top-0 left-0 w-full h-2/3">
                 <img 
                   src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
@@ -402,7 +402,7 @@ const Index = () => {
             </div>
 
             <div className="flex flex-col gap-8">
-            <Card className="hover-scale glow-effect rounded-2xl animate-slide-in-right bg-[#1a1a1a]/95 border-[#d4af37]/30">
+            <Card className="rounded-2xl animate-slide-in-right bg-[#1a1a1a] border-[#d4af37]/30" style={{transform: 'translateZ(0)'}}>
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Наши цели</h3>
                 <ul className="space-y-4 text-white/80">
@@ -426,7 +426,7 @@ const Index = () => {
               </CardContent>
             </Card>
 
-            <Card className="hover-scale glow-effect rounded-2xl bg-[#1a1a1a]/95 border-[#d4af37]/30">
+            <Card className="rounded-2xl bg-[#1a1a1a] border-[#d4af37]/30" style={{transform: 'translateZ(0)'}}>
               <CardContent className="p-8">
                 <h3 className="text-xl md:text-2xl font-semibold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 border-b border-[#d4af37] pb-2">Что мы предлагаем</h3>
                 <ul className="space-y-3 text-white/80">
@@ -580,7 +580,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{transform: 'translateZ(0)', contain: 'layout style paint'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -593,7 +593,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4" style={{contentVisibility: 'auto'}}>
             {expertCards}
           </div>
         </div>
