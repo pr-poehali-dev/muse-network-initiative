@@ -23,6 +23,7 @@ import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import HeroSection from '@/components/sections/HeroSection';
 import LazySection from '@/components/LazySection';
+import SectionDivider from '@/components/ui/SectionDivider';
 
 const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
 const EventRegistrationDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/EventRegistrationDialog'));
@@ -413,11 +414,7 @@ const Index = () => {
         setIsEntering={setIsEntering}
       />
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <LazySection>
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
@@ -507,11 +504,7 @@ const Index = () => {
       </section>
       </LazySection>
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <LazySection>
       <section id="mission" className="py-20 px-8 bg-black noise-texture">
@@ -541,11 +534,7 @@ const Index = () => {
       </section>
       </LazySection>
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <LazySection>
       <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
@@ -622,11 +611,7 @@ const Index = () => {
         </Suspense>
       )}
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
         <div className="w-full mb-16">
@@ -651,11 +636,7 @@ const Index = () => {
         </div>
       </section>
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <LazySection>
       <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
@@ -678,11 +659,7 @@ const Index = () => {
       </section>
       </LazySection>
 
-      <div className="relative h-px">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
-        <div className="absolute -top-16 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-transparent via-[#d4af37]/8 to-transparent pointer-events-none"></div>
-      </div>
+      <SectionDivider />
 
       <section id="contact" className="py-20 px-8 bg-black luxury-texture">
         <div className="w-full max-w-4xl mx-auto px-4">
