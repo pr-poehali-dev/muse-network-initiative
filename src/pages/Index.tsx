@@ -187,7 +187,7 @@ const Index = () => {
     if (experts.length === 0) return null;
     
     return experts.map((expert, index) => (
-      <Card key={`${expert.name}-${index}`} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/80 backdrop-blur-md animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
+      <Card key={`${expert.name}-${index}`} className="hover-scale glow-effect overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a]/95 animate-scale-in" style={{animationDelay: `${index * 0.08}s`}}>
         <CardContent className="p-0">
           <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
             {expert.image ? (
@@ -452,7 +452,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="mission" className="py-20 px-8 bg-black noise-texture">
+      <section id="mission" className="py-20 px-8 bg-black noise-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -464,7 +464,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {valuesContent.values.map((value: any, index: number) => (
-              <Card key={index} className="hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md" style={{animationDelay: `${index * 0.1}s`}}>
+              <Card key={index} className="hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl animate-scale-in relative overflow-hidden group bg-[#1a1a1a]/95" style={{animationDelay: `${index * 0.1}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 mb-4">
                     <Icon name={value.icon} className="text-[#b8953d]/60" size={24} />
@@ -480,7 +480,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture">
+      <section id="events" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -499,7 +499,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 gap-6 mb-16">
             {eventsContent.formats.map((event: any, index: number) => (
-              <Card key={index} className={`hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/80 backdrop-blur-md`} style={{animationDelay: `${index * 0.15}s`}}>
+              <Card key={index} className={`hover-scale glow-effect border border-[#d4af37]/30 rounded-2xl ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'} relative overflow-hidden group bg-[#1a1a1a]/95`} style={{animationDelay: `${index * 0.15}s`}}>
                 <CardContent className="p-8 relative z-10">
                   <div className="flex items-start gap-4 mb-4">
                     <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-[#8b7355]/40 to-[#6b5d42]/40 flex-shrink-0">
@@ -555,7 +555,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden">
+      <section id="gallery" className="py-20 px-8 bg-black noise-texture overflow-hidden" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full mb-16">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -580,7 +580,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture">
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -601,7 +601,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="contact" className="py-20 px-8 bg-black luxury-texture">
+      <section id="contact" className="py-20 px-8 bg-black luxury-texture" style={{transform: 'translateZ(0)', willChange: 'auto'}}>
         <div className="w-full max-w-4xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
