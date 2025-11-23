@@ -38,62 +38,10 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Schema.org structured data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Клуб Muse",
-      "alternateName": "Муза",
-      "url": "https://museclub.online",
-      "logo": "https://cdn.poehali.dev/files/a955ef2e-00bf-45e5-8f24-187b9d90bcfd.png",
-      "description": "Клуб Muse объединяет предприимчивых женщин для обмена опытом, нетворкинга и развития. Мероприятия, мастер-классы, экспертные встречи.",
-      "sameAs": [
-        "https://t.me/museclub"
-      ],
-      "founder": {
-        "@type": "Person",
-        "name": "Карина Ляшева",
-        "jobTitle": "Основательница клуба Muse"
-      },
-      "memberOf": {
-        "@type": "ProfessionalService",
-        "name": "Клуб предприимчивых женщин"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Клуб Muse",
-      "url": "https://museclub.online",
-      "description": "Клуб предприимчивых женщин для обмена опытом, нетворкинга и развития",
-      "potentialAction": {
-        "@type": "JoinAction",
-        "target": "https://museclub.online/#join",
-        "name": "Вступить в клуб"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Event",
-      "name": "Мероприятия клуба Muse",
-      "description": "Регулярные встречи, мастер-классы и экспертные сессии для предприимчивых женщин",
-      "organizer": {
-        "@type": "Organization",
-        "name": "Клуб Muse",
-        "url": "https://museclub.online"
-      },
-      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "Клуб Muse"
-      }
-    }
-    </script>
+    <!-- Schema.org structured data (minified) -->
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Клуб Muse","alternateName":"Муза","url":"https://museclub.online","logo":"https://cdn.poehali.dev/files/a955ef2e-00bf-45e5-8f24-187b9d90bcfd.png","description":"Клуб Muse объединяет предприимчивых женщин для обмена опытом, нетворкинга и развития. Мероприятия, мастер-классы, экспертные встречи.","sameAs":["https://t.me/museclub"],"founder":{"@type":"Person","name":"Карина Ляшева","jobTitle":"Основательница клуба Muse"},"memberOf":{"@type":"ProfessionalService","name":"Клуб предприимчивых женщин"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Клуб Muse","url":"https://museclub.online","description":"Клуб предприимчивых женщин для обмена опытом, нетворкинга и развития","potentialAction":{"@type":"JoinAction","target":"https://museclub.online/#join","name":"Вступить в клуб"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Event","name":"Мероприятия клуба Muse","description":"Регулярные встречи, мастер-классы и экспертные сессии для предприимчивых женщин","organizer":{"@type":"Organization","name":"Клуб Muse","url":"https://museclub.online"},"eventAttendanceMode":"https://schema.org/MixedEventAttendanceMode","location":{"@type":"Place","name":"Клуб Muse"}}</script>
 
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS COMMENT! -->
     <meta name="pp-name" value="muse-network-initiative">
@@ -112,35 +60,9 @@
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>
 
-<!-- Yandex.Metrika counter (отложенная загрузка) -->
+<!-- Yandex.Metrika counter (отложенная загрузка при скролле или через 3s) -->
 <script type="text/javascript">
-    // Откладываем загрузку метрики до события load
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            (function (m, e, t, r, i, k, a) {
-                m[i] = m[i] || function () {
-                    (m[i].a = m[i].a || []).push(arguments)
-                };
-                m[i].l = 1 * new Date();
-                for (var j = 0; j < document.scripts.length; j++) {
-                    if (document.scripts[j].src === r) {
-                        return;
-                    }
-                }
-                k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-            })
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(101026698, "init", {
-                trustedDomains: ["poehali.dev"],
-                clickmap: true,
-                trackLinks: true,
-                accurateTrackBounce: true,
-                webvisor: true,
-                trackHash: true
-            });
-        }, 2000);
-    });
+(function(){var loaded=false;function loadMetrika(){if(loaded)return;loaded=true;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(101026698,"init",{trustedDomains:["poehali.dev"],clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,trackHash:true})}var scrollHandler=function(){if(window.scrollY>window.innerHeight*0.5){loadMetrika();window.removeEventListener('scroll',scrollHandler)}};window.addEventListener('scroll',scrollHandler,{passive:true});window.addEventListener('load',function(){setTimeout(loadMetrika,3000)})})();
 </script>
 <noscript>
     <div><img src="https://mc.yandex.ru/watch/101026698" style="position:absolute; left:-9999px;" alt=""/></div>
