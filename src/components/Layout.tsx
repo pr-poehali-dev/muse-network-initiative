@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode } from 'react';
+import { useState, useEffect, useRef, ReactNode } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
@@ -29,6 +29,7 @@ const Layout = ({
   const navigate = useNavigate();
   const location = useLocation();
   const [scrollY, setScrollY] = useState(0);
+  const lastScrollY = useRef(0);
   const [isExpertDialogOpen, setIsExpertDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
   const [agreedToTermsExpert, setAgreedToTermsExpert] = useState(false);
@@ -36,10 +37,15 @@ const Layout = ({
 
   useEffect(() => {
     let ticking = false;
+    const threshold = 50;
     const handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          setScrollY(window.scrollY);
+          const currentScrollY = window.scrollY;
+          if (Math.abs(currentScrollY - lastScrollY.current) > threshold) {
+            setScrollY(currentScrollY);
+            lastScrollY.current = currentScrollY;
+          }
           ticking = false;
         });
         ticking = true;
