@@ -43,6 +43,12 @@ const partners: Partner[] = [
     name: 'TTW',
     logo: 'https://cdn.poehali.dev/files/80e63eea-946d-4fb6-b0b4-bca77793a46b.png',
     url: '#'
+  },
+  {
+    id: '7',
+    name: 'Strawberry',
+    logo: 'https://cdn.poehali.dev/files/67f9e1b0-b618-495d-99fd-735b41a6cc66.png',
+    url: '#'
   }
 ];
 
