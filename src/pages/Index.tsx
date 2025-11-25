@@ -378,13 +378,13 @@ const Index = () => {
             
             <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500">
               <div className="flex flex-col md:flex-row gap-4 p-4">
-                <div className="relative w-full md:w-32 h-40 md:h-auto flex-shrink-0 overflow-hidden rounded-lg">
+                <div className="relative w-full md:w-32 h-40 md:h-auto flex-shrink-0 overflow-hidden rounded-lg cursor-pointer">
                   <OptimizedImage
                     src="https://cdn.poehali.dev/files/11e44596-cbf8-47b2-81e8-8aa357dc98ea.jpg"
                     alt="Самсонова Юлия Аркадьевна"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-150 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
                 
                 <div className="flex-1 flex flex-col">
@@ -407,10 +407,9 @@ const Index = () => {
                       setIsEventDialogOpen(true);
                       scrollToSection('calendar');
                     }}
-                    className="mt-auto w-full bg-[#d4af37] hover:bg-[#b8953d] text-black font-bold text-sm py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/50"
+                    className="mt-auto w-full bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 font-semibold text-sm py-3 rounded-none transition-all duration-300"
                   >
-                    <Icon name="Calendar" className="w-4 h-4 mr-2" />
-                    Записаться
+                    Записаться →
                   </Button>
                 </div>
               </div>
@@ -418,13 +417,13 @@ const Index = () => {
 
             <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500">
               <div className="flex flex-col md:flex-row gap-4 p-4">
-                <div className="relative w-full md:w-32 h-40 md:h-auto flex-shrink-0 overflow-hidden rounded-lg">
+                <div className="relative w-full md:w-32 h-40 md:h-auto flex-shrink-0 overflow-hidden rounded-lg cursor-pointer">
                   <OptimizedImage
                     src="https://cdn.poehali.dev/files/9e471486-1874-46a2-be22-29cfd98d5928.jpg"
                     alt="Сивая Ольга Владимировна"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover group-hover:scale-150 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent group-hover:opacity-0 transition-opacity duration-500"></div>
                 </div>
                 
                 <div className="flex-1 flex flex-col">
@@ -447,10 +446,9 @@ const Index = () => {
                       setIsEventDialogOpen(true);
                       scrollToSection('calendar');
                     }}
-                    className="mt-auto w-full bg-[#d4af37] hover:bg-[#b8953d] text-black font-bold text-sm py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/50"
+                    className="mt-auto w-full bg-transparent border-2 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37]/10 font-semibold text-sm py-3 rounded-none transition-all duration-300"
                   >
-                    <Icon name="Calendar" className="w-4 h-4 mr-2" />
-                    Записаться
+                    Записаться →
                   </Button>
                 </div>
               </div>
