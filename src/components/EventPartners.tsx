@@ -79,7 +79,9 @@ const EventPartners = memo(() => {
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="w-full h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
+                  className={`object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300 ${
+                    partner.id === '3' ? 'w-full h-full scale-150' : 'w-full h-full'
+                  }`}
                 />
               </div>
             </a>
