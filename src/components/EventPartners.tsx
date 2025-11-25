@@ -37,6 +37,12 @@ const partners: Partner[] = [
     name: 'Lion Trophy',
     logo: 'https://cdn.poehali.dev/files/d8ae4c22-bf0a-4ec3-b274-be924102a1e5.png',
     url: '#'
+  },
+  {
+    id: '6',
+    name: 'TTW',
+    logo: 'https://cdn.poehali.dev/files/80e63eea-946d-4fb6-b0b4-bca77793a46b.png',
+    url: '#'
   }
 ];
 
