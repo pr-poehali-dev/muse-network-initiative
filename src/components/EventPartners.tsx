@@ -47,7 +47,7 @@ const partners: Partner[] = [
   {
     id: '7',
     name: 'Strawberry',
-    logo: 'https://cdn.poehali.dev/files/67f9e1b0-b618-495d-99fd-735b41a6cc66.png',
+    logo: 'https://cdn.poehali.dev/files/497c22e0-dec7-4812-b20b-e12f6af2036b.png',
     url: '#'
   }
 ];
