@@ -407,7 +407,7 @@ const Index = () => {
                       setIsEventDialogOpen(true);
                       scrollToSection('calendar');
                     }}
-                    className="mt-auto w-full bg-gradient-to-r from-[#d4af37]/20 to-[#b8953d]/20 border border-[#d4af37]/40 hover:from-[#d4af37]/30 hover:to-[#b8953d]/30 hover:border-[#d4af37]/60 text-[#d4af37] font-semibold text-sm py-2 transition-all duration-300"
+                    className="mt-auto w-full bg-[#d4af37] hover:bg-[#b8953d] text-black font-bold text-sm py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/50"
                   >
                     <Icon name="Calendar" className="w-4 h-4 mr-2" />
                     Записаться
@@ -447,7 +447,7 @@ const Index = () => {
                       setIsEventDialogOpen(true);
                       scrollToSection('calendar');
                     }}
-                    className="mt-auto w-full bg-gradient-to-r from-[#d4af37]/20 to-[#b8953d]/20 border border-[#d4af37]/40 hover:from-[#d4af37]/30 hover:to-[#b8953d]/30 hover:border-[#d4af37]/60 text-[#d4af37] font-semibold text-sm py-2 transition-all duration-300"
+                    className="mt-auto w-full bg-[#d4af37] hover:bg-[#b8953d] text-black font-bold text-sm py-3 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-[#d4af37]/50"
                   >
                     <Icon name="Calendar" className="w-4 h-4 mr-2" />
                     Записаться
