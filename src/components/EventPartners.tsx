@@ -31,6 +31,12 @@ const partners: Partner[] = [
     name: 'New Voice',
     logo: 'https://cdn.poehali.dev/files/3ce8716a-6474-40f2-9764-7d2ffc27ee7a.png',
     url: '#'
+  },
+  {
+    id: '5',
+    name: 'Lion Trophy',
+    logo: 'https://cdn.poehali.dev/files/d8ae4c22-bf0a-4ec3-b274-be924102a1e5.png',
+    url: '#'
   }
 ];
 
