@@ -80,7 +80,7 @@ const EventPartners = memo(() => {
                   src={partner.logo}
                   alt={partner.name}
                   className={`object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300 ${
-                    partner.id === '3' ? 'w-full h-full scale-150' : 'w-full h-full'
+                    partner.id === '3' ? 'w-full h-full scale-[2]' : 'w-full h-full'
                   }`}
                 />
               </div>
