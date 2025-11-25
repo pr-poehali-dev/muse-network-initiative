@@ -46,8 +46,8 @@ const partners: Partner[] = [
   },
   {
     id: '7',
-    name: 'Strawberry',
-    logo: 'https://cdn.poehali.dev/files/497c22e0-dec7-4812-b20b-e12f6af2036b.png',
+    name: 'Magazine',
+    logo: 'https://cdn.poehali.dev/files/36689323-d08b-4f49-9f14-cf8e991eda67.png',
     url: '#'
   },
   {
@@ -58,8 +58,8 @@ const partners: Partner[] = [
   },
   {
     id: '9',
-    name: 'Magazine',
-    logo: 'https://cdn.poehali.dev/files/36689323-d08b-4f49-9f14-cf8e991eda67.png',
+    name: 'Strawberry',
+    logo: 'https://cdn.poehali.dev/files/497c22e0-dec7-4812-b20b-e12f6af2036b.png',
     url: '#'
   }
 ];
