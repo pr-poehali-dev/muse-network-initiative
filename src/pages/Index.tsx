@@ -524,6 +524,17 @@ const Index = () => {
               />
             </Suspense>
           </div>
+
+          <div className="mt-16 text-center">
+            <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-8">Партнёры</h3>
+            <div className="flex justify-center items-center">
+              <img 
+                src="https://cdn.poehali.dev/files/eda8b45e-c3c5-40eb-9aff-03ba5d10f776.png" 
+                alt="Magazine партнёр" 
+                className="h-16 md:h-20 opacity-70 hover:opacity-100 transition-opacity duration-300"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
