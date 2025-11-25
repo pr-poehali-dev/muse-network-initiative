@@ -86,21 +86,21 @@ const EventPartners = memo(() => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {partners.map((partner, index) => (
             <a
               key={partner.id}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-300"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 md:p-8 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-300"
               style={{
                 animationDelay: `${index * 100}ms`,
                 animation: 'fadeInUp 0.6s ease-out forwards',
                 opacity: 0
               }}
             >
-              <div className="flex items-center justify-center h-40">
+              <div className="flex items-center justify-center h-24 md:h-40">
                 <img
                   src={partner.logo}
                   alt={partner.name}
