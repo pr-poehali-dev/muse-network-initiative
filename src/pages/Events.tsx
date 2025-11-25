@@ -125,43 +125,43 @@ const Events = () => {
             </div>
 
             <div className="absolute bottom-2 md:bottom-8 left-1/2 -translate-x-1/2 z-10 px-4 w-full max-w-6xl">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-3 md:mb-4">
-                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-3 md:p-4 rounded-lg relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-4 md:mb-6">
+                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
-                        <Icon name="Trophy" className="w-4 h-4 md:w-5 md:h-5 text-[#d4af37]" />
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                        <Icon name="Trophy" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
                       </div>
-                      <h3 className="text-xl md:text-3xl font-black text-[#d4af37]">ФОРУМ</h3>
+                      <h3 className="text-2xl md:text-4xl font-black text-[#d4af37]">ФОРУМ</h3>
                     </div>
-                    <p className="text-xs md:text-sm text-white/80 font-medium">От идеи до результата</p>
+                    <p className="text-sm md:text-base text-white/80 font-medium">От идеи до результата</p>
                   </div>
                 </div>
 
-                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-3 md:p-4 rounded-lg relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
+                <div className="bg-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/30 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37]/60 transition-all duration-500">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
-                        <Icon name="Calendar" className="w-4 h-4 md:w-5 md:h-5 text-[#d4af37]" />
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/20 flex items-center justify-center">
+                        <Icon name="Calendar" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
                       </div>
-                      <h3 className="text-xl md:text-3xl font-black text-[#d4af37]">13.12.2025</h3>
+                      <h3 className="text-2xl md:text-4xl font-black text-[#d4af37]">13.12.2025</h3>
                     </div>
-                    <p className="text-xs md:text-sm text-white/80 font-medium">Суббота, 12:00</p>
+                    <p className="text-sm md:text-base text-white/80 font-medium">Суббота, 12:00</p>
                   </div>
                 </div>
 
-                <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#d4af37]/10 to-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/50 p-3 md:p-4 rounded-lg relative overflow-hidden group hover:border-[#d4af37] transition-all duration-500 shadow-lg shadow-[#d4af37]/20">
+                <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#d4af37]/10 to-[#1a1a1a]/80 backdrop-blur-xl border border-[#d4af37]/50 p-4 md:p-6 rounded-xl relative overflow-hidden group hover:border-[#d4af37] transition-all duration-500 shadow-xl shadow-[#d4af37]/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                   <div className="relative z-10">
-                    <div className="flex items-center gap-2 mb-1">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#d4af37]/30 flex items-center justify-center">
-                        <Icon name="Users" className="w-4 h-4 md:w-5 md:h-5 text-[#d4af37]" />
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#d4af37]/30 flex items-center justify-center">
+                        <Icon name="Users" className="w-5 h-5 md:w-6 md:h-6 text-[#d4af37]" />
                       </div>
-                      <h3 className="text-lg md:text-2xl font-black text-[#d4af37]">Живая встреча</h3>
+                      <h3 className="text-xl md:text-3xl font-black text-[#d4af37]">Живая встреча</h3>
                     </div>
-                    <p className="text-xs md:text-sm text-white/90 font-medium">Агентство регионального развития</p>
+                    <p className="text-sm md:text-base text-white/90 font-medium">Агентство регионального развития</p>
                   </div>
                 </div>
               </div>
@@ -178,90 +178,6 @@ const Events = () => {
               </button>
             </div>
 
-          </section>
-
-          <SectionDivider opacity={30} />
-
-          <section className="relative py-12 md:py-20 px-4 bg-black">
-            <div className="container mx-auto max-w-7xl">
-              <div className="flex items-center gap-4 md:gap-8 mb-8 md:mb-12">
-                <div className="hidden md:block flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]/50"></div>
-                <h2 className="text-3xl md:text-5xl font-playfair text-center text-[#d4af37]">
-                  Предстоящие встречи
-                </h2>
-                <div className="hidden md:block flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]/50"></div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-                
-                <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-2xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative p-6">
-                    <div className="mb-4">
-                      <div className="inline-block px-4 py-2 bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-full mb-4">
-                        <span className="text-[#d4af37] font-bold text-lg">28.11.2025</span>
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-black text-[#d4af37] mb-2">Самсонова Юлия Аркадьевна</h3>
-                      <p className="text-white/70 text-base mb-1">Стилист / Имиджмейкер</p>
-                      <p className="text-[#d4af37]/80 text-sm font-medium">Эксперт MUSE</p>
-                    </div>
-                    
-                    <div className="bg-black/40 rounded-xl p-4 mb-4 border border-[#d4af37]/20">
-                      <p className="text-white/90 font-medium mb-2">ТЕМА:</p>
-                      <p className="text-white/70 text-sm leading-relaxed">Как найти свой стиль и интегрировать его в повседневный гардероб</p>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-white/60 text-sm">
-                      <Icon name="MapPin" className="w-4 h-4 text-[#d4af37]" />
-                      <span>ZOOM 18:00</span>
-                    </div>
-                  </div>
-                  
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <OptimizedImage
-                      src="https://cdn.poehali.dev/files/64d772ca-76fa-41f6-a12e-6d74ae64805d.jpg"
-                      alt="Самсонова Юлия Аркадьевна"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                  </div>
-                </div>
-
-                <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-2xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/20">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="relative p-6">
-                    <div className="mb-4">
-                      <div className="inline-block px-4 py-2 bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-full mb-4">
-                        <span className="text-[#d4af37] font-bold text-lg">19.12.2025</span>
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-black text-[#d4af37] mb-2">Сивая Ольга Владимировна</h3>
-                      <p className="text-white/70 text-base mb-1">Психолог / Психотерапевт</p>
-                      <p className="text-[#d4af37]/80 text-sm font-medium">Эксперт MUSE</p>
-                    </div>
-                    
-                    <div className="bg-black/40 rounded-xl p-4 mb-4 border border-[#d4af37]/20">
-                      <p className="text-white/90 font-medium mb-2">ТЕМА:</p>
-                      <p className="text-white/70 text-sm leading-relaxed">Психологический разбор фильма Дракула</p>
-                    </div>
-
-                    <div className="flex items-center gap-2 text-white/60 text-sm">
-                      <Icon name="MapPin" className="w-4 h-4 text-[#d4af37]" />
-                      <span>ZOOM 18:00</span>
-                    </div>
-                  </div>
-                  
-                  <div className="relative h-64 md:h-80 overflow-hidden">
-                    <OptimizedImage
-                      src="https://cdn.poehali.dev/files/7eb75187-bbc2-4968-a29f-078532c24877.jpg"
-                      alt="Сивая Ольга Владимировна"
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
           </section>
 
           <SectionDivider opacity={30} />
