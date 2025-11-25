@@ -210,7 +210,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -238,7 +238,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -266,7 +266,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative">
                   <div className="bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37]/10 to-transparent rounded-xl border border-[#d4af37]/40 p-4 md:p-8">
@@ -282,7 +282,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -310,7 +310,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative group">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#d4af37]/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -371,7 +371,7 @@ const Events = () => {
                   </div>
                 </div>
 
-                <SectionDivider opacity={20} />
+
 
                 <div className="relative">
                   <div className="bg-gradient-to-br from-[#d4af37]/20 via-[#8b7355]/10 to-black rounded-xl border border-[#d4af37]/50 p-5 md:p-10 shadow-2xl">
