@@ -53,7 +53,7 @@ const partners: Partner[] = [
   {
     id: '8',
     name: 'Plus городской журнал',
-    logo: 'https://cdn.poehali.dev/files/513ac62f-7a88-45b2-b21a-110d8d9d3935.png',
+    logo: 'https://cdn.poehali.dev/files/041dea19-124e-427f-9909-dcb403da638f.png',
     url: '#'
   }
 ];
