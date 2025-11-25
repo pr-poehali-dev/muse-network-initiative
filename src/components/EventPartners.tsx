@@ -49,6 +49,12 @@ const partners: Partner[] = [
     name: 'Strawberry',
     logo: 'https://cdn.poehali.dev/files/497c22e0-dec7-4812-b20b-e12f6af2036b.png',
     url: '#'
+  },
+  {
+    id: '8',
+    name: 'Plus городской журнал',
+    logo: 'https://cdn.poehali.dev/files/513ac62f-7a88-45b2-b21a-110d8d9d3935.png',
+    url: '#'
   }
 ];
 
