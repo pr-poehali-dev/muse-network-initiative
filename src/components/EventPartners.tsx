@@ -75,11 +75,11 @@ const EventPartners = memo(() => {
                 opacity: 0
               }}
             >
-              <div className="flex items-center justify-center h-32">
+              <div className="flex items-center justify-center h-40">
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="max-w-full max-h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
+                  className="w-full h-full object-contain filter brightness-90 group-hover:brightness-100 transition-all duration-300"
                 />
               </div>
             </a>
