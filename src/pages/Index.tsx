@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import SectionDivider from '@/components/ui/SectionDivider';
+import OptimizedImage from '@/components/OptimizedImage';
 
 const HeroSection = lazy(() => import(/* webpackChunkName: "hero" */ '@/components/sections/HeroSection'));
 const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
@@ -360,6 +361,90 @@ const Index = () => {
           setIsEntering={setIsEntering}
         />
       </Suspense>
+
+      <SectionDivider />
+
+      <section className="relative py-12 md:py-20 px-4 bg-black">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
+              <span className="flex-1 h-px bg-gradient-to-r from-transparent to-[#d4af37]"></span>
+              Предстоящие встречи
+              <span className="flex-1 h-px bg-gradient-to-l from-transparent to-[#d4af37]"></span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            
+            <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-2xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative p-6">
+                <div className="mb-4">
+                  <div className="inline-block px-4 py-2 bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-full mb-4">
+                    <span className="text-[#d4af37] font-bold text-lg">28.11.2025</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black text-[#d4af37] mb-2">Самсонова Юлия Аркадьевна</h3>
+                  <p className="text-white/70 text-base mb-1">Стилист / Имиджмейкер</p>
+                  <p className="text-[#d4af37]/80 text-sm font-medium">Эксперт MUSE</p>
+                </div>
+                
+                <div className="bg-black/40 rounded-xl p-4 mb-4 border border-[#d4af37]/20">
+                  <p className="text-white/90 font-medium mb-2">ТЕМА:</p>
+                  <p className="text-white/70 text-sm leading-relaxed">Как найти свой стиль и интегрировать его в повседневный гардероб</p>
+                </div>
+
+                <div className="flex items-center gap-2 text-white/60 text-sm">
+                  <Icon name="MapPin" className="w-4 h-4 text-[#d4af37]" />
+                  <span>ZOOM 18:00</span>
+                </div>
+              </div>
+              
+              <div className="relative h-64 md:h-80 overflow-hidden">
+                <OptimizedImage
+                  src="https://cdn.poehali.dev/files/11e44596-cbf8-47b2-81e8-8aa357dc98ea.jpg"
+                  alt="Самсонова Юлия Аркадьевна"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+              </div>
+            </div>
+
+            <div className="group relative bg-gradient-to-br from-[#0a0a0a]/90 to-black/90 rounded-2xl border border-[#d4af37]/30 overflow-hidden hover:border-[#d4af37]/60 transition-all duration-500 hover:shadow-2xl hover:shadow-[#d4af37]/20">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#d4af37]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative p-6">
+                <div className="mb-4">
+                  <div className="inline-block px-4 py-2 bg-[#d4af37]/20 border border-[#d4af37]/40 rounded-full mb-4">
+                    <span className="text-[#d4af37] font-bold text-lg">19.12.2025</span>
+                  </div>
+                  <h3 className="text-2xl md:text-3xl font-black text-[#d4af37] mb-2">Сивая Ольга Владимировна</h3>
+                  <p className="text-white/70 text-base mb-1">Психолог / Психотерапевт</p>
+                  <p className="text-[#d4af37]/80 text-sm font-medium">Эксперт MUSE</p>
+                </div>
+                
+                <div className="bg-black/40 rounded-xl p-4 mb-4 border border-[#d4af37]/20">
+                  <p className="text-white/90 font-medium mb-2">ТЕМА:</p>
+                  <p className="text-white/70 text-sm leading-relaxed">Психологический разбор фильма Дракула</p>
+                </div>
+
+                <div className="flex items-center gap-2 text-white/60 text-sm">
+                  <Icon name="MapPin" className="w-4 h-4 text-[#d4af37]" />
+                  <span>ZOOM 18:00</span>
+                </div>
+              </div>
+              
+              <div className="relative h-64 md:h-80 overflow-hidden">
+                <OptimizedImage
+                  src="https://cdn.poehali.dev/files/9e471486-1874-46a2-be22-29cfd98d5928.jpg"
+                  alt="Сивая Ольга Владимировна"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       <SectionDivider />
 
