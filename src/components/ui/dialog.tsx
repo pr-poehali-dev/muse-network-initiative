@@ -19,7 +19,7 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/90 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:duration-500 data-[state=closed]:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+      "fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=open]:duration-500 data-[state=closed]:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
       className
     )}
     {...props}
@@ -36,7 +36,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-[90vw] max-w-2xl md:max-w-4xl max-h-[90vh] overflow-y-auto translate-x-[-50%] translate-y-[-50%] gap-2 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border-2 border-[#d4af37]/40 p-4 md:p-5 shadow-2xl shadow-[#d4af37]/20 rounded-xl [-webkit-overflow-scrolling:touch] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] data-[state=open]:duration-500 data-[state=closed]:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        "fixed left-[50%] top-[50%] z-[101] grid w-[90vw] max-w-2xl md:max-w-4xl max-h-[90vh] overflow-y-auto translate-x-[-50%] translate-y-[-50%] gap-2 bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border-2 border-[#d4af37]/40 p-4 md:p-5 shadow-2xl shadow-[#d4af37]/20 rounded-xl [-webkit-overflow-scrolling:touch] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] data-[state=open]:duration-500 data-[state=closed]:duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
         className
       )}
       {...props}
