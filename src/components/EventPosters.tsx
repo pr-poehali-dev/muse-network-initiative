@@ -45,7 +45,7 @@ const EventPosters = () => {
 
   return (
     <>
-      <div className="w-full max-w-7xl mx-auto px-4">
+      <div className="w-full">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {posters.map((poster, index) => (
             <div
@@ -80,18 +80,18 @@ const EventPosters = () => {
         >
           <button
             onClick={() => setSelectedPoster(null)}
-            className="absolute top-4 right-4 bg-[#d4af37]/20 hover:bg-[#d4af37]/40 backdrop-blur-sm rounded-full p-3 transition-all duration-300 z-10"
+            className="fixed top-4 right-4 md:top-8 md:right-8 bg-[#d4af37]/20 hover:bg-[#d4af37]/40 backdrop-blur-sm rounded-full p-3 transition-all duration-300 z-10"
             aria-label="Закрыть"
           >
             <Icon name="X" size={32} className="text-[#d4af37]" />
           </button>
 
-          <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg">
+          <div className="flex items-center justify-center w-full h-full">
             <img
               src={posters.find(p => p.id === selectedPoster)?.image}
               alt={posters.find(p => p.id === selectedPoster)?.title}
-              className="w-full h-auto object-contain rounded-lg"
-              style={{ maxHeight: '80vh' }}
+              className="max-w-sm md:max-w-md lg:max-w-lg w-full h-auto object-contain rounded-lg"
+              style={{ maxHeight: '85vh' }}
               onClick={(e) => e.stopPropagation()}
             />
           </div>
