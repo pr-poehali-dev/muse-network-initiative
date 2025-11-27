@@ -83,7 +83,7 @@ const EventRegistrationDialog = ({
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white">
+      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md w-full mx-4 sm:mx-auto max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
             Регистрация на событие
