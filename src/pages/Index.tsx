@@ -248,17 +248,32 @@ const Index = () => {
     setIsEventDialogOpen(true);
   }, []);
 
-  const handlePosterClick = useCallback((date: string) => {
-    scrollToSection('calendar');
-    setTimeout(() => {
-      const calendarElement = document.getElementById('calendar');
-      if (calendarElement) {
-        const dayElement = calendarElement.querySelector(`[data-date="${date}"]`);
-        if (dayElement) {
-          (dayElement as HTMLElement).click();
-        }
+  const handlePosterClick = useCallback(async (date: string) => {
+    try {
+      const response = await fetch('https://functions.poehali.dev/9a03b227-0396-4821-b715-378637815ee2');
+      const data = await response.json();
+      const events = data.events || [];
+      
+      const targetEvent = events.find((event: any) => event.date === date);
+      
+      if (targetEvent) {
+        setEventFormData(prev => ({...prev, event: targetEvent.title}));
+        setIsEventDialogOpen(true);
+      } else {
+        scrollToSection('calendar');
+        setTimeout(() => {
+          const calendarElement = document.getElementById('calendar');
+          if (calendarElement) {
+            const dayElement = calendarElement.querySelector(`[data-date="${date}"]`);
+            if (dayElement) {
+              (dayElement as HTMLElement).click();
+            }
+          }
+        }, 500);
       }
-    }, 500);
+    } catch (error) {
+      console.error('Failed to load event:', error);
+    }
   }, [scrollToSection]);
 
   const handleEventFormSubmit = useCallback(async (e: FormEvent) => {
