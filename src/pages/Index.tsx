@@ -248,6 +248,19 @@ const Index = () => {
     setIsEventDialogOpen(true);
   }, []);
 
+  const handlePosterClick = useCallback((date: string) => {
+    scrollToSection('calendar');
+    setTimeout(() => {
+      const calendarElement = document.getElementById('calendar');
+      if (calendarElement) {
+        const dayElement = calendarElement.querySelector(`[data-date="${date}"]`);
+        if (dayElement) {
+          (dayElement as HTMLElement).click();
+        }
+      }
+    }, 500);
+  }, [scrollToSection]);
+
   const handleEventFormSubmit = useCallback(async (e: FormEvent) => {
     e.preventDefault();
     setIsEventFormSubmitting(true);
@@ -521,7 +534,7 @@ const Index = () => {
               <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Афиши событий</h3>
             </div>
             <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
-              <EventPosters />
+              <EventPosters onPosterClick={handlePosterClick} />
             </Suspense>
           </div>
 

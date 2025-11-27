@@ -95,9 +95,13 @@ export const CalendarGrid = ({
                                currentMonth.getMonth() === new Date().getMonth() &&
                                currentMonth.getFullYear() === new Date().getFullYear();
                 
+                const monthDate = new Date(currentMonth.getFullYear(), currentMonth.getMonth() + offset, day);
+                const dateStr = monthDate.toISOString().split('T')[0];
+                
                 return (
                   <button
                     key={day}
+                    data-date={dateStr}
                     onClick={() => {
                       if (offset !== 0) {
                         onMonthChange(offset);

@@ -1,3 +1,7 @@
+interface EventPostersProps {
+  onPosterClick?: (date: string) => void;
+}
+
 const posters = [
   {
     id: 2,
@@ -37,14 +41,21 @@ const posters = [
   }
 ];
 
-const EventPosters = () => {
+const EventPosters = ({ onPosterClick }: EventPostersProps) => {
+  const handlePosterClick = (date: string) => {
+    if (onPosterClick) {
+      onPosterClick(date);
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
         {posters.map((poster, index) => (
           <div
             key={poster.id}
-            className="relative rounded-lg animate-scale-in group"
+            onClick={() => handlePosterClick(poster.date)}
+            className="relative rounded-lg animate-scale-in group cursor-pointer"
             style={{
               aspectRatio: '9/16',
               animationDelay: `${index * 0.1}s`
