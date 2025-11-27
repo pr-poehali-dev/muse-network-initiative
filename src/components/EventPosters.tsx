@@ -43,6 +43,11 @@ const posters = [
 const EventPosters = () => {
   const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
 
+  const handlePosterClick = (posterId: number) => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    setSelectedPoster(posterId);
+  };
+
   return (
     <>
       <div className="w-full">
@@ -50,7 +55,7 @@ const EventPosters = () => {
           {posters.map((poster, index) => (
             <div
               key={poster.id}
-              onClick={() => setSelectedPoster(poster.id)}
+              onClick={() => handlePosterClick(poster.id)}
               className="relative overflow-hidden rounded-lg cursor-pointer group animate-scale-in"
               style={{
                 aspectRatio: '9/16',
