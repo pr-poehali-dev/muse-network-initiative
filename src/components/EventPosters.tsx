@@ -44,17 +44,19 @@ const EventPosters = () => {
         {posters.map((poster, index) => (
           <div
             key={poster.id}
-            className="relative overflow-hidden rounded-lg animate-scale-in group"
+            className="relative rounded-lg animate-scale-in group"
             style={{
               aspectRatio: '9/16',
               animationDelay: `${index * 0.1}s`
             }}
           >
-            <img
-              src={poster.image}
-              alt={poster.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[2]"
-            />
+            <div className="w-full h-full overflow-hidden rounded-lg">
+              <img
+                src={poster.image}
+                alt={poster.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[2] group-hover:z-50 relative"
+              />
+            </div>
           </div>
         ))}
       </div>
