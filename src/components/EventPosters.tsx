@@ -80,11 +80,12 @@ const EventPosters = () => {
             <Icon name="X" size={32} className="text-[#d4af37]" />
           </button>
 
-          <div className="relative max-w-4xl w-full max-h-[90vh]">
+          <div className="relative w-full max-w-sm md:max-w-md lg:max-w-lg">
             <img
               src={posters.find(p => p.id === selectedPoster)?.image}
               alt={posters.find(p => p.id === selectedPoster)?.title}
-              className="w-full h-full object-contain rounded-lg"
+              className="w-full h-auto object-contain rounded-lg"
+              style={{ maxHeight: '80vh' }}
               onClick={(e) => e.stopPropagation()}
             />
           </div>
