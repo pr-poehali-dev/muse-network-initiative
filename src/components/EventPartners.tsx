@@ -79,31 +79,6 @@ const EventPartners = memo(() => {
           </p>
         </div>
 
-        {/* Генеральный партнёр */}
-        <div className="mb-16 md:mb-20">
-          <div className="text-center mb-8">
-            <h3 className="font-cormorant text-2xl md:text-4xl font-bold">
-              <span className="text-[#d4af37]">Генеральный</span>
-              {' '}
-              <span className="text-white">партнёр</span>
-            </h3>
-          </div>
-          <div 
-            className="relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-12 md:p-16 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-500 group"
-            style={{
-              animation: 'fadeInUp 0.6s ease-out forwards'
-            }}
-          >
-            <div className="flex items-center justify-center">
-              <img
-                src="https://cdn.poehali.dev/files/64571cbc-7d69-4dce-8290-31d2e36f3651.png"
-                alt="Альфа-Банк"
-                className="w-full max-w-xl h-auto object-contain filter brightness-95 group-hover:brightness-100 transition-all duration-500"
-              />
-            </div>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {partners.map((partner, index) => (
             <a
