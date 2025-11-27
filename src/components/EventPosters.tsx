@@ -21,6 +21,12 @@ const posters = [
     date: '2025-12-12'
   },
   {
+    id: 6,
+    image: 'https://cdn.poehali.dev/files/0547a45f-34fb-4270-ad4e-22ecb3ca525d.jpg',
+    title: 'MUSE ФОРУМ 13.12.2025',
+    date: '2025-12-13'
+  },
+  {
     id: 1,
     image: 'https://cdn.poehali.dev/files/4384b354-c3f4-47e7-9e38-7b4a17d34ca8.jpg',
     title: 'MUSE 19.12.2025 - Сивая Ольга Владимировна',
@@ -40,7 +46,7 @@ const EventPosters = () => {
   return (
     <>
       <div className="w-full max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
           {posters.map((poster, index) => (
             <div
               key={poster.id}
