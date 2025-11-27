@@ -79,14 +79,14 @@ const EventPartners = memo(() => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-3 gap-3 md:gap-6">
           {partners.map((partner, index) => (
             <a
               key={partner.id}
               href={partner.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-6 md:p-8 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-300"
+              className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg p-3 md:p-8 hover:bg-white/10 hover:border-[#d4af37]/40 transition-all duration-300"
               style={{
                 animationDelay: `${index * 100}ms`,
                 animation: 'fadeInUp 0.6s ease-out forwards',
