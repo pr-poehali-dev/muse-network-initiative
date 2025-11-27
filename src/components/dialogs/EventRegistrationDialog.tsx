@@ -83,12 +83,12 @@ const EventRegistrationDialog = ({
   };
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
+      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md w-full mx-4 sm:mx-auto max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
+          <DialogTitle className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
             Регистрация на событие
           </DialogTitle>
-          <DialogDescription className="text-white/70">
+          <DialogDescription className="text-white/70 text-sm">
             {formData.event}
           </DialogDescription>
         </DialogHeader>
@@ -108,7 +108,7 @@ const EventRegistrationDialog = ({
             <p className="text-lg text-white/80">Спасибо! Ваша заявка принята.</p>
           </div>
         ) : (
-          <form onSubmit={onSubmit} className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-3 sm:space-y-4">
             <Input
               placeholder="Имя"
               value={formData.name}
@@ -164,9 +164,9 @@ const EventRegistrationDialog = ({
               placeholder="Дополнительная информация"
               value={formData.message}
               onChange={(e) => onFormDataChange({...formData, message: e.target.value})}
-              className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
+              className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[80px] sm:min-h-[100px]"
             />
-            <div className="flex items-start gap-3 pt-2">
+            <div className="flex items-start gap-2 sm:gap-3 pt-2">
               <Checkbox 
                 id="terms-event"
                 checked={agreedToTerms}
@@ -175,7 +175,7 @@ const EventRegistrationDialog = ({
               />
               <Label 
                 htmlFor="terms-event" 
-                className="text-sm text-white/70 leading-relaxed"
+                className="text-xs sm:text-sm text-white/70 leading-relaxed"
               >
                 Я соглашаюсь с{' '}
                 <button
@@ -190,7 +190,7 @@ const EventRegistrationDialog = ({
             <Button 
               type="submit"
               disabled={isSubmitting || !agreedToTerms}
-              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50"
+              className="w-full bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold disabled:opacity-50 py-5 sm:py-4 text-base"
             >
               {isSubmitting ? 'Отправка...' : 'Отправить заявку'}
             </Button>
