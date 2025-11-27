@@ -47,7 +47,7 @@ const LoginDialog = ({ isOpen, onClose }: LoginDialogProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white max-w-md">
+      <DialogContent className="bg-[#1a1a1a] border-[#d4af37]/20 text-white">
         <DialogHeader>
           <DialogTitle className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90">
             Вход в личный кабинет
