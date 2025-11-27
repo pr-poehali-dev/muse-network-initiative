@@ -53,7 +53,7 @@ const EventPosters = () => {
             <img
               src={poster.image}
               alt={poster.title}
-              className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:scale-[2] group-hover:z-[100] relative group-hover:shadow-2xl"
+              className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:scale-[1.4] group-hover:z-[100] relative group-hover:shadow-2xl"
             />
           </div>
         ))}
