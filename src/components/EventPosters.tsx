@@ -75,7 +75,7 @@ const EventPosters = () => {
 
       {selectedPoster !== null && (
         <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md"
           onClick={() => setSelectedPoster(null)}
         >
           <button
@@ -86,11 +86,11 @@ const EventPosters = () => {
             <Icon name="X" size={32} className="text-[#d4af37]" />
           </button>
 
-          <div className="flex items-center justify-center w-full h-full">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-sm md:max-w-md lg:max-w-lg px-4">
             <img
               src={posters.find(p => p.id === selectedPoster)?.image}
               alt={posters.find(p => p.id === selectedPoster)?.title}
-              className="max-w-sm md:max-w-md lg:max-w-lg w-full h-auto object-contain rounded-lg"
+              className="w-full h-auto object-contain rounded-lg mx-auto"
               style={{ maxHeight: '85vh' }}
               onClick={(e) => e.stopPropagation()}
             />
