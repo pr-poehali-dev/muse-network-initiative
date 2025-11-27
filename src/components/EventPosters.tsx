@@ -1,6 +1,3 @@
-import { useState } from 'react';
-import Icon from '@/components/ui/icon';
-
 const posters = [
   {
     id: 2,
@@ -41,63 +38,27 @@ const posters = [
 ];
 
 const EventPosters = () => {
-  const [selectedPoster, setSelectedPoster] = useState<number | null>(null);
-
   return (
-    <>
-      <div className="w-full">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
-          {posters.map((poster, index) => (
-            <div
-              key={poster.id}
-              onClick={() => setSelectedPoster(poster.id)}
-              className="relative overflow-hidden rounded-lg cursor-pointer group animate-scale-in"
-              style={{
-                aspectRatio: '9/16',
-                animationDelay: `${index * 0.1}s`
-              }}
-            >
-              <img
-                src={poster.image}
-                alt={poster.title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="bg-[#d4af37]/90 rounded-full p-3">
-                  <Icon name="Maximize2" size={24} className="text-black" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {selectedPoster !== null && (
-        <div
-          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex items-center justify-center"
-          onClick={() => setSelectedPoster(null)}
-        >
-          <button
-            onClick={() => setSelectedPoster(null)}
-            className="fixed top-4 right-4 md:top-8 md:right-8 bg-[#d4af37]/20 hover:bg-[#d4af37]/40 backdrop-blur-sm rounded-full p-3 transition-all duration-300 z-10"
-            aria-label="Закрыть"
+    <div className="w-full">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        {posters.map((poster, index) => (
+          <div
+            key={poster.id}
+            className="relative overflow-hidden rounded-lg animate-scale-in"
+            style={{
+              aspectRatio: '9/16',
+              animationDelay: `${index * 0.1}s`
+            }}
           >
-            <Icon name="X" size={32} className="text-[#d4af37]" />
-          </button>
-
-          <div className="w-full max-w-sm md:max-w-md lg:max-w-lg px-4">
             <img
-              src={posters.find(p => p.id === selectedPoster)?.image}
-              alt={posters.find(p => p.id === selectedPoster)?.title}
-              className="w-full h-auto object-contain rounded-lg"
-              style={{ maxHeight: '85vh' }}
-              onClick={(e) => e.stopPropagation()}
+              src={poster.image}
+              alt={poster.title}
+              className="w-full h-full object-cover"
             />
           </div>
-        </div>
-      )}
-    </>
+        ))}
+      </div>
+    </div>
   );
 };
 
