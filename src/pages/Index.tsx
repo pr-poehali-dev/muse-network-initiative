@@ -9,6 +9,7 @@ import SectionDivider from '@/components/ui/SectionDivider';
 
 const HeroSection = lazy(() => import(/* webpackChunkName: "hero" */ '@/components/sections/HeroSection'));
 const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
+const EventPosters = lazy(() => import(/* webpackChunkName: "posters" */ '@/components/EventPosters'));
 const EventRegistrationDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/EventRegistrationDialog'));
 const JoinClubDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/JoinClubDialog'));
 const BecomeExpertDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/BecomeExpertDialog'));
@@ -513,6 +514,15 @@ const Index = () => {
                 </CardContent>
               </Card>
             ))}
+          </div>
+
+          <div className="mb-16">
+            <div className="text-center mb-10">
+              <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Афиши событий</h3>
+            </div>
+            <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+              <EventPosters />
+            </Suspense>
           </div>
 
           <div id="calendar">
