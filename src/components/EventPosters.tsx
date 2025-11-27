@@ -53,7 +53,7 @@ const EventPosters = () => {
             <img
               src={poster.image}
               alt={poster.title}
-              className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:scale-[2] group-hover:fixed group-hover:z-[100] group-hover:left-1/2 group-hover:top-1/2 group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:w-auto group-hover:max-w-2xl group-hover:h-auto group-hover:max-h-[90vh]"
+              className="w-full h-full object-cover rounded-lg transition-transform duration-500 group-hover:fixed group-hover:z-[100] group-hover:left-1/2 group-hover:top-1/2 group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:w-auto group-hover:max-w-xl group-hover:h-auto group-hover:max-h-[90vh]"
             />
           </div>
         ))}
