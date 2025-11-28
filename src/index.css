@@ -18,6 +18,11 @@ html {
 
 img {
   content-visibility: auto;
+  decoding: async;
+}
+
+video {
+  content-visibility: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +21,7 @@ interface HeroSectionProps {
   setIsEntering: (value: boolean) => void;
 }
 
-const HeroSection = ({
+const HeroSection = memo(({
   heroContent,
   isMobile,
   hoveredLetter,
@@ -220,6 +221,8 @@ const HeroSection = ({
       </div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = 'HeroSection';
 
 export default HeroSection;

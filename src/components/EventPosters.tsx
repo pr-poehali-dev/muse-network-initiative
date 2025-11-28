@@ -1,3 +1,5 @@
+import { memo } from 'react';
+
 interface EventPostersProps {
   onPosterClick?: (date: string) => void;
 }
@@ -41,7 +43,7 @@ const posters = [
   }
 ];
 
-const EventPosters = ({ onPosterClick }: EventPostersProps) => {
+const EventPosters = memo(({ onPosterClick }: EventPostersProps) => {
   const handlePosterClick = (date: string) => {
     if (onPosterClick) {
       onPosterClick(date);
@@ -71,6 +73,8 @@ const EventPosters = ({ onPosterClick }: EventPostersProps) => {
       </div>
     </div>
   );
-};
+});
+
+EventPosters.displayName = 'EventPosters';
 
 export default EventPosters;
