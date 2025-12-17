@@ -1,8 +1,8 @@
 export const homepageData = {
   hero: {
     title: 'MUSE',
-    tagline: 'Женский бизнес-клуб с особенным характером',
-    description: 'Закрытое сообщество для предпринимательниц и директрис',
+    tagline: 'Женский клуб объединяющий бизнес, науку, искусство, культуру',
+    description: '',
     image_left: 'https://cdn.poehali.dev/files/photo_2025-10-25_21-50-11.jpg',
     image_center: 'https://cdn.poehali.dev/files/photo_2025-10-26_03-31-41.jpg',
     image_right: 'https://cdn.poehali.dev/files/photo_2025-11-24_12-19-41.jpg'
