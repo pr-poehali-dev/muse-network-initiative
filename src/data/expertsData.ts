@@ -49,10 +49,10 @@ export const expertsData = [
     video_url: null
   },
   {
-    name: 'Кузнецова Екатерина Юрьевна',
-    role: 'Директор центра развития туризма и культуры Архангельской области',
-    description: 'Руководитель центра развития туризма и культуры Архангельской области',
-    image: 'https://i.ibb.co/JsvR8ZJ/image.jpg',
+    name: 'Викторова Юлия Александровна',
+    role: 'Директор по цифровому маркетингу albe digital',
+    description: 'Директор по цифровому маркетингу albe digital',
+    image: 'https://cdn.poehali.dev/files/photo_2025-01-16_10-56-08.jpg',
     video_url: null
   }
 ];
