@@ -31,7 +31,7 @@ export const expertsData = [
     name: 'Берг Полина Юрьевна',
     role: 'Мастер исторического костюма, бренд северной одежды Пинега',
     description: 'Мастер исторического костюма и создатель бренда северной одежды Пинега',
-    image: 'https://i.ibb.co/YXM92Ss/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-10-26_18-59-32 (2).jpg',
     video_url: null
   },
   {
