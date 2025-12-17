@@ -3,7 +3,7 @@ export const expertsData = [
     name: 'Ляшева Карина Викторовна',
     role: 'Эксперт гастрономического искусства, владелица семейного бизнеса "VEEK"',
     description: 'Эксперт в области гастрономического искусства и руководитель семейного бизнеса',
-    image: 'https://i.ibb.co/9r8VYfH/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-10-26_19-03-24.jpg',
     video_url: null
   },
   {
