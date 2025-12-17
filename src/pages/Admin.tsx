@@ -11,7 +11,6 @@ import { useToast } from '@/hooks/use-toast';
 const MuseTvSection = lazy(() => import('@/components/admin/MuseTvSection'));
 const MediaGallerySection = lazy(() => import('@/components/admin/MediaGallerySection'));
 const PartnersSection = lazy(() => import('@/components/admin/PartnersSection'));
-const HomepageSection = lazy(() => import('@/components/admin/HomepageSection'));
 const ApplicationsSection = lazy(() => import('@/components/admin/ApplicationsSection'));
 import ImageUploader from '@/components/admin/ImageUploader';
 import { convertCloudUrl, isCloudUrl, getServiceName } from '@/utils/imageUrlConverter';
@@ -57,22 +56,7 @@ const Admin = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
   const [showForm, setShowForm] = useState(false);
-  const [availableSpeakers, setAvailableSpeakers] = useState<DBSpeaker[]>([]);
-  const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
-  const [activeTab, setActiveTab] = useState<'homepage' | 'events' | 'speakers' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'applications' | 'images' | 'settings'>('homepage');
-  const [showSpeakerForm, setShowSpeakerForm] = useState(false);
-  const [editingSpeaker, setEditingSpeaker] = useState<DBSpeaker | null>(null);
-  const [speakerFormData, setSpeakerFormData] = useState({
-    name: '',
-    role: '',
-    image: '',
-    bio: '',
-    video_url: '',
-    display_order: 0,
-    is_guest: false
-  });
-  const [isUploadingSpeakerImage, setIsUploadingSpeakerImage] = useState(false);
-  const speakerImageInputRef = useRef<HTMLInputElement>(null);
+  const [activeTab, setActiveTab] = useState<'events' | 'headliners' | 'musetv' | 'gallery' | 'partners' | 'applications' | 'images' | 'settings'>('events');
 
   const [headlinersContent, setHeadlinersContent] = useState<any>(null);
   const [rutubeVideos, setRutubeVideos] = useState<any[]>([]);
@@ -143,7 +127,6 @@ const Admin = () => {
     if (authToken) {
       setIsAuthenticated(true);
       loadEvents();
-      loadSpeakers();
       loadHeadlinersData();
       loadMuseTvData();
     }
@@ -167,15 +150,7 @@ const Admin = () => {
     }
   };
 
-  const loadSpeakers = async () => {
-    try {
-      const response = await fetch('https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51');
-      const data = await response.json();
-      setAvailableSpeakers(data.speakers || []);
-    } catch (error) {
-      console.error('Failed to load speakers:', error);
-    }
-  };
+
 
   const loadHeadlinersData = async () => {
     try {
@@ -465,155 +440,7 @@ const Admin = () => {
     }
   };
 
-  const addSpeaker = () => {
-    setFormData({
-      ...formData,
-      speakers: [...formData.speakers, { name: '', role: '', image: '' }]
-    });
-  };
 
-  const addSpeakerFromDB = (dbSpeaker: DBSpeaker) => {
-    const newSpeaker: Speaker = {
-      name: dbSpeaker.name,
-      role: dbSpeaker.role,
-      image: dbSpeaker.image
-    };
-    setFormData({
-      ...formData,
-      speakers: [...formData.speakers, newSpeaker]
-    });
-    setShowSpeakerPicker(false);
-  };
-
-  const handleSpeakerSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
-    try {
-      const url = 'https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51';
-      const method = editingSpeaker ? 'PUT' : 'POST';
-      const body = editingSpeaker ? { ...speakerFormData, id: editingSpeaker.id } : speakerFormData;
-
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        toast({
-          title: 'Успешно!',
-          description: editingSpeaker ? 'Эксперт обновлён' : 'Эксперт добавлен',
-        });
-        
-        resetSpeakerForm();
-        loadSpeakers();
-      } else {
-        throw new Error(data.error || 'Ошибка сохранения');
-      }
-    } catch (error) {
-      console.error('Failed to save speaker:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Не удалось сохранить эксперта';
-      toast({
-        title: 'Ошибка',
-        description: errorMessage,
-        variant: 'destructive'
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const resetSpeakerForm = () => {
-    setSpeakerFormData({
-      name: '',
-      role: '',
-      image: '',
-      bio: '',
-      video_url: '',
-      display_order: 0,
-      is_guest: false
-    });
-    setEditingSpeaker(null);
-    setShowSpeakerForm(false);
-  };
-
-  const handleEditSpeaker = (speaker: DBSpeaker) => {
-    setSpeakerFormData({
-      name: speaker.name,
-      role: speaker.role,
-      image: speaker.image,
-      bio: speaker.bio || '',
-      video_url: speaker.video_url || '',
-      display_order: speaker.display_order,
-      is_guest: speaker.is_guest || false
-    });
-    setEditingSpeaker(speaker);
-    setShowSpeakerForm(true);
-  };
-
-  const handleDeleteSpeaker = async (speakerId: number) => {
-    if (!confirm('Вы уверены, что хотите удалить этого эксперта?')) {
-      return;
-    }
-
-    setIsLoading(true);
-    try {
-      const response = await fetch('https://functions.poehali.dev/ac7d58d9-492c-4af9-b8d4-03cd08056a51', {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: speakerId })
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        toast({
-          title: 'Успешно!',
-          description: 'Эксперт удалён',
-        });
-        loadSpeakers();
-      } else {
-        throw new Error(data.error || 'Ошибка удаления');
-      }
-    } catch (error) {
-      console.error('Failed to delete speaker:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Не удалось удалить эксперта';
-      toast({
-        title: 'Ошибка',
-        description: errorMessage,
-        variant: 'destructive'
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const removeSpeaker = (index: number) => {
-    const newSpeakers = formData.speakers.filter((_, i) => i !== index);
-    setFormData({ ...formData, speakers: newSpeakers });
-  };
-
-  const updateSpeaker = async (index: number, field: keyof Speaker, value: string) => {
-    if (field === 'image' && isCloudUrl(value)) {
-      const directUrl = await convertCloudUrl(value);
-      const newSpeakers = [...formData.speakers];
-      newSpeakers[index] = { ...newSpeakers[index], [field]: directUrl };
-      setFormData({ ...formData, speakers: newSpeakers });
-      if (directUrl !== value) {
-        toast({
-          title: 'Ссылка конвертирована',
-          description: `${getServiceName(value)} ссылка преобразована в прямую ссылку`,
-        });
-      }
-    } else {
-      const newSpeakers = [...formData.speakers];
-      newSpeakers[index] = { ...newSpeakers[index], [field]: value };
-      setFormData({ ...formData, speakers: newSpeakers });
-    }
-  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -775,25 +602,7 @@ const Admin = () => {
         <div className="mb-8 flex gap-3 flex-wrap">
           <Button
             onClick={() => {
-              setActiveTab('homepage');
-              setShowForm(false);
-              setShowSpeakerForm(false);
-              setEditingEvent(null);
-              setEditingSpeaker(null);
-            }}
-            variant={activeTab === 'homepage' ? 'default' : 'ghost'}
-            className={activeTab === 'homepage' 
-              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
-              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
-            }
-          >
-            Главная
-          </Button>
-          <Button
-            onClick={() => {
               setActiveTab('events');
-              setShowSpeakerForm(false);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'events' ? 'default' : 'ghost'}
             className={activeTab === 'events' 
@@ -802,20 +611,6 @@ const Admin = () => {
             }
           >
             События
-          </Button>
-          <Button
-            onClick={() => {
-              setActiveTab('speakers');
-              setShowForm(false);
-              setEditingEvent(null);
-            }}
-            variant={activeTab === 'speakers' ? 'default' : 'ghost'}
-            className={activeTab === 'speakers'
-              ? 'bg-gradient-to-r from-[#d4af37] to-[#8b7355] text-black font-bold px-8 py-6 text-lg'
-              : 'text-white/60 hover:text-[#d4af37] hover:bg-transparent text-lg'
-            }
-          >
-            Эксперты
           </Button>
           <Button
             onClick={() => {
@@ -931,11 +726,7 @@ const Admin = () => {
           </Button>
         </div>
 
-        {activeTab === 'homepage' && (
-          <Suspense fallback={<div className="text-center py-12"><div className="relative w-16 h-16 mx-auto mb-4"><div className="absolute inset-0 rounded-full border-4 border-[#d4af37]/20"></div><div className="absolute inset-0 rounded-full border-4 border-t-[#d4af37] animate-spin"></div></div><p className="text-white/60">Загрузка...</p></div>}>
-            <HomepageSection isLoading={isLoading} setIsLoading={setIsLoading} />
-          </Suspense>
-        )}
+
 
         {activeTab === 'events' && (
           <>
@@ -958,52 +749,7 @@ const Admin = () => {
           </>
         )}
 
-        {activeTab === 'speakers' && (
-          <>
-            <div className="mb-8 flex gap-3">
-              <Button
-                onClick={() => setShowSpeakerForm(!showSpeakerForm)}
-                className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-              >
-                {showSpeakerForm ? 'Отменить' : 'Добавить эксперта'}
-              </Button>
-              
-              <Button
-                onClick={loadSpeakers}
-                variant="outline"
-                className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
-              >
-                Обновить
-              </Button>
-            </div>
 
-            {showSpeakerForm && (
-              <Card className="bg-[#1a1a1a] border-[#d4af37]/20 mb-8">
-                <CardHeader>
-                  <CardTitle className="text-[#d4af37]">
-                    {editingSpeaker ? 'Редактировать эксперта' : 'Новый эксперт'}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSpeakerSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div>
-                        <Label htmlFor="speaker-name" className="text-white/80">Имя</Label>
-                        <Input
-                          id="speaker-name"
-                          value={speakerFormData.name}
-                          onChange={(e) => setSpeakerFormData({ ...speakerFormData, name: e.target.value })}
-                          required
-                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="speaker-role" className="text-white/80">Роль</Label>
-                        <Input
-                          id="speaker-role"
-                          value={speakerFormData.role}
-                          onChange={(e) => setSpeakerFormData({ ...speakerFormData, role: e.target.value })}
                           className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
                         />
                       </div>

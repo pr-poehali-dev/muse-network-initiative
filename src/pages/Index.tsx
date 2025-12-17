@@ -13,51 +13,23 @@ import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialo
 import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
 import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
 import LoginDialog from '@/components/dialogs/LoginDialog';
+import { homepageData } from '@/data/homepageData';
+import { expertsData } from '@/data/expertsData';
 
 const Index = () => {
   const navigate = useNavigate();
 
   const [titleInHeader, setTitleInHeader] = useState(false);
-  const [experts, setExperts] = useState<any[]>([]);
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredLetter, setHoveredLetter] = useState<string | null>(null);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isEntering, setIsEntering] = useState(false);
-  const [heroContent, setHeroContent] = useState({
-    title: 'MUSE',
-    tagline: 'Женский клуб с особенным характером',
-    description: 'Частное закрытое сообщество для успешных женщин из Грузии, СНГ и со всего мира',
-    image_left: '',
-    image_center: '',
-    image_right: ''
-  });
   
-  const [aboutContent, setAboutContent] = useState({
-    title: '',
-    subtitle: '',
-    description: '',
-    founder: {
-      name: '',
-      role: '',
-      image: '',
-      quote_1: '',
-      quote_2: ''
-    },
-    goals: [],
-    offerings: []
-  });
-
-  const [valuesContent, setValuesContent] = useState({
-    title: '',
-    values: []
-  });
-
-  const [eventsContent, setEventsContent] = useState({
-    title: '',
-    subtitle: '',
-    formats_title: '',
-    formats: []
-  });
+  const heroContent = homepageData.hero;
+  const aboutContent = homepageData.about;
+  const valuesContent = homepageData.values;
+  const eventsContent = homepageData.events;
+  const experts = expertsData;
   
   useEffect(() => {
     let resizeTimer: NodeJS.Timeout;
@@ -100,51 +72,7 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    let mounted = true;
-    const loadData = async () => {
-      try {
-        const [homepageRes, expertsRes] = await Promise.all([
-          fetch('https://functions.poehali.dev/15067ca2-df63-4e81-8c9f-2fb93d2daa95'),
-          fetch('https://functions.poehali.dev/353c16af-1a5f-4420-8ee0-c0d777318ef4')
-        ]);
-        
-        if (!mounted) return;
-        
-        const homepageData = await homepageRes.json();
-        const expertsData = await expertsRes.json();
-        
-        if (!mounted) return;
-        
-        if (homepageData.content?.hero) {
-          setHeroContent(homepageData.content.hero);
-        }
-        if (homepageData.content?.about) {
-          setAboutContent(homepageData.content.about);
-        }
-        if (homepageData.content?.values) {
-          setValuesContent(homepageData.content.values);
-        }
-        if (homepageData.content?.events) {
-          setEventsContent(homepageData.content.events);
-        }
-        
-        if (expertsData.speakers) {
-          setExperts(expertsData.speakers.map((speaker: any) => ({
-            name: speaker.name,
-            role: speaker.role,
-            description: speaker.bio || '',
-            image: speaker.image,
-            video_url: speaker.video_url || null
-          })));
-        }
-      } catch (error) {
-        console.error('Failed to load data:', error);
-      }
-    };
-    loadData();
-    return () => { mounted = false; };
-  }, []);
+
   
   const [isEventDialogOpen, setIsEventDialogOpen] = useState(false);
   const [isJoinDialogOpen, setIsJoinDialogOpen] = useState(false);
