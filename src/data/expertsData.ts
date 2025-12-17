@@ -24,7 +24,7 @@ export const expertsData = [
     name: 'Самсонова Юлия Аркадьевна',
     role: 'Стилист, эксперт по стилю и имиджу',
     description: 'Профессиональный стилист и эксперт в области создания стиля и имиджа',
-    image: 'https://i.ibb.co/vBGX5hL/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-10-26_18-48-35.jpg',
     video_url: null
   },
   {
