@@ -38,7 +38,7 @@ export const expertsData = [
     name: 'Лазарева Мария Михайловна',
     role: 'Психолог, психотерапевт, метод символдрамы, бизнес-тренер',
     description: 'Психолог и психотерапевт, специализирующийся на методе символдрамы, бизнес-тренер',
-    image: 'https://i.ibb.co/LvP1d9r/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-10-25_22-00-430.jpg',
     video_url: null
   },
   {
