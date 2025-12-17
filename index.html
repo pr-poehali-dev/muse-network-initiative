@@ -79,6 +79,11 @@
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>
 
+<!-- Service Worker регистрация для кеширования -->
+<script>
+if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('/sw.js').then(function(reg){console.log('SW registered')}).catch(function(err){console.log('SW registration failed')})})}
+</script>
+
 <!-- Yandex.Metrika counter (отложенная загрузка при скролле или через 3s) -->
 <script type="text/javascript">
 (function(){var loaded=false;function loadMetrika(){if(loaded)return;loaded=true;(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");ym(101026698,"init",{trustedDomains:["poehali.dev"],clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true,trackHash:true})}var scrollHandler=function(){if(window.scrollY>window.innerHeight*0.5){loadMetrika();window.removeEventListener('scroll',scrollHandler)}};window.addEventListener('scroll',scrollHandler,{passive:true});window.addEventListener('load',function(){setTimeout(loadMetrika,3000)})})();
