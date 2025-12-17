@@ -32,14 +32,14 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
 
   return (
     <Card 
-      className={`bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group ${
+      className={`aspect-square bg-black/30 border-gold/20 overflow-hidden hover:border-gold/40 transition-all duration-300 group relative ${
         expert.video_url ? 'cursor-pointer' : ''
       }`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={expert.video_url ? handleCardClick : undefined}
     >
-      <div className="aspect-square overflow-hidden relative bg-gradient-to-br from-gold/10 to-black/50 flex items-center justify-center">
+      <div className="absolute inset-0 overflow-hidden bg-gradient-to-br from-gold/10 to-black/50 flex items-center justify-center">
         <OptimizedImage
           src={expert.image}
           alt={expert.name}
@@ -59,14 +59,11 @@ const ExpertCard = ({ expert }: { expert: Expert }) => {
           </div>
         )}
       </div>
-      <CardContent className="p-6">
-        <h3 className="text-2xl font-semibold mb-2 text-gold">
+      <CardContent className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black via-black/90 to-transparent">
+        <h3 className="text-lg font-semibold mb-1 text-gold line-clamp-1">
           {expert.name}
         </h3>
-        <p className="text-white/60 mb-4">{expert.role}</p>
-        {expert.description && (
-          <p className="text-white/70 text-sm">{expert.description}</p>
-        )}
+        <p className="text-white/60 text-sm line-clamp-2">{expert.role}</p>
       </CardContent>
     </Card>
   );
