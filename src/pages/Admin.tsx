@@ -121,6 +121,25 @@ const Admin = () => {
   });
   const [unlimitedSeats, setUnlimitedSeats] = useState(false);
   const [silentMode, setSilentMode] = useState(false);
+  const [showSpeakerPicker, setShowSpeakerPicker] = useState(false);
+
+  const addSpeaker = () => {
+    setFormData({
+      ...formData,
+      speakers: [...formData.speakers, { name: '', role: '', image: '' }]
+    });
+  };
+
+  const removeSpeaker = (index: number) => {
+    const newSpeakers = formData.speakers.filter((_, i) => i !== index);
+    setFormData({ ...formData, speakers: newSpeakers });
+  };
+
+  const updateSpeaker = (index: number, field: keyof Speaker, value: string) => {
+    const newSpeakers = [...formData.speakers];
+    newSpeakers[index] = { ...newSpeakers[index], [field]: value };
+    setFormData({ ...formData, speakers: newSpeakers });
+  };
 
   useEffect(() => {
     const authToken = localStorage.getItem('muse_admin_token');
@@ -616,9 +635,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('headliners');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'headliners' ? 'default' : 'ghost'}
             className={activeTab === 'headliners'
@@ -632,9 +649,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('musetv');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'musetv' ? 'default' : 'ghost'}
             className={activeTab === 'musetv'
@@ -648,9 +663,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('gallery');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'gallery' ? 'default' : 'ghost'}
             className={activeTab === 'gallery'
@@ -664,9 +677,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('partners');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'partners' ? 'default' : 'ghost'}
             className={activeTab === 'partners'
@@ -680,9 +691,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('applications');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'applications' ? 'default' : 'ghost'}
             className={activeTab === 'applications'
@@ -696,9 +705,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('images');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'images' ? 'default' : 'ghost'}
             className={activeTab === 'images'
@@ -712,9 +719,7 @@ const Admin = () => {
             onClick={() => {
               setActiveTab('settings');
               setShowForm(false);
-              setShowSpeakerForm(false);
               setEditingEvent(null);
-              setEditingSpeaker(null);
             }}
             variant={activeTab === 'settings' ? 'default' : 'ghost'}
             className={activeTab === 'settings'
@@ -745,235 +750,6 @@ const Admin = () => {
               >
                 Обновить
               </Button>
-            </div>
-          </>
-        )}
-
-
-                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        />
-                      </div>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="speaker-image" className="text-white/80">Изображение эксперта</Label>
-                      <div className="flex gap-2">
-                        <Input
-                          id="speaker-image"
-                          value={speakerFormData.image}
-                          onChange={async (e) => {
-                            const url = e.target.value;
-                            if (isCloudUrl(url)) {
-                              const directUrl = await convertCloudUrl(url);
-                              setSpeakerFormData({ ...speakerFormData, image: directUrl });
-                              if (directUrl !== url) {
-                                toast({
-                                  title: 'Ссылка конвертирована',
-                                  description: `${getServiceName(url)} ссылка преобразована в прямую ссылку`,
-                                });
-                              }
-                            } else {
-                              setSpeakerFormData({ ...speakerFormData, image: url });
-                            }
-                          }}
-                          className="bg-[#0a0a0a] border-[#d4af37]/20 text-white flex-1"
-                          placeholder="URL изображения или выберите файл"
-                        />
-                        <input
-                          ref={speakerImageInputRef}
-                          type="file"
-                          accept="image/*"
-                          className="hidden"
-                          onChange={async (e) => {
-                            const file = e.target.files?.[0];
-                            if (!file) return;
-
-                            if (file.size > 5 * 1024 * 1024) {
-                              toast({
-                                title: 'Ошибка',
-                                description: 'Размер файла не должен превышать 5 МБ',
-                                variant: 'destructive'
-                              });
-                              return;
-                            }
-
-                            setIsUploadingSpeakerImage(true);
-                            const formData = new FormData();
-                            formData.append('image', file);
-
-                            try {
-                              const response = await fetch('https://api.imgbb.com/1/upload?key=4d755673c26a0c615eaedc63bd1fcc2a', {
-                                method: 'POST',
-                                body: formData
-                              });
-
-                              const data = await response.json();
-                              if (data.success) {
-                                setSpeakerFormData({ ...speakerFormData, image: data.data.url });
-                                toast({
-                                  title: 'Фото загружено',
-                                  description: 'Изображение успешно загружено на ImgBB'
-                                });
-                              } else {
-                                throw new Error('Ошибка загрузки');
-                              }
-                            } catch (error) {
-                              toast({
-                                title: 'Ошибка загрузки',
-                                description: 'Не удалось загрузить изображение',
-                                variant: 'destructive'
-                              });
-                            } finally {
-                              setIsUploadingSpeakerImage(false);
-                              if (speakerImageInputRef.current) {
-                                speakerImageInputRef.current.value = '';
-                              }
-                            }
-                          }}
-                        />
-                        <Button
-                          type="button"
-                          onClick={() => speakerImageInputRef.current?.click()}
-                          disabled={isUploadingSpeakerImage}
-                          className="bg-[#d4af37] hover:bg-[#8b7355] text-black px-4 whitespace-nowrap"
-                        >
-                          {isUploadingSpeakerImage ? 'Загрузка...' : 'Выбрать файл'}
-                        </Button>
-                      </div>
-                      <p className="text-xs text-white/50 mt-1">💡 Загрузите файл или вставьте ссылку (ImgBB, Google Drive, Яндекс.Диск)</p>
-                      {speakerFormData.image && (
-                        <div className="mt-2">
-                          <img src={speakerFormData.image} alt="Предпросмотр" className="w-32 h-32 object-cover rounded-lg" />
-                        </div>
-                      )}
-                    </div>
-
-                    <div>
-                      <Label htmlFor="speaker-bio" className="text-white/80">Биография</Label>
-                      <Textarea
-                        id="speaker-bio"
-                        value={speakerFormData.bio}
-                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, bio: e.target.value })}
-                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white min-h-[100px]"
-                      />
-                    </div>
-
-                    <div>
-                      <Label htmlFor="speaker-video" className="text-white/80">Видео из Кинескоп (для главной страницы)</Label>
-                      <Input
-                        id="speaker-video"
-                        value={speakerFormData.video_url}
-                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, video_url: e.target.value })}
-                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        placeholder="https://kinescope.io/..."
-                      />
-                      <p className="text-xs text-white/50 mt-1">💡 Вставьте ссылку на видео из Кинескоп. Видео будет показываться только в блоке "Наши эксперты" на главной странице</p>
-                    </div>
-
-                    <div>
-                      <Label htmlFor="speaker-order" className="text-white/80">Порядок отображения</Label>
-                      <Input
-                        id="speaker-order"
-                        type="number"
-                        value={speakerFormData.display_order}
-                        onChange={(e) => setSpeakerFormData({ ...speakerFormData, display_order: parseInt(e.target.value) || 0 })}
-                        className="bg-[#0a0a0a] border-[#d4af37]/20 text-white"
-                        placeholder="0"
-                      />
-                      <p className="text-white/50 text-xs mt-1">Меньшее число = выше в списке</p>
-                    </div>
-
-                    <div className="flex items-center space-x-2">
-                      <Checkbox
-                        id="speaker-guest"
-                        checked={speakerFormData.is_guest}
-                        onCheckedChange={(checked) => setSpeakerFormData({ ...speakerFormData, is_guest: checked as boolean })}
-                        className="border-[#d4af37]/20 data-[state=checked]:bg-[#d4af37] data-[state=checked]:text-black"
-                      />
-                      <Label htmlFor="speaker-guest" className="text-white/80 cursor-pointer">
-                        Гостевой эксперт (не отображать на главной странице)
-                      </Label>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <Button
-                        type="submit"
-                        disabled={isLoading}
-                        className="bg-gradient-to-r from-[#d4af37] to-[#8b7355] hover:from-[#b8953d] hover:to-[#6b5d42] text-black font-bold px-8 py-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-                      >
-                        {isLoading ? 'Сохранение...' : editingSpeaker ? 'Обновить' : 'Добавить'}
-                      </Button>
-                      
-                      <Button
-                        type="button"
-                        onClick={resetSpeakerForm}
-                        variant="outline"
-                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-8 py-6 rounded-xl font-bold"
-                      >
-                        Отменить
-                      </Button>
-                    </div>
-                  </form>
-                </CardContent>
-              </Card>
-            )}
-
-            <div className="space-y-4">
-              <h2 className="text-xl font-bold text-[#d4af37]">Все эксперты</h2>
-              {isLoading ? (
-                <div className="text-center py-8 text-white/60">Загрузка...</div>
-              ) : availableSpeakers.length === 0 ? (
-                <div className="text-center py-8 text-white/60">Нет экспертов</div>
-              ) : (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {availableSpeakers.map((speaker) => (
-                    <Card key={speaker.id} className="bg-[#1a1a1a] border-[#d4af37]/20">
-                      <CardContent className="p-4">
-                        <div className="flex items-start gap-4">
-                          {speaker.image && (
-                            <img
-                              src={speaker.image}
-                              alt={speaker.name}
-                              className="w-16 h-16 rounded-full object-cover flex-shrink-0"
-                            />
-                          )}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2">
-                              <h3 className="font-bold text-white truncate">{speaker.name}</h3>
-                              <span className="text-xs bg-[#d4af37]/20 text-[#d4af37] px-2 py-1 rounded">#{speaker.display_order}</span>
-                            </div>
-                            <p className="text-sm text-white/60 truncate">{speaker.role}</p>
-                            {speaker.bio && (
-                              <p className="text-xs text-white/40 mt-2 line-clamp-2">{speaker.bio}</p>
-                            )}
-                            {speaker.video_url && (
-                              <p className="text-xs text-green-400 mt-1">🎥 Видео добавлено</p>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex gap-2 mt-4">
-                          <Button
-                            onClick={() => handleEditSpeaker(speaker)}
-                            variant="outline"
-                            size="sm"
-                            className="flex-1 border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 py-5 rounded-lg"
-                          >
-                            Редактировать
-                          </Button>
-                          <Button
-                            onClick={() => handleDeleteSpeaker(speaker.id)}
-                            variant="outline"
-                            size="sm"
-                            className="border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all duration-300 py-5 px-6 rounded-lg"
-                          >
-                            Удалить
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              )}
             </div>
           </>
         )}
@@ -1439,55 +1215,16 @@ const Admin = () => {
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <Label className="text-white/80">Спикеры</Label>
-                    <div className="flex gap-2">
-                      <Button
-                        type="button"
-                        onClick={() => setShowSpeakerPicker(!showSpeakerPicker)}
-                        variant="outline"
-                        size="sm"
-                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
-                      >
-                        Выбрать эксперта
-                      </Button>
-                      <Button
-                        type="button"
-                        onClick={addSpeaker}
-                        variant="outline"
-                        size="sm"
-                        className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
-                      >
-                        Добавить вручную
-                      </Button>
-                    </div>
+                    <Button
+                      type="button"
+                      onClick={addSpeaker}
+                      variant="outline"
+                      size="sm"
+                      className="border-[#d4af37] text-[#d4af37] hover:bg-[#d4af37] hover:text-black transition-all duration-300 px-6 py-5 rounded-lg"
+                    >
+                      Добавить спикера
+                    </Button>
                   </div>
-
-                  {showSpeakerPicker && (
-                    <div className="bg-[#0a0a0a] rounded-lg border border-[#d4af37]/20 p-4 max-h-96 overflow-y-auto">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {availableSpeakers.map((speaker) => (
-                          <button
-                            key={speaker.id}
-                            type="button"
-                            onClick={() => addSpeakerFromDB(speaker)}
-                            className="flex items-center gap-3 p-3 bg-black rounded-lg border border-[#d4af37]/10 hover:border-[#d4af37]/30 transition-colors text-left"
-                          >
-                            {speaker.image && (
-                              <img
-                                src={speaker.image}
-                                alt={speaker.name}
-                                className="w-12 h-12 rounded-full object-cover"
-                              />
-                            )}
-                            <div className="flex-1 min-w-0">
-                              <div className="text-white font-medium truncate">{speaker.name}</div>
-                              <div className="text-white/60 text-sm truncate">{speaker.role}</div>
-                            </div>
-                            <span className="text-[#d4af37] text-xl flex-shrink-0">+</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
 
                   {formData.speakers.map((speaker, index) => (
                     <div key={index} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-[#0a0a0a] rounded-lg border border-[#d4af37]/10">
