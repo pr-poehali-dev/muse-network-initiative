@@ -5,7 +5,7 @@ export const homepageData = {
     description: 'Частное закрытое сообщество для успешных женщин из Грузии, СНГ и со всего мира',
     image_left: 'https://cdn.poehali.dev/files/49f0d70d-f96c-42f1-9063-ad4adf36c80f.jpg',
     image_center: 'https://cdn.poehali.dev/files/photo_2025-10-26_03-31-41.jpg',
-    image_right: 'https://cdn.poehali.dev/files/49f0d70d-f96c-42f1-9063-ad4adf36c80f.jpg'
+    image_right: 'https://cdn.poehali.dev/files/photo_2025-11-24_12-19-41.jpg'
   },
   about: {
     title: 'О клубе',
