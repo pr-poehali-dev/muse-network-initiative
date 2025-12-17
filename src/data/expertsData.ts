@@ -45,7 +45,7 @@ export const expertsData = [
     name: 'Рябова Тамара Васильевна',
     role: 'Фитнес-эксперт, специалист по здоровому телу',
     description: 'Эксперт в области фитнеса и поддержания здорового тела',
-    image: 'https://i.ibb.co/HBBKXxH/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-10-26_18-48-31.jpg',
     video_url: null
   },
   {
