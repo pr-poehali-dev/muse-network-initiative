@@ -1,4 +1,4 @@
-import { useState, FormEvent, useEffect, useMemo, useCallback } from 'react';
+import { useState, FormEvent, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Icon from '@/components/ui/icon';
@@ -6,13 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import Layout from '@/components/Layout';
 import PageTransition from '@/components/PageTransition';
 import SectionDivider from '@/components/ui/SectionDivider';
-import HeroSection from '@/components/sections/HeroSection';
-import EventsCalendar from '@/components/EventsCalendar';
-import EventPosters from '@/components/EventPosters';
-import EventRegistrationDialog from '@/components/dialogs/EventRegistrationDialog';
-import JoinClubDialog from '@/components/dialogs/JoinClubDialog';
-import BecomeExpertDialog from '@/components/dialogs/BecomeExpertDialog';
-import LoginDialog from '@/components/dialogs/LoginDialog';
+
+const HeroSection = lazy(() => import(/* webpackChunkName: "hero" */ '@/components/sections/HeroSection'));
+const EventsCalendar = lazy(() => import(/* webpackChunkName: "calendar" */ '@/components/EventsCalendar'));
+const EventPosters = lazy(() => import(/* webpackChunkName: "posters" */ '@/components/EventPosters'));
+const EventRegistrationDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/EventRegistrationDialog'));
+const JoinClubDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/JoinClubDialog'));
+const BecomeExpertDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/BecomeExpertDialog'));
+const LoginDialog = lazy(() => import(/* webpackChunkName: "dialogs" */ '@/components/dialogs/LoginDialog'));
 
 const Index = () => {
   const navigate = useNavigate();
@@ -376,16 +377,19 @@ const Index = () => {
       <Layout titleInHeader={titleInHeader} onScrollToSection={scrollToSection} onOpenExpertDialog={() => setIsExpertDialogOpen(true)} onOpenJoinDialog={() => setIsJoinDialogOpen(true)} onOpenLoginDialog={() => setIsLoginDialogOpen(true)}>
         <div className="min-h-screen bg-[#0a0a0a] luxury-texture noise-texture overflow-x-hidden scrollbar-hide" style={{isolation: 'isolate'}}>
 
-      <HeroSection 
-        heroContent={heroContent}
-        isMobile={isMobile}
-        hoveredLetter={hoveredLetter}
-        setHoveredLetter={setHoveredLetter}
-        isTransitioning={isTransitioning}
-        setIsTransitioning={setIsTransitioning}
-        isEntering={isEntering}
-        setIsEntering={setIsEntering}
-      />
+      <Suspense fallback={<div className="min-h-screen bg-black"></div>}>
+        <HeroSection 
+          heroContent={heroContent}
+          isMobile={isMobile}
+          hoveredLetter={hoveredLetter}
+          setHoveredLetter={setHoveredLetter}
+          isTransitioning={isTransitioning}
+          setIsTransitioning={setIsTransitioning}
+          isEntering={isEntering}
+          setIsEntering={setIsEntering}
+        />
+      </Suspense>
+
       <SectionDivider />
 
       <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', contain: 'layout style paint'}}>
@@ -544,41 +548,49 @@ const Index = () => {
             <div className="text-center mb-10">
               <h3 className="text-2xl md:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 mb-4">Афиши событий</h3>
             </div>
-            <EventPosters onPosterClick={handlePosterClick} />
+            <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+              <EventPosters onPosterClick={handlePosterClick} />
+            </Suspense>
           </div>
 
           <div id="calendar">
-            <EventsCalendar 
-              onEventRegister={handleEventRegister} 
-              autoExpand={calendarAutoExpand}
-              refreshTrigger={eventsRefreshTrigger}
-            />
+            <Suspense fallback={<div className="flex items-center justify-center py-20"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div></div>}>
+              <EventsCalendar 
+                onEventRegister={handleEventRegister} 
+                autoExpand={calendarAutoExpand}
+                refreshTrigger={eventsRefreshTrigger}
+              />
+            </Suspense>
           </div>
         </div>
       </section>
 
       {isEventDialogOpen && (
-        <EventRegistrationDialog
-          isOpen={isEventDialogOpen}
-          onClose={() => setIsEventDialogOpen(false)}
-          formData={eventFormData}
-          onFormDataChange={setEventFormData}
-          onSubmit={handleEventFormSubmit}
-          isSubmitted={isEventFormSubmitted}
-          isSubmitting={isEventFormSubmitting}
-        />
+        <Suspense fallback={null}>
+          <EventRegistrationDialog
+            isOpen={isEventDialogOpen}
+            onClose={() => setIsEventDialogOpen(false)}
+            formData={eventFormData}
+            onFormDataChange={setEventFormData}
+            onSubmit={handleEventFormSubmit}
+            isSubmitted={isEventFormSubmitted}
+            isSubmitting={isEventFormSubmitting}
+          />
+        </Suspense>
       )}
 
       {isJoinDialogOpen && (
-        <JoinClubDialog
-          isOpen={isJoinDialogOpen}
-          onClose={() => setIsJoinDialogOpen(false)}
-          formData={joinFormData}
-          onFormDataChange={setJoinFormData}
-          onSubmit={handleJoinFormSubmit}
-          isSubmitted={isJoinFormSubmitted}
-          isSubmitting={isJoinFormSubmitting}
-        />
+        <Suspense fallback={null}>
+          <JoinClubDialog
+            isOpen={isJoinDialogOpen}
+            onClose={() => setIsJoinDialogOpen(false)}
+            formData={joinFormData}
+            onFormDataChange={setJoinFormData}
+            onSubmit={handleJoinFormSubmit}
+            isSubmitted={isJoinFormSubmitted}
+            isSubmitting={isJoinFormSubmitting}
+          />
+        </Suspense>
       )}
 
       <SectionDivider />
@@ -659,22 +671,26 @@ const Index = () => {
       <div className="relative h-px bg-gradient-to-r from-transparent via-[#d4af37]/35 to-transparent"></div>
 
       {isExpertDialogOpen && (
-        <BecomeExpertDialog
-          isOpen={isExpertDialogOpen}
-          onClose={() => setIsExpertDialogOpen(false)}
-          formData={expertFormData}
-          onFormDataChange={setExpertFormData}
-          onSubmit={handleExpertFormSubmit}
-          isSubmitted={isExpertFormSubmitted}
-          isSubmitting={isExpertFormSubmitting}
-        />
+        <Suspense fallback={null}>
+          <BecomeExpertDialog
+            isOpen={isExpertDialogOpen}
+            onClose={() => setIsExpertDialogOpen(false)}
+            formData={expertFormData}
+            onFormDataChange={setExpertFormData}
+            onSubmit={handleExpertFormSubmit}
+            isSubmitted={isExpertFormSubmitted}
+            isSubmitting={isExpertFormSubmitting}
+          />
+        </Suspense>
       )}
 
       {isLoginDialogOpen && (
-        <LoginDialog
-          isOpen={isLoginDialogOpen}
-          onClose={() => setIsLoginDialogOpen(false)}
-        />
+        <Suspense fallback={null}>
+          <LoginDialog
+            isOpen={isLoginDialogOpen}
+            onClose={() => setIsLoginDialogOpen(false)}
+          />
+        </Suspense>
       )}
         </div>
       </Layout>

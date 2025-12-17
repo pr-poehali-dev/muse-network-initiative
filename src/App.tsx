@@ -2,34 +2,33 @@ import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import Index from "./pages/Index";
-import Events from "./pages/Events";
-import Gallery from "./pages/Gallery";
-import MuseTV from "./pages/MuseTV";
-import TestForms from "./pages/TestForms";
-import Terms from "./pages/Terms";
-import Admin from "./pages/Admin";
-import WebhookSetup from "./pages/WebhookSetup";
-import Dashboard from "./pages/Dashboard";
-import NotFound from "./pages/NotFound";
+import { lazy, Suspense } from "react";
+
+const Index = lazy(() => import("./pages/Index"));
+const Events = lazy(() => import("./pages/Events"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const MuseTV = lazy(() => import("./pages/MuseTV"));
+const TestForms = lazy(() => import("./pages/TestForms"));
+const Terms = lazy(() => import("./pages/Terms"));
+const Admin = lazy(() => import("./pages/Admin"));
+const WebhookSetup = lazy(() => import("./pages/WebhookSetup"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
-const App = () => {
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(() => {});
-      });
-    }
-  }, []);
+const LoadingFallback = () => (
+  <div className="min-h-screen bg-black flex items-center justify-center">
+    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#d4af37]"></div>
+  </div>
+);
 
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <BrowserRouter>
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <BrowserRouter>
+        <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/events" element={<Events />} />
@@ -42,10 +41,10 @@ const App = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-};
+        </Suspense>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;
