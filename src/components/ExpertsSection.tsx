@@ -85,7 +85,7 @@ const ExpertsSection = memo(({ experts, onBecomeExpertClick }: ExpertsSectionPro
           Профессионалы в своих областях
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {experts.map((expert, index) => (
             <ExpertCard key={index} expert={expert} />
           ))}
