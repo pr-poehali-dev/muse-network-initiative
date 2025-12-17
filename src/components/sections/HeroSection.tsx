@@ -108,16 +108,6 @@ const HeroSection = memo(({
       </div>
 
       <div className="w-full text-center px-4 md:px-8 relative z-30 pt-[35vh] md:pt-0">
-        {isMobile && (
-          <div className="mb-8">
-            <button
-              onClick={() => navigate('/events')}
-              className="px-6 py-2.5 bg-black/40 backdrop-blur-sm border border-[#d4af37]/60 rounded text-[#d4af37] text-sm font-semibold uppercase tracking-wider"
-            >
-              Форум 13.12.2025
-            </button>
-          </div>
-        )}
         <div 
           className="relative inline-block mb-8 md:mb-10 animate-title-appear group" 
           style={{
