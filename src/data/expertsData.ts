@@ -10,7 +10,7 @@ export const expertsData = [
     name: 'Сивая Ольга Владимировна',
     role: 'Психолог, психотерапевт, специалист по психодиагностике',
     description: 'Профессиональный психолог и психотерапевт с сертификацией в области психодиагностики',
-    image: 'https://i.ibb.co/JsZ4nFt/image.jpg',
+    image: 'https://cdn.poehali.dev/files/photo_2025-11-24_12-19-41.jpg',
     video_url: null
   },
   {
