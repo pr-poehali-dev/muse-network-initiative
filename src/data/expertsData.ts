@@ -42,10 +42,10 @@ export const expertsData = [
     video_url: null
   },
   {
-    name: 'Рябова Тамара Васильевна',
-    role: 'Фитнес-эксперт, специалист по здоровому телу',
-    description: 'Эксперт в области фитнеса и поддержания здорового тела',
-    image: 'https://cdn.poehali.dev/files/photo_2025-10-26_18-48-31.jpg',
+    name: 'Ваганова Татьяна Николаевна',
+    role: 'Эксперт в развитии личного бренда, Руководитель студии NEW VOICE',
+    description: 'Певица, музыкант и эксперт в развитии личного бренда',
+    image: 'https://cdn.poehali.dev/files/photo_2025-12-17_18-24-42.jpg',
     video_url: null
   },
   {
