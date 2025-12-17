@@ -1,6 +1,6 @@
-const CACHE_NAME = 'muse-club-v3';
-const STATIC_CACHE = 'muse-static-v3';
-const IMAGE_CACHE = 'muse-images-v3';
+const CACHE_NAME = 'muse-club-v4';
+const STATIC_CACHE = 'muse-static-v4';
+const IMAGE_CACHE = 'muse-images-v4';
 
 const STATIC_ASSETS = [
   '/',
