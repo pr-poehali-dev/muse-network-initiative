@@ -4,7 +4,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import Index from "./pages/Index";
-import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import MuseTV from "./pages/MuseTV";
 import TestForms from "./pages/TestForms";
@@ -32,7 +31,6 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/events" element={<Events />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/muse-tv" element={<MuseTV />} />
             <Route path="/test-forms" element={<TestForms />} />
