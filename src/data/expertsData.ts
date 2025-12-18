@@ -50,7 +50,7 @@ export const expertsData = [
   },
   {
     name: 'Викторова Юлия Александровна',
-    role: 'Директор по цифровому маркетингу albe digital',
+    role: 'Эксперт в цифровом маркетинге',
     description: 'Директор по цифровому маркетингу albe digital',
     image: 'https://cdn.poehali.dev/files/photo_2025-12-17_18-21-53.jpg',
     video_url: null
