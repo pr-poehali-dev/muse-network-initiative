@@ -26,33 +26,5 @@ export const expertsData = [
     description: 'Профессиональный стилист и эксперт в области создания стиля и имиджа',
     image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/3f3f360d-b85f-4907-a022-4ee57d767ef1.jpg',
     video_url: null
-  },
-  {
-    name: 'Белова Ирина Павловна',
-    role: 'Мастер исторического костюма, дизайнер аутентичной одежды',
-    description: 'Мастер исторического костюма и создатель бренда аутентичной одежды',
-    image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/03673516-12eb-47f7-80b2-3ee31b5407f7.jpg',
-    video_url: null
-  },
-  {
-    name: 'Новикова Татьяна Владимировна',
-    role: 'Психолог, психотерапевт, метод символдрамы, бизнес-тренер',
-    description: 'Психолог и психотерапевт, специализирующийся на методе символдрамы, бизнес-тренер',
-    image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/ea9c6a28-6346-4f8d-8f8a-7c4995a9296f.jpg',
-    video_url: null
-  },
-  {
-    name: 'Романова Екатерина Игоревна',
-    role: 'Эксперт в развитии личного бренда, Руководитель студии NEW VOICE',
-    description: 'Певица, музыкант и эксперт в развитии личного бренда',
-    image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/ab52d37a-135a-414d-9776-e95fe922996d.jpg',
-    video_url: null
-  },
-  {
-    name: 'Смирнова Алина Андреевна',
-    role: 'Эксперт в цифровом маркетинге',
-    description: 'Директор по цифровому маркетингу albe digital',
-    image: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/92c601aa-62bf-4e46-98d0-d46e1f0bfa6a.jpg',
-    video_url: null
   }
 ];
