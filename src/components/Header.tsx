@@ -65,11 +65,14 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
                     navigate('/');
                   }
                 }}
-                className="group"
+                className="group flex items-baseline gap-2"
               >
                 <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-300 group-hover:scale-105">
                   MUSE
                 </h2>
+                <span className="text-[10px] md:text-xs font-light italic text-[#b8953d]/60 tracking-wider">
+                  by albe
+                </span>
               </button>
 
               
