@@ -1,4 +1,17 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /webhook-setup
+Disallow: /dashboard
+
+# Sitemap
+Sitemap: https://museclub.online/sitemap.xml
+
+# Основные поисковые роботы
 User-agent: Googlebot
+Allow: /
+
+User-agent: Yandex
 Allow: /
 
 User-agent: Bingbot
@@ -10,5 +23,5 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-User-agent: *
-Allow: /
+# Crawl-delay для защиты от перегрузки
+Crawl-delay: 1
