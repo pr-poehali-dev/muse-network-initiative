@@ -79,12 +79,14 @@ const Layout = ({
       <footer className="py-8 px-4 bg-black text-white relative">
         <div className="container mx-auto">
           <div className="text-center mb-8">
-            <OptimizedImage 
-              src="https://cdn.poehali.dev/files/6c57de74-9c24-44a9-8c8b-e416c8c71480.png" 
-              alt="Muse" 
-              className="h-16 mx-auto mb-3 hover:scale-105 transition-transform cursor-pointer"
+            <button
               onClick={() => navigate('/')}
-            />
+              className="group mb-3"
+            >
+              <h2 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-300 group-hover:scale-105">
+                MUSE
+              </h2>
+            </button>
             <p className="text-base mb-4">
               Вместе мы можем достичь большего
             </p>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import OptimizedImage from '@/components/OptimizedImage';
 
 interface HeaderProps {
   titleInHeader?: boolean;
@@ -58,46 +57,20 @@ const Header = ({ titleInHeader = false, onScrollToSection, onOpenExpertDialog, 
         <div className="bg-black/95 border-b border-[#d4af37]/30">
           <div className="container mx-auto px-8 py-4">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <button
-                  onClick={() => {
-                    if (location.pathname === '/') {
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    } else {
-                      navigate('/');
-                    }
-                  }}
-                  className="w-16 h-16 flex items-center justify-center group relative"
-                >
-                  <OptimizedImage 
-                    src="https://cdn.poehali.dev/files/6ad1f9a0-c975-42ff-851f-76c3aefd5b90.png"
-                    alt="MUSE Logo"
-                    width={64}
-                    height={64}
-                    loading="eager"
-                    decoding="sync"
-                    fetchpriority="high"
-                    className={`w-16 h-16 object-contain ${isMobile ? '' : 'transition-all duration-500 ease-out group-hover:scale-110 group-hover:rotate-3'}`}
-                    style={{
-                      filter: isMobile ? 'none' : 'drop-shadow(0 0 8px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 12px rgba(212, 175, 55, 0.2))',
-                      transform: 'translateZ(0)',
-                      contentVisibility: 'auto'
-                    }}
-                  />
-                </button>
-                
-                <div className="overflow-hidden">
-                  <h2 
-                    className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 whitespace-nowrap transition-all duration-500 ease-out"
-                    style={{
-                      transform: titleInHeader ? 'translateX(0) translateZ(0)' : 'translateX(-100%) translateZ(0)',
-                      opacity: titleInHeader ? 1 : 0,
-                    }}
-                  >
-                    MUSE
-                  </h2>
-                </div>
-              </div>
+              <button
+                onClick={() => {
+                  if (location.pathname === '/') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  } else {
+                    navigate('/');
+                  }
+                }}
+                className="group"
+              >
+                <h2 className="text-xl md:text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 transition-all duration-300 group-hover:scale-105">
+                  MUSE
+                </h2>
+              </button>
 
               
               <div className="flex items-center gap-3">
