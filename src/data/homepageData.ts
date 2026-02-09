@@ -3,9 +3,9 @@ export const homepageData = {
     title: 'MUSE',
     tagline: 'Женский клуб объединяющий бизнес, науку, искусство, культуру',
     description: '',
-    image_left: 'https://cdn.poehali.dev/files/photo_2025-10-25_21-50-11.jpg',
-    image_center: 'https://cdn.poehali.dev/files/photo_2025-10-26_03-31-41.jpg',
-    image_right: 'https://cdn.poehali.dev/files/photo_2025-11-24_12-19-41.jpg'
+    image_left: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/e2da8d91-882b-4208-a756-d3f5377d5794.jpg',
+    image_center: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/ee707cc0-a42d-4a3e-b6cc-f3fb6e5f5194.jpg',
+    image_right: 'https://cdn.poehali.dev/projects/4ff71479-f981-4e99-92b1-bfad49e99f48/files/078aae4b-85fc-4baa-bdb7-75e67a16d476.jpg'
   },
   about: {
     title: 'О клубе',
