@@ -42,7 +42,6 @@ const FeaturedVideoSection = ({
                     src={metadata.thumbnail} 
                     alt={metadata?.title || 'Видео'}
                     className="w-full h-full object-cover"
-                    loading="lazy"
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-black flex items-center justify-center">

@@ -107,7 +107,6 @@ const VideoLibrarySection = ({
                         src={metadata?.thumbnail || video.thumbnail_url}
                         alt={metadata?.title || video.title}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        loading="lazy"
                       />
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-[#1a1a1a] to-black flex items-center justify-center">

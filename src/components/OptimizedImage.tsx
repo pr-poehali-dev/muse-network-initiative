@@ -43,7 +43,7 @@ export default function OptimizedImage({
   alt, 
   useWebP = true, 
   useResponsive = true,
-  loading = 'lazy',
+  loading = 'eager',
   decoding = 'async',
   fetchpriority = 'auto',
   ...props 

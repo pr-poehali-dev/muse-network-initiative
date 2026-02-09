@@ -123,9 +123,6 @@ const Index = () => {
                 <img 
                   src={expert.image} 
                   alt={expert.name} 
-                  loading="lazy" 
-                  decoding="async"
-                  fetchpriority="low"
                   className="w-full h-full object-cover object-top md:object-top absolute inset-0" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
@@ -332,10 +329,7 @@ const Index = () => {
                 <img 
                   src={aboutContent.founder?.image || 'https://cdn.poehali.dev/files/f8cbb77a-0ff7-4aa5-b210-4095cac6db26.jpg'} 
                   alt={aboutContent.founder?.name || 'Основательница'} 
-                  loading="lazy"
-                  decoding="async"
                   className="w-full h-full object-cover opacity-20"
-                  style={{contentVisibility: 'auto'}}
                 />
               </div>
               <div className="relative z-10 p-8 flex flex-col justify-between min-h-[600px]">
