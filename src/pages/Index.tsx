@@ -115,7 +115,7 @@ const Index = () => {
     if (experts.length === 0) return null;
     
     return experts.map((expert, index) => (
-      <Card key={`${expert.name}-${index}`} className="overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a] animate-scale-in hover-scale" style={{animationDelay: `${index * 0.08}s`, transform: 'translateZ(0)'}}>
+      <Card key={`${expert.name}-${index}`} className="overflow-hidden rounded-2xl border border-[#d4af37]/30 bg-[#1a1a1a] hover-scale" style={{transform: 'translateZ(0)'}}>
         <CardContent className="p-0">
           <div className="aspect-[16/9] md:aspect-[3/4] bg-gradient-to-b from-secondary to-muted flex items-center justify-center relative overflow-hidden">
             {expert.image ? (
@@ -123,6 +123,7 @@ const Index = () => {
                 <img 
                   src={expert.image} 
                   alt={expert.name} 
+                  fetchPriority="high"
                   className="w-full h-full object-cover object-top md:object-top absolute inset-0" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 pointer-events-none" />
@@ -313,7 +314,7 @@ const Index = () => {
       />
       <SectionDivider />
 
-      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)', contain: 'layout style paint'}}>
+      <section id="about" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black luxury-texture" style={{transform: 'translateZ(0)'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -530,7 +531,7 @@ const Index = () => {
 
       <SectionDivider />
 
-      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{transform: 'translateZ(0)', contain: 'layout style paint'}}>
+      <section id="experts" className="py-20 px-8 bg-gradient-to-br from-[#1a1a1a] to-black noise-texture" style={{transform: 'translateZ(0)'}}>
         <div className="w-full">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-br from-[#8b7355]/90 via-[#b8953d]/80 to-[#6b5d42]/90 premium-title flex items-center justify-center gap-4">
@@ -543,7 +544,7 @@ const Index = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4" style={{contentVisibility: 'auto'}}>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
             {expertCards}
           </div>
         </div>
