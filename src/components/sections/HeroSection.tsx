@@ -68,7 +68,7 @@ const HeroSection = memo(({
         )}
 
         {!isMobile && heroContent.image_left && (
-          <div className="absolute left-[8%] top-0 w-[26%] h-full z-[11] group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
+          <div className="absolute left-[8%] top-[8%] w-[26%] h-full z-[11] group animate-slide-in-from-left" style={{animationDelay: '0.5s', animationFillMode: 'both'}}>
             <img 
               src={heroContent.image_left} 
               alt="" 
