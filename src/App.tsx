@@ -11,6 +11,7 @@ import Terms from "./pages/Terms";
 import Admin from "./pages/Admin";
 import WebhookSetup from "./pages/WebhookSetup";
 import Dashboard from "./pages/Dashboard";
+import HeroBanner from "./pages/HeroBanner";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => {
             <Route path="/admin" element={<Admin />} />
             <Route path="/webhook-setup" element={<WebhookSetup />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/hero" element={<HeroBanner />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
